@@ -1,0 +1,94 @@
+.homePage {
+   padding: 0 10px;
+}
+
+.font-12 {
+   font-size: 12px;
+}
+
+.font-16 {
+   font-size: 16px;
+}
+
+.home-flex {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.float-left {
+   float: left;
+}
+
+.float-right {
+   float: right;
+}
+
+.bindCard {
+   height: 100px;
+   border: 1px solid #f5f5f5;
+   text-align: center;
+   line-height: 100px;
+}
+
+.home-cz {
+   padding: 20px 20px;
+   border: 1px solid #f5f5f5;
+}
+
+.home-cz li {
+   text-align: center;
+}
+
+.image {
+   width: 45px;
+   height: 45px
+}
+
+.home-zy {
+   height: 80px;
+   margin: 5px 0;
+   padding: 0 10px;
+   border-radius: 10px;
+   background-color: #1da1f3;
+   color: white;
+}
+
+.zy-text {
+   margin-left: 10px;
+}
+
+.home-menu {
+   border: 1px solid #f5f5f5;
+}
+
+.home-menu:after {
+   display: block;
+   content: '';
+   clear: both;
+}
+
+.home-menu li {
+   float: left;
+   width: 25%;
+   text-align: center;
+   padding: 10px;
+}
+
+.home-footer {
+   height: 60px;
+   padding: 0 10px;
+   width: calc(100% - 20px);
+   border-top: 1px solid #f5f5f5;
+   position: absolute;
+   bottom: 0
+}
+
+.home-footer li {
+   text-align: center;
+}
+
+.more {
+   width: 10px;
+   /* background: #f5f5f5 */
+}

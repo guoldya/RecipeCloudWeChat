@@ -1,0 +1,66 @@
+.titleh1 {
+   font-size: 17px;
+}
+
+.cardText p {
+   line-height: 60px;
+   letter-spacing: 1px;
+}
+
+.appTab {
+   width: 80%;
+   margin: auto;
+}
+
+.cardHEADER {
+   padding: 16px 25px;
+   font-size: 14px;
+   color: #333333;
+}
+
+.cardHEADER img {
+   width: 25px;
+   top: 3px;
+   position: relative;
+}
+
+.fleft {
+   float: left;
+   width: 50%;
+}
+
+.fleft span {
+   top: -3px;
+   position: relative;
+   left: 7px;
+}
+
+.fright {
+   float: right;
+   width: 50%;
+   text-align: right;
+}
+
+.fright span {
+   top: 5px;
+   position: relative;
+}
+
+.icon_more {
+   width: 6px;
+   position: relative;
+   top: 1px;
+}
+
+.appTab {
+   padding-top: 0;
+}
+
+.lineheight30 {
+   line-height: 30px;
+}
+
+.learnMore {
+   height: 30px;
+   text-align: right;
+}

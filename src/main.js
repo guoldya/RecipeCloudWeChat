@@ -7,12 +7,11 @@ import Header from './components/header/header.vue';
 import Search from './components/search/search.vue';
 import infiniteScroll from 'vue-infinite-scroll';
 
-// import mandMobile from 'mand-mobile'
-// import 'mand-mobile/lib/mand-mobile.css'
+import * as mandMobile from 'mand-mobile'
+import 'mand-mobile/lib/mand-mobile.css'
 
-// Vue.use(mandMobile)
+Vue.use(mandMobile)
 // import 'normalize.css'
-
 
 import './assets/responsive'
 import './assets/global.css'
