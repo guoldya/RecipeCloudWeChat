@@ -4,7 +4,7 @@
     <div :class="{outCarint:true,margin45:isWeixin}">
       <md-button type="warning" size="small" inline>Warning</md-button>
       <md-button type="disabled" size="small" inline>Disabled</md-button>
-      <p>sssssssssssssss预约记录sssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+      <p>s22222ssssssssssssss预约记录sssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
     </div>
   </div>
 </template>
