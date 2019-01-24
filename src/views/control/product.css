@@ -1,0 +1,484 @@
+@charset "utf-8";
+* {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   background: #ffffff;
+   font: 0.875rem Arial, Helvetica, sans-serif;
+}
+
+.aui-navBar {
+   height: 3.125rem;
+   position: fixed;
+   display: flex;
+   z-index: 9999;
+}
+
+header {
+   background: #ffffff;
+   z-index: 9999;
+}
+
+a {
+   text-decoration: none;
+   color: #333333;
+}
+
+.divHeight {
+   width: 100%;
+   height: 0.625rem;
+   background: #f0f3fa;
+}
+
+.aui-navBar:after {
+   content: "";
+   position: absolute;
+   z-index: 2;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 0.0625rem;
+   /* border-bottom: 0.0625rem solid #e2e2e2;
+     */
+}
+
+.aui-navBar-item {
+   height: 3.125rem;
+   min-width: 20%;
+   -webkit-box-flex: 0;
+   -webkit-flex: 0 0 15%;
+   -ms-flex: 0 0 15%;
+   flex: 0 0 15%;
+   padding: 0 0.75rem;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
+   font-size: 1rem;
+   white-space: nowrap;
+   overflow: hidden;
+   color: #333333;
+}
+
+.aui-navBar-item:first-child {
+   -webkit-box-ordinal-group: 2;
+   -webkit-order: 1;
+   -ms-flex-order: 1;
+   order: 1;
+   margin-right: -25%;
+}
+
+.aui-navBar-item:last-child {
+   -webkit-box-ordinal-group: 4;
+   -webkit-order: 3;
+   -ms-flex-order: 3;
+   order: 3;
+   -webkit-box-pack: end;
+   -webkit-justify-content: flex-end;
+   -ms-flex-pack: end;
+   justify-content: flex-end;
+}
+
+.aui-navBar-item img {
+   width: 13px;
+   height: 23px;
+}
+
+.aui-center {
+   -webkit-box-ordinal-group: 3;
+   -webkit-order: 2;
+   -ms-flex-order: 2;
+   order: 2;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: center;
+   -webkit-justify-content: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
+   height: 3.125rem;
+   width: 70%;
+   margin-left: 25%;
+   font-size: 1.0625rem;
+}
+
+.aui-center-title {
+   text-align: center;
+   width: 100%;
+   white-space: nowrap;
+   overflow: hidden;
+   display: block;
+   text-overflow: ellipsis;
+   font-size: 0.875rem;
+   color: #333333;
+}
+
+.active {
+   font-size: 1.0625rem;
+   color: #1da1f3;
+   font-family: 'PingFang-SC-Blod';
+   font-weight: 600
+}
+
+header {
+   display: flex;
+   width: 100%;
+   height: 3.125rem;
+   text-align: center;
+   top: 0rem;
+   left: 0rem;
+   position: fixed;
+   z-index: 19;
+   background: #fff;
+   box-sizing: border-box;
+   z-index: 9999;
+}
+
+.back,
+.share {
+   width: 1.375rem;
+   height: 1.1875rem;
+   line-height: 2.25rem;
+   text-align: center;
+}
+
+.back img,
+.share img {
+   width: 100%;
+   height: 100%;
+}
+
+.title h1 {
+   font-size: 1rem;
+   padding: 0;
+   float: left;
+   font-weight: 400;
+   line-height: 0.0625rem;
+   font-family: "PingFang-SC-Medium";
+}
+
+.btn {
+   /* text-align: center; */
+   /* margin-top: 0.4375rem; */
+   padding: 0 0.75rem;
+}
+
+.margin64 {
+   margin-top: 64px;
+}
+
+.content {
+   width: 100%;
+}
+
+.cainter {
+   margin: 0.75rem;
+}
+
+.btn .abtn {
+   margin-top: 0.3125rem;
+}
+
+.drugHead {
+   width: 3.375rem;
+   height: 3.375rem;
+   float: left;
+}
+
+.drugHead img {
+   width: 3.375rem;
+   height: 3.375rem;
+   border-radius: 0.3125rem;
+}
+
+.cainter h1 {
+   font-size: 1rem;
+   letter-spacing: 0.0625rem;
+}
+
+.cainter p {}
+
+.price {
+   font-size: 1.375rem;
+   color: #fe3e3e;
+   font-weight: 600
+}
+
+.headRight {
+   width: calc(100% - 4rem);
+   float: right;
+   text-align: left;
+}
+
+.starleft {
+   width: 60%;
+   float: left;
+}
+
+.dateRight {
+   width: 40%;
+   float: right;
+   text-align: right;
+   top: 0.4375rem;
+   font-size: 0.8125rem;
+   color: #999999;
+   position: relative;
+}
+
+.cainterOUt {
+   height: 3.375rem;
+}
+
+.cainterAA {
+   width: 25%;
+   float: left;
+   text-align: center
+}
+
+.contentDrug {
+   height: 3.625rem;
+}
+
+.dateRight img {
+   width: 3.875rem;
+}
+
+.startop,
+.star {
+   width: 100%;
+}
+
+.startop {
+   margin-top: 0.25rem
+}
+
+.startop span {
+   line-height: 1.6875rem;
+   font-size: 1.0625rem;
+}
+
+.startop span:first-child {
+   margin-right: 0.8125rem;
+}
+
+.star img {
+   width: 0.9375rem;
+}
+
+.detaileTag {
+   font-size: 0.8125rem;
+   color: #999999;
+}
+
+.headimg {
+   width: 2.9375rem;
+   height: 2.9375rem;
+   border-radius: 50%;
+   float: left;
+   text-align: center;
+}
+
+.headimg img {
+   width: 100%;
+   border-radius: 50%;
+   height: 100%;
+   text-align: center;
+}
+
+.cainter ul li {
+   display: inline-block;
+   padding-bottom: 0.8125rem;
+   margin-top: 0.8125rem
+}
+
+.headRightPJ {
+   width: calc(100% - 3.5625rem);
+}
+
+.headRightPJ p {
+   word-break: break-all;
+   width: 100%;
+   overflow: auto;
+}
+
+.pingjia {
+   font-size: 1rem;
+   padding: 0;
+   float: left;
+   font-weight: 400;
+   line-height: 1.5rem;
+   font-family: "PingFang-SC-Medium";
+}
+
+li {
+   list-style: none
+}
+
+button :active {
+   background: pink
+}
+
+.abtn {
+   font-size: 0.6875rem;
+   font-weight: 400;
+   line-height: 1.6;
+   padding: 0.25rem 0.625rem;
+   cursor: pointer;
+   text-align: center;
+   color: #1da1f3;
+   Letter-spacing: 0.0625rem;
+   border-radius: 1.25rem;
+   border: 1px solid #1da1f3;
+   background: #fff;
+   margin-right: 0.3125rem;
+}
+
+.abtninfo {
+   font-size: 0.9rem;
+   font-weight: 400;
+   line-height: 1.6;
+   padding: 0.25rem 0.75rem;
+   cursor: pointer;
+   text-align: center;
+   color: #333333;
+   Letter-spacing: 0.0625rem;
+   border-radius: 1.25rem;
+   border: 1px solid #ffffff;
+   background: #fff;
+   margin-right: 0.7rem;
+}
+
+.activebtn {
+   color: #1da1f3;
+   box-shadow: 0 0 0.625rem rgba(79, 94, 105, 0.301);
+}
+
+.abtninfo:last-child {
+   margin-right: 0;
+}
+
+.abtnBIG {
+   background: #1da1f3;
+   color: #ffffff;
+   font-size: 0.875rem;
+   position: relative;
+   /* top: 0.5625rem;
+     */
+   padding: 0.5625rem 1.25rem;
+}
+
+.fenshu {
+   color: #1da1f3;
+   font-size: 1.0625rem;
+}
+
+.mb13 {
+   margin-bottom: 0.8125rem;
+}
+
+/* d底部 */
+
+.aui-footer {
+   width: 100%;
+   z-index: 100;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
+   padding: 0.4375rem 0.3125rem 0.4375rem 0.3125rem;
+   background-color: #ffffff;
+   position: fixed;
+   bottom: 0;
+}
+
+.aui-footer:after {
+   content: "";
+   position: absolute;
+   z-index: 0;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 0.0625rem;
+   -webkit-transform: scaleY(0.5);
+   transform: scaleY(0.5);
+   -webkit-transform-origin: 0 0;
+   transform-origin: 0 0;
+}
+
+.aui-tabBar-item {
+   -webkit-box-flex: 1;
+   -webkit-flex: 1;
+   -ms-flex: 1;
+   flex: 1;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -webkit-flex-direction: column;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   -webkit-box-pack: center;
+   -webkit-justify-content: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
+   color: #979797;
+}
+
+.aui-tabBar-item2 {
+   /* flex: 2.3; */
+}
+
+.aui-tabBar-item img {
+   width: 2.9375rem;
+   height: 2.9375rem;
+}
+
+.aui-tabBar-item2 .abtn {
+   background: #1da1f3;
+   color: #ffffff;
+   font-size: 0.875rem;
+   padding: 0.4375rem 0.8rem;
+}
+
+.aui-tabBar-item2 .car {
+   background: #43484b;
+   border: 1px solid #43484b;
+}
+
+.cainterSize {
+   margin-top: 1.7rem;
+}
+
+.cainterSize img {
+   width: 100%;
+}
+
+.drugStoreName {
+   overflow: hidden;
+   white-space: nowrap;
+   width: 170px;
+   word-break: keep-all;
+   text-overflow: ellipsis;
+   display: block;
+}
