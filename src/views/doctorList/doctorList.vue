@@ -1,25 +1,17 @@
 <template>
   <div>
     <div class="titleTag">
-      <div class="tag1">
+      <div class="tag1" @click="showSelector">
         <div class="tagdiv">
-          <!-- <mu-select filterable="" v-model="selected3" full-width :solo='false'>
-            <mu-option v-for="city,index in citys" :key="city.value" :label="city.name" :value="city.value"></mu-option>
-          </mu-select> -->
-
-          <div class="showSelecA" @click="showSelector">
-            <p>{{selectorValue}}
-              <span>▾</span>
-            </p>
+          <div class="showSelecA">
+            <span>{{selectorValue}}</span>
           </div>
-          <!-- <md-selector v-model="isSelectorShow" default-value="2" :data="citys" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector> -->
           <md-selector v-model="isSelectorShow" :data="citys" max-height="320px" title="选择科室" @choose="onSelectorChoose"></md-selector>
         </div>
       </div>
       <div class="line"></div>
       <div class="tag2">
         <div class="tagdiv">
-          <!-- <span @click="isSwitch=!isSwitch" :class="{'activeAA':isSwitch}">只看有号</span> -->
           <span v-if="isSwitch" @click="handler">查看所有</span>
           <span v-else @click="handler" class="activeAA">只看有号</span>
         </div>
@@ -31,11 +23,10 @@
         </div>
       </div>
     </div>
-
     <div :class="{'butTime':true,'butTimeaa':!isTop}">
       <div class="time" v-show="isTop">
         <ul>
-          <li @click="switchTo(index)" v-for="(item,index) in time" :class="activetime === index ? 'timeAcitve' : '' " :key="index+'aa'">
+          <li @click="switchTo(index,item)" v-for="(item,index) in time" :class="activetime === index ? 'timeAcitve' : '' " :key="index+'aa'">
             <p>{{item.date}}</p>
             <p>{{item.week}}</p>
           </li>
@@ -43,8 +34,8 @@
       </div>
       <div v-show="!isTop">
         <div class="timeAcitve chooseTime">
-          <p>01-27</p>
-          <p>星期四</p>
+          <p>{{choosedate}}</p>
+          <p>{{chooseweek}}</p>
         </div>
         <div class="timeRight">
           <span @click="goAfternoon" :class="{ afternoonActive: isActive == 2 ,'afternoon':true}">下午</span>
@@ -62,6 +53,7 @@
                 <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
                 <div>
                   <p class="headname">冉有钱1
+                    <span class="levle">主任医师</span>
                     <span class="have">余56</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
@@ -153,10 +145,9 @@ export default {
         { text: "不孕不育", value: '555' },
         { text: "生殖内分泌门诊", value: '888' },
       ],
-
-
-      time: [
-      ]
+      time: [],
+      choosedate: '1-01',
+      chooseweek: '星期六',
     };
   },
   created() {
@@ -266,8 +257,10 @@ export default {
         name: 'result',
       });
     },
-    switchTo(num) {
+    switchTo(num, item) {
       this.activetime = num;
+      this.choosedate = item.date;
+      this.chooseweek = item.week;
     },
   },
   computed: {

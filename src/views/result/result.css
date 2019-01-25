@@ -15,7 +15,6 @@ input {
    left: 0;
    right: 0;
    margin: 0 auto;
-   margin-top: 52px;
    padding-left: 35px;
    background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
    background-size: auto 50% !important;
@@ -24,4 +23,15 @@ input {
    font-size: 12px !important;
    color: #000;
    z-index: 999;
+}
+
+.mu-sub-header {
+   font-size: 28px;
+   color: #1976d2;
+}
+
+.holder img {
+   height: 92px;
+   width: 92px;
+   border-radius: 50%;
 }

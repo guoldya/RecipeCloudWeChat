@@ -46,18 +46,17 @@ input {
 .oc_val {
   /* position: fixed; */
   width: 95%;
-  height: 45px;
-  border-radius: 5px;
+  height: 90px;
+  border-radius: 10px;
   left: 0;
   right: 0;
   margin: 0 auto;
-  margin-top: 52px;
-  padding-left: 35px;
+  padding-left: 70px;
   background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
   background-size: auto 50% !important;
   opacity: 1;
   outline: none;
-  font-size: 12px !important;
+  font-size: 26px !important;
   color: #000;
   z-index: 999;
 }

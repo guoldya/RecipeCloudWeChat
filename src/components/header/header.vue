@@ -7,7 +7,8 @@
       <span class="aui-center-title">{{postTitle}}</span>
     </div>
     <a href="javascript:;" class="aui-navBar-item" @click="select">
-      vv
+      <!-- {{selectOption}} -->
+      
     </a>
   </header>
 </template>
@@ -20,7 +21,7 @@ export default {
       num: 0,
     }
   },
-  props: ['postTitle'],
+  props: ['postTitle','selectOption'],
   created() {
 
   },

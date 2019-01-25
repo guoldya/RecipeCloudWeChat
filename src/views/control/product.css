@@ -5,7 +5,7 @@
    font-weight: 600
 }
 
-.content {
+#product-info .content {
    text-align: left;
 }
 
@@ -19,7 +19,7 @@
    margin-top: 64px;
 }
 
-.content {
+#product-info .content {
    width: 100%;
 }
 

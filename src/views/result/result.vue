@@ -1,49 +1,21 @@
 <template>
   <div class="header">
     <Header post-title="搜索" v-show="isWeixin"></Header>
-    <div style=" text-align: center;">
+    <div :class="{'margin45':isWeixin}" style=" text-align: center; ">
       <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
     </div>
-    <mu-paper :z-depth="1" class="demo-list-wrap">
-
-      <ul class="mu-list">
-        <div class=" mu-sub-header ">科室</div>
-        <li v-for="(item2,index2) in departData" :key="index2" @click="intodoctorList(item2.name)">
-          <a class="mu-item-wrapper">
-            <div class="mu-item  has-avatar  ">
-              <div class="mu-item-title">{{item2.name}}</div>
-              <div class="mu-item-action  "><img src="@/assets/images/jianright.png" alt="" width="20px"></div>
-            </div>
-          </a>
-          <hr class="mu-divider">
-        </li>
-      </ul>
-
-      <ul class="mu-list">
-        <div class=" mu-sub-header ">医生</div>
-        <li v-for="(item,index) in test3" :key="index+'aa'">
-          <a class="mu-item-wrapper" @click="intodoctordetail">
-            <div class="mu-item  has-avatar">
-              <div class="mu-item-action  ">
-                <div class="mu-avatar  " style="width: 40px; height: 40px; font-size: 20px;">
-                  <div class="mu-avatar-inner"><img src="@/assets/images/3.jpg"></div>
-                </div>
-              </div>
-              <div class="mu-item-content">
-                <div class="mu-item-title">{{item.name}}</div>
-                <div class="mu-item-sub-title">擅长：吃屎</div>
-              </div>
-              <div class="mu-item-action"><img src="@/assets/images/jianright.png" alt="" width="20px"></div>
-            </div>
-          </a>
-          <hr class=" mu-divider  ">
-        </li>
-
-      </ul>
-    </mu-paper>
+    <md-field>
+      <div class="mu-sub-header">科室</div>
+      <md-cell-item v-for="(item2,index2) in departData" :title="item2.name" arrow @click="intodoctorList(item2.name)" :key="'AAA'+index2" />
+    </md-field>
+    <md-field>
+      <div class="mu-sub-header">医生</div>
+      <md-cell-item v-for="(item,index) in test3" :key="index+'aa'" :title="item.name" :brief="item.good" arrow>
+        <span class="holder" slot="left"><img src="@/assets/images/3.jpg"></span>
+      </md-cell-item>
+    </md-field>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -52,15 +24,15 @@ export default {
       isWeixin: false,
       departData: [
         { name: "妇科门诊" },
-        { name: "生殖内分泌门诊生殖内分泌门诊生殖内分泌门诊" },
+        { name: "生殖内分泌门诊生殖内分泌" },
         { name: "儿科" },
         { name: "放射科" },
       ],
       test3: [
-        { name: "冉有钱" },
-        { name: "唐浩瀚" },
-        { name: "安未" },
-        { name: "吴政阳" },
+        { name: "冉有钱", good: "擅长：急性呼吸窘迫综合征、 呼吸衰竭的救治" },
+        { name: "唐浩瀚", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
+        { name: "安未", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
+        { name: "吴政阳", good: "擅长：急性呼吸窘迫综合征、重症感染 " },
       ],
     }
   },

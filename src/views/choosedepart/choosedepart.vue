@@ -1,17 +1,16 @@
 <template>
   <div class="page-loadmore">
     <Header post-title="选择科室" v-show="isWeixin"></Header>
-    <Search></Search>
-    <div class="outCarint">
+    <div :class="{'outCarint':true,'margin45':isWeixin}">
+      <Search></Search>
       <div class="demo-text">
-        <div  >
+        <div>
           <div class="appTab">
             <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
               {{item.title}}
             </span>
           </div>
           <div class="cardText">
-
             <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
               {{item.title}}
             </div>
@@ -24,7 +23,6 @@
             <div v-if="this.active1==1">
               <md-cell-item v-for="(item2,index2) in test3" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.name" />
             </div>
-             
           </div>
         </div>
       </div>
@@ -52,7 +50,7 @@ export default {
       ],
       departData: [
         { name: "妇科门诊", value: 77 },
-        { name: "生殖内分泌门诊生殖内分泌门诊生殖内分泌门诊", value: 88 },
+        { name: "生殖内分泌门诊", value: 88 },
         { name: "儿科", value: 99 },
         { name: "放射科", value: 111 },
         { name: '妇科', value: 1 },
@@ -216,6 +214,7 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 32px 100px;
+  font-size: 32px;
 }
 .appTab span {
   padding: 0 8px 8px;

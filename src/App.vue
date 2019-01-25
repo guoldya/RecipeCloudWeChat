@@ -34,8 +34,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #333333;
   font-size: 28px;
-  max-width: 777PX;
-  margin: 0 auto
+  max-width: 777px;
+  margin: 0 auto;
 }
 a {
   text-decoration: none;
@@ -51,6 +51,7 @@ p {
   font-size: 26px;
   color: #979797;
 }
+ 
 .margin45 {
   margin-top: 100px;
 }
@@ -85,7 +86,7 @@ p {
   width: 82%;
   padding: 0 2%;
 }
- 
+
 .wannianli-info {
   height: 340px;
   background: #ffffff;
@@ -137,7 +138,7 @@ p {
 }
 
 .card {
-  box-shadow: 0 0 0.43rem #c8dff7;
+  box-shadow: 0 0 17px #c8dff7;
   background-color: #fff;
   position: relative;
   border-radius: 10px;

@@ -56,7 +56,7 @@
                 <div class="startop">
                   <span class="drugStoreName">{{drugStoreName}}&nbsp;</span>
                 </div>
-                <div class="star staraa"  >
+                <div class="star staraa">
                   <img src="@/assets/images/icon_star@2x.png">
                   <img src="@/assets/images/icon_star@2x.png">
                   <img src="@/assets/images/icon_star@2x.png">
