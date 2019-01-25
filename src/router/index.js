@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
- 
+
 import control from '@/views/control/control.vue'
 import article from '@/views/article/article.vue'
- 
+
 import appoint from '@/views/appoint/appoint.vue'
 import appointinfo from '@/views/appointinfo/appointinfo.vue'
 import choosedepart from '@/views/choosedepart/choosedepart.vue'
@@ -25,22 +25,24 @@ import doctorplan from '@/views/doctorplan/doctorplan.vue'
 
 
 // thh
- 
+
 import fillinfo from '@/views/fillinfo/index.vue'
 import identity from '@/views/identity/index.vue'
 import idcard from '@/views/idcard/index.vue'
- 
+
 // 
 
 
 
+import inspectionCheck from '@/views/inspectionCheck/inspectionCheck.vue'
+import medicalEvaluation from '@/views/medicalEvaluation/medicalEvaluation.vue'
 
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    
+
     {
       path: '/home',
       name: 'home',
@@ -56,8 +58,8 @@ export default new Router({
       name: 'article',
       component: article
     },
-     
-    
+
+
     {
       path: '/appoint',
       name: 'appoint',
@@ -132,7 +134,7 @@ export default new Router({
       name: 'notice',
       component: notice
     },
-     
+
     {
       path: '/fillinfo',
       name: 'fillinfo',
@@ -158,5 +160,17 @@ export default new Router({
       name: 'doctorplan',
       component: doctorplan
     },
+    {
+      path: '/inspectionCheck',
+      name: 'inspectionCheck',
+      component: inspectionCheck
+    },
+    {
+      path: '/medicalEvaluation',
+      name: 'medicalEvaluation',
+      component: medicalEvaluation
+    },
+
   ]
+
 })
