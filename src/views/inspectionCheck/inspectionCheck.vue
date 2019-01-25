@@ -1,13 +1,13 @@
 <template>
     <div class="slow-page">
-        <Header post-title="慢病续方" selectOption="" v-show="isWeixin"></Header>
+        <Header post-title="慢病续方" :selectOption=value v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div>
-                <div class="md-example-child md-example-child-drop-menu md-example-child-drop-menu-0">
-                    <md-drop-menu :data="optionsData" />
-                </div>
-            </div>
-            <div class="content">
+            <!--<div>-->
+                <!--<div class="md-example-child md-example-child-drop-menu md-example-child-drop-menu-0">-->
+                    <!--<md-drop-menu :data="optionsData" />-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="pageContent">
                 <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
                 {{item.title}}
                 </span>
@@ -51,15 +51,7 @@
 </template>
 
 <script type="text/babel">
-    import {DropMenu,Field, FieldItem, Dialog, Icon} from 'mand-mobile'
     export default {
-        name: 'drop-menu-demo',
-        components: {
-            [DropMenu.name]: DropMenu,
-            [Field.name]: Field,
-            [FieldItem.name]: FieldItem,
-            [Icon.name]: Icon,
-        },
         data() {
             return {
                 isWeixin: false,
@@ -91,6 +83,7 @@
                 footer:0,
                 open: false,
                 isContinue:true,
+                value:"当时的"
             };
         },
         created() {
@@ -100,11 +93,14 @@
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
                 this.isWeixin = false;
+                this.value="rrrrrrr"
                 return true;
             } else {
                 this.isWeixin = true;
+                this.value="rrrrrrr"
                 return false;
             }
+
 
         },
         methods: {
