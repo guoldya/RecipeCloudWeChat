@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import control from '@/views/control/control.vue'
+import online from '@/views/online/online.vue'
 import article from '@/views/article/article.vue'
-
+import my from '@/views/my/my.vue'
 import appoint from '@/views/appoint/appoint.vue'
 import appointinfo from '@/views/appointinfo/appointinfo.vue'
 import choosedepart from '@/views/choosedepart/choosedepart.vue'
@@ -22,6 +23,9 @@ import home from '@/views/home/home.vue'
 import notice from '@/views/notice/notice.vue'
 import lookagain from '@/views/lookagain/lookagain.vue'
 import doctorplan from '@/views/doctorplan/doctorplan.vue'
+import workdepart from '@/views/workdepart/workdepart.vue'
+import workdoctor from '@/views/workdoctor/workdoctor.vue'
+import workdotorinfo from '@/views/workdotorinfo/workdotorinfo.vue'
 
 // thh
 import fillinfo from '@/views/fillinfo/index.vue'
@@ -47,6 +51,11 @@ export default new Router({
       component: home
     },
     {
+      path: '/my',
+      name: 'my',
+      component: my
+    },
+    {
       path: '/control',
       name: 'control',
       component: control
@@ -56,8 +65,11 @@ export default new Router({
       name: 'article',
       component: article
     },
-
-
+    {
+      path: '/online',
+      name: 'online',
+      component: online
+    },
     {
       path: '/appoint',
       name: 'appoint',
@@ -168,6 +180,22 @@ export default new Router({
       name: 'medicalEvaluation',
       component: medicalEvaluation
     },
+    {
+      path: '/workdepart',
+      name: 'workdepart',
+      component: workdepart
+    },
+    {
+      path: '/workdoctor',
+      name: 'workdoctor',
+      component: workdoctor
+    },
+    {
+      path: '/workdotorinfo',
+      name: 'workdotorinfo',
+      component: workdotorinfo
+    },
+
 
   ]
 

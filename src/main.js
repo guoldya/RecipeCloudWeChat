@@ -5,7 +5,7 @@ import axios from 'axios';
 import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
 import Search from './components/search/search.vue';
-// import Footer from './components/footer/footer.vue';
+import Footer from './components/footer/footer.vue';
 import infiniteScroll from 'vue-infinite-scroll';
 
 import * as mandMobile from 'mand-mobile'
@@ -19,7 +19,7 @@ import './assets/global.css'
 
 Vue.component('Header', Header);
 Vue.component('Search', Search);
-// Vue.component('Footer', Footer);
+Vue.component('Footer', Footer);
 Vue.config.productionTip = false;
 Vue.use(infiniteScroll);
 

@@ -1,19 +1,18 @@
 <template>
-  <div class="header">
+  <div class="result">
     <Header post-title="搜索" v-show="isWeixin"></Header>
-    <div :class="{'margin45':isWeixin}" style=" text-align: center; ">
-      <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
-    </div>
-    <md-field>
-      <div class="mu-sub-header">科室</div>
+    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+      <div style="text-align:center;">
+        <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
+      </div>
+      <div class="mu-sub-header margin16">科室</div>
       <md-cell-item v-for="(item2,index2) in departData" :title="item2.name" arrow @click="intodoctorList(item2.name)" :key="'AAA'+index2" />
-    </md-field>
-    <md-field>
-      <div class="mu-sub-header">医生</div>
+      <div class="mu-sub-header margin16">医生</div>
       <md-cell-item v-for="(item,index) in test3" :key="index+'aa'" :title="item.name" :brief="item.good" arrow>
         <span class="holder" slot="left"><img src="@/assets/images/3.jpg"></span>
       </md-cell-item>
-    </md-field>
+    </div>
+
   </div>
 </template>
 <script>
@@ -86,45 +85,12 @@ export default {
 
         });
       }, 300);
-
     },
-
-
   }
 }
 </script>
 
 <style scoped>
 @import url("./result.css");
-.departLi2 {
-  width: 100%;
-  float: left;
-  border-bottom: 1px solid #ededed;
-}
-.grid-cell2 {
-  line-height: 50px;
-  margin: 0 12px;
-}
-.mubadge {
-  font-size: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0 6px;
-  line-height: 1.5;
-  font-size: 12px;
-  font-style: normal;
-  background-color: #bdbdbd;
-  color: #e01212;
-  border-radius: 3px;
-  overflow: hidden;
-  border: 1px solid #bdbdbd;
-}
 </style>
 

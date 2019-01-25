@@ -1,6 +1,4 @@
-<style>
-@import "doctor.css";
-</style>
+ 
 <template>
     <div :class="{'outCarint':true,'margin45':isWeixin}">
         <Header post-title="医生详情" v-show="isWeixin"></Header>
@@ -130,3 +128,6 @@ export default {
     }
 }
 </script>
+<style scoped>
+@import "doctor.css";
+</style>

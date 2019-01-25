@@ -1,30 +1,27 @@
 <template>
-  <div class="page-loadmore">
+  <div class="choosedepart">
     <Header post-title="选择科室" v-show="isWeixin"></Header>
-    <div :class="{'outCarint':true,'margin45':isWeixin}">
+    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
       <Search></Search>
-      <div class="demo-text">
-        <div>
-          <div class="appTab">
-            <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-              {{item.title}}
-            </span>
-          </div>
-          <div class="cardText">
-            <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
-              {{item.title}}
-            </div>
-            <p class="xuanze">选择科室
-              <span class="warn">(周末及节假日不可预约)</span>
-            </p>
-            <div v-if="this.active1==0">
-              <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.name" />
-            </div>
-            <div v-if="this.active1==1">
-              <md-cell-item v-for="(item2,index2) in test3" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.name" />
-            </div>
-          </div>
+      <div class="appTab">
+        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+          {{item.title}}
+        </span>
+      </div>
+      <div>
+        <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
+          {{item.title}}
         </div>
+        <p class="xuanze">选择科室
+          <span class="warn">(周末及节假日不可预约)</span>
+        </p>
+        <div v-if="this.active1==0">
+          <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.name" />
+        </div>
+        <div v-if="this.active1==1">
+          <md-cell-item v-for="(item2,index2) in test3" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.name" />
+        </div>
+
       </div>
     </div>
     <div class="aui-footer" @click="lookagain">
@@ -105,42 +102,42 @@ export default {
 };
 </script>
  <style scoped>
-.xuanze {
+.choosedepart .xuanze {
   font-size: 28px;
   margin-top: 30px;
 }
-.margin20 {
+.choosedepart .margin20 {
   margin-top: 20px;
 }
-.cardText p {
+.choosedepart .cardText p {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
-.buttonDepart {
+.choosedepart .buttonDepart {
   font-size: 14px;
   padding: 0 16px;
   line-height: 36px;
   border-radius: 5px;
   background: pink;
 }
-.cardText {
+.choosedepart .cardText {
   padding: 0 16px;
 }
-.departRow {
+.choosedepart .departRow {
   display: flex;
 }
-.departRow span {
+.choosedepart .departRow span {
   width: 50%;
   font-size: 13px;
   color: #0b0b0b;
 }
-.grid-cell {
+.choosedepart .grid-cell {
   line-height: 50px;
 }
 
-.mubutton {
+.choosedepart .mubutton {
   color: #8a8a8a;
   /* color: #ffffff; */
   border-radius: 5px;
@@ -153,27 +150,27 @@ export default {
   color: #1da1f3;
   display: inline-block;
 }
-.activebtn {
+.choosedepart .activebtn {
   background: #1da1f3;
   color: #ffffff;
 }
-.warn {
+.choosedepart .warn {
   font-size: 24px;
   color: #f44336;
 }
-.departLi {
+.choosedepart .departLi {
   width: 100%;
   float: left;
   border-bottom: 1px solid #ededed;
 }
-.grid-cell p {
+.choosedepart .grid-cell p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 50px;
 }
 
-.aui-footer {
+.choosedepart .aui-footer {
   width: 120px;
   z-index: 100;
   display: -webkit-box;
@@ -194,33 +191,36 @@ export default {
   right: 24px;
   box-shadow: 2px 0px 2px 2px rgba(0, 0, 0, 0.2);
 }
-
-.aui-footer span {
+.choosedepart .aui-footer:after {
+  border-top: none;
+}
+.choosedepart .aui-footer span {
   font-size: 32px;
   position: relative;
-  left: 8px;
+  text-align: center;
+  left: 16px;
   letter-spacing: 1px;
 }
 
 /**tab样式*/
 
-.appTitle {
+.choosedepart .appTitle {
   padding: 32px;
   border-bottom: 1px solid #ededed;
   display: flex;
   justify-content: space-between;
 }
-.appTab {
+.choosedepart .choosedepart .appTab {
   display: flex;
   justify-content: space-between;
   padding: 32px 100px;
   font-size: 32px;
 }
-.appTab span {
+.choosedepart .appTab span {
   padding: 0 8px 8px;
 }
 
-.appTabAcitive {
+.choosedepart .appTabAcitive {
   color: #1da1f3;
   border-bottom: 4px solid #1da1f3;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="doctorList">
     <div class="titleTag">
       <div class="tag1" @click="showSelector">
         <div class="tagdiv">
@@ -12,8 +12,8 @@
       <div class="line"></div>
       <div class="tag2">
         <div class="tagdiv">
-          <span v-if="isSwitch" @click="handler">查看所有</span>
-          <span v-else @click="handler" class="activeAA">只看有号</span>
+          <span v-if="isSwitch" @click="handler" class="activeAA">只看有号</span>
+          <span v-else @click="handler">查看所有</span>
         </div>
       </div>
       <div class="line"></div>
@@ -43,10 +43,10 @@
         </div>
       </div>
     </div>
-    <div :class="{ pt50: true  ,'outCarint':true}" style="margin-bottom:20px; ">
+    <div :class="{ pt50: !isTop  ,'outCarint':true}" style="margin-bottom:20px; ">
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
-        <ul>
+        <ul v-show="!isSwitch">
           <li v-for="i in num" :key="i">
             <div class="card" @click="intodoctordetail">
               <div class="cardText">
@@ -62,10 +62,25 @@
             </div>
           </li>
         </ul>
+        <ul v-show="isSwitch">
+          <li>
+            <div class="card">
+              <div class="cardText">
+                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div>
+                  <p class="headname">冉有钱
+                    <span class="have  ">余10</span>
+                  </p>
+                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
       <p class="forenoon">下午</p>
       <div class="doctorList" id="afternoon">
-        <ul>
+        <ul v-show="!isSwitch">
           <li v-for="i in 3" :key="i">
             <div class="card">
               <div class="cardText">
@@ -80,10 +95,25 @@
             </div>
           </li>
         </ul>
+        <ul v-show="isSwitch">
+          <li>
+            <div class="card">
+              <div class="cardText">
+                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div>
+                  <p class="headname">冉有钱
+                    <span class="have  ">余10</span>
+                  </p>
+                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
       <p class="forenoon">夜诊</p>
       <div class="doctorList">
-        <ul>
+        <ul v-show="!isSwitch">
           <li>
             <div class="card">
               <div class="cardText">
@@ -104,6 +134,21 @@
                 <div>
                   <p class="headname">冉有钱
                     <span class="have no">余0</span>
+                  </p>
+                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul v-show="isSwitch">
+          <li>
+            <div class="card">
+              <div class="cardText">
+                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div>
+                  <p class="headname">冉有钱
+                    <span class="have  ">余10</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
                 </div>
@@ -172,7 +217,7 @@ export default {
     let _this = this;
     window.addEventListener('scroll', function () {
       let bodyTop = document.body.scrollTop || document.documentElement.scrollTop;
-      if (bodyTop * 1 < 30) {
+      if (bodyTop * 1 < 45) {
         _this.isTop = true;
       } else {
         _this.isTop = false;

@@ -99,7 +99,7 @@ export default {
   line-height: 25px;
 }
 .warnText {
-  font-size: 12px;
+  font-size: 24px;
   color: #afafaf;
 }
 .mu-raised-button {

@@ -1,6 +1,6 @@
 <template>
 
-  <div style=" text-align: center;">
+  <div class="search" style=" text-align: center;">
     <input class="oc_val" placeholder="搜索医生、科室" value="" type="text" @click="searchT()" />
   </div>
 </template>
@@ -43,9 +43,9 @@ input {
   font-weight: normal;
   vertical-align: baseline;
 }
-.oc_val {
+.search .oc_val {
   /* position: fixed; */
-  width: 95%;
+  width: 100%;
   height: 90px;
   border-radius: 10px;
   left: 0;

@@ -51,10 +51,16 @@ p {
   font-size: 26px;
   color: #979797;
 }
- 
+ .margin16{
+    margin: 32px 0;
+}
 .margin45 {
   margin-top: 100px;
 }
+.margin7{
+  margin-top: 14px;
+}
+ 
 .margin120 {
   margin-top: 120px;
 }
@@ -146,8 +152,29 @@ p {
   margin: 0px auto;
 }
 .cardText {
-  padding: 30px;
-  font-size: 14px;
+  font-size: 28px;
   color: #333333;
+}
+
+/**tab样式*/
+
+.appTitle {
+  padding: 32px;
+  border-bottom: 1px solid #ededed;
+  display: flex;
+  justify-content: space-between;
+}
+.appTab {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 100px;
+}
+.appTab span {
+  padding: 0 8px 8px;
+}
+
+.appTabAcitive {
+  color: #1da1f3;
+  border-bottom: 2px solid #1da1f3;
 }
 </style>

@@ -1,1 +1,82 @@
- 
+.tag1 {
+    width: 28%;
+    float: right;
+}
+.tagdiv {
+    padding: 0 9px;
+}
+.md-drop-menu{
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+    margin: 60px 20px;
+}
+.appTabAcitive {
+    color: #1da1f3;
+    border-bottom: 4px solid #1da1f3;
+}
+.margin16{
+    margin: 32px 0;
+}
+.pageContent {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 16px 50px;
+    font-size: 14px;
+}
+.pageContent span {
+    padding: 0 4px 4px;
+    font-size: 28px;
+}
+body {
+    font-family: "PingFang-SC-Medium";
+    background: #ffffff;
+}
+.card {
+    box-shadow: 0 0 0.21rem #c8dff7;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 7px 48px;
+}
+.cardText {
+    padding: 16px;
+    font-size: 14px;
+    color: #333333;
+}
+.cardHEADER {
+    padding: 8px 25px;
+    font-size: 14px;
+    color: #333333;
+}
+.cardHEADER span{
+    font-size: 28px;
+}
+.listData{
+    font-size: 28px;
+    display: flex;
+    justify-content: space-between;
+}
+.listData span{
+    display: inline-block;
+    height: 60px;
+}
+.md-field{
+    padding: 0;
+}
+.mu-secondary-text-color {
+    color: #1da1f3;
+}
+.footer{
+    font-size: 28px;
+    border-top: 1px solid #ededed;
+    padding: 20px 0px;
+}
+.cardText p {
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+.cardHEADER {
+    padding: 8px 25px;
+    font-size: 14px;
+    color: #333333;
+}

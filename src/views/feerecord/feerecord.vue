@@ -1,7 +1,7 @@
 <template>
-  <div class="page-loadmore">
+  <div class="feerecord">
     <Header post-title="预约记录" v-show="isWeixin"></Header>
-    <mu-container :class="{margin45:isWeixin}">
+    <div :class="{'outCarint':true,'margin45':isWeixin}">
       <div class="appTab">
         <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
           {{item.title}}
@@ -17,9 +17,9 @@
             <p>患者：艘船大学华西</p>
             <p>医院：艘船大学华西</p>
             <p>开单时间：艘船大学华西</p>
-            <p style="height:30px;  text-align: right;">
-              <mu-button round color="primary" style="height:30px; ">立即支付</mu-button>
-            </p>
+            <div style="height:30px;  text-align: right;">
+              <span class="payatnow">立即支付</span>
+            </div>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-    </mu-container>
+    </div>
   </div>
 </template>
 <script  >
@@ -99,16 +99,37 @@ export default {
 };
 </script>
  <style   scoped>
-.appTab {
+.feerecord {
+  font-size: 28px;
+}
+.feerecord .appTab {
   width: 80%;
   margin-left: 10%;
 }
 
+.feerecord .cardText {
+  padding: 10px 0 30px;
+}
+.feerecord .cardText p {
+  line-height: 50px;
+  font-size: 28px;
+  color: #5c5c5c;
+}
 
-.appTitle {
+.feerecord.appTitle {
   padding: 32px;
   border-bottom: 1px solid #ededed;
   display: flex;
   justify-content: space-between;
+}
+.payatnow {
+  font-size: 28px;
+  color: #ffffff;
+  float: right;
+  background: #1da1f3;
+  border-radius: 40px;
+  letter-spacing: 1px;
+  padding: 15px 40px;
+  text-align: center;
 }
 </style>

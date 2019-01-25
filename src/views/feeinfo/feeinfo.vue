@@ -1,173 +1,63 @@
 <template>
 
-  <div class="page-loadmore">
-    <Header post-title="预约记录"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true}">
-      <div class="card">
-        <div class="cardText">
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">订单编号</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;line-height:44px">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">开单医院</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">开单医院</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">开单医院</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">开单科室</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">开单医生</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">患者ID</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">患者姓名</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell"> 开单时间</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell">开单序号</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell"> 实付金额:</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter class="lineheight50">
-            <mu-col span="6">
-              <div class="grid-cell"> 交易编号</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
-          <mu-row gutter style="  line-height:44px">
-            <mu-col span="6">
-              <div class="grid-cell"> 缴费时间</div>
-            </mu-col>
-            <mu-col span="6">
-              <div class="grid-cell" style="text-align: right;">科室：</div>
-            </mu-col>
-          </mu-row>
+  <div class="feeinfo">
+    <Header post-title="我的缴费-待缴费" v-show="isWeixin"></Header>
+    <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
+      <div class="card margin16">
+        <div class="cardText  ">
+          <p class="cardTextPP">
+            <span>开单医院</span>
+            <span>重庆市中医院</span>
+          </p>
+          <p class="cardTextPP">
+            <span>开单医生</span>
+            <span>唐皓寒</span>
+          </p>
+          <p class="cardTextPP">
+            <span>患者ID</span>
+            <span>10-77</span>
+          </p>
+          <p class="cardTextPP">
+            <span>患者姓名</span>
+            <span>唐皓寒</span>
+          </p>
+          <p class="cardTextPP">
+            <span>开单时间</span>
+            <span>2019-01-01 12:01:01</span>
+          </p>
+          <p class="cardTextPP">
+            <span>开单序号</span>
+            <span>7hd78125415</span>
+          </p>
+          <p class="cardTextPP">
+            <span>处方金额</span>
+            <span class="mu-secondary-text-color">7777</span>
+          </p>
         </div>
       </div>
-      <div class="card">
+      <div class="card margin16">
         <div class="cardText">
-          <mu-row class="lineheight50">
-            <mu-col span="3">
-              <div class="grid-cell">
-                <span>类别</span>
-              </div>
-            </mu-col>
-            <mu-col span="3">
-              <div class="grid-cell">
-                <span>项目名称</span>
-              </div>
-            </mu-col>
-            <mu-col span="3" style="text-align: right;">
-              <div class="grid-cell">
-                <span>数量</span>
-              </div>
-            </mu-col>
-            <mu-col span="3" style="text-align: right;">
-              <div class="grid-cell">
-                <span>金额</span>
-              </div>
-            </mu-col>
-          </mu-row>
-          <mu-row class="lineheight50" style="border-bottom:1px solid transparent">
-            <mu-col span="3">
-              <div class="grid-cell">
-                ss
-              </div>
-            </mu-col>
-            <mu-col span="3">
-              <div class="grid-cell">
-
-              </div>
-            </mu-col>
-            <mu-col span="3" style="text-align: right;">
-              <div class="grid-cell">
-
-              </div>
-            </mu-col>
-            <mu-col span="3" style="text-align: right;">
-              <div class="grid-cell">
-
-              </div>
-            </mu-col>
-          </mu-row>
+          <p class="cardTextKind">
+            <span>类别</span>
+            <span>项目名称</span>
+            <span>数量</span>
+            <span>金额</span>
+          </p>
+          <p class="cardTextKindcontent">
+            <span>类别</span>
+            <span>项目名称</span>
+            <span>数量</span>
+            <span>金额</span>
+          </p>
         </div>
-
       </div>
-
-      <mu-flex justify-content="center" align-items="center" class="margin16">
-        <mu-button full-width round color="primary" @click="payment">立即缴费</mu-button>
-      </mu-flex>
+      <md-button class="margin16" type="primary" @click="isCashierhow = !isCashierhow" round>{{ isCashierhow ? '收起收银台' : '立即缴费' }}</md-button>
+      <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" payment-describe="关于支付金额的特殊说明" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel"></md-cashier>
     </div>
   </div>
 </template>
-<script  >
+<script>
+import { Toast, Button } from 'mand-mobile'
 export default {
   data() {
     return {
@@ -183,13 +73,55 @@ export default {
         { title: '预约成功' },
         { title: '预约关闭' }
       ],
+      isCashierhow: false,
+      isCashierCaptcha: false,
+      cashierAmount: '100.00',
+      cashierResult: 'success',
+      cashierResults: [
+        {
+          text: '支付成功',
+          value: 'success',
+        },
+        {
+          text: '支付失败',
+          value: 'fail',
+        },
+      ],
+      cashierChannels: [
+        {
+          icon: 'cashier-icon-1',
+          text: '招商银行(0056)',
+          value: '001',
+        },
+        {
+          icon: 'cashier-icon-2',
+          text: '支付宝支付',
+          value: '002',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '微信支付',
+          value: '003',
+        },
+        {
+          icon: 'cashier-icon-4',
+          text: 'QQ钱包支付',
+          value: '004',
+        },
+        {
+          icon: 'cashier-icon-5',
+          text: '一网通支付',
+          value: '005',
+        },
+      ],
     };
   },
+
   created() {
 
   },
   mounted() {
-    document.title = '缴费记录详情';
+    document.title = '我的缴费-待缴费';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
@@ -214,44 +146,117 @@ export default {
       } else {
         return 'background-color:#abc'
       }
-    }
+    },
+    doPay() {
+      if (this.isCashierCaptcha) {
+        this.cashier.next('captcha', {
+          text: 'Verification code sent to 156 **** 8965',
+          brief: 'The latest verification code is still valid',
+          autoCountdown: false,
+          countNormalText: 'Send Verification code',
+          countActiveText: 'Retransmission after {$1}s',
+          onSend: countdown => {
+            console.log('[Mand Mobile] Send Captcha')
+            this.sendCaptcha().then(() => {
+              countdown()
+            })
+          },
+          onSubmit: code => {
+            console.log(`[Mand Mobile] Send Submit ${code}`)
+            this.checkCaptcha(code).then(res => {
+              if (res) {
+                this.createPay().then(() => {
+                  this.cashier.next(this.cashierResult)
+                })
+              }
+            })
+          },
+        })
+      } else {
+        this.createPay().then(() => {
+          this.cashier.next(this.cashierResult, {
+            buttonText: '好的',
+            handler: () => {
+              this.isCashierhow = false
+              Toast.info('支付成功')
+              //  Toast.info(`${this.cashierResult}点击`)
+            },
+          })
+        })
+      }
+    },
+    // Create a pay request & check pay result
+    createPay() {
+      this.cashier.next('loading')
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 3000)
+      })
+    },
+    // Create a captcha sending request
+    sendCaptcha() {
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 200)
+      })
+    },
+    // Create a captcha checking request
+    checkCaptcha(code) {
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve(!!code)
+        }, 200)
+      })
+    },
+    onCashierSelect(item) {
+      console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
+    },
+    onCashierPay(item) {
+      console.log(`[Mand Mobile] Pay ${JSON.stringify(item)}`)
+      this.doPay()
+    },
+    onCashierCancel() {
+      // Abort pay request or checking request
+      this.timer && clearTimeout(this.timer)
+    },
   },
   computed: {
-
+    cashier() {
+      return this.$refs.cashier
+    },
   },
 };
 </script>
- <style   scoped> 
-.lineheight50 {
-  line-height: 100px;
-  border-bottom: 1px solid #f5f5f5;
-} 
-.grid-cell span {
+ <style   scoped>
+.feeinfo .cardText {
+  padding: 0;
+}
+.feeinfo .cardText .cardTextPP {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0;
+  font-size: 28px;
+  border-bottom: 1px solid #c5c5c5;
+}
+.feeinfo .cardText .cardTextKind {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0;
+  font-size: 28px;
+  border-bottom: 1px solid #c5c5c5;
   font-weight: 700;
 }
-.titleh1 {
-  font-size: 17px;
+.feeinfo .cardText .cardTextKindcontent {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0;
+  font-size: 28px;
+  font-weight: 700;
 }
-
-.card {
-  margin-top: 14px;
-}
-.card:first-child {
-  margin-top: 64px;
-}
-.cardText {
-  padding: 0 16px;
-  font-size: 14px;
-  color: #333333;
-}
-.card p {
-  line-height: 25px;
-}
-.warnText {
-  font-size: 12px;
-  color: #afafaf;
-}
-.mu-raised-button {
-  height: 45px;
+.feeinfo .cardText .cardTextPP:last-child {
+  border: none;
 }
 </style>
+ 

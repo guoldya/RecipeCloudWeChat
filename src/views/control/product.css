@@ -1,6 +1,6 @@
-.active {
+#product-info .active {
    font-size: 1.0625rem;
-   color: #1da1f3 !important;
+   color: #1da1f3  ;
    font-family: 'PingFang-SC-Blod';
    font-weight: 600
 }
@@ -9,7 +9,7 @@
    text-align: left;
 }
 
-.btn {
+#product-info .btn {
    /* text-align: center; */
    /* margin-top: 0.4375rem; */
    padding: 0 10px;

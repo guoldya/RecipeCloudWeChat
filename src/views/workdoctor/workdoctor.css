@@ -7,16 +7,16 @@ input {
    vertical-align: baseline;
 }
 
-.result .oc_val {
+.workdoctor .workdoctorserach .oc_val {
    /* position: fixed; */
-   width:100%;
+   width: 100%;
    height:90px;
    border-radius: 10px;
    left: 0;
    right: 0;
    margin: 0 auto;
    padding-left: 70px;
-   background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
+   background: #f0f3fa url(../result/search.png) 3% 50% no-repeat !important;
    background-size: auto 50% !important;
    opacity: 1;
    outline: none;
@@ -25,26 +25,26 @@ input {
    z-index: 999;
 }
 
-.result .mu-sub-header {
+.workdoctor .mu-sub-header {
    font-size: 28px;
    color: #1976d2;
 }
 
-.result .holder img {
+.workdoctor .holder img {
    height: 92px;
    width: 92px;
    border-radius: 50%;
 }
-.result .departLi2 {
+.workdoctor .departLi2 {
    width: 100%;
    float: left;
    border-bottom: 1px solid #ededed;
  }
- .result .grid-cell2 {
+ .workdoctor .grid-cell2 {
    line-height: 50px;
    margin: 0 12px;
  }
- .result .mubadge {
+ .workdoctor .mubadge {
    font-size: 10px;
    display: -webkit-box;
    display: -ms-flexbox;
@@ -65,3 +65,4 @@ input {
    overflow: hidden;
    border: 1px solid #bdbdbd;
  }
+ 
