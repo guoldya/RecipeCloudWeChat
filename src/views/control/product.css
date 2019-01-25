@@ -1,177 +1,18 @@
-@charset "utf-8";
-* {
-   margin: 0;
-   padding: 0;
-}
-
-body {
-   background: #ffffff;
-   font: 0.875rem Arial, Helvetica, sans-serif;
-}
-
-.aui-navBar {
-   height: 3.125rem;
-   position: fixed;
-   display: flex;
-   z-index: 9999;
-}
-
-header {
-   background: #ffffff;
-   z-index: 9999;
-}
-
-a {
-   text-decoration: none;
-   color: #333333;
-}
-
-.divHeight {
-   width: 100%;
-   height: 0.625rem;
-   background: #f0f3fa;
-}
-
-.aui-navBar:after {
-   content: "";
-   position: absolute;
-   z-index: 2;
-   bottom: 0;
-   left: 0;
-   width: 100%;
-   height: 0.0625rem;
-   /* border-bottom: 0.0625rem solid #e2e2e2;
-     */
-}
-
-.aui-navBar-item {
-   height: 3.125rem;
-   min-width: 20%;
-   -webkit-box-flex: 0;
-   -webkit-flex: 0 0 15%;
-   -ms-flex: 0 0 15%;
-   flex: 0 0 15%;
-   padding: 0 0.75rem;
-   display: -webkit-box;
-   display: -webkit-flex;
-   display: -ms-flexbox;
-   display: flex;
-   -webkit-box-align: center;
-   -webkit-align-items: center;
-   -ms-flex-align: center;
-   align-items: center;
-   font-size: 1rem;
-   white-space: nowrap;
-   overflow: hidden;
-   color: #333333;
-}
-
-.aui-navBar-item:first-child {
-   -webkit-box-ordinal-group: 2;
-   -webkit-order: 1;
-   -ms-flex-order: 1;
-   order: 1;
-   margin-right: -25%;
-}
-
-.aui-navBar-item:last-child {
-   -webkit-box-ordinal-group: 4;
-   -webkit-order: 3;
-   -ms-flex-order: 3;
-   order: 3;
-   -webkit-box-pack: end;
-   -webkit-justify-content: flex-end;
-   -ms-flex-pack: end;
-   justify-content: flex-end;
-}
-
-.aui-navBar-item img {
-   width: 13px;
-   height: 23px;
-}
-
-.aui-center {
-   -webkit-box-ordinal-group: 3;
-   -webkit-order: 2;
-   -ms-flex-order: 2;
-   order: 2;
-   display: -webkit-box;
-   display: -webkit-flex;
-   display: -ms-flexbox;
-   display: flex;
-   -webkit-box-pack: center;
-   -webkit-justify-content: center;
-   -ms-flex-pack: center;
-   justify-content: center;
-   -webkit-box-align: center;
-   -webkit-align-items: center;
-   -ms-flex-align: center;
-   align-items: center;
-   height: 3.125rem;
-   width: 70%;
-   margin-left: 25%;
-   font-size: 1.0625rem;
-}
-
-.aui-center-title {
-   text-align: center;
-   width: 100%;
-   white-space: nowrap;
-   overflow: hidden;
-   display: block;
-   text-overflow: ellipsis;
-   font-size: 0.875rem;
-   color: #333333;
-}
-
 .active {
    font-size: 1.0625rem;
-   color: #1da1f3;
+   color: #1da1f3 !important;
    font-family: 'PingFang-SC-Blod';
    font-weight: 600
 }
 
-header {
-   display: flex;
-   width: 100%;
-   height: 3.125rem;
-   text-align: center;
-   top: 0rem;
-   left: 0rem;
-   position: fixed;
-   z-index: 19;
-   background: #fff;
-   box-sizing: border-box;
-   z-index: 9999;
-}
-
-.back,
-.share {
-   width: 1.375rem;
-   height: 1.1875rem;
-   line-height: 2.25rem;
-   text-align: center;
-}
-
-.back img,
-.share img {
-   width: 100%;
-   height: 100%;
-}
-
-.title h1 {
-   font-size: 1rem;
-   padding: 0;
-   float: left;
-   font-weight: 400;
-   line-height: 0.0625rem;
-   font-family: "PingFang-SC-Medium";
+.content {
+   text-align: left;
 }
 
 .btn {
    /* text-align: center; */
    /* margin-top: 0.4375rem; */
-   padding: 0 0.75rem;
+   padding: 0 10px;
 }
 
 .margin64 {
@@ -183,40 +24,44 @@ header {
 }
 
 .cainter {
-   margin: 0.75rem;
+   margin: 12px;
 }
 
 .btn .abtn {
-   margin-top: 0.3125rem;
+   margin-top: 30px;
+}
+
+.abtn {
+   margin-top: 15px !important;
 }
 
 .drugHead {
-   width: 3.375rem;
-   height: 3.375rem;
+   width: 108px;
+   height: 108px;
    float: left;
 }
 
 .drugHead img {
-   width: 3.375rem;
-   height: 3.375rem;
-   border-radius: 0.3125rem;
+   width: 108px;
+   height: 108px;
+   border-radius: 5px
 }
 
 .cainter h1 {
-   font-size: 1rem;
-   letter-spacing: 0.0625rem;
+   font-size: 34px;
+   letter-spacing: 1px;
 }
 
 .cainter p {}
 
 .price {
-   font-size: 1.375rem;
+   font-size: 34px;
    color: #fe3e3e;
    font-weight: 600
 }
 
 .headRight {
-   width: calc(100% - 4rem);
+   width: calc(100% - 126px);
    float: right;
    text-align: left;
 }
@@ -230,14 +75,9 @@ header {
    width: 40%;
    float: right;
    text-align: right;
-   top: 0.4375rem;
-   font-size: 0.8125rem;
+   top: 10px;
    color: #999999;
    position: relative;
-}
-
-.cainterOUt {
-   height: 3.375rem;
 }
 
 .cainterAA {
@@ -247,11 +87,11 @@ header {
 }
 
 .contentDrug {
-   height: 3.625rem;
+   height: 130px;
 }
 
 .dateRight img {
-   width: 3.875rem;
+   width: 20px;
 }
 
 .startop,
@@ -260,50 +100,35 @@ header {
 }
 
 .startop {
-   margin-top: 0.25rem
+   margin-top: 10px
 }
 
 .startop span {
-   line-height: 1.6875rem;
-   font-size: 1.0625rem;
+   line-height: 30px;
+   font-size: 28px;
 }
 
 .startop span:first-child {
-   margin-right: 0.8125rem;
+   font-size: 30px;
+}
+
+.drugStoreName {
+   margin-top: 20px;
 }
 
 .star img {
-   width: 0.9375rem;
-}
-
-.detaileTag {
-   font-size: 0.8125rem;
-   color: #999999;
-}
-
-.headimg {
-   width: 2.9375rem;
-   height: 2.9375rem;
-   border-radius: 50%;
-   float: left;
-   text-align: center;
-}
-
-.headimg img {
-   width: 100%;
-   border-radius: 50%;
-   height: 100%;
-   text-align: center;
+   width: 35px;
+   margin-left: 15px;
 }
 
 .cainter ul li {
    display: inline-block;
-   padding-bottom: 0.8125rem;
-   margin-top: 0.8125rem
+   padding-bottom: 10px;
+   margin-top: 10px
 }
 
 .headRightPJ {
-   width: calc(100% - 3.5625rem);
+   width: calc(100% - 111px);
 }
 
 .headRightPJ p {
@@ -330,33 +155,31 @@ button :active {
 }
 
 .abtn {
-   font-size: 0.6875rem;
+   font-size: 22px;
    font-weight: 400;
-   line-height: 1.6;
-   padding: 0.25rem 0.625rem;
+   padding: 6px 16px;
    cursor: pointer;
+   line-height: 43px;
    text-align: center;
    color: #1da1f3;
-   Letter-spacing: 0.0625rem;
-   border-radius: 1.25rem;
+   border-radius: 42px;
    border: 1px solid #1da1f3;
    background: #fff;
-   margin-right: 0.3125rem;
+   margin-right: 30px;
 }
 
 .abtninfo {
-   font-size: 0.9rem;
+   font-size: 28px;
    font-weight: 400;
    line-height: 1.6;
-   padding: 0.25rem 0.75rem;
+   padding: 20px 27px;
    cursor: pointer;
    text-align: center;
    color: #333333;
-   Letter-spacing: 0.0625rem;
+   Letter-spacing: 1px;
    border-radius: 1.25rem;
    border: 1px solid #ffffff;
    background: #fff;
-   margin-right: 0.7rem;
 }
 
 .activebtn {
@@ -371,16 +194,16 @@ button :active {
 .abtnBIG {
    background: #1da1f3;
    color: #ffffff;
-   font-size: 0.875rem;
+   font-size: 28px;
    position: relative;
    /* top: 0.5625rem;
      */
-   padding: 0.5625rem 1.25rem;
+   padding: 17px 29px;
 }
 
 .fenshu {
    color: #1da1f3;
-   font-size: 1.0625rem;
+   font-size: 36px;
 }
 
 .mb13 {
@@ -400,24 +223,10 @@ button :active {
    -webkit-align-items: center;
    -ms-flex-align: center;
    align-items: center;
-   padding: 0.4375rem 0.3125rem 0.4375rem 0.3125rem;
+   padding: 10px 20px;
    background-color: #ffffff;
    position: fixed;
    bottom: 0;
-}
-
-.aui-footer:after {
-   content: "";
-   position: absolute;
-   z-index: 0;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 0.0625rem;
-   -webkit-transform: scaleY(0.5);
-   transform: scaleY(0.5);
-   -webkit-transform-origin: 0 0;
-   transform-origin: 0 0;
 }
 
 .aui-tabBar-item {
@@ -450,15 +259,15 @@ button :active {
 }
 
 .aui-tabBar-item img {
-   width: 2.9375rem;
-   height: 2.9375rem;
+   width: 90px;
+   height: 90px;
 }
 
 .aui-tabBar-item2 .abtn {
    background: #1da1f3;
    color: #ffffff;
-   font-size: 0.875rem;
-   padding: 0.4375rem 0.8rem;
+   font-size: 28px;
+   padding: 20px 26px;
 }
 
 .aui-tabBar-item2 .car {
@@ -467,7 +276,7 @@ button :active {
 }
 
 .cainterSize {
-   margin-top: 1.7rem;
+   margin-top: 20px;
 }
 
 .cainterSize img {
@@ -481,4 +290,33 @@ button :active {
    word-break: keep-all;
    text-overflow: ellipsis;
    display: block;
+}
+
+.swiper-container {
+   margin-top: 37px;
+}
+
+/**/
+
+.addValue {
+   font-size: 30px;
+   color: #333333;
+   font-family: "PingFang-SC-Medium";
+}
+
+.addValue span {
+   margin: 10px;
+}
+
+.addValue img {
+   width: 40px;
+   height: 40px;
+   position: relative;
+   top: 8px;
+}
+
+.staraa img {
+   margin-right: 10px;
+   margin-left: 0;
+   margin-top: 10px;
 }

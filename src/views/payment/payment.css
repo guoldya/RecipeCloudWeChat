@@ -1,0 +1,90 @@
+.payment{
+    margin: 0 10px;
+    font-size: 14px;
+}
+ul{
+    list-style: none;
+}
+.payment-head{
+    background-color: #F1F1F1;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    min-height: 10px;
+}
+.payment-head-text{
+    font-weight: bold;
+    color: #0b0b0b;
+}
+.payment-order ul li{
+    padding: 5px;
+    border-bottom: 1px solid #f5f5f5;
+}
+.payment-margin{
+    margin-top: 10px;
+}
+.payment-margin-bottom{
+    margin-bottom: 10px;
+}
+.payment-margin-5{
+    margin-top: 5px;
+}
+.payment-padding{
+    padding: 5px;
+}
+.payment-product-body ul li{
+    padding: 5px;
+    border-bottom: 1px solid #f5f5f5;
+}
+.payment-product-body ul li:nth-child(4){
+    border-bottom: 0;
+}
+.payment-product-body ul li:nth-child(5){
+    border-bottom: 0;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float:right;
+}
+.price-color{
+    color: #1da1f3;
+}
+.text-right{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+.text-font{
+    font-size: 12px;
+}
+.select-control-row{
+    padding: 8px 0;
+}
+.select-control-group {
+    margin: 10px 0 0 0;
+}
+.payment-border{
+    border-bottom: 1px solid #f5f5f5;
+}
+.select-control-group .select-control-row:last-of-type{
+    border-bottom:0
+}
+.mu-radio-label{
+    font-size: 14px;
+}
+.payment-button{
+    background-color: #fff;
+    border:1px solid #1da1f3;
+    padding: 5px;
+    color: #1da1f3;
+    border-radius: 5px;
+}
+.text-pay{
+    color:#F5C283;
+}
+.margin-left{
+    margin-left: 100px;
+}

@@ -1,0 +1,215 @@
+input {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font-weight: normal;
+   vertical-align: baseline;
+}
+
+.tagdiv .oc_val {
+   /* position: fixed; */
+   width: 95%;
+   height: 90px;
+   border-radius: 5px;
+   left: 0;
+   right: 0;
+   margin: 0 auto;
+   padding-left: 60px;
+   background: #ffffff url(./search.png) 5% 50% no-repeat !important;
+   background-size: auto 40% !important;
+   opacity: 1;
+   outline: none;
+   font-size: 30px !important;
+   color: #000;
+   z-index: 999;
+}
+
+.titleTag {
+   /* line-height:90px; */
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   border-bottom: 1px solid #c5c5c5;
+}
+
+.tag1 {
+   width: 40%;
+   margin-top: 22px;
+}
+
+.tag2 {
+   width: 23%;
+   margin-top: 22px;
+}
+
+.tag3 {
+   width: 37%;
+}
+
+.tagdiv {
+   display: inline-block;
+   font-size: 28px;
+   text-align: center;
+   font-weight: 700;
+   /* border-right: 1px solid #eee; */
+   padding: 0 18px;
+}
+
+.tagdiv .activeAA {
+   color: #1976d2;
+}
+
+.tag3 .tagdiv {
+   border: 0;
+}
+
+.have {
+   font-size: 28px;
+   color: #ffffff;
+   float: right;
+   background: #1976d2;
+   border-radius: 40px;
+   letter-spacing: 1px;
+   width: 134px;
+   text-align: center;
+}
+
+.doctorList li {
+   margin-top: 20px;
+}
+
+.doctorList li:first-child {
+   margin-top: 0;
+}
+
+.no {
+   background: #cccbcb;
+}
+
+.line {
+   width: 1px;
+   background: #c5c5c5;
+   height: 30px;
+   margin-top: 30px;
+}
+
+.time {
+   width: 100%;
+   overflow-x: scroll;
+   overflow-y: hidden;
+   white-space: nowrap;
+   /* ul中的内容不换行 */
+   background: #ffffff;
+   border-bottom: 1px solid #c5c5c5;
+}
+
+.time ul li {
+   display: inline-block;
+   padding: 14px 0;
+   width: 20%;
+   text-align: center;
+   color: #979797;
+}
+
+.pt50 {
+   padding-top: 100px;
+}
+
+.time ul li p:first-child {
+   font-size: 24px;
+}
+
+.timeAcitve {
+   color: #ffffff !important;
+   background: #1976d2;
+}
+
+.butTime {
+   width: 100%;
+   background: #ffffff;
+   height: 100px;
+   position: fixed;
+   z-index: 999;
+   border-bottom: 1px solid #c5c5c5;
+}
+
+.timeRight {
+   width: 80%;
+   float: left;
+   text-align: right;
+}
+
+.chooseTime {
+   width: 20%;
+   padding: 10px 0;
+   text-align: center;
+   float: left;
+}
+
+.afternoon {
+   font-size: 28px;
+   color: #979797;
+   float: right;
+   background: #ffffff;
+   border: 1px solid #979797;
+   border-radius: 60px;
+   letter-spacing: 1px;
+   width: 134px;
+   text-align: center;
+   line-height: 60px;
+   margin-right: 20px;
+   margin-top: 20px;
+}
+
+.afternoonActive {
+   color: #1976d2;
+   border: 1px solid #1976d2;
+}
+
+.forenoon {
+   line-height: 100px;
+   color: #1976d2;
+   font-size: 32px;
+}
+
+.butTimeaa {
+   top: 0;
+}
+
+.cardText {
+   height: inherit;
+}
+
+.headname {
+   line-height: 58px;
+   font-size: 34px;
+}
+
+.headdesc {
+   line-height: 58px;
+   font-size: 34px;
+   color: #979797;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   word-wrap: normal;
+   word-wrap: break-word;
+   word-break: break-all;
+}
+
+.tag1 .showSelecA {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   word-wrap: normal;
+   word-wrap: break-word;
+   word-break: break-all;
+   /* width: 40%; */
+}
+
+.doctorList .card .headimg {
+   margin-right: 20px;
+   top: 10px;
+   position: relative;
+}

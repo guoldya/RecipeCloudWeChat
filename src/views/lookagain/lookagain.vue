@@ -1,0 +1,63 @@
+<template>
+   <div class="page-loadmore">
+      <Header post-title="复诊医生" v-show="isWeixin"></Header>
+      <div :class="{margin50:isWeixin,outCarint:true}">
+         <ul>
+            <li v-for="i in num" :key="i">
+               <div class="card" @click="intodoctordetail">
+                  <div class="cardText">
+                     <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                     <div>
+                        <p class="headname">冉有钱1
+                           <span class="have">余56</span>
+                        </p>
+                        <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+</template>
+<script type="text/babel">
+export default {
+   data() {
+      return {
+         isWeixin: false,
+         num: 1,
+      };
+   },
+   created() {
+
+   },
+   mounted() {
+      document.title = '复诊医生';
+      var ua = window.navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+         this.isWeixin = false;
+         return true;
+      } else {
+         this.isWeixin = true;
+         return false;
+      }
+
+   },
+   methods: {
+      intodoctordetail() {
+         let argu = {}
+         this.$router.push({
+            name: 'doctordetail',
+            query: argu
+         });
+      },
+   },
+   computed: {
+
+   },
+
+};
+</script>
+ <style   scoped>
+@import "../doctorList/doctorList.css";
+</style>

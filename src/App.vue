@@ -15,12 +15,27 @@ export default {
 </script>
 
 <style  >
+.headimg {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  float: left;
+  text-align: center;
+}
+.headimg img {
+  width: 100%;
+  border-radius: 50%;
+  height: 100%;
+  text-align: center;
+}
 #app {
   font-family: "PingFang-SC-Medium";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: #333333;
+  font-size: 28px;
+  max-width: 777PX;
+  margin: 0 auto
 }
 a {
   text-decoration: none;
@@ -32,11 +47,106 @@ p {
   word-wrap: break-word;
   word-break: break-all;
 }
+.colo13 {
+  font-size: 26px;
+  color: #979797;
+}
 .margin45 {
   margin-top: 100px;
+}
+.margin120 {
+  margin-top: 120px;
 }
 .outCarint {
   padding: 0 24px;
 }
 
+/* 轮播图样式 */ /* 全局样式 */
+.swiper-container {
+  margin-top: 120px !important;
+  padding-bottom: 30px;
+}
+
+.swiper-slide-next .wannianli-info,
+.swiper-slide-prev .wannianli-info {
+  height: 320px;
+  margin-top: 10px;
+}
+
+.wannianli-info img {
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.swiper-slide {
+  width: 82%;
+  padding: 0 2%;
+}
+ 
+.wannianli-info {
+  height: 340px;
+  background: #ffffff;
+  /* box-shadow: 0 0 10px rgba(79, 94, 105, 0.301); */
+  text-align: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.swiper-container img {
+  width: 100%;
+  border-radius: 20px;
+  height: 340px;
+}
+.wannianli-info > * {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.5rem;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.swiper-container-horizontal
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  margin: 0 2px;
+}
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #efefef;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: #f2cf30;
+  width: 22px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.card {
+  box-shadow: 0 0 0.43rem #c8dff7;
+  background-color: #fff;
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  margin: 0px auto;
+}
+.cardText {
+  padding: 30px;
+  font-size: 14px;
+  color: #333333;
+}
 </style>

@@ -1,0 +1,143 @@
+.doctor{
+    margin: 0 10px;
+    font-size: 14px;
+}
+ul{
+    list-style: none;
+}
+.doctor-head{
+    padding: 10px 0;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.doctor-img{
+    width: 80px;
+    height:80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.doctor-img img{
+    width: 100%;
+    height:100%
+}
+.doctor-name{
+    font-weight: bold;
+    font-size: 16px;
+}
+.doctor-tag{
+    display: inline-block;
+    height:16px;
+    color: #fff;
+    font-size: 14px;
+    padding-left: 4px;
+    line-height: 16px;
+    background-color: #1976d2;
+    border-radius: 8px;
+}
+.doctor-head:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.heart{
+    margin-right: 10px;
+    margin-top: 15px;
+}
+.doctor-cz{
+    border-bottom: 5px solid #f5f5f5;
+    border-top: 1px solid #f5f5f5;
+}
+.doctor-cz li{
+    margin: 10px 0;
+    width: 33%;
+    text-align: center;
+    float: left;
+    border-left: 1px solid #f5f5f5;
+}
+.doctor-cz li:first-of-type{
+    border-left:0
+}
+.doctor-cz:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.doctor-info{
+    width:100%;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow : ellipsis;
+    border-bottom: 1px solid #f5f5f5;
+}
+.doctor-skill{
+    margin: 10px 0;
+}
+.skill-head{
+    border-left: 3px solid #1976d2;
+}
+.skill-head-title{
+    font-size: 16px;
+    font-weight: bold;
+}
+.skill-icon{
+    font-size: 12px;
+    cursor: pointer;
+}
+.doctor-skill:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.skill-info{
+    overflow: scroll;
+    transition: all linear 0.5s;
+    border-bottom: 5px solid #f5f5f5;
+}
+.source-tab{
+    border-bottom: 1px solid #f5f5f5;
+}
+.source-tab:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.source-tab div{
+    width:50%;
+    text-align: center;
+    font-size: 16px;
+    height:40px;
+    line-height: 40px;
+}
+.available{
+    border-right: 2px solid #f5f5f5;
+}
+.active-tab{
+    color: #1976d2;
+    border-bottom: 2px solid #1976d2;
+}
+.available-info:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.available-info li{
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom: 1px solid #f5f5f5;
+}
+.available-info li div{
+    padding: 2px;
+}
+.available-info .available-tag{
+    padding: 0 5px;
+    color: #CF404D;
+    border-radius: 4px;
+    border: 1px solid #F7ECF4;
+}
