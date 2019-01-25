@@ -7,7 +7,7 @@
                     <!--<md-drop-menu :data="optionsData" />-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="content">
+            <div class="pageContent">
                 <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
                 {{item.title}}
                 </span>
@@ -51,15 +51,7 @@
 </template>
 
 <script type="text/babel">
-    import {DropMenu,Field, FieldItem, Dialog, Icon} from 'mand-mobile'
     export default {
-        name: 'drop-menu-demo',
-        components: {
-            [DropMenu.name]: DropMenu,
-            [Field.name]: Field,
-            [FieldItem.name]: FieldItem,
-            [Icon.name]: Icon,
-        },
         data() {
             return {
                 isWeixin: false,

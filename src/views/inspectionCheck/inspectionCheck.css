@@ -13,18 +13,18 @@
 }
 .appTabAcitive {
     color: #1da1f3;
-    border-bottom: 2px solid #1da1f3;
+    border-bottom: 4px solid #1da1f3;
 }
 .margin16{
     margin: 32px 0;
 }
-.content {
+.pageContent {
     display: flex;
     justify-content: space-evenly;
     padding: 16px 50px;
     font-size: 14px;
 }
-.content span {
+.pageContent span {
     padding: 0 4px 4px;
     font-size: 28px;
 }
