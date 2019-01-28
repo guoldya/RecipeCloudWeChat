@@ -91,18 +91,18 @@
    padding-top: 30px;
 }
 
-.gp-profile-index .tools .nav2>a {
+.gp-profile-index .tools .nav2>span {
    width: 25%;
    display: block;
    font-size: 28px;
    color: #333333;
 }
 
-.gp-profile-index .nav2>a {
+.gp-profile-index .nav2>span {
    padding: 20px 0 20px;
 }
 
-.gp-profile-index .nav2>a img {
+.gp-profile-index .nav2>span img {
    width: 60px;
    height: 60px;
    display: block;
