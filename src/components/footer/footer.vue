@@ -6,11 +6,11 @@
       </span>
       <span :class="{on: '/home' === $route.path ||'/' === $route.path}">诊疗服务</span>
     </a>
-    <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/notice')">
+    <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/online')">
       <span class="aui-tabBar-item-icon">
-        <img :src="'/notice' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
+        <img :src="'/online' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
       </span>
-      <span :class="{on: '/notice' === $route.path}">在线问诊</span>
+      <span :class="{on: '/online' === $route.path}">在线问诊</span>
     </a>
     <a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active" @click="switchTo('/my')">
       <span class="aui-tabBar-item-icon">
@@ -71,7 +71,7 @@ export default {
   left: 0;
   width: 100%;
   height: 2px;
-  border-top: 2px solid #b2b2b2;
+  border-top: 1px solid #c5c5c5;
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
   -webkit-transform-origin: 0 0;
