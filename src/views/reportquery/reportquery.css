@@ -1,0 +1,59 @@
+
+.reportquery .card{
+   padding:0 12px;
+   font-size: 28px;
+}
+.reportquery .user {
+   width: 100%;
+   margin-top: 40px;
+   height: 40px;
+ }
+
+ .reportquery .appTab  {
+      width: 80%;
+       margin-left: 10%
+ }
+ .reportquery .datepick {
+   display: flex;
+   float: left;
+   margin-left: 5%
+ }
+ .reportquery .datepick img {
+   width: 24px;
+   margin-left: 10px;
+ }
+ .reportquery .cardText {
+   display: flex;
+   font-size: 28px;
+ }
+ .reportquery .cardTextLeft {
+   width: 99%;
+ }
+ 
+ .reportquery .cardText p{
+    line-height: 60px;
+ }
+ .reportquery .cardTextRight img {
+   margin-top: 70px;
+   width: 20px;
+ }
+ .reportquery .md-drop-menu-bar{
+    z-index: 0;
+ }
+
+ .reportquery .md-field-item-content{
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 28px;
+ }
+ .reportquery .md-field-item-title{
+ font-size: 28px;
+ }
+ .reportquery .md-field-item-content:before{
+   background: transparent
+ }
+ .reportquery .md-icon.icon-font:before{
+  left: -10px;
+  top: 6px;
+ }

@@ -1,7 +1,7 @@
 <template>
-  <div class="page-loadmore">
-    <Header post-title="选择科室" v-show="isWeixin"></Header>
-    <div style="margin-top:45px">
+  <div class="lineupnow">
+    <Header post-title="选择科室"></Header>
+    <div :class="{margin45:isWeixin,}">
       <div class="swiper-container">
         <div class="swiper-wrapper">
 
@@ -20,45 +20,52 @@
               <span class="mu-secondary-text-color">12月14日</span>
             </div>
             <div class="fright">
-              <span>屏蔽过号提醒</span>
+              <span class="pingbi">屏蔽过号提醒</span>
+              <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
             </div>
           </div>
         </div>
         <div class="card margin16">
           <div class="cardText">
-            <mu-row class="lineheight30">
-              <mu-col span="6">
-                <div class="grid-cell">
-                  <span>等待时间：
-                    <span class="mu-secondary-text-color">20分钟</span>
-                  </span>
-                </div>
-              </mu-col>
-              <mu-col span="6" style="text-align: right;">
-                <div class="grid-cell">
-                  <span>排队号码：
-                    <span class="mu-secondary-text-color">20号</span>
-                  </span>
-                </div>
-              </mu-col>
-            </mu-row>
-            <mu-row class="lineheight30">
-              <mu-col span="6">
-                <div class="grid-cell">
-                  排队科室：姗姗科
-                </div>
-              </mu-col>
-              <mu-col span="6" style="text-align: right;">
-                <div class="grid-cell   ">
-                  <span>当前号码：
-                    <span class="mu-secondary-text-color">20号</span>
-                  </span>
-                </div>
-              </mu-col>
-            </mu-row>
-            <p>您前面还有：
-              <span class="mu-secondary-text-color">5位</span>
+            <p class="cardTextPP">
+              <span>等待时间：
+                <span class="mu-secondary-text-color">20分钟</span>
+              </span>
+              <span>排队号码：
+                <span class="mu-secondary-text-color">119号</span>
+              </span>
             </p>
+            <p class="cardTextPP">
+              <span>派对科室：耳鼻喉门诊
+              </span>
+              <span>排队号码：
+                <span class="mu-secondary-text-color">119号</span>
+              </span>
+            </p>
+            <p>您前面还有：5位</p>
+            <p class="learnMore" @click="intolineupinfo">
+              详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
+            </p>
+          </div>
+        </div>
+        <div class="card margin16">
+          <div class="cardText">
+            <p class="cardTextPP">
+              <span>等待时间：
+                <span class="mu-secondary-text-color">20分钟</span>
+              </span>
+              <span>排队号码：
+                <span class="mu-secondary-text-color">119号</span>
+              </span>
+            </p>
+            <p class="cardTextPP">
+              <span>派对科室：耳鼻喉门诊
+              </span>
+              <span>排队号码：
+                <span class="mu-secondary-text-color">119号</span>
+              </span>
+            </p>
+            <p>您前面还有：5位</p>
             <p class="learnMore" @click="intolineupinfo">
               详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
             </p>
@@ -73,7 +80,7 @@
               <span class="mu-secondary-text-color">12月14日</span>
             </div>
             <div class="fright">
-              <span>仅看报告已出</span>
+              <span class="lookonly">仅看报告已出</span>
             </div>
           </div>
         </div>
@@ -114,12 +121,17 @@ export default {
   data() {
     return {
       isWeixin: false,
-      test: [{ filename: "2.jpg" }, { filename: "banner.png" }, { filename: "1.jpg" }, { filename: "4.jpg" }],
+      isActive: true,
+
       active1: 0,
       time: [
         { title: '排队提醒' },
         { title: '报告提醒' }
       ],
+      test: [{ filename: "https://kano.guahao.cn/IvZ2706441_image140.jpg?timestamp=1469427168922" },
+      { filename: "https://kano.guahao.cn/REk2640164_image140.jpg" },
+      { filename: "https://kano.guahao.cn/elarge_E2w2711261.jpg?timestamp=1538979619031" },
+      { filename: "https://kano.guahao.cn/elarge_TZF2624794.jpg" }],
     };
   },
   created() {
@@ -176,7 +188,7 @@ export default {
       };
     },
     slidedata(i) {
-      return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="http://apipic.boomake.com/banner/13.png" alt="店铺头像"></a> <h1 class="titleh1">四川大学华西医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
+      return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">四川大学华西医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
     },
   },
   computed: {

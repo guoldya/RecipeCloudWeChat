@@ -30,7 +30,7 @@
         <div :class="{margin45:isWeixin,outCarint:true}">
             <div class="pageContent">
                 <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
-                {{item.title}}
+                    {{item.title}}
                 </span>
             </div>
             <div class="outCarint" v-if="titleIndex === 0">
@@ -42,25 +42,25 @@
                 <div class="card margin16" v-for="(item,i) in cardData">
                     <div class="cardText ">
                         <div class="listData">
-                                <span>处方日期：
-                                    <span class="mu-secondary-text-color">{{item.date}}</span>
-                                </span>
+                            <span>处方日期：
+                                <span class="mu-secondary-text-color">{{item.date}}</span>
+                            </span>
                             <span>首诊</span>
                         </div>
                         <div class="listData">
-                                <span>慢病诊断：
-                                    <span class="mu-secondary-text-color">{{item.type}}</span>
-                                </span>
+                            <span>慢病诊断：
+                                <span class="mu-secondary-text-color">{{item.type}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>处方来源：
-                                    <span class="mu-secondary-text-color">{{item.source}}</span>
-                                </span>
+                            <span>处方来源：
+                                <span class="mu-secondary-text-color">{{item.source}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>剩余续方日期：
-                                    <span class="mu-secondary-text-color">{{item.restDate}}</span>
-                                </span>
+                            <span>剩余续方日期：
+                                <span class="mu-secondary-text-color">{{item.restDate}}</span>
+                            </span>
                         </div>
                         <div>
                             <md-button type="primary" round  v-if="isContinue==true" @click="continueApply">续方申请</md-button>
@@ -175,28 +175,24 @@
             switchTo(num) {
                 this.titleIndex = num;
             },
-            continueApply(){
+            continueApply() {
                 let argu = {};
                 this.$router.push({
                     name: 'recipeDetail',
                     query: argu
                 });
             },
-            lookDetail(){
+            lookDetail() {
                 let argu = {};
                 this.$router.push({
                     name: 'applyDetail',
                     query: argu
                 });
             }
-        },
-        computed: {
-
-        },
-
-    };
+        }
+};
 </script>
-<style   scoped>
-    @import "inspectionCheck.css";
+<style  scoped>
+@import "inspectionCheck.css";
 </style>
 

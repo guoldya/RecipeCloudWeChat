@@ -56,7 +56,7 @@
                 <div class="startop">
                   <span class="drugStoreName">{{drugStoreName}}&nbsp;</span>
                 </div>
-                <div class="star staraa"  >
+                <div class="star staraa">
                   <img src="@/assets/images/icon_star@2x.png">
                   <img src="@/assets/images/icon_star@2x.png">
                   <img src="@/assets/images/icon_star@2x.png">
@@ -240,6 +240,10 @@ export default {
       drugId: 0,
       drugInfo: '',
       drugStoreName: '未知',
+      test: [{ filename: "https://kano.guahao.cn/IvZ2706441_image140.jpg?timestamp=1469427168922" },
+      { filename: "https://kano.guahao.cn/REk2640164_image140.jpg" },
+      { filename: "https://kano.guahao.cn/elarge_E2w2711261.jpg?timestamp=1538979619031" },
+      { filename: "https://kano.guahao.cn/elarge_TZF2624794.jpg" }],
     }
   },
   created() {

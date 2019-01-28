@@ -7,7 +7,7 @@ input {
    vertical-align: baseline;
 }
 
-.tagdiv .oc_val {
+.doctorList .tagdiv .oc_val {
    /* position: fixed; */
    width: 95%;
    height: 90px;
@@ -25,7 +25,7 @@ input {
    z-index: 999;
 }
 
-.titleTag {
+.doctorList .titleTag {
    /* line-height:90px; */
    display: flex;
    flex-direction: row;
@@ -33,21 +33,21 @@ input {
    border-bottom: 1px solid #c5c5c5;
 }
 
-.tag1 {
+.doctorList .tag1 {
    width: 40%;
    margin-top: 22px;
 }
 
-.tag2 {
+.doctorList .tag2 {
    width: 23%;
    margin-top: 22px;
 }
 
-.tag3 {
+.doctorList .tag3 {
    width: 37%;
 }
 
-.tagdiv {
+.doctorList .tagdiv {
    display: inline-block;
    font-size: 28px;
    text-align: center;
@@ -56,15 +56,15 @@ input {
    padding: 0 18px;
 }
 
-.tagdiv .activeAA {
+.doctorList .tagdiv .activeAA {
    color: #1976d2;
 }
 
-.tag3 .tagdiv {
+.doctorList .tag3 .tagdiv {
    border: 0;
 }
 
-.have {
+.doctorList .have {
    font-size: 28px;
    color: #ffffff;
    float: right;
@@ -83,18 +83,18 @@ input {
    margin-top: 0;
 }
 
-.no {
+.doctorList  .no {
    background: #cccbcb;
 }
 
-.line {
+.doctorList .line {
    width: 1px;
    background: #c5c5c5;
    height: 30px;
    margin-top: 30px;
 }
 
-.time {
+.doctorList  .time {
    width: 100%;
    overflow-x: scroll;
    overflow-y: hidden;
@@ -103,8 +103,10 @@ input {
    background: #ffffff;
    border-bottom: 1px solid #c5c5c5;
 }
-
-.time ul li {
+.doctorList  .time ul{
+   margin-top: -20px;
+}
+.doctorList .time ul li {
    display: inline-block;
    padding: 14px 0;
    width: 20%;
@@ -112,35 +114,35 @@ input {
    color: #979797;
 }
 
-.pt50 {
+.doctorList .pt50 {
    padding-top: 100px;
 }
 
-.time ul li p:first-child {
+.doctorList .time ul li p:first-child {
    font-size: 24px;
 }
 
-.timeAcitve {
+.doctorList .timeAcitve {
    color: #ffffff !important;
    background: #1976d2;
 }
 
-.butTime {
+.doctorList .butTime {
    width: 100%;
    background: #ffffff;
-   height: 100px;
-   position: fixed;
+   /* height: 100px; */
+   /* position: fixed; */
    z-index: 999;
    border-bottom: 1px solid #c5c5c5;
 }
 
-.timeRight {
+.doctorList .timeRight {
    width: 80%;
    float: left;
    text-align: right;
 }
 
-.chooseTime {
+.doctorList .chooseTime {
    width: 20%;
    padding: 10px 0;
    text-align: center;
@@ -175,18 +177,19 @@ input {
 
 .butTimeaa {
    top: 0;
+   position: fixed;
 }
 
 .cardText {
    height: inherit;
 }
 
-.headname {
+.doctorList .headname {
    line-height: 58px;
    font-size: 34px;
 }
 
-.headdesc {
+.doctorList .headdesc {
    line-height: 58px;
    font-size: 34px;
    color: #979797;
@@ -198,14 +201,13 @@ input {
    word-break: break-all;
 }
 
-.tag1 .showSelecA {
+.doctorList .tag1 .showSelecA {
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;
    word-wrap: normal;
    word-wrap: break-word;
    word-break: break-all;
-   /* width: 40%; */
 }
 
 .doctorList .card .headimg {
@@ -213,3 +215,22 @@ input {
    top: 10px;
    position: relative;
 }
+
+.doctorList .headname .levle {
+   padding: 2px 10px;
+   font-size: 22px;
+   color: #1976d2;
+   border: 2px solid #1976d2;
+   border-radius: 8px;
+   position: relative;
+   top: -5px;
+}
+
+
+.doctorList  .card{
+padding: 7px 20px;
+}
+
+
+/*  */
+

@@ -7,7 +7,8 @@
       <span class="aui-center-title">{{postTitle}}</span>
     </div>
     <a href="javascript:;" class="aui-navBar-item" @click="select">
-      {{selectOption}}
+      <!-- {{selectOption}} -->
+      
     </a>
   </header>
 </template>

@@ -34,8 +34,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #333333;
   font-size: 28px;
-  max-width: 777PX;
-  margin: 0 auto
+  max-width: 777px;
+  margin: 0 auto;
 }
 a {
   text-decoration: none;
@@ -51,9 +51,16 @@ p {
   font-size: 26px;
   color: #979797;
 }
-.margin45 {
-  margin-top: 100px;
+.margin16 {
+  margin: 32px 0;
 }
+.margin45 {
+  margin-top: 110px;
+}
+.margin7 {
+  margin-top: 14px;
+}
+
 .margin120 {
   margin-top: 120px;
 }
@@ -85,7 +92,7 @@ p {
   width: 82%;
   padding: 0 2%;
 }
- 
+
 .wannianli-info {
   height: 340px;
   background: #ffffff;
@@ -137,7 +144,7 @@ p {
 }
 
 .card {
-  box-shadow: 0 0 0.43rem #c8dff7;
+  box-shadow: 0 0 17px #c8dff7;
   background-color: #fff;
   position: relative;
   border-radius: 10px;
@@ -145,11 +152,31 @@ p {
   margin: 0px auto;
 }
 .cardText {
-  padding: 30px;
-  font-size: 14px;
+  font-size: 28px;
   color: #333333;
 }
   .mu-light-text-color{
     color: #979797;
   }
+/**tab样式*/
+
+.appTitle {
+  padding: 32px;
+  border-bottom: 1px solid #ededed;
+  display: flex;
+  justify-content: space-between;
+}
+.appTab {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 100px;
+}
+.appTab span {
+  padding: 0 8px 8px;
+}
+
+.appTabAcitive {
+  color: #1da1f3;
+  border-bottom: 2px solid #1da1f3;
+}
 </style>

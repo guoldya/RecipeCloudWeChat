@@ -1,143 +1,187 @@
-.doctor{
-    margin: 0 10px;
-    font-size: 14px;
+ 
+
+ 
+
+.workdotorinfo .float-left {
+   float: left;
 }
-ul{
-    list-style: none;
+
+.float-right {
+   float: right;
 }
-.doctor-head{
-    padding: 10px 0;
+
+.workdotorinfo .doctor-img {
+   width: 140px;
+   height: 140px;
+   border-radius: 50%;
+   overflow: hidden;
+   margin-right: 20px;
+   margin-top: 20px;
 }
-.float-left{
-    float: left;
+
+.workdotorinfo .doctor-img img {
+   width: 100%;
+   height: 100%
 }
-.float-right{
-    float: right;
+
+.workdotorinfo .doctor-name {
+   font-weight: bold;
+   font-size: 36px;
 }
-.doctor-img{
-    width: 80px;
-    height:80px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
+
+.workdotorinfo .doctor-tag {
+   display: inline-block;
+   color: #1976d2;
+   font-size: 22px;
+   padding: 4px 15px;
+   line-height: 32px;
+   /* border: 2px solid #1976d2; */
+   border-radius: 30px;
+   position: relative;
+   top: -5px;
 }
-.doctor-img img{
-    width: 100%;
-    height:100%
+
+.workdotorinfo .doctor-head:after {
+   display: block;
+   content: '';
+   clear: both;
 }
-.doctor-name{
-    font-weight: bold;
-    font-size: 16px;
+
+.workdotorinfo .heart {
+   margin-right: 10px;
+   margin-top: 60px;
+   font-size: 32px;
+   background: #1976d2;
+   color: #ffffff;
+   padding: 10px 40px;
+   border-radius: 40px;
 }
-.doctor-tag{
-    display: inline-block;
-    height:16px;
-    color: #fff;
-    font-size: 14px;
-    padding-left: 4px;
-    line-height: 16px;
-    background-color: #1976d2;
-    border-radius: 8px;
+
+.workdotorinfo .doctor-cz {
+   border-bottom: 5px solid #c5c5c5;
+   border-top: 1px solid #c5c5c5;
 }
-.doctor-head:after{
-    display: block;
-    content: '';
-    clear: both;
+
+.workdotorinfo .doctor-cz li {
+   margin: 10px 0;
+   width: 33%;
+   text-align: center;
+   float: left;
+   border-left: 1px solid #c5c5c5;
 }
-.heart{
-    margin-right: 10px;
-    margin-top: 15px;
+
+.workdotorinfo .doctor-cz li:first-of-type {
+   border-left: 0
 }
-.doctor-cz{
-    border-bottom: 5px solid #f5f5f5;
-    border-top: 1px solid #f5f5f5;
+
+.workdotorinfo .doctor-cz:after {
+   display: block;
+   content: '';
+   clear: both;
 }
-.doctor-cz li{
-    margin: 10px 0;
-    width: 33%;
-    text-align: center;
-    float: left;
-    border-left: 1px solid #f5f5f5;
+
+.workdotorinfo .doctor-info {
+   width: 100%;
+   padding: 10px 0;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   border-bottom: 1px solid #c5c5c5;
 }
-.doctor-cz li:first-of-type{
-    border-left:0
+
+.workdotorinfo .doctor-skill {
+   margin: 10px 0;
 }
-.doctor-cz:after{
-    display: block;
-    content: '';
-    clear: both;
+
+.workdotorinfo .skill-head-title {
+   font-size: 32px;
+   font-weight: bold;
 }
-.doctor-info{
-    width:100%;
-    padding: 10px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow : ellipsis;
-    border-bottom: 1px solid #f5f5f5;
+
+.workdotorinfo .skill-icon {
+   font-size: 24px;
+   cursor: pointer;
 }
-.doctor-skill{
-    margin: 10px 0;
+
+.workdotorinfo .doctor-skill:after {
+   display: block;
+   content: '';
+   clear: both;
 }
-.skill-head{
-    border-left: 3px solid #1976d2;
+
+.workdotorinfo .skill-info {
+   overflow: scroll;
+   transition: all linear 0.5s;
+   border-bottom: 1px solid #c5c5c5;
 }
-.skill-head-title{
-    font-size: 16px;
-    font-weight: bold;
+
+.workdotorinfo .source-tab {
+   border-bottom: 1px solid #c5c5c5;
 }
-.skill-icon{
-    font-size: 12px;
-    cursor: pointer;
+
+.workdotorinfo .source-tab:after {
+   display: block;
+   content: '';
+   clear: both;
 }
-.doctor-skill:after{
-    display: block;
-    content: '';
-    clear: both;
+
+.workdotorinfo .source-tab div {
+   width: 50%;
+   text-align: center;
+   font-size: 32px;
+   height: 90px;
+   line-height: 90px;
 }
-.skill-info{
-    overflow: scroll;
-    transition: all linear 0.5s;
-    border-bottom: 5px solid #f5f5f5;
+.workdotorinfo .available {
+  padding: 5px 16px;
 }
-.source-tab{
-    border-bottom: 1px solid #f5f5f5;
+.workdotorinfo .available {
+   border-right: 1px solid #c5c5c5;
 }
-.source-tab:after{
-    display: block;
-    content: '';
-    clear: both;
+
+.workdotorinfo .active-tab {
+   color: #1976d2;
+   /* border-bottom: 2px solid #1976d2; */
 }
-.source-tab div{
-    width:50%;
-    text-align: center;
-    font-size: 16px;
-    height:40px;
-    line-height: 40px;
+
+.available-info:after {
+   display: block;
+   content: '';
+   clear: both;
 }
-.available{
-    border-right: 2px solid #f5f5f5;
+
+.available-info li {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 1px solid #c5c5c5;
 }
-.active-tab{
-    color: #1976d2;
-    border-bottom: 2px solid #1976d2;
+
+.available-info li div {
+   padding: 20px 0;
 }
-.available-info:after{
-    display: block;
-    content: '';
-    clear: both;
+
+.available-info .available-tag {
+   padding: 2px 17px;
+   color: rgb(121, 119, 119);
+   border-radius: 10px;
+   border: 2px solid rgb(236, 239, 247);
 }
-.available-info li{
-    display: flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom: 1px solid #f5f5f5;
+ 
+.available-info .available-have {
+   color: #1976d2;
+   /* border: 2px solid #1976d2; */
 }
-.available-info li div{
-    padding: 2px;
+
+.doctor-inro {
+   margin-top: 20px;
 }
-.available-info .available-tag{
-    padding: 0 5px;
-    color: #CF404D;
-    border-radius: 4px;
-    border: 1px solid #F7ECF4;
+
+.doctor-inro .doctor-decrib p {
+   line-height: 50px;
+   font-size: 32px;
+}
+.source-tab-line{
+   height: 20px;
+   background: #f5f5f5
 }

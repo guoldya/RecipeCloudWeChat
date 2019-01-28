@@ -1,0 +1,68 @@
+input {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font-weight: normal;
+   vertical-align: baseline;
+}
+
+.workdoctor .workdoctorserach .oc_val {
+   /* position: fixed; */
+   width: 100%;
+   height:90px;
+   border-radius: 10px;
+   left: 0;
+   right: 0;
+   margin: 0 auto;
+   padding-left: 70px;
+   background: #f0f3fa url(../result/search.png) 3% 50% no-repeat !important;
+   background-size: auto 50% !important;
+   opacity: 1;
+   outline: none;
+   font-size: 24px !important;
+   color: #000;
+   z-index: 999;
+}
+
+.workdoctor .mu-sub-header {
+   font-size: 28px;
+   color: #1976d2;
+}
+
+.workdoctor .holder img {
+   height: 92px;
+   width: 92px;
+   border-radius: 50%;
+}
+.workdoctor .departLi2 {
+   width: 100%;
+   float: left;
+   border-bottom: 1px solid #ededed;
+ }
+ .workdoctor .grid-cell2 {
+   line-height: 50px;
+   margin: 0 12px;
+ }
+ .workdoctor .mubadge {
+   font-size: 10px;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   align-items: center;
+   padding: 0 6px;
+   line-height: 1.5;
+   font-size: 12px;
+   font-style: normal;
+   background-color: #bdbdbd;
+   color: #e01212;
+   border-radius: 3px;
+   overflow: hidden;
+   border: 1px solid #bdbdbd;
+ }
+ 

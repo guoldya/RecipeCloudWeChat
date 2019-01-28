@@ -1,7 +1,7 @@
 <template>
-   <div class="page-loadmore">
+   <div class="doctorList">
       <Header post-title="复诊医生" v-show="isWeixin"></Header>
-      <div :class="{margin50:isWeixin,outCarint:true}">
+      <div :class="{margin45:isWeixin,outCarint:true}">
          <ul>
             <li v-for="i in num" :key="i">
                <div class="card" @click="intodoctordetail">
@@ -55,9 +55,8 @@ export default {
    computed: {
 
    },
-
 };
 </script>
- <style   scoped>
+ <style scoped>
 @import "../doctorList/doctorList.css";
 </style>

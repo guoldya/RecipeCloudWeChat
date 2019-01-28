@@ -1,5 +1,5 @@
 .homePage {
-   padding: 0 10px;
+   padding: 20px;
 }
 
 .font-12 {
@@ -25,33 +25,51 @@
 }
 
 .bindCard {
-   height: 100px;
-   border: 1px solid #f5f5f5;
+   height: 240px;
    text-align: center;
-   line-height: 100px;
+   line-height: 240px;
+   border-radius: 20px;
+   box-shadow: 0 0 17px #c8dff7;
+}
+
+.bindCard .bindCardBtn {
+   padding: 17px 35px;
+   background: #24A5F1;
+   border-radius: 40px;
+   color: #fff;
+   letter-spacing: 1px;
+   font-size: 30px;
 }
 
 .home-cz {
-   padding: 20px 20px;
-   border: 1px solid #f5f5f5;
+   padding: 40px 66px;
 }
 
 .home-cz li {
    text-align: center;
 }
 
+.home-cz .image {
+   width: 70px;
+   height: 70px
+}
+
 .image {
-   width: 45px;
-   height: 45px
+   width: 120px;
+   height: 120px
 }
 
 .home-zy {
-   height: 80px;
-   margin: 5px 0;
-   padding: 0 10px;
-   border-radius: 10px;
-   background-color: #1da1f3;
-   color: white;
+   max-width: 100%;
+   max-height: 100%;
+   /* height: 190px; */
+   /* width: 100%; */
+}
+
+.home-zy img {
+   width: 100%;
+   height: 100%;
+   border-radius: 20px;
 }
 
 .zy-text {
@@ -59,7 +77,7 @@
 }
 
 .home-menu {
-   border: 1px solid #f5f5f5;
+   padding: 20px 0;
 }
 
 .home-menu:after {
@@ -73,6 +91,10 @@
    width: 25%;
    text-align: center;
    padding: 10px;
+}
+
+.home-menu li p {
+   line-height: 20px
 }
 
 .home-footer {
