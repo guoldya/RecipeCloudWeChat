@@ -149,4 +149,7 @@ p {
   font-size: 14px;
   color: #333333;
 }
+  .mu-light-text-color{
+    color: #979797;
+  }
 </style>

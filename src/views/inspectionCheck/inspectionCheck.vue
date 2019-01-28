@@ -1,12 +1,33 @@
 <template>
-    <div class="slow-page">
-        <Header post-title="慢病续方" :selectOption=value v-show="isWeixin"></Header>
+    <div class="inspectionCheck">
+        <header class="aui-navBar aui-navBar-fixed">
+          <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
+            <img src="@/assets/images/icon_back.png">
+          </span>
+          <div class="aui-center">
+             <span>慢病续方</span>
+          </div>
+          <span class="aui-navBar-item">
+              <div>
+                <md-field>
+                  <md-field-item
+                          :content="selectorValue"
+                          @click="showSelector"
+                          solid/>
+                </md-field>
+                <md-selector
+                        v-model="isSelectorShow"
+                        default-value="7"
+                        :data="optionsData[0]"
+                        max-height="320px"
+                        title="选择姓名"
+                        @choose="onSelectorChoose"
+                ></md-selector>
+            </div>
+              <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
+          </span>
+        </header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <!--<div>-->
-                <!--<div class="md-example-child md-example-child-drop-menu md-example-child-drop-menu-0">-->
-                    <!--<md-drop-menu :data="optionsData" />-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="pageContent">
                 <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
                 {{item.title}}
@@ -41,8 +62,49 @@
                                     <span class="mu-secondary-text-color">{{item.restDate}}</span>
                                 </span>
                         </div>
-                        <p class="footer mu-secondary-text-color" v-if="isContinue==true"  @click="continueApply">续方申请</p>
-                        <p v-else>续方申请</p>
+                        <div>
+                            <md-button type="primary" round  v-if="isContinue==true" @click="continueApply">续方申请</md-button>
+                            <md-button type="default" round v-else v-@click="continueApply">续方失效</md-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="outCarint" v-if="titleIndex === 1">
+                <div class="card margin16">
+                    <div class="cardHEADER" style="display:flex;justify-content: flex-end;">
+                        <span>仅看通过</span>
+                    </div>
+                </div>
+                <div class="card margin16" v-for="(item,i) in applyData">
+                    <div class="cardText ">
+                        <div class="listData">
+                                <span>申请日期：
+                                    <span class="mu-secondary-text-color">{{item.applyDate}}</span>
+                                </span>
+                        </div>
+                        <div class="listData">
+                                <span>续方日期：
+                                    <span class="mu-secondary-text-color">{{item.continueDate}}</span>
+                                </span>
+                        </div>
+                        <div class="listData">
+                                <span>慢病诊断：
+                                    <span class="mu-secondary-text-color">{{item.type}}</span>
+                                </span>
+                        </div>
+                        <div class="listData">
+                                <span>处理状态：
+                                    <span class="mu-secondary-text-color">{{item.auditState}}</span>
+                                </span>
+                        </div>
+                        <div class="listData">
+                                <span>续方处方号：
+                                    <span class="mu-secondary-text-color">{{item.no}}</span>
+                                </span>
+                        </div>
+                        <div>
+                            <md-button type="primary" round  v-if="isContinue==true" @click="lookDetail">查看详情</md-button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,25 +127,28 @@
                     {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"8日"},
                     {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"8日"},
                 ],
-                optionsData: [
-                    {text:"李晨",
-                        options:[
-                            { text: "李晨", value: "0" },
+                applyData:[
+                    {applyDate:"2018年10月20日",continueDate:"2018年10月20日",type:"高血压",auditState:"审核通过",no:"5000000000"},
+                    {applyDate:"2018年10月20日",continueDate:"2018年10月20日",type:"高血压",auditState:"审核通过",no:"5000000000"},
+                    {applyDate:"2018年10月20日",continueDate:"2018年10月20日",type:"高血压",auditState:"审核通过",no:"5000000000"}
+                ],
+                optionsData: [[
                             {text: "范冰冰", value: "1" },
                             { text: "郑凯", value: "2" },
                             { text: "邓超", value: "3" },
-                            { text: '妇孙俪', value: "4" },
+                            { text: '孙俪', value: "4" },
                             { text: '王祖蓝', value: "5" },
                             { text: '薛之谦', value: "6" },
-                            { text: '陈楚生', value: "7" },
+                            { text: '陈楚生得', value: "7" },
                             { text: "张信哲", value: "8" },
                             { text: "汪涵", value: "9" },
-                        ]}
-                ],
+                            { text: "李晨", value: "10" },
+                ]],
                 footer:0,
                 open: false,
                 isContinue:true,
-                value:"当时的"
+                isSelectorShow: false,
+                selectorValue: '陈楚生得',
             };
         },
         created() {
@@ -93,21 +158,21 @@
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
                 this.isWeixin = false;
-                this.value="rrrrrrr"
                 return true;
             } else {
                 this.isWeixin = true;
-                this.value="rrrrrrr"
                 return false;
             }
 
-
         },
         methods: {
-            switchTo(num) {
-                this.titleIndex = num;
+            showSelector() {
+                this.isSelectorShow = true
             },
-            switchDE(num) {
+            onSelectorChoose({text}) {
+                this.selectorValue = text
+            },
+            switchTo(num) {
                 this.titleIndex = num;
             },
             continueApply(){
@@ -117,6 +182,13 @@
                     query: argu
                 });
             },
+            lookDetail(){
+                let argu = {};
+                this.$router.push({
+                    name: 'applyDetail',
+                    query: argu
+                });
+            }
         },
         computed: {
 
