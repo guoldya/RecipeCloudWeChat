@@ -1,26 +1,21 @@
 <template>
-   <div class=" ">
-      <Title post-title="在线沟通"> </Title>
-      <div class="sort_box ">
-         <div class="sort_list" v-for="(item,index) in 10" :key="index" @click="moreillegal">
-            <div class="num_logo">
-               <img src="@/assets/images/user.png" alt="">
-            </div>
-            <div class="num_name">张三</div>
-         </div>
-      </div>
-      <Footer></Footer>
-   </div>
+  <div class="online">
+    <Title post-title="在线沟通"> </Title>
+    <div class="sort_box ">
+      <img src="@/assets/images/online.png" alt="" width="100%">
+    </div>
+    <Footer></Footer>
+  </div>
 </template>
 <script>
 export default {
-   methods: {
-      moreillegal: function () {
-         this.$router.push({
-            name: 'inlineinfo',
-         });
-      },
-   }
+  methods: {
+    moreillegal: function () {
+      this.$router.push({
+        name: 'inlineinfo',
+      });
+    },
+  }
 }
 </script>
 
@@ -62,7 +57,7 @@ export default {
 .sort_letter {
   height: 60px;
   line-height: 60px;
-  padding-left:40px;
+  padding-left: 40px;
   color: #787878;
   font-size: 28px;
   border-bottom: 1px solid #ddd;

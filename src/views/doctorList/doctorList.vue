@@ -169,7 +169,7 @@ export default {
       num: 5,
       isTop: true,
       isActive: 1,
-      isSwitch: true,
+      isSwitch: false,
       selected3: 55,
       activetime: 0,
       normal: {

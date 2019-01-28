@@ -51,16 +51,16 @@ p {
   font-size: 26px;
   color: #979797;
 }
- .margin16{
-    margin: 32px 0;
+.margin16 {
+  margin: 32px 0;
 }
 .margin45 {
-  margin-top: 100px;
+  margin-top: 110px;
 }
-.margin7{
+.margin7 {
   margin-top: 14px;
 }
- 
+
 .margin120 {
   margin-top: 120px;
 }

@@ -133,7 +133,7 @@ export default {
             text: '患者十',
           },
         ],
-      selectorValue: '选项二',
+      selectorValue: '患者二',
       currentDate: new Date(),
       isDatePickerShow: false,
       datePickerValue: '',

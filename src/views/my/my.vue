@@ -1,66 +1,38 @@
 <template>
-  <div id="illegal">
-    <Title post-title="个人中心"></Title>
-    <div class="aui-scrollView">
-      <div class="aui-head-yellow">
-        <div class="aui-head-box">
-          <div class="aui-head-user">
-            <img src="@/assets/images/user.png" alt="">
-          </div>
-          <p> </p>
-        </div>
-      </div>
-      <div class="divHeight"></div>
-      <div class="aui-card-list">
-        <div class="aui-panel-cell">
-          <div class="aui-panel-cell-bd">
-            <h4>姓名</h4>
-          </div>
-          <div class="aui-panel-cell-fr">{{userInfo.name}}</div>
-        </div>
-        <div class="aui-panel-cell">
-          <div class="aui-panel-cell-bd">
-            <h4>账号</h4>
-          </div>
-          <div class="aui-panel-cell-fr">{{userInfo.account}}</div>
-        </div>
-        <div class="aui-panel-cell" @click="changMobile">
-          <div class="aui-panel-cell-bd">
-            <h4 style="padding:1px 0">手机</h4>
-          </div>
-          <div class="aui-panel-cell-fr">
-            <span>{{userInfo.mobile}}</span>
-            <i class="cubeic-arrow" style="position: absolute; right: 12px;top:18px"></i>
-          </div>
-        </div>
-        <div class="aui-panel-cell">
-          <div class="aui-panel-cell-bd">
-            <h4>性别</h4>
-          </div>
-          <div class="aui-panel-cell-fr">
-            <span v-if="userInfo.gender==1">男</span>
-            <span v-if="userInfo.gender==2">女</span>
-            <span v-else>未知</span>
-          </div>
-        </div>
-        <div class="aui-panel-cell">
-          <div class="aui-panel-cell-bd">
-            <h4>科室</h4>
-          </div>
-          <div class="aui-panel-cell-fr">{{userInfo.deptname}}</div>
-        </div>
-        <div class="aui-panel-cell" @click="showBtnDiog">
-          <div class="aui-panel-cell-bd">
-            <h4>检测更新</h4>
-          </div>
-        </div>
-        <div class="divHeight"></div>
-        <div class="aui-panel-cell-bt" @click="showBtn">
-          <h4 style="text-align:center">退出登录</h4>
-        </div>
-        <!-- <div class="line"></div> -->
+  <div class="gp-profile-index">
+
+    <div class="aui-head-yellow">
+      <div class="aui-head-box">
+        <div class="aui-head-user"><img src="@/assets/images/user.png" alt=""></div>
+        <p>李医生</p>
       </div>
     </div>
+    <div class="outCarint">
+      <div class="tools">
+        <h2>就医信息</h2>
+        <div class="nav2">
+          <a href="https://wy.guahao.com/my/patients" monitor="my_family"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-patients.png" alt="">挂号记录</a>
+          <a href="https://wy.guahao.com/my/follow/expertlist" monitor="my_favorite"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-star.png" alt="">缴费记录</a>
+          <a href="https://wy.guahao.com/my/medicalrecord/doctor/E88A8D85007FD1C4" monitor="Homepage_Personal_instrument_my_doctor"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-doctor.png" alt="">预约记录</a>
+          <a href="https://wy.guahao.com/my/discipline/list" monitor="my_subject"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-channel.png" alt="">报告记录</a>
+        </div>
+        <div class="nav2">
+          <a href="https://wy.guahao.com/lecture/package/my" monitor="my_course"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-course.png" alt="">我的住院</a>
+          <a href="https://wy.guahao.com/member/free" monitor="my_memberbenefit"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-member.png" alt="">处方记录</a>
+          <a href="https://wy.guahao.com/my/helper/hotquestion" monitor="my_help"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-help.png" alt="">复印记录</a>
+          <a href="https://wy.guahao.com/my/tools/more?patientId=E88A8D85007FD1C4" monitor="Homepage_Personal_instrument_more"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-more.png" alt="">问诊记录</a>
+        </div>
+      </div>
+      <div class="tools">
+        <h2>个人信息</h2>
+        <div class="nav2">
+          <a href="https://wy.guahao.com/my/patients" monitor="my_family"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-patients.png" alt="">就诊卡</a>
+          <a href="https://wy.guahao.com/my/follow/expertlist" monitor="my_favorite"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-star.png" alt="">地址管理</a>
+          <a href="https://wy.guahao.com/my/medicalrecord/doctor/E88A8D85007FD1C4" monitor="Homepage_Personal_instrument_my_doctor"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-doctor.png" alt="">就医评价</a>
+        </div>
+      </div>
+    </div>
+
     <Footer></Footer>
   </div>
 </template>
@@ -92,121 +64,10 @@ export default {
       console.log(err);
     });
 
-    var u = navigator.userAgent;
-    this.isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-    this.IOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-    // 注册方法
-    function connectWebViewJavascriptBridge(callback) {
-      if (window.WebViewJavascriptBridge) {
-        callback(WebViewJavascriptBridge)
-      }
-      else {
-        if (!_this.IOS) {
-          window.document.addEventListener(
-            'WebViewJavascriptBridgeReady'
-            , function () {
-              callback(WebViewJavascriptBridge)
-            },
-            false
-          );
-        } else {
-          if (window.WVJBCallbacks) {
-            return window.WVJBCallbacks.push(callback);
-          }
-          window.WVJBCallbacks = [callback];
-          var WVJBIframe = document.createElement('iframe');
-          WVJBIframe.style.display = 'none';
-          WVJBIframe.src = 'https://__bridge_loaded__';
-          document.documentElement.appendChild(WVJBIframe);
-          setTimeout(function () { document.documentElement.removeChild(WVJBIframe) }, 0);
-        }
-      }
-    }
-    window.userLoginOut = this.userLoginOut;
+
   },
   methods: {
-    userLoginOut(data) {
-      WebViewJavascriptBridge.callHandler(
-        'userLoginOut'
-        , data
-        , function (responseData) {
-          bridgeLog('来自原生回传数据： ' + responseData);
-        }
-      );
-    },
-    showBtn() {
-      this.$createActionSheet({
-        active: 0,
-        data: [
-          {
-            content: '确认退出'
-          },
-        ],
-        onSelect: (item, index) => {
-          this.loginOut()
-        },
-        onCancel: () => {
-          this.$createToast({
-            txt: `取消`,
-            type: 'warn',
-            time: 1000
-          }).show()
-        }
-      }).show()
 
-    },
-    showBtnDiog() {
-      this.$createDialog({
-        type: 'confirm',
-        icon: 'cubeic-alert',
-        title: '检测提示',
-        content: '已是最新版本',
-        confirmBtn: {
-          text: '确定按钮',
-          active: true,
-          disabled: false,
-          href: 'javascript:;'
-        },
-        cancelBtn: {
-          text: '取消按钮',
-          active: false,
-          disabled: false,
-          href: 'javascript:;'
-        },
-        onConfirm: () => {
-          this.$createToast({
-            type: 'warn',
-            time: 1000,
-            txt: '点击确认按钮'
-          }).show()
-        },
-        onCancel: () => {
-          this.$createToast({
-            type: 'warn',
-            time: 1000,
-            txt: '点击取消按钮'
-          }).show()
-        }
-      }).show()
-    },
-    loginOut: function () {
-      this.$router.replace({
-        name: 'login',
-      });
-      this.userLoginOut(1);
-
-
-      var logindata = {};
-      // localStorage.setItem('logindata', JSON.stringify(logindata));
-
-    },
-    changMobile: function () {
-      let argu = { id: this.id, account: this.account };
-      this.$router.push({
-        name: 'change',
-        query: argu,
-      });
-    },
 
   }
 }

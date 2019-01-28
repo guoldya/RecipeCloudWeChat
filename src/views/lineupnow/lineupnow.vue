@@ -1,7 +1,7 @@
 <template>
   <div class="lineupnow">
-    <Header post-title="选择科室" ></Header>
-    <div :class="{margin45:isWeixin, }">
+    <Header post-title="选择科室"></Header>
+    <div :class="{margin45:isWeixin,}">
       <div class="swiper-container">
         <div class="swiper-wrapper">
 

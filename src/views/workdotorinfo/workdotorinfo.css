@@ -1,180 +1,203 @@
- 
+ .workdotorinfo .float-left {
+    float: left;
+ }
 
- 
+ .float-right {
+    float: right;
+ }
 
-.workdotorinfo .float-left {
-   float: left;
-}
+ .workdotorinfo .doctor-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    margin-top: 20px;
+ }
 
-.float-right {
-   float: right;
-}
+ .workdotorinfo .doctor-head:after {
+    display: block;
+    content: '';
+    clear: both;
+ }
 
-.workdotorinfo .doctor-img {
-   width: 140px;
-   height: 140px;
-   border-radius: 50%;
-   overflow: hidden;
-   margin-right: 20px;
-   margin-top: 20px;
-}
+ .workdotorinfo .doctor-img img {
+    width: 100%;
+    height: 100%
+ }
 
-.workdotorinfo .doctor-img img {
-   width: 100%;
-   height: 100%
-}
+ .workdotorinfo .source-tab:after {
+    display: block;
+    content: '';
+    clear: both;
+ }
 
-.workdotorinfo .doctor-name {
-   font-weight: bold;
-   font-size: 36px;
-}
+ .available-info:after {
+    display: block;
+    content: '';
+    clear: both;
+ }
 
-.workdotorinfo .doctor-tag {
-   display: inline-block;
-   color: #1976d2;
-   font-size: 22px;
-   padding: 4px 15px;
-   line-height: 32px;
-   border: 2px solid #1976d2;
-   border-radius: 30px;
-   position: relative;
-   top: -5px;
-}
-.workdotorinfo .doctor-head   {
-  padding-bottom: 40px;
-  padding-top: 20px;
-}
+ .workdotorinfo .doctor-cz:after {
+    display: block;
+    content: '';
+    clear: both;
+ }
 
- 
-.workdotorinfo .heart {
-   margin-right: 10px;
-   margin-top: 60px;
-   font-size: 32px;
-   background: #1976d2;
-   color: #ffffff;
-   padding: 10px 40px;
-   border-radius: 40px;
-}
+ .workdotorinfo .doctor-skill:after {
+    display: block;
+    content: '';
+    clear: both;
+ }
 
-.workdotorinfo .doctor-cz {
-   border-bottom: 5px solid #e7e7e7;
-   border-top: 1px solid #e7e7e7;
-}
+ .workdotorinfo .doctor-name {
+    font-weight: bold;
+    font-size: 36px;
+ }
 
-.workdotorinfo .doctor-cz li {
-   margin: 10px 0;
-   width: 33%;
-   text-align: center;
-   float: left;
-   border-left: 1px solid #e7e7e7;
-}
+ .workdotorinfo .doctor-tag {
+    display: inline-block;
+    color: #1976d2;
+    font-size: 22px;
+    padding: 4px 15px;
+    line-height: 32px;
+    border: 2px solid #1976d2;
+    border-radius: 30px;
+    position: relative;
+    top: -5px;
+ }
 
-.workdotorinfo .doctor-cz li:first-of-type {
-   border-left: 0
-}
+ .workdotorinfo .doctor-head {
+    padding-bottom: 40px;
+    padding-top: 20px;
+ }
 
-.workdotorinfo .doctor-cz:after {
-   display: block;
-   content: '';
-   clear: both;
-}
+ .workdotorinfo .heart {
+    margin-right: 10px;
+    margin-top: 60px;
+    font-size: 32px;
+    background: #1976d2;
+    color: #ffffff;
+    padding: 10px 40px;
+    border-radius: 40px;
+ }
 
-.workdotorinfo .doctor-info {
-   width: 100%;
-   padding: 10px 0;
-   overflow: hidden;
-   white-space: nowrap;
-   text-overflow: ellipsis;
-   border-bottom: 1px solid #e7e7e7;
-}
+ .workdotorinfo .doctor-cz {
+    border-bottom: 5px solid #e7e7e7;
+    border-top: 1px solid #e7e7e7;
+ }
 
-.workdotorinfo .doctor-skill {
-   margin: 10px 0;
-}
+ .workdotorinfo .doctor-cz li {
+    margin: 10px 0;
+    width: 33%;
+    text-align: center;
+    float: left;
+    border-left: 1px solid #e7e7e7;
+ }
 
-.workdotorinfo .skill-head-title {
-   font-size: 32px;
-   font-weight: bold;
-}
+ .workdotorinfo .doctor-cz li:first-of-type {
+    border-left: 0
+ }
 
- 
+ .workdotorinfo .doctor-cz:after {
+    display: block;
+    content: '';
+    clear: both;
+ }
 
- 
+ .workdotorinfo .doctor-info {
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #e7e7e7;
+ }
 
-.workdotorinfo .skill-info {
-   overflow: scroll;
-   transition: all linear 0.5s;
-   border-bottom: 1px solid #e7e7e7;
-}
+ .workdotorinfo .doctor-skill {
+    margin: 10px 0;
+ }
 
-.workdotorinfo .source-tab {
-   border-bottom: 1px solid #e7e7e7;
-}
+ .workdotorinfo .skill-head-title {
+    font-size: 32px;
+    font-weight: bold;
+ }
 
- 
+ .workdotorinfo .skill-info {
+    overflow: scroll;
+    transition: all linear 0.5s;
+    border-bottom: 1px solid #e7e7e7;
+ }
 
-.workdotorinfo .source-tab div {
-   width: 50%;
-   text-align: center;
-   font-size: 32px;
-   height: 90px;
-   line-height: 90px;
-}
-.workdotorinfo .available {
-  padding: 5px 16px;
-}
-.workdotorinfo .available {
-   border-right: 1px solid #e7e7e7;
-}
+ .workdotorinfo .source-tab {
+    border-bottom: 1px solid #e7e7e7;
+ }
 
-.workdotorinfo .active-tab {
-   color: #1976d2;
-}
+ .workdotorinfo .source-tab div {
+    width: 50%;
+    text-align: center;
+    font-size: 32px;
+    height: 90px;
+    line-height: 90px;
+ }
 
-.available-info:after {
-   display: block;
-   content: '';
-   clear: both;
-}
+ .workdotorinfo .available {
+    padding: 5px 16px;
+ }
 
-.available-info li {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   border-bottom: 1px solid #e7e7e7;
-}
+ .workdotorinfo .available {
+    border-right: 1px solid #e7e7e7;
+ }
 
-.available-info li div {
-   padding: 20px 0;
-}
+ .workdotorinfo .active-tab {
+    color: #1976d2;
+ }
 
-.available-info .available-tag {
-   padding: 2px 17px;
-   color: rgb(121, 119, 119);
-   border-radius: 10px;
-   border: 2px solid rgb(236, 239, 247);
-}
+ .available-info:after {
+    display: block;
+    content: '';
+    clear: both;
+ }
 
-.available-info .available-have {
-   color: #1976d2;
-   /* border: 2px solid #1976d2; */
-}
+ .available-info li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e7e7e7;
+ }
 
-.doctor-inro {
-   margin-top: 20px;
-}
+ .available-info li div {
+    padding: 20px 0;
+ }
 
-.doctor-inro .doctor-decrib p {
-   line-height: 50px;
-   font-size: 32px;
-}
-.doctor-inro .doctor-decrib .school {
-   line-height: 40px;
-   font-size: 28px;
-   color: rgb(121, 119, 119);
-}
- 
-.source-tab-line{
-   height: 20px;
-   background: #e7e7e7
-}
+ .available-info .available-tag {
+    padding: 2px 17px;
+    color: rgb(121, 119, 119);
+    border-radius: 10px;
+    border: 2px solid rgb(236, 239, 247);
+ }
+
+ .available-info .available-have {
+    color: #1976d2;
+    /* border: 2px solid #1976d2; */
+ }
+
+ .doctor-inro {
+    margin-top: 20px;
+ }
+
+ .doctor-inro .doctor-decrib p {
+    line-height: 50px;
+    font-size: 32px;
+ }
+
+ .doctor-inro .doctor-decrib .school {
+    line-height: 40px;
+    font-size: 28px;
+    color: rgb(121, 119, 119);
+ }
+
+ .source-tab-line {
+    height: 20px;
+    background: #e7e7e7
+ }
