@@ -8,15 +8,15 @@
         </span>
       </div>
       <div class="demo-text" v-if="active1 === 0" @click="appointinfo">
-        <div class="card">
+        <div class="card cardcc">
           <p class="appTitle">
             <span>西药费</span>
             <span class="mu-secondary-text-color">99元</span>
           </p>
           <div class="cardText">
-            <p>患者：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
-            <p>开单时间：艘船大学华西</p>
+            <p>患者：李华</p>
+            <p>医院：重庆市中医院</p>
+            <p>开单时间：2019-12-05 12:30:00</p>
             <div style="height:30px;  text-align: right;">
               <span class="payatnow">立即支付</span>
             </div>
@@ -24,15 +24,15 @@
         </div>
       </div>
       <div class="demo-text" v-if="active1 === 1">
-        <div class="card">
+        <div class="card cardcc">
           <p class="appTitle">
-            <span>西药费</span>
+            <span>中药费</span>
             <span class="mu-secondary-text-color">99元</span>
           </p>
           <div class="cardText">
-            <p>患者：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
-            <p>开单时间：艘船大学华西</p>
+            <p>患者：李华</p>
+            <p>医院：重庆市中医院</p>
+            <p>开单时间：2019-12-05 12:30:00</p>
           </div>
         </div>
       </div>
@@ -106,7 +106,6 @@ export default {
   width: 80%;
   margin-left: 10%;
 }
-
 .feerecord .cardText {
   padding: 10px 0 30px;
 }
@@ -115,8 +114,10 @@ export default {
   font-size: 28px;
   color: #5c5c5c;
 }
-
-.feerecord.appTitle {
+.feerecord .cardcc .appTitle {
+  padding: 32px 0px;
+}
+.feerecord .appTitle {
   padding: 32px;
   border-bottom: 1px solid #ededed;
   display: flex;

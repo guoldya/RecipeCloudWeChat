@@ -1,0 +1,37 @@
+.tiptop {
+   background: rgba(26, 168, 250, 0.137);
+   width: 100%;
+}
+
+.tiptopwarn {
+   display: flex;
+   justify-content: space-between;
+}
+
+.tiptopwarnbtn {
+   background: #24A5F1;
+   margin: 10px 15px;
+   color: #fff;
+   border-radius: 5px;
+   line-height: 2;
+   padding: 0 15px;
+}
+
+.tiptopwarn2 {
+   padding: 20px;
+   border-bottom: 1px solid #ededed;
+}
+
+.tiptop3 {
+   text-align: center
+}
+
+.warnbot {
+   color: #333333;
+   padding: 20px;
+   font-size: 26px;
+}
+
+.warnbottom {
+   color: red;
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="hacker-news-list" id="scrollup">
+  <div class="article" id="scrollup">
     <header class="aui-navBar aui-navBar-fixed">
       <span href="javascript:;" class="aui-navBar-item">
         <img src="@/assets/images/icon_back.png">
@@ -94,12 +94,14 @@
   </div>
 </template>
 <script >
+let bdProductreaddetail = 'bizArticle/read/detail';
 
 const scrollTopList = {};
 
 export default {
   props: {
     id: String,
+    articleInfo: '',
   },
   computed: {
 
@@ -113,10 +115,35 @@ export default {
     };
   },
   mounted() {
-    this.lunbo()
+    this.lunbo();
+    // let str = location.href;
+    let str = "http://192.168.0.26:8081/article?articleId=38"; //取得整个地址栏
+    let num = str.indexOf("?");
+    this.articleId = str.match(/articleId=[^&]+/)[0].split("=")[1] * 1;
+    let param = {};
+    this.$axios.put(bdProductreaddetail, {
+      id: this.articleId
+    }).then((res) => {
+      if (res.data.code == '200') {
+        _this.articleInfo = res.data.data;
+
+      } else {
+        console.log(res.msg);
+      }
+    }).catch(function (err) {
+      console.log(err);
+    });
   },
   methods: {
+    back() {
+      WebViewJavascriptBridge.callHandler(
+        'back'
+        , {}
+        , function (responseData) {
 
+        }
+      );
+    },
     lunbo() {
       let mySwiper = new Swiper('.swiper-container', {
         loop: true,
@@ -207,7 +234,7 @@ export default {
 }
 .star img {
   width: 92px;
-} 
+}
 .cainter ul li {
   display: inline-block;
   padding-bottom: 40px;

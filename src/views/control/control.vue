@@ -6,8 +6,8 @@
         <img src="@/assets/images/icon_back.png">
       </a>
       <div class="aui-center">
-        <span :class="{ 'aui-center-title':true ,'active':isdelice}" @click="isdelice=!isdelice">药品</span>
-        <span :class="{ 'aui-center-title':true ,'active':!isdelice}" @click="isdelice=!isdelice">详情</span>
+        <span :class="{ 'aui-title':true ,'active':isdelice}" @click="isdelice=!isdelice">药品</span>
+        <span :class="{ 'aui-title':true ,'active':!isdelice}" @click="isdelice=!isdelice">详情</span>
       </div>
       <a href="javascript:;" class="aui-navBar-item">
 
@@ -308,16 +308,7 @@ export default {
     let str = "http://192.168.0.26:8081/?drugId=20"; //取得整个地址栏
     let num = str.indexOf("?");
     this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;
-
-
-    localStorage.getItem("roleType") * 1;
-    if (localStorage.getItem("roleType") * 1 != 3) {
-      this.auditType = 1
-    } else {
-      this.auditType = 2
-    }
     let param = {};
-
     this.$axios.put(bdProductreaddetail, {
       id: this.drugId
     }).then((res) => {
@@ -330,7 +321,6 @@ export default {
     }).catch(function (err) {
       console.log(err);
     });
-
     window.payNow = this.payNow;
   },
   methods: {

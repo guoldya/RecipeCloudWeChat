@@ -154,7 +154,7 @@ input {
    color: #979797;
    float: right;
    background: #ffffff;
-   border: 1px solid #979797;
+   border: 2px solid #979797;
    border-radius: 60px;
    letter-spacing: 1px;
    width: 134px;
@@ -166,7 +166,7 @@ input {
 
 .afternoonActive {
    color: #1976d2;
-   border: 1px solid #1976d2;
+   border: 2px solid #1976d2;
 }
 
 .forenoon {
