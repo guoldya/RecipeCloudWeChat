@@ -155,7 +155,9 @@ p {
   font-size: 28px;
   color: #333333;
 }
-
+  .mu-light-text-color{
+    color: #979797;
+  }
 /**tab样式*/
 
 .appTitle {
