@@ -2,7 +2,7 @@
 
    <div class="md-example-child md-example-child-input-item-0">
       <Header post-title="地址管理" v-show="isWeixin"></Header>
-      <div :class="{margin45:isWeixin, }">
+      <div :class="{margin45:isWeixin,outCarint:true }">
          <md-field>
             <md-input-item ref="input13" title="姓名" placeholder="姓名" is-highlight></md-input-item>
             <md-input-item ref="input13" title="手机号码" placeholder="手机号码" is-highlight></md-input-item>
@@ -13,7 +13,6 @@
             <md-button type="primary" round style="margin-top:16px">保存</md-button>
          </md-field>
       </div>
-
       <md-picker ref="picker1" v-model="isPickerShow1" :data="pickerData1" :cols="3" is-cascade title="选择省市区/县" @confirm="onPickerConfirm(1)"></md-picker>
    </div>
 </template>

@@ -1,0 +1,62 @@
+.recipeDetail .listData{
+    font-size: 28px;
+}
+.recipeDetail .outCarint {
+    margin-top: 140px;
+}
+.recipeDetail .partLine{
+    border-bottom: 1px solid #c5c5c5;
+    width: 100%;
+    padding: 8px 0px;
+    margin-bottom: 28px;
+}
+.recipeDetail .listBottom,.applyDetail .listBottom{
+    height: 110px;
+    display: flex;
+    justify-content: space-between;
+}
+.recipeDetail .listBottom :first-child,.applyDetail .listBottom span:first-child{
+    font-size: 28px;
+    width: 74%;
+    display: inline-block;
+}
+.recipeDetail .listBottom :last-child,.applyDetail .listBottom :last-child{
+    width: 26%;
+    text-align: right;
+}
+.recipeDetail .primary,.recipeDetail .default,.applyDetail .primary{
+    background-color: #1da1f3 !important;
+    color:#fff !important;
+    font-size: 28px;
+}
+.recipeDetail .primary:after,.applyDetail .primary:after{
+    border : 1px solid #1da1f3 !important;
+}
+.recipeDetail .default{
+    background-color: #43484b !important;
+}
+.recipeDetail .default:after{
+    border : 1px solid #43484b !important;
+}
+.recipeDetail .md-popup-title-bar .title-bar-title p.title{
+    font-size: 36px !important;
+}
+.recipeDetail .md-cell-item-content{
+    font-size: 28px !important;
+}
+.recipeDetail {
+    font-size: 122px !important;
+}
+textarea[name="textareaWord"] {
+    border: none;
+    font-size: 28px;
+    outline: none;
+    font-family: "PingFang-SC-Medium";
+}
+.listData .longWord{
+    display: inline-block;
+    width: 72%;
+}
+.inputWord{
+    display: inline-flex;
+}

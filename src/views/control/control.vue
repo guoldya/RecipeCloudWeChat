@@ -90,7 +90,7 @@
           </div>
         </div>
       </div>
-      <div class="content">
+      <div class="content" style="margin-bottom:100px">
         <div class="cainter">
           <h1 class="pingjia" style="width:100% ; ">用户评价</h1>
           <ul id="newsList" class="news-list">
@@ -261,7 +261,6 @@ export default {
 
     var u = navigator.userAgent;
     this.isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
-
     this.isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
     this.IOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
     let _this = this;
@@ -305,7 +304,7 @@ export default {
 
 
     // let str = location.href;
-    let str = "http://192.168.0.26:8081/?drugId=20"; //取得整个地址栏
+    let str = "http://192.168.0.26:8081/?drugId=12"; //取得整个地址栏
     let num = str.indexOf("?");
     this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;
     let param = {};

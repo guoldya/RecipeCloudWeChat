@@ -53,10 +53,10 @@ input {
   margin: 0 auto;
   padding-left: 70px;
   background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
-  background-size: auto 50% !important;
+  background-size: auto 40% !important;
   opacity: 1;
   outline: none;
-  font-size: 26px !important;
+  font-size: 32px !important;
   color: #000;
   z-index: 999;
 }

@@ -147,17 +147,18 @@ p {
   box-shadow: 0 0 17px #c8dff7;
   background-color: #fff;
   position: relative;
-  border-radius: 10px;
+  border-radius: 20px;
   width: 100%;
   margin: 0px auto;
+  padding: 6px 30px;
 }
 .cardText {
   font-size: 28px;
   color: #333333;
 }
-  .mu-light-text-color{
-    color: #979797;
-  }
+.mu-light-text-color {
+  color: #979797;
+}
 /**tab样式*/
 
 .appTitle {
@@ -173,6 +174,7 @@ p {
 }
 .appTab span {
   padding: 0 8px 8px;
+  font-size: 32px;
 }
 
 .appTabAcitive {

@@ -35,3 +35,7 @@
 .warnbottom {
    color: red;
 }
+
+.cardmy .md-notice-bar {
+   background: transparent
+}

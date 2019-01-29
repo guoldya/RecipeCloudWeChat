@@ -1,15 +1,15 @@
 <template>
   <div class="article" id="scrollup">
     <header class="aui-navBar aui-navBar-fixed">
-      <span href="javascript:;" class="aui-navBar-item">
+      <span href="javascript:;" class="aui-navBar-item" @click="back">
         <img src="@/assets/images/icon_back.png">
       </span>
       <div class="aui-center">
         <span>文章详情</span>
       </div>
       <span class="aui-navBar-item">
-        <img src="@/assets/images/icon_collect1.png" style="width:25px;margin-right:10px">
-        <img src="@/assets/images/icon_share.png" style="width:24px;height:28px">
+        <img src="@/assets/images/icon_collect1.png" style="width:25px;margin-right:10px" @click="select">
+        <img src="@/assets/images/icon_share.png" style="width:24px;height:28px" @click="share">
       </span>
     </header>
     <div class="swiper-container">
@@ -18,23 +18,23 @@
       <div class="swiper-pagination"></div>
     </div>
     <div class="content articlecontent">
-      <div class="cainter  ">
-        <h1> 每天蒸饭放一把，远离三高，心脏病！</h1>
+      <div class="cainter">
+        <h1>{{articleInfo.title}}</h1>
         <p class="colo13">
-          <span>药师说 | </span>
-          <span>2018-12-18</span>
+          <span>{{articleInfo.audit}} | </span>
+          <span>{{articleInfo.createTime}}</span>
           <span style="float:right">阅读 45455</span>
         </p>
-        <p>
-          想要远离冠心病、心梗、脑梗、脑出血吗？ 想要远离高血压、高血脂、高血糖吗？ 想要排便通畅，骨骼结实吗？ 想要健康到老，延年益寿吗？ 能带给您这些的东西，您一定听说过，它就是燕麦！
+        <p style="overflow:hidden; word-wrap:break-word;" v-html='articleInfo.content'>
         </p>
+        <img :src="'http://192.168.0.150:40080/res/'+articleInfo.photoUrl" alt="" style="width:100%">
       </div>
     </div>
     <div class="content">
-      <div class="cainter">
-        <h1 class="pingjia" style="width:100% ; margin-top:25px">评价列表</h1>
-        <ul id="newsList" class="news-list">
-          <li>
+      <div class="cainter" id="commentList">
+        <h1 class="pingjia" style="width:100%; margin-top:25px">评价列表</h1>
+        <ul class="news-list">
+          <li v-for="(item,index) in cmtInfo" :key="index">
             <div class="detaileTop">
               <div class="headimg">
                 <img src="@/assets/images/3.jpg" alt="店铺头像">
@@ -43,16 +43,16 @@
                 <div>
                   <div class="starleft">
                     <div class="startop">
-                      <span>和平药房渝北店铺&nbsp;</span>
+                      <span>和平药房渝北店铺</span>
                     </div>
                     <span class="colo13">2015-12-12</span>
                   </div>
                 </div>
-                <p>sssssssssssssddddddd15484ssssss111111111111111111111111111111111111111</p>
+                <p>{{item.content}}第一个评论</p>
               </div>
             </div>
           </li>
-          <li>
+          <li v-for="i in num">
             <div class="detaileTop">
               <div class="headimg">
                 <img src="@/assets/images/3.jpg" alt="店铺头像">
@@ -61,7 +61,7 @@
                 <div>
                   <div class="starleft">
                     <div class="startop">
-                      <span>和平药房渝北店铺&nbsp;</span>
+                      <span>和平药房渝北店铺</span>
                     </div>
                     <span class="colo13">2015-12-12</span>
                   </div>
@@ -79,7 +79,7 @@
                 <div>
                   <div class="starleft">
                     <div class="startop">
-                      <span>和平药房渝北店铺&nbsp;</span>
+                      <span>和平药房渝北店铺</span>
                     </div>
                     <span class="colo13">2015-12-12</span>
                   </div>
@@ -95,27 +95,76 @@
 </template>
 <script >
 let bdProductreaddetail = 'bizArticle/read/detail';
-
+let bizArticleCmtreadpage = 'bizArticleCmt/read/page'
 const scrollTopList = {};
-
 export default {
-  props: {
-    id: String,
-    articleInfo: '',
-  },
-  computed: {
-
-  },
   data() {
     return {
+      num: 5,
+      articleId: 0,
+      articleInfo: '',
+      cmtInfo: '',
+      ctmNumber: 0,
       test: [{ filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
       { filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
       { filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
       { filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" }],
     };
   },
+  props: {
+    id: String,
+  },
+  computed: {
+
+  },
   mounted() {
     this.lunbo();
+
+    var u = navigator.userAgent;
+    this.isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+    this.isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    this.IOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    let _this = this;
+    function connectWebViewJavascriptBridge(callback) {
+      if (window.WebViewJavascriptBridge) {
+        callback(WebViewJavascriptBridge)
+      }
+      else {
+        if (!_this.IOS) {
+          window.document.addEventListener(
+            'WebViewJavascriptBridgeReady'
+            , function () {
+              callback(WebViewJavascriptBridge)
+            },
+            false
+          );
+        } else {
+          if (window.WVJBCallbacks) {
+            return window.WVJBCallbacks.push(callback);
+          }
+          window.WVJBCallbacks = [callback];
+          var WVJBIframe = document.createElement('iframe');
+          WVJBIframe.style.display = 'none';
+          WVJBIframe.src = 'https://__bridge_loaded__';
+          document.documentElement.appendChild(WVJBIframe);
+          setTimeout(function () { document.documentElement.removeChild(WVJBIframe) }, 0);
+        }
+      }
+    }
+    // 初始化注册方法
+    connectWebViewJavascriptBridge(function (bridge) {
+      if (!_this.IOS) {
+        bridge.init(function (message, responseCallback) {
+          responseCallback(window.getNumber());
+        });
+      }
+      bridge.registerHandler("getNumber", function (data, responseCallback) {
+        responseCallback(window.getNumber());
+      });
+      bridge.registerHandler("commentList", function (data, responseCallback) {
+        responseCallback(window.commentList());
+      });
+    })
     // let str = location.href;
     let str = "http://192.168.0.26:8081/article?articleId=38"; //取得整个地址栏
     let num = str.indexOf("?");
@@ -125,7 +174,20 @@ export default {
       id: this.articleId
     }).then((res) => {
       if (res.data.code == '200') {
+        res.data.data.createTime = /\d{4}-\d{1,2}-\d{1,2}/g.exec(res.data.data.createTime).shift();
         _this.articleInfo = res.data.data;
+      } else {
+        console.log(res.msg);
+      }
+    }).catch(function (err) {
+      console.log(err);
+    });
+    this.$axios.put(bizArticleCmtreadpage, {
+      articleId: this.articleId
+    }).then((res) => {
+      if (res.data.code == '200') {
+        _this.cmtInfo = res.data.rows;
+        _this.ctmNumber = res.data.total;
 
       } else {
         console.log(res.msg);
@@ -133,8 +195,16 @@ export default {
     }).catch(function (err) {
       console.log(err);
     });
+    window.getNumber = this.getNumber;
+    window.commentList = this.commentList;
   },
   methods: {
+    getNumber(data) {
+      return this.ctmNumber
+    },
+    commentList() {
+      document.querySelector("#commentList").scrollIntoView();
+    },
     back() {
       WebViewJavascriptBridge.callHandler(
         'back'
@@ -143,6 +213,18 @@ export default {
 
         }
       );
+    },
+    share() {
+      WebViewJavascriptBridge.callHandler(
+        'share'
+        , {}
+        , function (responseData) {
+
+        }
+      );
+    },
+    select() {
+
     },
     lunbo() {
       let mySwiper = new Swiper('.swiper-container', {
@@ -211,8 +293,8 @@ export default {
   float: right;
   text-align: left;
 }
-.starleft {
-  width: 60%;
+.article .starleft {
+  width: 100%;
   float: left;
 }
 .news-list li {
@@ -229,9 +311,7 @@ export default {
   line-height: 40px;
   font-size: 28px;
 }
-.startop span:first-child {
-  margin-right: 0.8125rem;
-}
+
 .star img {
   width: 92px;
 }

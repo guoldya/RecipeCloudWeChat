@@ -36,14 +36,15 @@ export default {
       isWeixin: false,
       active1: 0,
       departs: [
-        { title: '华西医院' },
-        { title: '晋江园区' },
+        { title: '演示医院' },
+        { title: '网上医院' },
       ],
       num: 10,
       active2: 0,
       spacia: [
-        { title: '专家/普通门诊' },
-        { title: '特色门诊挂号' },
+        { title: '普通门诊' },
+        { title: '专家门诊' },
+        { title: '特色门诊' },
       ],
       departData: [
         { name: "妇科门诊", value: 77 },
@@ -103,7 +104,7 @@ export default {
 </script>
  <style scoped>
 .choosedepart .xuanze {
-  font-size: 28px;
+  font-size: 32px;
   margin-top: 30px;
 }
 .choosedepart .margin20 {
@@ -136,17 +137,16 @@ export default {
 .choosedepart .grid-cell {
   line-height: 50px;
 }
-
 .choosedepart .mubutton {
   color: #8a8a8a;
-  /* color: #ffffff; */
   border-radius: 5px;
   font-size: 28px;
-  width: 240px;
+  width: 180px;
   text-align: center;
-  height: 70px;
-  line-height: 70px;
-  border: 1px solid #1da1f3;
+  /* height: 60px; */
+  /* padding: 0 10px; */
+  line-height: 57px;
+  border: 2px solid #1da1f3;
   color: #1da1f3;
   display: inline-block;
 }
@@ -155,7 +155,7 @@ export default {
   color: #ffffff;
 }
 .choosedepart .warn {
-  font-size: 24px;
+  font-size: 28px;
   color: #f44336;
 }
 .choosedepart .departLi {
@@ -214,6 +214,9 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 32px 100px;
+  font-size: 36px;
+}
+.choosedepart .choosedepart .appTab span {
   font-size: 32px;
 }
 .choosedepart .appTab span {
@@ -223,5 +226,8 @@ export default {
 .choosedepart .appTabAcitive {
   color: #1da1f3;
   border-bottom: 4px solid #1da1f3;
+}
+#app .choosedepart .md-cell-item-title {
+  font-size: 15px;
 }
 </style>

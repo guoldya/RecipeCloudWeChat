@@ -1,82 +1,119 @@
-.tag1 {
-    width: 28%;
-    float: right;
-}
-.tagdiv {
-    padding: 0 9px;
-}
-.md-drop-menu{
-    float: right;
-    display: flex;
-    justify-content: flex-end;
-    margin: 60px 20px;
-}
 .appTabAcitive {
-    color: #1da1f3;
-    border-bottom: 4px solid #1da1f3;
+   color: #1da1f3;
+   border-bottom: 4px solid #1da1f3;
 }
-.margin16{
-    margin: 32px 0;
+
+.margin16 {
+   margin: 32px 0;
 }
+
 .pageContent {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 16px 50px;
-    font-size: 14px;
+   display: flex;
+   justify-content: space-evenly;
+   padding: 16px 50px;
+   font-size: 14px;
 }
+
 .pageContent span {
-    padding: 0 4px 4px;
-    font-size: 28px;
+   padding: 0 4px 4px;
+   font-size: 28px;
 }
-body {
-    font-family: "PingFang-SC-Medium";
-    background: #ffffff;
+.pageContent .card {
+   box-shadow: 0 0 0.21rem #c8dff7;
+   background-color: #fff;
+   border-radius: 5px;
+   padding: 6px 30px;
 }
-.card {
-    box-shadow: 0 0 0.21rem #c8dff7;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 7px 48px;
-}
+
 .cardText {
-    padding: 16px;
-    font-size: 14px;
-    color: #333333;
+   padding: 16px;
+   font-size: 28px !important;
+   color: #333333;
 }
+
 .cardHEADER {
-    padding: 8px 25px;
-    font-size: 14px;
-    color: #333333;
+   padding: 8px 25px;
+   font-size: 28px;
+   color: #333333;
 }
-.cardHEADER span{
-    font-size: 28px;
+
+.cardHEADER span {
+   font-size: 28px;
 }
-.listData{
-    font-size: 28px;
-    display: flex;
-    justify-content: space-between;
+
+.listData {
+   font-size: 28px;
+   display: flex;
+   justify-content: space-between;
 }
-.listData span{
-    display: inline-block;
-    height: 60px;
+
+.listData span {
+   padding: 12px 0px;
 }
-.md-field{
-    padding: 0;
+
+.md-field {
+   padding: 0;
 }
+
 .mu-secondary-text-color {
-    color: #1da1f3;
+   color: #1da1f3;
 }
-.footer{
-    font-size: 28px;
-    border-top: 1px solid #ededed;
-    padding: 20px 0px;
+
+.footer {
+   font-size: 28px;
+   border-top: 1px solid #ededed;
+   padding: 20px 0px;
 }
-.cardText p {
-    line-height: 30px;
-    letter-spacing: 1px;
+
+.inspectionCheck .cardText p {
+   line-height: 30px;
+   letter-spacing: 1px;
+   text-align: center;
 }
+
 .cardHEADER {
-    padding: 8px 25px;
-    font-size: 14px;
-    color: #333333;
+   padding: 8px 25px;
+   font-size: 14px;
+   color: #333333;
+}
+
+.md-field {
+   padding: 0px !important;
+}
+
+.inspectionCheck .md-field-item-control {
+   font-size: 28px !important;
+}
+
+.downImg img {
+   width: 22px !important;
+   height: 22px !important;
+   margin-left: 10px;
+}
+
+.inspectionCheck .primary,
+.inspectionCheck .default {
+   background-color: #1da1f3 !important;
+   color: #fff !important;
+   font-size: 28px;
+}
+
+.inspectionCheck .primary:after {
+   border: 1px solid #1da1f3 !important;
+}
+
+.inspectionCheck .default {
+   background-color: #43484b !important;
+}
+
+.inspectionCheck .default:after {
+   border: 1px solid #43484b !important;
+}
+
+.inspectionCheck .md-popup-title-bar .title-bar-title p.title {
+   font-size: 36px !important;
+}
+
+.inspectionCheck .md-cell-item-content {
+   font-size: 28px !important;
 }

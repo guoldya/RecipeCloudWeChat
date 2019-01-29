@@ -9,10 +9,9 @@
       <md-cell-item v-for="(item2,index2) in departData" :title="item2.name" arrow @click="intodoctorList(item2.name)" :key="'AAA'+index2" />
       <div class="mu-sub-header margin16">医生</div>
       <md-cell-item v-for="(item,index) in test3" :key="index+'aa'" :title="item.name" :brief="item.good" arrow>
-        <span class="holder" slot="left"><img src="@/assets/images/3.jpg"></span>
+        <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
       </md-cell-item>
     </div>
-
   </div>
 </template>
 <script>

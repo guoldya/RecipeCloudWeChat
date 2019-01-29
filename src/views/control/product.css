@@ -32,25 +32,25 @@
    width: 100%;
 }
 
-.cainter {
+#product-info .cainter {
    margin: 12px;
 }
 
-.btn .abtn {
+#product-info .btn .abtn {
    margin-top: 30px;
 }
 
-.abtn {
+#product-info .abtn {
    margin-top: 15px !important;
 }
 
-.drugHead {
+#product-info .drugHead {
    width: 108px;
    height: 108px;
    float: left;
 }
 
-.drugHead img {
+#product-info .drugHead img {
    width: 108px;
    height: 108px;
    border-radius: 5px
@@ -125,28 +125,35 @@
    margin-top: 20px;
 }
 
-.star img {
+#product-info .star img {
    width: 35px;
+   height: 35px;
    margin-left: 15px;
+   float: right;
 }
 
-.cainter ul li {
+#product-info .cainter ul li {
    display: inline-block;
-   padding-bottom: 10px;
-   margin-top: 10px
+   padding-bottom: 30px;
+   margin-top: 30px;
+   border-bottom: 2px solid #ededed;
 }
 
-.headRightPJ {
+#product-info .cainter ul li:last-child {
+   border-bottom: none;
+}
+
+#product-info .headRightPJ {
    width: calc(100% - 111px);
 }
 
-.headRightPJ p {
+#product-info .headRightPJ p {
    word-break: break-all;
    width: 100%;
    overflow: auto;
 }
 
-.pingjia {
+#product-info .pingjia {
    font-size: 1rem;
    padding: 0;
    float: left;
@@ -191,16 +198,15 @@ button :active {
    background: #fff;
 }
 
-.activebtn {
+#product-info .activebtn {
    color: #1da1f3;
-   box-shadow: 0 0 0.625rem rgba(79, 94, 105, 0.301);
 }
 
-.abtninfo:last-child {
+#product-info .abtninfo:last-child {
    margin-right: 0;
 }
 
-.abtnBIG {
+#product-info .abtnBIG {
    background: #1da1f3;
    color: #ffffff;
    font-size: 28px;
@@ -210,7 +216,7 @@ button :active {
    padding: 17px 29px;
 }
 
-.fenshu {
+#product-info .fenshu {
    color: #1da1f3;
    font-size: 36px;
 }
@@ -221,7 +227,7 @@ button :active {
 
 /* d底部 */
 
-.aui-footer {
+#product-info .aui-footer {
    width: 100%;
    z-index: 100;
    display: -webkit-box;
@@ -238,7 +244,7 @@ button :active {
    bottom: 0;
 }
 
-.aui-tabBar-item {
+#product-info .aui-tabBar-item {
    -webkit-box-flex: 1;
    -webkit-flex: 1;
    -ms-flex: 1;
@@ -328,4 +334,12 @@ button :active {
    margin-right: 10px;
    margin-left: 0;
    margin-top: 10px;
+}
+
+.staraa {
+   display: flex;
+}
+
+.dateRight .star {
+   display: block;
 }

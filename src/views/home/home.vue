@@ -4,9 +4,24 @@
 <template>
     <div>
         <div class="homePage">
-            <div class="bindCard" @click="blidcard">
-                <span class="bindCardBtn">绑定就诊卡</span>
+            <div class="bindCard">
+                <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
+            <!-- <div class="homeCard">
+                <div class="homeCardText">
+                    <div class="homeCardTextLeft">
+                        <p>名字</p>
+                        <p>777777777777</p>
+                        <p>
+                            <span>切换就诊人</span>
+                        </p>
+                    </div>
+                    <div class="towma">
+                        <p><img src="@/assets/images/lili.jpg" alt=""></p>
+                        <p>刷卡请出示</p>
+                    </div>
+                </div>
+            </div> -->
             <ul class="home-cz home-flex">
                 <li @click="choosedepart">
                     <img src="@/assets/images/icon_register1.png" alt="" class="image">
@@ -65,7 +80,7 @@
 
 </template>
 <script>
-
+ 
 export default {
     data() {
         return {
@@ -91,6 +106,7 @@ export default {
                 query: argu
             });
         },
+     
         blidcard() {
             let argu = {}
             this.$router.push({
