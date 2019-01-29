@@ -19,7 +19,7 @@
     box-shadow: 0 0 0.21rem #c8dff7;
     background-color: #fff;
     border-radius: 5px;
-    padding: 7px 48px;
+    padding: 6px 30px;
 }
 .cardText {
     padding: 16px;
@@ -28,7 +28,7 @@
 }
 .cardHEADER {
     padding: 8px 25px;
-    font-size: 14px;
+    font-size: 28px;
     color: #333333;
 }
 .cardHEADER span{
