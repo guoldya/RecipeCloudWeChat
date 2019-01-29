@@ -5,7 +5,7 @@
             <img src="@/assets/images/icon_back.png">
           </span>
           <div class="aui-center">
-             <span>慢病续方</span>
+             <span class="aui-center-title">慢病续方</span>
           </div>
           <span class="aui-navBar-item">
               <div>
@@ -35,9 +35,9 @@
             </div>
             <div class="outCarint" v-if="titleIndex === 0">
                 <div class="card margin16">
-                    <div class="cardHEADER" style="display:flex;justify-content: flex-end;">
+                    <div class="cardHEADER headCard">
                         <span>仅看3日内续方</span>
-                        <div class="md-example-child md-example-child-switch md-example-child-switch-0">
+                        <div >
                             <md-switch
                                     v-model="isActive"
                                     @change="handler('switch0', isActive, $event)"
@@ -50,8 +50,8 @@
                         <div class="listData">
                             <span>处方日期：
                                 <span class="mu-secondary-text-color">{{item.date}}</span>
-                            </span>
-                            <span class="first" v-if="item.first==1">首诊</span>
+
+                            </span><span class="first" v-if="item.first==1">首诊</span>
                         </div>
                         <div class="listData">
                             <span>慢病诊断：

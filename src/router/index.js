@@ -37,11 +37,12 @@ import idcard from '@/views/idcard/index.vue'
 
 
 import inspectionCheck from '@/views/inspectionCheck/inspectionCheck.vue'
-import medicalEvaluation from '@/views/medicalEvaluation/medicalEvaluation.vue'
+import medicalEva from '@/views/medicalEva/medicalEva.vue'
 import recipeDetail from '@/views/recipeDetail/recipeDetail.vue'
 import slowConfirm from '@/views/slowConfirm/slowConfirm.vue'
 import applyDetail from '@/views/applyDetail/applyDetail.vue'
 import examine from '@/views/examine/examine.vue'
+import onlineEva from '@/views/onlineEva/onlineEva.vue'
 
 
 Vue.use(Router)
@@ -180,9 +181,9 @@ export default new Router({
       component: inspectionCheck
     },
     {
-      path: '/medicalEvaluation',
-      name: 'medicalEvaluation',
-      component: medicalEvaluation
+      path: '/medicalEva',
+      name: 'medicalEva',
+      component: medicalEva
     },
 
       {
@@ -220,6 +221,11 @@ export default new Router({
       name: 'workdotorinfo',
       component: workdotorinfo
     },
+      {
+          path: '/onlineEva',
+          name: 'onlineEva',
+          component: onlineEva
+      },
   ]
 
 })

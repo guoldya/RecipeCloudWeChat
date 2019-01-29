@@ -1,6 +1,7 @@
  .small-icon {
-    width: 72% !important;
-    height: 72% !important;
+    width: 60% !important;
+    height: 60% !important;
+    vertical-align: baseline !important;
 }
 .diy-box {
     display: inline-block;
@@ -12,10 +13,11 @@
     display: flex;
 }
 .star span{
-    display: inline-block;
+    /*display: inline-block;*/
     height: 80px;
-    line-height: 68px;
-    padding-left: 44px;
+    line-height: 80px;
+    /*margin-left: -16px;*/
+    /*white-space: nowrap;*/
 }
 .md-example-child-reader .image-reader-list {
     float: left;
@@ -69,3 +71,9 @@
     padding-top: 14px;
     color: #979797;
 }
+ .medicalEva .primary{
+     background-color: #1da1f3 !important;
+     color:#fff !important;
+     font-size: 28px;
+     margin: 86px 0px 46px 0px;
+ }

@@ -1,5 +1,5 @@
 <template>
-  <div class="hacker-news-list" id="scrollup">
+  <div class="hacker-news-list article" id="scrollup">
     <header class="aui-navBar aui-navBar-fixed">
       <span href="javascript:;" class="aui-navBar-item">
         <img src="@/assets/images/icon_back.png">
@@ -205,7 +205,7 @@ export default {
 .startop span:first-child {
   margin-right: 0.8125rem;
 }
-.star img {
+.article .star img {
   width: 92px;
 } 
 .cainter ul li {
