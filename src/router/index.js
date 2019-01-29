@@ -40,6 +40,10 @@ import cardmy from '@/views/cardmy/cardmy.vue'
 
 import inspectionCheck from '@/views/inspectionCheck/inspectionCheck.vue'
 import medicalEvaluation from '@/views/medicalEvaluation/medicalEvaluation.vue'
+import recipeDetail from '@/views/recipeDetail/recipeDetail.vue'
+import slowConfirm from '@/views/slowConfirm/slowConfirm.vue'
+import applyDetail from '@/views/applyDetail/applyDetail.vue'
+import examine from '@/views/examine/examine.vue'
 
 
 Vue.use(Router)
@@ -141,7 +145,7 @@ export default new Router({
       name: 'reportinfo',
       component: reportinfo
     },
-    , {
+    {
       path: '/lineupnow',
       name: 'lineupnow',
       component: lineupnow
@@ -196,6 +200,27 @@ export default new Router({
       path: '/medicalEvaluation',
       name: 'medicalEvaluation',
       component: medicalEvaluation
+    },
+
+    {
+      path: '/recipeDetail',
+      name: 'recipeDetail',
+      component: recipeDetail
+    },
+    {
+      path: '/slowConfirm',
+      name: 'slowConfirm',
+      component: slowConfirm
+    },
+    {
+      path: '/applyDetail',
+      name: 'applyDetail',
+      component: applyDetail
+    },
+    {
+      path: '/examine',
+      name: 'examine',
+      component: examine
     },
     {
       path: '/workdepart',
