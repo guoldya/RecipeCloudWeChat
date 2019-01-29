@@ -15,11 +15,11 @@
             <span class="mu-secondary-text-color">待支付</span>
           </p>
           <div class="cardText">
-            <p>医院：艘船大学华西</p>
-            <p>科室：艘船大学华西</p>
-            <p>医生：艘船大学华西</p>
-            <p>预约时间：艘船大学华西</p>
-            <p>就诊时间：艘船大学华西</p>
+            <p>医院：演示医院</p>
+            <p>科室：演示医院</p>
+            <p>医生：演示医院</p>
+            <p>预约时间：演示医院</p>
+            <p>就诊时间：演示医院</p>
           </div>
         </div>
       </div>
@@ -30,9 +30,9 @@
             <span class="mu-secondary-text-color">预约成功</span>
           </p>
           <div class="cardText">
-            <p>医院：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
+            <p>医院：演示医院</p>
+            <p>医院：演示医院</p>
+            <p>医院：演示医院</p>
           </div>
         </div>
       </div>
@@ -43,9 +43,9 @@
             <span class="mu-secondary-text-color">预约关闭</span>
           </p>
           <div class="cardText">
-            <p>医院：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
+            <p>医院：演示医院</p>
+            <p>医院：演示医院</p>
+            <p>医院：演示医院</p>
           </div>
         </div>
       </div>

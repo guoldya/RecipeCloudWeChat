@@ -25,8 +25,8 @@
         <div class="card">
           <div class="cardText" @click="intoreportinfo">
             <div class="cardTextLeft">
-              <p>患者：艘船大学华西</p>
-              <p>医院：艘船大学华西</p>
+              <p>患者：演示医院</p>
+              <p>医院：演示医院</p>
               <p>报告：血液分析/CPRRP （2019-02-28）</p>
             </div>
             <div class="cardTextRight">
@@ -40,7 +40,7 @@
           <div class="cardText" @click="intoreportinfo">
             <div class="cardTextLeft">
               <p>检查报告</p>
-              <p>医院：艘船大学华西</p>
+              <p>医院：演示医院</p>
               <p>报告：血液分析/CPRRP （2019-02-28）</p>
             </div>
             <div class="cardTextRight">

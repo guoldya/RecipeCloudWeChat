@@ -10,10 +10,10 @@
             <!-- <div class="homeCard">
                 <div class="homeCardText">
                     <div class="homeCardTextLeft">
-                        <p>名字</p>
+                        <p>名字<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                         <p>777777777777</p>
                         <p>
-                            <span>切换就诊人</span>
+                            <span class="icon_switch"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                         </p>
                     </div>
                     <div class="towma">
@@ -80,7 +80,7 @@
 
 </template>
 <script>
- 
+
 export default {
     data() {
         return {
@@ -106,7 +106,7 @@ export default {
                 query: argu
             });
         },
-     
+
         blidcard() {
             let argu = {}
             this.$router.push({

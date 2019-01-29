@@ -92,8 +92,8 @@
             <span class="mu-secondary-text-color">报告已出</span>
           </p>
           <div class="cardText">
-            <p>检查科室：艘船大学华西</p>
-            <p>检查项目：艘船大学华西</p>
+            <p>检查科室：演示医院</p>
+            <p>检查项目：演示医院</p>
             <p class="learnMore" @click="intoreportinfo">
               查看报告 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
             </p>
@@ -107,8 +107,8 @@
             <span class="mu-secondary-text-color">报告待出</span>
           </p>
           <div class="cardText">
-            <p>检查科室：艘船大学华西</p>
-            <p>检查项目：艘船大学华西</p>
+            <p>检查科室：演示医院</p>
+            <p>检查项目：演示医院</p>
           </div>
         </div>
       </div>
@@ -188,7 +188,7 @@ export default {
       };
     },
     slidedata(i) {
-      return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">四川大学华西医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
+      return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">演示医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
     },
   },
   computed: {

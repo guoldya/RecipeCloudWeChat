@@ -1,6 +1,6 @@
 <template>
   <div class="feerecord">
-    <Header post-title="预约记录" v-show="isWeixin"></Header>
+    <Header post-title="缴费记录" v-show="isWeixin"></Header>
     <div :class="{'outCarint':true,'margin45':isWeixin}">
       <div class="appTab">
         <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
@@ -15,7 +15,7 @@
           </p>
           <div class="cardText">
             <p>患者：李华</p>
-            <p>医院：重庆市中医院</p>
+            <p>医院：演示医院</p>
             <p>开单时间：2019-12-05 12:30:00</p>
             <div style="height:30px;  text-align: right;">
               <span class="payatnow">立即支付</span>
@@ -31,25 +31,11 @@
           </p>
           <div class="cardText">
             <p>患者：李华</p>
-            <p>医院：重庆市中医院</p>
+            <p>医院：演示医院</p>
             <p>开单时间：2019-12-05 12:30:00</p>
           </div>
         </div>
       </div>
-      <div class="demo-text" v-if="active1 === 2">
-        <div class="card">
-          <p class="appTitle">
-            <span>张三（预约失败）</span>
-            <span class="mu-secondary-text-color">预约关闭</span>
-          </p>
-          <div class="cardText">
-            <p>医院：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
-            <p>医院：艘船大学华西</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </template>

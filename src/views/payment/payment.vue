@@ -20,7 +20,7 @@
         <div class="payment-product-body">
             <ul>
                 <li>
-                    <p>商户名称：四川大学华西医院</p>
+                    <p>商户名称：演示医院</p>
                     <p class="payment-margin-5">商品明细：</p>
                 </li>
                 <li>
