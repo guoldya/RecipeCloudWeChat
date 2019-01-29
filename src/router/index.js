@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import index from '@/views/home/home.vue'
 import control from '@/views/control/control.vue'
 import online from '@/views/online/online.vue'
 import article from '@/views/article/article.vue'
@@ -19,19 +19,22 @@ import reportquery from '@/views/reportquery/reportquery.vue'
 import reportinfo from '@/views/reportinfo/reportinfo.vue'
 import lineupnow from '@/views/lineupnow/lineupnow.vue'
 import lineupinfo from '@/views/lineupinfo/lineupinfo.vue'
-import home from '@/views/home/home.vue'
 import notice from '@/views/notice/notice.vue'
 import lookagain from '@/views/lookagain/lookagain.vue'
 import doctorplan from '@/views/doctorplan/doctorplan.vue'
 import workdepart from '@/views/workdepart/workdepart.vue'
 import workdoctor from '@/views/workdoctor/workdoctor.vue'
 import workdotorinfo from '@/views/workdotorinfo/workdotorinfo.vue'
-
-// thh
+import adress from '@/views/adress/adress.vue'
 import fillinfo from '@/views/fillinfo/index.vue'
 import identity from '@/views/identity/index.vue'
 import idcard from '@/views/idcard/index.vue'
+import idcardlist from '@/views/idcardlist/idcardlist.vue'
+import adressinfo from '@/views/adressinfo/adressinfo.vue'
 
+import cardmy from '@/views/cardmy/cardmy.vue'
+import cardwrite from '@/views/cardwrite/cardwrite.vue'
+import cardneed from '@/views/cardneed/cardneed.vue'
 // 
 
 
@@ -48,18 +51,39 @@ import onlineEva from '@/views/onlineEva/onlineEva.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'hash',
   routes: [
-
+    {
+      path: '/',
+      name: 'home',
+      component: index
+    },
     {
       path: '/home',
       name: 'home',
-      component: home
+      component: index
     },
     {
       path: '/my',
       name: 'my',
       component: my
     },
+    {
+      path: '/cardmy',
+      name: 'cardmy',
+      component: cardmy
+    },
+    {
+      path: '/cardwrite',
+      name: 'cardwrite',
+      component: cardwrite
+    },
+    {
+      path: '/cardneed',
+      name: 'cardneed',
+      component: cardneed
+    },
+
     {
       path: '/control',
       name: 'control',
@@ -134,7 +158,7 @@ export default new Router({
       name: 'reportinfo',
       component: reportinfo
     },
-     {
+    {
       path: '/lineupnow',
       name: 'lineupnow',
       component: lineupnow
@@ -171,6 +195,11 @@ export default new Router({
       component: idcard
     },
     {
+      path: '/idcardlist',
+      name: 'idcardlist',
+      component: idcardlist
+    },
+    {
       path: '/doctorplan',
       name: 'doctorplan',
       component: doctorplan
@@ -186,26 +215,26 @@ export default new Router({
       component: medicalEva
     },
 
-      {
-          path: '/recipeDetail',
-          name: 'recipeDetail',
-          component: recipeDetail
-      },
-      {
-          path: '/slowConfirm',
-          name: 'slowConfirm',
-          component: slowConfirm
-      },
-      {
-          path: '/applyDetail',
-          name: 'applyDetail',
-          component: applyDetail
-      },
-      {
-          path: '/examine',
-          name: 'examine',
-          component: examine
-      },
+    {
+      path: '/recipeDetail',
+      name: 'recipeDetail',
+      component: recipeDetail
+    },
+    {
+      path: '/slowConfirm',
+      name: 'slowConfirm',
+      component: slowConfirm
+    },
+    {
+      path: '/applyDetail',
+      name: 'applyDetail',
+      component: applyDetail
+    },
+    {
+      path: '/examine',
+      name: 'examine',
+      component: examine
+    },
     {
       path: '/workdepart',
       name: 'workdepart',
@@ -226,6 +255,15 @@ export default new Router({
           name: 'onlineEva',
           component: onlineEva
       },
+    {
+      path: '/adress',
+      name: 'adress',
+      component: adress
+    },
+    {
+      path: '/adressinfo',
+      name: 'adressinfo',
+      component: adressinfo
+    },
   ]
-
 })

@@ -47,16 +47,44 @@
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
         <ul v-show="!isSwitch">
-          <li v-for="i in num" :key="i">
+          <li>
             <div class="card" @click="intodoctordetail">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">冉有钱1
+                  <p class="headname">刘秀娟
                     <span class="levle">主任医师</span>
                     <span class="have">余56</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="card" @click="intodoctordetail">
+              <div class="cardText">
+                <div class="headimg"><img src="https://kano.guahao.cn/iPb2687320_image140.jpg?timestamp=1504077956258" alt="医生头像"></div>
+                <div>
+                  <p class="headname">孙强
+                    <span class="levle">副主任医师</span>
+                    <span class="have">余56</span>
+                  </p>
+                  <p class="headdesc">擅长:前列腺增生微创治疗、腹腔镜及输尿管镜等腔内泌尿外科、泌尿系肿瘤的诊...</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="card" @click="intodoctordetail">
+              <div class="cardText">
+                <div class="headimg"><img src="https://kano.guahao.cn/u0w2684511_image140.jpg" alt="医生头像"></div>
+                <div>
+                  <p class="headname">胡必杰
+                    <span class="levle">主任医师</span>
+                    <span class="have">余56</span>
+                  </p>
+                  <p class="headdesc">擅长:心脏病的临床诊断，心血管影像诊断，尤其是各种冠心病治疗方法的合理选择。</p>
                 </div>
               </div>
             </div>
@@ -66,12 +94,12 @@
           <li>
             <div class="card">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">冉有钱
-                    <span class="have  ">余10</span>
+                  <p class="headname">杜洪
+                    <span class="have">余10</span>
                   </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                  <p class="headdesc"> 肺炎； 肺结节； 肺真菌病：隐球菌、曲霉菌； 肺部病灶诊断不明； 发热； 败血症和心内膜炎； 结核；（8）耐药菌感染与抗生素使用</p>
                 </div>
               </div>
             </div>
@@ -81,13 +109,26 @@
       <p class="forenoon">下午</p>
       <div class="doctorList" id="afternoon">
         <ul v-show="!isSwitch">
+          <li>
+            <div class="card">
+              <div class="cardText">
+                <div class="headimg"><img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像"></div>
+                <div>
+                  <p class="headname">袁丁未
+                    <span class="have no">余0</span>
+                  </p>
+                  <p class="headdesc">擅长:各类口腔临床常见疾病，牙体牙髓病、根尖周病，牙龈牙周病的诊治。</p>
+                </div>
+              </div>
+            </div>
+          </li>
           <li v-for="i in 3" :key="i">
             <div class="card">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">冉有钱
-                    <span class="have no">余56</span>
+                  <p class="headname">医师
+                    <span class="have no">余0</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
                 </div>
@@ -99,10 +140,10 @@
           <li>
             <div class="card">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">冉有钱
-                    <span class="have  ">余10</span>
+                  <p class="headname">医师
+                    <span class="have  ">余1</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
                 </div>
@@ -117,9 +158,9 @@
           <li>
             <div class="card">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">冉有钱
+                  <p class="headname">医师
                     <span class="have">余0</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
@@ -130,9 +171,9 @@
           <li>
             <div class="card">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">冉有钱
+                  <p class="headname">医师
                     <span class="have no">余0</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
@@ -145,9 +186,9 @@
           <li>
             <div class="card">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">冉有钱
+                  <p class="headname">医师
                     <span class="have  ">余10</span>
                   </p>
                   <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>

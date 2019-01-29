@@ -144,7 +144,6 @@
         computed: {
 
         },
-
     };
 </script>
 <style   scoped>

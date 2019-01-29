@@ -4,12 +4,27 @@
 <template>
     <div>
         <div class="homePage">
-            <div class="bindCard" @click="blidcard">
-                <span class="bindCardBtn">绑定就诊卡</span>
+            <div class="bindCard">
+                <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
+            <!-- <div class="homeCard">
+                <div class="homeCardText">
+                    <div class="homeCardTextLeft">
+                        <p>名字</p>
+                        <p>777777777777</p>
+                        <p>
+                            <span>切换就诊人</span>
+                        </p>
+                    </div>
+                    <div class="towma">
+                        <p><img src="@/assets/images/lili.jpg" alt=""></p>
+                        <p>刷卡请出示</p>
+                    </div>
+                </div>
+            </div> -->
             <ul class="home-cz home-flex">
                 <li @click="choosedepart">
-                    <img src="@/assets/images/icon_register.png" alt="" class="image">
+                    <img src="@/assets/images/icon_register1.png" alt="" class="image">
                     <p>预约挂号</p>
                 </li>
                 <li @click="feerecord">
@@ -50,7 +65,7 @@
                     <img src="@/assets/images/6.png" alt="" class="image">
                     <p>病案复印</p>
                 </li>
-                <li>
+                <li @click="myinspectionCheck">
                     <img src="@/assets/images/7.png" alt="" class="image">
                     <p>我的处方</p>
                 </li>
@@ -65,7 +80,7 @@
 
 </template>
 <script>
-
+ 
 export default {
     data() {
         return {
@@ -73,7 +88,7 @@ export default {
         }
     },
     mounted() {
-        document.title = '网上医院';
+        document.title = '互联网医院';
     },
     methods: {
         choosedepart() {
@@ -91,10 +106,11 @@ export default {
                 query: argu
             });
         },
+     
         blidcard() {
             let argu = {}
             this.$router.push({
-                name: 'blidcard',
+                name: 'cardmy',
                 query: argu
             });
         },
@@ -119,6 +135,15 @@ export default {
             let argu = {}
             this.$router.push({
                 name: 'workdepart',
+                query: argu
+            });
+        },
+
+        // 我的处方
+        myinspectionCheck() {
+            let argu = {}
+            this.$router.push({
+                name: 'inspectionCheck',
                 query: argu
             });
         },

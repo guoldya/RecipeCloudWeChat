@@ -1,17 +1,15 @@
 <template>
    <div class="doctorList">
-      <Header post-title="复诊医生" v-show="isWeixin"></Header>
-      <div :class="{margin45:isWeixin,outCarint:true}">
+      <Header post-title="管理就诊卡" v-show="isWeixin"></Header>
+      <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
          <ul>
             <li v-for="i in num" :key="i">
-               <div class="card margin16" @click="intodoctordetail">
+               <div class="card">
                   <div class="cardText">
-                     <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                      <div>
-                        <p class="headname">医师
-                           <span class="have">余56</span>
+                        <p class="headname">张三妈妈的就诊卡
                         </p>
-                        <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                        <p class="headdesc">电子就诊卡号：785477fz</p>
                      </div>
                   </div>
                </div>
@@ -25,14 +23,18 @@ export default {
    data() {
       return {
          isWeixin: false,
-         num: 1,
+         num: 5,
       };
    },
    created() {
-
+   },
+   watch: {
+      selected3: function (newselectedStatus, oldselectedStatus) {
+         console.log(newselectedStatus)
+      },
    },
    mounted() {
-      document.title = '复诊医生';
+      document.title = '医生列表';
       var ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i) == 'micromessenger') {
          this.isWeixin = false;
@@ -40,23 +42,17 @@ export default {
       } else {
          this.isWeixin = true;
          return false;
-      }
+      };
+
 
    },
    methods: {
-      intodoctordetail() {
-         let argu = {}
-         this.$router.push({
-            name: 'doctordetail',
-            query: argu
-         });
-      },
+
    },
    computed: {
-
    },
 };
 </script>
- <style scoped>
+ <style   scoped>
 @import "../doctorList/doctorList.css";
 </style>

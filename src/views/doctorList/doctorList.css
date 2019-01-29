@@ -16,11 +16,11 @@ input {
    right: 0;
    margin: 0 auto;
    padding-left: 60px;
-   background: #ffffff url(./search.png) 5% 50% no-repeat !important;
+   background: transparent url(./search.png) 5% 50% no-repeat !important;
    background-size: auto 40% !important;
    opacity: 1;
    outline: none;
-   font-size: 30px !important;
+   font-size: 28px !important;
    color: #000;
    z-index: 999;
 }
@@ -83,7 +83,7 @@ input {
    margin-top: 0;
 }
 
-.doctorList  .no {
+.doctorList .no {
    background: #cccbcb;
 }
 
@@ -94,7 +94,7 @@ input {
    margin-top: 30px;
 }
 
-.doctorList  .time {
+.doctorList .time {
    width: 100%;
    overflow-x: scroll;
    overflow-y: hidden;
@@ -103,9 +103,11 @@ input {
    background: #ffffff;
    border-bottom: 1px solid #c5c5c5;
 }
-.doctorList  .time ul{
+
+.doctorList .time ul {
    margin-top: -20px;
 }
+
 .doctorList .time ul li {
    display: inline-block;
    padding: 14px 0;
@@ -154,7 +156,7 @@ input {
    color: #979797;
    float: right;
    background: #ffffff;
-   border: 1px solid #979797;
+   border: 2px solid #979797;
    border-radius: 60px;
    letter-spacing: 1px;
    width: 134px;
@@ -166,7 +168,7 @@ input {
 
 .afternoonActive {
    color: #1976d2;
-   border: 1px solid #1976d2;
+   border: 2px solid #1976d2;
 }
 
 .forenoon {
@@ -191,7 +193,7 @@ input {
 
 .doctorList .headdesc {
    line-height: 58px;
-   font-size: 34px;
+   font-size: 30px;
    color: #979797;
    overflow: hidden;
    text-overflow: ellipsis;
@@ -226,11 +228,8 @@ input {
    top: -5px;
 }
 
-
-.doctorList  .card{
-padding: 7px 20px;
+.doctorList .card {
+   padding: 7px 20px;
 }
 
-
 /*  */
-

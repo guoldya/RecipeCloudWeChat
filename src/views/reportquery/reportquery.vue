@@ -3,25 +3,20 @@
     <Header post-title="报告查询" v-show="isWeixin"></Header>
     <div :class="{margin45:isWeixin,outCarint:true}">
       <div class="user">
-        <!-- <div class="datepick" @click="datePick">
-          <span :class="{'mu-secondary-text-color':datepick}">选择患者<img v-if="!datepick" src="@/assets/images/icon_open@2x.png">
-            <img v-else src="@/assets/images/icon_open_pre@2x.png">
-          </span>
-        </div> -->
-
         <md-field>
-          <md-field-item title="选择患者" :content="selectorValue" @click="showSelector" down solid />
+          <md-field-item title="选择患者" align="left" :content="selectorValue" @click="showSelector" down solid />
         </md-field>
+        <md-field-item style="padding: 10px 0" name="name" title="选择时间" align="left" :content="datePickerValue" @click.native="isDatePickerShow = true">
+        </md-field-item>
         <div class="datepick">
           <!-- <span :class="{'mu-secondary-text-color':datepick}">选择时间<img v-if="!datepick" src="@/assets/images/icon_open@2x.png">
             <img v-else src="@/assets/images/icon_open_pre@2x.png">
           </span> -->
-          <md-field-item name="name" title="选择时间" arrow="arrow-down" align="right" :content="datePickerValue" @click.native="isDatePickerShow = true">
-          </md-field-item>
+
         </div>
         <md-selector v-model="isSelectorShow" default-value="2" :data="data111" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
       </div>
-      <div class="appTab">
+      <div class="appTab" style="margin-top:20px">
         <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
           {{item.title}}
         </span>

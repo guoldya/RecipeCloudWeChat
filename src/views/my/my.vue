@@ -11,24 +11,24 @@
       <div class="tools">
         <h2>就医信息</h2>
         <div class="nav2">
-          <span monitor="my_family"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-patients.png" alt="">挂号记录</span>
-          <span monitor="my_favorite"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-star.png" alt="">缴费记录</span>
-          <span monitor="Homepage_Personal_instrument_my_doctor"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-doctor.png" alt="">预约记录</span>
-          <span monitor="my_subject"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-channel.png" alt="">报告记录</span>
+          <span><img src="@/assets/images/icon_register.png" alt="">挂号记录</span>
+          <span @click="feerecord"><img src="@/assets/images/icon_pay.png" alt="">缴费记录</span>
+          <span><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
+          <span @click="reportquery" monitor="my_subject"><img src="@/assets/images/icon_report.png" alt="">报告记录</span>
         </div>
         <div class="nav2">
-          <span monitor="my_course"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-course.png" alt="">我的住院</span>
-          <span monitor="my_memberbenefit"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-member.png" alt="">处方记录</span>
-          <span monitor="my_help"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-help.png" alt="">复印记录</span>
-          <span monitor="Homepage_Personal_instrument_more"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-more.png" alt="">问诊记录</span>
+          <span><img src="@/assets/images/icon_hospitalization.png" alt="">我的住院</span>
+          <span @click="inspectionCheck"><img src="@/assets/images/icon_prescription.png" alt="">处方记录</span>
+          <span><img src="@/assets/images/icon_copy.png" alt="">复印记录</span>
+          <span><img src="@/assets/images/icon_order.png" alt="">问诊订单</span>
         </div>
       </div>
       <div class="tools">
         <h2>个人信息</h2>
         <div class="nav2">
-          <span monitor="my_family"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-patients.png" alt="">就诊卡</span>
-          <span monitor="my_favorite"><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-star.png" alt="">地址管理</span>
-          <span><img src="https://static.guahao.cn/front/portal-h5-static/img/usercenter/icon-doctor.png" alt="">就医评价</span>
+          <span @click="idcardlist"><img src="@/assets/images/icon_Visitingcard.png" alt="">就诊卡</span>
+          <span @click="adress"><img src="@/assets/images/icon_address.png" alt="">地址管理</span>
+          <span @click="medicalEvaluation"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
         </div>
       </div>
     </div>
@@ -53,22 +53,68 @@ export default {
     document.title = '个人中心';
     this.account = localStorage.getItem("account");
     let _this = this;
-    this.$axios.put(sysUserselectUserByAccount, {
-      account: this.account,
-    }).then(function (res) {
-      if (res.data.code == '200') {
-        _this.userInfo = res.data.data;
-        _this.id = res.data.data.id;
-      }
-    }).catch(function (err) {
-      console.log(err);
-    });
+    // this.$axios.put(sysUserselectUserByAccount, {
+    //   account: this.account,
+    // }).then(function (res) {
+    //   if (res.data.code == '200') {
+    //     _this.userInfo = res.data.data;
+    //     _this.id = res.data.data.id;
+    //   }
+    // }).catch(function (err) {
+    //   console.log(err);
+    // });
 
 
   },
   methods: {
-
-
+    // 缴费记录
+    feerecord() {
+      let argu = {}
+      this.$router.push({
+        name: 'feerecord',
+        query: argu
+      });
+    },
+    // 报告查询
+    reportquery() {
+      let argu = {}
+      this.$router.push({
+        name: 'reportquery',
+        query: argu
+      });
+    },
+    // 处方记录
+    inspectionCheck() {
+      let argu = {}
+      this.$router.push({
+        name: 'inspectionCheck',
+        query: argu
+      });
+    },
+    // 就诊卡
+    idcardlist() {
+      let argu = {}
+      this.$router.push({
+        name: 'idcardlist',
+        query: argu
+      });
+    },
+    // 就医评价
+    medicalEvaluation() {
+      let argu = {}
+      this.$router.push({
+        name: 'medicalEvaluation',
+        query: argu
+      });
+    },
+    // 地址
+    adress() {
+      let argu = {}
+      this.$router.push({
+        name: 'adress',
+        query: argu
+      });
+    },
   }
 }
 </script>
