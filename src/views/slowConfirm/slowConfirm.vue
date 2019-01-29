@@ -62,6 +62,9 @@
         width: 120px;
         height: 120px;
     }
+    .slowConfirm .successImg p{
+        font-size: 30px;
+    }
     .slowConfirm .successWord p{
         padding: 80px 28px;
     }

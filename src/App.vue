@@ -179,4 +179,26 @@ p {
   color: #1da1f3;
   border-bottom: 2px solid #1da1f3;
 }
+.partLine{
+  border-bottom: 1px solid #c5c5c5;
+  width: 100%;
+  padding: 8px 0px;
+  margin-bottom: 28px;
+}
+textarea{
+  border: none;
+  font-size: 28px;
+  outline: none;
+  font-family: "PingFang-SC-Medium";
+}
+textarea::-webkit-input-placeholder{ /*WebKit browsers*/
+  color: #979797;
+}
+.md-switch.active{
+  background-color: #1da1f3 !important;
+  margin-left: 6px;
+}
+.md-switch{
+  margin-left: 6px;
+}
 </style>

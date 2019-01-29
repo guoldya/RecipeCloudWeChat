@@ -37,6 +37,12 @@
                 <div class="card margin16">
                     <div class="cardHEADER" style="display:flex;justify-content: flex-end;">
                         <span>仅看3日内续方</span>
+                        <div class="md-example-child md-example-child-switch md-example-child-switch-0">
+                            <md-switch
+                                    v-model="isActive"
+                                    @change="handler('switch0', isActive, $event)"
+                            ></md-switch>
+                        </div>
                     </div>
                 </div>
                 <div class="card margin16" v-for="(item,i) in cardData">
@@ -45,7 +51,7 @@
                             <span>处方日期：
                                 <span class="mu-secondary-text-color">{{item.date}}</span>
                             </span>
-                            <span>首诊</span>
+                            <span class="first" v-if="item.first==1">首诊</span>
                         </div>
                         <div class="listData">
                             <span>慢病诊断：
@@ -123,9 +129,9 @@
                 ],
                 titleIndex:0,
                 cardData:[
-                    {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"8日"},
-                    {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"8日"},
-                    {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"8日"},
+                    {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"8日",first:"1"},
+                    {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"7日",first:"2"},
+                    {date:"2019年1月30日",type:"高血压",source:"人民医院",restDate:"5日",first:"2"},
                 ],
                 applyData:[
                     {applyDate:"2018年10月20日",continueDate:"2018年10月20日",type:"高血压",auditState:"审核通过",no:"5000000000"},
@@ -149,6 +155,7 @@
                 isContinue:true,
                 isSelectorShow: false,
                 selectorValue: '陈楚生得',
+                isActive: true,
             };
         },
         created() {
@@ -170,13 +177,13 @@
                 this.isSelectorShow = true
             },
             onSelectorChoose({text}) {
-                this.selectorValue = text
+                this.selectorValue = text;
             },
             switchTo(num) {
                 this.titleIndex = num;
             },
             continueApply() {
-                let argu = {};
+                let argu = {name:this.selectorValue};
                 this.$router.push({
                     name: 'recipeDetail',
                     query: argu
@@ -188,7 +195,10 @@
                     name: 'applyDetail',
                     query: argu
                 });
-            }
+            },
+            handler(name, active) {
+                console.log(`Status of switch ${name} is ${active ? 'active' : 'inactive'}`)
+            },
         }
 };
 </script>

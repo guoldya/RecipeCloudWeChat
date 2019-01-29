@@ -16,15 +16,14 @@ Vue.use(mandMobile)
 
 import './assets/responsive'
 import './assets/global.css'
-import star from './components/star/star' //自定义星星等级组
-
+import rater from 'w-rater'
 
 Vue.component('Header', Header);
 Vue.component('Search', Search);
 Vue.component('Footer', Footer);
+Vue.component('rater', rater);
 Vue.config.productionTip = false;
 Vue.use(infiniteScroll);
-Vue.use(star);
 
 
 if ('addEventListener' in document && 'ontouchstart' in window) {
