@@ -1,103 +1,67 @@
 <template>
   <div class="hacker-news-list article" id="scrollup">
-  <div class="article" id="scrollup">
-    <header class="aui-navBar aui-navBar-fixed">
-      <span href="javascript:;" class="aui-navBar-item" @click="back">
-        <img src="@/assets/images/icon_back.png">
-      </span>
-      <div class="aui-center">
-        <span>文章详情</span>
+    <div class="article" id="scrollup">
+      <header class="aui-navBar aui-navBar-fixed">
+        <span href="javascript:;" class="aui-navBar-item" @click="back">
+          <img src="@/assets/images/icon_back.png">
+        </span>
+        <div class="aui-center">
+          <span>文章详情</span>
+        </div>
+        <span class="aui-navBar-item">
+          <img v-show="isCollect==1" @click="cancleselect" src="@/assets/images/icon_collect1_pre.png" style="width:25px;margin-right:10px">
+          <img v-show="isCollect==0" @click="select" src="@/assets/images/icon_collect1.png" style="width:25px;margin-right:10px">
+          <img src="@/assets/images/icon_share.png" style="width:24px;height:28px" @click="share">
+        </span>
+      </header>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <span class="aui-navBar-item">
-        <img src="@/assets/images/icon_collect1.png" style="width:25px;margin-right:10px" @click="select">
-        <img src="@/assets/images/icon_share.png" style="width:24px;height:28px" @click="share">
-      </span>
-    </header>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
+      <div class="content articlecontent">
+        <div class="cainter">
+          <h1>{{articleInfo.title}}</h1>
+          <p class="colo13">
+            <span>{{articleInfo.audit}} | </span>
+            <span>{{articleInfo.createTime}}</span>
+            <span style="float:right">阅读 45455</span>
+          </p>
+          <p style="overflow:hidden; word-wrap:break-word;" v-html='articleInfo.content'>
+          </p>
+          <img :src="'http://192.168.0.150:40080/res/'+articleInfo.photoUrl" alt="" style="width:100%">
+        </div>
       </div>
-      <div class="swiper-pagination"></div>
-    </div>
-    <div class="content articlecontent">
-      <div class="cainter">
-        <h1>{{articleInfo.title}}</h1>
-        <p class="colo13">
-          <span>{{articleInfo.audit}} | </span>
-          <span>{{articleInfo.createTime}}</span>
-          <span style="float:right">阅读 45455</span>
-        </p>
-        <p style="overflow:hidden; word-wrap:break-word;" v-html='articleInfo.content'>
-        </p>
-        <img :src="'http://192.168.0.150:40080/res/'+articleInfo.photoUrl" alt="" style="width:100%">
-      </div>
-    </div>
-    <div class="content">
-      <div class="cainter" id="commentList">
-        <h1 class="pingjia" style="width:100%; margin-top:25px">评价列表</h1>
-        <ul class="news-list">
-          <li v-for="(item,index) in cmtInfo" :key="index">
-            <div class="detaileTop">
-              <div class="headimg">
-                <img src="@/assets/images/3.jpg" alt="店铺头像">
-              </div>
-              <div class="headRight headRightPJ">
-                <div>
-                  <div class="starleft">
-                    <div class="startop">
-                      <span>和平药房渝北店铺</span>
-                    </div>
-                    <span class="colo13">2015-12-12</span>
-                  </div>
-                </div>
-                <p>{{item.content}}第一个评论</p>
-              </div>
+      <div class="content">
+        <div class="cainter " id="commentList">
+          <h1 class="pingjia" style="width:100%; margin-top:25px">评价列表</h1>
+          <div class="comment-info">
+            <div class="header"><img src="@/assets/images/3.jpg"></div>
+            <div class="comment-right">
+              <h3>匿名</h3>
+              <p class="colo13">2015-12-12</p>
+              <p class="content">到菜市场买菜，看到一个孩子在看摊，我问：“一只鸡多少钱？” 那孩子回答：“23。” 我又问：“两只鸡多少钱？” 孩子愣了一下，一时间没算过来，急中生智大吼一声：“一次只能买一只！”</p>
             </div>
-          </li>
-          <li v-for="i in num" :key="i">
-            <div class="detaileTop">
-              <div class="headimg">
-                <img src="@/assets/images/3.jpg" alt="店铺头像">
-              </div>
-              <div class="headRight headRightPJ">
-                <div>
-                  <div class="starleft">
-                    <div class="startop">
-                      <span>和平药房渝北店铺</span>
-                    </div>
-                    <span class="colo13">2015-12-12</span>
-                  </div>
-                </div>
-                <p>sssssssssssssssssss和平药房渝北店铺和平药房渝北店铺和平药房渝北店铺和平药房渝北店铺</p>
-              </div>
+          </div>
+          <div class="comment-info">
+            <div class="header"><img src="@/assets/images/3.jpg"></div>
+            <div class="comment-right">
+              <h3>匿名</h3>
+              <p class="colo13">2015-12-12</p>
+              <p class="content">1111111111111111111111111111111111111aaaa111111111111111111111111111111111</p>
             </div>
-          </li>
-          <li>
-            <div class="detaileTop">
-              <div class="headimg">
-                <img src="@/assets/images/3.jpg" alt="店铺头像">
-              </div>
-              <div class="headRight headRightPJ">
-                <div>
-                  <div class="starleft">
-                    <div class="startop">
-                      <span>和平药房渝北店铺</span>
-                    </div>
-                    <span class="colo13">2015-12-12</span>
-                  </div>
-                </div>
-                <p>sssssssssssssssssss和平药房渝北店铺和平药房渝北店铺和平药房渝北店铺和平药房渝北店铺</p>
-              </div>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 <script >
-let bdProductreaddetail = 'bizArticle/read/detail';
-let bizArticleCmtreadpage = 'bizArticleCmt/read/page'
+import { Toast } from 'mand-mobile';
+let bdProductreaddetail = '/app/bizArticle/read/detail';
+let bizArticleCmtreadpage = 'bizArticleCmt/read/page';
+let appbizCollectionaddCollection = 'app/bizCollection/addCollection';
+let appbizCollectiondeleteCollection = 'app/bizCollection/deleteCollection';
 const scrollTopList = {};
 export default {
   data() {
@@ -107,6 +71,10 @@ export default {
       articleInfo: '',
       cmtInfo: '',
       ctmNumber: 0,
+      isCollect: 0,
+      titleCollection: '',
+      TOKEN: '',
+      UUID: '',
       test: [{ filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
       { filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
       { filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
@@ -168,25 +136,55 @@ export default {
       });
     })
     // let str = location.href;
-    let str = "http://192.168.0.26:8081/article?articleId=38"; //取得整个地址栏
-    let num = str.indexOf("?");
-    this.articleId = str.match(/articleId=[^&]+/)[0].split("=")[1] * 1;
+    // let str = "http://192.168.0.26:8081/article?articleId=38"; //取得整个地址栏
+    // let num = str.indexOf("?");
+    // this.articleId = str.match(/articleId=[^&]+/)[0].split("=")[1] * 1;
+
+    function UrlSearch() {
+      let name, value;
+      //let str = location.href;
+      let str = "http://192.168.0.26:8080/article?articleId=38&TOKEN=6c4d4f79fc824c0c8e6cacc7dae7998a&UUID=89CE3988D21E4652BC9F391ECF7D663D"; //取得整个地址栏
+      let num = str.indexOf("?");
+      str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+      _this.articleId = str.match(/articleId=[^&]+/)[0].split("=")[1] * 1;
+      let arr = str.split("&"); //各个参数放到数组里
+      for (let i = 0; i < arr.length; i++) {
+        num = arr[i].indexOf("=");
+        if (num > -1) {
+          name = arr[i].substring(0, num);
+          value = arr[i].substr(num + 1);
+          this[name] = value;
+        }
+      }
+    };
+
+    let Request = new UrlSearch(); //实例化
+    this.TOKEN = Request.TOKEN;
+    this.UUID = Request.UUID;
     let param = {};
     this.$axios.put(bdProductreaddetail, {
-      id: this.articleId
-    }).then((res) => {
-      if (res.data.code == '200') {
-        res.data.data.createTime = /\d{4}-\d{1,2}-\d{1,2}/g.exec(res.data.data.createTime).shift();
-        _this.articleInfo = res.data.data;
-      } else {
-        console.log(res.msg);
-      }
-    }).catch(function (err) {
-      console.log(err);
-    });
+      id: _this.articleId
+    }, {
+        headers: {
+          'TOKEN': `${_this.TOKEN}`,
+          'UUID': `${_this.UUID}`
+        },
+      }).then((res) => {
+        if (res.data.code == '200') {
+          res.data.data.createTime = /\d{4}-\d{1,2}-\d{1,2}/g.exec(res.data.data.createTime).shift();
+          _this.articleInfo = res.data.data;
+          _this.isCollect = res.data.data.isCollect;
+          _this.titleCollection = res.data.data.title;
+        } else {
+          console.log(res.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
     this.$axios.put(bizArticleCmtreadpage, {
       articleId: this.articleId
-    }).then((res) => {
+    }
+    ).then((res) => {
       if (res.data.code == '200') {
         _this.cmtInfo = res.data.rows;
         _this.ctmNumber = res.data.total;
@@ -207,6 +205,47 @@ export default {
     commentList() {
       document.querySelector("#commentList").scrollIntoView();
     },
+    select() {
+      let _this = this;
+      this.$axios.post(appbizCollectionaddCollection, {
+        contentId: _this.articleId,
+        collectType: 1,
+        title: _this.titleCollection,
+      }, {
+          headers: {
+            'TOKEN': `${_this.TOKEN}`,
+            'UUID': `${_this.UUID}`
+          },
+        }).then((res) => {
+          if (res.data.code == '200') {
+            Toast.succeed("收藏成功");
+            this.isCollect = 1;
+          } else {
+            console.log(res.msg);
+          }
+        }).catch(function (err) {
+          console.log(err);
+        });
+    },
+    cancleselect() {
+      // alert("aaaaaaa")
+      let _this = this;
+      this.$axios.delete(appbizCollectiondeleteCollection + '?id=' + _this.articleId, {
+        headers: {
+          'TOKEN': `${_this.TOKEN}`,
+          'UUID': `${_this.UUID}`
+        },
+      }).then((res) => {
+        if (res.data.code == '200') {
+          Toast.succeed("取消收藏");
+          _this.isCollect = 0;
+        } else {
+          Toast.succeed(res.data.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
     back() {
       WebViewJavascriptBridge.callHandler(
         'back'
@@ -217,16 +256,14 @@ export default {
       );
     },
     share() {
-      WebViewJavascriptBridge.callHandler(
-        'share'
-        , {}
-        , function (responseData) {
+      console.log("aaaaaa")
+      // WebViewJavascriptBridge.callHandler(
+      //   'share'
+      //   , {}
+      //   , function (responseData) {
 
-        }
-      );
-    },
-    select() {
-
+      //   }
+      // );
     },
     lunbo() {
       let mySwiper = new Swiper('.swiper-container', {
@@ -289,55 +326,5 @@ export default {
 }
 .articlecontent p {
   line-height: 50px;
-}
-.headRight {
-  width: calc(100% - 92px);
-  float: right;
-  text-align: left;
-}
-.article .starleft {
-  width: 100%;
-  float: left;
-}
-.news-list li {
-  border-bottom: 1px solid #f5f5f5;
-}
-
-.startop {
-  width: 100%;
-}
-.startop {
-  margin-top: 0;
-}
-.startop span {
-  line-height: 40px;
-  font-size: 28px;
-}
-.startop span:first-child {
-  margin-right: 0.8125rem;
-}
-.article .star img {
-  width: 92px;
-}
-.cainter ul li {
-  display: inline-block;
-  padding-bottom: 40px;
-  margin-top: 40px;
-}
-.headRightPJ {
-  width: calc(100% - 108px);
-}
-.headRightPJ p {
-  word-break: break-all;
-  width: 100%;
-  overflow: auto;
-}
-.pingjia {
-  font-size: 30px;
-  padding: 0;
-  float: left;
-  font-weight: 400;
-  line-height: 40px;
-  font-family: "PingFang-SC-Medium";
 }
 </style>

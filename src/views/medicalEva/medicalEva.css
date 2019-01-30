@@ -6,19 +6,24 @@
 .diy-box {
     display: inline-block;
     margin-left: 20px;
-    height: 80px;
-    line-height: 80px;
+    height: 56px;
+    line-height: 78px;
 }
 .star{
     display: flex;
 }
 .star span{
-    /*display: inline-block;*/
     height: 80px;
     line-height: 80px;
-    /*margin-left: -16px;*/
-    /*white-space: nowrap;*/
+    white-space: nowrap;
 }
+.star-box{
+    width: 58px !important;
+    height: 58px !important;
+}
+ .rater-item{
+     margin: -4px;
+ }
 .md-example-child-reader .image-reader-list {
     float: left;
     width: 100%;

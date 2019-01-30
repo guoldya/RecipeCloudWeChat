@@ -37,9 +37,10 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 
 Vue.config.productionTip = false
 
-const BASE_URL = 'http://192.168.0.110:8090/';
+// const BASE_URL = 'http://192.168.0.110:8090/';
+// axios.defaults.baseURL = BASE_URL;
+const BASE_URL = '/api';
 axios.defaults.baseURL = BASE_URL;
-
 
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (res) {

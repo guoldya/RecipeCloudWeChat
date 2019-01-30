@@ -38,14 +38,14 @@ module.exports = {
   productionSourceMap: false,
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
   devServer: {
-    // proxy: {
-    //   '/api/sys': {
-    //     target: 'http://192.168.0.22:8088/',
-    //     changeOrigin: true, // 允许跨域
-    //     pathRewrite: {
-    //       '^/api/sys': '/'
-    //     }
-    //   },
-    // },
+    proxy: {
+      '/api': {
+        target: 'http://192.168.0.110:8090/',
+        changeOrigin: true, // 允许跨域
+        pathRewrite: {
+          '^/api': '/'
+        }
+      },
+    },
   },
 }

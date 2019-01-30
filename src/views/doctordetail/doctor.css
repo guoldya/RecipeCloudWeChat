@@ -58,8 +58,8 @@
 }
 
 .workdotorinfo .doctor-cz {
-   border-bottom: 5px solid #c5c5c5;
-   border-top: 1px solid #c5c5c5;
+   border-bottom: 5px solid #e9e9e9;
+   border-top: 1px solid #e9e9e9;
 }
 
 .workdotorinfo .doctor-cz li {
@@ -67,7 +67,7 @@
    width: 33%;
    text-align: center;
    float: left;
-   border-left: 1px solid #c5c5c5;
+   border-left: 1px solid #e9e9e9;
 }
 
 .workdotorinfo .doctor-cz li:first-of-type {
@@ -86,7 +86,7 @@
    overflow: hidden;
    white-space: nowrap;
    text-overflow: ellipsis;
-   border-bottom: 1px solid #c5c5c5;
+   border-bottom: 1px solid #e9e9e9;
 }
 
 .workdotorinfo .doctor-skill {
@@ -112,11 +112,11 @@
 .workdotorinfo .skill-info {
    overflow: scroll;
    transition: all linear 0.5s;
-   border-bottom: 1px solid #c5c5c5;
+   border-bottom: 1px solid #e9e9e9;
 }
 
 .workdotorinfo .source-tab {
-   border-bottom: 1px solid #c5c5c5;
+   border-bottom: 1px solid #e9e9e9;
 }
 
 .workdotorinfo .source-tab:after {
@@ -136,7 +136,7 @@
   padding: 5px 16px;
 }
 .workdotorinfo .available {
-   border-right: 1px solid #c5c5c5;
+   border-right: 1px solid #e9e9e9;
 }
 
 .workdotorinfo .active-tab {
@@ -154,7 +154,7 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   border-bottom: 1px solid #c5c5c5;
+   border-bottom: 1px solid #e9e9e9;
 }
 
 .available-info li div {

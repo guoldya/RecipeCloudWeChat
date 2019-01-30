@@ -28,6 +28,9 @@ export default {
   height: 100%;
   text-align: center;
 }
+body{
+   background: #ffffff;
+}
 #app {
   font-family: "PingFang-SC-Medium";
   -webkit-font-smoothing: antialiased;
@@ -36,6 +39,7 @@ export default {
   font-size: 28px;
   max-width: 777px;
   margin: 0 auto;
+  
 }
 a {
   text-decoration: none;
@@ -182,7 +186,7 @@ p {
   border-bottom: 2px solid #1da1f3;
 }
 .partLine{
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #e9e9e9;
   width: 100%;
   padding: 8px 0px;
   margin-bottom: 28px;

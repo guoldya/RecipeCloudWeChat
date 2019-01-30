@@ -48,6 +48,8 @@ import slowConfirm from '@/views/slowConfirm/slowConfirm.vue'
 import applyDetail from '@/views/applyDetail/applyDetail.vue'
 import examine from '@/views/examine/examine.vue'
 import onlineEva from '@/views/onlineEva/onlineEva.vue'
+import evaContent from '@/views/evaContent/evaContent.vue'
+import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
 
 
 Vue.use(Router)
@@ -266,6 +268,16 @@ export default new Router({
       path: '/adressinfo',
       name: 'adressinfo',
       component: adressinfo
+    },
+    {
+      path: '/evaContent',
+      name: 'evaContent',
+      component: evaContent
+    },
+    {
+      path: '/recipeRecord',
+      name: 'recipeRecord',
+      component: recipeRecord
     },
     {
       path: '/orderrecord',
