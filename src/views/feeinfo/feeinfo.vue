@@ -238,14 +238,14 @@ export default {
   justify-content: space-between;
   padding: 35px 0;
   font-size: 28px;
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #e9e9e9;
 }
 .feeinfo .cardText .cardTextKind {
   display: flex;
   justify-content: space-between;
   padding: 35px 0;
   font-size: 28px;
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #e9e9e9;
   font-weight: 700;
 }
 .feeinfo .cardText .cardTextKindcontent {

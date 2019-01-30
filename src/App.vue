@@ -182,7 +182,7 @@ p {
   border-bottom: 2px solid #1da1f3;
 }
 .partLine{
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #e9e9e9;
   width: 100%;
   padding: 8px 0px;
   margin-bottom: 28px;

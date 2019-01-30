@@ -119,7 +119,7 @@ export default {
   justify-content: space-between;
   padding: 45px 0;
   font-size: 28px;
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #e9e9e9;
 }
 
 .reportinfo .cardText .cardTextPP:last-child {

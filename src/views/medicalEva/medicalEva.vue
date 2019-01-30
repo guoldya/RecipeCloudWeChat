@@ -4,6 +4,7 @@
         <div :class="{margin45:isWeixin,outCarint:true}">
             <div class="outCarint" >
                 <div class="card margin16">
+                    <p class="info" v-if="onlineEva==true">就诊信息</p>
                     <div class="cardText">
                         <div class="star">
                             <img src="@/assets/images/1.jpg" alt="" style="width: 14%;height: 14%">
@@ -68,6 +69,7 @@
 <script type="text/babel">
     import {Toast} from 'mand-mobile'
     export default {
+        name:"medicalEva",
         data() {
             return {
                 isWeixin: false,
@@ -95,6 +97,7 @@
                    ],
                 },
                 checked: false,
+                onlineEva:false,
             };
         },
         created() {
