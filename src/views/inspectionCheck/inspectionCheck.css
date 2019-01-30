@@ -72,9 +72,63 @@
 }
 
 .cardHEADER {
-   padding: 8px 25px;
-   font-size: 14px;
-   color: #333333;
+    padding: 8px 25px;
+    font-size: 14px;
+    color: #333333;
+}
+.md-field{
+    padding: 0px !important;
+}
+.inspectionCheck .md-field-item-control{
+    font-size: 28px !important;
+}
+.downImg img{
+    width: 22px !important;
+    height: 22px !important;
+    margin-left: 10px;
+}
+.inspectionCheck .primary,.inspectionCheck .default {
+    background-color: #1da1f3 !important;
+    color:#fff !important;
+    font-size: 28px;
+}
+.inspectionCheck .primary:after,.medicalEva .primary:after{
+    border : 1px solid #1da1f3 !important;
+}
+.inspectionCheck .default{
+    background-color: #43484b !important;
+}
+.inspectionCheck .default:after{
+    border : 1px solid #43484b !important;
+ }
+.inspectionCheck .md-popup-title-bar .title-bar-title p.title{
+    font-size: 31px !important;
+}
+.inspectionCheck .md-cell-item-content{
+    font-size: 28px !important;
+}
+.inspectionCheck .md-button.block{
+    height: 80px;
+    margin: 20px 0px;
+}
+.inspectionCheck .first{
+    border: 2px solid #1da1f3;
+    border-radius: 10px;
+    color: #1da1f3;
+    padding: 0 12px;
+    height: 52px;
+    line-height: 52px;
+}
+.headCard{
+    display:flex;
+    justify-content: flex-end;
+    height: 64px;
+    line-height: 46px;
+/*}*/
+/*=======*/
+   /*padding: 8px 25px;*/
+   /*font-size: 14px;*/
+   /*color: #333333;*/
 }
 
 .md-field {

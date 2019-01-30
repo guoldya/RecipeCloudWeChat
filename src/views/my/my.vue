@@ -28,7 +28,7 @@
         <div class="nav2">
           <span @click="idcardlist"><img src="@/assets/images/icon_Visitingcard.png" alt="">就诊卡</span>
           <span @click="adress"><img src="@/assets/images/icon_address.png" alt="">地址管理</span>
-          <span @click="medicalEvaluation"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
+          <span @click="medicalEva"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
         </div>
       </div>
     </div>
@@ -107,10 +107,10 @@ export default {
       });
     },
     // 就医评价
-    medicalEvaluation() {
+    medicalEva() {
       let argu = {}
       this.$router.push({
-        name: 'medicalEvaluation',
+        name: 'medicalEva',
         query: argu
       });
     },

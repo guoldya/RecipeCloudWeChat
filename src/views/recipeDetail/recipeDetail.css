@@ -4,12 +4,6 @@
 .recipeDetail .outCarint {
     margin-top: 140px;
 }
-.recipeDetail .partLine{
-    border-bottom: 1px solid #c5c5c5;
-    width: 100%;
-    padding: 8px 0px;
-    margin-bottom: 28px;
-}
 .recipeDetail .listBottom,.applyDetail .listBottom{
     height: 110px;
     display: flex;
