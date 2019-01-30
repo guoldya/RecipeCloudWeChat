@@ -71,7 +71,7 @@ export default {
   left: 0;
   width: 100%;
   height: 2px;
-  border-top: 1px solid #c5c5c5;
+  border-top: 1px solid #e9e9e9;
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
   -webkit-transform-origin: 0 0;

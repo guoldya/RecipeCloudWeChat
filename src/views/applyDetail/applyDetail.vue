@@ -25,7 +25,7 @@
                                 <span>年龄：
                                     <span class="mu-secondary-text-color">{{item.age}}</span>
                                 </span>
-                                <span style="width: 49%">性别：
+                                <span style="width: 50%">性别：
                                     <span class="mu-secondary-text-color">{{item.sex}}</span>
                                 </span>
                             </div>
@@ -33,7 +33,7 @@
                                 <span>科室：
                                     <span class="mu-secondary-text-color">{{item.dept}}</span>
                                 </span>
-                                <span>开方医生：
+                                <span style="width: 50%;">开方医生：
                                     <span class="mu-secondary-text-color">{{item.doc}}</span>
                                 </span>
                             </div>
