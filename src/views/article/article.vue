@@ -53,7 +53,7 @@
               </div>
             </div>
           </li>
-          <li v-for="i in num">
+          <li v-for="i in num" :key="i">
             <div class="detaileTop">
               <div class="headimg">
                 <img src="@/assets/images/3.jpg" alt="店铺头像">

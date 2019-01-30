@@ -38,7 +38,8 @@ import cardneed from '@/views/cardneed/cardneed.vue'
 // 
 import orderrecord from '@/views/orderrecord/orderrecord.vue'
 import orderinfo from '@/views/orderinfo/orderinfo.vue'
-
+import askorder from '@/views/askorder/askorder.vue'
+import registrecord from '@/views/registrecord/registrecord.vue'
 
 import inspectionCheck from '@/views/inspectionCheck/inspectionCheck.vue'
 import medicalEva from '@/views/medicalEva/medicalEva.vue'
@@ -254,11 +255,11 @@ export default new Router({
       name: 'workdotorinfo',
       component: workdotorinfo
     },
-      {
-          path: '/onlineEva',
-          name: 'onlineEva',
-          component: onlineEva
-      },
+    {
+      path: '/onlineEva',
+      name: 'onlineEva',
+      component: onlineEva
+    },
     {
       path: '/adress',
       name: 'adress',
@@ -294,5 +295,15 @@ export default new Router({
           name: 'selectStore',
           component: selectStore
       },
+    {
+      path: '/askorder',
+      name: 'askorder',
+      component: askorder
+    },
+    {
+      path: '/registrecord',
+      name: 'registrecord',
+      component: registrecord
+    },
   ]
 })
