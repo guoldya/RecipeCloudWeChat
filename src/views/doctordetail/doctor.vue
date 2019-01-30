@@ -14,7 +14,7 @@
                                 <span class="doctor-name">付平 </span>
                                 <span class="doctor-tag">主任医师</span>
                             </p>
-                            <p class="school">四川大学华西医院</p>
+                            <p class="school">演示医院</p>
                             <p class="school">特需医疗中心</p>
                         </div>
                     </div>

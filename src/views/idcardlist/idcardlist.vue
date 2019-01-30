@@ -4,12 +4,18 @@
       <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
          <ul>
             <li v-for="i in num" :key="i">
-               <div class="card">
-                  <div class="cardText">
-                     <div>
-                        <p class="headname">张三妈妈的就诊卡
+               <div class="homeCard">
+                  <div class="homeCardText">
+                     <div class="homeCardTextLeft">
+                        <p>名字<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                        <p>777777777777</p>
+                        <p>
+                           <span class="icon_switch"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                         </p>
-                        <p class="headdesc">电子就诊卡号：785477fz</p>
+                     </div>
+                     <div class="towma">
+                        <p><img src="@/assets/images/lili.jpg" alt=""></p>
+                        <p>刷卡请出示</p>
                      </div>
                   </div>
                </div>

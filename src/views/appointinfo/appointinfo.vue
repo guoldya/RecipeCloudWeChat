@@ -6,22 +6,22 @@
       <div class="card">
         <div class="cardText">
           <a class="headimg"> <img src="@/assets/images/3.jpg" alt="店铺头像"></a>
-          <h1 class="titleh1">四川大学华西医院</h1>
+          <h1 class="titleh1">演示医院</h1>
           <p>地址：成都市武侯区</p>
           <p class="mu-secondary-text-color">预约成功</p>
         </div>
       </div>
       <div class="card">
         <div class="cardText">
-          <p>科室：艘船大学华西</p>
-          <p>医生：艘船大学华西</p>
-          <p>姓名：艘船大学华西</p>
-          <p>日期：艘船大学华西</p>
-          <p>时段：艘船大学华西</p>
-          <p>诊号：艘船大学华西</p>
-          <p>金额：艘船大学华西</p>
-          <p>地点：艘船大学华西</p>
-          <p>预约来源：艘船大学华西</p>
+          <p>科室：演示医院</p>
+          <p>医生：演示医院</p>
+          <p>姓名：演示医院</p>
+          <p>日期：演示医院</p>
+          <p>时段：演示医院</p>
+          <p>诊号：演示医院</p>
+          <p>金额：演示医院</p>
+          <p>地点：演示医院</p>
+          <p>预约来源：演示医院</p>
         </div>
       </div>
       <div class="cardText warnText">

@@ -2,9 +2,8 @@
     <div class="medicalEva">
         <Header post-title="就医评价" selectOption="" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="outCarint" >
+            <div class="outCarint">
                 <div class="card margin16">
-                    <p class="info" v-if="onlineEva==true">就诊信息</p>
                     <div class="cardText">
                         <div class="star">
                             <img src="@/assets/images/1.jpg" alt="" style="width: 14%;height: 14%">
@@ -15,35 +14,18 @@
                         <div>
                             <textarea name="" id="" cols="30" rows="5" placeholder="服务满足你的期待吗？请大胆说出它的优点与美中不足的地方吧！"></textarea>
                             <ul class="image-reader-list">
-                                <li class="image-reader-item"
-                                    v-for="(img, index) in imageList['reader0']"
-                                    :key="index"
-                                    :style="{
+                                <li class="image-reader-item" v-for="(img, index) in imageList['reader0']" :key="index" :style="{
                                               'backgroundImage': `url(${img})`,
                                               'backgroundPosition': 'center center',
                                               'backgroundRepeat': 'no-repeat',
                                               'backgroundSize': 'cover'
                                             }">
-                                    <md-tag
-                                            class="image-reader-item-del"
-                                            size="small"
-                                            shape="quarter"
-                                            fill-color="#111A34"
-                                            type="fill"
-                                            font-color="#fff"
-                                            @click.native="onDeleteImage('reader0', index)"
-                                    >
+                                    <md-tag class="image-reader-item-del" size="small" shape="quarter" fill-color="#111A34" type="fill" font-color="#fff" @click.native="onDeleteImage('reader0', index)">
                                         <md-icon name="close"></md-icon>
                                     </md-tag>
                                 </li>
                                 <li class="image-reader-item add">
-                                    <md-image-reader
-                                            name="reader0"
-                                            @select="onReaderSelect"
-                                            @complete="onReaderComplete"
-                                            @error="onReaderError"
-                                            is-multiple
-                                    ></md-image-reader>
+                                    <md-image-reader name="reader0" @select="onReaderSelect" @complete="onReaderComplete" @error="onReaderError" is-multiple></md-image-reader>
                                     <md-icon name="camera" size="md" color="#CCC"></md-icon>
                                     <p class="p">添加图片</p>
                                 </li>
@@ -67,7 +49,6 @@
     </div>
 </template>
 <script type="text/babel">
-    import {Toast} from 'mand-mobile'
     export default {
         name:"medicalEva",
         data() {
@@ -97,58 +78,58 @@
                    ],
                 },
                 checked: false,
-                onlineEva:false,
             };
         },
         created() {
+    },
+    mounted() {
+        this.evaluation();
+        document.title = '就医评价';
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            this.isWeixin = false;
+            return true;
+        } else {
+            this.isWeixin = true;
+            return false;
+        }
 
+
+    },
+    methods: {
+        sendFun: function () {
         },
-        mounted() {
-            this.evaluation();
-            document.title = '就医评价';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
-
-
+        evaluation: function () {
         },
-        methods: {
-            evaluation:function(){
-            },
-            onReaderSelect(name, {files}) {
-                files.forEach(file => {
-                    console.log('[Mand Mobile] ImageReader Selected:', 'File Name ' + file.name)
-                })
-                Toast.loading('图片读取中...')
-            },
-            onReaderComplete(name, {dataUrl, file}) {
-                Toast.hide();
-                setTimeout(() => {
-                    const demoImageList = this.imageList[name] || [];
-                    demoImageList.push(dataUrl);
-                    this.$set(this.imageList, name, demoImageList)
-                }, 100)
-            },
-            onReaderError(name, {msg}) {
-                Toast.failed(msg)
-            },
-            onDeleteImage(name, index) {
+        onReaderSelect(name, { files }) {
+            files.forEach(file => {
+                console.log('[Mand Mobile] ImageReader Selected:', 'File Name ' + file.name)
+            })
+            Toast.loading('图片读取中...')
+        },
+        onReaderComplete(name, { dataUrl, file }) {
+            Toast.hide();
+            setTimeout(() => {
                 const demoImageList = this.imageList[name] || [];
-                demoImageList.splice(index, 1);
+                demoImageList.push(dataUrl);
                 this.$set(this.imageList, name, demoImageList)
-            },
-            sendFun(){},
+            }, 100)
         },
-        computed: {
+        onReaderError(name, { msg }) {
+            Toast.failed(msg)
+        },
+        onDeleteImage(name, index) {
+            const demoImageList = this.imageList[name] || [];
+            demoImageList.splice(index, 1);
+            this.$set(this.imageList, name, demoImageList)
+        },
+    },
+    computed: {
 
-        },
-    };
+    },
+
+};
 </script>
 <style   scoped>
-    @import "medicalEva.css";
+@import "medicalEva.css";
 </style>

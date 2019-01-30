@@ -126,10 +126,23 @@
    display: flex;
    justify-content: space-between;
 }
- 
-.homeCardTextLeft p{
-   line-height: 57px;
+
+.homeCardTextLeft {
+   flex-flow: column;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 }
+
+.homeCardTextLeft p {}
+
+.towma {
+   flex-flow: column;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
 .towma img {
    width: 120px;
 }
@@ -138,3 +151,27 @@
    text-align: center;
    font-size: 26px;
 }
+
+.icon_switch {
+   background: #24A5F1;
+   padding: 5px 17px;
+   border-radius: 40px;
+   color: #fff;
+   font-size: 26px;
+}
+
+.icon_switch img {
+   width: 25px;
+   position: relative;
+   top: 4px;
+   right: 5px;
+}
+
+.renzhen {
+   width: 85px;
+   position: relative;
+   top: 5px;
+   left: 10px;
+}
+
+ 

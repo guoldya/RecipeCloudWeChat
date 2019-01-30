@@ -36,7 +36,8 @@ import cardmy from '@/views/cardmy/cardmy.vue'
 import cardwrite from '@/views/cardwrite/cardwrite.vue'
 import cardneed from '@/views/cardneed/cardneed.vue'
 // 
-
+import orderrecord from '@/views/orderrecord/orderrecord.vue'
+import orderinfo from '@/views/orderinfo/orderinfo.vue'
 
 
 import inspectionCheck from '@/views/inspectionCheck/inspectionCheck.vue'
@@ -277,5 +278,15 @@ export default new Router({
           name: 'recipeRecord',
           component: recipeRecord
       },
+      {
+      path: '/orderrecord',
+      name: 'orderrecord',
+      component: orderrecord
+    },
+    {
+      path: '/orderinfo',
+      name: 'orderinfo',
+      component: orderinfo
+    },
   ]
 })

@@ -13,7 +13,7 @@
         <div class="nav2">
           <span><img src="@/assets/images/icon_register.png" alt="">挂号记录</span>
           <span @click="feerecord"><img src="@/assets/images/icon_pay.png" alt="">缴费记录</span>
-          <span><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
+          <span @click="orderrecord"><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
           <span @click="reportquery" monitor="my_subject"><img src="@/assets/images/icon_report.png" alt="">报告记录</span>
         </div>
         <div class="nav2">
@@ -28,7 +28,7 @@
         <div class="nav2">
           <span @click="idcardlist"><img src="@/assets/images/icon_Visitingcard.png" alt="">就诊卡</span>
           <span @click="adress"><img src="@/assets/images/icon_address.png" alt="">地址管理</span>
-          <span @click="medicalEvaluation"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
+          <span @click="medicalEva"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
         </div>
       </div>
     </div>
@@ -75,6 +75,13 @@ export default {
         query: argu
       });
     },
+    orderrecord() {
+      let argu = {}
+      this.$router.push({
+        name: 'orderrecord',
+        query: argu
+      });
+    },
     // 报告查询
     reportquery() {
       let argu = {}
@@ -100,10 +107,10 @@ export default {
       });
     },
     // 就医评价
-    medicalEvaluation() {
+    medicalEva() {
       let argu = {}
       this.$router.push({
-        name: 'medicalEvaluation',
+        name: 'medicalEva',
         query: argu
       });
     },

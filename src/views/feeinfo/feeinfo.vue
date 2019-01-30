@@ -7,7 +7,7 @@
         <div class="cardText  ">
           <p class="cardTextPP">
             <span>开单医院</span>
-            <span>重庆市中医院</span>
+            <span>演示医院</span>
           </p>
           <p class="cardTextPP">
             <span>开单医生</span>
