@@ -1,12 +1,12 @@
- <template>
-    <div class="page-loadmore">
+<template>
+    <div class="medicalEva">
         <Header post-title="就医评价" selectOption="" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
             <div class="outCarint">
                 <div class="card margin16">
                     <div class="cardText">
                         <div class="star">
-                            <img src="@/assets/images/1.jpg" alt="" style="width: 40px;height: 40px">
+                            <img src="@/assets/images/1.jpg" alt="" style="width: 14%;height: 14%">
                             <rater class="diy-box" :score="3" :stars=this.starArray></rater>
                             <span>请选择评分</span>
                         </div>
@@ -38,7 +38,9 @@
                             </div>
                             <span>你的评价可以帮助其他小伙伴呦</span>
                         </div>
-
+                        <div>
+                            <md-button type="primary" round @click="sendFun">发布</md-button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,6 +98,8 @@ export default {
 
     },
     methods: {
+        sendFun: function () {
+        },
         evaluation: function () {
         },
         onReaderSelect(name, { files }) {
@@ -128,5 +132,5 @@ export default {
 };
 </script>
 <style   scoped>
-@import "medicalEvaluation.css";
+@import "medicalEva.css";
 </style>

@@ -124,14 +124,12 @@
 .drugStoreName {
    margin-top: 20px;
 }
-
 #product-info .star img {
    width: 35px;
    height: 35px;
    margin-left: 15px;
    float: right;
 }
-
 #product-info .cainter ul li {
    display: inline-block;
    padding-bottom: 30px;

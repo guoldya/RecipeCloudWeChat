@@ -1,4 +1,5 @@
 <template>
+  <div class="hacker-news-list article" id="scrollup">
   <div class="article" id="scrollup">
     <header class="aui-navBar aui-navBar-fixed">
       <span href="javascript:;" class="aui-navBar-item" @click="back">
@@ -52,7 +53,7 @@
               </div>
             </div>
           </li>
-          <li v-for="i in num">
+          <li v-for="i in num" :key="i">
             <div class="detaileTop">
               <div class="headimg">
                 <img src="@/assets/images/3.jpg" alt="店铺头像">
@@ -91,6 +92,7 @@
         </ul>
       </div>
     </div>
+  </div>
   </div>
 </template>
 <script >
@@ -311,8 +313,10 @@ export default {
   line-height: 40px;
   font-size: 28px;
 }
-
-.star img {
+.startop span:first-child {
+  margin-right: 0.8125rem;
+}
+.article .star img {
   width: 92px;
 }
 .cainter ul li {

@@ -11,7 +11,7 @@
       <div class="tools">
         <h2>就医信息</h2>
         <div class="nav2">
-          <span><img src="@/assets/images/icon_register.png" alt="">挂号记录</span>
+          <span @click="registrecord"><img src="@/assets/images/icon_register.png" alt="">挂号记录</span>
           <span @click="feerecord"><img src="@/assets/images/icon_pay.png" alt="">缴费记录</span>
           <span @click="orderrecord"><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
           <span @click="reportquery" monitor="my_subject"><img src="@/assets/images/icon_report.png" alt="">报告记录</span>
@@ -20,7 +20,7 @@
           <span><img src="@/assets/images/icon_hospitalization.png" alt="">我的住院</span>
           <span @click="inspectionCheck"><img src="@/assets/images/icon_prescription.png" alt="">处方记录</span>
           <span><img src="@/assets/images/icon_copy.png" alt="">复印记录</span>
-          <span><img src="@/assets/images/icon_order.png" alt="">问诊订单</span>
+          <span @click="askorder"><img src="@/assets/images/icon_order.png" alt="">问诊订单</span>
         </div>
       </div>
       <div class="tools">
@@ -28,7 +28,7 @@
         <div class="nav2">
           <span @click="idcardlist"><img src="@/assets/images/icon_Visitingcard.png" alt="">就诊卡</span>
           <span @click="adress"><img src="@/assets/images/icon_address.png" alt="">地址管理</span>
-          <span @click="medicalEvaluation"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
+          <span @click="medicalEva"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
         </div>
       </div>
     </div>
@@ -67,6 +67,13 @@ export default {
 
   },
   methods: {
+    registrecord() {
+      let argu = {}
+      this.$router.push({
+        name: 'registrecord',
+        query: argu
+      });
+    },
     // 缴费记录
     feerecord() {
       let argu = {}
@@ -98,6 +105,15 @@ export default {
         query: argu
       });
     },
+
+
+    askorder() {
+      let argu = {}
+      this.$router.push({
+        name: 'askorder',
+        query: argu
+      });
+    },
     // 就诊卡
     idcardlist() {
       let argu = {}
@@ -107,10 +123,10 @@ export default {
       });
     },
     // 就医评价
-    medicalEvaluation() {
+    medicalEva() {
       let argu = {}
       this.$router.push({
-        name: 'medicalEvaluation',
+        name: 'medicalEva',
         query: argu
       });
     },

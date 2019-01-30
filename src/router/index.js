@@ -38,14 +38,16 @@ import cardneed from '@/views/cardneed/cardneed.vue'
 // 
 import orderrecord from '@/views/orderrecord/orderrecord.vue'
 import orderinfo from '@/views/orderinfo/orderinfo.vue'
-
+import askorder from '@/views/askorder/askorder.vue'
+import registrecord from '@/views/registrecord/registrecord.vue'
 
 import inspectionCheck from '@/views/inspectionCheck/inspectionCheck.vue'
-import medicalEvaluation from '@/views/medicalEvaluation/medicalEvaluation.vue'
+import medicalEva from '@/views/medicalEva/medicalEva.vue'
 import recipeDetail from '@/views/recipeDetail/recipeDetail.vue'
 import slowConfirm from '@/views/slowConfirm/slowConfirm.vue'
 import applyDetail from '@/views/applyDetail/applyDetail.vue'
 import examine from '@/views/examine/examine.vue'
+import onlineEva from '@/views/onlineEva/onlineEva.vue'
 
 
 Vue.use(Router)
@@ -210,9 +212,9 @@ export default new Router({
       component: inspectionCheck
     },
     {
-      path: '/medicalEvaluation',
-      name: 'medicalEvaluation',
-      component: medicalEvaluation
+      path: '/medicalEva',
+      name: 'medicalEva',
+      component: medicalEva
     },
 
     {
@@ -251,6 +253,11 @@ export default new Router({
       component: workdotorinfo
     },
     {
+      path: '/onlineEva',
+      name: 'onlineEva',
+      component: onlineEva
+    },
+    {
       path: '/adress',
       name: 'adress',
       component: adress
@@ -270,6 +277,15 @@ export default new Router({
       name: 'orderinfo',
       component: orderinfo
     },
+    {
+      path: '/askorder',
+      name: 'askorder',
+      component: askorder
+    },
+    {
+      path: '/registrecord',
+      name: 'registrecord',
+      component: registrecord
+    },
   ]
-
 })

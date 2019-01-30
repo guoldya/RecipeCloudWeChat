@@ -47,7 +47,6 @@
                                     <span class="mu-secondary-text-color">{{item.result}}</span>
                                 </span>
                             </div>
-                            <p class="partLine"></p>
                         </div>
                     </div>
                     <div class="card margin16" >

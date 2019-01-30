@@ -24,7 +24,7 @@
                                 <span>年龄：
                                     <span class="mu-secondary-text-color">{{item.age}}</span>
                                 </span>
-                                <span style="width: 49%">性别：
+                                <span style="width: 50%">性别：
                                     <span class="mu-secondary-text-color">{{item.sex}}</span>
                                 </span>
                         </div>
@@ -32,7 +32,7 @@
                                 <span>科室：
                                     <span class="mu-secondary-text-color">{{item.dept}}</span>
                                 </span>
-                                <span>开方医生：
+                                <span style="width: 50%">开方医生：
                                     <span class="mu-secondary-text-color">{{item.doc}}</span>
                                 </span>
                         </div>
@@ -76,7 +76,7 @@
             return {
                 isWeixin: false,
                 recipeData:[
-                    {no:"CQ11111111",date:"2018年9月9日",name:"张三李四",age:"18",sex:"男",dept:"内科",doc:"杜甫李白",type:"首诊续方",result:"高血压"}
+                    {no:"CQ11111111",date:"2018年9月9日",name:this.$route.query.name,age:"18",sex:"男",dept:"内科",doc:"杜甫李白",type:"首诊续方",result:"高血压"}
                 ],
                 listBottom:[
                     {name:"培哚普利（100mg*7），口服（每日三次）每次100mg",num:"115"},
@@ -84,12 +84,14 @@
                     {name:"培哚普利（100mg*7）, 口服（每日三次）每次100mg",num:"115"},
                 ],
                 isContinue:true,
+                name:null,
             };
         },
         created() {
 
         },
         mounted() {
+            this.name=this.$route.query.name;
             document.title = '处方详情';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
