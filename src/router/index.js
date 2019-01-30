@@ -49,6 +49,7 @@ import examine from '@/views/examine/examine.vue'
 import onlineEva from '@/views/onlineEva/onlineEva.vue'
 import evaContent from '@/views/evaContent/evaContent.vue'
 import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
+import selectStore from '@/views/selectStore/selectStore.vue'
 
 
 Vue.use(Router)
@@ -288,5 +289,10 @@ export default new Router({
       name: 'orderinfo',
       component: orderinfo
     },
+      {
+          path: '/selectStore',
+          name: 'selectStore',
+          component: selectStore
+      },
   ]
 })

@@ -10,7 +10,7 @@
                             <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater>
                         </div>
                         <div class="listData">
-                                <span>{{item.date}}</span>
+                                <span style="font-size: 12px;">{{item.date}}</span>
                         </div>
                         <div class="listData">
                             <span>{{item.content}}</span>

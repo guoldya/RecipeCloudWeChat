@@ -18,12 +18,17 @@
     width: 26%;
     text-align: right;
 }
-.recipeDetail .primary,.recipeDetail .default,.applyDetail .primary{
+.recipeDetail .primary,
+.recipeDetail .default,
+.applyDetail .primary,
+.recipeRecord .primary{
     background-color: #1da1f3 !important;
     color:#fff !important;
     font-size: 28px;
 }
-.recipeDetail .primary:after,.applyDetail .primary:after{
+.recipeDetail .primary:after,
+.applyDetail .primary:after,
+.recipeRecord .primary:after{
     border : 1px solid #1da1f3 !important;
 }
 .recipeDetail .default{
