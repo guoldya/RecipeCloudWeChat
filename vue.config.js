@@ -41,6 +41,7 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://192.168.0.110:8090/',
+        //target: 'http://192.168.0.150:40080/api/biz/',
         changeOrigin: true, // 允许跨域
         pathRewrite: {
           '^/api': '/'

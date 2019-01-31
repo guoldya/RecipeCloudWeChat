@@ -28,8 +28,14 @@ export default {
   height: 100%;
   text-align: center;
 }
-body{
-   background: #ffffff;
+input,
+button,
+select,
+textarea {
+  outline: none;
+}
+body {
+  background: #ffffff;
 }
 #app {
   font-family: "PingFang-SC-Medium";
@@ -39,7 +45,12 @@ body{
   font-size: 28px;
   max-width: 777px;
   margin: 0 auto;
-  
+}
+.md-button.primary {
+  background: #1da1f3 !important;
+}
+.md-radio.is-checked .md-radio-icon {
+  color: #1da1f3 !important;
 }
 a {
   text-decoration: none;
@@ -185,26 +196,27 @@ p {
   color: #1da1f3;
   border-bottom: 2px solid #1da1f3;
 }
-.partLine{
+.partLine {
   border-bottom: 1px solid #e9e9e9;
   width: 100%;
   padding: 8px 0px;
   margin-bottom: 28px;
 }
-textarea{
+textarea {
   border: none;
   font-size: 28px;
   outline: none;
   font-family: "PingFang-SC-Medium";
 }
-textarea::-webkit-input-placeholder{ /*WebKit browsers*/
+textarea::-webkit-input-placeholder {
+  /*WebKit browsers*/
   color: #979797;
 }
-.md-switch.active{
+.md-switch.active {
   background-color: #1da1f3 !important;
   margin-left: 6px;
 }
-.md-switch{
+.md-switch {
   margin-left: 6px;
 }
 </style>

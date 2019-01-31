@@ -5,6 +5,13 @@
    font-weight: 600
 }
 
+input,
+button,
+select,
+textarea {
+   outline: none
+}
+
 #product-info .content {
    text-align: left;
 }
@@ -253,7 +260,8 @@ button :active {
 }
 
 .aui-tabBar-item2 {
-   /* flex: 2.3; */
+   top: -7px;
+   position: relative;
 }
 
 .aui-tabBar-item img {

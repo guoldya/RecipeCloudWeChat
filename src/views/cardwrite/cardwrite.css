@@ -1,0 +1,117 @@
+.alltimeball {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+}
+
+.cardwrite {
+   margin-top: 30px;
+}
+
+.alltimeball span {
+   line-height: 70px;
+   letter-spacing: 2px;
+   text-align: center;
+   color: #a9a9a9;
+}
+
+.alltimeball .acitivestep {
+   color: #1da1f3;
+}
+
+.box-timeline .timeball {
+   width: 100px;
+   height: 100px;
+   background: #e1e1e1;
+   border-radius: 50%;
+   color: #acacac;
+   font-size: 38px;
+   font-weight: 700;
+   text-align: center;
+   line-height: 100px;
+}
+
+.box-timeline .acitiveball {
+   background: #1da1f3;
+   color: #ffffff;
+}
+
+.timeballline {
+   background: #1da1f3;
+   width: 26%;
+   height: 3px;
+   position: relative;
+   top: -120px;
+   left: 97px;
+}
+
+.timeballline2 {
+   background: #e1e1e1;
+   width: 26%;
+   height: 3px;
+   position: relative;
+   top: -122px;
+   left: 58.4%;
+}
+
+.acitiveline {
+   background: #1da1f3;
+}
+
+.flexF {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   font-size: 30px;
+   color: #333333;
+}
+
+.flexR {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+.content .login-box .login-box-div {
+   display: flex;
+   width: 100%;
+   height: 100px;
+   position: relative;
+   border-bottom: 1px solid #e0e0e0;
+}
+
+.content .login-box div:last-child {
+   border-bottom: none;
+}
+
+.content .login-box {
+   width: 100%;
+   height: auto;
+}
+
+.content .login-box .hq p .send1 {
+   width: 100%;
+   height: 50px;
+   font-size: 26px;
+   border: 2px solid #2aa4f3;
+   border-radius: 10px;
+   padding: 0 10px;
+   color: #2aa4f3;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.content .login-box div input {
+   flex: 4;
+   height: 100%;
+   border: none;
+   font-size: 28px;
+   color: #acacac;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   overflow: hidden;
+   margin-bottom: 0;
+   background: transparent;
+   padding-left: 50px;
+}
