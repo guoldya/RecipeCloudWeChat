@@ -212,10 +212,10 @@
       <a href="javascript:;" class="aui-tabBar-item " @click="intoCar">
         <img src="@/assets/images/icon_car2.png" alt="">
       </a>
-      <a  href="javascript:;" class="aui-tabBar-item2" @click="addCar">
+      <a href="javascript:;" class="aui-tabBar-item2" @click="addCar">
         <button class="abtn car">加入购物车</button>
       </a>
-      <a  href="javascript:;" class="aui-tabBar-item2" @click="payNow">
+      <a href="javascript:;" class="aui-tabBar-item2" @click="payNow">
         <button class="abtn">立即下单</button>
       </a>
     </div>
@@ -314,8 +314,8 @@ export default {
 
     function UrlSearch() {
       let name, value;
-      let str = location.href;
-      // let str = "http://192.168.0.26:8080/?drugId=30&TOKEN=6fb89730a632451394edd93c6b1993d1&UUID=f04b86567903f9de"; //取得整个地址栏
+      // let str = location.href;
+      let str = "http://192.168.0.26:8080/?drugId=30&TOKEN=6fb89730a632451394edd93c6b1993d1&UUID=f04b86567903f9de"; //取得整个地址栏
       let num = str.indexOf("?");
       str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
       _this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;

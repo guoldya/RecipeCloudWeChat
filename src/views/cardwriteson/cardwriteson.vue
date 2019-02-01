@@ -26,14 +26,14 @@
     <p style="color:#000">拍摄/上传您的二代身份证</p>
     <div class="pg_positive">
       <div class="pg_positive_img">
-        <label for="positive">
-          <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
+        <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
+        <label class="ivu-upload-input_label" for="positive" style="display:block; height: 120px;">
           <img :src="othUrl" alt="">
         </label>
         <p>身份证正面</p>
       </div>
       <div class="pg_positive_img">
-        <label for="outside">
+        <label class="ivu-upload-input_label" for="outside" style="display:block; height: 120px;">
           <input class="ivu-upload-input" @change="uploadOth($event)" type="file" name="outside" id="outside" accept="image/gif,image/jpeg,image/x-png" />
           <img :src="posUrl" alt="">
         </label>
@@ -56,8 +56,9 @@ export default {
       selectorValue: '爸爸',
       files: {
         posFile: null,
-        othFile: null
+        othFile: null,
       },
+      imgFiles: [],
       posUrl: pg_negative,
       othUrl: pg_positive,
       test: [
@@ -91,7 +92,9 @@ export default {
   },
   methods: {
     uploadPos(e) {
-      let that = this, file = e.target.files[0], fileReader = new FileReader();
+      let that = this, 
+      file = e.target.files[0], 
+      fileReader = new FileReader();
       this.files.posFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
@@ -99,7 +102,9 @@ export default {
       }
     },
     uploadOth(e) {
-      let that = this, file = e.target.files[0], fileReader = new FileReader();
+      let that = this, 
+      file = e.target.files[0],
+       fileReader = new FileReader();
       this.files.othFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
@@ -114,11 +119,18 @@ export default {
     },
 
     cardconfirm() {
-      let argu = {}
-      this.$router.push({
-        name: 'cardconfirm',
-        query: argu
-      });
+
+
+
+
+      
+      // let argu = {}
+      // this.$router.push({
+      //   name: 'cardconfirm',
+      //   query: argu
+      // });
+
+
     },
 
   },
@@ -132,6 +144,10 @@ export default {
 @import url("../cardwrite/cardwrite.css");
 .cardwritesecond {
   margin-top: 28px;
+}
+#positive,
+#outside {
+  display: none;
 }
 .cardwritesecond p {
   line-height: 50px;
@@ -175,4 +191,20 @@ export default {
 /* .ivu-upload-input{
   display: none;
 } */
+.ivu-upload-input_label img {
+  width: 100%;
+  height: 100%;
+}
+.ivu-upload-input_label {
+  position: relative;
+}
+
+.ivu-upload-input_label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 </style>

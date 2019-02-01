@@ -34,6 +34,9 @@ import adressinfo from '@/views/adressinfo/adressinfo.vue'
 import sign from '@/views/sign/sign.vue'
 import signagin from '@/views/signagin/signagin.vue'
 import moan from '@/views/moan/moan.vue'
+import signsucceed from '@/views/signsucceed/signsucceed.vue'
+
+
 
 import cardmy from '@/views/cardmy/cardmy.vue'
 import cardwrite from '@/views/cardwrite/cardwrite.vue'
@@ -73,7 +76,11 @@ export default new Router({
       name: 'home',
       component: index
     },
-  
+    {
+      path: '/signsucceed',
+      name: 'signsucceed',
+      component: signsucceed
+    },
     {
       path: '/moan',
       name: 'moan',

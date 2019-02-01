@@ -23,7 +23,7 @@ module.exports = {
   // sub-path here. For example, if your app is deployed at
   // https://www.foobar.com/my-app/
   // then change this to '/my-app/'
-  baseUrl: './',
+  baseURL: './',
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // 如果你不需要使用eslint，把lintOnSave设为false即可
@@ -36,7 +36,7 @@ module.exports = {
   },
   // 打包时不生成.map文件
   productionSourceMap: false,
-  // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
+  // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的publicPath要写为 '' ，即空字符串
   devServer: {
     proxy: {
       '/api': {

@@ -223,7 +223,7 @@ export default {
                 console.log(`agree name = ${name} is ${checked ? 'checked' : 'unchecked'}`)
             },
             checkedFun: function (val) {
-                // console.log(val)
+                console.log(val)
             },
             allSelect: function () {
                 this.favorites = [];

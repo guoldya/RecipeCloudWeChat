@@ -1,18 +1,18 @@
 <template>
 
-   <div class="page-loadmore">
-      <Header post-title="预约记录"></Header>
-      <div :class="{margin45:isWeixin,outCarint:true}">
-         <div style="text-align: center;margin:80px  0 40px">
-            <div>
-               <img src="@/assets/images/icon_success.png" width="60px">
-            </div>
-            <p>支付成功</p>
-         </div>
+  <div class="page-loadmore">
+    <Header post-title="预约记录"></Header>
+    <div :class="{margin45:isWeixin,outCarint:true}">
+      <div style="text-align: center;margin:80px  0 40px">
+        <div>
+          <img src="@/assets/images/icon_success.png" width="60px">
+        </div>
+        <p>支付成功</p>
+      </div>
 
-         <div class="card">
-            <div class="cardText">
-               <mu-row class="lineheight50">
+      <div class="card">
+        <div class="cardText">
+          <!-- <mu-row class="lineheight50">
                   <mu-col span="6">
                      <div class="grid-cell">
                         支付方式
@@ -23,7 +23,6 @@
                         支付宝
                      </div>
                   </mu-col>
-
                </mu-row>
                <mu-row class="lineheight50">
                   <mu-col span="6">
@@ -36,61 +35,61 @@
                         ￥13.00
                      </div>
                   </mu-col>
-               </mu-row>
-            </div>
-
-         </div>
+               </mu-row> -->
+        </div>
 
       </div>
-   </div>
+
+    </div>
+  </div>
 </template>
 <script  >
 export default {
-   data() {
-      return {
-         isWeixin: false,
-         active1: 0,
-         normal: {
-            checkbox: true,
-            radio: 1,
-            switch: false
-         },
-         time: [
-            { title: '待支付' },
-            { title: '预约成功' },
-            { title: '预约关闭' }
-         ],
-      };
-   },
-   created() {
-
-   },
-   mounted() {
-      document.title = '支付结果';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-         return true;
-      } else {
-         this.isWeixin = true;
-         return false;
-      }
-   },
-   methods: {
-      switchTo(num) {
-         this.active1 = num;
+  data() {
+    return {
+      isWeixin: false,
+      active1: 0,
+      normal: {
+        checkbox: true,
+        radio: 1,
+        switch: false
       },
-      setStyle(rowIndex, row) {
-         if (row.id === this.currentRow.id) {
-            return 'background-color:#ddd'
-         } else {
-            return 'background-color:#abc'
-         }
-      }
-   },
-   computed: {
+      time: [
+        { title: '待支付' },
+        { title: '预约成功' },
+        { title: '预约关闭' }
+      ],
+    };
+  },
+  created() {
 
-   },
+  },
+  mounted() {
+    document.title = '支付结果';
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      this.isWeixin = false;
+      return true;
+    } else {
+      this.isWeixin = true;
+      return false;
+    }
+  },
+  methods: {
+    switchTo(num) {
+      this.active1 = num;
+    },
+    setStyle(rowIndex, row) {
+      if (row.id === this.currentRow.id) {
+        return 'background-color:#ddd'
+      } else {
+        return 'background-color:#abc'
+      }
+    }
+  },
+  computed: {
+
+  },
 };
 </script>
  <style   scoped>
