@@ -166,6 +166,7 @@ export default {
         };
     },
     created() {
+        console.log(this.$store.state.jumpArr, "测试的选项")
         bus.$on('getParam', param => {
             if (param == '666') {
                 console.log(param)
@@ -176,7 +177,7 @@ export default {
     //     bus.$off('getParam')
     // },
     mounted() {
-        console.log(this.$store.state.jumpArr, "测试的选项")
+
         this.acceptJumpFun();
         document.title = '药店选择';
         var ua = window.navigator.userAgent.toLowerCase();

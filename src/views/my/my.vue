@@ -13,7 +13,7 @@
         <div class="nav2">
           <span @click="registrecord"><img src="@/assets/images/icon_register.png" alt="">挂号记录</span>
           <span @click="feerecord"><img src="@/assets/images/icon_pay.png" alt="">缴费记录</span>
-          <span @click="orderrecord"><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
+          <span @click="appoint"><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
           <span @click="reportquery" monitor="my_subject"><img src="@/assets/images/icon_report.png" alt="">报告记录</span>
         </div>
         <div class="nav2">
@@ -82,10 +82,10 @@ export default {
         query: argu
       });
     },
-    orderrecord() {
+    appoint() {
       let argu = {}
       this.$router.push({
-        name: 'orderrecord',
+        name: 'appoint',
         query: argu
       });
     },

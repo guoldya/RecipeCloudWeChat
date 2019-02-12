@@ -35,7 +35,7 @@ export default {
     // 百度地图API功能
     var map = new BMap.Map("allmap");
     var point = new BMap.Point(116.331398, 39.897445);
-    map.centerAndZoom(point, 12);
+    map.centerAndZoom(point, 19);
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function (r) {
       if (this.getStatus() == BMAP_STATUS_SUCCESS) {

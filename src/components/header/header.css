@@ -1,15 +1,16 @@
-.aui-navBar{
-  height: 100px;
-  position: fixed;
-  display: flex;
-  z-index: 9999;
+.aui-navBar {
+   height: 100px;
+   position: fixed;
+   display: flex;
+   z-index: 9999;
 }
- header {
+
+header {
    background: #e2e2e2;
    z-index: 9999;
- }
- 
- .aui-navBar-item {
+}
+
+.aui-navBar-item {
    height: 100px;
    min-width: 25%;
    -webkit-box-flex: 0;
@@ -29,17 +30,17 @@
    white-space: nowrap;
    overflow: hidden;
    color: #333333;
- }
- 
- .aui-navBar-item:first-child {
+}
+
+.aui-navBar-item:first-child {
    -webkit-box-ordinal-group: 2;
    -webkit-order: 1;
    -ms-flex-order: 1;
    order: 1;
    margin-right: -25%;
- }
- 
- .aui-navBar-item:last-child {
+}
+
+.aui-navBar-item:last-child {
    -webkit-box-ordinal-group: 4;
    -webkit-order: 3;
    -ms-flex-order: 3;
@@ -48,12 +49,14 @@
    -webkit-justify-content: flex-end;
    -ms-flex-pack: end;
    justify-content: flex-end;
- }
- .aui-navBar-item img {
+}
+
+.aui-navBar-item img {
    width: 24px;
    height: 42px;
- }
- .aui-center {
+}
+
+.aui-center {
    -webkit-box-ordinal-group: 3;
    -webkit-order: 2;
    -ms-flex-order: 2;
@@ -73,19 +76,9 @@
    height: 100px;
    width: 50%;
    margin-left: 25%;
- }
- .aui-center-title {
-   text-align: center;
-   width: 100%;
-   white-space: nowrap;
-   overflow: hidden;
-   display: block;
-   text-overflow: ellipsis;
-   font-size: 28px;
-   color: #333333;
- }
- 
- header {
+}
+
+header {
    display: flex;
    width: 100%;
    height: 100px;
@@ -98,22 +91,25 @@
    /* border-bottom: 1px solid #c0c0c0; */
    box-sizing: border-box;
    z-index: 9999;
- }
- .addValue {
+}
+
+.addValue {
    font-size: 30px;
    color: #333333;
    font-family: "PingFang-SC-Medium";
- }
- .back img,
- .share img {
+}
+
+.back img,
+.share img {
    width: 100%;
    height: 100%;
- }
-.aui-navBar{
-  height: 100px;
-  position: fixed;
-  display: flex;
-  z-index: 9999;
+}
+
+.aui-navBar {
+   height: 100px;
+   position: fixed;
+   display: flex;
+   z-index: 9999;
 }
 
 header {
@@ -191,7 +187,7 @@ header {
    overflow: hidden;
    display: block;
    text-overflow: ellipsis;
-   font-size: 32px;
+   font-size: 34px;
    color: #333333;
 }
 
@@ -218,6 +214,6 @@ header {
 
 .back img,
 .share img {
-  width: 100%;
-  height: 100%;
+   width: 100%;
+   height: 100%;
 }

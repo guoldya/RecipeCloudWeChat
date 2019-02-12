@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios';
+import Config from './config/config.js';
 import store from './store/store';
 import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
@@ -11,7 +12,7 @@ import Loading from './components/loading/loading.vue';
 import infiniteScroll from 'vue-infinite-scroll';
 import * as mandMobile from 'mand-mobile'
 import 'mand-mobile/lib/mand-mobile.css'
-
+Vue.prototype.$conf = Config;
 Vue.use(mandMobile)
 // import 'normalize.css'
 
@@ -39,8 +40,7 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 
 Vue.config.productionTip = false
 
-// const BASE_URL = 'http://192.168.0.110:8090/';
-// axios.defaults.publicPath = publicPath;
+
 const BASE_URL = '/api';
 axios.defaults.baseURL = BASE_URL;
 

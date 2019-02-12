@@ -66,7 +66,7 @@ import submitOrder from '@/views/submitOrder/submitOrder.vue'
 import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
 
 import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
-
+import register from '@/views/register/register.vue'
 
 
 Vue.use(Router)
@@ -78,6 +78,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: index
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
     },
     {
       path: '/signsucceed',
@@ -264,7 +269,7 @@ export default new Router({
       path: '/inspectionCheck',
       name: 'inspectionCheck',
       component: inspectionCheck,
-      meta:{keepAlive:true}
+      meta: { keepAlive: true }
     },
     {
       path: '/medicalEva',
@@ -357,21 +362,21 @@ export default new Router({
       name: 'registrecord',
       component: registrecord
     },
-      {
-          path: '/storeInfo',
-          name: 'storeInfo',
-          component: storeInfo
-      },
-      {
-          path: '/submitOrder',
-          name: 'submitOrder',
-          component: submitOrder,
-      },
-      {
-          path: '/acceptAdd',
-          name: 'acceptAdd',
-          component: acceptAdd,
-          meta:{keepAlive:true}
-      },
+    {
+      path: '/storeInfo',
+      name: 'storeInfo',
+      component: storeInfo
+    },
+    {
+      path: '/submitOrder',
+      name: 'submitOrder',
+      component: submitOrder,
+    },
+    {
+      path: '/acceptAdd',
+      name: 'acceptAdd',
+      component: acceptAdd,
+      meta: { keepAlive: true }
+    },
   ]
 })

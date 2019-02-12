@@ -45,6 +45,9 @@ textarea {
 body {
   background: #ffffff;
 }
+.noMore{
+  text-align: center
+}
 #app {
   font-family: "PingFang-SC-Medium";
   -webkit-font-smoothing: antialiased;
@@ -69,6 +72,9 @@ li {
 p {
   word-wrap: break-word;
   word-break: break-all;
+}
+.aligncenter {
+  text-align: center;
 }
 .colo13 {
   font-size: 26px;
@@ -235,7 +241,7 @@ textarea::-webkit-input-placeholder {
 }
 .primary,
 .default {
-  background-color: #1da1f3 !important;
+  background-color: #1da1f3;
   color: #fff !important;
   font-size: 28px;
 }
@@ -243,7 +249,7 @@ textarea::-webkit-input-placeholder {
   border: 1px solid #1da1f3 !important;
 }
 .default {
-  background-color: #43484b !important;
+  background-color: #43484b;
 }
 .default:after {
   border: 1px solid #43484b !important;

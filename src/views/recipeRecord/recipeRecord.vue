@@ -7,7 +7,7 @@
                     {{item.title}}
                 </span>
             </div>
-            <div class="outCarint" v-if="titleIndex===0 && notfound==false">
+            <div v-if="titleIndex===0 && notfound==false">
                 <div class="card margin16" v-for="(item,i) in recordData" :key="i">
                     <div class="cardText">
                         <div class="moreGroup md-check-group md-example-child md-example-child-check md-example-child-check-1">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="outCarint" v-if="titleIndex===1 && notfound==false">
+            <div v-if="titleIndex===1 && notfound==false">
                 <div class="card margin16" v-for="(item,i) in efficacyData">
                     <div class="cardText">
                         <div class="md-check-group">

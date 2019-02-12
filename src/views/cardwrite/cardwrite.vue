@@ -26,12 +26,12 @@
               <input class="flexF" type="text" name="username" v-model="phonenumber" placeholder="请输入手机号" maxlength="11">
               <p class="flexR">
                 <span v-show="show" class="send1" @click="getCode">获取验证码</span>
-                <span v-show="!show" class="send1">{{count}} 秒</span>
+                <span v-show="!show" class="send1">发送 {{count}} 秒</span>
               </p>
             </div>
             <div class="login-box-div">
               <span class="flexF">验证码</span>
-              <input id="verify" type="text" class="infos flexF" name="yanz" placeholder="请输入验证码" maxlength="4" />
+              <input v-model="verifyCode" id="verify" type="text" class="infos flexF" name="yanz" placeholder="请输入验证码" maxlength="6" />
             </div>
           </div>
         </div>
@@ -41,16 +41,18 @@
   </div>
 </template>
 <script type="text/babel">
- 
+let bizPatientCardinsert = "/wechat/bizPatientCard/insert";
+let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
+let appLogingetVerifyCode = "/wechat/bizPatientCard/checkMobile";
 export default {
   data() {
     return {
       phonenumber: '',
+      verifyCode: '',
       isWeixin: false,
       show: true,
       count: '',
       timer: null,
-
     };
   },
   created() {
@@ -69,9 +71,10 @@ export default {
   },
   methods: {
     getCode() {
+      let _this = this;
       const TIME_COUNT = 60;
       if (this.phonenumber.length < 11) {
-       this.$toast.info('请输入正确的手机号')
+        this.$toast.info('请输入正确的手机号')
       } else {
         if (!this.timer) {
           this.count = TIME_COUNT;
@@ -84,19 +87,52 @@ export default {
               clearInterval(this.timer);
               this.timer = null;
             }
-          }, 1000)
+          }, 1000);
+          this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.phonenumber + '&verifyType=' + 1, {
+          }, {
+              headers: {
+                'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                'UUID': `AAA`
+              },
+            }).then(res => {
+              if (res.data.code == '200') {
+                _this.$toast.info('请查看验证码')
+              } else if (res.data.code == '800') {
+
+              }
+            }).catch(function (err) {
+              console.log(err);
+            });
         }
       }
 
     },
 
     tijiao() {
+      this.$axios.put(appLogingetVerifyCode + '?mobile=' + this.phonenumber + '&verifyType=' + 1 + '&verifyCode=' + this.verifyCode, {
+        mobile: this.phonenumber,
+        verifyType: 1,
+      }, {
+          headers: {
+            'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+            'UUID': `AAA`
+          },
+        }).then(res => {
+          if (res.data.code == '200') {
+            this.$toast.info('已发送验证码')
+          } else if (res.data.code == '800') {
+
+          }
+        }).catch(function (err) {
+          console.log(err);
+        });
       let argu = {}
       this.$router.push({
         name: 'cardwritesecond',
         query: argu
       });
     },
+
   },
   computed: {
 

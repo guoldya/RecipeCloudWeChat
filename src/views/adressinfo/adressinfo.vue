@@ -19,6 +19,7 @@
 <script>
 import { InputItem, Field } from 'mand-mobile'
 import district from 'mand-mobile/components/picker/demo/data/district'
+let appshippingAddressareaList = '/app/shippingAddress/areaList';
 export default {
    name: 'input-item-demo',
    /* DELETE */
@@ -27,7 +28,7 @@ export default {
    data() {
       return {
          isPickerShow1: false,
-         pickerData1: district,
+         pickerData1: [],
          pickerValue1: '',
          isWeixin: false,
       }
@@ -38,15 +39,26 @@ export default {
       [Field.name]: Field,
    },
    mounted() {
-      document.title = '选择科室';
+      document.title = '编辑地址';
       var ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i) == 'micromessenger') {
          this.isWeixin = false;
-         return true;
       } else {
          this.isWeixin = true;
-         return false;
-      }
+      };
+      let _this = this;
+      this.$axios.put(appshippingAddressareaList, {
+
+      }).then(res => {
+         console.log(res.data.rows, "ss")
+         if (res.data.code == '200') {
+            _this.pickerData1 = res.data.rows;
+         } else if (res.data.code == '800') {
+
+         }
+      }).catch(function (err) {
+         console.log(err);
+      });
    },
    methods: {
       onPickerConfirm(index) {

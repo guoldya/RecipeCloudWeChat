@@ -7,7 +7,7 @@
             <div class="bindCard">
                 <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
-            <!-- <div class="homeCard">
+            <div class="homeCard margin16">
                 <div class="homeCardText">
                     <div class="homeCardTextLeft">
                         <p>名字<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
@@ -21,7 +21,7 @@
                         <p>刷卡请出示</p>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <ul class="home-cz home-flex">
                 <li @click="choosedepart">
                     <img src="@/assets/images/icon_register1.png" alt="" class="image">
@@ -81,25 +81,45 @@
 
 </template>
 <script>
+let appLoginlogin = '/appLogin/login';
+
 export default {
     data() {
         return {
             code: 'ss',
         }
     },
+
     mounted() {
+        // console.log( localStorage.getItem("token"),"缓存的 loca ")
         document.title = '互联网医院';
         let _this = this;
-        // function UrlSearch() {
-        //     let name, value;
-        //     let str = location.href;
-        //     //   let str = "http://192.168.0.26:8080/?code=6fb89730a632451394edd93c6b1993d1"; //取得整个地址栏
-        //     let num = str.indexOf("?");
-        //     str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
-        //     _this.code = str.match(/code=[^&]+/)[0].split("=")[1];
+        function UrlSearch() {
+            let name, value;
+            //  let str = location.href;
+            let str = "http://192.168.0.26:8080/?code=081qs5ZX03iwTU1YH5YX0Kv6ZX0qs5Zn"; //取得整个地址栏
+            let num = str.indexOf("?");
+            str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+            _this.code = str.match(/code=[^&]+/)[0].split("=")[1];
 
-        // };
-        // let Request = new UrlSearch(); //实例化
+        };
+        let Request = new UrlSearch(); //实例化
+        this.$axios.get(appLoginlogin + '?wechatCode=' + _this.code + '&verifyType=' + 1, {
+        }).then(res => {
+            console.log(JSON.parse(res.data.data.value), "sss")
+            if (res.data.code == '200') {
+                res.data.data.value = JSON.parse(res.data.data.value);
+                var storage = window.localStorage;
+                storage.setItem("token", res.data.data.value.token);
+                storage.setItem("uuid", res.data.data.value.uuid);
+                storage.setItem("id", res.data.data.value.id);
+                console.log(localStorage.getItem("token"), "缓存的 loca ")
+            } else if (res.data.code == '800') {
+                // this.$router.push({
+                //     name: 'register',
+                // });
+            }
+        });
 
     },
     methods: {
@@ -161,7 +181,7 @@ export default {
         myinspectionCheck() {
             let argu = {}
             this.$router.push({
-                name: 'inspectionCheck',
+                name: 'recipeRecord',
                 query: argu
             });
         },

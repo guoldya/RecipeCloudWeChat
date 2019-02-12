@@ -45,11 +45,13 @@
   </div>
 </template>
 <script type="text/babel">
+let appLoginGuploadImage = "/appLogin/uploadImage";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 export default {
   data() {
     return {
+      AAA: '',
       isWeixin: false,
       isSon: false,
       isSelectorShow: false,
@@ -92,19 +94,22 @@ export default {
   },
   methods: {
     uploadPos(e) {
-      let that = this, 
-      file = e.target.files[0], 
-      fileReader = new FileReader();
+      let that = this,
+        file = e.target.files[0],
+        fileReader = new FileReader();
       this.files.posFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
         that.othUrl = this.result;
-      }
+      };
+
+      this.AAA = e.target.files[0];
+
     },
     uploadOth(e) {
-      let that = this, 
-      file = e.target.files[0],
-       fileReader = new FileReader();
+      let that = this,
+        file = e.target.files[0],
+        fileReader = new FileReader();
       this.files.othFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
@@ -118,19 +123,32 @@ export default {
       this.selectorValue = text
     },
 
+
+
     cardconfirm() {
-
-
-
-
-      
+      let param = new FormData(); //创建form对象
+      param.append('file', this.AAA, this.AAA.name);//通过append向form对象添加数据
+      param.append('chunk', '0');//添加form表单中其他数据
+      console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+          'UUID': `AAA`,
+        }
+      };  //添加请求头
+      this.$axios.post(appLoginGuploadImage, param, config)
+        .then(res => {
+          if (res.data.code == '200') {
+            console.log(res.data, "我是一个小青龙");
+          }
+          console.log(res.data, "我是一个小青龙");
+        });
       // let argu = {}
       // this.$router.push({
       //   name: 'cardconfirm',
       //   query: argu
       // });
-
-
     },
 
   },

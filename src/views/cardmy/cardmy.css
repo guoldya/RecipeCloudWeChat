@@ -8,6 +8,12 @@
    justify-content: space-between;
 }
 
+.cardmy .nocard {
+   line-height: 370px;
+   text-align: center;
+   color: #979797
+}
+
 .tiptopwarnbtn {
    background: #24A5F1;
    margin: 10px 15px;
@@ -26,16 +32,29 @@
    text-align: center
 }
 
-.warnbot {
-   color: #333333;
-   padding: 20px;
+.warnbottitle {
+   color: #979797;
    font-size: 26px;
+}
+
+.warnbot {
+   color: #979797;
+   font-size: 26px;
+   text-indent: 2em;
+   line-height: 40px;
 }
 
 .warnbottom {
    color: red;
+   text-align: center;
+   line-height: 100px;
 }
 
 .cardmy .md-notice-bar {
    background: transparent
+}
+
+.outCarintwarnbottom {
+   position: absolute;
+   bottom: 140px;
 }
