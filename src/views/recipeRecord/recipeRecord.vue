@@ -18,7 +18,7 @@
                             <span>{{item.no}}</span>
                             <span class="mu-secondary-text-color">{{item.isChecked}}</span>
                         </div>
-                        <p class="partLine"></p>
+                        <p class="partLine" style="padding: 0px"></p>
                         <div class="userInfo">
                             <span>{{item.add}}</span>
                             <span>{{item.userName}}</span>
