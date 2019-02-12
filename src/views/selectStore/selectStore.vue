@@ -100,6 +100,7 @@
     </div>
 </template>
 <script type="text/babel">
+    import bus from "../../bus/bus"
     export default {
         data() {
             return {
@@ -160,12 +161,20 @@
                 shopMethod:[
                     {title:"到店自提"},
                     {title:"配送到家"},
-                ]
+                ],
+                acceptPar:null,
             };
         },
-        created() {
-
+        created () {
+            bus.$on('getParam', param => {
+                if(param=='666'){
+                    console.log(param)
+                }
+            })
         },
+        // beforeDestroy () {
+        //     bus.$off('getParam')
+        // },
         mounted() {
             this.acceptJumpFun();
             document.title = '药店选择';
@@ -191,7 +200,13 @@
                 }
             },
             acceptJumpFun:function(){
-                // console.log(this.$route.query);
+                this.acceptPar=this.$route.query;
+                console.log(this.acceptPar)
+                // this.jumpArrData=[];
+                // for(let i=0;i<this.acceptPar.length;i++){
+                //     this.jumpArrData.push(this.acceptJumpData[this.acceptPar[i]])
+                // }
+                //.log(this.jumpArrData)
             },
             switchTo(num) {
                 this.farIndex=null;

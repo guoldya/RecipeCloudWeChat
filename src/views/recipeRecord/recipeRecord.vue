@@ -8,11 +8,11 @@
                 </span>
             </div>
             <div class="outCarint" v-if="titleIndex===0 && notfound==false">
-                <div class="card margin16" v-for="(item,i) in recordData">
+                <div class="card margin16" v-for="(item,i) in recordData" :key="i">
                     <div class="cardText">
                         <div class="moreGroup md-check-group md-example-child md-example-child-check md-example-child-check-1">
                             <md-check-group v-model="favorites" :check="checkedFun(favorites)">
-                                <md-check :name=i.toString() />
+                                <md-check :name=i.toString()  />
                                 <span>{{item.date}}</span>
                             </md-check-group>
                             <span>{{item.no}}</span>
@@ -56,18 +56,7 @@
                     <div class="blueButton" @click="selectStore()">
                         <span >选药店</span>
                     </div>
-                <!--<div>-->
-                    <!--<div class="selfButton">-->
-                        <!--<md-check-group v-model="favorites" :check="checkedFun(favorites)">-->
-                            <!--<md-check />-->
-                            <!--<span @click="allSelect()">全选</span>-->
-                            <!--<span class="aui-navBar-item">-->
-
-                                <!--<span>选药店</span>-->
-                            <!--</span>-->
-                        <!--</md-check-group>-->
-                    <!--</div>-->
-                <!--</div>-->
+                </div>
             </div>
             <div class="outCarint" v-if="titleIndex===1 && notfound==false">
                 <div class="card margin16" v-for="(item,i) in efficacyData">
@@ -112,12 +101,13 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
 </template>
 <script type="text/babel">
     import {Toast} from "mand-mobile"
+    import bus from "../../bus/bus"
     export default {
+
         data() {
             return {
                 isWeixin: false,
@@ -199,6 +189,7 @@
                 notfound:false,
                 selectAll:"",
                 jumpParams:[],
+                jumpArrData:[],
             };
         },
         created() {
@@ -213,7 +204,6 @@
             this.isWeixin = true;
             return false;
         }
-
     },
     methods: {
             onChange(name, checked) {
@@ -221,7 +211,6 @@
             },
             checkedFun:function(val) {
                 this.jumpParams = val;
-                console.log(this.jumpParams);
                 if (this.recordData.length === this.favorites.length) {
                     this.selectAll = this.favorites[this.favorites.length - 1];
                 } else {
@@ -253,6 +242,11 @@
                     }
             },
             selectStore: function () {
+                for(let i=0;i<this.jumpParams.length;i++){
+                   this.jumpArrData.push(this.recordData[this.jumpParams[i]])
+                }
+                bus.$emit('getParam','666');
+                console.log(this.jumpArrData);
                 if (this.favorites.length < 1) {
                     Toast.info('请选择处方');
                     return;

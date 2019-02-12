@@ -54,7 +54,6 @@
         },
         mounted() {
             this.checked=this.$route.query.checked;
-            console.log(this.$route.query);
             document.title = '选择收获地址';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
