@@ -23,7 +23,7 @@
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="titleIndex === 0">
+            <div v-if="titleIndex === 0" class="outCarint">
                 <div class="card margin16">
                     <div class="cardHEADER headCard">
                         <span>仅看3日内续方</span>
@@ -62,10 +62,13 @@
                     </div>
                 </div>
             </div>
-            <div  v-if="titleIndex === 1">
+            <div  v-if="titleIndex === 1" class="outCarint">
                 <div class="card margin16">
-                    <div class="cardHEADER" style="display:flex;justify-content: flex-end;">
+                    <div class="cardHEADER headCard">
                         <span>仅看通过</span>
+                        <div>
+                            <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
+                        </div>
                     </div>
                 </div>
                 <div class="card margin16" v-for="(item,i) in applyData" :key="i">

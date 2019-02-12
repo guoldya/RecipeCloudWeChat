@@ -60,9 +60,12 @@ import onlineEva from '@/views/onlineEva/onlineEva.vue'
 import evaContent from '@/views/evaContent/evaContent.vue'
 import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
 import selectStore from '@/views/selectStore/selectStore.vue'
+
+import storeInfo from '@/views/storeInfo/storeInfo.vue'
+import submitOrder from '@/views/submitOrder/submitOrder.vue'
+import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
+
 import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
-
-
 
 
 
@@ -353,5 +356,21 @@ export default new Router({
       name: 'registrecord',
       component: registrecord
     },
+      {
+          path: '/storeInfo',
+          name: 'storeInfo',
+          component: storeInfo
+      },
+      {
+          path: '/submitOrder',
+          name: 'submitOrder',
+          component: submitOrder,
+      },
+      {
+          path: '/acceptAdd',
+          name: 'acceptAdd',
+          component: acceptAdd,
+          meta:{keepAlive:true}
+      },
   ]
 })
