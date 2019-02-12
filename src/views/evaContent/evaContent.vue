@@ -22,37 +22,37 @@
     </div>
 </template>
 <script type="text/babel">
-    export default {
-        data() {
-            return {
-                isWeixin: false,
-                evaData:[
-                    {name:"王***",date:"2018年12月12日",score:3,
-                        content:"好好好好好好好好好好好好好好好好好好好好好好好好"},
-                    {name:"李***",date:"2018年12月12日",score:4,
-                        content:"真好真好真好真好真好真.好真好真好真好真好真好真好真好真好真好真好真好真好真好"}
-                ],
-                starArray:[
-                    {
-                        light:require("@/assets/images/icon_star@2x.png"),
-                        gray:require("@/assets/images/icon_star_gray.png"),
-                    },{
-                        light:require("@/assets/images/icon_star@2x.png"),
-                        gray:require("@/assets/images/icon_star_gray.png"),
-                    },{
-                        light:require("@/assets/images/icon_star@2x.png"),
-                        gray:require("@/assets/images/icon_star_gray.png"),
-                    },{
-                        light:require("@/assets/images/icon_star@2x.png"),
-                        gray:require("@/assets/images/icon_star_gray.png"),
-                    },{
-                        light:require("@/assets/images/icon_star@2x.png"),
-                        gray:require("@/assets/images/icon_star_gray.png"),
-                    }
-                ],
-            };
-        },
-        created() {
+export default {
+    data() {
+        return {
+            isWeixin: false,
+            evaData: [
+                {                    name: "王***", date: "2018年12月12日", score: 3,
+                    content: "好好好好好好好好好好好好好好好好好好好好好好好好"                },
+                {                    name: "李***", date: "2018年12月12日", score: 4,
+                    content: "真好真好真好真好真好真.好真好真好真好真好真好真好真好真好真好真好真好真好真好"                }
+            ],
+            starArray: [
+                {
+                    light: require("@/assets/images/icon_star@2x.png"),
+                    gray: require("@/assets/images/icon_star_gray.png"),
+                }, {
+                    light: require("@/assets/images/icon_star@2x.png"),
+                    gray: require("@/assets/images/icon_star_gray.png"),
+                }, {
+                    light: require("@/assets/images/icon_star@2x.png"),
+                    gray: require("@/assets/images/icon_star_gray.png"),
+                }, {
+                    light: require("@/assets/images/icon_star@2x.png"),
+                    gray: require("@/assets/images/icon_star_gray.png"),
+                }, {
+                    light: require("@/assets/images/icon_star@2x.png"),
+                    gray: require("@/assets/images/icon_star_gray.png"),
+                }
+            ],
+        };
+    },
+    created() {
 
     },
     mounted() {
