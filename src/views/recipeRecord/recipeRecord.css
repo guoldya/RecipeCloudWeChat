@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
 }
-.recipeRecord .md-check-group span{
+.recipeRecord .moreGroup span{
     height: 66px;
     line-height: 66px;
     margin-left: 12px;
@@ -77,7 +77,25 @@
 .recipeRecord .checkGroup{
     margin-left: 40px;
 }
+.recipeRecord .checkGroup span{
+    margin-left: 12px;
+}
 .checkGroup .md-check{
     height: 92px;
     line-height: 92px;
 }
+
+
+.selfButton {
+    width: 654px;
+    height: 100px;
+    background-color: #1da1f3;
+    border-radius: 60px;
+}
+.selfButton span {
+    height: 100px;
+    line-height: 100px;
+    font-size: 28px;
+    color: #fff;
+}
+

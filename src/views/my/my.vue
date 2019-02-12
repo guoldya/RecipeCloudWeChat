@@ -18,7 +18,7 @@
         </div>
         <div class="nav2">
           <span><img src="@/assets/images/icon_hospitalization.png" alt="">我的住院</span>
-          <span @click="inspectionCheck"><img src="@/assets/images/icon_prescription.png" alt="">处方记录</span>
+          <span @click="recipeRecord"><img src="@/assets/images/icon_prescription.png" alt="">处方记录</span>
           <span><img src="@/assets/images/icon_copy.png" alt="">复印记录</span>
           <span @click="askorder"><img src="@/assets/images/icon_order.png" alt="">问诊订单</span>
         </div>
@@ -98,10 +98,10 @@ export default {
       });
     },
     // 处方记录
-    inspectionCheck() {
+    recipeRecord() {
       let argu = {}
       this.$router.push({
-        name: 'inspectionCheck',
+        name: 'recipeRecord',
         query: argu
       });
     },

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/views/home/home.vue'
-import control from '@/views/control/control.vue'
+import druginfo from '@/views/druginfo/druginfo.vue'
 import online from '@/views/online/online.vue'
 import article from '@/views/article/article.vue'
 import my from '@/views/my/my.vue'
@@ -31,9 +31,18 @@ import identity from '@/views/identity/index.vue'
 import idcard from '@/views/idcard/index.vue'
 import idcardlist from '@/views/idcardlist/idcardlist.vue'
 import adressinfo from '@/views/adressinfo/adressinfo.vue'
+import sign from '@/views/sign/sign.vue'
+import signagin from '@/views/signagin/signagin.vue'
+import moan from '@/views/moan/moan.vue'
+import signsucceed from '@/views/signsucceed/signsucceed.vue'
+
+
 
 import cardmy from '@/views/cardmy/cardmy.vue'
 import cardwrite from '@/views/cardwrite/cardwrite.vue'
+import cardwritesecond from '@/views/cardwritesecond/cardwritesecond.vue'
+import cardwriteson from '@/views/cardwriteson/cardwriteson.vue'
+
 import cardneed from '@/views/cardneed/cardneed.vue'
 // 
 import orderrecord from '@/views/orderrecord/orderrecord.vue'
@@ -51,9 +60,14 @@ import onlineEva from '@/views/onlineEva/onlineEva.vue'
 import evaContent from '@/views/evaContent/evaContent.vue'
 import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
 import selectStore from '@/views/selectStore/selectStore.vue'
+
 import storeInfo from '@/views/storeInfo/storeInfo.vue'
 import submitOrder from '@/views/submitOrder/submitOrder.vue'
 import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
+
+import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
+
+
 
 Vue.use(Router)
 
@@ -66,6 +80,16 @@ export default new Router({
       component: index
     },
     {
+      path: '/signsucceed',
+      name: 'signsucceed',
+      component: signsucceed
+    },
+    {
+      path: '/moan',
+      name: 'moan',
+      component: moan
+    },
+    {
       path: '/home',
       name: 'home',
       component: index
@@ -74,6 +98,16 @@ export default new Router({
       path: '/my',
       name: 'my',
       component: my
+    },
+    {
+      path: '/sign',
+      name: 'sign',
+      component: sign
+    },
+    {
+      path: '/signagin',
+      name: 'signagin',
+      component: signagin
     },
     {
       path: '/cardmy',
@@ -86,15 +120,30 @@ export default new Router({
       component: cardwrite
     },
     {
+      path: '/cardwritesecond',
+      name: 'cardwritesecond',
+      component: cardwritesecond
+    },
+    {
+      path: '/cardwriteson',
+      name: 'cardwriteson',
+      component: cardwriteson
+    },
+    {
+      path: 'cardconfirm',
+      name: 'cardconfirm',
+      component: cardconfirm
+    },
+    {
       path: '/cardneed',
       name: 'cardneed',
       component: cardneed
     },
 
     {
-      path: '/control',
-      name: 'control',
-      component: control
+      path: '/druginfo',
+      name: 'druginfo',
+      component: druginfo
     },
     {
       path: '/article',
@@ -277,12 +326,12 @@ export default new Router({
       name: 'evaContent',
       component: evaContent
     },
-      {
-          path: '/recipeRecord',
-          name: 'recipeRecord',
-          component: recipeRecord
-      },
-      {
+    {
+      path: '/recipeRecord',
+      name: 'recipeRecord',
+      component: recipeRecord
+    },
+    {
       path: '/orderrecord',
       name: 'orderrecord',
       component: orderrecord
@@ -292,11 +341,11 @@ export default new Router({
       name: 'orderinfo',
       component: orderinfo
     },
-      {
-          path: '/selectStore',
-          name: 'selectStore',
-          component: selectStore
-      },
+    {
+      path: '/selectStore',
+      name: 'selectStore',
+      component: selectStore
+    },
     {
       path: '/askorder',
       name: 'askorder',

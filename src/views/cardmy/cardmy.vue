@@ -43,15 +43,16 @@ export default {
             open: false,
             btns: [
                {
-                  text: '已经',
-                  type: 'danger',
-                  handler: this.onActConfirm,
-               },
-               {
                   text: '没有',
                   type: 'danger',
                   handler: this.onActConfirm2,
                },
+               {
+                  text: '已有',
+                  type: 'danger',
+                  handler: this.onActConfirm,
+               },
+
             ],
          },
       };

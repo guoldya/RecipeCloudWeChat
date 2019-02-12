@@ -1,95 +1,109 @@
 <template>
-   <div :class="{'outCarint':true,'margin45':isWeixin}">
-      <Header post-title="注册电子就诊卡" v-show="isWeixin"></Header>
-      <div class="rebinding-box">
-         <div class="box-timeline">
-            <div>
-               <span class="timeline1">1</span>
-               <span class="line1"> </span>
-            </div>
-            <div>
-               <span class="timeline2">2</span>
-               <span class="line2"> </span>
-            </div>
-            <div>
-               <span class="timeline3">3</span>
-               <span class="line3"> </span>
-            </div>
-         </div>
+  <div :class="{'outCarint':true,'margin45':isWeixin, }">
+    <Header post-title="手机验证" v-show="isWeixin"></Header>
+    <div class="rebinding-box card margin16">
+      <div class="box-timeline  cardText">
+        <div class="alltimeball">
+          <div class="timeball acitiveball">1</div>
+          <div class="timeball">2</div>
+          <div class="timeball">3</div>
+        </div>
+        <div class="alltimeball">
+          <span class="acitivestep">手机验证</span>
+          <span>身份验证</span>
+          <span>资料确认</span>
+        </div>
+        <div class="timeballline acitiveline"></div>
+        <div class="timeballline2"></div>
       </div>
-   </div>
+    </div>
+    <div class="card margin16">
+      <div class="cardText login-box">
+        <div class="content">
+          <div class="login-box">
+            <div class="hq login-box-div">
+              <span class="flexF">手机号</span>
+              <input class="flexF" type="text" name="username" v-model="phonenumber" placeholder="请输入手机号" maxlength="11">
+              <p class="flexR">
+                <span v-show="show" class="send1" @click="getCode">获取验证码</span>
+                <span v-show="!show" class="send1">{{count}} 秒</span>
+              </p>
+            </div>
+            <div class="login-box-div">
+              <span class="flexF">验证码</span>
+              <input id="verify" type="text" class="infos flexF" name="yanz" placeholder="请输入验证码" maxlength="4" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <md-button type="primary" round @click="tijiao">提交</md-button>
+  </div>
 </template>
 <script type="text/babel">
+ 
 export default {
-   data() {
-      return {
-         isWeixin: false,
-         steps: [
-            {
-               name: '手机验证',
-            },
-            {
-               name: '身份验证',
-            },
-            {
-               name: '资料确认',
-            },
-         ],
-         currentStep: 0,
-      };
-   },
-   created() {
+  data() {
+    return {
+      phonenumber: '',
+      isWeixin: false,
+      show: true,
+      count: '',
+      timer: null,
 
-   },
-   mounted() {
-      document.title = '注册电子就诊卡';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-         return true;
+    };
+  },
+  created() {
+
+  },
+  mounted() {
+    document.title = '手机验证';
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      this.isWeixin = false;
+      return true;
+    } else {
+      this.isWeixin = true;
+      return false;
+    }
+  },
+  methods: {
+    getCode() {
+      const TIME_COUNT = 60;
+      if (this.phonenumber.length < 11) {
+       this.$toast.info('请输入正确的手机号')
       } else {
-         this.isWeixin = true;
-         return false;
+        if (!this.timer) {
+          this.count = TIME_COUNT;
+          this.show = false;
+          this.timer = setInterval(() => {
+            if (this.count > 0 && this.count <= TIME_COUNT) {
+              this.count--;
+            } else {
+              this.show = true;
+              clearInterval(this.timer);
+              this.timer = null;
+            }
+          }, 1000)
+        }
       }
-   },
-   methods: {
 
-   },
-   computed: {
+    },
 
-   },
+    tijiao() {
+      let argu = {}
+      this.$router.push({
+        name: 'cardwritesecond',
+        query: argu
+      });
+    },
+  },
+  computed: {
+
+  },
 
 };
 </script>
  <style scoped>
-.box-timeline {
-  width: 100%;
-}
-.box-timeline div {
-  /* width: 30%; */
-  float: left;
-}
-.timeline1,
-.timeline3,
-.timeline2 {
-  text-align: center;
-  padding: 20px 32px;
-  font-size: 32px;
-  border: 50%;
-  display: block;
-  font-weight: 700;
-  color: #ffffff;
-  border-radius: 50%;
-  background: #24a5f1;
-  position: relative;
-  /* margin: 20%; */
-}
-.line1 {
-  width: 20%;
-  position: absolute;
-  height: 5px;
-  display: block;
-  background: #24a5f1;
-}
- 
+@import url("./cardwrite.css");
 </style>

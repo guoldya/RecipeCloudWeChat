@@ -1,6 +1,6 @@
 <template>
   <div class="lineupnow">
-    <Header post-title="选择科室"></Header>
+    <Header post-title="就诊队列"></Header>
     <div :class="{margin45:isWeixin,}">
       <div class="swiper-container">
         <div class="swiper-wrapper">

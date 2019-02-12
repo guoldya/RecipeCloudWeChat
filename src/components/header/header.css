@@ -50,8 +50,8 @@
    justify-content: flex-end;
  }
  .aui-navBar-item img {
-   width: 26px;
-   height: 46px;
+   width: 24px;
+   height: 42px;
  }
  .aui-center {
    -webkit-box-ordinal-group: 3;
@@ -160,11 +160,6 @@ header {
    -webkit-justify-content: flex-end;
    -ms-flex-pack: end;
    justify-content: flex-end;
-}
-
-.aui-navBar-item img {
-   width: 26px;
-   height: 46px;
 }
 
 .aui-center {

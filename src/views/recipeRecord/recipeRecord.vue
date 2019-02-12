@@ -10,9 +10,10 @@
             <div class="outCarint" v-if="titleIndex===0 && notfound==false">
                 <div class="card margin16" v-for="(item,i) in recordData">
                     <div class="cardText">
-                        <div class="md-check-group md-example-child md-example-child-check md-example-child-check-1">
-                            <md-check-group v-model="favorites"  :check="checkedFun(favorites)">
-                                <md-check :name=i.toString() /><span>{{item.date}}</span>
+                        <div class="moreGroup md-check-group md-example-child md-example-child-check md-example-child-check-1">
+                            <md-check-group v-model="favorites" :check="checkedFun(favorites)">
+                                <md-check :name=i.toString() />
+                                <span>{{item.date}}</span>
                             </md-check-group>
                             <span>{{item.no}}</span>
                             <span class="mu-secondary-text-color">{{item.isChecked}}</span>
@@ -48,15 +49,25 @@
                     <div class="grayButton" @click="allSelect()">
                         <div>
                             <md-check-group class="checkGroup" v-model="favorites"  :check="checkedFun(favorites)">
-                                <md-check :name="selectAll"/>
+                                <md-check :name="selectAll"/><span >全选</span>
                             </md-check-group>
                         </div>
-                            <span >全选</span>
                     </div>
                     <div class="blueButton" @click="selectStore()">
                         <span >选药店</span>
                     </div>
-                </div>
+                <!--<div>-->
+                    <!--<div class="selfButton">-->
+                        <!--<md-check-group v-model="favorites" :check="checkedFun(favorites)">-->
+                            <!--<md-check />-->
+                            <!--<span @click="allSelect()">全选</span>-->
+                            <!--<span class="aui-navBar-item">-->
+
+                                <!--<span>选药店</span>-->
+                            <!--</span>-->
+                        <!--</md-check-group>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             <div class="outCarint" v-if="titleIndex===1 && notfound==false">
                 <div class="card margin16" v-for="(item,i) in efficacyData">
@@ -101,7 +112,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
     </div>
 </template>
 <script type="text/babel">
@@ -191,61 +202,58 @@
             };
         },
         created() {
+    },
+    mounted() {
+        document.title = '处方记录';
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            this.isWeixin = false;
+            return true;
+        } else {
+            this.isWeixin = true;
+            return false;
+        }
 
-        },
-        mounted() {
-            document.title = '处方记录';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
-
-        },
-        methods: {
+    },
+    methods: {
             onChange(name, checked) {
                 console.log(`agree name = ${name} is ${checked ? 'checked' : 'unchecked'}`)
             },
-            checkedFun:function(val){
-                this.jumpParams=val;
+            checkedFun:function(val) {
+                this.jumpParams = val;
                 console.log(this.jumpParams);
-                if(this.recordData.length===this.favorites.length){
-                this.selectAll=this.favorites[this.favorites.length - 1];
-                }else{
-                    this.selectAll=""
+                if (this.recordData.length === this.favorites.length) {
+                    this.selectAll = this.favorites[this.favorites.length - 1];
+                } else {
+                    this.selectAll = ""
                 }
             },
-            allSelect:function(){
-                this.favorites=[];
-                if(this.selectStatus==false){
-                    for(let i=0;i<this.recordData.length;i++){
+            allSelect: function () {
+                this.favorites = [];
+                if (this.selectStatus == false) {
+                    for (let i = 0; i < this.recordData.length; i++) {
                         this.favorites.push(i.toString());
                     }
                 }
-                if(this.favorites.length>1){
-                    this.selectStatus=true;
-                }else{
-                    this.selectStatus=false;
-                }
-
-
-            },
-            foldFun:function(val){
-                this.imgIndex=val;
-                if(this.downImg==true) {
-                    this.downImg=false;
-                    this.imgIndex=val;
-                }else
-                    if(this.downImg==false){
-                    this.downImg=true;
-                    this.imgIndex=-1;
+                if (this.favorites.length > 1) {
+                    this.selectStatus = true;
+                } else {
+                    this.selectStatus = false;
                 }
             },
-            selectStore:function(){
-                if(this.favorites.length<1){
+            foldFun: function (val) {
+                this.imgIndex = val;
+                if (this.downImg == true) {
+                    this.downImg = false;
+                    this.imgIndex = val;
+                } else
+                    if (this.downImg == false) {
+                        this.downImg = true;
+                        this.imgIndex = -1;
+                    }
+            },
+            selectStore: function () {
+                if (this.favorites.length < 1) {
                     Toast.info('请选择处方');
                     return;
                 }
@@ -262,9 +270,10 @@
         computed: {
 
         },
-
-    };
+};
 </script>
 <style   scoped>
     @import "recipeRecord.css";
+
+
 </style>

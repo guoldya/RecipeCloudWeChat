@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios';
+import store from './store/store';
 import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
 import Search from './components/search/search.vue';
@@ -37,9 +38,10 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 
 Vue.config.productionTip = false
 
-const BASE_URL = 'http://192.168.0.110:8090/';
+// const BASE_URL = 'http://192.168.0.110:8090/';
+// axios.defaults.publicPath = publicPath;
+const BASE_URL = '/api';
 axios.defaults.baseURL = BASE_URL;
-
 
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (res) {
@@ -56,5 +58,6 @@ Vue.prototype.$axios = axios;
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App),
 });

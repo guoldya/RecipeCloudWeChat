@@ -1,7 +1,7 @@
 <template>
    <div :class="{'outCarint':true,'margin45':isWeixin}">
       <Header post-title="选择科室" v-show="isWeixin"></Header>
-
+      
    </div>
 </template>
 <script type="text/babel">

@@ -31,7 +31,7 @@
                     <img src="@/assets/images/icon_self.png" alt="" class="image">
                     <p>门诊缴费</p>
                 </li>
-                <li @click="feerecord">
+                <li @click="sign">
                     <img src="@/assets/images/icon_signin.png" alt="" class="image">
                     <p>就诊签到</p>
                 </li>
@@ -106,7 +106,13 @@ export default {
                 query: argu
             });
         },
-
+        sign() {
+            let argu = {}
+            this.$router.push({
+                name: 'sign',
+                query: argu
+            });
+        },
         blidcard() {
             let argu = {}
             this.$router.push({

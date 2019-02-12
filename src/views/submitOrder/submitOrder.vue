@@ -147,8 +147,8 @@
 
         },
         mounted() {
-            this.addIndex=this.$route.query.params;
-            if(this.$route.query){
+            if(this.$route.query.name){
+                this.addIndex=this.$route.query.params;
                 this.addJumpInfo.splice(0,1);
                 this.addJumpInfo.push(this.$route.query);
             }

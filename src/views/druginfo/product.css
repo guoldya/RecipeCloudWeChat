@@ -5,6 +5,13 @@
    font-weight: 600
 }
 
+input,
+button,
+select,
+textarea {
+   outline: none
+}
+
 #product-info .content {
    text-align: left;
 }
@@ -33,7 +40,7 @@
 }
 
 #product-info .cainter {
-   margin: 12px;
+   margin: 24px;
 }
 
 #product-info .btn .abtn {
@@ -53,7 +60,7 @@
 #product-info .drugHead img {
    width: 108px;
    height: 108px;
-   border-radius: 5px
+   border-radius: 10px
 }
 
 .cainter h1 {
@@ -124,12 +131,14 @@
 .drugStoreName {
    margin-top: 20px;
 }
+
 #product-info .star img {
    width: 35px;
    height: 35px;
-   margin-left: 15px;
+   margin-right: 15px;
    float: right;
 }
+
 #product-info .cainter ul li {
    display: inline-block;
    padding-bottom: 30px;
@@ -152,11 +161,11 @@
 }
 
 #product-info .pingjia {
-   font-size: 1rem;
+   font-size: 32px;
    padding: 0;
    float: left;
    font-weight: 400;
-   line-height: 1.5rem;
+   /* line-height: 1.5rem; */
    font-family: "PingFang-SC-Medium";
 }
 
@@ -168,6 +177,10 @@ button :active {
    background: pink
 }
 
+.tagsbtn .abtn {
+   margin-left: 15px;
+}
+
 .abtn {
    font-size: 22px;
    font-weight: 400;
@@ -177,16 +190,17 @@ button :active {
    text-align: center;
    color: #1da1f3;
    border-radius: 42px;
-   border: 1px solid #1da1f3;
+   border: 2px solid #1da1f3;
    background: #fff;
-   margin-right: 30px;
 }
 
 .abtninfo {
    font-size: 28px;
    font-weight: 400;
    line-height: 1.6;
-   padding: 20px 27px;
+   width: 180px;
+   /* padding: 20px 27px; */
+   height: 70px;
    cursor: pointer;
    text-align: center;
    color: #333333;
@@ -198,6 +212,7 @@ button :active {
 
 #product-info .activebtn {
    color: #1da1f3;
+   box-shadow: 0 0 17px #c8dff7
 }
 
 #product-info .abtninfo:last-child {
@@ -240,35 +255,13 @@ button :active {
    background-color: #ffffff;
    position: fixed;
    bottom: 0;
-}
-
-#product-info .aui-tabBar-item {
-   -webkit-box-flex: 1;
-   -webkit-flex: 1;
-   -ms-flex: 1;
-   flex: 1;
-   display: -webkit-box;
-   display: -webkit-flex;
-   display: -ms-flexbox;
-   display: flex;
-   -webkit-box-orient: vertical;
-   -webkit-box-direction: normal;
-   -webkit-flex-direction: column;
-   -ms-flex-direction: column;
-   flex-direction: column;
-   -webkit-box-pack: center;
-   -webkit-justify-content: center;
-   -ms-flex-pack: center;
-   justify-content: center;
-   -webkit-box-align: center;
-   -webkit-align-items: center;
-   -ms-flex-align: center;
-   align-items: center;
-   color: #979797;
+   flex-direction: row;
+   justify-content: space-between
 }
 
 .aui-tabBar-item2 {
-   /* flex: 2.3; */
+   top: -7px;
+   position: relative;
 }
 
 .aui-tabBar-item img {
@@ -280,12 +273,15 @@ button :active {
    background: #1da1f3;
    color: #ffffff;
    font-size: 28px;
-   padding: 20px 26px;
+   /* padding: 20px 26px; */
+   width: 210px;
+   height: 80px;
 }
 
 .aui-tabBar-item2 .car {
    background: #43484b;
    border: 1px solid #43484b;
+   margin-right: 20px;
 }
 
 .cainterSize {

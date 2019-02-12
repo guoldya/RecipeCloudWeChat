@@ -16,7 +16,7 @@
                            <md-radio :name="index+'a'" v-model="checked" label="默认地址" />
                         </span>
                         <span class="fr">
-                           <span @click="adressinfo" class="bbb mui-icon mui-icon-compose" style="font-size: 20px;">
+                           <span @click="adressinfo" class="bbb mui-icon mui-icon-compose">
                               <label class="bianji">编辑</label>
                            </span>
                            <span class="mui-icon" style="font-size: 13px;" @click="dedete">
@@ -55,7 +55,7 @@ export default {
       },
    },
    mounted() {
-      document.title = '选择科室';
+      document.title = '地址管理';
       var ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i) == 'micromessenger') {
          this.isWeixin = false;

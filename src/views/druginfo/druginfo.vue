@@ -20,18 +20,19 @@
         </div>
         <div class="swiper-pagination"></div>
       </div>
-      <div class="btn">
+      <div class="btn tagsbtn">
         <button class="abtn">发热</button>
         <button class="abtn">流涕</button>
         <button class="abtn">解热镇痛</button>
         <button class="abtn">鼻塞</button>
         <button class="abtn">我要定制</button>
         <button class="abtn">我要定制</button>
+        <button class="abtn">我要定制</button>
       </div>
       <div class="content">
         <div class="cainter border1">
           <h1>我我我{{drugInfo.name}}</h1>
-          <p class="colo13">快递：￥ 10*1{{drugInfo.packUnit}}</p>
+          <p class="colo13">快递：￥10 * 1{{drugInfo.packUnit}}</p>
           <p class="price">￥ 10 </p>
           <p class="colob13">批准文号：10*1袋</p>
           <p class="colob13">生产厂商：{{drugInfo.factory}}</p>
@@ -64,7 +65,7 @@
                 </div>
               </div>
               <div class="dateRight" @click="intoStore">
-                <button class="abtn abtnBIG">进入店铺</button>
+                <!-- <button class="abtn abtnBIG">进入店铺</button> -->
               </div>
             </div>
           </div>
@@ -90,9 +91,9 @@
           </div>
         </div>
       </div>
-      <div class="content" style="margin-bottom:100px">
+      <div class="content" style="margin-bottom:60px">
         <div class="cainter">
-          <h1 class="pingjia" style="width:100% ; ">用户评价</h1>
+          <h1 class="pingjia" style="width:100%;">用户评价</h1>
           <ul id="newsList" class="news-list">
             <li class="border1">
               <div class="detaileTop">
@@ -202,8 +203,11 @@
       <a href="javascript:;" class="aui-tabBar-item" @click="intoIndex">
         <img src="@/assets/images/icon_pharmacy.png" alt="">
       </a>
-      <a href="javascript:;" class="aui-tabBar-item ">
+      <a v-show="isCollection==0" @click="select" href="javascript:;" class="aui-tabBar-item">
         <img src="@/assets/images/icon_collect.png" alt="">
+      </a>
+      <a v-show="isCollection==1" @click="cancleselect" href="javascript:;" class="aui-tabBar-item">
+        <img src="@/assets/images/icon_collect_pre.png" alt="">
       </a>
       <a href="javascript:;" class="aui-tabBar-item " @click="intoCar">
         <img src="@/assets/images/icon_car2.png" alt="">
@@ -218,8 +222,10 @@
   </div>
 </template>
 <script>
-
-let bdProductreaddetail = 'bdProduct/read/detail';
+import { Toast } from 'mand-mobile';
+let bdProductreaddetail = '/app/bdProduct/read/detail';
+let appbizCollectionaddCollection = 'app/bizCollection/addCollection';
+let appbizCollectiondeleteCollection = 'app/bizCollection/deleteCollection';
 export default {
   data() {
     return {
@@ -231,6 +237,10 @@ export default {
       isSpecific: false,
       isSize: false,
       timeIndex: 0,
+      isCollection: 0,
+      titleCollection: '',
+      TOKEN: '',
+      UUID: '',
       time: [
         { title: '图文详情' },
         { title: '说明书' },
@@ -300,29 +310,94 @@ export default {
       bridge.registerHandler("payNow", function (data, responseCallback) {
         responseCallback(window.payNow());
       });
-    })
-
-
-    // let str = location.href;
-    let str = "http://192.168.0.26:8081/?drugId=12"; //取得整个地址栏
-    let num = str.indexOf("?");
-    this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;
-    let param = {};
-    this.$axios.put(bdProductreaddetail, {
-      id: this.drugId
-    }).then((res) => {
-      if (res.data.code == '200') {
-        _this.drugInfo = res.data.data.drug;
-        _this.drugStoreName = res.data.data.drugStoreName;
-      } else {
-        console.log(res.msg);
-      }
-    }).catch(function (err) {
-      console.log(err);
     });
+
+    function UrlSearch() {
+      let name, value;
+      // let str = location.href;
+      let str = "http://192.168.0.26:8080/?drugId=30&TOKEN=6fb89730a632451394edd93c6b1993d1&UUID=f04b86567903f9de"; //取得整个地址栏
+      let num = str.indexOf("?");
+      str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+      _this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;
+      let arr = str.split("&"); //各个参数放到数组里
+      for (let i = 0; i < arr.length; i++) {
+        num = arr[i].indexOf("=");
+        if (num > -1) {
+          name = arr[i].substring(0, num);
+          value = arr[i].substr(num + 1);
+          this[name] = value;
+        }
+      }
+    };
+    let Request = new UrlSearch(); //实例化
+    this.TOKEN = Request.TOKEN;
+    this.UUID = Request.UUID;
+
+    let param = {};
+
+
+    this.$axios.put(bdProductreaddetail, {
+      id: _this.drugId
+    }, {
+        headers: {
+          'TOKEN': `${_this.TOKEN}`,
+          'UUID': `${_this.UUID}`
+        },
+      }).then((res) => {
+        if (res.data.code == '200') {
+          _this.drugInfo = res.data.data.drug;
+          _this.drugStoreName = res.data.data.drugStoreName;
+          _this.isCollection = res.data.data.isCollection;
+          _this.titleCollection = res.data.data.drug.varietyName;
+        } else {
+          console.log(res.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
     window.payNow = this.payNow;
   },
   methods: {
+    select() {
+      let _this = this;
+      this.$axios.post(appbizCollectionaddCollection, {
+        contentId: _this.drugId,
+        collectType: 1,
+        title: _this.titleCollection,
+      }, {
+          headers: {
+            'TOKEN': `${_this.TOKEN}`,
+            'UUID': `${_this.UUID}`
+          },
+        }).then((res) => {
+          if (res.data.code == '200') {
+            Toast.succeed("收藏成功");
+            this.isCollection = 1;
+          } else {
+            console.log(res.msg);
+          }
+        }).catch(function (err) {
+          console.log(err);
+        });
+    },
+    cancleselect() {
+      let _this = this;
+      this.$axios.delete(appbizCollectiondeleteCollection + '?id=' + _this.drugId, {
+        headers: {
+          'TOKEN': `${_this.TOKEN}`,
+          'UUID': `${_this.UUID}`
+        },
+      }).then((res) => {
+        if (res.data.code == '200') {
+          Toast.succeed("取消收藏");
+          _this.isCollection = 0;
+        } else {
+          Toast.succeed(res.data.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
     switchTo(aa) {
       this.timeIndex = aa
     },
