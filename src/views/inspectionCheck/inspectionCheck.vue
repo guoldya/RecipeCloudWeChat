@@ -180,7 +180,7 @@ export default {
             });
         },
         lookDetail() {
-            let argu = {};
+            let argu = {name: this.selectorValue};
             this.$router.push({
                 name: 'applyDetail',
                 query: argu

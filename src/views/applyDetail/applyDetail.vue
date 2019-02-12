@@ -133,7 +133,7 @@
             return {
                 isWeixin: false,
                 recipeData:[
-                    {no:"CQ11111111",date:"2018年11月11日", name:"张三李四",age:"18",
+                    {no:"CQ11111111",date:"2018年11月11日", name:this.$route.query.name,age:"18",
                         sex:"男",dept:"内科",doc:"杜甫李白",type:"首诊续方", result:"高血压",
                         applyDate:"2018年11月11日",auditState:"审核未通过",
                         recipeReason:"杜甫李白首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方" +

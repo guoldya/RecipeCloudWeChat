@@ -263,7 +263,8 @@ export default new Router({
     {
       path: '/inspectionCheck',
       name: 'inspectionCheck',
-      component: inspectionCheck
+      component: inspectionCheck,
+      meta:{keepAlive:true}
     },
     {
       path: '/medicalEva',
