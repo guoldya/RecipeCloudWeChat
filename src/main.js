@@ -40,7 +40,7 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 Vue.config.productionTip = false
 
 // const BASE_URL = 'http://192.168.0.110:8090/';
-// axios.defaults.baseURL = BASE_URL;
+// axios.defaults.publicPath = publicPath;
 const BASE_URL = '/api';
 axios.defaults.baseURL = BASE_URL;
 
