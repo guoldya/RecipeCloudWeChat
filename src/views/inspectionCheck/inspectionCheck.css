@@ -26,7 +26,7 @@
 }
 
 .cardText {
-   padding: 16px;
+   padding:10px;
    font-size: 28px !important;
    color: #333333;
 }
@@ -87,20 +87,6 @@
     height: 22px !important;
     margin-left: 10px;
 }
-.inspectionCheck .primary,.inspectionCheck .default {
-    background-color: #1da1f3 !important;
-    color:#fff !important;
-    font-size: 28px;
-}
-.inspectionCheck .primary:after,.medicalEva .primary:after{
-    border : 1px solid #1da1f3 !important;
-}
-.inspectionCheck .default{
-    background-color: #43484b !important;
-}
-.inspectionCheck .default:after{
-    border : 1px solid #43484b !important;
- }
 .inspectionCheck .md-popup-title-bar .title-bar-title p.title{
     font-size: 31px !important;
 }
@@ -111,7 +97,7 @@
     height: 80px;
     margin: 20px 0px;
 }
-.inspectionCheck .first{
+.inspectionCheck .first,.submitOrder .first,.acceptAdd .first{
     border: 2px solid #1da1f3;
     border-radius: 10px;
     color: #1da1f3;

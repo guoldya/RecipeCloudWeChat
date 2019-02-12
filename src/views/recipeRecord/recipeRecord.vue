@@ -1,13 +1,6 @@
 <template>
     <div class="recipeRecord">
-        <header class="aui-navBar aui-navBar-fixed">
-          <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
-            <img src="@/assets/images/icon_back.png">
-          </span>
-            <div class="aui-center">
-                <span class="aui-center-title">处方记录</span>
-            </div>
-        </header>
+        <Header post-title="处方记录" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
             <div class="pageContent">
                 <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
@@ -45,23 +38,24 @@
                                 </div>
                                 <div class="listData userNum">
                                     <span>{{list.weight}}</span>
-                                    <span>{{list.num}}</span>
+                                    <span>{{list.num}}盒</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="selfButton">
-                        <md-check-group v-model="favorites"  :check="checkedFun(favorites)">
-                            <md-check /><span @click="allSelect()">全选</span>
-                            <span class="aui-navBar-item">
-
-                                <span>选药店</span>
-                            </span>
-                        </md-check-group>
+                <div class="bButton">
+                    <div class="grayButton" @click="allSelect()">
+                        <div>
+                            <md-check-group class="checkGroup" v-model="favorites"  :check="checkedFun(favorites)">
+                                <md-check :name="selectAll"/>
+                            </md-check-group>
+                        </div>
+                            <span >全选</span>
                     </div>
-                    <!--<md-button type="primary" round @click="selectStore()">选药店</md-button>-->
+                    <div class="blueButton" @click="selectStore()">
+                        <span >选药店</span>
+                    </div>
                 </div>
             </div>
             <div class="outCarint" v-if="titleIndex===1 && notfound==false">
@@ -93,14 +87,11 @@
                                 </div>
                                 <div class="listData userNum">
                                     <span>{{list.weight}}</span>
-                                    <span>{{list.num}}</span>
+                                    <span>{{list.num}}盒</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <md-button type="primary" round @click="selectStore()">选药店</md-button>
                 </div>
             </div>
             <div class="outCarint" v-if="notfound==true">
@@ -154,28 +145,28 @@
                         ],},
                 ],
                 efficacyData:[
-                    {date:"2018-12-11",no:"S0027520",isChecked:"已失效",add:"重庆市大大大大医院",
+                    {date:"2018-12-09",no:"S0027520",isChecked:"已失效",add:"重庆市大大大大医院",
                         userName:"张三三三",dept:"产科",userData:[
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x1"},
                         ],},
-                    {date:"2018-12-11",no:"S0027520",isChecked:"已失效",add:"重庆市好大大大医院",
+                    {date:"2018-12-08",no:"S0027520",isChecked:"已失效",add:"重庆市好大大大医院",
                         userName:"李四",dept:"外科",userData:[
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x1"},
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x2"},
                         ],},
-                    {date:"2018-12-11",no:"S0027520",isChecked:"已失效",add:"重庆市真大大大医院",
+                    {date:"2018-12-07",no:"S0027520",isChecked:"已失效",add:"重庆市真大大大医院",
                         userName:"王五五",dept:"放射科",userData:[
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x1"},
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x2"},
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x2"},
                         ],},
-                    {date:"2018-12-11",no:"S0027520",isChecked:"已失效",add:"重庆市真大大大医院",
+                    {date:"2018-12-06",no:"S0027520",isChecked:"已失效",add:"重庆市真大大大医院",
                         userName:"王五五",dept:"放射科",userData:[
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x1"},
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x2"},
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x2"},
                         ],},
-                    {date:"2018-12-11",no:"S0027520",isChecked:"已失效",add:"重庆市真大大大医院",
+                    {date:"2018-12-05",no:"S0027520",isChecked:"已失效",add:"重庆市真大大大医院",
                         userName:"王五五",dept:"放射科",userData:[
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x1"},
                             {med:"盐酸曲美他嗪片（万爽力）",weight:"20mgX30片",num:"x2"},
@@ -195,6 +186,8 @@
                 imgIndex:null,
                 selectStatus:false,
                 notfound:false,
+                selectAll:"",
+                jumpParams:[],
             };
         },
         created() {
@@ -217,7 +210,13 @@
                 console.log(`agree name = ${name} is ${checked ? 'checked' : 'unchecked'}`)
             },
             checkedFun:function(val){
-                console.log(val)
+                this.jumpParams=val;
+                console.log(this.jumpParams);
+                if(this.recordData.length===this.favorites.length){
+                this.selectAll=this.favorites[this.favorites.length - 1];
+                }else{
+                    this.selectAll=""
+                }
             },
             allSelect:function(){
                 this.favorites=[];
@@ -253,7 +252,7 @@
                 let argu = {};
                 this.$router.push({
                     name: 'selectStore',
-                    query: argu
+                    query: this.jumpParams
                 });
             },
             switchTo(num) {
@@ -267,61 +266,5 @@
     };
 </script>
 <style   scoped>
-    .recipeRecord .md-check-group,.recipeRecord .userInfo{
-        display: flex;
-        justify-content: space-between;
-    }
-    .recipeRecord .md-check-group span{
-        height: 66px;
-        line-height: 66px;
-        margin-left: 12px;
-    }
-    .recipeRecord .userInfo span{
-        font-size: 28px;
-        font-weight: bold;
-    }
-    .recipeRecord .fold span{
-        font-size: 24px;
-        color: #979797;
-    }
-    .foldImg img{
-        width: 36px;
-        float: right;
-    }
-    .block{
-        display: block;
-    }
-    .none{
-        display: none;
-    }
-    .recipeRecord .selfButton{
-        margin-bottom: 40px;
-    }
-    /deep/.md-icon.icon-font.md{
-        font-size: 46px !important;
-    }
-    .userNum span{
-         padding-top: 0px;
-    }
-    .recipeRecord .notFound{
-        text-align: center;
-        padding-top: 160px;
-    }
-    .recipeRecord .notFound p{
-        color: #979797;
-        font-size: 32px;
-        padding: 40px;
-    }
-    .selfButton{
-        width: 654px;
-        height: 100px;
-        background-color: #1da1f3;
-        border-radius: 60px;
-    }
-    .selfButton span{
-        height: 100px;
-        line-height: 100px;
-        font-size: 28px;
-        color: #fff;
-    }
+    @import "recipeRecord.css";
 </style>

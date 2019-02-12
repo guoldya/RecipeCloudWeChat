@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive>
+      <router-view  v-if="$route.meta.keepAlive"/>
+    </keep-alive>
+    <router-view  v-if="!$route.meta.keepAlive"/>
   </div>
 </template>
 
@@ -10,7 +13,12 @@ export default {
   name: 'app',
   components: {
     HelloWorld
-  }
+  },
+    data(){
+      return{
+          includedComponents: "acceptAdd"
+      }
+    }
 }
 </script>
 
@@ -181,6 +189,9 @@ p {
   color: #1da1f3;
   border-bottom: 2px solid #1da1f3;
 }
+.methodTabAcitive{
+  color: #1da1f3;
+}
 .partLine{
   border-bottom: 1px solid #e9e9e9;
   width: 100%;
@@ -202,5 +213,22 @@ textarea::-webkit-input-placeholder{ /*WebKit browsers*/
 }
 .md-switch{
   margin-left: 6px;
+}
+ .md-icon.icon-font.md{
+  font-size: 46px !important;
+}
+.primary,.default {
+  background-color: #1da1f3 !important;
+  color:#fff !important;
+  font-size: 28px;
+}
+.primary:after{
+  border : 1px solid #1da1f3 !important;
+}
+.default{
+  background-color: #43484b !important;
+}
+.default:after{
+  border : 1px solid #43484b !important;
 }
 </style>

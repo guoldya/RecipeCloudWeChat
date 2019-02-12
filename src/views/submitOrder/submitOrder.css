@@ -1,0 +1,83 @@
+.submitOrder .cardText{
+    padding:15px 0px;
+}
+.submitOrder .submitUser{
+    display: flex;
+    justify-content: space-between;
+}
+.submitOrder .submitUser .iconInfo .userInfo{
+    width: 480px;
+    margin-left: 10px;
+    /*78*/
+}
+.submitOrder .submitUser .iconInfo{
+    display: flex;
+}
+.submitOrder .submitUser .userInfo div span:not(:last-child){
+    padding-right: 20px;
+}
+.submitOrder .addImg{
+    display: flex;
+    align-items: center;
+    width: 16%;
+}
+.submitOrder .addImg .medImg{
+    width: 100%;
+}
+.submitOrder .addImg .addPic{
+    width: 60%;
+}
+.submitOrder .nextImg{
+    justify-content: flex-end;
+}
+.submitOrder .med{
+    display: flex
+}
+.submitOrder .medRight{
+    width: 100%;
+    margin-left: 14px;
+}
+.submitOrder .medInfo,.submitOrder .onlinePay div{
+    display: flex;
+    justify-content: space-between;
+}
+.submitOrder .storeName{
+    font-size: 30px;
+    font-weight: bold;
+}
+.grayButton{
+    width: 740px;
+}
+.grayButton span{
+    margin: 0 auto;
+}
+.md-example-child-cashier .md-field{
+    margin-bottom :30px
+}
+.md-cashier-channel-item .cashier-icon-2{
+    background :url(../../assets/images/icon_alipay.png) center no-repeat;
+    background-size: 32px
+}
+.md-cashier-channel-item .cashier-icon-3{
+    background :url(../../assets/images/icon_wechatpay.png) center no-repeat;
+    background-size: 32px
+}
+.submitOrder .md-cashier-channel-item{
+    background-color: transparent !important;
+}
+.md-cashier-block-btn .md-button{
+    border-radius: 60px !important;
+    font-size: 30px !important;
+}
+.md-popup-title-bar .title-bar-title p.title{
+    font-size: 32px !important;
+}
+.md-button-content{
+    font-size: 28px;
+}
+.primary:after{
+    border : transparent !important;
+}
+.md-cashier-channel-item .item-label .title{
+    font-size: 28px !important;
+}

@@ -1,0 +1,83 @@
+.recipeRecord .md-check-group,.recipeRecord .userInfo,.selectStore .userInfo{
+    display: flex;
+    justify-content: space-between;
+}
+.recipeRecord .md-check-group span{
+    height: 66px;
+    line-height: 66px;
+    margin-left: 12px;
+}
+.recipeRecord .userInfo span{
+    font-size: 28px;
+    font-weight: bold;
+}
+.recipeRecord .fold span{
+    font-size: 24px;
+    color: #979797;
+}
+.foldImg img{
+    width: 36px;
+    float: right;
+}
+.block{
+    display: block;
+}
+.none{
+    display: none;
+}
+.recipeRecord .selfButton{
+    margin-bottom: 40px;
+}
+/deep/.md-icon.icon-font.md{
+    font-size: 46px !important;
+}
+.userNum span{
+    padding-top: 0px;
+}
+.recipeRecord .notFound{
+    text-align: center;
+    padding-top: 160px;
+}
+.recipeRecord .notFound p{
+    color: #979797;
+    font-size: 32px;
+    padding: 40px;
+}
+.bButton{
+    display: flex;
+    margin-bottom: 60px;
+}
+.grayButton{
+    display: inline-flex;
+    background-color: #42484A;
+    width: 228px;
+    height: 100px;
+    border-top-left-radius: 64px;
+    border-bottom-left-radius: 64px;
+}
+.grayButton span{
+    color: #fff;
+    line-height: 100px;
+    margin-left: 10px;
+}
+.blueButton{
+    display: inline-block;
+    background-color: #1da1f3;
+    width: 428px;
+    height: 100px;
+    border-top-right-radius: 64px;
+    border-bottom-right-radius: 64px;
+    text-align: center;
+}
+.blueButton span{
+    height: 100px;
+    line-height: 100px;
+    color: #fff;
+}
+.recipeRecord .checkGroup{
+    margin-left: 40px;
+}
+.checkGroup .md-check{
+    height: 92px;
+    line-height: 92px;
+}
