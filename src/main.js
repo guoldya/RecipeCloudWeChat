@@ -7,8 +7,8 @@ import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
 import Search from './components/search/search.vue';
 import Footer from './components/footer/footer.vue';
+import Loading from './components/loading/loading.vue';
 import infiniteScroll from 'vue-infinite-scroll';
-
 import * as mandMobile from 'mand-mobile'
 import 'mand-mobile/lib/mand-mobile.css'
 
@@ -21,6 +21,7 @@ import rater from 'w-rater'
 
 Vue.component('Header', Header);
 Vue.component('Search', Search);
+Vue.component('Loading', Loading);
 Vue.component('Footer', Footer);
 Vue.component('rater', rater);
 Vue.config.productionTip = false;

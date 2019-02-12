@@ -36,27 +36,27 @@
                 <div class="outCarint">
                     <ul class="available-info">
                         <li>
-                            <div>2018-12-25 星期二 上午 华西院区<br/>医疗主治：肾脏内科</div>
+                            <div>上午14:30 - 15:00 华西院区<br/>医疗主治：肾脏内科</div>
                             <div class="available-tag">已满</div>
                         </li>
                         <li>
-                            <div>2018-12-25 星期二 上午 华西院区<br/>医疗主治：肾脏内科</div>
+                            <div>上午14:30 - 15:00 华西院区<br/>医疗主治：肾脏内科</div>
                             <div class="available-tag">已满</div>
                         </li>
                         <li>
-                            <div>2018-12-25 星期二 上午 华西院区<br/>医疗主治：肾脏内科</div>
+                            <div>上午14:30 - 15:00 华西院区<br/>医疗主治：肾脏内科</div>
                             <div class="available-tag">已满</div>
                         </li>
                         <li>
-                            <div>2018-12-25 星期二 上午 华西院区<br/>医疗主治：肾脏内科</div>
+                            <div>上午14:30 - 15:00 华西院区<br/>医疗主治：肾脏内科</div>
                             <div class="available-tag">已满</div>
                         </li>
                         <li>
-                            <div>2018-12-25 星期二 上午 华西院区<br/>医疗主治：肾脏内科</div>
+                            <div>上午14:30 - 15:00 华西院区<br/>医疗主治：肾脏内科</div>
                             <div class="available-tag available-have">余12</div>
                         </li>
                         <li>
-                            <div>2018-12-25 星期二 上午 华西院区<br/>医疗主治：肾脏内科</div>
+                            <div>上午14:30 - 15:00 华西院区<br/>医疗主治：肾脏内科</div>
                             <div class="available-tag">已满</div>
                         </li>
                     </ul>

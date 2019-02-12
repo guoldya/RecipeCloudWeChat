@@ -314,8 +314,8 @@ export default {
 
     function UrlSearch() {
       let name, value;
-      // let str = location.href;
-      let str = "http://192.168.0.26:8080/?drugId=30&TOKEN=6fb89730a632451394edd93c6b1993d1&UUID=f04b86567903f9de"; //取得整个地址栏
+      let str = location.href;
+      //  let str = "http://192.168.0.26:8080/?drugId=30&TOKEN=6fb89730a632451394edd93c6b1993d1&UUID=f04b86567903f9de"; //取得整个地址栏
       let num = str.indexOf("?");
       str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
       _this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;

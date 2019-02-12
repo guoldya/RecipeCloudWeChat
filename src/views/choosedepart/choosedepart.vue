@@ -30,6 +30,8 @@
   </div>
 </template>
 <script type="text/babel">
+let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
+
 export default {
   data() {
     return {
@@ -70,11 +72,24 @@ export default {
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
-      return true;
     } else {
       this.isWeixin = true;
-      return false;
-    }
+    };
+    let _this = this;
+    this.$axios.put(bdHospitalOrg, {
+      orgId: 49
+    }).then((res) => {
+      if (res.data.code == '200') {
+        console.log(res.data);
+      } else {
+        console.log(res.msg);
+      }
+    }).catch(function (err) {
+      console.log(err);
+    });
+
+
+
   },
   methods: {
     switchTo(num) {
