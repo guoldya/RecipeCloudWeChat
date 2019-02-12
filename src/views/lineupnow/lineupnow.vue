@@ -175,6 +175,10 @@ export default {
           el: '.swiper-pagination',
           clickable: true,
         },
+        onInit: function (swiper) {
+          //Swiper初始化了
+          alert(swiper.activeIndex); 
+        },
         loop: true,
         loopedSlides: 10,
         initialSlide: 2,
@@ -182,6 +186,7 @@ export default {
         slidesPerView: "auto",
         centeredSlides: true,
         followFinger: false,
+
       });
       for (let i = 0; i < this.test.length; i++) {
         mySwiper.appendSlide(this.slidedata(this.test[i]));

@@ -2,7 +2,7 @@
     <div class="evaContent">
         <Header post-title="就医评价" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="outCarint" >
+            <div class="outCarint">
                 <div class="card margin16" v-for="item in evaData">
                     <div class="cardText">
                         <div class="listData">
@@ -10,7 +10,7 @@
                             <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater>
                         </div>
                         <div class="listData">
-                                <span style="font-size: 12px;">{{item.date}}</span>
+                            <span style="font-size: 12px;">{{item.date}}</span>
                         </div>
                         <div class="listData">
                             <span>{{item.content}}</span>
@@ -54,30 +54,30 @@
         },
         created() {
 
-        },
-        mounted() {
-            document.title = '就医评价';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
+    },
+    mounted() {
+        document.title = '就医评价';
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            this.isWeixin = false;
+            return true;
+        } else {
+            this.isWeixin = true;
+            return false;
+        }
 
-        },
-        methods: {
+    },
+    methods: {
 
-        },
-        computed: {
+    },
+    computed: {
 
-        },
+    },
 
-    };
+};
 </script>
-<style   scoped>
-   .evaContent .contentName{
-       font-weight: bold;
-   }
+<style  scoped>
+.evaContent .contentName {
+  font-weight: bold;
+}
 </style>

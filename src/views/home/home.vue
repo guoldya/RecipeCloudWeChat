@@ -74,21 +74,33 @@
                     <p>就诊导航</p>
                 </li>
             </ul>
+            测试的code：{{code}}
         </div>
         <Footer></Footer>
     </div>
 
 </template>
 <script>
-
 export default {
     data() {
         return {
-
+            code: 'ss',
         }
     },
     mounted() {
         document.title = '互联网医院';
+        let _this = this;
+        // function UrlSearch() {
+        //     let name, value;
+        //     let str = location.href;
+        //     //   let str = "http://192.168.0.26:8080/?code=6fb89730a632451394edd93c6b1993d1"; //取得整个地址栏
+        //     let num = str.indexOf("?");
+        //     str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+        //     _this.code = str.match(/code=[^&]+/)[0].split("=")[1];
+
+        // };
+        // let Request = new UrlSearch(); //实例化
+
     },
     methods: {
         choosedepart() {
