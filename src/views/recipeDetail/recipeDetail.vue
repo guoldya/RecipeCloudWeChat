@@ -84,14 +84,12 @@ export default {
                 { name: "培哚普利（100mg*7）, 口服（每日三次）每次100mg", num: "115" },
             ],
             isContinue: true,
-            name: null,
         };
     },
     created() {
 
     },
     mounted() {
-        this.name = this.$route.query.name;
         document.title = '处方详情';
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
