@@ -61,6 +61,8 @@ import evaContent from '@/views/evaContent/evaContent.vue'
 import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
 import selectStore from '@/views/selectStore/selectStore.vue'
 import paySuccess from '@/views/paySuccess/paySuccess.vue'
+import recordDetail from '@/views/recordDetail/recordDetail.vue'
+import examineDetail from '@/views/examineDetail/examineDetail.vue'
 
 import storeInfo from '@/views/storeInfo/storeInfo.vue'
 import submitOrder from '@/views/submitOrder/submitOrder.vue'
@@ -378,6 +380,16 @@ export default new Router({
           path: '/paySuccess',
           name: 'paySuccess',
           component: paySuccess,
+      },
+      {
+          path: '/recordDetail',
+          name: 'recordDetail',
+          component: recordDetail,
+      },
+      {
+          path: '/examineDetail',
+          name: 'examineDetail',
+          component: examineDetail,
       },
   ]
 })

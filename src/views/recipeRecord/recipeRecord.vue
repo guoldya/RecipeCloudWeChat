@@ -9,7 +9,7 @@
             </div>
             <div class="outCarint" v-if="titleIndex===0 && notfound==false">
                 <div class="card margin16" v-for="(item,i) in recordData" :key="i">
-                    <div class="cardText">
+                    <div class="cardText leftPart">
                         <div class="moreGroup md-check-group md-example-child md-example-child-check md-example-child-check-1">
                             <md-check-group v-model="favorites" :check="checkedFun(favorites)">
                                 <md-check :name=i.toString() />
@@ -19,13 +19,15 @@
                             <span class="mu-secondary-text-color">{{item.isChecked}}</span>
                         </div>
                         <p class="partLine"></p>
-                        <div class="userInfo">
-                            <span>{{item.add}}</span>
-                            <span>{{item.userName}}</span>
-                            <span>{{item.dept}}</span>
-                        </div>
-                        <div class="fold listData">
-                            <span>上呼吸道感染</span>
+                        <div @click="recordDetail(i)">
+                            <div class="userInfo">
+                                <span>{{item.add}}</span>
+                                <span>{{item.userName}}</span>
+                                <span>{{item.dept}}</span>
+                            </div>
+                            <div class="fold listData">
+                                <span>上呼吸道感染</span>
+                            </div>
                         </div>
                         <div class="foldImg" @click="foldFun(i)">
                             <div>
@@ -43,6 +45,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="bButton">
@@ -259,6 +262,14 @@ export default {
         switchTo(num) {
             this.titleIndex = num;
         },
+        recordDetail(val){
+            this.$store.commit('recordDetailFun', this.recordData[val]);
+            let argu = {};
+            this.$router.push({
+                name: 'recordDetail',
+                query: argu
+            });
+        }
     },
     computed: {
 

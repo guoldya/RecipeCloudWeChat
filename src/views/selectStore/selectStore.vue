@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hospital" v-for="(item,i) in hosData">
+                    <div class="hospital" v-for="(item,i) in hosData" :class="farIndex==3? 'none' : 'block' ">
                         <div style="margin-bottom: 10px">
                             <div class="hosImg" @click="storeInfo">
                                 <img src="@/assets/images/example.png" alt="" style=" ">
@@ -156,7 +156,6 @@ export default {
     created() {
     },
     mounted() {
-        console.log(this.$store.state);
         this.acceptJumpData=this.$store.state.jumpArr;
         document.title = '药店选择';
         var ua = window.navigator.userAgent.toLowerCase();
@@ -379,7 +378,7 @@ export default {
 .filterOpen {
   position: absolute;
   left: 0px;
-  top: 798px;
+  /*top: 798px;*/
   width: 100%;
   z-index: 2;
   background-color: #fff;
