@@ -100,24 +100,13 @@
     </div>
 </template>
 <script type="text/babel">
-import bus from "../../bus/bus"
 export default {
     data() {
         return {
             isWeixin: false,
             imgIndex: null,
             downImg: true,
-            acceptJumpData: [
-                {                    date: "2018-12-11", no: "S0027520", add: "重庆市大大大大医院",
-                    userName: "张三三三", dept: "产科", userData: [
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
-                    ],                },
-                {                    date: "2018-12-11", no: "S0027520", add: "重庆市大大大大医院",
-                    userName: "张三三三", dept: "外科", userData: [
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                    ],                },
-            ],
+            acceptJumpData: [],
             changeTitle: [
                 { title: '综合' },
                 { title: '价格' },
@@ -162,22 +151,13 @@ export default {
                 { title: "到店自提" },
                 { title: "配送到家" },
             ],
-            acceptPar: null,
         };
     },
     created() {
-        bus.$on('getParam', param => {
-            if (param == '666') {
-                console.log(param)
-            }
-        })
     },
-    // beforeDestroy () {
-    //     bus.$off('getParam')
-    // },
     mounted() {
-        console.log(this.$store.state.jumpArr, "测试的选项")
-        this.acceptJumpFun();
+        console.log(this.$store.state);
+        this.acceptJumpData=this.$store.state.jumpArr;
         document.title = '药店选择';
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -199,15 +179,6 @@ export default {
                     this.downImg = true;
                     this.imgIndex = -1;
                 }
-        },
-        acceptJumpFun: function () {
-            this.acceptPar = this.$route.query;
-            console.log(this.acceptPar)
-            // this.jumpArrData=[];
-            // for(let i=0;i<this.acceptPar.length;i++){
-            //     this.jumpArrData.push(this.acceptJumpData[this.acceptPar[i]])
-            // }
-            //.log(this.jumpArrData)
         },
         switchTo(num) {
             this.farIndex = null;

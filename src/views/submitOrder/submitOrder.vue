@@ -8,10 +8,10 @@
                         {{item.title}}
                     </span>
                 </div>
-                <div class="card margin16">
+                <div class="card margin16" v-if="titleIndex===0">
                     <div class="cardText submitUser" @click="acceptAdd">
                         <div class="iconInfo">
-                            <div class="addImg">
+                            <div class="iconImg">
                                 <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
                             </div>
                             <div class="userInfo" v-for="(item,i) in addJumpInfo">
@@ -27,6 +27,27 @@
                         </div>
                         <div  class="addImg nextImg">
                             <img style="height: 18px" src="@/assets/images/icon_more2@2x.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="card margin16" v-if="titleIndex===1">
+                    <div class="cardText submitUser">
+                        <div class="iconInfo">
+                            <div class="iconImg">
+                                <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
+                            </div>
+                            <div class="storeInfo" v-for="(item,i) in storeAdd" :key="i">
+                                <div>
+                                    <div class="myStore">
+                                        <span >药店地址：</span>
+                                        <span style="width: 73%">{{item.add}}</span>
+                                    </div>
+                                    <div>
+                                        <span >电话：</span>
+                                        <span>{{item.tel}}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +77,11 @@
                             </div>
                             <p class="partLine"></p>
                         </div>
-                        <div style="text-align: right">共{{medData.length}}件药品</div>
+                        <div class="smallTotal">
+                            <span>共{{medData.length}}件药品</span>
+                            <span>小计：</span>
+                            <span class="mu-secondary-text-color">￥198.00</span>
+                        </div>
                     </div>
                 </div>
                 <div class="card margin16">
@@ -69,11 +94,18 @@
                             <p class="partLine"></p>
                         </div>
                         <div v-for="(item,i) in priceData" class="subButtom onlinePay">
-                            <div>
+                            <div v-if="titleIndex==0">
                                 <span>{{item.pei}}</span>
                                 <span>￥{{item.peiPri}}</span>
                             </div>
-                            <p class="partLine" v-if="i!=priceData.length-1"></p>
+                            <p class="partLine" v-if="i!=priceData.length-1 && titleIndex==0"></p>
+                            <div v-if="titleIndex==1 && i!==0">
+                                <span>{{item.pei}}</span>
+                                <span>￥{{item.peiPri}}</span>
+                            </div>
+
+                            <p class="partLine" v-if="i!=priceData.length-1 && i!==0 &&titleIndex==1"></p>
+
                         </div>
                     </div>
                 </div>
@@ -81,7 +113,7 @@
                 <div class="md-example-child md-example-child-cashier">
                     <div class="bButton">
                         <div class="grayButton">
-                            <span>应付金额发￥198.00</span>
+                            <span>应付金额￥198.00</span>
                         </div>
                         <div class="blueButton" @click="isCashierhow = !isCashierhow">
                             <span >{{ isCashierhow ? '' : '提交订单' }}</span>
@@ -141,6 +173,7 @@
                 ],
                 addIndex:"0",
                 addJumpInfo:[{name:"土木君",tel:"188****5489",add:"重庆市渝北区仙桃街道xx号",addDefault:"1"}],
+                storeAdd:[{add:"重庆市渝北88号（和平大药房）",tel:"023-52242565"}]
             };
         },
         created() {
@@ -198,7 +231,12 @@
                             buttonText: '好的',
                             handler: () => {
                                 this.isCashierhow = false;
-                                this.$toast.info(/*`${this.cashierResult}点击`*/ `支付成功`)
+                                //this.$toast.info(`${this.cashierResult}点击`)
+                                let argu = {};
+                                this.$router.push({
+                                    name: 'paySuccess',
+                                    query: argu
+                                });
                             },
                         })
                     })
@@ -227,10 +265,12 @@
                 })
             },
             onCashierSelect(item) {
-                console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
+                console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`);
+                this.$store.commit('payWayFun', item);
             },
             onCashierPay(item) {
                 console.log(`[Mand Mobile] Pay ${JSON.stringify(item)}`);
+                this.$store.commit('payWayFun', [item,this.titleIndex]);
                 this.doPay()
             },
             onCashierCancel() {
