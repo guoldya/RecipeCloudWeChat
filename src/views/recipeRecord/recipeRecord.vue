@@ -9,7 +9,7 @@
             </div>
             <div v-if="titleIndex===0 && notfound==false">
                 <div class="card margin16" v-for="(item,i) in recordData" :key="i">
-                    <div class="cardText">
+                    <div class="cardText leftPart">
                         <div class="moreGroup md-check-group md-example-child md-example-child-check md-example-child-check-1">
                             <md-check-group v-model="favorites" :check="checkedFun(favorites)">
                                 <md-check :name=i.toString() />
@@ -19,13 +19,15 @@
                             <span class="mu-secondary-text-color">{{item.isChecked}}</span>
                         </div>
                         <p class="partLine"></p>
-                        <div class="userInfo">
-                            <span>{{item.add}}</span>
-                            <span>{{item.userName}}</span>
-                            <span>{{item.dept}}</span>
-                        </div>
-                        <div class="fold listData">
-                            <span>上呼吸道感染</span>
+                        <div @click="recordDetail(i)">
+                            <div class="userInfo">
+                                <span>{{item.add}}</span>
+                                <span>{{item.userName}}</span>
+                                <span>{{item.dept}}</span>
+                            </div>
+                            <div class="fold listData">
+                                <span>上呼吸道感染</span>
+                            </div>
                         </div>
                         <div class="foldImg" @click="foldFun(i)">
                             <div>
@@ -43,6 +45,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="bButton">
@@ -106,7 +109,6 @@
 </template>
 <script type="text/babel">
 import { Toast } from "mand-mobile"
-import bus from "../../bus/bus"
 export default {
 
     data() {
@@ -118,28 +120,28 @@ export default {
             ],
             titleIndex: 0,
             recordData: [
-                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市大大大大医院",
+                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "张三三三", dept: "产科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                     ],                },
-                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市好大大大医院",
+                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "李四", dept: "外科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市真大大大医院",
+                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市真大大大医院",
+                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市真大大大医院",
+                {                    date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
@@ -156,19 +158,19 @@ export default {
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {                    date: "2018-12-07", no: "S0027520", isChecked: "已失效", add: "重庆市真大大大医院",
+                {                    date: "2018-12-07", no: "S0027520", isChecked: "已失效", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {                    date: "2018-12-06", no: "S0027520", isChecked: "已失效", add: "重庆市真大大大医院",
+                {                    date: "2018-12-06", no: "S0027520", isChecked: "已失效", add: "重庆市演示大医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {                    date: "2018-12-05", no: "S0027520", isChecked: "已失效", add: "重庆市真大大大医院",
+                {                    date: "2018-12-05", no: "S0027520", isChecked: "已失效", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
@@ -243,15 +245,14 @@ export default {
                 }
         },
         selectStore: function () {
-            for (let i = 0; i < this.jumpParams.length; i++) {
-                this.jumpArrData.push(this.recordData[this.jumpParams[i]])
-            }
-            bus.$emit('getParam', '666');
-            this.$store.commit('addjumpArr', this.jumpArrData);
             if (this.favorites.length < 1) {
                 Toast.info('请选择处方');
                 return;
             }
+            for (let i = 0; i < this.jumpParams.length; i++) {
+                this.jumpArrData.push(this.recordData[this.jumpParams[i]])
+            }
+            this.$store.commit('addjumpArr', this.jumpArrData);
             let argu = {};
             this.$router.push({
                 name: 'selectStore',
@@ -261,6 +262,14 @@ export default {
         switchTo(num) {
             this.titleIndex = num;
         },
+        recordDetail(val){
+            this.$store.commit('recordDetailFun', this.recordData[val]);
+            let argu = {};
+            this.$router.push({
+                name: 'recordDetail',
+                query: argu
+            });
+        }
     },
     computed: {
 

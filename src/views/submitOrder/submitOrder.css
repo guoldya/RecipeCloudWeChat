@@ -6,12 +6,11 @@
     justify-content: space-between;
 }
 .submitOrder .submitUser .iconInfo .userInfo{
-    width: 480px;
     margin-left: 10px;
-    /*78*/
 }
 .submitOrder .submitUser .iconInfo{
     display: flex;
+    width: 100%;
 }
 .submitOrder .submitUser .userInfo div span:not(:last-child){
     padding-right: 20px;
@@ -80,4 +79,20 @@
 }
 .md-cashier-channel-item .item-label .title{
     font-size: 28px !important;
+}
+.submitOrder .smallTotal{
+    text-align: right;
+}
+.submitOrder .smallTotal span:first-child{
+    margin-right: 20px;
+}
+.submitOrder .iconImg{
+    display: flex;
+    align-items: center;
+}
+.submitOrder .storeInfo{
+    margin-left: 16px;
+}
+.submitOrder .storeInfo .myStore{
+    display: flex;
 }

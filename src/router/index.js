@@ -60,6 +60,9 @@ import onlineEva from '@/views/onlineEva/onlineEva.vue'
 import evaContent from '@/views/evaContent/evaContent.vue'
 import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
 import selectStore from '@/views/selectStore/selectStore.vue'
+import paySuccess from '@/views/paySuccess/paySuccess.vue'
+import recordDetail from '@/views/recordDetail/recordDetail.vue'
+import examineDetail from '@/views/examineDetail/examineDetail.vue'
 
 import storeInfo from '@/views/storeInfo/storeInfo.vue'
 import submitOrder from '@/views/submitOrder/submitOrder.vue'
@@ -377,6 +380,37 @@ export default new Router({
       name: 'acceptAdd',
       component: acceptAdd,
       meta: { keepAlive: true }
+    },
+    {
+      path: '/storeInfo',
+      name: 'storeInfo',
+      component: storeInfo
+    },
+    {
+      path: '/submitOrder',
+      name: 'submitOrder',
+      component: submitOrder,
+    },
+    {
+      path: '/acceptAdd',
+      name: 'acceptAdd',
+      component: acceptAdd,
+      meta: { keepAlive: true }
+    },
+    {
+      path: '/paySuccess',
+      name: 'paySuccess',
+      component: paySuccess,
+    },
+    {
+      path: '/recordDetail',
+      name: 'recordDetail',
+      component: recordDetail,
+    },
+    {
+      path: '/examineDetail',
+      name: 'examineDetail',
+      component: examineDetail,
     },
   ]
 })

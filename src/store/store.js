@@ -7,12 +7,19 @@ Vue.use(Vuex);
 export default new Vuex.Store({
    state: {
       jumpArr: [],
+       payWay:[],
+       detailData:[]
    },
    mutations: {
       addjumpArr: (state, n) => {
          state.jumpArr = n;
       },
-
+      payWayFun:(state, n) => {
+          state.payWay = n;
+      },
+      recordDetailFun:(state, n) => {
+         state.detailData = n;
+      },
    },
    actions: {
 

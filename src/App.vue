@@ -216,8 +216,7 @@ p {
 .partLine {
   border-bottom: 1px solid #e9e9e9;
   width: 100%;
-  padding: 8px 0px;
-  margin-bottom: 28px;
+  margin: 20px 0px;
 }
 textarea {
   border: none;
