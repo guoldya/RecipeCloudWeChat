@@ -159,8 +159,8 @@ export default {
 .askorder .levle {
   padding: 2px 10px;
   font-size: 20px;
-  color: #1976d2;
-  border: 2px solid #1976d2;
+  color: #1da1f3;
+  border: 2px solid #1da1f3;
   border-radius: 8px;
   position: relative;
   top: 0px;

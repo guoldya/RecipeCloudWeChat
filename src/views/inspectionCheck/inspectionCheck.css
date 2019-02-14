@@ -48,7 +48,7 @@
 }
 
 .listData span {
-   padding: 12px 0px;
+   padding: 6px 0px;
 }
 
 .md-field {
@@ -102,9 +102,10 @@
     border: 2px solid #1da1f3;
     border-radius: 10px;
     color: #1da1f3;
-    padding: 0 12px;
+    padding: 2px 6px;
     height: 52px;
     line-height: 52px;
+    font-size: 22px;
 }
 .headCard{
     display:flex;

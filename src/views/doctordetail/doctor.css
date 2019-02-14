@@ -31,11 +31,11 @@
 
 .workdotorinfo .doctor-tag {
    display: inline-block;
-   color: #1976d2;
+   color: #1da1f3;
    font-size: 22px;
    padding: 4px 15px;
    line-height: 32px;
-   /* border: 2px solid #1976d2; */
+   /* border: 2px solid #1da1f3; */
    border-radius: 30px;
    position: relative;
    top: -5px;
@@ -51,7 +51,7 @@
    margin-right: 10px;
    margin-top: 60px;
    font-size: 32px;
-   background: #1976d2;
+   background: #1da1f3;
    color: #ffffff;
    padding: 10px 40px;
    border-radius: 40px;
@@ -140,8 +140,8 @@
 }
 
 .workdotorinfo .active-tab {
-   color: #1976d2;
-   /* border-bottom: 2px solid #1976d2; */
+   color: #1da1f3;
+   /* border-bottom: 2px solid #1da1f3; */
 }
 
 .available-info:after {
@@ -169,8 +169,8 @@
 }
  
 .available-info .available-have {
-   color: #1976d2;
-   /* border: 2px solid #1976d2; */
+   color: #1da1f3;
+   /* border: 2px solid #1da1f3; */
 }
 
 .doctor-inro {

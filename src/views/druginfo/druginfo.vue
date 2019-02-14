@@ -327,55 +327,53 @@ export default {
         console.log(err);
       });
 
-    this.getGoodslist()
+    this.getGoodslist(false);
     window.payNow = this.payNow;
 
   },
   methods: {
     getGoodslist(flag) {
       const params = {};
-      params.page = this.page;
+      params.pageNumber = this.page;
       params.pageSize = this.pageSize;
       params.productId = this.drugId;
-      this.$axios.put(appbizProductEvaluatereadpage, {
-        params
-      }, {
-          headers: {
-            'TOKEN': `${this.TOKEN}`,
-            'UUID': `${this.UUID}`
-          },
-        }).then((res) => {
-          if (res.data.rows) {
-            this.loadingtrue = false;
-            for (let i = 0; i < res.data.rows.length; i++) {
-              res.data.rows[i].createTime = res.data.rows[i].createTime.split(' ')[0];
-            };
-            if (flag) {
+      this.$axios.put(appbizProductEvaluatereadpage, params, {
+        headers: {
+          'TOKEN': `${this.TOKEN}`,
+          'UUID': `${this.UUID}`
+        },
+      }).then((res) => {
+        if (res.data.rows) {
+          this.loadingtrue = false;
+          for (let i = 0; i < res.data.rows.length; i++) {
+            res.data.rows[i].createTime = res.data.rows[i].createTime.split(' ')[0];
+          };
+          if (flag) {
 
-              this.goodsList = this.goodsList.concat(res.data.rows);  //concat数组串联进行合并
-              if (this.page <= Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-                this.busy = false;
-                this.nomore = false;
-              } else {
-                this.busy = true;
-                this.nomore = true;
-              };
-              console.log(this.nomore, "就是这里")
+            this.goodsList = this.goodsList.concat(res.data.rows);  //concat数组串联进行合并
+            if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+              this.busy = false;
+              this.nomore = false;
             } else {
-              this.goodsList = res.data.rows;
               this.busy = true;
-              if (res.data.total < 10) {
-                this.busy = true;
-                this.nomore = true;
-              } else {
-                this.busy = false;
-                this.nomore = false;
-              }
-            }
+              this.nomore = true;
+            };
+            console.log(this.nomore, "就是这里")
           } else {
-            this.goodsList = []
+            this.goodsList = res.data.rows;
+            this.busy = true;
+            if (res.data.total < 10) {
+              this.busy = true;
+              this.nomore = true;
+            } else {
+              this.busy = false;
+              this.nomore = false;
+            }
           }
-        })
+        } else {
+          this.goodsList = []
+        }
+      })
     },
     sortGoods() {
       this.page = 1;

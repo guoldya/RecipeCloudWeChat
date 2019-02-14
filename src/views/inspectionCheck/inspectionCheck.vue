@@ -1,6 +1,6 @@
 <template>
     <div class="inspectionCheck">
-        <header class="aui-navBar aui-navBar-fixed">
+        <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
             </span>
@@ -38,7 +38,9 @@
                             <span>处方日期：
                                 <span class="mu-secondary-text-color">{{item.date}}</span>
                             </span>
-                            <span class="first" v-if="item.first==1">首诊</span>
+                            <div  v-if="item.first==1">
+                                <span  class="first">首诊</span>
+                            </div>
                         </div>
                         <div class="listData">
                             <span>慢病诊断：

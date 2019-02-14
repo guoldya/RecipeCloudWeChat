@@ -45,13 +45,14 @@
   </div>
 </template>
 <script type="text/babel">
-let appLoginGuploadImage = "/appLogin/uploadImage";
+let uploadImgimage = "/uploadImg/image";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 export default {
   data() {
     return {
       AAA: '',
+      BBB: '',
       isWeixin: false,
       isSon: false,
       isSelectorShow: false,
@@ -80,6 +81,13 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
+    if (this.$store.state.posUrl) {
+      this.posUrl = this.$store.state.posUrl;
+    }
+    if (this.$store.state.othUrl) {
+      this.othUrl = this.$store.state.othUrl;
+    }
+
     if (this.$route.query.isSon * 1 == 2) {
       this.isSon = true;
     }
@@ -102,8 +110,9 @@ export default {
       fileReader.onload = function () {
         that.othUrl = this.result;
       };
-
       this.AAA = e.target.files[0];
+
+
 
     },
     uploadOth(e) {
@@ -114,7 +123,8 @@ export default {
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
         that.posUrl = this.result;
-      }
+      };
+      this.BBB = e.target.files[0];
     },
     showSelector() {
       this.isSelectorShow = true
@@ -128,8 +138,12 @@ export default {
     cardconfirm() {
       let param = new FormData(); //创建form对象
       param.append('file', this.AAA, this.AAA.name);//通过append向form对象添加数据
-      param.append('chunk', '0');//添加form表单中其他数据
-      console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+      param.append('file1', this.BBB, this.BBB.name);//通过append向form对象添加数据
+      // param.append('chunk', '0');//添加form表单中其他数据
+      // let CCC = new FormData(); //创建form对象
+      // CCC.append('file', this.BBB, this.BBB.name);//通过append向form对象添加数据
+      // CCC.append('chunk', '0');//添加form表单中其他数据
+      console.log(param.get('file'), "我有许多小秘密"); //FormData私有类对象， [param,CCC],访问不到，可以通过get判断值是否传进去
       let config = {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -137,18 +151,17 @@ export default {
           'UUID': `AAA`,
         }
       };  //添加请求头
-      this.$axios.post(appLoginGuploadImage, param, config)
+
+      this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
-            console.log(res.data, "我是一个小青龙");
+            console.log(res.data, "我是正面");
+            this.$store.commit('posUrlFun', res.data.data.filename);
+          } else {
+            this.$toast.info(res.data.msg)
           }
-          console.log(res.data, "我是一个小青龙");
         });
-      // let argu = {}
-      // this.$router.push({
-      //   name: 'cardconfirm',
-      //   query: argu
-      // });
+ 
     },
 
   },

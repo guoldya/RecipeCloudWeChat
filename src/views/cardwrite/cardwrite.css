@@ -38,7 +38,7 @@
 
 .timeballline {
    background: #1da1f3;
-   width: 26%;
+   width: 27%;
    height: 3px;
    position: relative;
    top: -120px;
@@ -47,7 +47,7 @@
 
 .timeballline2 {
    background: #e1e1e1;
-   width: 26%;
+   width: 27%;
    height: 3px;
    position: relative;
    top: -122px;
@@ -107,7 +107,7 @@
    height: 100%;
    border: none;
    font-size: 28px;
-   color: #acacac;
+   color: #111a34;
    white-space: nowrap;
    text-overflow: ellipsis;
    overflow: hidden;
