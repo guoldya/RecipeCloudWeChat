@@ -222,7 +222,7 @@ export default new Router({
       path: '/reportinfo',
       name: 'reportinfo',
       component: reportinfo,
-      //meta:{keepAlive:true}
+      //meta: { keepAlive: true }
     },
     {
       path: '/lineupnow',

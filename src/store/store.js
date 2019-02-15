@@ -9,8 +9,6 @@ export default new Vuex.Store({
       jumpArr: [],
        payWay:[],
        detailData:[],
-       checkReportId:[],
-       collectReportData:[],
    },
    mutations: {
       addjumpArr: (state, n) => {
@@ -22,12 +20,6 @@ export default new Vuex.Store({
       recordDetailFun:(state, n) => {
          state.detailData = n;
       },
-      checkReportDetail:(state, n) => {
-         state.checkReportId = n;
-      },
-       collectReportDetail:(state, n) => {
-           state.collectReportData = n;
-       },
    },
    actions: {
 

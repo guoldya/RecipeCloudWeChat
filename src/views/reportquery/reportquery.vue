@@ -1,5 +1,5 @@
 <template>
-  <div class="reportquery">
+  <div class="reportquery" id="product-info">
     <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
@@ -28,7 +28,7 @@
           {{item.title}}
         </span>
       </div>
-      <div v-if="this.active1==0" class="outCarint">
+      <div  v-show="!loadingtrue"  v-if="this.active1==0" class="outCarint">
         <div class="card margin16"  v-for="(item,i) in reportData" :key="i">
           <div class="cardText" @click="checkReportDetail(item.id)">
             <div class="cardTextLeft">
@@ -41,10 +41,22 @@
             </div>
           </div>
         </div>
+        <p v-show="nomore" class="noMore">没有更多数据了</p>
+        <!--<ul v-if="goodsList.length!=0"   class="news-list">-->
+          <!--<li v-for="(item2,index) in goodsList" :key='index' class="border1"  style="height: 50px;">-->
+            <!--<p>{{index}}</p>-->
+          <!--</li>-->
+          <!--<p v-show="nomore" class="noMore">没有更多数据了</p>-->
+        <!--</ul>-->
+        <div v-infinite-scroll="checkLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+            <span v-if="reportData.length!=0&&!nomore">
+              <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+            </span>
+        </div>
       </div>
-      <div v-if="this.active1==1" class="outCarint">
+      <div  v-show="!loadingtrue"  v-if="this.active1==1" class="outCarint">
         <div class="card margin16" v-for="(item,i) in collectData" :key="i">
-          <div class="cardText" @click="collectReportDetail">
+          <div class="cardText" @click="collectReportDetail(item.id)">
             <div class="cardTextLeft">
               <p>患者：{{item.name}}</p>
               <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
@@ -54,18 +66,26 @@
             </div>
           </div>
         </div>
+        <p v-show="nomore" class="noMore">没有更多数据了</p>
+        <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+            <span v-if="collectData.length!=0&&!nomore">
+              <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);text-align: center"></md-icon>
+            </span>
+        </div>
+
       </div>
     </div>
   </div>
 </template>
 <script type="text/babel">
     let bizbizPacsReportreadpage = 'app/bizPacsReport/read/page';
-    let bizbizPacsReportreaddetail = 'app/bizPacsReport/read/detail';
     let bizLisReportreadpage = 'app/bizLisReport/read/page';
-    let bizLisReportreaddetail = 'app/bizLisReport/read/detail';
 export default {
   data() {
     return {
+        loadingtrue: true,
+        busy: true,
+        nomore: false,
       datepick: false,
       date: undefined,
       isWeixin: false,
@@ -103,6 +123,8 @@ export default {
         collectDetailData:[],
         pageSize:10,
         pageNumber:1,
+        checkPageNumber:1,
+        collectPageNumber:1,
         choseValue:'',
     };
   },
@@ -127,49 +149,129 @@ export default {
       this.UUID = Request.UUID;
   },
   methods: {
-      checkReport(){
+
+      checkReport(flag){
           // if(!this.choseValue){
           //     this.choseValue=this.optionsData[0][0].value;
           // }
           let _this = this;
-          this.$axios.put(bizbizPacsReportreadpage,{patientId:parseInt(this.choseValue),pageSize:this.pageSize,pageNumber:this.pageNumber},{
+          let reportParams={};
+          reportParams.patientId=parseInt(this.choseValue);
+          reportParams.pageSize=this.pageSize;
+          reportParams.pageNumber=this.checkPageNumber;
+          this.$axios.put(bizbizPacsReportreadpage,reportParams,{
               headers: {
                   'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
                   'UUID': `AAA`
               },
           }).then((res) => {
-              if (res.data.code == '200') {
-                  this.reportData=res.data.rows;
+              // if (res.data.code == '200') {
+              //     this.reportData=res.data.rows;
+              // }
+              if (res.data.rows) {
+                  this.loadingtrue = false;
+                  if (flag) {
+                      this.reportData = this.reportData.concat(res.data.rows);  //concat数组串联进行合并
+                      if (this.checkPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                          this.busy = false;
+                          this.nomore = false;
+                      } else {
+                          this.busy = true;
+                          this.nomore = true;
+                      };
+                  } else {
+                      this.reportData = res.data.rows;
+                      this.busy = true;
+                      if (res.data.total < 10) {
+                          this.busy = true;
+                          this.nomore = true;
+                      } else {
+                          this.busy = false;
+                          this.nomore = false;
+                      }
+                  }
+              } else {
+                  this.reportData = []
               }
           }).catch(function (err) {
               console.log(err);
           });
       },
-      collectReport(){
+      collectReport(flag){
           // if(!this.choseValue){
           //     this.choseValue=this.optionsData[0][0].value;
           // }
           let _this = this;
-          this.$axios.put(bizLisReportreadpage,{patientId:parseInt(this.choseValue),pageSize:this.pageSize,pageNumber:this.pageNumber},{
+          let collectParams={};
+          collectParams.patientId=parseInt(this.choseValue);
+          collectParams.pageSize=this.pageSize;
+          collectParams.pageNumber=this.collectPageNumber;
+          this.$axios.put(bizLisReportreadpage,collectParams,{
               headers: {
                   'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
                   'UUID': `AAA`
               },
           }).then((res) => {
               if (res.data.code == '200') {
-                  this.collectData=res.data.rows;
+                  if (res.data.rows) {
+                      this.loadingtrue = false;
+                      if (flag) {
+                          this.collectData = this.collectData.concat(res.data.rows);  //concat数组串联进行合并
+                          if (this.collectPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                              this.busy = false;
+                              this.nomore = false;
+                          } else {
+                              this.busy = true;
+                              this.nomore = true;
+                          };
+                          console.log(this.nomore, "就是这里")
+                      } else {
+                          this.collectData = res.data.rows;
+                          this.busy = true;
+                          if (res.data.total < 10) {
+                              this.busy = true;
+                              this.nomore = true;
+                          } else {
+                              this.busy = false;
+                              this.nomore = false;
+                          }
+                      }
+                  } else {
+                      this.collectData = []
+                  }
               }
           }).catch(function (err) {
               console.log(err);
           });
       },
       checkReportDetail(val){
-          // this.$store.commit('checkReportDetail', val);
-          // this.$router.push({
-          //     name: 'reportinfo',
-          // });
+          this.$router.push({
+              name: 'reportinfo',
+              query:{id:val},
+          });
       },
-      collectReportDetail(){},
+      collectReportDetail(val){
+          this.$router.push({
+              name: 'reportinfo',
+              query:{id:val},
+          });
+      },
+      checkLoadMore() {
+          this.busy = true;  //将无限滚动给禁用
+          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+              this.checkPageNumber++;  //滚动之后加载第二页
+              this.checkReport(true);
+          }, 500);
+      },
+      collectLoadMore() {
+          console.log("dong");
+          this.busy = true;  //将无限滚动给禁用
+          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+              this.collectPageNumber++;  //滚动之后加载第二页
+              this.collectReport(true);
+          }, 500);
+      },
+
     switchTo(num) {
       this.active1 = num;
     },

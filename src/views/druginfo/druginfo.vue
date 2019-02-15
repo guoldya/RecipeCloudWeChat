@@ -383,12 +383,12 @@ export default {
     },
     //当属性滚动的时候  加载  滚动加载
     loadMore() {
-      this.busy = true;  //将无限滚动给禁用
-      setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
-        this.page++;  //滚动之后加载第二页
-        this.getGoodslist(true);
-      }, 500);
-    },
+          this.busy = true;  //将无限滚动给禁用
+          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+              this.page++;  //滚动之后加载第二页
+              this.getGoodslist(true);
+          }, 500);
+      },
     select() {
       let _this = this;
       this.$axios.post(appbizCollectionaddCollection, {
