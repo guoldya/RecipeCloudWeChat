@@ -1,8 +1,8 @@
 <template>
 
-  <div class="page-loadmore">
-    <Header post-title="预约记录"></Header>
-    <mu-container style="margin-top:45px;">
+  <div class="appoint">
+    <Header post-title="预约记录" v-show="isWeixin"></Header>
+    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
       <div class="appTab">
         <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
           {{item.title}}
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-    </mu-container>
+    </div>
   </div>
 </template>
 <script  >
@@ -58,6 +58,7 @@ export default {
   data() {
     return {
       active1: 0,
+      isWeixin: false,
       time: [
         { title: '待支付' },
         { title: '预约成功' },
@@ -69,7 +70,13 @@ export default {
 
   },
   mounted() {
-
+    document.title = '预约记录';
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      this.isWeixin = false;
+    } else {
+      this.isWeixin = true;
+    };
   },
   methods: {
     appointinfo: function (value) {
@@ -91,4 +98,7 @@ export default {
 };
 </script>
  <style   scoped>
+.appoint .card {
+  margin-bottom: 32px;
+}
 </style>

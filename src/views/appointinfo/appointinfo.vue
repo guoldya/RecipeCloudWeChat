@@ -1,11 +1,10 @@
 <template>
-
-  <div class="page-loadmore">
-    <Header post-title="预约记录"></Header>
-    <div style="margin:10px">
+  <div class="appointinfo">
+    <Header post-title="预约记录详情" v-show="isWeixin"></Header>
+    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
       <div class="card">
         <div class="cardText">
-          <a class="headimg"> <img src="@/assets/images/3.jpg" alt="店铺头像"></a>
+          <a class="headimg" style="margin-right:5px"> <img src="@/assets/images/3.jpg" alt="店铺头像"></a>
           <h1 class="titleh1">演示医院</h1>
           <p>地址：成都市武侯区</p>
           <p class="mu-secondary-text-color">预约成功</p>
@@ -31,9 +30,8 @@
         <p>3、如需退号，请提前两天进行操作</p>
         <p>4、一个自然月内只能退三次号</p>
       </div>
-      <mu-flex justify-content="center" align-items="center">
-        <mu-button full-width round color="primary">申请退号</mu-button>
-      </mu-flex>
+
+      <md-button type="primary" round @click="tijiao">申请退号</md-button>
     </div>
   </div>
 </template>
@@ -42,6 +40,7 @@ export default {
   data() {
     return {
       active1: 0,
+      isWeixin: false,
       normal: {
         checkbox: true,
         radio: 1,
@@ -58,7 +57,13 @@ export default {
 
   },
   mounted() {
-
+    document.title = '预约记录';
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+      this.isWeixin = false;
+    } else {
+      this.isWeixin = true;
+    };
   },
   methods: {
     switchTo(num) {
@@ -78,31 +83,18 @@ export default {
 };
 </script>
  <style   scoped>
- 
-
 .titleh1 {
-  font-size: 17px;
+  font-size: 34px;
 }
 
-.card {
-  margin-top: 14px;
-}
-.card:first-child {
-  margin-top: 64px;
-}
-.cardText {
-  padding: 16px;
-  font-size: 14px;
-  color: #333333;
-}
 .card p {
-  line-height: 25px;
+  line-height: 50px;
 }
 .warnText {
   font-size: 24px;
   color: #afafaf;
 }
-.mu-raised-button {
-  height: 45px;
+.appointinfo .card {
+  margin-bottom: 32px;
 }
 </style>

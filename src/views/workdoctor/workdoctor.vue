@@ -6,6 +6,7 @@
         <span class="date_today">{{choosedate}}</span>
         <a @click="isSeemore=!isSeemore" id="date_btn" class="change_date" href="javascript:void(0);">更多时间
           <span :class="{'time_btn':true,'tinmdown':!isSeemore,'tinmup':isSeemore}"  ></span>
+          <span :class="{'time_btn':true,'tinmdown':!isSeemore,'tinmup':isSeemore}"></span>
         </a>
       </div>
       <div class="yy_date_wrap">
@@ -28,6 +29,52 @@
             <span>剩 13</span>
           </span>
         </div>
+      </div>
+      <div class="doctorList outCarint margin16">
+        <ul>
+          <li>
+            <div class="card" @click="intodoctordetail">
+              <div class="cardText">
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+                <div>
+                  <p class="headname">刘秀娟
+                    <span class="levle">主任医师</span>
+                    <span class="have">余56</span>
+                  </p>
+                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="card" @click="intodoctordetail">
+              <div class="cardText">
+                <div class="headimg"><img src="https://kano.guahao.cn/iPb2687320_image140.jpg?timestamp=1504077956258" alt="医生头像"></div>
+                <div>
+                  <p class="headname">孙强
+                    <span class="levle">副主任医师</span>
+                    <span class="have">余56</span>
+                  </p>
+                  <p class="headdesc">擅长:前列腺增生微创治疗、腹腔镜及输尿管镜等腔内泌尿外科、泌尿系肿瘤的诊...</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="card" @click="intodoctordetail">
+              <div class="cardText">
+                <div class="headimg"><img src="https://kano.guahao.cn/u0w2684511_image140.jpg" alt="医生头像"></div>
+                <div>
+                  <p class="headname">胡必杰
+                    <span class="levle">主任医师</span>
+                    <span class="have">余56</span>
+                  </p>
+                  <p class="headdesc">擅长:心脏病的临床诊断，心血管影像诊断，尤其是各种冠心病治疗方法的合理选择。</p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -210,5 +257,66 @@
     color: #fff;
     background-color: #f6a120;
   }
+
+.yy_date {
+  width: 100%;
+  height: 98px;
+  overflow: hidden;
+  font-size: 0;
+  border-bottom: 1px solid #ececec;
+  background-color: #fff;
+}
+.yy_dateAA {
+  height: auto;
+}
+.yy_date_today {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 80px;
+  font-size: 14px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+}
+.yy_date_today a {
+  font-size: 12px;
+  color: #24a5f1;
+}
+.yy_date_wrap .wx_week {
+  height: 72px;
+  overflow: hidden;
+  font-size: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+.yy_date_wrap .wx_week a {
+  display: inline-block;
+  width: 14.2%;
+  padding: 20px 0;
+  font-size: 24px;
+  text-align: center;
+  color: #1c1c1c;
+}
+.yy_date > div {
+  display: inline-block;
+  width: 14.2%;
+  height: 96px;
+  padding: 10px 0;
+  font-size: 0;
+  text-align: center;
+}
+
+.yy_date .state_full {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  padding: 4px 0 0;
+  text-align: center;
+  font-size: 24px;
+  color: #8b8b8b;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
 </style>
 

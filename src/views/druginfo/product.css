@@ -22,6 +22,15 @@ textarea {
    padding: 0 10px;
 }
 
+.nullDurg {
+   text-align: center;
+}
+
+.nullDurg img {
+   width: 50%;
+   margin: 100px;
+}
+
 #product-info .aui-title {
    font-size: 36px;
    margin-left: 25%
@@ -83,12 +92,12 @@ textarea {
 }
 
 .starleft {
-   width: 60%;
+   width: 50%;
    float: left;
 }
 
 .dateRight {
-   width: 40%;
+   width: 50%;
    float: right;
    text-align: right;
    top: 10px;
@@ -295,7 +304,7 @@ button :active {
 .drugStoreName {
    overflow: hidden;
    white-space: nowrap;
-   width: 170px;
+   width: 400px;
    word-break: keep-all;
    text-overflow: ellipsis;
    display: block;
@@ -336,4 +345,17 @@ button :active {
 
 .dateRight .star {
    display: block;
+}
+
+.cainter h1 {
+   font-size: 36px;
+   letter-spacing: 1px;
+}
+
+.cainter {
+   margin: 0 24px;
+}
+
+.articlecontent p {
+   line-height: 50px;
 }
