@@ -28,7 +28,7 @@
           {{item.title}}
         </span>
       </div>
-      <div  v-show="!loadingtrue"  v-if="this.active1==0" class="outCarint">
+      <div  v-if="this.active1==0" class="outCarint">
         <div class="card margin16"  v-for="(item,i) in reportData" :key="i">
           <div class="cardText" @click="checkReportDetail(item.id)">
             <div class="cardTextLeft">
@@ -42,34 +42,28 @@
           </div>
         </div>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
-        <!--<ul v-if="goodsList.length!=0"   class="news-list">-->
-          <!--<li v-for="(item2,index) in goodsList" :key='index' class="border1"  style="height: 50px;">-->
-            <!--<p>{{index}}</p>-->
-          <!--</li>-->
-          <!--<p v-show="nomore" class="noMore">没有更多数据了</p>-->
-        <!--</ul>-->
         <div v-infinite-scroll="checkLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
             <span v-if="reportData.length!=0&&!nomore">
               <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
             </span>
         </div>
       </div>
-      <div  v-show="!loadingtrue"  v-if="this.active1==1" class="outCarint">
+      <div v-if="this.active1==1" class="outCarint">
         <div class="card margin16" v-for="(item,i) in collectData" :key="i">
           <div class="cardText" @click="collectReportDetail(item.id)">
             <div class="cardTextLeft">
               <p>患者：{{item.name}}</p>
               <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
             </div>
-            <div class="cardTextRight">
+            <div class="cardTextRig">
               <img src="@/assets/images/icon_more2@2x.png" alt="">
             </div>
           </div>
         </div>
-        <p v-show="nomore" class="noMore">没有更多数据了</p>
-        <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
-            <span v-if="collectData.length!=0&&!nomore">
-              <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);text-align: center"></md-icon>
+        <p v-show="collectNomore" class="nomore">没有更多数据了</p>
+        <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="collectBusy" infinite-scroll-distance="30" class="clearfix">
+            <span v-if="collectData.length!=0&&!collectNomore" style="text-align: center">
+              <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);"></md-icon>
             </span>
         </div>
 
@@ -85,7 +79,9 @@ export default {
     return {
         loadingtrue: true,
         busy: true,
+        collectBusy: true,
         nomore: false,
+        collectNomore: false,
       datepick: false,
       date: undefined,
       isWeixin: false,
@@ -122,7 +118,6 @@ export default {
         collectData:[],
         collectDetailData:[],
         pageSize:10,
-        pageNumber:1,
         checkPageNumber:1,
         collectPageNumber:1,
         choseValue:'',
@@ -218,23 +213,24 @@ export default {
                       if (flag) {
                           this.collectData = this.collectData.concat(res.data.rows);  //concat数组串联进行合并
                           if (this.collectPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-                              this.busy = false;
-                              this.nomore = false;
+                              this.collectBusy = false;
+                              this.collectNomore = false;
                           } else {
-                              this.busy = true;
-                              this.nomore = true;
-                          };
-                          console.log(this.nomore, "就是这里")
+                              this.collectBusy = true;
+                              this.collectNomore = true;
+                          }
+                          console.log(this.collectNomore, "就是这里")
                       } else {
                           this.collectData = res.data.rows;
-                          this.busy = true;
+                          this.collectBusy = true;
                           if (res.data.total < 10) {
-                              this.busy = true;
-                              this.nomore = true;
+                              this.collectBusy = true;
+                              this.collectNomore = true;
                           } else {
-                              this.busy = false;
-                              this.nomore = false;
+                              this.collectBusy = false;
+                              this.collectNomore = false;
                           }
+                          console.log(this.collectBusy,"this.collectBusy")
                       }
                   } else {
                       this.collectData = []
@@ -256,21 +252,7 @@ export default {
               query:{id:val},
           });
       },
-      checkLoadMore() {
-          this.busy = true;  //将无限滚动给禁用
-          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
-              this.checkPageNumber++;  //滚动之后加载第二页
-              this.checkReport(true);
-          }, 500);
-      },
-      collectLoadMore() {
-          console.log("dong");
-          this.busy = true;  //将无限滚动给禁用
-          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
-              this.collectPageNumber++;  //滚动之后加载第二页
-              this.collectReport(true);
-          }, 500);
-      },
+
 
     switchTo(num) {
       this.active1 = num;
@@ -316,6 +298,21 @@ export default {
         )}`,
       )
     },
+      checkLoadMore() {
+          this.busy = true;  //将无限滚动给禁用
+          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+              this.checkPageNumber++;  //滚动之后加载第二页
+              this.checkReport(true);
+          }, 500);
+      },
+      collectLoadMore() {
+          console.log("dong");
+          this.collectBusy = true;  //将无限滚动给禁用
+          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+              this.collectPageNumber++;  //滚动之后加载第二页
+              this.collectReport(true);
+          }, 500);
+      },
   },
   computed: {
 

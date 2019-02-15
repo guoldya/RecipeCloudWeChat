@@ -35,6 +35,10 @@
    margin-top: 70px;
    width: 20px;
 }
+.reportquery .cardTextRig img {
+   margin-top: 40px;
+   width: 20px;
+}
 
 .reportquery .md-drop-menu-bar {
    z-index: 0;
@@ -67,6 +71,9 @@
    display: flex;
    justify-content: space-around;
    font-size: 28px;
+}
+.reportquery .nomore{
+   text-align: center;
 }
 
  
