@@ -72,12 +72,17 @@ export default {
         { title: '预约成功' },
         { title: '预约关闭' }
       ],
+        reportInfoData:[],
     };
   },
   created() {
 
   },
   mounted() {
+      this.reportInfoData=this.$store.state.checkReportId;
+      console.log(this.$store.state);
+      //console.log(this.$store.state.checkReportData);
+      console.log(this.reportInfoData);
     document.title = '检查报告详情';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -103,7 +108,26 @@ export default {
       } else {
         return 'background-color:#abc'
       }
-    }
+    },
+      checkReportDetail(val){
+          let _this = this;
+          this.$axios.put(bizbizPacsReportreaddetail,{id:val,pageSize:this.pageSize,pageNumber:this.pageNumber},{
+              headers: {
+                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                  'UUID': `AAA`
+              },
+          }).then((res) => {
+              if (res.data.code == '200') {
+                  this.reportDetailData=res.data.data;
+                  this.$store.commit('checkReportDetail', this.reportDetailData);
+              }
+          }).catch(function (err) {
+              console.log(err);
+          });
+          this.$router.push({
+              name: 'reportinfo',
+          });
+      },
   },
   computed: {
 

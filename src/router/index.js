@@ -63,6 +63,7 @@ import selectStore from '@/views/selectStore/selectStore.vue'
 import paySuccess from '@/views/paySuccess/paySuccess.vue'
 import recordDetail from '@/views/recordDetail/recordDetail.vue'
 import examineDetail from '@/views/examineDetail/examineDetail.vue'
+import examineOrder from '@/views/examineOrder/examineOrder.vue'
 
 import storeInfo from '@/views/storeInfo/storeInfo.vue'
 import submitOrder from '@/views/submitOrder/submitOrder.vue'
@@ -215,7 +216,8 @@ export default new Router({
     {
       path: '/reportinfo',
       name: 'reportinfo',
-      component: reportinfo
+      component: reportinfo,
+      //meta:{keepAlive:true}
     },
     {
       path: '/lineupnow',
@@ -390,6 +392,11 @@ export default new Router({
           path: '/examineDetail',
           name: 'examineDetail',
           component: examineDetail,
+      },
+      {
+          path: '/examineOrder',
+          name: 'examineOrder',
+          component: examineOrder,
       },
   ]
 })

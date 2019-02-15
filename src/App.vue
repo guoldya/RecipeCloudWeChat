@@ -197,7 +197,7 @@ p {
 }
 .appTab span {
   padding: 0 8px 8px;
-  font-size: 32px;
+  font-size: 28px;
 }
 
 .appTabAcitive {
@@ -208,7 +208,7 @@ p {
   color: #1da1f3;
 }
 .partLine {
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 2px solid #e9e9e9;
   width: 100%;
   margin: 20px 0px;
 }

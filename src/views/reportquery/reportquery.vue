@@ -1,33 +1,40 @@
 <template>
   <div class="reportquery">
-    <Header post-title="报告查询" v-show="isWeixin"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true}">
-      <div class="user">
-        <md-field>
-          <md-field-item title="选择患者" align="left" :content="selectorValue" @click="showSelector" down solid />
-        </md-field>
-        <md-field-item style="padding: 10px 0" name="name" title="选择时间" align="left" :content="datePickerValue" @click.native="isDatePickerShow = true">
-        </md-field-item>
-        <div class="datepick">
-          <!-- <span :class="{'mu-secondary-text-color':datepick}">选择时间<img v-if="!datepick" src="@/assets/images/icon_open@2x.png">
-            <img v-else src="@/assets/images/icon_open_pre@2x.png">
-          </span> -->
-
-        </div>
-        <md-selector v-model="isSelectorShow" default-value="2" :data="data111" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
+    <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
+            <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
+                <img src="@/assets/images/icon_back.png">
+            </span>
+      <div class="aui-center">
+        <span class="aui-center-title">报告查询</span>
       </div>
-      <div class="appTab" style="margin-top:20px">
+      <span class="aui-navBar-item">
+          <div>
+            <md-field>
+              <md-field-item :content="selectorValue" @click="showSelector" solid/>
+            </md-field>
+            <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData[0]" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
+          </div>
+          <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
+      </span>
+    </header>
+    <div :class="{margin45:isWeixin,outCarint:true}">
+      <div class="timeTab" style="margin-top:20px">
+        <span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">
+          {{item.title}}
+        </span>
+      </div>
+      <div class="appTab">
         <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
           {{item.title}}
         </span>
       </div>
-      <div v-if="this.active1==0">
-        <div class="card">
-          <div class="cardText" @click="intoreportinfo">
+      <div v-if="this.active1==0" class="outCarint">
+        <div class="card margin16"  v-for="(item,i) in reportData" :key="i">
+          <div class="cardText" @click="checkReportDetail(item.id)">
             <div class="cardTextLeft">
-              <p>患者：演示医院</p>
-              <p>医院：演示医院</p>
-              <p>报告：血液分析/CPRRP （2019-02-28）</p>
+              <p>患者：{{item.name}}</p>
+              <p>医院：{{item.hospital}}</p>
+              <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
             </div>
             <div class="cardTextRight">
               <img src="@/assets/images/icon_more2@2x.png" alt="">
@@ -35,13 +42,12 @@
           </div>
         </div>
       </div>
-      <div v-if="this.active1==1">
-        <div class="card">
-          <div class="cardText" @click="intoreportinfo">
+      <div v-if="this.active1==1" class="outCarint">
+        <div class="card margin16" v-for="(item,i) in collectData" :key="i">
+          <div class="cardText" @click="collectReportDetail">
             <div class="cardTextLeft">
-              <p>检查报告</p>
-              <p>医院：演示医院</p>
-              <p>报告：血液分析/CPRRP （2019-02-28）</p>
+              <p>患者：{{item.name}}</p>
+              <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
             </div>
             <div class="cardTextRight">
               <img src="@/assets/images/icon_more2@2x.png" alt="">
@@ -49,11 +55,14 @@
           </div>
         </div>
       </div>
-      <md-date-picker ref="datePicker" v-model="isDatePickerShow" type="custom" title="选择出险时间" :text-render="textRender" :custom-types="['yyyy', 'MM','dd', 'hh', 'mm']" :default-date="currentDate" @change="onDatePickerChange" @confirm="onDatePickerConfirm"></md-date-picker>
     </div>
   </div>
 </template>
 <script type="text/babel">
+    let bizbizPacsReportreadpage = 'app/bizPacsReport/read/page';
+    let bizbizPacsReportreaddetail = 'app/bizPacsReport/read/detail';
+    let bizLisReportreadpage = 'app/bizLisReport/read/page';
+    let bizLisReportreaddetail = 'app/bizLisReport/read/detail';
 export default {
   data() {
     return {
@@ -61,83 +70,49 @@ export default {
       date: undefined,
       isWeixin: false,
       isDatePickerShow: false,
-      selected3: 55,
       active1: 0,
+      reportactive1: 0,
       departs: [
         { title: '检查报告' },
         { title: '检验报告' },
       ],
-      citys: [
-        { name: '妇科', value: 1 },
-        { name: '内科', value: 2 },
-        { name: '外科', value: 31 },
-        { name: '生殖内分泌', value: 55 },
-      ],
-      text: '一级选项1',
-      options: [
-        {
-          value: '0',
-          text: '二级选项1',
-        },
-        {
-          value: '1',
-          text: '二级选项2',
-        },
-      ],
       isSelectorShow: false,
-      data111:
-        [
-          {
-            value: '1',
-            text: '患者一',
-          },
-          {
-            value: '2',
-            text: '患者二',
-          },
-          {
-            value: '3',
-            text: '患者三',
-          },
-          {
-            value: '4',
-            text: '患者四',
-          },
-          {
-            value: '5',
-            text: '患者五',
-          },
-          {
-            value: '6',
-            text: '患者六',
-          },
-          {
-            value: '7',
-            text: '患者七',
-          },
-          {
-            value: '8',
-            text: '患者八',
-          },
-          {
-            value: '9',
-            text: '患者九',
-          },
-          {
-            value: '10',
-            text: '患者十',
-          },
-        ],
-      selectorValue: '患者二',
-      currentDate: new Date(),
-      isDatePickerShow: false,
-      datePickerValue: '',
+        optionsData: [[
+            { text: "范冰冰", value: "1" },
+            { text: "郑凯", value: "2" },
+            { text: "邓超", value: "3" },
+            { text: '孙俪', value: "4" },
+            { text: '王祖蓝', value: "5" },
+            { text: '薛之谦', value: "6" },
+            { text: '陈楚生', value: "7" },
+            { text: "张信哲", value: "8" },
+            { text: "汪涵", value: "9" },
+            { text: "李晨", value: "10" },
+        ]],
+      selectorValue: '',
+      reportTime:[
+          {title:'本周'},
+          {title:'半年'},
+          {title:'今年'},
+      ],
+        TOKEN: '',
+        UUID: '',
+        reportData:[],
+        reportDetailData:[],
+        collectData:[],
+        collectDetailData:[],
+        pageSize:10,
+        pageNumber:1,
+        choseValue:'',
     };
   },
   created() {
 
   },
   mounted() {
+      this.checkReport();
+      this.collectReport();
+      this.selectorValue=this.optionsData[0][0].text;
     document.title = '报告查询';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -147,19 +122,70 @@ export default {
       this.isWeixin = true;
       return false;
     }
+      let Request = new UrlSearch(); //实例化
+      this.TOKEN = Request.TOKEN;
+      this.UUID = Request.UUID;
   },
   methods: {
+      checkReport(){
+          // if(!this.choseValue){
+          //     this.choseValue=this.optionsData[0][0].value;
+          // }
+          let _this = this;
+          this.$axios.put(bizbizPacsReportreadpage,{patientId:parseInt(this.choseValue),pageSize:this.pageSize,pageNumber:this.pageNumber},{
+              headers: {
+                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                  'UUID': `AAA`
+              },
+          }).then((res) => {
+              if (res.data.code == '200') {
+                  this.reportData=res.data.rows;
+              }
+          }).catch(function (err) {
+              console.log(err);
+          });
+      },
+      collectReport(){
+          // if(!this.choseValue){
+          //     this.choseValue=this.optionsData[0][0].value;
+          // }
+          let _this = this;
+          this.$axios.put(bizLisReportreadpage,{patientId:parseInt(this.choseValue),pageSize:this.pageSize,pageNumber:this.pageNumber},{
+              headers: {
+                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                  'UUID': `AAA`
+              },
+          }).then((res) => {
+              if (res.data.code == '200') {
+                  this.collectData=res.data.rows;
+              }
+          }).catch(function (err) {
+              console.log(err);
+          });
+      },
+      checkReportDetail(val){
+          // this.$store.commit('checkReportDetail', val);
+          // this.$router.push({
+          //     name: 'reportinfo',
+          // });
+      },
+      collectReportDetail(){},
     switchTo(num) {
       this.active1 = num;
     },
+      timeSwitchTo(num) {
+          this.reportactive1 = num;
+      },
     datePick() {
       this.datepick = !this.datepick
     },
     showSelector() {
       this.isSelectorShow = true
     },
-    onSelectorChoose({ text }) {
-      this.selectorValue = text
+    onSelectorChoose({ text,value }) {
+      this.selectorValue = text;
+      this.choseValue=value;
+        this.checkReport();
     },
     intoreportinfo() {
       let argu = {}
@@ -187,10 +213,6 @@ export default {
           value,
         )}`,
       )
-    },
-    onDatePickerConfirm(columnsValue) {
-      console.log(`[Mand Mobile] DatePicker Confirm\nvalue: ${JSON.stringify(columnsValue)}`)
-      this.datePickerValue = this.$refs.datePicker.getFormatDate('yyyy/MM/dd hh:mm')
     },
   },
   computed: {

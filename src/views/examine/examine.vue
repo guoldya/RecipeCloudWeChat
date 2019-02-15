@@ -7,30 +7,25 @@
                     {{item.title}}
                 </span>
             </div>
-            <div class="outCarint" v-if="titleIndex===0">
+            <div class="outCarint" v-if="titleIndex==0">
                 <div class="card margin16" v-for="(item,i) in examineData" :key="i">
                     <div class="cardText">
                         <div class="listData">
-                            <span>{{item.name}}（{{item.thing}}）</span>
-                            <span>{{item.date}}</span>
+                            <span>{{item.patientName}}（{{item.className}}）</span>
+                            <span>{{nowDate}}</span>
                         </div>
                         <p style="border-bottom: 1px solid #e9e9e9;margin: 6px 0px"></p>
                         <div class="listData">
                             <span>开单时间：
-                                <span class="mu-secondary-text-color">{{item.name}}</span>
+                                <span class="mu-secondary-text-color">{{item.createTime}}</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>科室：
-                                <span class="mu-secondary-text-color">{{item.dept}}</span>
+                                <span class="mu-secondary-text-color">{{item.examDept}}（{{item.hospital}}）</span>
                             </span>
                         </div>
-                        <div class="listData">
-                            <span>开单时间：
-                                <span class="mu-secondary-text-color">{{item.name}}</span>
-                            </span>
-                        </div>
-                        <div class="nowOrder">
+                        <div class="nowOrder" @click="rightNowOrder">
                             <span>立即预约</span>
                         </div>
                         <div style="clear: both"></div>
@@ -42,23 +37,23 @@
                 <div class="card margin16" v-for="(item,i) in orderRecord" :key="i">
                     <div class="cardText">
                         <div class="listData">
-                            <span>{{item.name}}（{{item.item}}）</span>
-                            <span class="mu-secondary-text-color">{{item.status}}</span>
+                            <span>{{item.patientName}}（{{item.className}}）</span>
+                            <span class="mu-secondary-text-color">{{item.status | statusFilter}}</span>
                         </div>
                         <p style="border-bottom: 1px solid #e9e9e9;margin: 6px 0px"></p>
                         <div class="listData">
                             <span>预约科室：
-                                <span class="mu-secondary-text-color">{{item.dept}}</span>
+                                <span class="mu-secondary-text-color">{{item.examDept}}（{{item.hospital}}）</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>预约项目：
-                                <span class="mu-secondary-text-color">{{item.thing}}</span>
+                                <span class="mu-secondary-text-color">{{item.className}}</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>预约日期：
-                                <span class="mu-secondary-text-color">{{item.date}}</span>
+                                <span class="mu-secondary-text-color">{{item.serialTime}}</span>
                             </span>
                         </div>
                     </div>
@@ -69,6 +64,7 @@
     </div>
 </template>
 <script type="text/babel">
+    let bizExamApplyreadpage = 'app/bizExamApply/read/page';
     export default {
         data() {
             return {
@@ -78,20 +74,65 @@
                     { title: '预约记录' },
                 ],
                 titleIndex: 0,
-                examineData:[
-                    {name:"张三",thing:"B超预约",date:"2019-01-11",orderTime:"2019-01-09",dept:"彩超室（礼嘉院区）"},
-                    {name:"张三",thing:"采血预约",date:"2019-01-11",orderTime:"2019-01-09",dept:"检验科（礼嘉院区）"}
-                ],
-                orderRecord:[
-                    {name:"张三",date:"2019年1月20日 07:00—08:00",thing:"静脉采血",status:"检查中",item:"采血预约",dept:"彩超室（礼嘉院区）"},
-                    {name:"张三",date:"2019年1月20日 07:00—08:00",thing:"腹部B超",status:"预约成功",item:"B超预约",dept:"检验科（礼嘉院区）"}
-                ],
+                examineData:[],
+                orderRecord:[],
+                TOKEN: '',
+                UUID: '',
+                nowDate:"",
+                pageSize:10,
+                pageNumber:1,
             };
+        },
+        filters:{
+            statusFilter: function (value) {
+                if(value=="1"){
+                    return "已预约"
+                }else if(value=="2"){
+                    return "已检查"
+                }else if(value=="3"){
+                    return "检查中"
+                }
+            },
+
         },
         created() {
 
         },
         mounted() {
+            let _this = this;
+            this.$axios.put(bizExamApplyreadpage,{status:0,pageSize:this.pageSize,pageNumber:this.pageNumber},{
+                headers: {
+                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                    'UUID': `AAA`
+                },
+            }).then((res) => {
+                if (res.data.code == '200') {
+                    this.examineData=res.data.rows;
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+
+            this.$axios.put(bizExamApplyreadpage,{applyRecord:'Y',pageSize:this.pageSize,pageNumber:this.pageNumber},{
+                headers: {
+                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                    'UUID': `AAA`
+                },
+            }).then((res) => {
+                if (res.data.code == '200') {
+                    this.orderRecord=res.data.rows;
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+            let myDate = new Date();
+            let month=myDate.getMonth();
+            let day=myDate.getDate();
+            month = month <= 9 ? "0" +(month+1) : (month+1);
+            day = day<= 9 ? "0" + day : day;
+
+            this.nowDate=myDate.getFullYear()+'-'+month+'-'+day;
+
             document.title = '检验检查';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -102,11 +143,25 @@
                 return false;
             }
 
+
+
+            let Request = new UrlSearch(); //实例化
+            this.TOKEN = Request.TOKEN;
+            this.UUID = Request.UUID;
+
+
         },
         methods: {
             switchTo(num) {
                 this.titleIndex = num;
             },
+            rightNowOrder(){
+                let argu = {};
+                this.$router.push({
+                    name: 'examineOrder',
+                    query: argu
+                });
+            }
         },
         computed: {
 
