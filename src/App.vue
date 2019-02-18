@@ -253,4 +253,7 @@ textarea::-webkit-input-placeholder {
 .default:after {
   border: 1px solid #43484b !important;
 }
+  .textCenter{
+    text-align: center;
+  }
 </style>

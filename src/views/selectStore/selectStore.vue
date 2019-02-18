@@ -166,6 +166,7 @@ export default {
             this.isWeixin = true;
             return false;
         }
+
     },
     methods: {
         foldFun: function (val) {

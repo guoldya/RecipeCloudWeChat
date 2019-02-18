@@ -1,5 +1,5 @@
 <template>
-  <div class="reportquery" id="product-info">
+  <div class="reportquery">
     <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
@@ -48,7 +48,7 @@
             </span>
         </div>
       </div>
-      <div v-if="this.active1==1" class="outCarint">
+      <div v-else class="outCarint">
         <div class="card margin16" v-for="(item,i) in collectData" :key="i">
           <div class="cardText" @click="collectReportDetail(item.id)">
             <div class="cardTextLeft">
@@ -66,7 +66,6 @@
               <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);"></md-icon>
             </span>
         </div>
-
       </div>
     </div>
   </div>
@@ -241,12 +240,14 @@ export default {
           });
       },
       checkReportDetail(val){
+          this.$store.commit('activeFun', this.active1);
           this.$router.push({
               name: 'reportinfo',
               query:{id:val},
           });
       },
       collectReportDetail(val){
+          this.$store.commit('activeFun', this.active1);
           this.$router.push({
               name: 'reportinfo',
               query:{id:val},
