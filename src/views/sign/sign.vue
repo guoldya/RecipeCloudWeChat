@@ -133,12 +133,12 @@ export default {
           map.panTo(r.point);
           var pointA = new BMap.Point(r.point.lng, r.point.lat);  // 创建点坐标A--大渡口区
           var pointB = new BMap.Point(_this.pointBposition, e);  // 创建点坐标B--江北区
-          console.log('当前所在的位置到江北区的距离是：' + (map.getDistance(pointA, pointB)).toFixed(2) + ' 米。');  //获
           if ((map.getDistance(pointA, pointB)).toFixed(2) * 1 <= 300) {
             _this.ishave = true;
           } else {
             _this.ishave = false;
           }
+          alert('当前所在的位置到江北区的距离是：' + (map.getDistance(pointA, pointB)).toFixed(2) + ' 米。');  //获
           // alert('您的位置：' + r.point.lng+','+r.point.lat);
         }
         else {

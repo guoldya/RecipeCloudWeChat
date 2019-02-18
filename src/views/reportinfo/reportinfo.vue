@@ -2,61 +2,69 @@
 
   <div class="reportinfo">
     <Header post-title="检查报告详情" v-show="isWeixin"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true}">
+    <div :class="{margin45:isWeixin,outCarint:true}" v-for="(item,i) in reportInfoData" :key="i">
       <div class="card margin16">
-        <div class="cardText">
-          <p class="cardTextPP">
-            <span>姓名:啊啊啊 </span>
-            <span>性别:女 </span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查科室:啊啊啊 </span>
-            <span>申请时间:2018-12-08</span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查类别:嗷嗷 </span>
-            <span>检查时间:2018-12-08</span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查项目:胸部正位片</span>
-            <span>报告时间:2018-12-08</span>
-          </p>
+        <div class="cardText" >
+          <div class="cardTextPP">
+            <span>姓名：{{item.name}}</span>
+              <span style="width: 50%">
+                  性别：
+                  <span>{{item.sex}}</span>
+              </span>
+          </div>
+          <div class="cardTextNN">
+            <span>检查科室：{{item.execDept}} </span>
+              <div>
+                  <span>申请时间：{{item.applyTime}}</span>
+              </div>
+          </div>
+          <div class="cardTextPP">
+            <span>检查类别:{{item.type}} </span>
+              <span style="width: 50%">
+                  检查子类：
+                  <span>{{item.subType}} </span>
+              </span>
+          </div>
+          <div class="cardTextNN cardTextBor">
+            <span>检查项目：{{item.itemName}}</span>
+              <div>
+                  <span>报告时间：{{item.reportTime}}</span>
+              </div>
+          </div>
         </div>
       </div>
       <p style="margin-top:15px;font-weight:700">检查结果</p>
       <div class="card margin16">
         <div class="cardText">
-
-          <p class="cardTextPP">
-            <span>检查参数:胸部正位</span>
-          </p>
-          <p class="cardTextPP">
-            <span> 检查所见:嗷嗷嗷嗷</span>
-          </p>
-          <p class="cardTextPP">
-            <span> 印象:嗷嗷 </span>
-          </p>
-          <p class="cardTextPP">
-            <span> 建议:嗷嗷嗷嗷</span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查类别:嗷嗷 </span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查时间:2018-12-08</span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查项目:胸部正位片</span>
-          </p>
-          <p class="cardTextPP">
-            <span> 备注:嗷嗷嗷嗷</span>
-          </p>
+          <div class="cardTextPP">
+            <span>检查参数：{{item.params}}</span>
+          </div>
+          <div class="cardTextPP">
+            <span> 检查所见：{{item.findings}}</span>
+          </div>
+          <div class="cardTextPP">
+            <span> 印象：{{item.impression}} </span>
+          </div>
+          <div class="cardTextPP">
+            <span style="width: 14%"> 建议：</span>
+                <span>
+                    {{item.advise}}
+                </span>
+          </div>
+          <div class="cardTextPP">
+              <span style="width: 14%"> 备注：</span>
+              <span>
+                    {{item.remark}}
+              </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script  >
+    let bizbizPacsReportreaddetail = 'app/bizPacsReport/read/detail';
+    let bizLisReportreaddetail = 'app/bizLisReport/read/detail';
 export default {
   data() {
     return {
@@ -72,12 +80,21 @@ export default {
         { title: '预约成功' },
         { title: '预约关闭' }
       ],
+        reportInfoId:'',
+        collectInfoId:'',
+        reportInfoData:[],
+        pageSize:10,
+        pageNumber:0
     };
   },
   created() {
 
   },
   mounted() {
+        this.collectReportDetail()
+      //this.checkReportDetail();
+      console.log(this.$store.state);
+      console.log(this.$store.state.checkReportId);
     document.title = '检查报告详情';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -103,7 +120,39 @@ export default {
       } else {
         return 'background-color:#abc'
       }
-    }
+    },
+      checkReportDetail(){
+          let _this = this;
+          this.reportInfoId= this.$route.query.id;
+          this.$axios.put(bizbizPacsReportreaddetail,{id:parseInt(this.reportInfoId),pageSize:this.pageSize,pageNumber:this.pageNumber},{
+              headers: {
+                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                  'UUID': `AAA`
+              },
+          }).then((res) => {
+              if (res.data.code == '200') {
+                  this.reportInfoData.push(res.data.data);
+              }
+          }).catch(function (err) {
+              console.log(err);
+          });
+      },
+      collectReportDetail(){
+          let _this = this;
+          this.collectInfoId= this.$route.query.id;
+          this.$axios.put(bizLisReportreaddetail,{id:parseInt(this.collectInfoId),pageSize:this.pageSize,pageNumber:this.pageNumber},{
+              headers: {
+                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                  'UUID': `AAA`
+              },
+          }).then((res) => {
+              if (res.data.code == '200') {
+                  this.reportInfoData.push(res.data.data);
+              }
+          }).catch(function (err) {
+              console.log(err);
+          });
+      },
   },
   computed: {
 
@@ -117,12 +166,20 @@ export default {
 .reportinfo .cardText .cardTextPP {
   display: flex;
   justify-content: space-between;
-  padding: 45px 0;
+  padding: 32px 0;
   font-size: 28px;
   border-bottom: 1px solid #e9e9e9;
 }
-
-.reportinfo .cardText .cardTextPP:last-child {
+.reportinfo .cardText .cardTextNN {
+    display: block;
+    padding: 40px 0;
+    font-size: 28px;
+    border-bottom: 1px solid #e9e9e9;
+}
+.reportinfo .cardText .cardTextNN div{
+    padding-top: 40px;
+}
+.reportinfo .cardText .cardTextPP:last-child ,.reportinfo .cardText .cardTextBor{
   border: none;
 }
 </style>

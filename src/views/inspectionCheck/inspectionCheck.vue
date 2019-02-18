@@ -148,6 +148,7 @@ export default {
             isSelectorShow: false,
             selectorValue: '陈楚生得',
             isActive: true,
+            choseValue:'',
         };
     },
     created() {
@@ -168,8 +169,9 @@ export default {
         showSelector() {
             this.isSelectorShow = true
         },
-        onSelectorChoose({ text }) {
+        onSelectorChoose({ text ,value}) {
             this.selectorValue = text;
+            this.choseValue=value;
         },
         switchTo(num) {
             this.titleIndex = num;

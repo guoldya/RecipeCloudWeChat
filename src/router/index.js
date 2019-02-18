@@ -65,6 +65,7 @@ import selectStore from '@/views/selectStore/selectStore.vue'
 import paySuccess from '@/views/paySuccess/paySuccess.vue'
 import recordDetail from '@/views/recordDetail/recordDetail.vue'
 import examineDetail from '@/views/examineDetail/examineDetail.vue'
+import examineOrder from '@/views/examineOrder/examineOrder.vue'
 
 import storeInfo from '@/views/storeInfo/storeInfo.vue'
 import submitOrder from '@/views/submitOrder/submitOrder.vue'
@@ -233,7 +234,8 @@ export default new Router({
     {
       path: '/reportinfo',
       name: 'reportinfo',
-      component: reportinfo
+      component: reportinfo,
+      //meta: { keepAlive: true }
     },
     {
       path: '/lineupnow',
@@ -377,6 +379,58 @@ export default new Router({
       path: '/registrecord',
       name: 'registrecord',
       component: registrecord
+    },
+    {
+      path: '/storeInfo',
+      name: 'storeInfo',
+      component: storeInfo
+    },
+    {
+      path: '/submitOrder',
+      name: 'submitOrder',
+      component: submitOrder,
+    },
+    {
+      path: '/acceptAdd',
+      name: 'acceptAdd',
+      component: acceptAdd,
+      meta: { keepAlive: true }
+    },
+    {
+      path: '/paySuccess',
+      name: 'paySuccess',
+      component: paySuccess,
+    },
+    {
+      path: '/recordDetail',
+      name: 'recordDetail',
+      component: recordDetail,
+    },
+    {
+      path: '/examineDetail',
+      name: 'examineDetail',
+      component: examineDetail,
+    },
+    {
+      path: '/examineOrder',
+      name: 'examineOrder',
+      component: examineOrder,
+    },
+    {
+      path: '/storeInfo',
+      name: 'storeInfo',
+      component: storeInfo
+    },
+    {
+      path: '/submitOrder',
+      name: 'submitOrder',
+      component: submitOrder,
+    },
+    {
+      path: '/acceptAdd',
+      name: 'acceptAdd',
+      component: acceptAdd,
+      meta: { keepAlive: true }
     },
     {
       path: '/storeInfo',

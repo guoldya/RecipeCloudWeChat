@@ -27,12 +27,14 @@
 <script>
 import { InputItem, Field } from 'mand-mobile'
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
+let wechatbizPatientCardbinding = "/wechat/bizPatientCard/binding";
 export default {
    name: 'input-item-demo',
    title: '普通输入框',
    data() {
       return {
          phonenumber: '',
+         type: 1,
          name: '',
          cardno: '',
          verifyCode: '',
@@ -75,8 +77,9 @@ export default {
       showSelector() {
          this.isSelectorShow = true
       },
-      onSelectorChoose({ text }) {
-         this.selectorValue = text
+      onSelectorChoose(data) {
+         this.selectorValue = data.text;
+         this.type = data.type * 1;
       },
       getCode() {
          let _this = this;
@@ -125,26 +128,32 @@ export default {
                   name: 'cardblind',
                });
             },
-         })
-         // if (this.phonenumber.length < 11 || this.name.length == 0) {
-         //    this.$toast.info('请完善信息')
-         // } else {
-         //    this.$axios.post(sendNewVerifyCode + '?name=' + _this.name + '?mobile=' + _this.phonenumber + '&verifyType=' + 1, {
-         //    }, {
-         //          headers: {
-         //             'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-         //             'UUID': `AAA`
-         //          },
-         //       }).then(res => {
-         //          if (res.data.code == '200') {
+         });
+         if (this.phonenumber.length < 11 || this.name.length == 0) {
+            this.$toast.info('请完善信息')
+         } else {
+            this.$axios.post(sendNewVerifyCode, {
+               patientName: _this.name,
+               mobile: _this.phonenumber,
+               verifyType: 1,
+               type: _this.type,
+               cardNo: _this.cardNo,
+               verifyCode: _this.cardNo,
+            }, {
+                  headers: {
+                     'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                     'UUID': `AAA`
+                  },
+               }).then(res => {
+                  if (res.data.code == '200') {
 
-         //          } else if (res.data.code == '800') {
+                  } else if (res.data.code == '800') {
 
-         //          }
-         //       }).catch(function (err) {
-         //          console.log(err);
-         //       });
-         // }
+                  }
+               }).catch(function (err) {
+                  console.log(err);
+               });
+         }
 
       },
 
