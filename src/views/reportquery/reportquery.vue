@@ -28,25 +28,6 @@
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="this.active1==1" class="outCarint">
-                <div class="card margin16" v-for="(item,i) in collectData" :key="i">
-                    <div class="cardText" @click="collectReportDetail(item.id)">
-                        <div class="cardTextLeft">
-                            <p>患者：{{item.name}}</p>
-                            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
-                        </div>
-                        <div class="cardTextRig">
-                            <img src="@/assets/images/icon_more2@2x.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <p v-show="collectNomore" class="nomore">没有更多数据了</p>
-                <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="collectBusy" infinite-scroll-distance="30" class="clearfix">
-                    <span v-if="collectData.length!=0&&!collectNomore" style="text-align: center">
-                        <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);"></md-icon>
-                    </span>
-                </div>
-            </div>
             <div v-if="this.active1==0" class="outCarint">
                 <div class="card margin16" v-for="(item,i) in reportData" :key="i">
                     <div class="cardText" @click="checkReportDetail(item.id)">
@@ -64,6 +45,25 @@
                 <div v-infinite-scroll="checkLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
                     <span v-if="reportData.length!=0&&!nomore">
                         <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+                    </span>
+                </div>
+            </div>
+            <div v-if="this.active1==1" class="outCarint">
+                <div class="card margin16" v-for="(item,i) in collectData" :key="i">
+                    <div class="cardText" @click="collectReportDetail(item.id)">
+                        <div class="cardTextLeft">
+                            <p>患者：{{item.name}}</p>
+                            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
+                        </div>
+                        <div class="cardTextRig">
+                            <img src="@/assets/images/icon_more2@2x.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <p v-show="collectNomore" class="nomore">没有更多数据了</p>
+                <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="collectBusy" infinite-scroll-distance="30" class="clearfix">
+                    <span v-if="collectData.length!=0&&!collectNomore" style="text-align: center">
+                        <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);"></md-icon>
                     </span>
                 </div>
             </div>
@@ -164,12 +164,7 @@ export default {
             reportParams.pageSize = this.pageSize;
             reportParams.pageNumber = this.pageNumber;
             this.$axios.put(bizbizPacsReportreadpage, reportParams, {
-                headers: {
-                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                    'UUID': `AAA`
-                },
             }).then((res) => {
-
                 if (res.data.rows) {
                     this.loadingtrue = false;
                     if (flag) {
@@ -181,7 +176,6 @@ export default {
                             this.busy = true;
                             this.nomore = true;
                         };
-                        console.log(this.collectNomore, "大于")
                     } else {
                         this.reportData = res.data.rows;
                         this.busy = true;
@@ -192,7 +186,6 @@ export default {
                             this.busy = false;
                             this.nomore = false;
                         }
-                        console.log(this.collectNomore, "小于")
                     }
                 } else {
                     this.reportData = []
@@ -202,17 +195,13 @@ export default {
             });
         },
         collectReport(flag) {
-            console.log(this.loadingtrue, "我是第二个")
             let _this = this;
             let collectParams = {};
             collectParams.patientId = parseInt(this.choseValue);
             collectParams.pageSize = this.pageSize;
             collectParams.pageNumber = this.pageNumber;
             this.$axios.put(bizLisReportreadpage, collectParams, {
-                headers: {
-                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                    'UUID': `AAA`
-                },
+
             }).then((res) => {
                 if (res.data.code == '200') {
                     if (res.data.rows) {
@@ -227,7 +216,7 @@ export default {
                                 this.collectBusy = true;
                                 this.collectNomore = true;
                             }
-                            console.log(this.collectNomore, "大于10不搞事")
+                            console.log(this.collectNomore, "大于10不搞事 第一个")
                         } else {
                             this.collectData = res.data.rows;
                             this.collectBusy = true;

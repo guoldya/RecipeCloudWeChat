@@ -8,6 +8,8 @@
 </template>
 
 <script>
+var storage = window.localStorage;
+storage.setItem("token", "edd169b85704410aa5219512cb6f1f00");
 import HelloWorld from './components/HelloWorld.vue'
 export default {
   name: 'app',
@@ -268,4 +270,7 @@ textarea::-webkit-input-placeholder {
 .default:after {
   border: 1px solid #43484b !important;
 }
+  .textCenter{
+    text-align: center;
+  }
 </style>

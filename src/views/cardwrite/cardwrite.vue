@@ -119,7 +119,7 @@ export default {
           },
         }).then(res => {
           if (res.data.code == '200') {
-            this.$toast.info('已发送验证码')
+            this.$toast.info(res.data.msg)
           } else if (res.data.code == '800') {
 
           }

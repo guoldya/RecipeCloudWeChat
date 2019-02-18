@@ -43,24 +43,30 @@ Vue.config.productionTip = false
 
 const BASE_URL = '/api';
 axios.defaults.baseURL = BASE_URL;
+ 
 
-let AUTH_TOKEN = (function () {
-  return localStorage.getItem("token");
-})();
-axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
+// let AUTH_TOKEN = (function () {
+//   return localStorage.getItem("token");
+// })();
+// axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
 // 添加一个判断石佛存在需要token的拦截器
-console.log("我是将就", localStorage.getItem("token"))
+
 axios.interceptors.request.use(function (config) {
+
   let url = config.url;
   // 如果是登陆
   if (url.indexOf("/appLogin/login") > -1) {
     localStorage.setItem('token', "");
-    config.headers.Authorization = "";
+    config.headers.TOKEN = "";
+  } else {
+    console.log("一二善思", localStorage.getItem("token"))
+    config.headers.TOKEN = localStorage.getItem("token");
+    config.headers.UUID = "AAA";
   }
-  if (url.indexOf("user") > -1 && url.indexOf("register") < 0) {
-    config.headers.Authorization = localStorage.getItem("token");
+  // if (url.indexOf("user") > -1 && url.indexOf("register") < 0) {
 
-  }
+
+  // }
   return config;
 }, function (err) {
   return Promise.reject(err);
