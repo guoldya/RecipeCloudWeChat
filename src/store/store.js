@@ -11,6 +11,7 @@ export default new Vuex.Store({
         detailData: [],
         posUrl: '',
         othUrl: '',
+        activeId: '',
     },
     mutations: {
         addjumpArr: (state, n) => {
@@ -28,7 +29,12 @@ export default new Vuex.Store({
         othUrlFun: (state, n) => {
             state.othUrl = n;
         },
+        activeFun: (state, n) => {
+            state.activeId = n;
+        },
     },
+
+
     actions: {
 
     }

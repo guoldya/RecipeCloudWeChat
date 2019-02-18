@@ -3,62 +3,113 @@
   <div class="reportinfo">
     <Header post-title="检查报告详情" v-show="isWeixin"></Header>
     <div :class="{margin45:isWeixin,outCarint:true}" v-for="(item,i) in reportInfoData" :key="i">
-      <div class="card margin16">
-        <div class="cardText" >
-          <div class="cardTextPP">
-            <span>姓名：{{item.name}}</span>
-              <span style="width: 50%">
+        <div v-if="activeId==0">
+            <div class="card margin16">
+                <div class="cardText" >
+                    <div class="cardTextPP">
+                        <span>姓名：{{item.name}}</span>
+                        <span style="width: 50%">
                   性别：
                   <span>{{item.sex}}</span>
               </span>
-          </div>
-          <div class="cardTextNN">
-            <span>检查科室：{{item.execDept}} </span>
-              <div>
-                  <span>申请时间：{{item.applyTime}}</span>
-              </div>
-          </div>
-          <div class="cardTextPP">
-            <span>检查类别:{{item.type}} </span>
-              <span style="width: 50%">
+                    </div>
+                    <div class="cardTextNN">
+                        <span>检查科室：{{item.execDept}} </span>
+                        <div>
+                            <span>申请时间：{{item.applyTime}}</span>
+                        </div>
+                    </div>
+                    <div class="cardTextPP">
+                        <span>检查类别:{{item.type}} </span>
+                        <span style="width: 50%">
                   检查子类：
                   <span>{{item.subType}} </span>
               </span>
-          </div>
-          <div class="cardTextNN cardTextBor">
-            <span>检查项目：{{item.itemName}}</span>
-              <div>
-                  <span>报告时间：{{item.reportTime}}</span>
-              </div>
-          </div>
+                    </div>
+                    <div class="cardTextNN cardTextBor">
+                        <span>检查项目：{{item.itemName}}</span>
+                        <div>
+                            <span>报告时间：{{item.reportTime}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:15px;font-weight:700">检查结果</p>
+            <div class="card margin16">
+                <div class="cardText">
+                    <div class="cardTextPP">
+                        <span>检查参数：{{item.params}}</span>
+                    </div>
+                    <div class="cardTextPP">
+                        <span> 检查所见：{{item.findings}}</span>
+                    </div>
+                    <div class="cardTextPP">
+                        <span> 印象：{{item.impression}} </span>
+                    </div>
+                    <div class="cardTextPP">
+                        <span> 建议：</span>
+                        <span style="width: 86%;">{{item.advise}}</span>
+                    </div>
+                    <div class="listData">
+                        <span>备注：</span>
+                        <span style="width: 86%;">{{item.remark}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <p style="margin-top:15px;font-weight:700">检查结果</p>
-      <div class="card margin16">
-        <div class="cardText">
-          <div class="cardTextPP">
-            <span>检查参数：{{item.params}}</span>
-          </div>
-          <div class="cardTextPP">
-            <span> 检查所见：{{item.findings}}</span>
-          </div>
-          <div class="cardTextPP">
-            <span> 印象：{{item.impression}} </span>
-          </div>
-          <div class="cardTextPP">
-            <span style="width: 14%"> 建议：</span>
-                <span>
-                    {{item.advise}}
-                </span>
-          </div>
-          <div class="cardTextPP">
-              <span style="width: 14%"> 备注：</span>
-              <span>
-                    {{item.remark}}
-              </span>
-          </div>
+        <div v-if="activeId==1">
+            <div class="card margin16">
+                <div class="cardText" >
+                    <div class="cardTextPP">
+                        <span>姓名：{{item.name}}</span>
+                        <span style="width: 50%">性别：
+                            <span>{{item.sex}}</span>
+                        </span>
+                    </div>
+                    <div class="cardTextPP">
+                        <span>年龄：{{item.execDept}} </span>
+                        <span style="width: 50%">科别：
+                            <span>{{item.sex}}</span>
+                        </span>
+                    </div>
+                    <div class="cardTextPP">
+                        <span>收样日期:{{item.type}} </span>
+                        <span style="width: 50%">标本类型：
+                          <span>{{item.subType}} </span>
+                        </span>
+                    </div>
+                    <div class="cardTextNN">
+                        <span>送检项目：{{item.itemName}}</span>
+                        <div>
+                          <span>报告时间：{{item.reportTime}} </span>
+                        </div>
+                    </div>
+                    <div class="cardTextPP listData">
+                        <span>临床诊断：</span>
+                        <span style="width: 78%;">{{item.itemName}}</span>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:15px;font-weight:700">报告结果</p>
+            <div class="card margin16">
+                <div class="cardText">
+                    <div class="resultTitle">
+                        <span>项目名称</span>
+                        <span>结果值</span>
+                        <span>单位</span>
+                        <span>参考值</span>
+                    </div>
+                    <div class="cardTextPP" v-for="(item,i) in reportResult" :key="i">
+                        <span>{{item.itemName}}</span>
+                        <span>{{item.itemValue}}</span>
+                        <span>{{item.unit}}</span>
+                        <span>{{item.referenceValue}}</span>
+                    </div>
+                </div>
+            </div>
+            <p class="textCenter">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
         </div>
-      </div>
+
     </div>
   </div>
 </template>
@@ -69,7 +120,6 @@ export default {
   data() {
     return {
       isWeixin: false,
-      active1: 0,
       normal: {
         checkbox: true,
         radio: 1,
@@ -83,14 +133,18 @@ export default {
         reportInfoId:'',
         collectInfoId:'',
         reportInfoData:[],
+        reportResult:[],
         pageSize:10,
-        pageNumber:0
+        pageNumber:0,
+        activeId:'',
     };
   },
   created() {
 
   },
   mounted() {
+      this.activeId=this.$store.state.activeId;
+      console.log(this.activeId)
         this.collectReportDetail()
       //this.checkReportDetail();
       console.log(this.$store.state);
@@ -106,9 +160,6 @@ export default {
     }
   },
   methods: {
-    switchTo(num) {
-      this.active1 = num;
-    },
     payment() {
       this.$router.push({
         name: 'payment',
@@ -148,6 +199,7 @@ export default {
           }).then((res) => {
               if (res.data.code == '200') {
                   this.reportInfoData.push(res.data.data);
+                  this.reportResult=res.data.data.details;
               }
           }).catch(function (err) {
               console.log(err);
@@ -181,5 +233,12 @@ export default {
 }
 .reportinfo .cardText .cardTextPP:last-child ,.reportinfo .cardText .cardTextBor{
   border: none;
+}
+.reportinfo .resultTitle{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    border-bottom: 4px solid #cccccc;
+    padding: 14px 0px;
 }
 </style>
