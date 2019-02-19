@@ -8,6 +8,8 @@
 </template>
 
 <script>
+var storage = window.localStorage;
+storage.setItem("token", "edd169b85704410aa5219512cb6f1f00");
 import HelloWorld from './components/HelloWorld.vue'
 export default {
   name: 'app',

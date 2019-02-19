@@ -20,6 +20,7 @@
 import { InputItem, Field } from 'mand-mobile'
 import district from 'mand-mobile/components/picker/demo/data/district'
 let appshippingAddressareaList = '/app/shippingAddress/areaList';
+
 export default {
    name: 'input-item-demo',
    /* DELETE */
@@ -29,6 +30,7 @@ export default {
       return {
          isPickerShow1: false,
          pickerData1: [],
+
          pickerValue1: '',
          isWeixin: false,
       }
@@ -50,9 +52,8 @@ export default {
       this.$axios.put(appshippingAddressareaList, {
 
       }).then(res => {
-         console.log(res.data.rows, "ss")
          if (res.data.code == '200') {
-            _this.pickerData1 = res.data.rows;
+            _this.pickerData1 = [_this.areaList(res.data.rows)];
          } else if (res.data.code == '800') {
 
          }
@@ -61,9 +62,22 @@ export default {
       });
    },
    methods: {
+      areaList(list) {
+         let newArea = [];
+         for (let i = 0; i < list.length; i++) {
+            let neslist = {
+               text: list[i].label,
+               value: list[i].value
+            }
+            if (list[i].children) {
+               neslist.children = this.areaList(list[i].children)
+            }
+            newArea.push(neslist);
+         }
+         return newArea;
+      },
       onPickerConfirm(index) {
          const values = this.$refs[`picker${index}`].getColumnValues()
-
          let res = ''
          values.forEach(value => {
             value && (res += `${value.text || value.label} `)

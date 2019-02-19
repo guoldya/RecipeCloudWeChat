@@ -94,7 +94,6 @@ export default {
         // 用于测试
         var storage = window.localStorage;
         storage.setItem("token", "edd169b85704410aa5219512cb6f1f00");
-
         document.title = '互联网医院';
         let _this = this;
         function UrlSearch() {
@@ -109,7 +108,6 @@ export default {
         let Request = new UrlSearch(); //实例化
         this.$axios.get(appLoginlogin + '?wechatCode=' + _this.code + '&verifyType=' + 1, {
         }).then(res => {
-            console.log(JSON.parse(res.data.data.value), "sss")
             if (res.data.code == '200') {
                 res.data.data.value = JSON.parse(res.data.data.value);
                 // var storage = window.localStorage;

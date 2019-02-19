@@ -48,7 +48,7 @@
                     </span>
                 </div>
             </div>
-            <div v-if="this.active1==1" class="outCarint">
+            <div v-if="this.active1==0" class="outCarint">
                 <div class="card margin16" v-for="(item,i) in collectData" :key="i">
                     <div class="cardText" @click="collectReportDetail(item.id)">
                         <div class="cardTextLeft">
@@ -162,121 +162,6 @@ export default {
       this.TOKEN = Request.TOKEN;
       this.UUID = Request.UUID;
   },
-  // methods: {
-  //     checkReport(flag){
-  //         // if(!this.choseValue){
-  //         //     this.choseValue=this.optionsData[0][0].value;
-  //         // }
-  //         let _this = this;
-  //         let reportParams={};
-  //         reportParams.patientId=parseInt(this.choseValue);
-  //         reportParams.pageSize=this.pageSize;
-  //         reportParams.pageNumber=this.checkPageNumber;
-  //         this.$axios.put(bizbizPacsReportreadpage,reportParams,{
-  //             headers: {
-  //                 'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-  //                 'UUID': `AAA`
-  //             },
-  //         }).then((res) => {
-  //             if (res.data.rows) {
-  //                 if (flag) {
-  //                     this.reportData = this.reportData.concat(res.data.rows);  //concat数组串联进行合并
-  //                     if (this.checkPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-  //                         this.busy = false;
-  //                         this.nomore = false;
-  //                     } else {
-  //                         this.busy = true;
-  //                         this.nomore = true;
-  //                     };
-  //                 } else {
-  //                     this.reportData = res.data.rows;
-  //                     this.busy = true;
-  //                     if (res.data.total < 10) {
-  //                         this.busy = true;
-  //                         this.nomore = true;
-  //                     } else {
-  //                         this.busy = false;
-  //                         this.nomore = false;
-  //                     }
-  //                 }
-  //             } else {
-  //                 this.reportData = []
-  //             }
-  //         }).catch(function (err) {
-  //             console.log(err);
-  //         });
-  //     },
-  //     collectReport(flag){
-  //         // if(!this.choseValue){
-  //         //     this.choseValue=this.optionsData[0][0].value;
-  //         // }
-  //         let _this = this;
-  //         let collectParams={};
-  //         collectParams.patientId=parseInt(this.choseValue);
-  //         collectParams.pageSize=this.pageSize;
-  //         collectParams.pageNumber=this.collectPageNumber;
-  //         this.$axios.put(bizLisReportreadpage,collectParams,{
-  //             headers: {
-  //                 'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-  //                 'UUID': `AAA`
-  //             },
-  //         }).then((res) => {
-  //                 if (res.data.rows) {
-  //                     if (flag) {
-  //                         this.collectData = this.collectData.concat(res.data.rows);  //concat数组串联进行合并
-  //                         if (this.collectPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-  //                             this.collectBusy = false;
-  //                             this.collectNomore = false;
-  //                         } else {
-  //                             this.collectBusy = true;
-  //                             this.collectNomore = true;
-  //                         }
-  //                         console.log(this.collectBusy, "就是这里")
-  //                     } else {
-  //                         this.collectData = res.data.rows;
-  //                         this.collectBusy = true;
-  //                         if (res.data.total < 10) {
-  //                             this.collectBusy = true;
-  //                             this.collectNomore = true;
-  //                         } else {
-  //                             this.collectBusy = false;
-  //                             this.collectNomore = false;
-  //                         }
-  //                         console.log(this.collectBusy,"this.collectBusy")
-  //                     }
-  //                 } else {
-  //                     this.collectData = []
-  //                 }
-  //         }).catch(function (err) {
-  //             console.log(err);
-  //         });
-  //     },
-  //     checkReportDetail(val){
-  //         this.$store.commit('activeFun', this.active1);
-  //         this.$router.push({
-  //             name: 'reportinfo',
-  //             query:{id:val},
-  //         });
-  //     },
-  //     collectReportDetail(val){
-  //         this.$store.commit('activeFun', this.active1);
-  //         this.$router.push({
-  //             name: 'reportinfo',
-  //             query:{id:val},
-  //         });
-  //     },
-  //     switchTo(num) {
-  //         this.active1 = num;
-  //     },
-  //     timeSwitchTo(num) {
-  //         this.reportactive1 = num;
-  //     },
-  //   datePick() {
-  //     this.datepick = !this.datepick
-  //   },
-  //   showSelector() {
-  //       this.isSelectorShow = true;
-  //   },
     methods: {
         checkReport(flag) {
             let _this = this;
@@ -285,12 +170,7 @@ export default {
             reportParams.pageSize = this.pageSize;
             reportParams.pageNumber = this.pageNumber;
             this.$axios.put(bizbizPacsReportreadpage, reportParams, {
-                headers: {
-                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                    'UUID': `AAA`
-                },
             }).then((res) => {
-
                 if (res.data.rows) {
                     this.loadingtrue = false;
                     if (flag) {
@@ -301,9 +181,7 @@ export default {
                         } else {
                             this.busy = true;
                             this.nomore = true;
-                        }
-                        ;
-                        console.log(this.collectNomore, "大于")
+                        };
                     } else {
                         this.reportData = res.data.rows;
                         this.busy = true;
@@ -314,7 +192,6 @@ export default {
                             this.busy = false;
                             this.nomore = false;
                         }
-                        console.log(this.collectNomore, "小于")
                     }
                 } else {
                     this.reportData = []
@@ -324,17 +201,13 @@ export default {
             });
         },
         collectReport(flag) {
-            console.log(this.loadingtrue, "我是第二个")
             let _this = this;
             let collectParams = {};
             collectParams.patientId = parseInt(this.choseValue);
             collectParams.pageSize = this.pageSize;
             collectParams.pageNumber = this.pageNumber;
             this.$axios.put(bizLisReportreadpage, collectParams, {
-                headers: {
-                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                    'UUID': `AAA`
-                },
+
             }).then((res) => {
                 if (res.data.code == '200') {
                     if (res.data.rows) {
@@ -349,7 +222,7 @@ export default {
                                 this.collectBusy = true;
                                 this.collectNomore = true;
                             }
-                            console.log(this.collectNomore, "大于10不搞事")
+                            console.log(this.collectNomore, "大于10不搞事 第一个")
                         } else {
                             this.collectData = res.data.rows;
                             this.collectBusy = true;
