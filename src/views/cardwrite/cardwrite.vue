@@ -109,28 +109,28 @@ export default {
     },
 
     tijiao() {
-      this.$axios.put(appLogingetVerifyCode + '?mobile=' + this.phonenumber + '&verifyType=' + 1 + '&verifyCode=' + this.verifyCode, {
-        mobile: this.phonenumber,
-        verifyType: 1,
-      }, {
-          headers: {
-            'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-            'UUID': `AAA`
-          },
+      if (this.phonenumber.length < 11 || this.verifyCode.length < 6) {
+        this.$toast.info('请完善信息')
+      } else {
+        this.$axios.put(appLogingetVerifyCode + '?mobile=' + this.phonenumber + '&verifyType=' + 1 + '&verifyCode=' + this.verifyCode, {
+          mobile: this.phonenumber,
+          verifyType: 1,
         }).then(res => {
           if (res.data.code == '200') {
-            this.$toast.info(res.data.msg)
+            let argu = {}
+            this.$router.push({
+              name: 'cardwritesecond',
+              query: argu
+            });
           } else if (res.data.code == '800') {
 
           }
         }).catch(function (err) {
           console.log(err);
         });
-      let argu = {}
-      this.$router.push({
-        name: 'cardwritesecond',
-        query: argu
-      });
+      }
+
+
     },
 
   },

@@ -37,7 +37,7 @@ import moan from '@/views/moan/moan.vue'
 import signsucceed from '@/views/signsucceed/signsucceed.vue'
 import cardblind from '@/views/cardblind/cardblind.vue'
 import cardhave from '@/views/cardhave/cardhave.vue'
-
+import resultdocotor from '@/views/resultdocotor/resultdocotor.vue'
 
 
 import cardmy from '@/views/cardmy/cardmy.vue'
@@ -73,7 +73,7 @@ import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
 
 import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
 import register from '@/views/register/register.vue'
-
+import inhospital from '@/views/inhospital/inhospital.vue'
 
 Vue.use(Router)
 
@@ -89,6 +89,16 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: register
+    },
+    {
+      path: '/inhospital',
+      name: 'inhospital',
+      component: inhospital
+    },
+    {
+      path: '/resultdocotor',
+      name: 'resultdocotor',
+      component: resultdocotor
     },
     {
       path: '/signsucceed',

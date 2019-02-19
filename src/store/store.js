@@ -12,6 +12,8 @@ export default new Vuex.Store({
         posUrl: '',
         othUrl: '',
         activeId: '',
+        TOKEN: '',
+        UUID: '',
     },
     mutations: {
         addjumpArr: (state, n) => {
@@ -31,6 +33,12 @@ export default new Vuex.Store({
         },
         activeFun: (state, n) => {
             state.activeId = n;
+        },
+        TOKENFun: (state, n) => {
+            state.TOKEN = n;
+        },
+        UUIDFun: (state, n) => {
+            state.UUID = n;
         },
     },
 

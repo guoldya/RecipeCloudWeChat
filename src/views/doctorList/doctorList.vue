@@ -6,13 +6,13 @@
           <div class="showSelecA">
             <span>{{selectorValue}}</span>
           </div>
-          <md-selector v-model="isSelectorShow" :data="citys" max-height="320px" title="选择科室" @choose="onSelectorChoose"></md-selector>
+          <md-selector v-model="isSelectorShow" :data="departData" max-height="320px" title="选择科室" @choose="onSelectorChoose"></md-selector>
         </div>
       </div>
       <div class="line"></div>
       <div class="tag2">
         <div class="tagdiv">
-          <span v-if="isSwitch" @click="handler" class="activeAA">只看有号</span>
+          <span v-if="totalNum" @click="handler" class="activeAA">只看有号</span>
           <span v-else @click="handler">查看所有</span>
         </div>
       </div>
@@ -46,7 +46,7 @@
     <div :class="{ pt50: !isTop  ,'outCarint':true}" style="margin-bottom:20px; ">
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
-        <ul v-show="!isSwitch">
+        <ul v-show="!totalNum">
           <li>
             <div class="card" @click="intodoctordetail">
               <div class="cardText">
@@ -90,7 +90,7 @@
             </div>
           </li>
         </ul>
-        <ul v-show="isSwitch">
+        <ul v-show="totalNum">
           <li>
             <div class="card">
               <div class="cardText">
@@ -108,7 +108,7 @@
       </div>
       <p class="forenoon">下午</p>
       <div class="doctorList" id="afternoon">
-        <ul v-show="!isSwitch">
+        <ul v-show="!totalNum">
           <li>
             <div class="card">
               <div class="cardText">
@@ -136,7 +136,7 @@
             </div>
           </li>
         </ul>
-        <ul v-show="isSwitch">
+        <ul v-show="totalNum">
           <li>
             <div class="card">
               <div class="cardText">
@@ -154,7 +154,7 @@
       </div>
       <p class="forenoon">夜诊</p>
       <div class="doctorList">
-        <ul v-show="!isSwitch">
+        <ul v-show="!totalNum">
           <li>
             <div class="card">
               <div class="cardText">
@@ -182,7 +182,7 @@
             </div>
           </li>
         </ul>
-        <ul v-show="isSwitch">
+        <ul v-show="totalNum">
           <li>
             <div class="card">
               <div class="cardText">
@@ -202,16 +202,19 @@
   </div>
 </template>
 <script type="text/babel">
+let selectDoctorList = "/app/bdHospitalDoctor/read/selectDoctorList";
+let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     return {
       isSelectorShow: false,
-      selectorValue: '生殖内分泌门诊',
+      selectorValue: '',
+      orgIdVO: '',
       num: 5,
       isTop: true,
       isActive: 1,
-      isSwitch: false,
-      selected3: 55,
+      totalNum: false,
+      orgId: '',
       activetime: 0,
       normal: {
         checkbox: true,
@@ -219,35 +222,31 @@ export default {
         switch: false
       },
       isWeixin: false,
-      citys: [
-        { text: "妇科门诊", value: '77' },
-        { text: "生殖内分泌门诊", value: '88' },
-        { text: "儿科", value: '99' },
-        { text: "放射科", value: '111' },
-        { text: '妇科', value: '1' },
-        { text: '内科', value: '2' },
-        { text: '外科', value: '31' },
-        { text: '生殖内分泌', value: '55' },
-        { text: "不孕不育", value: '555' },
-        { text: "生殖内分泌门诊", value: '888' },
-      ],
+      departData: [],
       time: [],
       choosedate: '1-01',
       chooseweek: '星期六',
+      isTime: '',
     };
   },
   created() {
   },
   watch: {
-    selected3: function (newselectedStatus, oldselectedStatus) {
+    orgIdVO: function (newselectedStatus, oldselectedStatus) {
       console.log(newselectedStatus)
     },
   },
   mounted() {
     document.title = '医生列表';
-    if (this.$route.query.value) {
-      this.selected3 = this.$route.query.value * 1;
-    };
+
+    if (!this.orgIdVO) {
+      this.orgIdVO = this.$route.query.orgIdVO;
+      this.selectorValue = this.$route.query.departName;
+    }
+    if (!this.orgId) {
+      this.orgId = this.$route.query.orgId * 1;
+    }
+
     var box = document.getElementById('mornign');
     var w = box.style.width;
     var h = box.style.height;
@@ -269,32 +268,53 @@ export default {
 
       } else {
         _this.isActive = 1
-
       }
     })
-    this.getData();
+
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
-      return true;
     } else {
       this.isWeixin = true;
-      return false;
     };
-
-
+    if (!this.isTime) {
+      var today = new Date();
+      this.isTime = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+    }
+    this.getData();
+    this.orgFun();
+    this.doctorListFun();
   },
   methods: {
-
-    handler() {
-      this.isSwitch = !this.isSwitch;
+    orgFun() {
+      this.$axios.put(bdHospitalOrg, {
+        id: this.orgId,
+      }).then((res) => {
+        if (res.data.code == '200') {
+          for (let i = 0; i < res.data.rows.length; i++) {
+            let neslist = {
+              text: res.data.rows[i].orgName,
+              value: String(res.data.rows[i].id)
+            }
+            this.departData.push(neslist);
+          }
+          console.log(this.departData)
+        } else {
+          console.log(res.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
     },
+
+
     showSelector() {
       this.isSelectorShow = true
     },
-    onSelectorChoose({ text }) {
-      console.log(text)
-      this.selectorValue = text
+    onSelectorChoose(data) {
+      this.selectorValue = data.text;
+      this.orgIdVO = data.value;
+      this.doctorListFun();
     },
     intodoctordetail() {
       let argu = {}
@@ -319,9 +339,9 @@ export default {
         let data = this.addDate(d, 1);
         let time = {};
         if (i == 0) {
-          time = { date: data.newData, week: '当日号' }
+          time = { date: data.newData, week: '当日号', year: data.newYear }
         } else {
-          time = { date: data.newData, week: data.newDay }
+          time = { date: data.newData, week: data.newDay, year: data.newYear }
         }
         this.time.push(time)
       }
@@ -331,23 +351,49 @@ export default {
       var data = {};
       let dayArr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
       d.setDate(d.getDate() + days);
+      var y = d.getFullYear();
       var m = d.getMonth() + 1;
       var newDay = dayArr[d.getDay()];
       data.newData = m + '-' + d.getDate();
+      data.newYear = y;
       data.newDay = newDay;
+
       return data;
     },
     searchT: function () {
-      // let argu = { selected3: this.selected3 };
       this.$router.push({
-        name: 'result',
+        name: 'resultdocotor',
+        query: { orgIdVO: this.orgIdVO, isTime: this.isTime, totalNum: this.totalNum }
       });
     },
     switchTo(num, item) {
       this.activetime = num;
       this.choosedate = item.date;
       this.chooseweek = item.week;
+      this.isTime = item.year + '-' + item.date;
+      this.doctorListFun();
     },
+    handler() {
+      this.totalNum = !this.totalNum;
+      this.doctorListFun();
+    },
+    doctorListFun() {
+      this.$axios.put(selectDoctorList, {
+        orgIdVO: this.orgIdVO * 1,
+        totalNum: this.totalNum ? 1 : undefined,
+        time: this.isTime,
+      }).then((res) => {
+        if (res.data.code == '200') {
+          // this.departData = res.data.rows;
+        } else {
+          console.log(res.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+
+
   },
   computed: {
   },

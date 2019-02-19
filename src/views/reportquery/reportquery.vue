@@ -28,46 +28,47 @@
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="this.active1==0" class="outCarint">
-                <div class="card margin16" v-for="(item,i) in reportData" :key="i">
-                    <div class="cardText" @click="checkReportDetail(item.id)">
-                        <div class="cardTextLeft">
-                            <p>患者：{{item.name}}</p>
-                            <p>医院：{{item.hospital}}</p>
-                            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
+            <div>
+                <div v-if="active1==0" class="md-example-child md-example-child-scroll-view md-example-child-scroll-view-3">
+                    <md-scroll-view ref="scrollView" :scrolling-x="false" @endReached="$_onEndReached">
+                        <div class="outCarint">
+                            <div class="card margin16" v-for="(item,i) in reportData" :key="i">
+                                <div class="cardText" @click="checkReportDetail(item.id)">
+                                    <div class="cardTextLeft">
+                                        <p>患者：{{item.name}}</p>
+                                        <p>医院：{{item.hospital}}</p>
+                                        <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
+                                    </div>
+                                    <div class="cardTextRight">
+                                        <img src="@/assets/images/icon_more2@2x.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="cardTextRight">
-                            <img src="@/assets/images/icon_more2@2x.png" alt="">
-                        </div>
-                    </div>
+                        <md-scroll-view-more slot="more" :is-finished="checkFinished">
+                        </md-scroll-view-more>
+                    </md-scroll-view>
                 </div>
-                <p v-show="nomore" class="noMore">没有更多数据了</p>
-                <div v-infinite-scroll="checkLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
-                    <span v-if="reportData.length!=0&&!nomore">
-                        <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
-                    </span>
+                <div v-if="active1==1" class="md-example-child md-example-child-scroll-view md-example-child-scroll-view-3">
+                    <md-scroll-view ref="scrollView" :scrolling-x="false" @endReached="$_onEndReached">
+                        <div class="outCarint">
+                            <div class="card margin16" v-for="(item,i) in collectData" :key="i">
+                                <div class="cardText" @click="collectReportDetail(item.id)">
+                                    <div class="cardTextLeft">
+                                        <p>患者：{{item.name}}</p>
+                                        <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
+                                    </div>
+                                    <div class="cardTextRig">
+                                        <img src="@/assets/images/icon_more2@2x.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <md-scroll-view-more slot="more" :is-finished="collectFinished">
+                        </md-scroll-view-more>
+                    </md-scroll-view>
                 </div>
             </div>
-            <div v-if="this.active1==1" class="outCarint">
-                <div class="card margin16" v-for="(item,i) in collectData" :key="i">
-                    <div class="cardText" @click="collectReportDetail(item.id)">
-                        <div class="cardTextLeft">
-                            <p>患者：{{item.name}}</p>
-                            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
-                        </div>
-                        <div class="cardTextRig">
-                            <img src="@/assets/images/icon_more2@2x.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <p v-show="collectNomore" class="nomore">没有更多数据了</p>
-                <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="collectBusy" infinite-scroll-distance="30" class="clearfix">
-                    <span v-if="collectData.length!=0&&!collectNomore" style="text-align: center">
-                        <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);"></md-icon>
-                    </span>
-                </div>
-            </div>
-
         </div>
     </div>
 </template>
@@ -77,7 +78,7 @@ let bizLisReportreadpage = 'app/bizLisReport/read/page';
 export default {
     data() {
         return {
-            loadingtrue: true,
+            list: 10,
             busy: true,
             collectBusy: true,
             nomore: false,
@@ -118,29 +119,22 @@ export default {
             collectData: [],
             collectDetailData: [],
             pageSize: 10,
-            pageNumber: 1,
+            checkPageNumber: 1,
+            collectPageNumber: 1,
             choseValue: '',
+            loadingtrue: true,
+            pageNumber: 1,
+            checkFinished: false,
+            collectFinished: false,
+            isFinished: false,
         };
     },
     created() {
 
     },
-    watch: {
-        active1: function (newactive1, oldactive1) {
-            this.active1 = newactive1;
-            this.loadingtrue = true;
-            this.pageNumber = 1;
-            if (this.active1 == 0) {
-                this.reportData = [];
-                this.checkReport(false);
-            } else {
-                this.collectData = [];
-                this.collectReport(true);
-            }
-        },
-    },
     mounted() {
-        this.checkReport(false);
+        this.checkReport();
+        this.collectReport();
         this.selectorValue = this.optionsData[0][0].text;
         document.title = '报告查询';
         var ua = window.navigator.userAgent.toLowerCase();
@@ -156,79 +150,47 @@ export default {
         this.UUID = Request.UUID;
     },
     methods: {
-
-        checkReport(flag) {
-            let _this = this;
-            let reportParams = {};
-            reportParams.patientId = parseInt(this.choseValue);
-            reportParams.pageSize = this.pageSize;
-            reportParams.pageNumber = this.pageNumber;
-            this.$axios.put(bizbizPacsReportreadpage, reportParams, {
-            }).then((res) => {
-                if (res.data.rows) {
-                    this.loadingtrue = false;
-                    if (flag) {
-                        this.reportData = this.reportData.concat(res.data.rows);  //concat数组串联进行合并
-                        if (this.pageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-                            this.busy = false;
-                            this.nomore = false;
-                        } else {
-                            this.busy = true;
-                            this.nomore = true;
-                        };
-                    } else {
-                        this.reportData = res.data.rows;
-                        this.busy = true;
-                        if (res.data.total < 10) {
-                            this.busy = true;
-                            this.nomore = true;
-                        } else {
-                            this.busy = false;
-                            this.nomore = false;
-                        }
-                    }
-                } else {
-                    this.reportData = []
+        $_onEndReached() {
+            console.log("00ddd")
+            if (this.active1 == 0) {
+                console.log("0000");
+                if (this.checkFinished) {
+                    return
                 }
-            }).catch(function (err) {
-                console.log(err);
-            });
+            } else if (this.active1 == 1) {
+                console.log("1111")
+                if (this.collectFinished) {
+                    return
+                }
+            }
+            setTimeout(() => {
+                if (this.active1 == 0) {
+                    this.checkPageNumber++;
+                    this.checkReport();
+                }
+                if (this.active1 == 1) {
+                    this.collectPageNumber++;
+                    this.collectReport();
+                }
+                this.$refs.scrollView.finishLoadMore()
+            }, 1000)
         },
-        collectReport(flag) {
+        collectReport() {
             let _this = this;
             let collectParams = {};
             collectParams.patientId = parseInt(this.choseValue);
             collectParams.pageSize = this.pageSize;
-            collectParams.pageNumber = this.pageNumber;
+            collectParams.pageNumber = this.collectPageNumber;
             this.$axios.put(bizLisReportreadpage, collectParams, {
-
             }).then((res) => {
                 if (res.data.code == '200') {
                     if (res.data.rows) {
-                        this.loadingtrue = false;
-                        console.log(res.data.total, "数据")
-                        if (flag) {
-                            this.collectData = this.collectData.concat(res.data.rows);  //concat数组串联进行合并
-                            if (this.pageNumber <= Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-                                this.collectBusy = false;
-                                this.collectNomore = false;
-                            } else {
-                                this.collectBusy = true;
-                                this.collectNomore = true;
-                            }
-                            console.log(this.collectNomore, "大于10不搞事 第一个")
+                        if (this.collectPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                            this.collectFinished = false
                         } else {
-                            this.collectData = res.data.rows;
-                            this.collectBusy = true;
-                            if (res.data.total < 10) {
-                                this.collectBusy = true;
-                                this.collectNomore = true;
-                            } else {
-                                this.collectBusy = false;
-                                this.collectNomore = false;
-                            }
-                            console.log(this.collectNomore, "小于10不搞事")
+                            this.collectFinished = true;
                         }
+                        this.collectData = this.collectData.concat(res.data.rows);
                     } else {
                         this.collectData = []
                     }
@@ -237,20 +199,42 @@ export default {
                 console.log(err);
             });
         },
+        checkReport() {
+            let _this = this;
+            let reportParams = {};
+            reportParams.patientId = parseInt(this.choseValue);
+            reportParams.pageSize = this.pageSize;
+            reportParams.pageNumber = this.checkPageNumber;
+            this.$axios.put(bizbizPacsReportreadpage, reportParams, {
+            }).then((res) => {
+                if (res.data.rows) {
+                    if (this.checkPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                        this.checkFinished = false
+                    } else {
+                        this.checkFinished = true;
+                    }
+                    this.reportData = this.reportData.concat(res.data.rows);
+                } else {
+                    this.reportData = []
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
         checkReportDetail(val) {
+            this.$store.commit('activeFun', this.active1);
             this.$router.push({
                 name: 'reportinfo',
                 query: { id: val },
             });
         },
         collectReportDetail(val) {
+            this.$store.commit('activeFun', this.active1);
             this.$router.push({
                 name: 'reportinfo',
                 query: { id: val },
             });
         },
-
-
         switchTo(num) {
             this.active1 = num;
         },
@@ -269,7 +253,7 @@ export default {
             this.checkReport();
         },
         intoreportinfo() {
-            let argu = {}
+            let argu = {};
             this.$router.push({
                 name: 'reportinfo',
                 query: argu
@@ -310,13 +294,12 @@ export default {
                 this.collectReport(true);
             }, 500);
         },
-    },
-    computed: {
-
-    },
-
+    }
 };
 </script>
  <style   scoped>
 @import url("./reportquery.css");
+.md-example-child-scroll-view-3 {
+  height: 890px;
+}
 </style>

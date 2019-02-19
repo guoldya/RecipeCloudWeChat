@@ -39,11 +39,9 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 }
 
 Vue.config.productionTip = false
-
-
 const BASE_URL = '/api';
 axios.defaults.baseURL = BASE_URL;
- 
+
 
 // let AUTH_TOKEN = (function () {
 //   return localStorage.getItem("token");
@@ -54,19 +52,27 @@ axios.defaults.baseURL = BASE_URL;
 axios.interceptors.request.use(function (config) {
 
   let url = config.url;
-  // 如果是登陆
-  if (url.indexOf("/appLogin/login") > -1) {
+  // 如果是登陆 
+  if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
     localStorage.setItem('token', "");
     config.headers.TOKEN = "";
   } else {
-    console.log("一二善思", localStorage.getItem("token"))
-    config.headers.TOKEN = localStorage.getItem("token");
+    config.headers.TOKEN = 'edd169b85704410aa5219512cb6f1f00';
     config.headers.UUID = "AAA";
+
+    // if (this.$store.state.TOKEN) {
+    //   config.headers.TOKEN = this.$store.state.TOKEN;
+    //   config.headers.UUID = this.$store.state.UUID;
+    // } else {
+    //   console.log("一二善思", localStorage.getItem("token"))
+    //   config.headers.TOKEN = localStorage.getItem("token");
+    //   config.headers.UUID = "AAA";
+    // }
+
+
+
   }
-  // if (url.indexOf("user") > -1 && url.indexOf("register") < 0) {
 
-
-  // }
   return config;
 }, function (err) {
   return Promise.reject(err);

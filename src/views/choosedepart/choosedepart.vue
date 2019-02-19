@@ -4,24 +4,23 @@
     <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
       <Search></Search>
       <div class="appTab">
-        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-          {{item.title}}
+        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.id,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+          {{item.orgName}}
         </span>
       </div>
       <div>
-        <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
+        <!-- <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
           {{item.title}}
-        </div>
+        </div> -->
         <p class="xuanze">选择科室
           <span class="warn">(周末及节假日不可预约)</span>
         </p>
         <div v-if="this.active1==0">
-          <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.name" />
+          <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.orgName" />
         </div>
         <div v-if="this.active1==1">
-          <md-cell-item v-for="(item2,index2) in test3" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.name" />
+          <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.orgName" />
         </div>
-
       </div>
     </div>
     <div class="aui-footer" @click="lookagain">
@@ -31,33 +30,22 @@
 </template>
 <script type="text/babel">
 let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
-
+ 
 export default {
   data() {
     return {
       isWeixin: false,
       active1: 0,
-      departs: [
-        { title: '演示医院' },
-        { title: '网上医院' },
-      ],
+      orgId: "",
+      departs: [],
       num: 10,
       active2: 0,
       spacia: [
-        { title: '普通门诊' },
-        { title: '专家门诊' },
-        { title: '特色门诊' },
+        { title: '普通门诊', value: 1 },
+        { title: '专家门诊', value: 2 },
+        { title: '特色门诊', value: 3 },
       ],
-      departData: [
-        { name: "妇科门诊", value: 77 },
-        { name: "生殖内分泌门诊", value: 88 },
-        { name: "儿科", value: 99 },
-        { name: "放射科", value: 111 },
-        { name: '妇科', value: 1 },
-        { name: '内科', value: 2 },
-        { name: '外科', value: 31 },
-        { name: '生殖内分泌', value: 55 },
-      ],
+      departData: [],
       test3: [
         { name: "不孕不育", value: 555 },
         { name: "生殖内分泌门诊", value: 888 },
@@ -65,6 +53,9 @@ export default {
     };
   },
   created() {
+
+  },
+  watch: {
 
   },
   mounted() {
@@ -77,10 +68,12 @@ export default {
     };
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
-      orgId: 49
+      orgId: 52
     }).then((res) => {
       if (res.data.code == '200') {
-        console.log(res.data);
+        this.departs = res.data.rows;
+        this.orgId = res.data.rows[0].id;
+        this.orgFun(this.orgId);
       } else {
         console.log(res.msg);
       }
@@ -89,11 +82,26 @@ export default {
     });
 
 
-
   },
   methods: {
-    switchTo(num) {
-      this.active1 = num;
+    orgFun(data) {
+      this.$axios.put(bdHospitalOrg, {
+        id: data
+      }).then((res) => {
+        if (res.data.code == '200') {
+          this.departData = res.data.rows;
+        } else {
+          console.log(res.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    switchTo(num, index) {
+
+      this.active1 = index;
+      this.orgId = num;
+      this.orgFun(this.orgId)
     },
     switchDE(num) {
       this.active2 = num;
@@ -103,13 +111,14 @@ export default {
         name: 'lookagain',
       });
     },
-    intodoctorList(aa) {
-      let argu = { value: aa.value };
+    intodoctorList(data) {
+      console.log(data)
       this.$router.push({
         name: 'doctorList',
-        query: argu
+        query: { orgIdVO: data.id, orgId: this.orgId, departName: data.orgName }
       });
     },
+
   },
   computed: {
 
@@ -120,7 +129,7 @@ export default {
  <style scoped>
 .choosedepart .xuanze {
   font-size: 32px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 .choosedepart .margin20 {
   margin-top: 20px;

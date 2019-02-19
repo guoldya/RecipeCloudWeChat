@@ -210,6 +210,7 @@ input {
    word-wrap: normal;
    word-wrap: break-word;
    word-break: break-all;
+   width: 90%;
 }
 
 .doctorList .card .headimg {

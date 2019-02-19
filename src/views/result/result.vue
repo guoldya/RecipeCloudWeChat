@@ -6,31 +6,38 @@
         <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
       </div>
       <div class="mu-sub-header margin16">科室</div>
-      <md-cell-item v-for="(item2,index2) in departData" :title="item2.name" arrow @click="intodoctorList(item2.name)" :key="'AAA'+index2" />
+      <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.name" arrow @click="intodoctorList(item2.name)" :key="'AAA'+index2" />
+      <div v-if="departData.length==0">
+        <p>暂无科室信息</p>
+      </div>
       <div class="mu-sub-header margin16">医生</div>
-      <md-cell-item v-for="(item,index) in test3" :key="index+'aa'" :title="item.name" :brief="item.good" arrow>
+      <md-cell-item v-if="dotorList.length!=0" v-for="(item,index) in dotorList" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
         <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
       </md-cell-item>
+      <div v-if="dotorList.length==0">
+        <p>暂无医生信息</p>
+      </div>
     </div>
   </div>
 </template>
 <script>
+let searchClinicListByClinicOrDoctor = "/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
 export default {
   data() {
     return {
       value: '',
       isWeixin: false,
       departData: [
-        { name: "妇科门诊" },
-        { name: "生殖内分泌门诊生殖内分泌" },
-        { name: "儿科" },
-        { name: "放射科" },
+        // { name: "妇科门诊" },
+        // { name: "生殖内分泌门诊生殖内分泌" },
+        // { name: "儿科" },
+        // { name: "放射科" },
       ],
-      test3: [
-        { name: "冉有钱", good: "擅长：急性呼吸窘迫综合征、 呼吸衰竭的救治" },
-        { name: "唐浩瀚", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
-        { name: "安未", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
-        { name: "吴政阳", good: "擅长：急性呼吸窘迫综合征、重症感染 " },
+      dotorList: [
+        // { name: "冉有钱", good: "擅长：急性呼吸窘迫综合征、 呼吸衰竭的救治" },
+        // { name: "唐浩瀚", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
+        // { name: "安未", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
+        // { name: "吴政阳", good: "擅长：急性呼吸窘迫综合征、重症感染 " },
       ],
     }
   },
@@ -63,27 +70,25 @@ export default {
     loadMorelist(value) {
       let _this = this;
       console.log("搜索数据", value);
-
       clearTimeout(this.t);
       this.t = setTimeout(function () {
-
-        _this.$axios.put(bdDrugstorereadpage, {
-          status: 1, name: value, enable: 1, type: "wx",
+        _this.$axios.put(searchClinicListByClinicOrDoctor, {
+          name: value
         }).then(function (res) {
-          if (res.code == '400') {
+          console.log("状态", res.data.code, res.data.data);
+          if (res.data.code == '200') {
+            res.data.data = JSON.parse(res.data.data);
+            _this.dotorList = res.data.data.dotorList;
+            _this.departData = res.data.data.orgList;
+            console.log(res.data.data.dotorList, "ss")
           } else {
-            if (value) {
-              _this.AAA = false;
-            } else {
-              _this.AAA = true;
-            }
 
-            _this.list = res.data.rows;
           }
         }).catch(function (err) {
 
         });
       }, 300);
+
     },
   }
 }

@@ -37,8 +37,7 @@
                 </li>
             </ul>
             <div class="home-zy home-flex">
-                <img src="@/assets/images/AAAA.png" alt="" class="image float-left">
-
+                <img @click="inhospital" src="@/assets/images/AAAA.png" alt="" class="image float-left">
             </div>
             <ul class="home-menu">
                 <li>
@@ -168,6 +167,15 @@ export default {
                 query: argu
             });
         },
+        // 我的住院
+        inhospital() {
+            let argu = {}
+            this.$router.push({
+                name: 'inhospital',
+                query: argu
+            });
+        },
+
         // 医生排班
         workdepart() {
             let argu = {}

@@ -111,9 +111,6 @@ export default {
         that.othUrl = this.result;
       };
       this.AAA = e.target.files[0];
-
-
-
     },
     uploadOth(e) {
       let that = this,
