@@ -83,6 +83,21 @@ p {
   word-wrap: break-word;
   word-break: break-all;
 }
+input::-webkit-input-placeholder {
+  color: #c5cad5;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #c5cad5;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #c5cad5;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #c5cad5;
+}
 .aligncenter {
   text-align: center;
 }

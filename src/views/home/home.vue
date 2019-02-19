@@ -91,7 +91,10 @@ export default {
     },
 
     mounted() {
-        // console.log( localStorage.getItem("token"),"缓存的 loca ")
+        // 用于测试
+        var storage = window.localStorage;
+        storage.setItem("token", "edd169b85704410aa5219512cb6f1f00");
+
         document.title = '互联网医院';
         let _this = this;
         function UrlSearch() {
@@ -109,11 +112,10 @@ export default {
             console.log(JSON.parse(res.data.data.value), "sss")
             if (res.data.code == '200') {
                 res.data.data.value = JSON.parse(res.data.data.value);
-                var storage = window.localStorage;
-                storage.setItem("token", res.data.data.value.token);
-                storage.setItem("uuid", res.data.data.value.uuid);
-                storage.setItem("id", res.data.data.value.id);
-                console.log(localStorage.getItem("token"), "缓存的 loca ")
+                // var storage = window.localStorage;
+                // storage.setItem("token", res.data.data.value.token);
+                // storage.setItem("uuid", res.data.data.value.uuid);
+                // storage.setItem("id", res.data.data.value.id);
             } else if (res.data.code == '800') {
                 // this.$router.push({
                 //     name: 'register',

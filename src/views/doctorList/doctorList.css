@@ -57,7 +57,7 @@ input {
 }
 
 .doctorList .tagdiv .activeAA {
-   color: #1976d2;
+   color: #1da1f3;
 }
 
 .doctorList .tag3 .tagdiv {
@@ -68,7 +68,7 @@ input {
    font-size: 28px;
    color: #ffffff;
    float: right;
-   background: #1976d2;
+   background: #1da1f3;
    border-radius: 40px;
    letter-spacing: 1px;
    width: 134px;
@@ -126,7 +126,7 @@ input {
 
 .doctorList .timeAcitve {
    color: #ffffff !important;
-   background: #1976d2;
+   background: #1da1f3;
 }
 
 .doctorList .butTime {
@@ -167,13 +167,13 @@ input {
 }
 
 .afternoonActive {
-   color: #1976d2;
-   border: 2px solid #1976d2;
+   color: #1da1f3;
+   border: 2px solid #1da1f3;
 }
 
 .forenoon {
    line-height: 100px;
-   color: #1976d2;
+   color: #1da1f3;
    font-size: 32px;
 }
 
@@ -221,8 +221,8 @@ input {
 .doctorList .headname .levle {
    padding: 2px 10px;
    font-size: 22px;
-   color: #1976d2;
-   border: 2px solid #1976d2;
+   color: #1da1f3;
+   border: 2px solid #1da1f3;
    border-radius: 8px;
    position: relative;
    top: -5px;

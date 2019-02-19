@@ -5,14 +5,22 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-   state: {
-      jumpArr: [],
-       payWay:[],
-       detailData:[],
-       activeId:'',
-       feeActiveId:'',
-   },
+    state: {
+        jumpArr: [],
+        payWay: [],
+        detailData: [],
+        posUrl: '',
+        othUrl: '',
+        activeId: '',
+        feeActiveId:'',
+    },
    mutations: {
+       posUrlFun: (state, n) => {
+           state.posUrl = n;
+       },
+       othUrlFun: (state, n) => {
+           state.othUrl = n;
+       },
       addjumpArr: (state, n) => {
          state.jumpArr = n;
       },
@@ -27,8 +35,8 @@ export default new Vuex.Store({
        },
 
    },
-   actions: {
+    actions: {
 
-   }
+    }
 })
 
