@@ -10,6 +10,7 @@ export default new Vuex.Store({
        payWay:[],
        detailData:[],
        activeId:'',
+       feeActiveId:'',
    },
    mutations: {
       addjumpArr: (state, n) => {
@@ -18,12 +19,13 @@ export default new Vuex.Store({
       payWayFun:(state, n) => {
           state.payWay = n;
       },
-      recordDetailFun:(state, n) => {
-         state.detailData = n;
-      },
        activeFun:(state, n) => {
            state.activeId = n;
        },
+       feeActiveFun:(state, n) => {
+           state.feeActiveId = n;
+       },
+
    },
    actions: {
 

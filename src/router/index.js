@@ -217,7 +217,7 @@ export default new Router({
       path: '/reportquery',
       name: 'reportquery',
       component: reportquery,
-      meta: { keepAlive: true }
+      //meta: { keepAlive: true }
     },
     {
       path: '/reportinfo',

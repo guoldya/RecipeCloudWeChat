@@ -28,7 +28,7 @@
           {{item.title}}
         </span>
       </div>
-      <div  v-if="this.active1==0" class="outCarint">
+      <div  v-if="active1==0" class="outCarint">
         <div class="card margin16"  v-for="(item,i) in reportData" :key="i">
           <div class="cardText" @click="checkReportDetail(item.id)">
             <div class="cardTextLeft">
@@ -42,13 +42,13 @@
           </div>
         </div>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
-        <div v-infinite-scroll="checkLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+        <div v-infinite-scroll="checkLoadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix" >
             <span v-if="reportData.length!=0&&!nomore">
               <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
             </span>
         </div>
       </div>
-      <div v-else class="outCarint">
+      <div v-if="active1==1" class="outCarint">
         <div class="card margin16" v-for="(item,i) in collectData" :key="i">
           <div class="cardText" @click="collectReportDetail(item.id)">
             <div class="cardTextLeft">
@@ -60,9 +60,9 @@
             </div>
           </div>
         </div>
-        <p v-show="collectNomore" class="nomore">没有更多数据了</p>
-        <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="collectBusy" infinite-scroll-distance="30" class="clearfix">
-            <span v-if="collectData.length!=0&&!collectNomore" style="text-align: center">
+        <p v-show="collectNomore" class="noMore">没有更多数据了</p>
+        <div v-infinite-scroll="collectLoadMore" infinite-scroll-disabled="collectBusy" infinite-scroll-distance="30" class="clearfix" >
+            <span v-if="collectData.length!=0&&!collectNomore">
               <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1);"></md-icon>
             </span>
         </div>
@@ -76,7 +76,7 @@
 export default {
   data() {
     return {
-        loadingtrue: true,
+        aaa:true,
         busy: true,
         collectBusy: true,
         nomore: false,
@@ -125,6 +125,10 @@ export default {
   created() {
 
   },
+    // activated(){
+    //     this.busy=false; // keep-alive 组件激活时调用。该钩子在服务器端渲染期间不被调用。
+    //     this.collectBusy=false;
+    // },
   mounted() {
       this.checkReport();
       this.collectReport();
@@ -143,7 +147,6 @@ export default {
       this.UUID = Request.UUID;
   },
   methods: {
-
       checkReport(flag){
           // if(!this.choseValue){
           //     this.choseValue=this.optionsData[0][0].value;
@@ -159,11 +162,7 @@ export default {
                   'UUID': `AAA`
               },
           }).then((res) => {
-              // if (res.data.code == '200') {
-              //     this.reportData=res.data.rows;
-              // }
               if (res.data.rows) {
-                  this.loadingtrue = false;
                   if (flag) {
                       this.reportData = this.reportData.concat(res.data.rows);  //concat数组串联进行合并
                       if (this.checkPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
@@ -206,9 +205,7 @@ export default {
                   'UUID': `AAA`
               },
           }).then((res) => {
-              if (res.data.code == '200') {
                   if (res.data.rows) {
-                      this.loadingtrue = false;
                       if (flag) {
                           this.collectData = this.collectData.concat(res.data.rows);  //concat数组串联进行合并
                           if (this.collectPageNumber < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
@@ -218,7 +215,7 @@ export default {
                               this.collectBusy = true;
                               this.collectNomore = true;
                           }
-                          console.log(this.collectNomore, "就是这里")
+                          console.log(this.collectBusy, "就是这里")
                       } else {
                           this.collectData = res.data.rows;
                           this.collectBusy = true;
@@ -234,7 +231,6 @@ export default {
                   } else {
                       this.collectData = []
                   }
-              }
           }).catch(function (err) {
               console.log(err);
           });
@@ -253,11 +249,9 @@ export default {
               query:{id:val},
           });
       },
-
-
-    switchTo(num) {
-      this.active1 = num;
-    },
+      switchTo(num) {
+          this.active1 = num;
+      },
       timeSwitchTo(num) {
           this.reportactive1 = num;
       },
@@ -300,6 +294,7 @@ export default {
       )
     },
       checkLoadMore() {
+          console.log("checkLoadMore");
           this.busy = true;  //将无限滚动给禁用
           setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
               this.checkPageNumber++;  //滚动之后加载第二页
@@ -307,7 +302,7 @@ export default {
           }, 500);
       },
       collectLoadMore() {
-          console.log("dong");
+          console.log("collectLoadMore");
           this.collectBusy = true;  //将无限滚动给禁用
           setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
               this.collectPageNumber++;  //滚动之后加载第二页

@@ -67,16 +67,16 @@
                         </span>
                     </div>
                     <div class="cardTextPP">
-                        <span>年龄：{{item.execDept}} </span>
+                        <span>年龄：{{item.age}}岁 </span>
                         <span style="width: 50%">科别：
-                            <span>{{item.sex}}</span>
+                            <span>{{item.execDept}}</span>
                         </span>
                     </div>
-                    <div class="cardTextPP">
-                        <span>收样日期:{{item.type}} </span>
-                        <span style="width: 50%">标本类型：
-                          <span>{{item.subType}} </span>
-                        </span>
+                    <div class="cardTextNN">
+                        <span>收样日期:{{item.applyTime}} </span>
+                        <div >
+                          <span>标本类型：{{item.sampleType}} </span>
+                        </div>
                     </div>
                     <div class="cardTextNN">
                         <span>送检项目：{{item.itemName}}</span>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="cardTextPP listData">
                         <span>临床诊断：</span>
-                        <span style="width: 78%;">{{item.itemName}}</span>
+                        <span style="width: 78%;">{{item.diag}}</span>
                     </div>
                 </div>
             </div>
@@ -135,20 +135,22 @@ export default {
         reportInfoData:[],
         reportResult:[],
         pageSize:10,
-        pageNumber:0,
+        pageNumber:1,
         activeId:'',
     };
   },
+
   created() {
 
   },
   mounted() {
       this.activeId=this.$store.state.activeId;
-      console.log(this.activeId)
-        this.collectReportDetail()
-      //this.checkReportDetail();
-      console.log(this.$store.state);
-      console.log(this.$store.state.checkReportId);
+      if(this.$store.state.activeId==0){
+          this.checkReportDetail();
+      }else if(this.$store.state.activeId==1){
+          this.collectReportDetail();
+      }
+
     document.title = '检查报告详情';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
