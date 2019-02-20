@@ -1,6 +1,22 @@
 <template>
   <div class="feerecord">
-    <Header post-title="缴费记录" v-show="isWeixin"></Header>
+    <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
+            <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
+                <img src="@/assets/images/icon_back.png">
+            </span>
+      <div class="aui-center">
+        <span class="aui-center-title">缴费记录</span>
+      </div>
+      <span class="aui-navBar-item">
+                <div>
+                    <md-field>
+                        <md-field-item :content="selectorValue" @click="showSelector" solid/>
+                    </md-field>
+                    <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData[0]" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
+                </div>
+                <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
+            </span>
+    </header>
     <div :class="{'outCarint':true,'margin45':isWeixin}">
       <div class="appTab">
         <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
@@ -52,6 +68,21 @@ export default {
       ],
         waitPayData:[],
         status:0,
+        selectorValue: '',
+        choseValue:'',
+        isSelectorShow: false,
+        optionsData: [[
+            { text: "范冰冰", value: "1" },
+            { text: "郑凯", value: "2" },
+            { text: "邓超", value: "3" },
+            { text: '孙俪', value: "4" },
+            { text: '王祖蓝', value: "5" },
+            { text: '薛之谦', value: "6" },
+            { text: '陈楚生', value: "7" },
+            { text: "张信哲", value: "8" },
+            { text: "汪涵", value: "9" },
+            { text: "李晨", value: "10" },
+        ]],
     };
   },
 
@@ -62,6 +93,7 @@ export default {
       this.WaitPay();
     document.title = '缴费记录';
     var ua = window.navigator.userAgent.toLowerCase();
+      this.selectorValue=this.optionsData[0][0].text;
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
       return true;
@@ -71,6 +103,14 @@ export default {
     }
   },
   methods: {
+      onSelectorChoose({text, value}) {
+          this.selectorValue = text;
+          this.choseValue = value;
+          //this.WaitPay();
+      },
+      showSelector() {
+          this.isSelectorShow = true
+      },
     appointinfo: function (value) {
         this.$store.commit('feeActiveFun', this.active1);
       this.$router.push({
@@ -96,7 +136,7 @@ export default {
       }
     },
     WaitPay(){
-        this.$axios.put(pay_list_url,{status:this.status},{
+        this.$axios.put(pay_list_url,{status:this.status,patientId:this.choseValue},{
             headers: {
                 'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
                 'UUID': `AAA`
