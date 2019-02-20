@@ -50,6 +50,7 @@
 </template>
 
 <script>
+    let bizExamSchedulereadlist="app/bizExamSchedule/read/list";
     export default {
         data() {
             return {
@@ -67,6 +68,7 @@
             }
         },
         mounted() {
+            this.getTime();
             document.title = '检验检查';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -116,8 +118,21 @@
             },
             makeOrder(val){
 
-            }
+            },
+            getTime(){
+                this.$axios.put(bizExamSchedulereadlist,{},{
+                    headers: {
+                        'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                        'UUID': `AAA`
+                    },
+                }).then((res) => {
+                    if(res.data.code=='200'){
 
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
 
         }
     }

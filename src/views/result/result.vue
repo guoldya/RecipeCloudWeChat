@@ -77,7 +77,7 @@ export default {
         }).then(function (res) {
           console.log("状态", res.data.code, res.data.data);
           if (res.data.code == '200') {
-            res.data.data = JSON.parse(res.data.data);
+            // res.data.data = JSON.parse(res.data.data);
             _this.dotorList = res.data.data.dotorList;
             _this.departData = res.data.data.orgList;
             console.log(res.data.data.dotorList, "ss")

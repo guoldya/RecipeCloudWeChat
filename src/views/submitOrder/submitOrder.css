@@ -61,7 +61,7 @@
     background :url(../../assets/images/icon_wechatpay.png) center no-repeat;
     background-size: 32px
 }
-.submitOrder .md-cashier-channel-item{
+ .md-cashier-channel-item{
     background-color: transparent !important;
 }
 .md-cashier-block-btn .md-button{
