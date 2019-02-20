@@ -10,10 +10,14 @@ import Search from './components/search/search.vue';
 import Footer from './components/footer/footer.vue';
 import Loading from './components/loading/loading.vue';
 import infiniteScroll from 'vue-infinite-scroll';
+import filters from './filter/filter';
 import * as mandMobile from 'mand-mobile'
 import 'mand-mobile/lib/mand-mobile.css'
 Vue.prototype.$conf = Config;
 Vue.use(mandMobile)
+Object.keys(filters).forEach(key => {
+    Vue.filter(key, filters[key])
+})
 // import 'normalize.css'
 
 import './assets/responsive'

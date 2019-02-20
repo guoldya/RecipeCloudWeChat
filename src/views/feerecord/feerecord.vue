@@ -7,32 +7,32 @@
           {{item.title}}
         </span>
       </div>
-      <div class="demo-text" v-if="active1 === 0" @click="appointinfo">
-        <div class="card cardcc">
+      <div class="demo-text" v-if="active1==0">
+        <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
           <p class="appTitle">
-            <span>西药费</span>
-            <span class="mu-secondary-text-color">99元</span>
+            <span>{{item.type}}费</span>
+            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
           </p>
           <div class="cardText">
-            <p>患者：李华</p>
-            <p>医院：演示医院</p>
-            <p>开单时间：2019-12-05 12:30:00</p>
-            <div style="height:30px;  text-align: right;">
+            <p>患者：{{item.patientName}}</p>
+            <p>医院：{{item.hospital}}</p>
+            <p>开单时间：{{item.createTime}}</p>
+            <div style="height:30px;  text-align: right;"  v-if="active1 === 0">
               <span class="payatnow">立即支付</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="demo-text" v-if="active1 === 1">
-        <div class="card cardcc">
+      <div class="demo-text" v-if="active1==1">
+        <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="alreadyPay(item.id)">
           <p class="appTitle">
-            <span>中药费</span>
-            <span class="mu-secondary-text-color">99元</span>
+            <span>{{item.type}}费</span>
+            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
           </p>
           <div class="cardText">
-            <p>患者：李华</p>
-            <p>医院：演示医院</p>
-            <p>开单时间：2019-12-05 12:30:00</p>
+            <p>患者：{{item.patientName}}</p>
+            <p>医院：{{item.hospital}}</p>
+            <p>开单时间：{{item.createTime}}</p>
           </div>
         </div>
       </div>
@@ -40,6 +40,7 @@
   </div>
 </template>
 <script  >
+    let pay_list_url="wechat/bizCostBill/selectCostBillList";
 export default {
   data() {
     return {
@@ -49,12 +50,16 @@ export default {
         { title: '待支付' },
         { title: '已支付' },
       ],
+        waitPayData:[],
+        status:0,
     };
   },
+
   created() {
 
   },
   mounted() {
+      this.WaitPay();
     document.title = '缴费记录';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -67,15 +72,43 @@ export default {
   },
   methods: {
     appointinfo: function (value) {
+        this.$store.commit('feeActiveFun', this.active1);
       this.$router.push({
         name: 'feeinfo',
-        // query: argu
+         query: {id:value}
       });
     },
+      alreadyPay: function (value) {
+          this.$store.commit('feeActiveFun', this.active1);
+          this.$router.push({
+              name: 'feeinfo',
+              query: {id:value}
+          });
+      },
     switchTo(num) {
       this.active1 = num;
+      if(num==0){
+          this.status=0;
+          this.WaitPay();
+      }else if(num==1){
+          this.status=1;
+          this.WaitPay();
+      }
     },
-
+    WaitPay(){
+        this.$axios.put(pay_list_url,{status:this.status},{
+            headers: {
+                'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
+                'UUID': `AAA`
+            },
+        }).then((res) => {
+            if(res.data.code=='200'){
+              this.waitPayData=res.data.rows;
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
+    },
 
   },
   computed: {
@@ -119,4 +152,7 @@ export default {
   padding: 15px 40px;
   text-align: center;
 }
+  .feerecord .demo-text .card:first-child{
+     margin-top: 0px;
+   }
 </style>
