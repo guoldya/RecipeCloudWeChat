@@ -31,7 +31,9 @@
 .tiptop3 {
    text-align: center
 }
-
+.cardmy .md-notice-bar{
+   color: !#2f86f6
+}
 .warnbottitle {
    color: #979797;
    font-size: 26px;

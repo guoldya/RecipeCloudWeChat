@@ -3,7 +3,7 @@
   <div class="reportinfo">
     <Header post-title="检查报告详情" v-show="isWeixin"></Header>
     <div :class="{margin45:isWeixin,outCarint:true}" v-for="(item,i) in reportInfoData" :key="i">
-        <div v-if="activeId==0">
+        <div v-if="activeId==0" class="outCarint">
             <div class="card margin16">
                 <div class="cardText" >
                     <div class="cardTextPP">
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="activeId==1">
+        <div v-if="activeId==1" class="outCarint">
             <div class="card margin16">
                 <div class="cardText" >
                     <div class="cardTextPP">

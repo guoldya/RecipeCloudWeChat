@@ -12,7 +12,7 @@
       <div class="line"></div>
       <div class="tag2">
         <div class="tagdiv">
-          <span v-if="totalNum" @click="handler" class="activeAA">只看有号</span>
+          <span v-if="valNum" @click="handler" class="activeAA">只看有号</span>
           <span v-else @click="handler">查看所有</span>
         </div>
       </div>
@@ -46,115 +46,54 @@
     <div :class="{ pt50: !isTop  ,'outCarint':true}" style="margin-bottom:20px; ">
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
-        <ul v-show="!totalNum">
-          <li>
-            <div class="card" @click="intodoctordetail">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">刘秀娟
-                    <span class="levle">主任医师</span>
-                    <span class="have">余56</span>
-                  </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="card" @click="intodoctordetail">
-              <div class="cardText">
-                <div class="headimg"><img src="https://kano.guahao.cn/iPb2687320_image140.jpg?timestamp=1504077956258" alt="医生头像"></div>
-                <div>
-                  <p class="headname">孙强
-                    <span class="levle">副主任医师</span>
-                    <span class="have">余56</span>
-                  </p>
-                  <p class="headdesc">擅长:前列腺增生微创治疗、腹腔镜及输尿管镜等腔内泌尿外科、泌尿系肿瘤的诊...</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="card" @click="intodoctordetail">
-              <div class="cardText">
-                <div class="headimg"><img src="https://kano.guahao.cn/u0w2684511_image140.jpg" alt="医生头像"></div>
-                <div>
-                  <p class="headname">胡必杰
-                    <span class="levle">主任医师</span>
-                    <span class="have">余56</span>
-                  </p>
-                  <p class="headdesc">擅长:心脏病的临床诊断，心血管影像诊断，尤其是各种冠心病治疗方法的合理选择。</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <ul v-show="totalNum">
-          <li>
+        <ul v-if="amList.length!=0">
+          <li v-for="(item2,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(item2)">
             <div class="card">
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">杜洪
-                    <span class="have">余10</span>
+                  <p class="headname">>{{item.name}}
+                    <span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>
+                    <span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>
                   </p>
-                  <p class="headdesc"> 肺炎； 肺结节； 肺真菌病：隐球菌、曲霉菌； 肺部病灶诊断不明； 发热； 败血症和心内膜炎； 结核；（8）耐药菌感染与抗生素使用</p>
+                  <p class="headdesc">擅长:{{item.introduce}}</p>
                 </div>
               </div>
             </div>
           </li>
         </ul>
+        <div v-else>
+          <p>暂无号源</p>
+        </div>
       </div>
       <p class="forenoon">下午</p>
       <div class="doctorList" id="afternoon">
-        <ul v-show="!totalNum">
-          <li>
-            <div class="card">
+        <ul v-if="pmList.length!=0">
+          <li v-for="(item,index) in pmList" :key="index">
+            <div class="card" @click="intodoctordetail(item)">
               <div class="cardText">
-                <div class="headimg"><img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像"></div>
-                <div>
-                  <p class="headname">袁丁未
-                    <span class="have no">余0</span>
-                  </p>
-                  <p class="headdesc">擅长:各类口腔临床常见疾病，牙体牙髓病、根尖周病，牙龈牙周病的诊治。</p>
+                <div class="headimg">
+                  <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
                 </div>
-              </div>
-            </div>
-          </li>
-          <li v-for="i in 3" :key="i">
-            <div class="card">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">医师
-                    <span class="have no">余0</span>
+                  <p class="headname">{{item.name}}
+                    <span class="levle">{{item.title}}</span>
+                    <span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>
+                    <span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>
                   </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                  <p class="headdesc">擅长:{{item.introduce}}</p>
                 </div>
               </div>
             </div>
           </li>
         </ul>
-        <ul v-show="totalNum">
-          <li>
-            <div class="card">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">医师
-                    <span class="have  ">余1</span>
-                  </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <div v-else>
+          <p>暂无号源</p>
+        </div>
       </div>
-      <p class="forenoon">夜诊</p>
+      <!-- <p class="forenoon">夜诊</p>
       <div class="doctorList">
-        <ul v-show="!totalNum">
+        <ul v-show="!valNum">
           <li>
             <div class="card">
               <div class="cardText">
@@ -182,7 +121,7 @@
             </div>
           </li>
         </ul>
-        <ul v-show="totalNum">
+        <ul v-show="valNum">
           <li>
             <div class="card">
               <div class="cardText">
@@ -197,7 +136,7 @@
             </div>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -209,12 +148,12 @@ export default {
     return {
       isSelectorShow: false,
       selectorValue: '',
-      orgIdVO: '',
+      deptId: '',
       num: 5,
       isTop: true,
       isActive: 1,
-      totalNum: false,
-      orgId: '',
+      valNum: false,
+      yuanId: '',
       activetime: 0,
       normal: {
         checkbox: true,
@@ -227,24 +166,26 @@ export default {
       choosedate: '1-01',
       chooseweek: '星期六',
       isTime: '',
+      amList: [],
+      pmList: [],
     };
   },
   created() {
   },
   watch: {
-    orgIdVO: function (newselectedStatus, oldselectedStatus) {
+    deptId: function (newselectedStatus, oldselectedStatus) {
       console.log(newselectedStatus)
     },
   },
   mounted() {
     document.title = '医生列表';
 
-    if (!this.orgIdVO) {
-      this.orgIdVO = this.$route.query.orgIdVO;
+    if (!this.deptId) {
+      this.deptId = this.$route.query.deptId;
       this.selectorValue = this.$route.query.departName;
     }
-    if (!this.orgId) {
-      this.orgId = this.$route.query.orgId * 1;
+    if (!this.yuanId) {
+      this.yuanId = this.$route.query.yuanId * 1;
     }
 
     var box = document.getElementById('mornign');
@@ -279,16 +220,18 @@ export default {
     };
     if (!this.isTime) {
       var today = new Date();
-      this.isTime = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+      this.isTime = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
     }
     this.getData();
     this.orgFun();
     this.doctorListFun();
   },
   methods: {
+
+
     orgFun() {
       this.$axios.put(bdHospitalOrg, {
-        id: this.orgId,
+        id: this.yuanId,
       }).then((res) => {
         if (res.data.code == '200') {
           for (let i = 0; i < res.data.rows.length; i++) {
@@ -313,16 +256,18 @@ export default {
     },
     onSelectorChoose(data) {
       this.selectorValue = data.text;
-      this.orgIdVO = data.value;
+      this.deptId = data.value;
       this.doctorListFun();
     },
-    intodoctordetail() {
+
+    intodoctordetail(data) {
       let argu = {}
       this.$router.push({
         name: 'doctordetail',
-        query: argu
+        query: { doctorId: data.id }
       });
     },
+    
     goMornign() {
       this.isActive = 1
       document.querySelector("#mornign").scrollIntoView();
@@ -363,7 +308,7 @@ export default {
     searchT: function () {
       this.$router.push({
         name: 'resultdocotor',
-        query: { orgIdVO: this.orgIdVO, isTime: this.isTime, totalNum: this.totalNum }
+        query: { deptId: this.deptId, isTime: this.isTime, valNum: this.valNum }
       });
     },
     switchTo(num, item) {
@@ -374,17 +319,18 @@ export default {
       this.doctorListFun();
     },
     handler() {
-      this.totalNum = !this.totalNum;
+      this.valNum = !this.valNum;
       this.doctorListFun();
     },
     doctorListFun() {
       this.$axios.put(selectDoctorList, {
-        orgIdVO: this.orgIdVO * 1,
-        totalNum: this.totalNum ? 1 : undefined,
+        orgId: this.deptId * 1,
+        valNum: this.valNum ? 1 : undefined,
         time: this.isTime,
       }).then((res) => {
         if (res.data.code == '200') {
-          // this.departData = res.data.rows;
+          this.amList = res.data.data.amList;
+          this.pmList = res.data.data.pmList;
         } else {
           console.log(res.msg);
         }

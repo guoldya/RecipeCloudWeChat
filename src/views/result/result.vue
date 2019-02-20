@@ -6,15 +6,15 @@
         <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
       </div>
       <div class="mu-sub-header margin16">科室</div>
-      <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.name" arrow @click="intodoctorList(item2.name)" :key="'AAA'+index2" />
+      <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
       <div v-if="departData.length==0">
         <p>暂无科室信息</p>
       </div>
       <div class="mu-sub-header margin16">医生</div>
-      <md-cell-item v-if="dotorList.length!=0" v-for="(item,index) in dotorList" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
+      <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
         <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
       </md-cell-item>
-      <div v-if="dotorList.length==0">
+      <div v-if="doctorList.length==0">
         <p>暂无医生信息</p>
       </div>
     </div>
@@ -33,7 +33,7 @@ export default {
         // { name: "儿科" },
         // { name: "放射科" },
       ],
-      dotorList: [
+      doctorList: [
         // { name: "冉有钱", good: "擅长：急性呼吸窘迫综合征、 呼吸衰竭的救治" },
         // { name: "唐浩瀚", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
         // { name: "安未", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
@@ -60,14 +60,16 @@ export default {
         query: argu
       });
     },
-    intodoctorList(title) {
-      let argu = { title: title }
+    intodoctorList(data) {
+      console.log(data)
       this.$router.push({
         name: 'doctorList',
-        query: argu
+        query: { deptId: data.id, yuanId: data.parentId, departName: data.orgName }
       });
     },
     loadMorelist(value) {
+      if (!value) return;
+      value = value.trim() // 清除空格
       let _this = this;
       console.log("搜索数据", value);
       clearTimeout(this.t);
@@ -77,19 +79,17 @@ export default {
         }).then(function (res) {
           console.log("状态", res.data.code, res.data.data);
           if (res.data.code == '200') {
-            // res.data.data = JSON.parse(res.data.data);
-            _this.dotorList = res.data.data.dotorList;
+            _this.doctorList = res.data.data.doctorList;
             _this.departData = res.data.data.orgList;
-            console.log(res.data.data.dotorList, "ss")
           } else {
-
           }
         }).catch(function (err) {
 
         });
       }, 300);
-
     },
+
+
   }
 }
 </script>

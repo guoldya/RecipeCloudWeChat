@@ -23,20 +23,20 @@
         </div>
       </div>
     </div>
-    <div class="aui-footer" @click="lookagain">
+    <!-- <div class="aui-footer" @click="lookagain">
       <span>复诊</span>
-    </div>
+    </div> -->
   </div>
 </template>
 <script type="text/babel">
 let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
- 
+
 export default {
   data() {
     return {
       isWeixin: false,
       active1: 0,
-      orgId: "",
+      yuanId: "",
       departs: [],
       num: 10,
       active2: 0,
@@ -68,12 +68,12 @@ export default {
     };
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
-      orgId: 52
+      orgId: 49
     }).then((res) => {
       if (res.data.code == '200') {
         this.departs = res.data.rows;
-        this.orgId = res.data.rows[0].id;
-        this.orgFun(this.orgId);
+        this.yuanId = res.data.rows[0].id;
+        this.orgFun(this.yuanId);
       } else {
         console.log(res.msg);
       }
@@ -100,8 +100,8 @@ export default {
     switchTo(num, index) {
 
       this.active1 = index;
-      this.orgId = num;
-      this.orgFun(this.orgId)
+      this.yuanId = num;
+      this.orgFun(this.yuanId)
     },
     switchDE(num) {
       this.active2 = num;
@@ -115,7 +115,7 @@ export default {
       console.log(data)
       this.$router.push({
         name: 'doctorList',
-        query: { orgIdVO: data.id, orgId: this.orgId, departName: data.orgName }
+        query: { deptId: data.id, yuanId: this.yuanId, departName: data.orgName }
       });
     },
 

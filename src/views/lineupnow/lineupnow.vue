@@ -1,13 +1,13 @@
 <template>
   <div class="lineupnow">
     <Header post-title="就诊队列"></Header>
-    <div :class="{margin45:isWeixin,}">
-      <div class="swiper-container">
+    <div :class="{margin45:isWeixin}">
+      <!-- <div class="swiper-container">
         <div class="swiper-wrapper">
 
         </div>
-      </div>
-      <div class="appTab">
+      </div> -->
+      <div :class="{'margin45':isWeixin,'appTab':true}">
         <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
           {{item.title}}
         </span>
@@ -36,7 +36,7 @@
               </span>
             </p>
             <p class="cardTextPP">
-              <span>派对科室：耳鼻喉门诊
+              <span>排队科室：耳鼻喉门诊
               </span>
               <span>排队号码：
                 <span class="mu-secondary-text-color">119号</span>
@@ -59,7 +59,7 @@
               </span>
             </p>
             <p class="cardTextPP">
-              <span>派对科室：耳鼻喉门诊
+              <span>排队科室：耳鼻喉门诊
               </span>
               <span>排队号码：
                 <span class="mu-secondary-text-color">119号</span>
@@ -138,15 +138,13 @@ export default {
 
   },
   mounted() {
-    this.lunbo();
+   
     document.title = '就诊队列';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
-      return true;
     } else {
       this.isWeixin = true;
-      return false;
     }
 
   },
@@ -168,33 +166,33 @@ export default {
         query: argu
       });
     },
-    lunbo() {
-      let mySwiper = new Swiper('.swiper-container', {
-        // freeMode: false,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        onInit: function (swiper) {
-          //Swiper初始化了
-          alert(swiper.activeIndex); 
-        },
-        loop: true,
-        loopedSlides: 10,
-        initialSlide: 2,
-        roundLengths: true,
-        slidesPerView: "auto",
-        centeredSlides: true,
-        followFinger: false,
+    // lunbo() {
+    //   let mySwiper = new Swiper('.swiper-container', {
+    //     // freeMode: false,
+    //     pagination: {
+    //       el: '.swiper-pagination',
+    //       clickable: true,
+    //     },
+    //     onInit: function (swiper) {
+    //       //Swiper初始化了
+    //       alert(swiper.activeIndex);
+    //     },
+    //     loop: true,
+    //     loopedSlides: 10,
+    //     initialSlide: 2,
+    //     roundLengths: true,
+    //     slidesPerView: "auto",
+    //     centeredSlides: true,
+    //     followFinger: false,
 
-      });
-      for (let i = 0; i < this.test.length; i++) {
-        mySwiper.appendSlide(this.slidedata(this.test[i]));
-      };
-    },
-    slidedata(i) {
-      return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">演示医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
-    },
+    //   });
+    //   for (let i = 0; i < this.test.length; i++) {
+    //     mySwiper.appendSlide(this.slidedata(this.test[i]));
+    //   };
+    // },
+    // slidedata(i) {
+    //   return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">演示医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
+    // },
   },
   computed: {
 

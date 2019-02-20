@@ -16,7 +16,7 @@ import 'mand-mobile/lib/mand-mobile.css'
 Vue.prototype.$conf = Config;
 Vue.use(mandMobile)
 Object.keys(filters).forEach(key => {
-    Vue.filter(key, filters[key])
+  Vue.filter(key, filters[key])
 })
 // import 'normalize.css'
 
@@ -44,24 +44,18 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 
 Vue.config.productionTip = false
 const BASE_URL = '/api';
+// const BASE_URL = '/api/biz';
 axios.defaults.baseURL = BASE_URL;
 
-
-// let AUTH_TOKEN = (function () {
-//   return localStorage.getItem("token");
-// })();
-// axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
-// 添加一个判断石佛存在需要token的拦截器
-
 axios.interceptors.request.use(function (config) {
-
   let url = config.url;
+  console.log(localStorage.getItem("token1"), "我是缓存的token哦")
   // 如果是登陆 
   if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
     localStorage.setItem('token', "");
     config.headers.TOKEN = "";
   } else {
-    config.headers.TOKEN = 'edd169b85704410aa5219512cb6f1f00';
+    config.headers.TOKEN = localStorage.getItem("token1");
     config.headers.UUID = "AAA";
 
     // if (this.$store.state.TOKEN) {
@@ -72,25 +66,13 @@ axios.interceptors.request.use(function (config) {
     //   config.headers.TOKEN = localStorage.getItem("token");
     //   config.headers.UUID = "AAA";
     // }
-
-
-
   }
-
   return config;
 }, function (err) {
   return Promise.reject(err);
 });
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (res) {
-  // config => {
-  //   // if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-  //   //   config.headers.Authorization = `token ${store.state.token}`;
-  //   // }
-  //   config.headers.TOKEN = `edd169b85704410aa5219512cb6f1f00`;
-  //   config.headers.UUID = `AAA`;
-  //   return config;
-  // }
   if (res.data.code == 401 && res.data.msg && res.data.msg.indexOf('未登录') || (res.data.code == 402) || (res.data.code == 800)) {
     // 未登录操作npm
     // router.replace('/login?back=1');
