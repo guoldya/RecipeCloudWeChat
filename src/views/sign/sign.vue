@@ -212,5 +212,8 @@ export default {
   line-height: 100px;
   font-size: 30px;
 }
+.sign .md-notice-bar {
+  color: #1da1f3 !important;
+}
 </style>
 

@@ -138,9 +138,7 @@ input {
 
 /*没号 、已满*/
 
-.yy_date .have {
-   color: #24a5f1;
-}
+ 
 
 .yy_date .state_full span {
    display: block;
@@ -258,4 +256,7 @@ input {
 .yy_date .state_kyy {
    color: #fff;
    background-color: #24a5f1;
+}
+.yy_date .have {
+   color: #24a5f1;
 }

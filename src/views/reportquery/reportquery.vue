@@ -29,41 +29,41 @@
                 </span>
             </div>
             <div class="outCarint" v-if="active1==0">
-            <div class="card margin16" v-for="(item,i) in reportData" :key="i">
-            <div class="cardText" @click="checkReportDetail(item.id)">
-            <div class="cardTextLeft">
-            <p>患者：{{item.name}}</p>
-            <p>医院：{{item.hospital}}</p>
-            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
-            </div>
-            <div class="cardTextRight">
-            <img src="@/assets/images/icon_more2@2x.png" alt="">
-            </div>
-            </div>
-            </div>
+                <div class="card margin16" v-for="(item,i) in reportData" :key="i">
+                    <div class="cardText" @click="checkReportDetail(item.id)">
+                        <div class="cardTextLeft">
+                            <p>患者：{{item.name}}</p>
+                            <p>医院：{{item.hospital}}</p>
+                            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
+                        </div>
+                        <div class="cardTextRight">
+                            <img src="@/assets/images/icon_more2@2x.png" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
             <div  class="outCarint" v-if="active1==1">
-            <div class="card margin16" v-for="(item,i) in collectData" :key="i">
-            <div class="cardText" @click="collectReportDetail(item.id)">
-            <div class="cardTextLeft">
-            <p>患者：{{item.name}}</p>
-            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
-            </div>
-            <div class="cardTextRig">
-            <img src="@/assets/images/icon_more2@2x.png" alt="">
-            </div>
-            </div>
-            </div>
+                <div class="card margin16" v-for="(item,i) in collectData" :key="i">
+                    <div class="cardText" @click="collectReportDetail(item.id)">
+                        <div class="cardTextLeft">
+                            <p>患者：{{item.name}}</p>
+                            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
+                        </div>
+                        <div class="cardTextRig">
+                            <img src="@/assets/images/icon_more2@2x.png" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!--<div class="in dex">-->
-                <!--<my-scroll  ref="myScroll" :page="page" :on-refresh="onRefresh" :on-pull="onPull"  :get-scroll-top="getTop">-->
-                    <!--<div slot="scrollList">-->
-                        <!--<ul>-->
-                            <!--<li v-for="(x,index) in list" :key="index" style="height: 50px">{{x.i}}</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                <!--</my-scroll>-->
+            <!--<my-scroll  ref="myScroll" :page="page" :on-refresh="onRefresh" :on-pull="onPull"  :get-scroll-top="getTop">-->
+            <!--<div slot="scrollList">-->
+            <!--<ul>-->
+            <!--<li v-for="(x,index) in list" :key="index" style="height: 50px">{{x.i}}</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</my-scroll>-->
             <!--</div>-->
         </div>
     </div>
