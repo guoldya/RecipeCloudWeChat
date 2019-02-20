@@ -7,22 +7,22 @@
       <div class="aui-center">
         <span class="aui-center-title">就诊签到</span>
       </div>
-      <span class="aui-navBar-item">
+      <span class="aui-navBar-item" v-show="isHaveOrder">
         <div>
           <md-field>
             <md-field-item :content="selectorValue" @click="showSelector" solid/>
           </md-field>
-          <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择就诊卡" @choose="onSelectorChoose"></md-selector>
+          <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择就诊卡" @choose="onSelectorChoose "></md-selector>
         </div>
         <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
       </span>
     </header>
     <div :class="{margin45:isWeixin}">
-      <md-notice-bar icon="location">
-        重庆西南医院.骨科
+      <md-notice-bar icon="location" v-show="isHaveOrder">
+        {{titlename}}
       </md-notice-bar>
       <div id="allmap"></div>
-      <div class="outCarint">
+      <div v-show="isHaveOrder" class="outCarint">
         <div v-if="ishave" class="signUp" @click="signUp()">
           <p>签到</p>
         </div>
@@ -39,28 +39,56 @@
         <p v-show="!ishave" style="text-align:center;margin-top:5px">温馨提醒：距离定位在医院300m范围内</p>
         <p class="signUpAgin" @click="signUpAgin">去重新定位</p>
       </div>
+      <div v-show="!isHaveOrder" class="outCarint">
+        <div class="nojiuzhen">
+          <img src="@/assets/images/notfound.png" alt="">
+          <p>
+            <md-icon name="warn-color" size="lg" style="position:relative;top:5px;right:5px"></md-icon>您没有需要签到预约的就诊单哦...</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script type="text/babel">
+<script type="text/babel"> 
 let appbizPatientRegistersign = '/app/bizPatientRegister/sign';
 let bizPatientCard = "/wechat/bizPatientCard/read/page";
+let appbizPatientRegisterisExitsProject = "/app/bizPatientRegister/isExitsProject";
+let readselectRegisterList = "read/selectRegisterList";
 export default {
   data() {
     return {
       isWeixin: false,
       optionsData: [],
+      titlename: '',
       isSelectorShow: false,
       selectorValue: '',
       id: '',
+      cardNo: '',
       nowTime: '',
       ishave: false,
       pointBposition: 106.53066501,
       pointBpositionlat: 29.54460611,
+      isHaveOrder: false,
     };
   },
   created() {
+    this.$axios.put(appbizPatientRegisterisExitsProject, {
+    }).then(res => {
+      if (res.data.code == '200') {
+        if (res.data.data == 0) {
+          this.isHaveOrder = false
+        } else {
+          this.isHaveOrder = true
+        }
+
+      } else if (res.data.code == '800') {
+
+      }
+    }).catch(function (err) {
+      console.log(err);
+    });
+
   },
   mounted() {
     document.title = '就诊签到';
@@ -78,10 +106,12 @@ export default {
       if (res.data.code == '200') {
         for (let i = 0; i < res.data.rows.length; i++) {
           this.selectorValue = res.data.rows[0].patientName;
-          this.id = String(res.data.rows[0].id);
+          this.cardNo = res.data.rows[0].cardNo;
           let neslist = {
             text: res.data.rows[i].patientName,
-            value: String(res.data.rows[i].id)
+            value: res.data.rows[i].cardNo,
+            aaa: res.data.rows[i].createTime,
+
           }
           this.optionsData.push(neslist);
         }
@@ -100,8 +130,21 @@ export default {
       this.isSelectorShow = true
     },
     onSelectorChoose(data) {
+      console.log(data);
       this.selectorValue = data.text;
-      this.id = data.value * 1;
+      this.cardNo = data.value;
+      this.$axios.post(readselectRegisterList, {
+        cardNo: this.cardNo
+      }).then(res => {
+        if (res.data.code == '200') {
+          this.titlename = ';'
+        } else {
+          this.$toast.info(res.data.msg)
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+
     },
     drawmap(e) {
       let _this = this;
@@ -188,6 +231,16 @@ export default {
   text-align: center;
   margin: 0 auto;
   margin-top: 25%;
+}
+.nojiuzhen {
+  text-align: center;
+}
+.nojiuzhen img {
+  margin-top: 150px;
+  width: 50%;
+}
+.nojiuzhen p {
+  line-height: 150px;
 }
 .signUpno {
   background: #9b9999;

@@ -67,6 +67,8 @@ import recordDetail from '@/views/recordDetail/recordDetail.vue'
 import examineDetail from '@/views/examineDetail/examineDetail.vue'
 import examineOrder from '@/views/examineOrder/examineOrder.vue'
 
+import reservation from '@/views/reservation/reservation.vue'
+
 import storeInfo from '@/views/storeInfo/storeInfo.vue'
 import submitOrder from '@/views/submitOrder/submitOrder.vue'
 import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
@@ -101,6 +103,11 @@ export default new Router({
       component: resultdocotor
     },
     {
+      path: '/reservation',
+      name: 'reservation',
+      component: reservation
+    },
+    {
       path: '/signsucceed',
       name: 'signsucceed',
       component: signsucceed
@@ -121,11 +128,7 @@ export default new Router({
       name: 'moan',
       component: moan
     },
-    {
-      path: '/home',
-      name: 'home',
-      component: index
-    },
+   
     {
       path: '/my',
       name: 'my',
@@ -391,22 +394,7 @@ export default new Router({
       name: 'registrecord',
       component: registrecord
     },
-    {
-      path: '/storeInfo',
-      name: 'storeInfo',
-      component: storeInfo
-    },
-    {
-      path: '/submitOrder',
-      name: 'submitOrder',
-      component: submitOrder,
-    },
-    {
-      path: '/acceptAdd',
-      name: 'acceptAdd',
-      component: acceptAdd,
-      meta: { keepAlive: true }
-    },
+
     {
       path: '/paySuccess',
       name: 'paySuccess',
@@ -428,16 +416,6 @@ export default new Router({
       component: examineOrder,
     },
     {
-      path: '/storeInfo',
-      name: 'storeInfo',
-      component: storeInfo
-    },
-    {
-      path: '/submitOrder',
-      name: 'submitOrder',
-      component: submitOrder,
-    },
-    {
       path: '/acceptAdd',
       name: 'acceptAdd',
       component: acceptAdd,
@@ -453,42 +431,6 @@ export default new Router({
       name: 'submitOrder',
       component: submitOrder,
     },
-    {
-      path: '/acceptAdd',
-      name: 'acceptAdd',
-      component: acceptAdd,
-      meta: { keepAlive: true }
-    },
-    {
-      path: '/storeInfo',
-      name: 'storeInfo',
-      component: storeInfo
-    },
-    {
-      path: '/submitOrder',
-      name: 'submitOrder',
-      component: submitOrder,
-    },
-    {
-      path: '/acceptAdd',
-      name: 'acceptAdd',
-      component: acceptAdd,
-      meta: { keepAlive: true }
-    },
-    {
-      path: '/paySuccess',
-      name: 'paySuccess',
-      component: paySuccess,
-    },
-    {
-      path: '/recordDetail',
-      name: 'recordDetail',
-      component: recordDetail,
-    },
-    {
-      path: '/examineDetail',
-      name: 'examineDetail',
-      component: examineDetail,
-    },
+
   ]
 })

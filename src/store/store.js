@@ -14,16 +14,29 @@ export default new Vuex.Store({
         activeId: '',
         TOKEN: '',
         UUID: '',
+        fileData: '',
+        photo1Data: '',
+        photo0Data: '',
     },
     mutations: {
         addjumpArr: (state, n) => {
             state.jumpArr = n;
+        },
+        photo0DataFun: (state, n) => {
+            state.photo0Data = n;
+        },
+        photo1DataFun: (state, n) => {
+            state.photo1Data = n;
         },
         payWayFun: (state, n) => {
             state.payWay = n;
         },
         recordDetailFun: (state, n) => {
             state.detailData = n;
+        },
+        // 身份证信息
+        fileDataFun: (state, n) => {
+            state.fileData = n;
         },
         posUrlFun: (state, n) => {
             state.posUrl = n;

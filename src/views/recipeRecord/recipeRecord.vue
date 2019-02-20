@@ -120,28 +120,28 @@ export default {
             ],
             titleIndex: 0,
             recordData: [
-                {          id:3,          date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
+                {                    id: 3, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "张三三三", dept: "产科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                     ],                },
-                {        id:7,             date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
+                {                    id: 7, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "李四", dept: "外科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {        id:6,             date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
+                {                    id: 6, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {         id:5,            date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
+                {                    id: 5, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
                     ],                },
-                {          id:4,           date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
+                {                    id: 4, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
                     userName: "王五五", dept: "放射科", userData: [
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
                         { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
@@ -193,7 +193,7 @@ export default {
             selectAll: "",
             jumpParams: [],
             jumpArrData: [],
-            jumpId:'',
+            jumpId: '',
         };
     },
     created() {
@@ -203,10 +203,8 @@ export default {
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             this.isWeixin = false;
-            return true;
         } else {
             this.isWeixin = true;
-            return false;
         }
     },
     methods: {
@@ -221,8 +219,8 @@ export default {
                 this.selectAll = ""
             }
         },
-        getJumpId(val){
-            this.jumpId=val;
+        getJumpId(val) {
+            this.jumpId = val;
         },
         allSelect: function () {
             this.favorites = [];
@@ -248,7 +246,7 @@ export default {
                     this.imgIndex = -1;
                 }
         },
-        recordDetail(val,par){
+        recordDetail(val, par) {
             this.$store.commit('recordDetailFun', this.recordData[val]);
             let argu = {};
             this.$router.push({
@@ -268,7 +266,7 @@ export default {
             let argu = {};
             this.$router.push({
                 name: 'selectStore',
-                query: {id:this.jumpId}
+                query: { id: this.jumpId }
             });
         },
         switchTo(num) {

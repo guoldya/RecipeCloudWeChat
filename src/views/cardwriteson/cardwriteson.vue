@@ -81,12 +81,16 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
-    if (this.$store.state.posUrl) {
-      this.posUrl = this.$store.state.posUrl;
-    }
-    if (this.$store.state.othUrl) {
-      this.othUrl = this.$store.state.othUrl;
-    }
+    // if (this.$store.state.posUrl) {
+    //   this.posUrl = this.$store.state.posUrl;
+    // } else {
+    //   this.posUrl = pg_negative
+    // }
+    // if (this.$store.state.othUrl) {
+    //   this.othUrl = this.$store.state.othUrl;
+    // } else {
+    //   this.othUrl = pg_positive
+    // }
 
     if (this.$route.query.isSon * 1 == 2) {
       this.isSon = true;
@@ -111,6 +115,7 @@ export default {
         that.othUrl = this.result;
       };
       this.AAA = e.target.files[0];
+
     },
     uploadOth(e) {
       let that = this,
@@ -134,31 +139,48 @@ export default {
 
     cardconfirm() {
       let param = new FormData(); //创建form对象
-      param.append('file', this.AAA, this.AAA.name);//通过append向form对象添加数据
-      param.append('file1', this.BBB, this.BBB.name);//通过append向form对象添加数据
-      // param.append('chunk', '0');//添加form表单中其他数据
-      // let CCC = new FormData(); //创建form对象
-      // CCC.append('file', this.BBB, this.BBB.name);//通过append向form对象添加数据
-      // CCC.append('chunk', '0');//添加form表单中其他数据
-      console.log(param.get('file'), "我有许多小秘密"); //FormData私有类对象， [param,CCC],访问不到，可以通过get判断值是否传进去
+      console.log(this.AAA.name, this.BBB.name, "sss");
+      if (!this.AAA.name || !this.BBB.name) {
+        this.$toast.info("请上传图片")
+        return;
+      }
+
+      var index1 = this.AAA.name.lastIndexOf(".");
+      var index2 = this.AAA.name.length;
+      var suffix = this.AAA.name.substring(index1 + 1, index2);//后缀名
+
+      var index11 = this.BBB.name.lastIndexOf(".");
+      var index22 = this.BBB.name.length;
+      var suffix1 = this.BBB.name.substring(index11 + 1, index22);//后缀名
+
+      param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
+      param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
       let config = {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-          'UUID': `AAA`,
         }
       };  //添加请求头
 
       this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
-            console.log(res.data, "我是正面");
-            this.$store.commit('posUrlFun', res.data.data.filename);
+            this.$store.commit('photo0DataFun', res.data.fileData.photo0);
+            this.$store.commit('photo1DataFun', res.data.fileData.photo1);
+            console.log(res.data.fileInfo[0].fileName, "我是正面");
+            console.log(res.data.fileInfo[1].fileName, "我是正面");
+            this.posUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
+            this.othUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].filename;
+            this.$store.commit('posUrlFun', this.posUrl);
+            this.$store.commit('othUrlFun', this.othUrl);
+            this.$router.push({
+              name: 'cardhave',
+              // query: argu
+            });
           } else {
             this.$toast.info(res.data.msg)
           }
         });
- 
+
     },
 
   },

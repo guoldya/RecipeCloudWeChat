@@ -49,7 +49,7 @@ axios.defaults.baseURL = BASE_URL;
 
 axios.interceptors.request.use(function (config) {
   let url = config.url;
-  console.log(localStorage.getItem("token1"), "我是缓存的token哦")
+  // console.log(localStorage.getItem("token1"), "我是缓存的token哦")
   // 如果是登陆 
   if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
     localStorage.setItem('token', "");

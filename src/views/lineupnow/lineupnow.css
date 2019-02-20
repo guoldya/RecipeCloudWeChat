@@ -1,8 +1,9 @@
 .lineupnow .titleh1 {
    font-size: 34px;
 }
-.lineupnow .cardText  {
-  padding:16px 0px;
+
+.lineupnow .cardText {
+   padding: 16px 0px;
 }
 
 .lineupnow .cardText p {
@@ -26,10 +27,12 @@
    font-size: 14px;
    color: #333333;
 }
-.lineupnow .cardHEADER .lookonly{
+
+.lineupnow .cardHEADER .lookonly {
    position: relative;
-   top:6px
+   top: 6px
 }
+
 .lineupnow .cardHEADER img {
    width: 50px;
    top: 4px;
@@ -54,9 +57,9 @@
 }
 
 .lineupnow .fright .pingbi {
-   top: -10px;
-   position: relative;
-   right: 10px;
+   /* top: -10px; */
+   /* position: relative; */
+   right: 5px;
 }
 
 .lineupnow .icon_more {
@@ -71,7 +74,6 @@
 
 .lineupnow .lineheight30 {
    line-height: 60px;
- 
 }
 
 .lineupnow .cardText .learnMore {
@@ -115,24 +117,56 @@
 .lineupnow .md-cell-item-body .cardText p {
    line-height: 20px;
 }
-.lineupnow .pingbi{
+
+.lineupnow .pingbi {
    position: relative;
    top: 0;
 }
-.lineupnow .md-switch{
+
+.lineupnow .md-switch {
    display: inline-block;
-   
 }
-.lineupnow .md-switch.active{
+
+.lineupnow .md-switch.active {
    background-color: #1da1f3;
 }
-.lineupnow  .md-switch{
+
+.lineupnow .md-switch {
    position: relative;
-   top:2px;
+   top: 7px;
 }
-.lineupnow .lineheight50{
+
+.lineupnow .lineheight50 {
    line-height: 100px;
    font-size: 28px;
 }
 
- 
+.lineupnow .appTitle {
+   padding: 0.32rem 0;
+}
+
+/* 改变按钮大小 */
+
+.lineupnow .md-switch {
+   box-sizing: border-box;
+   position: relative;
+   width: 0.7rem;
+   height: 0.34rem;
+   border-radius: 0.48rem;
+   background-color: #e2e4ea;
+}
+
+.lineupnow .md-switch:after {
+   top: 0.03rem;
+   left: 0.04rem;
+   width: 0.29rem;
+   height: 0.29rem;
+   background-color: #fff;
+   border-radius: 50%;
+}
+
+.lineupnow .md-switch:before {
+   width: 0.7rem;
+   height: 0.34rem;
+   border-radius: 0.24rem;
+}

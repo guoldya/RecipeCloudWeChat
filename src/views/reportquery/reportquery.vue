@@ -18,11 +18,11 @@
             </span>
         </header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="timeTab" style="margin-top:20px">
-                <span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div>
+            <!--<div class="timeTab" style="margin-top:20px">-->
+            <!--<span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">-->
+            <!--{{item.title}}-->
+            <!--</span>-->
+            <!--</div>-->
             <div class="appTab">
                 <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
                     {{item.title}}
@@ -32,12 +32,20 @@
                 <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
                     <div class="cardText" @click="checkReportDetail(item.id)">
                         <div class="cardTextLeft">
-                            <p>患者：{{item.name}}</p>
-                            <p v-if="type==1">医院：{{item.hospital}}</p>
-                            <p>报告：{{item.itemName}}【{{item.reportTime}}】</p>
-                        </div>
-                        <div class="cardTextRight">
-                            <img src="@/assets/images/icon_more2@2x.png" alt="">
+                            <div class="listData">
+                                <span>{{item.name}}</span>
+                                <span class="mu-secondary-text-color">报告已出</span>
+                            </div>
+                            <p class="partLine"></p>
+                            <p>检查科室：{{item.execDept}}</p>
+                            <p>检查项目：{{item.itemName}}</p>
+                            <div>
+                                <p>报告日期：{{item.reportTime}}</p>
+                                <div class="cardTextRight" @click="checkReportDetail(item.id)">
+                                    <span>详情</span>
+                                    <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,12 +63,8 @@
         </div>
     </div>
 </template>
-<script type="text/babel"> 
-
-
+<script type="text/babel">
 let bizLisReportreadpage = '/bizLisReport/read/page';
-
-
 export default {
 
     data() {
@@ -85,16 +89,11 @@ export default {
             ],
             isSelectorShow: false,
             optionsData: [[
-                { text: "范冰冰", value: "1" },
-                { text: "郑凯", value: "2" },
-                { text: "邓超", value: "3" },
-                { text: '孙俪', value: "4" },
-                { text: '王祖蓝', value: "5" },
-                { text: '薛之谦', value: "6" },
-                { text: '陈楚生', value: "7" },
-                { text: "张信哲", value: "8" },
-                { text: "汪涵", value: "9" },
-                { text: "李晨", value: "10" },
+                { text: "彭万里", value: "1" },
+                { text: "高大山", value: "2" },
+                { text: "马宏宇", value: "3" },
+                { text: '孙寿康', value: "4" },
+                { text: '孙应吉', value: "5" },
             ]],
             selectorValue: '',
             reportTime: [
@@ -108,11 +107,9 @@ export default {
             reportDetailData: [],
             collectData: [],
             collectDetailData: [],
-            pageSize: 10,
             checkPageNumber: 1,
             collectPageNumber: 1,
             choseValue: '',
-            loadingtrue: true,
             list: [],
         };
     },
@@ -120,9 +117,6 @@ export default {
 
     },
     mounted() {
-        for (let i = 0; i < 1 * 50; i++) {
-            this.list.push({ i })
-        }
         this.selectorValue = this.optionsData[0][0].text;
         document.title = '报告查询';
         var ua = window.navigator.userAgent.toLowerCase();
@@ -191,13 +185,6 @@ export default {
             this.page = 1;
             this.loadingtrue = true;
             this.getGoodslist();
-            // if(num==0){
-            //     this.cheactive1=num;
-            //     this.collactive1=null;
-            // }else if(num==1){
-            //     this.collactive1=num;
-            //     this.cheactive1=null;
-            // }
         },
         timeSwitchTo(num) {
             this.reportactive1 = num;
@@ -211,8 +198,7 @@ export default {
         onSelectorChoose({ text, value }) {
             this.selectorValue = text;
             this.choseValue = value;
-
-            this.collectReport();
+            this.getGoodslist(false);
         },
         intoreportinfo() {
             let argu = {};
