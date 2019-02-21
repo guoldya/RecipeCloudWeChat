@@ -181,11 +181,11 @@ export default {
       checkReportDetail(){
           let _this = this;
           this.reportInfoId= this.$route.query.id;
-          this.$axios.put(bizbizPacsReportreaddetail,{id:parseInt(this.reportInfoId),pageSize:this.pageSize,pageNumber:this.pageNumber},{
-              headers: {
-                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                  'UUID': `AAA`
-              },
+          let checkParams={};
+          checkParams.id=parseInt(this.reportInfoId);
+          checkParams.pageSize=this.pageSize;
+          checkParams.pageNumber=this.pageNumber;
+          this.$axios.put(bizbizPacsReportreaddetail,checkParams,{
           }).then((res) => {
               if (res.data.code == '200') {
                   this.reportInfoData.push(res.data.data);
@@ -198,10 +198,6 @@ export default {
           let _this = this;
           this.collectInfoId= this.$route.query.id;
           this.$axios.put(bizLisReportreaddetail,{id:parseInt(this.collectInfoId),pageSize:this.pageSize,pageNumber:this.pageNumber},{
-              headers: {
-                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                  'UUID': `AAA`
-              },
           }).then((res) => {
               if (res.data.code == '200') {
                   this.reportInfoData.push(res.data.data);

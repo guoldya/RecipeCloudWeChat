@@ -18,11 +18,11 @@
             </span>
         </header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="timeTab" style="margin-top:20px">
-                <span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div>
+            <!--<div class="timeTab" style="margin-top:20px">-->
+                <!--<span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">-->
+                    <!--{{item.title}}-->
+                <!--</span>-->
+            <!--</div>-->
             <div class="appTab">
                 <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
                     {{item.title}}

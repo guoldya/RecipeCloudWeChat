@@ -80,7 +80,11 @@
                 UUID: '',
                 nowDate:"",
                 pageSize:10,
-                pageNumber:1,
+                page:1,
+                type:1,
+                loadingtrue: true,
+                busy: true,
+                nomore: false,
             };
         },
         filters:{
@@ -100,7 +104,7 @@
         },
         mounted() {
             let _this = this;
-            this.$axios.put(bizExamApplyreadpage,{status:0,pageSize:this.pageSize,pageNumber:this.pageNumber},{
+            this.$axios.put(bizExamApplyreadpage,{status:0,pageSize:this.pageSize,pageNumber:this.page},{
                 headers: {
                     'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
                     'UUID': `AAA`
@@ -113,7 +117,7 @@
                 console.log(err);
             });
 
-            this.$axios.put(bizExamApplyreadpage,{applyRecord:'Y',pageSize:this.pageSize,pageNumber:this.pageNumber},{
+            this.$axios.put(bizExamApplyreadpage,{applyRecord:'Y',pageSize:this.pageSize,pageNumber:this.page},{
                 headers: {
                     'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
                     'UUID': `AAA`
@@ -152,8 +156,46 @@
 
         },
         methods: {
+            // examineFun(){
+            //         const params = {};
+            //         params.pageNumber = this.page;
+            //         params.pageSize = this.pageSize;
+            //         params.type = this.type;
+            //         this.$axios.put(bizLisReportreadpage, params).then((res) => {
+            //             if (res.data.rows) {
+            //                 this.loadingtrue = false;
+            //                 if (flag) {
+            //                     this.examineData = this.examineData.concat(res.data.rows);  //concat数组串联进行合并
+            //                     if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+            //                         this.busy = false;
+            //                         this.nomore = false;
+            //                     } else {
+            //                         this.busy = true;
+            //                         this.nomore = true;
+            //                     };
+            //                 } else {
+            //                     this.examineData = res.data.rows;
+            //                     this.busy = true;
+            //                     if (res.data.total < 10) {
+            //                         this.busy = true;
+            //                         this.nomore = true;
+            //                     } else {
+            //                         this.busy = false;
+            //                         this.nomore = false;
+            //                     }
+            //                 }
+            //             } else {
+            //                 this.examineData = []
+            //             }
+            //         })
+            // },
             switchTo(num) {
                 this.titleIndex = num;
+                // this.type = data;
+                // this.examineData = [];
+                // this.page = 1;
+                // this.loadingtrue = true;
+                // this.examineFun(false);
             },
             rightNowOrder(){
                 let argu = {};
