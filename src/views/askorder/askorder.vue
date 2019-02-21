@@ -81,10 +81,10 @@ export default {
    },
    methods: {
       appointinfo: function (value) {
-         this.$router.push({
-            name: 'feeinfo',
-            // query: argu
-         });
+         // this.$router.push({
+         //    name: 'feeinfo',
+         //    // query: argu
+         // });
       },
       switchTo(num) {
          this.active1 = num;

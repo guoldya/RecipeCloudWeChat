@@ -148,7 +148,7 @@ export default {
     return {
       isSelectorShow: false,
       selectorValue: '',
-      deptId: '',
+        orgId: '',
       num: 5,
       isTop: true,
       isActive: 1,

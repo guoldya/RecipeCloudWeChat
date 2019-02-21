@@ -34,7 +34,6 @@
                         <div class="cardTextLeft">
                             <div class="listData">
                                 <span>{{item.name}}</span>
-                                <span class="mu-secondary-text-color">报告已出</span>
                             </div>
                             <p class="partLine"></p>
                             <p>检查科室：{{item.execDept}}</p>
@@ -64,7 +63,7 @@
     </div>
 </template>
 <script type="text/babel">
-    let bizLisReportreadpage = '/bizLisReport/read/page';
+    let bizLisReportreadpage = '/app/bizLisReport/read/page';
     export default {
 
         data() {
@@ -133,7 +132,7 @@
                 params.pageNumber = this.page;
                 params.pageSize = this.pageSize;
                 params.patientId = parseInt(this.choseValue);
-                params.type = this.type;
+                params.queryType = this.type;
                 this.$axios.put(bizLisReportreadpage, params).then((res) => {
                     if (res.data.rows) {
                         this.loadingtrue = false;
