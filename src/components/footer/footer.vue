@@ -1,10 +1,10 @@
 <template>
   <div class="aui-footer">
-    <a href="javascript:;" class="aui-tabBar-item" @click="switchTo('/home')">
+    <a href="javascript:;" class="aui-tabBar-item" @click="switchTo('/')">
       <span class="aui-tabBar-item-icon">
-        <img :src="'/home' === $route.path||'/' === $route.path ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="首页">
+        <img :src=" '/' === $route.path ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="首页">
       </span>
-      <span :class="{on: '/home' === $route.path ||'/' === $route.path}">诊疗服务</span>
+      <span :class="{on: '/' === $route.path}">诊疗服务</span>
     </a>
     <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/online')">
       <span class="aui-tabBar-item-icon">

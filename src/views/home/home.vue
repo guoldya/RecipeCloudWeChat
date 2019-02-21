@@ -7,13 +7,14 @@
             <div class="bindCard">
                 <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
-            <div class="homeCard margin16">
+            <!-- 就诊卡片 -->
+            <div class="homeCard margin16" v-for="(item, index) in cardlist" v-if="showindex==index" :key="'cardlist' + index">
                 <div class="homeCardText">
                     <div class="homeCardTextLeft">
-                        <p>名字<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
-                        <p>777777777777</p>
+                        <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                        <p>{{item.cardNo}}</p>
                         <p>
-                            <span class="icon_switch"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
+                            <span class="icon_switch" @click="switchCard(index+1)"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                         </p>
                     </div>
                     <div class="towma">
@@ -22,6 +23,7 @@
                     </div>
                 </div>
             </div>
+
             <ul class="home-cz home-flex">
                 <li @click="choosedepart">
                     <img src="@/assets/images/icon_register1.png" alt="" class="image">
@@ -44,7 +46,7 @@
                     <img src="@/assets/images/1.png" alt="" class="image">
                     <p>智能导诊</p>
                 </li>
-                <li>
+                <li @click="reportquery">
                     <img src="@/assets/images/2.png" alt="" class="image">
                     <p>检验检查</p>
                 </li>
@@ -84,10 +86,14 @@
 </template>
 <script>
 let appLoginlogin = '/appLogin/login';
+let wechatbizPatientCardreadpage = "wechat/bizPatientCard/read/page";
 export default {
     data() {
         return {
             code: 'ss',
+            cardlist: [],
+            showindex: 0,
+            maxindex: '',
         }
     },
     mounted() {
@@ -118,18 +124,40 @@ export default {
                 // });
                 var storage = window.localStorage;
                 storage.setItem("token1", "edd169b85704410aa5219512cb6f1f00");
-
             }
         });
 
+        this.$axios.put(wechatbizPatientCardreadpage, {
+        }).then(res => {
+            if (res.data.code == '200') {
+                this.cardlist = res.data.rows;
+                this.maxindex = res.data.total;
+            } else if (res.data.code == '800') {
+                console.log(res.data.msg)
+            }
+        }).catch(function (err) {
+            console.log(err)
+        });;
+
+
     },
     methods: {
+
         choosedepart() {
             let argu = {}
             this.$router.push({
                 name: 'choosedepart',
                 query: argu
             });
+        },
+
+        switchCard(data) {
+            if (data < this.maxindex) {
+                this.showindex = data;
+            } else {
+                this.showindex = 0;
+            }
+            console.log(data, this.showindex);
         },
 
         feerecord() {

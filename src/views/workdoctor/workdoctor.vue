@@ -92,6 +92,7 @@
             }
         },
         mounted() {
+          
             document.title = '医生排班';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -102,7 +103,8 @@
             var today = new Date();
             this.choosedate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
             this.getData();
-            this.addWeek()
+            this.addWeek();
+
         },
         methods: {
             choose(value, index) {

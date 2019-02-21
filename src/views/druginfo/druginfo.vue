@@ -10,7 +10,6 @@
         <span :class="{ 'aui-title':true ,'active':!isdelice}" @click="isdelice=!isdelice">详情</span>
       </div>
       <a href="javascript:;" class="aui-navBar-item">
-
       </a>
     </header>
     <div v-show="isdelice">
@@ -27,7 +26,7 @@
         <div class="cainter border1">
           <h1>{{drugInfo.name}}</h1>
           <p class="colo13">快递：0</p>
-          <p class="price">￥ 10 </p>
+          <p class="price">￥ {{drugInfo.price}} </p>
           <p class="colob13">规格：{{drugInfo.packSpec}}</p>
           <p class="colob13">批准文号：{{drugInfo.authNo}}</p>
           <p class="colob13">生产厂商：{{drugInfo.factory}}</p>
@@ -121,7 +120,6 @@
               <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
             </span>
           </div>
-
         </div>
       </div>
     </div>
