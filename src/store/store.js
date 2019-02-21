@@ -17,6 +17,7 @@ export default new Vuex.Store({
         fileData: '',
         photo1Data: '',
         photo0Data: '',
+        feeActiveId:'',
     },
     mutations: {
         addjumpArr: (state, n) => {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
         },
         activeFun: (state, n) => {
             state.activeId = n;
+        },
+        feeActiveFun: (state, n) => {
+            state.feeActiveId = n;
         },
         TOKENFun: (state, n) => {
             state.TOKEN = n;

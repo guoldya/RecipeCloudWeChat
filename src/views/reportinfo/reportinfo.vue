@@ -1,9 +1,9 @@
 <template>
 
   <div class="reportinfo">
-    <Header post-title="检查报告详情" v-show="isWeixin"></Header>
+    <Header :post-title="postTitle" v-show="isWeixin"></Header>
     <div :class="{margin45:isWeixin,outCarint:true}" v-for="(item,i) in reportInfoData" :key="i">
-        <div v-if="activeId==0" class="outCarint">
+        <div v-if="activeId==0">
             <div class="card margin16">
                 <div class="cardText" >
                     <div class="cardTextPP">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="cardTextPP">
-                        <span>检查类别:{{item.type}} </span>
+                        <span>检查类别：{{item.type}} </span>
                         <span style="width: 50%">
                   检查子类：
                   <span>{{item.subType}} </span>
@@ -44,20 +44,21 @@
                         <span> 检查所见：{{item.findings}}</span>
                     </div>
                     <div class="cardTextPP">
-                        <span> 印象：{{item.impression}} </span>
+                        <span> 印象：</span>
+                        <span style="width: 85%;">{{item.impression}}</span>
                     </div>
                     <div class="cardTextPP">
-                        <span> 建议：</span>
-                        <span style="width: 86%;">{{item.advise}}</span>
+                        <span style="width: 15%;"> 建议：</span>
+                        <span style="width: 85%;">{{item.advise}}</span>
                     </div>
-                    <div class="listData">
-                        <span>备注：</span>
-                        <span style="width: 86%;">{{item.remark}}</span>
+                    <div class="listData cardTextPP">
+                        <span style="width: 15%;">备注：</span>
+                        <span style="width: 85%;">{{item.remark}}</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div v-if="activeId==1" class="outCarint">
+        <div v-if="activeId==1">
             <div class="card margin16">
                 <div class="cardText" >
                     <div class="cardTextPP">
@@ -73,7 +74,7 @@
                         </span>
                     </div>
                     <div class="cardTextNN">
-                        <span>收样日期:{{item.applyTime}} </span>
+                        <span>收样日期：{{item.applyTime}} </span>
                         <div >
                           <span>标本类型：{{item.sampleType}} </span>
                         </div>
@@ -84,9 +85,9 @@
                           <span>报告时间：{{item.reportTime}} </span>
                         </div>
                     </div>
-                    <div class="cardTextPP listData">
+                    <div class="cardTextPP">
                         <span>临床诊断：</span>
-                        <span style="width: 78%;">{{item.diag}}</span>
+                        <span style="width: 76%;">{{item.diag}}</span>
                     </div>
                 </div>
             </div>
@@ -137,6 +138,7 @@ export default {
         pageSize:10,
         pageNumber:1,
         activeId:'',
+        postTitle:'',
     };
   },
 
@@ -147,8 +149,10 @@ export default {
       this.activeId=this.$store.state.activeId;
       if(this.$store.state.activeId==0){
           this.checkReportDetail();
+          this.postTitle="检查报告详情";
       }else if(this.$store.state.activeId==1){
           this.collectReportDetail();
+          this.postTitle="检验报告详情"
       }
 
     document.title = '检查报告详情';
@@ -177,11 +181,11 @@ export default {
       checkReportDetail(){
           let _this = this;
           this.reportInfoId= this.$route.query.id;
-          this.$axios.put(bizbizPacsReportreaddetail,{id:parseInt(this.reportInfoId),pageSize:this.pageSize,pageNumber:this.pageNumber},{
-              headers: {
-                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                  'UUID': `AAA`
-              },
+          let checkParams={};
+          checkParams.id=parseInt(this.reportInfoId);
+          checkParams.pageSize=this.pageSize;
+          checkParams.pageNumber=this.pageNumber;
+          this.$axios.put(bizbizPacsReportreaddetail,checkParams,{
           }).then((res) => {
               if (res.data.code == '200') {
                   this.reportInfoData.push(res.data.data);
@@ -194,10 +198,6 @@ export default {
           let _this = this;
           this.collectInfoId= this.$route.query.id;
           this.$axios.put(bizLisReportreaddetail,{id:parseInt(this.collectInfoId),pageSize:this.pageSize,pageNumber:this.pageNumber},{
-              headers: {
-                  'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                  'UUID': `AAA`
-              },
           }).then((res) => {
               if (res.data.code == '200') {
                   this.reportInfoData.push(res.data.data);
