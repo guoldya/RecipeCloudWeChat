@@ -64,11 +64,7 @@
     </div>
 </template>
 <script type="text/babel">
-
-
     let bizLisReportreadpage = '/bizLisReport/read/page';
-
-
     export default {
 
         data() {
@@ -93,16 +89,11 @@
                 ],
                 isSelectorShow: false,
                 optionsData: [[
-                    { text: "范冰冰", value: "1" },
-                    { text: "郑凯", value: "2" },
-                    { text: "邓超", value: "3" },
-                    { text: '孙俪', value: "4" },
-                    { text: '王祖蓝', value: "5" },
-                    { text: '薛之谦', value: "6" },
-                    { text: '陈楚生', value: "7" },
-                    { text: "张信哲", value: "8" },
-                    { text: "汪涵", value: "9" },
-                    { text: "李晨", value: "10" },
+                    { text: "彭万里", value: "1" },
+                    { text: "高大山", value: "2" },
+                    { text: "马宏宇", value: "3" },
+                    { text: '孙寿康', value: "4" },
+                    { text: '孙应吉', value: "5" },
                 ]],
                 selectorValue: '',
                 reportTime: [
@@ -126,9 +117,6 @@
 
         },
         mounted() {
-            for (let i = 0; i < 1 * 50; i++) {
-                this.list.push({ i })
-            }
             this.selectorValue = this.optionsData[0][0].text;
             document.title = '报告查询';
             var ua = window.navigator.userAgent.toLowerCase();
@@ -197,13 +185,6 @@
                 this.page = 1;
                 this.loadingtrue = true;
                 this.getGoodslist();
-                // if(num==0){
-                //     this.cheactive1=num;
-                //     this.collactive1=null;
-                // }else if(num==1){
-                //     this.collactive1=num;
-                //     this.cheactive1=null;
-                // }
             },
             timeSwitchTo(num) {
                 this.reportactive1 = num;
@@ -217,8 +198,7 @@
             onSelectorChoose({ text, value }) {
                 this.selectorValue = text;
                 this.choseValue = value;
-
-                this.collectReport();
+                this.getGoodslist(false);
             },
             intoreportinfo() {
                 let argu = {};
@@ -241,5 +221,5 @@
     };
 </script>
 <style   scoped>
-    @import url("./reportquery.css");
+@import url("./reportquery.css");
 </style>

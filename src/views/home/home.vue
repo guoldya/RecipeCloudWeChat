@@ -73,7 +73,10 @@
                     <p>就诊导航</p>
                 </li>
             </ul>
-            测试的code：{{code}}
+            <!-- 测试的code：{{code}} -->
+        </div>
+        <div style="height:100px">
+
         </div>
         <Footer></Footer>
     </div>
@@ -81,18 +84,15 @@
 </template>
 <script>
 let appLoginlogin = '/appLogin/login';
-
 export default {
     data() {
         return {
             code: 'ss',
         }
     },
-
     mounted() {
         // 用于测试
-        var storage = window.localStorage;
-        storage.setItem("token", "edd169b85704410aa5219512cb6f1f00");
+
         document.title = '互联网医院';
         let _this = this;
         function UrlSearch() {
@@ -108,15 +108,17 @@ export default {
         this.$axios.get(appLoginlogin + '?wechatCode=' + _this.code + '&verifyType=' + 1, {
         }).then(res => {
             if (res.data.code == '200') {
-                res.data.data.value = JSON.parse(res.data.data.value);
+                // res.data.data.value = JSON.parse(res.data.data.value);
                 // var storage = window.localStorage;
-                // storage.setItem("token", res.data.data.value.token);
-                // storage.setItem("uuid", res.data.data.value.uuid);
+                // storage.setItem("token1", res.data.data.value.token);
                 // storage.setItem("id", res.data.data.value.id);
             } else if (res.data.code == '800') {
                 // this.$router.push({
                 //     name: 'register',
                 // });
+                var storage = window.localStorage;
+                storage.setItem("token1", "edd169b85704410aa5219512cb6f1f00");
+
             }
         });
 

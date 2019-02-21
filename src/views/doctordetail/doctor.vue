@@ -11,11 +11,11 @@
                     <div class="doctor-inro float-left">
                         <div class="doctor-decrib">
                             <p>
-                                <span class="doctor-name">付平 </span>
-                                <span class="doctor-tag">主任医师</span>
+                                <span class="doctor-name">{{doctorInfo.name}} </span>
+                                <!-- <span class="doctor-tag">{{doctorInfo.title}} </span> -->
                             </p>
-                            <p class="school">演示医院</p>
-                            <p class="school">特需医疗中心</p>
+                            <p class="school">{{doctorInfo.hospital}}</p>
+                            <p class="school">{{doctorInfo.title}}</p>
                         </div>
                     </div>
                     <div class="heart float-right">
@@ -70,8 +70,11 @@
                         </div>
                     </div>
                     <div>
-                        <div class="doctor-info">付平，男，1967年生，医学博士，教授、博士，发地方噶十多个山东分公司</div>
-                        双方的公司发的两个教室里发动机盖分类登记过类似的飞机过来送积分代理公司东方辅导老师国家历史的房价高了三季度发了个是独立发几个楼上的房间管理卡士大夫
+                        <div class="doctor-info">
+                            <p>
+                                {{doctorInfo.introduce}}</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -81,7 +84,7 @@
 <script>
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
-
+let appbdHospitalDoctorreaddetail2 = "/app/bdHospitalDoctor/read/detail2";
 export default {
     data() {
         return {
@@ -90,6 +93,8 @@ export default {
             start,
             collapsed: false,
             isActive: true,
+            doctorInfo: '',
+            dateList: [],
         }
     },
     mounted() {
@@ -97,11 +102,11 @@ export default {
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             this.isWeixin = false;
-            return true;
         } else {
             this.isWeixin = true;
-            return false;
-        }
+        };
+
+        this.doctordataFun();
     },
     methods: {
         toggleClick() {
@@ -113,7 +118,22 @@ export default {
             } else {
                 this.isActive = false
             }
-        }
+        },
+        doctordataFun() {
+            this.$axios.put(appbdHospitalDoctorreaddetail2, {
+                id: this.$route.query.doctorId * 1,
+            }).then((res) => {
+                if (res.data.code == '200') {
+                    this.doctorInfo = res.data.data.doctorInfo;
+                    this.dateList = res.data.data.dateList;
+                } else {
+                    console.log(res.msg);
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
+
     }
 }
 </script>
