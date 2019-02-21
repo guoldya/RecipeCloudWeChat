@@ -2,78 +2,54 @@
   <div class="lineupnow">
     <Header post-title="就诊队列"></Header>
     <div :class="{margin45:isWeixin}">
-      <!-- <div class="swiper-container">
-        <div class="swiper-wrapper">
-
-        </div>
-      </div> -->
       <div :class="{'margin45':isWeixin,'appTab':true}">
-        <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item)" :class="type === (index+1) ? 'appTabAcitive' : '' ">
+        <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item)" :class="queryType === (index+1) ? 'appTabAcitive' : '' ">
           {{item.title}}
         </span>
       </div>
       <div class="outCarint">
-        <div class="card">
+        <div v-show="goodsList.length!=0 " class="card">
           <div class="cardHEADER" style="display:flex;">
             <div class="fleft">
               <img src="@/assets/images/icon_calendar.png" alt="">
-              <span class="mu-secondary-text-color">12月14日</span>
+              <span class="mu-secondary-text-color">{{ nowTime}}</span>
             </div>
-            <div class="fright">
+            <div class="fright" v-show="queryType==1">
               <span class="pingbi">屏蔽过号提醒</span>
+              <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
+            </div>
+            <div class="fright" v-show="queryType==2">
+              <span class="pingbi">仅看报告已出</span>
               <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
             </div>
           </div>
         </div>
-        <div class="card margin16" v-for="(item,index) in 12" :key="index">
+        <div v-show="goodsList.length!=0" class="card margin16" v-for="(item,index) in goodsList" :key="index">
           <div class="cardText">
             <p class="cardTextPP">
               <span>等待时间：
-                <span class="mu-secondary-text-color">20分钟</span>
+                <span class="mu-secondary-text-color">{{item.waitingTime}}分钟</span>
               </span>
               <span>排队号码：
-                <span class="mu-secondary-text-color">119号</span>
+                <span class="mu-secondary-text-color">{{item.currentNo}}号</span>
               </span>
             </p>
             <p class="cardTextPP">
-              <span>排队科室：耳鼻喉门诊
+              <span>排队科室：{{item.deptName}}
               </span>
               <span>当前号码：
-                <span class="mu-secondary-text-color">119号</span>
+                <span class="mu-secondary-text-color">{{item.queueNo}}号</span>
               </span>
             </p>
-            <p>您前面还有：5位</p>
+            <p>您前面还有：{{item.waitingNo}}位</p>
             <p class="learnMore" @click="intolineupinfo(item)">
               详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
             </p>
           </div>
         </div>
-        <!-- <div v-show="!loadingtrue" class="nullDiv" v-else>
+        <div v-show="goodsList.length==0" class="nullDiv">
           <img src="@/assets/images/null1.png">
-        </div> -->
-        <!-- <div class="card margin16">
-          <div class="cardText">
-            <p class="cardTextPP">
-              <span>等待时间：
-                <span class="mu-secondary-text-color">20分钟</span>
-              </span>
-              <span>排队号码：
-                <span class="mu-secondary-text-color">119号</span>
-              </span>
-            </p>
-            <p class="cardTextPP">
-              <span>排队科室：耳鼻喉门诊
-              </span>
-              <span>当前号码：
-                <span class="mu-secondary-text-color">119号</span>
-              </span>
-            </p>
-            <p>您前面还有：5位</p>
-            <p class="learnMore" @click="intolineupinfo">
-              详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
-            </p>
-          </div>
-        </div> -->
+        </div>
       </div>
       <!-- <div class="outCarint" v-if="type === 2">
         <div class="card">
@@ -128,17 +104,19 @@ export default {
       busy: true,
       nomore: false,
       loadingtrue: true,
-      goodsList: '',
+      goodsList: [],
       page: 1,
       pageSize: 10,
-      type: 1,
+      queryType: 1,
       isWeixin: false,
-      isActive: true,
+      isActive: false,
+      nowTime: '',
+      onlyWaiting: '',
       time: [
-        { title: '排队提醒', type: 1 },
-        { title: '报告提醒', type: 2 }
+        { title: '排队提醒', queryType: 1 },
+        { title: '报告提醒', queryType: 2 }
       ],
-
+      waitingDate: '',
       // test: [{ filename: "https://kano.guahao.cn/IvZ2706441_image140.jpg?timestamp=1469427168922" },
       // { filename: "https://kano.guahao.cn/REk2640164_image140.jpg" },
       // { filename: "https://kano.guahao.cn/elarge_E2w2711261.jpg?timestamp=1538979619031" },
@@ -149,10 +127,11 @@ export default {
 
   },
   watch: {
-    type: function (newType, oldType) {
-      this.type = newType;
+    queryType: function (newqueryType, oldqueryType) {
+      this.queryType = newqueryType;
       this.goodsList = [];
       this.page = 1;
+      this.isActive = false;
       this.loadingtrue = true;
       this.getGoodslist();
     },
@@ -166,32 +145,34 @@ export default {
     } else {
       this.isWeixin = true;
     }
-
     var today = new Date();
-    this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
+    this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日";
 
+    this.waitingDate = today;
+    // str = str.replace(/MM/, today.getMonth() > 9 ? today.getMonth().toString() : '0' + today.getMonth());
+    // console.log(str);
+
+
+    var Month = (today.getMonth() + 1) > 9 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1);
+    console.log(Month)
 
     this.getGoodslist()
 
 
   },
   methods: {
+    handler(name, active) {
+      this.getGoodslist()
+    },
     getGoodslist() {
       this.$axios.put(appbizWaitingQueuereadlist, {
-        type: this.type,
+        queryType: this.queryType,
+        onlyWaiting: this.isActive ? 'Y' : undefined,
+        waitingDate: "2019-02-22",
       }).then(res => {
         if (res.data.code == '200') {
-          for (let i = 0; i < res.data.rows.length; i++) {
-            this.selectorValue = res.data.rows[0].patientName;
-            // this.id = String(res.data.rows[0].id);
-            let neslist = {
-              text: res.data.rows[i].patientName,
-              value: res.data.rows[i].id
-              // value: String(res.data.rows[i].id)
-            }
-            this.optionsData.push(neslist);
-          }
-
+          this.goodsList = res.data.rows;
+          // this.nowTime = res.data.rows[0].waitingDate;
         } else if (res.data.code == '800') {
 
         }
@@ -201,13 +182,13 @@ export default {
     },
     switchTo(data) {
 
-      this.type = data.type;
+      this.queryType = data.queryType;
     },
-    intolineupinfo() {
+    intolineupinfo(data) {
       let argu = {}
       this.$router.push({
         name: 'lineupinfo',
-        query: argu
+        query: { id: data.id,queryType:this.queryType }
       });
     },
     intoreportinfo() {

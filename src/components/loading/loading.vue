@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:40px">
     <div class="sk-circle">
       <div class="sk-circle1 sk-child"></div>
       <div class="sk-circle2 sk-child"></div>

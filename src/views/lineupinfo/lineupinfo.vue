@@ -1,85 +1,93 @@
 <template>
 
   <div class="lineupnow">
-    <Header post-title="预约记录" v-show="isWeixin"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true}">
+    <Header post-title="排队详情" v-show="isWeixin"></Header>
+    <div :class="{margin45:isWeixin,outCarint:true}" v-show="!loadingtrue">
       <div class="card margin16">
         <div class="cardHEADER">
-          <div class="fleft lineheight50" style="width:100%;border-bottom:1px solid #ededed">
+          <div class="fleft lineupcard">
             <img src="@/assets/images/icon_line_up.png" alt="">
             <span>我的排队号</span>
           </div>
-          <p class="lineheight50">我的号码：119</p>
-          <p class="lineheight50">排队类目：集体体检</p>
+          <p>我的号码：
+            <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}}</span>
+          </p>
+          <p>排队类目：{{lineupinfo.deptName}}</p>
         </div>
       </div>
-      <div class="card margin16">
+      <!-- <div class="card margin16">
         <div class="cardHEADER">
-          <div class="fleft lineheight50" style="width:100%;border-bottom:1px solid #ededed">
+          <div class="fleft lineupcard">
             <img src="@/assets/images/icon_sad.png" alt="">
             <span>您已过号！请重新排队！</span>
           </div>
-          <p class="lineheight50">当前正在受理的号是121号</p>
+          <p>当前正在受理的号是
+            <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span> 号</p>
         </div>
-      </div>
+      </div> -->
       <div class="card margin16">
         <div class="cardHEADER">
-          <div class="fleft lineheight50" style="width:100%;border-bottom:1px solid #ededed">
+          <div class="fleft lineupcard">
             <img src="@/assets/images/icon_schedule.png" alt="">
-            <span>我的排队号</span>
+            <span>进度</span>
           </div>
-          <p class="lineheight50">当前正在受理的号是121号</p>
-          <p class="lineheight50">您前面还有
-            <span class="mu-secondary-text-color">1</span>位在等候，预计等待
-            <span class="mu-secondary-text-color">10</span>分钟</p>
+          <p>当前正在受理的号是
+            <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span> 号</p>
+          <p>您前面还有
+            <span class="mu-secondary-text-color size18">{{lineupinfo.waitingNo}}</span> 位在等候，预计等待
+            <span class="mu-secondary-text-color size18">{{lineupinfo.waitingTime}}</span> 分钟</p>
         </div>
       </div>
 
-      <md-button class="margin16" type="primary" @click="payment" round>刷新</md-button>
+      <md-button class="margin16" type="primary" @click="getData" round>刷新</md-button>
     </div>
+    <Loading v-show="loadingtrue"></Loading>
   </div>
 </template>
-<script  >
+<script   type="text/babel">
+
+let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
 export default {
   data() {
     return {
       isWeixin: false,
-      active1: 0,
-      normal: {
-        checkbox: true,
-        radio: 1,
-        switch: false
-      },
-      time: [
-        { title: '待支付' },
-        { title: '预约成功' },
-        { title: '预约关闭' }
-      ],
+      lineupinfo: '',
+      loadingtrue: true,
     };
   },
   created() {
 
   },
   mounted() {
+    this.getData()
     document.title = '排队详情';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
-      return true;
+
     } else {
       this.isWeixin = true;
-      return false;
     }
+
   },
   methods: {
-    switchTo(num) {
-      this.active1 = num;
-    },
-    payment() {
-      this.$router.push({
-        name: 'payment',
+    getData() {
+      this.loadingtrue = true;
+      this.$axios.put(appbizWaitingQueuereadlist, {
+        id: this.$route.query.id * 1,
+        queryType: this.$route.query.queryType * 1,
+      }).then(res => {
+        if (res.data.code == '200') {
+          this.loadingtrue = false;
+          this.lineupinfo = res.data.rows[0];
+        } else if (res.data.code == '800') {
+
+        }
+      }).catch(function (err) {
+        console.log(err);
       });
     },
+   
     setStyle(rowIndex, row) {
       if (row.id === this.currentRow.id) {
         return 'background-color:#ddd'
@@ -98,11 +106,23 @@ export default {
 .mu-raised-button {
   height: 45px;
 }
-.lineheight50 {
-  line-height: 50px;
+.lineupcard {
+  line-height: 70px;
+  width: 100%;
+  border-bottom: 1px solid #ededed;
 }
-
+.cardHEADER p {
+  font-size: 28px;
+  line-height: 60px;
+}
+.cardHEADER p:first-child {
+  margin-top: 20px;
+}
 .lineupnow .md-button-content {
   color: #ffffff !important;
+}
+
+.size18 {
+  font-size: 36px;
 }
 </style>

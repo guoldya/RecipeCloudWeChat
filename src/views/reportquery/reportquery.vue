@@ -28,7 +28,7 @@
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="goodsList.length!=0" v-show="!loadingtrue" class="outCarint">
+            <div v-if="goodsList.length!=0" v-show="!loadingtrue" >
                 <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
                     <div class="cardText" @click="checkReportDetail(item.id)">
                         <div class="cardTextLeft">

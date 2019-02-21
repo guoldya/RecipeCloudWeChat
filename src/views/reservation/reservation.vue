@@ -11,15 +11,15 @@
 
             <ul>
                <li>
-                  <label>就诊医院：</label>
-                  <p>重庆市妇幼保健院(冉家坝院区)</p>
+                  <label>就诊院区：</label>
+                  <p>冉家坝院区</p>
                </li>
                <li>
-                  <label>科室医生：</label>
-                  <p>口腔科 - 卞晶</p>
+                  <label>科室：</label>
+                  <p>口腔科 </p>
                </li>
                <li>
-                  <label>门诊时间：</label>
+                  <label>看诊时间：</label>
                   <p class="mu-secondary-text-color">2019-02-22&nbsp;周五下午</p>
                </li>
                <li>
@@ -27,19 +27,11 @@
                   <p>专家门诊</p>
                </li>
                <li>
-                  <label>费用：</label>
-                  <p>以医院实际为准</p>
+                  <label>挂号费用：</label>
+                  <p class="mu-secondary-text-color">￥ 25</p>
                </li>
 
             </ul>
-
-            <div class="rule-list">
-               <p class="g-arrow-d  J_ShowRules">我已了解并同意以下规则（点击查看详情）</p>
-               <!-- <ul class="J_RuleList">
-                  <li>停诊将短信通知，请保持手机畅通</li>
-                  <li>实名制预约，就诊人信息不符将无法取号</li>
-               </ul> -->
-            </div>
 
          </div>
       </div>
@@ -50,12 +42,12 @@
                <div>
                   <label class="nowidth">就诊人：</label>
                   <span class="input-box">
-                     试试
+                     杨健
                   </span>
                </div>
             </li>
             <input type="hidden" class="patient_type" value="0">
-            <li class="input-line g-arrow-r GJ_Dropdown J_AdjustWidth J_TimeSelect">
+            <!-- <li class="input-line g-arrow-r GJ_Dropdown J_AdjustWidth J_TimeSelect">
 
                <div>
                   <label class="nowidth">预约时间段：</label>
@@ -64,8 +56,8 @@
                   </span>
                </div>
 
-            </li>
-            <li class="input-line g-arrow-r GJ_Dropdown J_AdjustWidth">
+            </li> -->
+            <!-- <li class="input-line g-arrow-r GJ_Dropdown J_AdjustWidth">
 
                <div>
                   <label class="nowidth">初/复诊：</label>
@@ -73,12 +65,12 @@
                      初诊（初次就诊时，选择此项）
                   </span>
                </div>
-            </li>
+            </li> -->
 
             <li class="input-line g-arrow-r" id="J_SelectDis" data-init="[{&quot;name&quot;:&quot;尚未确诊&quot;,&quot;uuid&quot;:&quot;0&quot;}]">
                <div>
-                  <label class="nowidth">就诊卡</label>
-                  <span class="input-box">
+                  <label class="nowidth">就诊卡：</label>
+                  <span class="input-box">0225484480001
                   </span>
                </div>
             </li>

@@ -128,8 +128,10 @@ export default {
 </script>
  <style scoped>
 .choosedepart .xuanze {
-  font-size: 32px;
+  font-size: 30px;
   /* margin-top: 30px; */
+  border-bottom: 1px solid #ededed;
+  padding-bottom: 30px;
 }
 .choosedepart .margin20 {
   margin-top: 20px;
@@ -179,7 +181,7 @@ export default {
   color: #ffffff;
 }
 .choosedepart .warn {
-  font-size: 28px;
+  font-size: 24px;
   color: #f44336;
 }
 .choosedepart .departLi {
@@ -230,18 +232,18 @@ export default {
 
 .choosedepart .appTitle {
   padding: 32px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid #e2e4ea;
   display: flex;
   justify-content: space-between;
+  
 }
 .choosedepart .choosedepart .appTab {
   display: flex;
   justify-content: space-between;
   padding: 32px 100px;
-  font-size: 36px;
 }
 .choosedepart .choosedepart .appTab span {
-  font-size: 32px;
+  font-size: 36px;
 }
 .choosedepart .appTab span {
   padding: 0 8px 8px;
@@ -250,8 +252,13 @@ export default {
 .choosedepart .appTabAcitive {
   color: #1da1f3;
   border-bottom: 4px solid #1da1f3;
+  font-size: 31px
 }
 #app .choosedepart .md-cell-item-title {
   font-size: 15px;
+}
+
+.md-cell-item-title {
+  font-size: 24px !important;
 }
 </style>

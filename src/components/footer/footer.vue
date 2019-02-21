@@ -1,24 +1,28 @@
 <template>
-  <div class="aui-footer">
-    <a href="javascript:;" class="aui-tabBar-item" @click="switchTo('/')">
-      <span class="aui-tabBar-item-icon">
-        <img :src=" '/' === $route.path ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="首页">
-      </span>
-      <span :class="{on: '/' === $route.path}">诊疗服务</span>
-    </a>
-    <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/online')">
-      <span class="aui-tabBar-item-icon">
-        <img :src="'/online' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
-      </span>
-      <span :class="{on: '/online' === $route.path}">在线问诊</span>
-    </a>
-    <a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active" @click="switchTo('/my')">
-      <span class="aui-tabBar-item-icon">
-        <img :src="'/my' === $route.path ? tabBarImgArr[2].selected : tabBarImgArr[2].normal" alt="我的">
-      </span>
-      <span :class="{on: '/my' === $route.path}">我的</span>
-    </a>
+  <div>
+    <div style="height:50px"></div>
+    <div class="aui-footer">
+      <a href="javascript:;" class="aui-tabBar-item" @click="switchTo('/')">
+        <span class="aui-tabBar-item-icon">
+          <img :src=" '/' === $route.path ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="首页">
+        </span>
+        <span :class="{on: '/' === $route.path}">诊疗服务</span>
+      </a>
+      <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/online')">
+        <span class="aui-tabBar-item-icon">
+          <img :src="'/online' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
+        </span>
+        <span :class="{on: '/online' === $route.path}">在线问诊</span>
+      </a>
+      <a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active" @click="switchTo('/my')">
+        <span class="aui-tabBar-item-icon">
+          <img :src="'/my' === $route.path ? tabBarImgArr[2].selected : tabBarImgArr[2].normal" alt="我的">
+        </span>
+        <span :class="{on: '/my' === $route.path}">我的</span>
+      </a>
+    </div>
   </div>
+
 </template>
 <script>
 export default {

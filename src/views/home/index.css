@@ -42,16 +42,17 @@
 }
 
 .home-cz {
-   padding: 40px 66px;
+   padding:20px 66px 77px;
 }
 
 .home-cz li {
    text-align: center;
+   color: #fff;
 }
 
 .home-cz .image {
-   width: 70px;
-   height: 70px
+   width: 60px;
+   height: 60px
 }
 
 .image {
@@ -119,6 +120,7 @@
    height: 240px;
    border-radius: 20px;
    box-shadow: 0 0 17px #c8dff7;
+   background: #ffffff;
 }
 
 .homeCardText {
@@ -174,4 +176,26 @@
    left: 10px;
 }
 
- 
+.hometop {
+   background: #24A5F1;
+   padding: 0 30px 60px;
+}
+
+.homeheader {
+   height: 100px;
+   background: #24A5F1;
+   text-align: center;
+   color: #fff;
+   font-size: 32px;
+   line-height: 100px;
+}
+
+.home-menu,
+.home-zy,
+.homeCard {
+   position: relative;
+   top: -120px;
+}
+.marginbott16{
+   margin-bottom: 32px
+}

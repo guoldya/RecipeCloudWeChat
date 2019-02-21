@@ -280,4 +280,13 @@ textarea::-webkit-input-placeholder {
 .textCenter {
   text-align: center;
 }
+.nullDiv {
+  text-align: center;
+}
+.nullDiv img {
+  width: 50%;
+  margin-top: 150px;
+}
+
+ 
 </style>

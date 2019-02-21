@@ -1,7 +1,7 @@
 <template>
    <div class="doctorList">
-      <Header post-title="管理就诊卡" v-show="isWeixin"></Header>
-      <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
+      <Header post-title="管理就诊卡"></Header>
+      <div class="outCarint" style="margin-top:127px">
          <ul>
             <li v-for="i in num" :key="i">
                <div class="homeCard">
@@ -21,6 +21,8 @@
                </div>
             </li>
          </ul>
+         <md-button @click="onActConfirm2" type="primary" round>注册电子就诊卡</md-button>
+         
       </div>
    </div>
 </template>
@@ -29,7 +31,7 @@ export default {
    data() {
       return {
          isWeixin: false,
-         num: 5,
+         num: 2,
       };
    },
    created() {
@@ -53,7 +55,12 @@ export default {
 
    },
    methods: {
+      onActConfirm2() {
 
+         this.$router.push({
+            name: 'cardwrite',
+         });
+      },
    },
    computed: {
    },
