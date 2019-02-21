@@ -30,7 +30,7 @@
             </p>
             <p class="cardTextPP">
               <span>患者ID</span>
-              <span>{{item.patientId}}</span>
+              <span class="mu-secondary-text-color">{{item.patientId}}</span>
             </p>
             <p class="cardTextPP">
               <span>患者姓名</span>
@@ -58,10 +58,10 @@
       <div class="card margin16">
         <div class="cardText">
           <div class="cardTextKind spanWid">
-            <span style="text-align: center">类别</span>
+            <span style="text-align: left">类别</span>
             <span  >项目名称</span>
             <span >数量</span>
-            <span style="text-align: center">金额</span>
+            <span style="text-align: right">金额</span>
           </div>
           <div class="cardTextPP spanWid" v-for="(item,i) in feeButtomDetail">
             <span>{{item.type}}</span>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="md-example-child md-example-child-cashier" v-if="feeActiveId==0">
-        <md-button class="margin16" type="primary" @click="rightPay" round>{{ isCashierhow ? '收起收银台' : '立即缴费' }}</md-button>
+        <md-button class="margin16" type="primary" @click="rightPay" round>立即缴费</md-button>
         <md-cashier
                 ref="cashier"
                 v-model="isCashierhow"
@@ -144,9 +144,8 @@ export default {
 
   },
   mounted() {
-      this.feeActiveId=this.$store.state.feeActiveId;
+    this.feeActiveId=this.$store.state.feeActiveId;
     this.feeDetail();
-
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
@@ -178,6 +177,9 @@ export default {
           }).then((res) => {
               if(res.data.code=='200'){
                   this.feeDetailData.push(res.data.data);
+                  for(let i=0;i<this.feeDetailData.length;i++){
+                      this.feeDetailData[i].createTime = this.feeDetailData[i].createTime.split(' ')[0];
+                  }
                   this.feeButtomDetail=res.data.data.details;
                   this.cashierAmount=res.data.data.total.toFixed(2);
               }
@@ -295,12 +297,22 @@ export default {
             if(res.data.code=='200'){
                 this.feeDetailData.push(res.data.data);
                 this.feeButtomDetail=res.data.data.details;
-                this.cashierAmount=res.data.data.total.toFixed(2);
+                if(res.data.data.total){
+                    this.cashierAmount=res.data.data.total.toFixed(2);
+                }
+                this.doPay();
+            }else {
+                this.$toast.info(res.data.msg);
+                setTimeout(()=>{
+                    this.$router.push({
+                        name: 'feerecord',
+                        query: {}
+                    });
+                },3000)
             }
         }).catch(function (err) {
             console.log(err);
         });
-      this.doPay()
     },
     onCashierCancel() {
       // Abort pay request or checking request
@@ -344,6 +356,7 @@ export default {
 }
 .feeinfo .spanWid span:first-child{
   width: 20%;
+    text-align: left;
 }
 .feeinfo .spanWid span:nth-child(2) {
   width: 40%;
@@ -354,6 +367,7 @@ export default {
 }
 .feeinfo .spanWid span:last-child{
   width: 20%;
+    text-align: right;
 }
 .feeinfo .cardText .cardTextKindcontent {
   display: flex;
@@ -366,4 +380,3 @@ export default {
   border: none;
 }
 </style>
- 

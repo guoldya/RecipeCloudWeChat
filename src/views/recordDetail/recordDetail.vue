@@ -2,7 +2,7 @@
     <div class="recordDetail">
         <Header post-title="处方详情" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="outCarint">
+            <div>
                 <div class="card margin16">
                     <div class="cardText" v-for="(item,i) in detailData" :key="i">
                         <div class="userInfo">
@@ -90,8 +90,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
