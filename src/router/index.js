@@ -38,7 +38,7 @@ import signsucceed from '@/views/signsucceed/signsucceed.vue'
 import cardblind from '@/views/cardblind/cardblind.vue'
 import cardhave from '@/views/cardhave/cardhave.vue'
 import resultdocotor from '@/views/resultdocotor/resultdocotor.vue'
-// import registrecorddetail from '@/views/registrecorddetail/registrecorddetail.vue'
+import registrecorddetail from '@/views/registrecorddetail/registrecorddetail.vue'
 
 
 import cardmy from '@/views/cardmy/cardmy.vue'
@@ -432,11 +432,11 @@ export default new Router({
       name: 'submitOrder',
       component: submitOrder,
     },
-      // {
-      //     path: '/registrecorddetail',
-      //     name: 'registrecorddetail',
-      //     component: registrecorddetail,
-      // },
+      {
+          path: '/registrecorddetail',
+          name: 'registrecorddetail',
+          component: registrecorddetail,
+      },
 
   ]
 })
