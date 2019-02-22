@@ -13,9 +13,9 @@
                             <span class="doctor-name">{{doctorInfo.name}} </span>
                             <span class="doctor-tag">{{doctorInfo.title}} </span>
                         </p>
-                        <p class="hospital">院区：{{doctorInfo.hospital}} 科室</p>
+                        <p class="hospital"> {{doctorInfo.hospital}} 科室</p>
                     </div>
-                    <p>擅长ssssssssssssssssss{{doctorInfo.title}} 展开</p>
+                    <p> {{doctorInfo.introduce}} 展开</p>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
             <div class="doctordetal">
                 <div class="outCarint">
                     <ul class="available-info">
-                        <li>
+                        <li style="border: none;">
                             <div> 2019-02-22 今日 上午 <br/>
                                 <span class="colo13">
                                     儿科门诊 华西院区 <br/> 余
@@ -41,9 +41,8 @@
                         <p class="colo13">全部排班</p>
                     </ul>
                     <ul class="available-info">
-
                         <li>
-                            <div> 2019-02-22 今日 上午 <br/>
+                            <div> 2019-02-22 星期一 上午 <br/>
                                 <span class="colo13">
                                     儿科门诊 华西院区 <br/> 余
                                     <span class="mu-secondary-text-color">0</span>&nbsp;
@@ -53,7 +52,7 @@
                             <div @click="reservation" class="available-tag">预约</div>
                         </li>
                         <li>
-                            <div> 2019-02-22 今日 上午 <br/>
+                            <div> 2019-02-22 星期一 上午 <br/>
                                 <span class="colo13">
                                     儿科门诊 华西院区 <br/> 余
                                     <span class="mu-secondary-text-color">0</span>&nbsp;
@@ -63,7 +62,7 @@
                             <div @click="reservation" class="available-tag">预约</div>
                         </li>
                         <li>
-                            <div> 2019-02-22 今日 上午 <br/>
+                            <div> 2019-02-22 星期二  上午 <br/>
                                 <span class="colo13">
                                     儿科门诊 华西院区 <br/> 余
                                     <span class="mu-secondary-text-color">0</span>&nbsp;

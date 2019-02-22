@@ -82,7 +82,7 @@
   </div>
 </template>
 <script>
-let fee_detail_url = "wechat/bizCostBill/detail";
+let fee_detail_url = "app/bizCostBill/detail";
 let fconfirm_pay_url = "wechat/bizCostBill/confirmPay";
 let now_pay_url = "wechat/bizCostBill/nowPay";
 import { Toast, Button } from 'mand-mobile'

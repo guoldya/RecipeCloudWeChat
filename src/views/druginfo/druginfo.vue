@@ -477,7 +477,13 @@ export default {
       );
     },
     addCar() {
+      WebViewJavascriptBridge.callHandler(
+        'addCar'
+        , this.num
+        , function (responseData) {
 
+        }
+      );
     },
     lunbo(data) {
       let mySwiper = new Swiper('.swiper-container', {
