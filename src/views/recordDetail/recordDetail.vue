@@ -5,12 +5,12 @@
             <div>
                 <div class="card margin16">
                     <div class="cardText" v-for="(item,i) in detailData" :key="i">
-                        <div class="userInfo">
-                            <span>取药码：092231</span>
-                            <span>2019-01-12</span>
-                            <span class="mu-secondary-text-color">未取药</span>
-                        </div>
-                        <p class="partLine"></p>
+                        <!--<div class="userInfo">-->
+                            <!--<span>取药码：092231</span>-->
+                            <!--<span>2019-01-12</span>-->
+                            <!--<span class="mu-secondary-text-color">未取药</span>-->
+                        <!--</div>-->
+                        <!--<p class="partLine"></p>-->
                         <div class="hospital">
                             <p>{{item.add}}</p>
                         </div>

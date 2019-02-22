@@ -279,5 +279,6 @@ textarea::-webkit-input-placeholder {
 }
 .textCenter {
   text-align: center;
+  padding-bottom: 20px;
 }
 </style>

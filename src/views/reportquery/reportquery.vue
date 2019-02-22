@@ -1,5 +1,5 @@
 <template>
-    <div class="reportquery" id="product-info">
+    <div class="reportquery">
         <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
@@ -7,15 +7,15 @@
             <div class="aui-center">
                 <span class="aui-center-title">报告查询</span>
             </div>
-            <span class="aui-navBar-item">
-                <div>
-                    <md-field>
-                        <md-field-item :content="selectorValue" @click="showSelector" solid/>
-                    </md-field>
-                    <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData[0]" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
-                </div>
-                <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
-            </span>
+            <!--<span class="aui-navBar-item">-->
+                <!--<div>-->
+                    <!--<md-field>-->
+                        <!--<md-field-item :content="selectorValue" @click="showSelector" solid/>-->
+                    <!--</md-field>-->
+                    <!--<md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>-->
+                <!--</div>-->
+                <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
+            <!--</span>-->
         </header>
         <div :class="{margin45:isWeixin,outCarint:true}">
             <!--<div class="timeTab" style="margin-top:20px">-->
@@ -64,8 +64,8 @@
 </template>
 <script type="text/babel">
     let bizLisReportreadpage = '/app/bizLisReport/read/page';
+    let bizPatientCard = "/wechat/bizPatientCard/read/page";
     export default {
-
         data() {
             return {
                 busy: true,
@@ -87,13 +87,7 @@
                     { title: '检验报告', type: 2 },
                 ],
                 isSelectorShow: false,
-                optionsData: [[
-                    { text: "彭万里", value: "1" },
-                    { text: "高大山", value: "2" },
-                    { text: "马宏宇", value: "3" },
-                    { text: '孙寿康', value: "4" },
-                    { text: '孙应吉', value: "5" },
-                ]],
+                optionsData: [],
                 selectorValue: '',
                 reportTime: [
                     { title: '本周' },
@@ -110,13 +104,15 @@
                 collectPageNumber: 1,
                 choseValue: '',
                 list: [],
+                listInfo:[]
             };
         },
         created() {
 
         },
         mounted() {
-            this.selectorValue = this.optionsData[0][0].text;
+            //this.personFun();
+            this.getGoodslist(false);
             document.title = '报告查询';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -124,9 +120,35 @@
             } else {
                 this.isWeixin = true;
             }
-            this.getGoodslist(false);
+
         },
         methods: {
+            personFun(){
+                this.$axios.put(bizPatientCard, {
+                }).then(res => {
+                    if (res.data.code == '200') {
+                        this.choseValue=res.data.rows[0].id;
+                        for (let i = 0; i < res.data.rows.length; i++) {
+                            for(let j=0;j<res.data.rows[i].list.length;j++){
+                                this.selectorValue = res.data.rows[0].list[0].patientName;
+                                this.cardNo = res.data.rows[0].list[0].cardNo;
+                                let neslist = {
+                                    text: res.data.rows[i].list[j].patientName,
+                                    value: res.data.rows[i].list[j].cardNo,
+                                    id: res.data.rows[i].id,
+
+                                };
+                                this.optionsData.push(neslist);
+                                console.log(this.optionsData);
+                            }
+                        }
+                    } else if (res.data.code == '800') {
+
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
             getGoodslist(flag) {
                 const params = {};
                 params.pageNumber = this.page;
@@ -194,9 +216,9 @@
             showSelector() {
                 this.isSelectorShow = true
             },
-            onSelectorChoose({ text, value }) {
+            onSelectorChoose({ text, value,id}) {
                 this.selectorValue = text;
-                this.choseValue = value;
+                this.choseValue = id;
                 this.getGoodslist(false);
             },
             intoreportinfo() {
