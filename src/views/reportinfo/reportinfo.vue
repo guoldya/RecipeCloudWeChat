@@ -101,10 +101,9 @@
                         <span >单位</span>
                         <span style="text-align: right">参考值</span>
                     </div>
-                    <div class="cardTextPP spanWid" v-for="(item,i) in reportResult">
+                    <div class="cardTextPP spanWid  reportInfo" v-for="(item,i) in reportResult">
                         <span>{{item.itemName}}</span>
-                        <span >{{item.itemValue}}</span>
-                        <span>{{item.contrast}}</span>
+                        <span >{{item.itemValue}}<span style="color: red">{{item.contrast}}</span></span>
                         <span>{{item.unit}}</span>
                         <span>{{item.referenceValue}}</span>
                     </div>
@@ -244,7 +243,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 35px 0;
-    font-size: 28px;
+    font-size: 27px;
     border-bottom: 1px solid #e9e9e9;
     font-weight: 700;
 }
@@ -255,6 +254,10 @@ export default {
     word-wrap : break-word ;
     overflow: hidden ;
     text-align: center;
+}
+
+.reportinfo .reportInfo span{
+    font-size:25px;
 }
 .reportinfo .spanWid span:first-child{
     width: 32%;

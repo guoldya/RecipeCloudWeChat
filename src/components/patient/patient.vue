@@ -23,7 +23,7 @@
 </template>
 <script>
 
-let bizPatientCard = "/wechat/bizPatientCard/read/list";
+let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
    data() {
       return {

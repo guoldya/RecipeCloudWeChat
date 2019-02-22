@@ -51,7 +51,7 @@
 </template>
 <script type="text/babel"> 
 let appbizPatientRegistersign = '/app/bizPatientRegister/sign';
-let bizPatientCard = "/wechat/bizPatientCard/read/list";
+let bizPatientCard = "/app/bizPatientCard/read/list";
 let appbizPatientRegisterisExitsProject = "/app/bizPatientRegister/isExitsProject";
 let readselectRegisterList = "read/selectRegisterList";
 export default {

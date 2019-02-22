@@ -1,196 +1,194 @@
 <template>
-  <div class="feerecord">
-    <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
-      <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
-        <img src="@/assets/images/icon_back.png">
-      </span>
-      <div class="aui-center">
-        <span class="aui-center-title">缴费记录</span>
-      </div>
-      <span class="aui-navBar-item">
-                <div>
+    <div class="feerecord">
+        <header class="aui-navBar aui-navBar-fixed" >
+            <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
+                <img src="@/assets/images/icon_back.png">
+            </span>
+            <div class="aui-center">
+                <span class="aui-center-title">缴费记录</span>
+            </div>
+            <span class="aui-navBar-item">
+                <!-- <div>
                     <md-field>
                         <md-field-item :content="selectorValue" @click="showSelector" solid/>
                     </md-field>
                     <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
                 </div>
-                <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
+                <span class="downImg"><img src="@/assets/images/icon_down.png"></span> -->
             </span>
-    </header>
-    <div :class="{'outCarint':true,'margin45':isWeixin}">
-      <div class="appTab">
-        <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-          {{item.title}}
-        </span>
-      </div>
-        <div v-if="waitPayData.length!=0" v-show="!loadingtrue" class="outCarint">
-            <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
-                <p class="appTitle">
-                    <span>{{item.type}}费</span>
-                    <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
-                </p>
-                <div class="cardText">
-                    <p>患者：{{item.patientName}}</p>
-                    <p>医院：{{item.hospital}}</p>
-                    <p v-if="active1 === 0">开单时间：{{item.createTime}}</p>
-                    <p v-if="active1 === 1">支付时间：{{item.payTime}}</p>
-                    <div style="height:30px;  text-align: right;"  v-if="active1 === 0">
-                        <span class="payatnow">立即支付</span>
+        </header>
+        <div :class="{'outCarint':true,'margin45':isWeixin}">
+            <div class="appTab">
+                <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+                    {{item.title}}
+                </span>
+            </div>
+            <div v-if="waitPayData.length!=0" v-show="!loadingtrue" class="outCarint">
+                <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
+                    <p class="appTitle">
+                        <span>{{item.type}}费</span>
+                        <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
+                    </p>
+                    <div class="cardText">
+                        <p>患者：{{item.patientName}}</p>
+                        <p>医院：{{item.hospital}}</p>
+                        <p v-if="active1 === 0">开单时间：{{item.createTime}}</p>
+                        <p v-if="active1 === 1">支付时间：{{item.payTime}}</p>
+                        <div style="height:30px;  text-align: right;" v-if="active1 === 0">
+                            <span class="payatnow">立即支付</span>
+                        </div>
                     </div>
                 </div>
+                <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
-            <p v-show="nomore" class="noMore">没有更多数据了</p>
-        </div>
-        <div v-show="!loadingtrue" class="nullDiv" v-else>
-            <img src="@/assets/images/null1.png">
-        </div>
-        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+            <div v-show="!loadingtrue" class="nullDiv" v-else>
+                <img src="@/assets/images/null1.png">
+            </div>
+            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
                 <span v-if="waitPayData.length!=0&&!nomore">
                     <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                 </span>
+            </div>
+            <Loading v-show="loadingtrue"></Loading>
         </div>
-        <Loading v-show="loadingtrue"></Loading>
     </div>
-  </div>
 </template>
 <script >
-    let pay_list_url="app/bizCostBill/selectCostBillList";
-    let bizPatientCard = "/wechat/bizPatientCard/read/page";
+let pay_list_url = "app/bizCostBill/selectCostBillList";
+let bizPatientCard = "/app/bizPatientCard/read/page";
 export default {
-  data() {
-    return {
-      active1: 0,
-      isWeixin: false,
-      time: [
-        { title: '待支付', type: 1  },
-        { title: '已支付', type: 2 },
-      ],
-        waitPayData:[],
-        status:0,
-        selectorValue: '',
-        choseValue:'',
-        isSelectorShow: false,
-        optionsData: [],
-        page: 1,
-        pageSize: 10,
-        type: 1,
-        busy: true,
-        nomore: false,
-        loadingtrue: true,
-    };
-  },
-
-  created() {
-
-  },
-  mounted() {
-      this.WaitPay(false);
-      this.personFun();
-    document.title = '缴费记录';
-    var ua = window.navigator.userAgent.toLowerCase();
-    this.selectorValue = this.optionsData[0][0].text;
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-      return true;
-    } else {
-      this.isWeixin = true;
-      return false;
-    }
-
-  },
-  methods: {
-      personFun(){
-          this.$axios.put(bizPatientCard, {
-          }).then(res => {
-              if (res.data.code == '200') {
-                  for (let i = 0; i < res.data.rows.length; i++) {
-                      this.selectorValue = res.data.rows[0].patientName;
-                      this.cardNo = res.data.rows[0].cardNo;
-                      let neslist = {
-                          text: res.data.rows[i].patientName,
-                          value: res.data.rows[i].cardNo,
-                          aaa: res.data.rows[i].createTime,
-
-                      }
-                      this.optionsData.push(neslist);
-                  }
-
-              } else if (res.data.code == '800') {
-
-              }
-          }).catch(function (err) {
-              console.log(err);
-          });
-      },
-      onSelectorChoose({text, value}) {
-          this.selectorValue = text;
-          this.choseValue = value;
-          this.WaitPay(false);
-      },
-      showSelector() {
-          this.isSelectorShow = true
-      },
-    appointinfo: function (value) {
-        this.$store.commit('feeActiveFun', this.active1);
-          this.$router.push({
-            name: 'feeinfo',
-             query: {id:value}
-          });
+    data() {
+        return {
+            active1: 0,
+            isWeixin: false,
+            time: [
+                { title: '待支付', type: 1 },
+                { title: '已支付', type: 2 },
+            ],
+            waitPayData: [],
+            status: 0,
+            selectorValue: '',
+            choseValue: '',
+            isSelectorShow: false,
+            optionsData: [],
+            page: 1,
+            pageSize: 10,
+            type: 1,
+            busy: true,
+            nomore: false,
+            loadingtrue: true,
+        };
     },
-    switchTo(data,num) {
-      this.active1 = num;
-        this.type = data;
-        this.waitPayData = [];
-        this.page = 1;
-        this.loadingtrue = true;
-        this.WaitPay();
+
+    created() {
+
     },
-      WaitPay(flag) {
-          const params = {};
-          params.pageNumber = this.page;
-          params.pageSize = this.pageSize;
-          //params.patientId = parseInt(this.choseValue);
-          params.payType = this.active1;
-          this.$axios.put(pay_list_url, params).then((res) => {
-              if (res.data.rows) {
-                  this.loadingtrue = false;
-                  if (flag) {
-                      this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
-                      if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-                          this.busy = false;
-                          this.nomore = false;
-                      } else {
-                          this.busy = true;
-                          this.nomore = true;
-                      };
-                  } else {
-                      this.waitPayData = res.data.rows;
-                      this.busy = true;
-                      if (res.data.total < 10) {
-                          this.busy = true;
-                          this.nomore = true;
-                      } else {
-                          this.busy = false;
-                          this.nomore = false;
-                      }
-                  }
-              } else {
-                  this.waitPayData = []
-              }
-          })
-      },
-      loadMore() {
-          this.busy = true;  //将无限滚动给禁用
-          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
-              this.page++;  //滚动之后加载第二页
-              this.WaitPay(true);
-          }, 500);
-      },
+    mounted() {
+        this.WaitPay(false);
+        // this.personFun();
+        document.title = '缴费记录';
+        var ua = window.navigator.userAgent.toLowerCase();
+        // this.selectorValue = this.optionsData[0][0].text;
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            this.isWeixin = false;
+        } else {
+            this.isWeixin = true;
+        }
 
-  },
-  computed: {
+    },
+    methods: {
+        personFun() {
+            this.$axios.put(bizPatientCard, {
+            }).then(res => {
+                if (res.data.code == '200') {
+                    for (let i = 0; i < res.data.rows.length; i++) {
+                        this.selectorValue = res.data.rows[0].patientName;
+                        this.cardNo = res.data.rows[0].cardNo;
+                        let neslist = {
+                            text: res.data.rows[i].patientName,
+                            value: res.data.rows[i].cardNo,
+                            aaa: res.data.rows[i].createTime,
 
-  },
+                        }
+                        this.optionsData.push(neslist);
+                    }
+
+                } else if (res.data.code == '800') {
+
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
+        onSelectorChoose({ text, value }) {
+            this.selectorValue = text;
+            this.choseValue = value;
+            this.WaitPay(false);
+        },
+        showSelector() {
+            this.isSelectorShow = true
+        },
+        appointinfo: function (value) {
+            this.$store.commit('feeActiveFun', this.active1);
+            this.$router.push({
+                name: 'feeinfo',
+                query: { id: value }
+            });
+        },
+        switchTo(data, num) {
+            this.active1 = num;
+            this.type = data;
+            this.waitPayData = [];
+            this.page = 1;
+            this.loadingtrue = true;
+            this.WaitPay();
+        },
+        WaitPay(flag) {
+            const params = {};
+            params.pageNumber = this.page;
+            params.pageSize = this.pageSize;
+            //params.patientId = parseInt(this.choseValue);
+            params.payType = this.active1;
+            this.$axios.put(pay_list_url, params).then((res) => {
+                if (res.data.rows) {
+                    this.loadingtrue = false;
+                    if (flag) {
+                        this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
+                        if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                            this.busy = false;
+                            this.nomore = false;
+                        } else {
+                            this.busy = true;
+                            this.nomore = true;
+                        };
+                    } else {
+                        this.waitPayData = res.data.rows;
+                        this.busy = true;
+                        if (res.data.total < 10) {
+                            this.busy = true;
+                            this.nomore = true;
+                        } else {
+                            this.busy = false;
+                            this.nomore = false;
+                        }
+                    }
+                } else {
+                    this.waitPayData = []
+                }
+            })
+        },
+        loadMore() {
+            this.busy = true;  //将无限滚动给禁用
+            setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+                this.page++;  //滚动之后加载第二页
+                this.WaitPay(true);
+            }, 500);
+        },
+
+    },
+    computed: {
+
+    },
 
 };
 </script>

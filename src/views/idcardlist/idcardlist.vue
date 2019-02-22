@@ -3,14 +3,14 @@
       <Header post-title="管理就诊卡"></Header>
       <div class="outCarint" style="margin-top:127px">
          <ul>
-            <li v-for="i in num" :key="i">
+            <li v-for="(item,index) in cardlist" :key="index">
                <div class="homeCard">
                   <div class="homeCardText">
                      <div class="homeCardTextLeft">
-                        <p>名字<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
-                        <p>777777777777</p>
+                        <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                        <p>{{item.cardNo}}</p>
                         <p>
-                           <span class="icon_switch"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
+                           <span class="icon_switch"> {{item.orgCode}}</span>
                         </p>
                      </div>
                      <div class="towma">
@@ -22,19 +22,31 @@
             </li>
          </ul>
          <md-button @click="onActConfirm2" type="primary" round>注册电子就诊卡</md-button>
-         
       </div>
    </div>
 </template>
 <script type="text/babel">
+let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
 export default {
    data() {
       return {
          isWeixin: false,
          num: 2,
+         cardlist: '',
       };
    },
    created() {
+
+      this.$axios.put(wechatbizPatientCardreadpage, {
+      }).then(res => {
+         if (res.data.code == '200') {
+            this.cardlist = res.data.rows;
+         } else if (res.data.code == '800') {
+            console.log(res.data.msg)
+         }
+      }).catch(function (err) {
+         console.log(err)
+      });;
    },
    watch: {
       selected3: function (newselectedStatus, oldselectedStatus) {
