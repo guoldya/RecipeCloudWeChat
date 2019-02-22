@@ -62,7 +62,7 @@
                             <div @click="reservation" class="available-tag">预约</div>
                         </li>
                         <li>
-                            <div> 2019-02-22 星期二  上午 <br/>
+                            <div> 2019-02-22 星期二 上午 <br/>
                                 <span class="colo13">
                                     儿科门诊 华西院区 <br/> 余
                                     <span class="mu-secondary-text-color">0</span>&nbsp;

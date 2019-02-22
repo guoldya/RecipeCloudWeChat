@@ -46,7 +46,8 @@
                 timeData:[
                     {time:"7:00-8:00",reset:"1"},
                     {time:"8:00-9:00",reset:"0"},
-                ]
+                ],
+                classId:'',
             }
         },
         mounted() {
@@ -78,14 +79,6 @@
                 this.choosedate = value.year + '-' + value.month + '-' + value.date;
             },
             getData() {
-                // for (let i = 0; i < 30; i++) {
-                //     let nowTime = new Date();
-                //     let d = nowTime.setDate(nowTime.getDate() + i - 1);
-                //     let data = this.addDate(d, 1);
-                //     let time = {};
-                //     time = { date: data.newData, month: data.newMonth, year: data.newYear }
-                //     this.time.push(time);
-                // }
                 for (let i = 0; i < 15; i++) {
                     let nowTime = new Date();
                     let d = nowTime.setDate(nowTime.getDate() + i - 1);
@@ -105,20 +98,6 @@
                 var dayWeekb = this.dayWeek.slice(today.getDay(), 7);
                 this.dayWeek = dayWeekb.concat(dayWeeka);
             },
-            // addDate(val, days) {
-            //     var d = new Date(val);
-            //     var data = {};
-            //     let dayArr = ["日", "一", "二", "三", "四", "五", "六"];
-            //     d.setDate(d.getDate() + days);
-            //     var m = d.getMonth() + 1;
-            //     var y = d.getFullYear();
-            //     var newDay = dayArr.slice(0, d.getDay());
-            //     data.newData = d.getDate();
-            //     data.newDay = newDay;
-            //     data.newMonth = d.getMonth() + 1;
-            //     data.newYear = d.getFullYear();
-            //     return data;
-            // },
             addDate(val, days) {
               var d = new Date(val);
               var data = {};
@@ -136,12 +115,11 @@
 
             },
             getTime(){
-                this.$axios.put(bizExamSchedulereadlist,{},{
-                    headers: {
-                        'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                        'UUID': `AAA`
-                    },
-                }).then((res) => {
+                this.classId=this.$route.query.classId;
+                let getTimeParam={};
+                getTimeParam.orgId=49;
+                getTimeParam.classId=parseInt(this.classId);
+                this.$axios.put(bizExamSchedulereadlist,getTimeParam).then((res) => {
                     if(res.data.code=='200'){
 
                     }

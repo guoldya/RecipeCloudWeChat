@@ -2,73 +2,73 @@
     <div class="recipeRecord">
         <Header post-title="处方记录" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="pageContent">
-                <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div>
-            <div v-if="titleIndex===0 && notfound==false">
-                <div class="card margin16" v-for="(item,i) in recordData" :key="i">
-                    <div class="cardText leftPart">
-                        <div class="moreGroup md-check-group md-example-child md-example-child-check md-example-child-check-1" @click="getJumpId(item.id)">
-                            <md-check-group v-model="favorites" :check="checkedFun(favorites)">
-                                <md-check :name=i.toString() />
-                                <span>{{item.date}}</span>
-                            </md-check-group>
-                            <span>{{item.no}}</span>
-                            <span class="mu-secondary-text-color">{{item.isChecked}}</span>
-                        </div>
-                        <p class="partLine"></p>
-                        <div @click="recordDetail(i,item.id)">
-                            <div class="userInfo">
-                                <span>{{item.add}}</span>
-                                <span>{{item.userName}}</span>
-                                <span>{{item.dept}}</span>
-                            </div>
-                            <div class="fold listData">
-                                <span>上呼吸道感染</span>
-                            </div>
-                        </div>
-                        <div class="foldImg" @click="foldFun(i)">
-                            <div>
-                                <img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">
-                                <img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">
-                                <div style="clear:both;"></div>
-                            </div>
-                            <div :class="imgIndex === i ? 'block' : 'none'" v-for="list in item.userData">
-                                <div class="listData">
-                                    <span>{{list.med}}</span>
-                                </div>
-                                <div class="listData userNum">
-                                    <span>{{list.weight}}</span>
-                                    <span>{{list.num}}盒</span>
-                                </div>
-                            </div>
-                        </div>
+            <!--<div class="pageContent">-->
+                <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
+                    <!--{{item.title}}-->
+                <!--</span>-->
+            <!--</div>-->
+            <!--<div v-if="titleIndex===0 && notfound==false">-->
+                <!--<div class="card margin16" v-for="(item,i) in recordData" :key="i">-->
+                    <!--<div class="cardText leftPart">-->
+                        <!--<div class="moreGroup md-check-group md-example-child md-example-child-check md-example-child-check-1" @click="getJumpId(item.id)">-->
+                            <!--<md-check-group v-model="favorites" :check="checkedFun(favorites)">-->
+                                <!--<md-check :name=i.toString() />-->
+                                <!--<span>{{item.date}}</span>-->
+                            <!--</md-check-group>-->
+                            <!--<span>{{item.no}}</span>-->
+                            <!--<span class="mu-secondary-text-color">{{item.isChecked}}</span>-->
+                        <!--</div>-->
+                        <!--<p class="partLine"></p>-->
+                        <!--<div @click="recordDetail(i,item.id)">-->
+                            <!--<div class="userInfo">-->
+                                <!--<span>{{item.add}}</span>-->
+                                <!--<span>{{item.userName}}</span>-->
+                                <!--<span>{{item.dept}}</span>-->
+                            <!--</div>-->
+                            <!--<div class="fold listData">-->
+                                <!--<span>上呼吸道感染</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="foldImg" @click="foldFun(i)">-->
+                            <!--<div>-->
+                                <!--<img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">-->
+                                <!--<img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">-->
+                                <!--<div style="clear:both;"></div>-->
+                            <!--</div>-->
+                            <!--<div :class="imgIndex === i ? 'block' : 'none'" v-for="list in item.userData">-->
+                                <!--<div class="listData">-->
+                                    <!--<span>{{list.med}}</span>-->
+                                <!--</div>-->
+                                <!--<div class="listData userNum">-->
+                                    <!--<span>{{list.weight}}</span>-->
+                                    <!--<span>{{list.num}}盒</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                    </div>
-                </div>
-                <div class="bButton">
-                    <div class="grayButton" @click="allSelect()">
-                        <div>
-                            <md-check-group class="checkGroup" v-model="favorites" :check="checkedFun(favorites)">
-                                <md-check :name="selectAll" />
-                                <span>全选</span>
-                            </md-check-group>
-                        </div>
-                    </div>
-                    <div class="blueButton" @click="selectStore()">
-                        <span>选药店</span>
-                    </div>
-                </div>
-            </div>
-            <div v-if="titleIndex===1 && notfound==false">
-                <div class="card margin16" v-for="(item,i) in efficacyData">
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="bButton">-->
+                    <!--<div class="grayButton" @click="allSelect()">-->
+                        <!--<div>-->
+                            <!--<md-check-group class="checkGroup" v-model="favorites" :check="checkedFun(favorites)">-->
+                                <!--<md-check :name="selectAll" />-->
+                                <!--<span>全选</span>-->
+                            <!--</md-check-group>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="blueButton" @click="selectStore()">-->
+                        <!--<span>选药店</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div v-if=" notfound==false">
+                <div class="card margin16" v-for="(item,i) in efficacyData" @click="recordDetail(i,item.id)">
                     <div class="cardText">
                         <div class="md-check-group">
                             <span style="margin-left: 0px">{{item.date}}</span>
                             <span>{{item.no}}</span>
-                            <span class="mu-secondary-text-color">{{item.isChecked}}</span>
+                            <!--<span class="mu-secondary-text-color">{{item.isChecked}}</span>-->
                         </div>
                         <p class="partLine"></p>
                         <div class="userInfo">

@@ -18,6 +18,8 @@ export default new Vuex.Store({
         photo1Data: '',
         photo0Data: '',
         feeActiveId: '',
+        feeActiveId:'',
+        payType:'',
         patientId: '',
     },
     mutations: {
@@ -61,11 +63,10 @@ export default new Vuex.Store({
         UUIDFun: (state, n) => {
             state.UUID = n;
         },
-
+        payTypeFun: (state, n) => {
+            state.payType = n;
+        },
     },
-
-
-
     actions: {
 
     }
