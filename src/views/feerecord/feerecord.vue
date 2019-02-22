@@ -8,14 +8,14 @@
         <span class="aui-center-title">缴费记录</span>
       </div>
       <span class="aui-navBar-item">
-        <div>
-          <md-field>
-            <md-field-item :content="selectorValue" @click="showSelector" solid/>
-          </md-field>
-          <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData[0]" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
-        </div>
-        <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
-      </span>
+                <div>
+                    <md-field>
+                        <md-field-item :content="selectorValue" @click="showSelector" solid/>
+                    </md-field>
+                    <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
+                </div>
+                <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
+            </span>
     </header>
     <div :class="{'outCarint':true,'margin45':isWeixin}">
       <div class="appTab">
@@ -23,35 +23,6 @@
           {{item.title}}
         </span>
       </div>
-      <!--<div class="demo-text" v-if="active1==0">-->
-        <!--<div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">-->
-          <!--<p class="appTitle">-->
-            <!--<span>{{item.type}}费</span>-->
-            <!--<span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>-->
-          <!--</p>-->
-          <!--<div class="cardText">-->
-            <!--<p>患者：{{item.patientName}}</p>-->
-            <!--<p>医院：{{item.hospital}}</p>-->
-            <!--<p>开单时间：{{item.createTime}}</p>-->
-            <!--<div style="height:30px;  text-align: right;"  v-if="active1 === 0">-->
-              <!--<span class="payatnow">立即支付</span>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="demo-text" v-if="active1==1">-->
-        <!--<div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="alreadyPay(item.id)">-->
-          <!--<p class="appTitle">-->
-            <!--<span>{{item.type}}费</span>-->
-            <!--<span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>-->
-          <!--</p>-->
-          <!--<div class="cardText">-->
-            <!--<p>患者：{{item.patientName}}</p>-->
-            <!--<p>医院：{{item.hospital}}</p>-->
-            <!--<p>开单时间：{{item.createTime}}</p>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
         <div v-if="waitPayData.length!=0" v-show="!loadingtrue" class="outCarint">
             <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
                 <p class="appTitle">
@@ -83,7 +54,8 @@
   </div>
 </template>
 <script  >
-let pay_list_url = "app/bizCostBill/selectCostBillList";
+    let pay_list_url="wechat/bizCostBill/selectCostBillList";
+    let bizPatientCard = "/wechat/bizPatientCard/read/page";
 export default {
   data() {
     return {
@@ -98,13 +70,7 @@ export default {
         selectorValue: '',
         choseValue:'',
         isSelectorShow: false,
-        optionsData: [[
-            { text: "彭万里", value: "1" },
-            { text: "高大山", value: "2" },
-            { text: "马宏宇", value: "3" },
-            { text: '孙寿康', value: "4" },
-            { text: '孙应吉', value: "5" },
-        ]],
+        optionsData: [],
         page: 1,
         pageSize: 10,
         type: 1,
@@ -119,6 +85,7 @@ export default {
   },
   mounted() {
       this.WaitPay(false);
+      this.personFun();
     document.title = '缴费记录';
     var ua = window.navigator.userAgent.toLowerCase();
     this.selectorValue = this.optionsData[0][0].text;
@@ -129,8 +96,32 @@ export default {
       this.isWeixin = true;
       return false;
     }
+
   },
   methods: {
+      personFun(){
+          this.$axios.put(bizPatientCard, {
+          }).then(res => {
+              if (res.data.code == '200') {
+                  for (let i = 0; i < res.data.rows.length; i++) {
+                      this.selectorValue = res.data.rows[0].patientName;
+                      this.cardNo = res.data.rows[0].cardNo;
+                      let neslist = {
+                          text: res.data.rows[i].patientName,
+                          value: res.data.rows[i].cardNo,
+                          aaa: res.data.rows[i].createTime,
+
+                      }
+                      this.optionsData.push(neslist);
+                  }
+
+              } else if (res.data.code == '800') {
+
+              }
+          }).catch(function (err) {
+              console.log(err);
+          });
+      },
       onSelectorChoose({text, value}) {
           this.selectorValue = text;
           this.choseValue = value;

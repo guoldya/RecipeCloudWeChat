@@ -40,16 +40,17 @@
                     <div class="cardTextPP">
                         <span>检查参数：{{item.params}}</span>
                     </div>
-                    <div class="cardTextPP">
-                        <span> 检查所见：{{item.findings}}</span>
+                    <div class="cardTextPP ">
+                        <span> 检查所见：</span>
+                        <span style="width: 78%">{{item.findings}}</span>
                     </div>
                     <div class="cardTextPP">
                         <span> 印象：</span>
-                        <span style="width: 85%;">{{item.impression}}</span>
+                        <span style="width: 86%;">{{item.impression}}</span>
                     </div>
                     <div class="cardTextPP">
-                        <span style="width: 15%;"> 建议：</span>
-                        <span style="width: 85%;">{{item.advise}}</span>
+                        <span style="width: 14%;"> 建议：</span>
+                        <span style="width: 86%;">{{item.advise}}</span>
                     </div>
                     <div class="listData cardTextPP">
                         <span style="width: 15%;">备注：</span>
@@ -94,15 +95,16 @@
             <p style="margin-top:15px;font-weight:700">报告结果</p>
             <div class="card margin16">
                 <div class="cardText">
-                    <div class="resultTitle">
-                        <span>项目名称</span>
-                        <span>结果值</span>
-                        <span>单位</span>
-                        <span>参考值</span>
+                    <div class="cardTextKind spanWid">
+                        <span style="text-align: left">项目名称</span>
+                        <span  >结果值</span>
+                        <span >单位</span>
+                        <span style="text-align: right">参考值</span>
                     </div>
-                    <div class="cardTextPP" v-for="(item,i) in reportResult" :key="i">
+                    <div class="cardTextPP spanWid" v-for="(item,i) in reportResult">
                         <span>{{item.itemName}}</span>
-                        <span>{{item.itemValue}}</span>
+                        <span >{{item.itemValue}}</span>
+                        <span>{{item.contrast}}</span>
                         <span>{{item.unit}}</span>
                         <span>{{item.referenceValue}}</span>
                     </div>
@@ -139,6 +141,8 @@ export default {
         pageNumber:1,
         activeId:'',
         postTitle:'',
+        before:[],
+        after:[],
     };
   },
 
@@ -236,11 +240,38 @@ export default {
 .reportinfo .cardText .cardTextPP:last-child ,.reportinfo .cardText .cardTextBor{
   border: none;
 }
-.reportinfo .resultTitle{
+.reportinfo .cardText .cardTextKind {
     display: flex;
     justify-content: space-between;
+    padding: 35px 0;
+    font-size: 28px;
+    border-bottom: 1px solid #e9e9e9;
     font-weight: 700;
-    border-bottom: 4px solid #cccccc;
-    padding: 14px 0px;
 }
+.reportinfo .spanWid span{
+    display: inline-block;
+    word-break:normal;
+    white-space:pre-wrap;
+    word-wrap : break-word ;
+    overflow: hidden ;
+    text-align: center;
+}
+.reportinfo .spanWid span:first-child{
+    width: 32%;
+    text-align: left;
+}
+.reportinfo .spanWid span:nth-child(2) {
+    width: 28%;
+}
+.reportinfo .spanWid span:nth-child(3) {
+    width: 20%;
+    /*text-align: center;*/
+}
+.reportinfo .spanWid span:last-child{
+    width: 20%;
+    text-align: right;
+}
+  .reportinfo  .imgTag{
+        height: 36px;
+  }
 </style>
