@@ -4,15 +4,15 @@
         <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
             <div class="card" v-for="(item,i) in cordInfoData" :key="i">
                 <div class="cardText">
-                    <p>科室：演示数据</p>
+                    <p>科室：内科</p>
                     <p>医生：{{item.doctorName}}</p>
-                    <p>姓名：演示数据</p>
-                    <p>日期：演示数据</p>
-                    <p>时段：演示数据</p>
-                    <p>诊号：演示数据</p>
-                    <p>金额：演示数据</p>
-                    <p>地点：演示数据</p>
-                    <p>预约来源：演示数据</p>
+                    <p>姓名：{{item.patientName}}</p>
+                    <p>日期：2019-01-12</p>
+                    <p>时段：8:00-10:00</p>
+                    <p>诊号：NO26548</p>
+                    <p>金额：312.00</p>
+                    <p>地点：渝北区</p>
+                    <p>预约来源：华仪通</p>
                 </div>
             </div>
             <div class="cardText warnText">
@@ -86,7 +86,7 @@
                 this.$axios.put(cord_info_url,{id:this.cordInfoId,payType:this.payType}, {
                 }).then(res => {
                     if (res.data.code == '200') {
-                        this.cordInfoData=res.data.rows;
+                        this.cordInfoData.push(res.data.data);
                         console.log(this.cordInfoData)
                     }
                 }).catch(function (err) {
