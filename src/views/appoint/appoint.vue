@@ -14,7 +14,7 @@
             <span>张三（待支付）</span>
             <span class="mu-secondary-text-color">待支付</span>
           </p>
-          <div class="cardText">
+          <div class="appointText">
             <p>医院：演示医院</p>
             <p>科室：演示医院</p>
             <p>医生：演示医院</p>
@@ -29,7 +29,7 @@
             <span>张三（预约成功）</span>
             <span class="mu-secondary-text-color">预约成功</span>
           </p>
-          <div class="cardText">
+          <div class="appointText">
             <p>医院：演示医院</p>
             <p>医院：演示医院</p>
             <p>医院：演示医院</p>
@@ -42,7 +42,7 @@
             <span>张三（预约失败）</span>
             <span class="mu-secondary-text-color">预约关闭</span>
           </p>
-          <div class="cardText">
+          <div class="appointText">
             <p>医院：演示医院</p>
             <p>医院：演示医院</p>
             <p>医院：演示医院</p>
@@ -101,4 +101,10 @@ export default {
 .appoint .card {
   margin-bottom: 32px;
 }
+.appoint .appointText{
+  padding-top: 10px;
+}
+   .appoint .appointText p{
+     line-height: 60px;
+   }
 </style>

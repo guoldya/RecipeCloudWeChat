@@ -215,7 +215,7 @@ input:-ms-input-placeholder {
 /**tab样式*/
 
 .appTitle {
-  padding: 32px;
+  padding: 28px 0px;
   border-bottom: 1px solid #ededed;
   display: flex;
   justify-content: space-between;
