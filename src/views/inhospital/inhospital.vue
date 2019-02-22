@@ -1,7 +1,13 @@
 <template>
-   <div :class="{'outCarint':true,'margin45':isWeixin}">
+   <div class="inhospital">
       <Header post-title="住院服务" v-show="isWeixin"></Header>
-      
+      <img src="@/assets/images/hospital.png" alt="" width="100%">
+      <div class="inhospitalcontent">
+         <img src="@/assets/images/hh1.png" alt="" width="94%">
+         <img src="@/assets/images/hh2.png" alt="" width="94%">
+         <img src="@/assets/images/hh3.png" alt="" width="94%">
+      </div>
+
    </div>
 </template>
 <script type="text/babel">
@@ -34,4 +40,5 @@ export default {
 };
 </script>
  <style scoped>
+@import url("./inhospital.css");
 </style>

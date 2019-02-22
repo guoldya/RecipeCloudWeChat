@@ -68,7 +68,7 @@ export default {
     };
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
-      orgId: 49
+      orgId: localStorage.getItem("hospitalId") * 1
     }).then((res) => {
       if (res.data.code == '200') {
         this.departs = res.data.rows;
@@ -235,7 +235,6 @@ export default {
   border-bottom: 1px solid #e2e4ea;
   display: flex;
   justify-content: space-between;
-  
 }
 .choosedepart .choosedepart .appTab {
   display: flex;
@@ -252,7 +251,7 @@ export default {
 .choosedepart .appTabAcitive {
   color: #1da1f3;
   border-bottom: 4px solid #1da1f3;
-  font-size: 31px
+  font-size: 31px;
 }
 #app .choosedepart .md-cell-item-title {
   font-size: 15px;

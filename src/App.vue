@@ -288,6 +288,8 @@ textarea::-webkit-input-placeholder {
   width: 50%;
   margin-top: 150px;
 }
-
+.md-button-content{
+  font-size: 36px !important;
+}
  
 </style>

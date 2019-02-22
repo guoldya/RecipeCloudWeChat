@@ -47,6 +47,9 @@ import cardwritesecond from '@/views/cardwritesecond/cardwritesecond.vue'
 import cardwriteson from '@/views/cardwriteson/cardwriteson.vue'
 
 import cardneed from '@/views/cardneed/cardneed.vue'
+
+import unblind from '@/views/unblind/unblind.vue'
+
 // 
 import orderrecord from '@/views/orderrecord/orderrecord.vue'
 import orderinfo from '@/views/orderinfo/orderinfo.vue'
@@ -67,6 +70,9 @@ import paySuccess from '@/views/paySuccess/paySuccess.vue'
 import recordDetail from '@/views/recordDetail/recordDetail.vue'
 import examineDetail from '@/views/examineDetail/examineDetail.vue'
 import examineOrder from '@/views/examineOrder/examineOrder.vue'
+import expertpage from '@/views/expertpage/expertpage.vue'
+
+
 
 import reservation from '@/views/reservation/reservation.vue'
 
@@ -118,7 +124,12 @@ export default new Router({
       name: 'cardhave',
       component: cardhave
     },
-
+    {
+      path: '/unblind',
+      name: 'unblind',
+      component: unblind
+    },
+     
     {
       path: '/cardblind',
       name: 'cardblind',
@@ -349,6 +360,11 @@ export default new Router({
       path: '/onlineEva',
       name: 'onlineEva',
       component: onlineEva
+    },
+    {
+      path: '/expertpage',
+      name: 'expertpage',
+      component: expertpage
     },
     {
       path: '/adress',

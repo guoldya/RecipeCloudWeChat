@@ -1,24 +1,8 @@
 <template>
   <div class="sign">
-    <header class="aui-navBar aui-navBar-fixed">
-      <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
-        <img src="@/assets/images/icon_back.png">
-      </span>
-      <div class="aui-center">
-        <span class="aui-center-title">就诊签到</span>
-      </div>
-      <span class="aui-navBar-item" v-show="isHaveOrder">
-        <div>
-          <md-field>
-            <md-field-item :content="selectorValue" @click="showSelector" solid/>
-          </md-field>
-          <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择就诊卡" @choose="onSelectorChoose "></md-selector>
-        </div>
-        <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
-      </span>
-    </header>
-    <div>
-      <md-notice-bar icon="location" v-show="isHaveOrder">
+    <Header post-title="资料确认" v-show="isWeixin"></Header>
+    <div :class="{ 'margin45':isWeixin}">
+      <md-notice-bar icon="location">
         {{titlename}}
       </md-notice-bar>
       <div id="allmap"></div>
@@ -51,7 +35,7 @@
 </template>
 <script type="text/babel"> 
 let appbizPatientRegistersign = '/app/bizPatientRegister/sign';
-let bizPatientCard = "/app/bizPatientCard/read/list";
+let appbdHospitalOrgreadselectHospital = "/app/bdHospitalOrg/read/selectHospital";
 let appbizPatientRegisterisExitsProject = "/app/bizPatientRegister/isExitsProject";
 let readselectRegisterList = "read/selectRegisterList";
 export default {
@@ -66,8 +50,10 @@ export default {
       cardNo: '',
       nowTime: '',
       ishave: false,
-      pointBposition: 106.53066501,
-      pointBpositionlat: 29.54460611,
+      // pointBposition: 106.53066501,
+      // pointBpositionlat: 29.54460611,
+      pointBposition: '',
+      pointBpositionlat: '',
       isHaveOrder: false,
     };
   },
@@ -80,9 +66,21 @@ export default {
         } else {
           this.isHaveOrder = true
         }
+      }
+    }).catch(function (err) {
+      console.log(err);
+    });
 
-      } else if (res.data.code == '800') {
+    this.$axios.put(appbdHospitalOrgreadselectHospital, {
+    }).then(res => {
+      if (res.data.code == '200') {
+        console.log(res.data.rows[0].hospitalName);
+        this.titlename = res.data.rows[0].hospitalName;
+        this.pointBposition = res.data.rows[0].longitude;
+        this.pointBpositionlat = res.data.rows[0].latitude;
 
+      } else {
+        console.log(res.data);
       }
     }).catch(function (err) {
       console.log(err);
@@ -90,6 +88,7 @@ export default {
 
   },
   mounted() {
+    console.log(this.$store.state.cardNo)
     document.title = '就诊签到';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -100,50 +99,12 @@ export default {
     var today = new Date();
     this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
 
-    this.$axios.put(bizPatientCard, {
-    }).then(res => {
-      if (res.data.code == '200') {
-        for (let i = 0; i < res.data.rows.length; i++) {
-          this.selectorValue = res.data.rows[0].patientName;
-          this.cardNo = res.data.rows[0].cardNo;
-          let neslist = {
-            text: res.data.rows[i].patientName,
-            value: res.data.rows[i].cardNo,
-            aaa: res.data.rows[i].createTime,
-
-          }
-          this.optionsData.push(neslist);
-        }
-
-      } else if (res.data.code == '800') {
-
-      }
-    }).catch(function (err) {
-      console.log(err);
-    });
 
     this.drawmap(this.pointBpositionlat)
   },
   methods: {
-    showSelector() {
-      this.isSelectorShow = true
-    },
-    onSelectorChoose(data) {
-      console.log(data);
-      this.selectorValue = data.text;
-      this.cardNo = data.value;
-      this.$axios.post(readselectRegisterList, {
-        cardNo: this.cardNo
-      }).then(res => {
-        if (res.data.code == '200') {
-          this.titlename = ';'
-        } else {
-          this.$toast.info(res.data.msg)
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    },
+
+
     drawmap(e) {
       let _this = this;
       var map = new BMap.Map("allmap");
@@ -157,8 +118,9 @@ export default {
           var mk = new BMap.Marker(r.point);
           map.addOverlay(mk);
           map.panTo(r.point);
-          var pointA = new BMap.Point(r.point.lng, r.point.lat);  // 创建点坐标A--大渡口区
-          var pointB = new BMap.Point(_this.pointBposition, e);  // 创建点坐标B--江北区
+          var pointA = new BMap.Point(r.point.lng, r.point.lat);  //  当前位置
+          // var pointB = new BMap.Point(_this.pointBposition * 1, _this.pointBpositionlat * 1);  //  目标地点
+          var pointB = new BMap.Point(106.53066501, 29.54460611);   // 用于测试目标地点
           if ((map.getDistance(pointA, pointB)).toFixed(2) * 1 <= 300) {
             _this.ishave = true;
           } else {
@@ -181,8 +143,8 @@ export default {
       });
     },
     signUp() {
-      this.$axios.post(appbizPatientRegistersign, {
-        id: this.id * 1
+      this.$axios.put(appbizPatientRegistersign, {
+        hospitalId: localStorage.getItem("hospitalId"),
       }).then(res => {
         if (res.data.code == '200') {
           this.$toast.info('签到成功')
@@ -192,19 +154,20 @@ export default {
             query: argu
           });
         } else {
-          this.$toast.info(res.data.msg)
+          // this.$toast.info(res.data.msg);
+          console.log(res.data.msg);
         }
       }).catch(function (err) {
         console.log(err);
       });
 
-
     },
     signUpAgin() {
+
       let argu = {};
       this.$router.push({
         name: 'signagin',
-        query: argu
+        query: { "pointBposition": this.pointBposition, "pointBpositionlat": this.pointBpositionlat }
       });
     },
 

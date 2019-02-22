@@ -64,7 +64,7 @@
 </template>
 <script type="text/babel">
     let bizLisReportreadpage = '/app/bizLisReport/read/page';
-    let bizPatientCard = "/app/bizPatientCard/read/page";
+    let bizPatientCard = "app/bizPatientCard/read/list";
     export default {
         data() {
             return {

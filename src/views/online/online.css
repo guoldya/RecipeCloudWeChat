@@ -23,6 +23,17 @@
    -webkit-align-items: center;
 }
 
+.online .downtitle {
+   /* width: 100px;
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical !important;
+   text-overflow: ellipsis;
+   height: 28px;
+   line-height: 1; */
+}
+
 .online .tools .nav2>span {
    width: 25%;
    display: block;

@@ -1,170 +1,57 @@
- .doctorinfo .float-left {
-    float: left;
- }
-
- .float-right {
-    float: right;
- }
-
- .doctorinfo .doctor-img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 20px;
-    margin-top: 20px;
-    border: 4px solid #ffffff;
- }
-
- .doctorinfo .doctor-img img {
-    width: 100%;
-    height: 100%;
- }
-
- .doctorinfo .doctor-name {
-    font-weight: bold;
-    font-size: 36px;
- }
-
- .doctorinfo .doctor-tag {
-    display: inline-block;
-    color: #ffffff;
-    font-size: 22px;
-    padding: 4px 8px;
-    line-height: 22px;
-    border: 2px solid #ffffff;
-    border-radius: 9px;
-    position: relative;
-    top: -7px;
- }
-
- .doctorinfo .hospital {
-    opacity: 0.7;
-    font-size: 26px
- }
-
- .doctorinfo .heart {
-    margin-right: 10px;
-    margin-top: 60px;
-    font-size: 32px;
-    background: #1da1f3;
-    color: #ffffff;
-    padding: 10px 40px;
-    border-radius: 40px;
- }
-
- .doctorinfo .doctor-cz {
-    border-bottom: 5px solid #e9e9e9;
-    border-top: 1px solid #e9e9e9;
- }
-
- .doctorinfo .doctor-cz li {
-    margin: 10px 0;
-    width: 33%;
-    text-align: center;
-    float: left;
-    border-left: 1px solid #e9e9e9;
- }
-
- .doctorinfo .doctor-cz li:first-of-type {
-    border-left: 0
- }
-
- .doctorinfo .doctor-cz:after {
-    display: block;
-    content: '';
-    clear: both;
- }
-
- .doctorinfo .doctor-info {
-    width: 100%;
-    padding: 10px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-bottom: 1px solid #e9e9e9;
- }
-
- .doctorinfo .doctor-skill {
-    margin: 10px 0;
- }
-
- .doctorinfo .skill-head-title {
-    font-size: 32px;
-    font-weight: bold;
- }
-
- .doctorinfo .skill-icon {
-    font-size: 24px;
-    cursor: pointer;
- }
-
- .doctorinfo .doctor-skill:after {
-    display: block;
-    content: '';
-    clear: both;
- }
-
- .doctorinfo .skill-info {
-    overflow: scroll;
-    transition: all linear 0.5s;
-    border-bottom: 1px solid #e9e9e9;
- }
-
- .doctorinfo .source-tab {
-    border-bottom: 1px solid #e5e5e5;
- }
-
- .doctorinfo .source-tab:after {
-    display: block;
-    content: '';
-    clear: both;
- }
-
- .doctorinfo .source-tab div {
-    width: 50%;
-    text-align: center;
-    font-size: 32px;
-    height: 90px;
-    line-height: 90px;
- }
-
  .doctor-head {
     width: 100%;
     background: url(./bg.png) no-repeat;
-    height: 350px;
+    height: 370px;
     color: #fff;
     font-size: 28px;
  }
 
- .doctorinfo .available {
-    padding: 5px 16px;
+ .doctor-info .header {
+    width: 140px;
+    position: absolute;
+    margin-top: 40px;
  }
 
- .doctorinfo .available {
-    border-right: 1px solid #e9e9e9;
+ .doctor-info .doctor-name {
+    font-weight: 600;
+    font-size: 45px;
  }
 
- .doctorinfo .active-tab {
-    color: #1da1f3;
-    /* border-bottom: 2px solid #1da1f3; */
+ .doctor-info .header img {
+    width: 100%;
+    border-radius: 50%;
  }
 
- .available-info:after {
+ .doctor-info .content {
+    height: 40px;
+    opacity: 0.7;
+    display: -webkit-box;
     display: block;
-    content: '';
-    clear: both;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
  }
 
- .available-info li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e9e9e9;
+ .doctor-info .open {
+    /* position: absolute;
+    right: 20px;
+    top: 277px;
+    background: linear-gradient(to right, rgba(118, 186, 250, 0.349), rgb(2, 105, 202));
+    width: 100px; */
+    text-align: right;
+    padding:0 5px;
  }
 
- .available-info li div {
-    padding: 20px 0;
+ .doctor-info .doctor-right {
+    padding: 40px 0px 30px 168px;
+ }
+
+ .describ {
+    background: #ffffff;
+    color: black;
+    padding: 20px;
+    border-radius: 20px;
  }
 
  .doctorinfo .available-info .available-tag {
@@ -173,62 +60,6 @@
     padding: 10px 30px;
     border-radius: 30px;
     border: none
- }
-
- .doctor-inro {
-    margin-top: 20px;
- }
-
- .doctor-inro .doctor-decrib p {
-    line-height: 50px;
-    /* font-size: 32px; */
- }
-
- .source-tab-line {
-    height: 20px;
-    background: #f5f5f5
- }
-
- .doc_introduce {
-    border-bottom: 1px solid #e5e5e5;
-    border-top: 1px solid #e5e5e5;
- }
-
- .doc_introduce {
-    width: 100%;
-    padding: 20px 0;
-    border-bottom: 1px solid #e5e5e5;
-    background-color: #fff;
- }
-
- .doc_introduce .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 28px;
- }
-
- .doc_introduce .i_info {
-    width: 28px;
-    height: 30px;
-    margin-right: 9px;
-    vertical-align: middle;
-    /* background: url(/Static/Image/info.png) no-repeat; */
-    background-size: 100% auto;
- }
-
- .doc_introduce .title .doc_info_txt {
-    display: inline-block;
-    /* width: 76%; */
-    flex: 1;
- }
-
- .doc_introduce .doc_open_btn {
-    margin-right: 24px;
- }
-
- .doc_introduce .doc_open_btn img {
-    width: 28px;
  }
 
  .doctordetal {
@@ -247,7 +78,7 @@
  }
 
  .doctordetal {
-    box-shadow: 0 0 0.17rem #c8dff7
+    box-shadow: 0 0 17px #c8dff7
  }
 
  .available-info li:last-child {

@@ -1,6 +1,6 @@
 <template>
     <div class="feerecord">
-        <header class="aui-navBar aui-navBar-fixed" >
+        <header class="aui-navBar aui-navBar-fixed">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
             </span>
@@ -55,7 +55,7 @@
 </template>
 <script >
 let pay_list_url = "app/bizCostBill/selectCostBillList";
-let bizPatientCard = "/app/bizPatientCard/read/page";
+let bizPatientCard = "app/bizPatientCard/read/list";
 export default {
     data() {
         return {
@@ -108,7 +108,6 @@ export default {
                             text: res.data.rows[i].patientName,
                             value: res.data.rows[i].cardNo,
                             aaa: res.data.rows[i].createTime,
-
                         }
                         this.optionsData.push(neslist);
                     }
