@@ -28,13 +28,12 @@
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="goodsList.length!=0" v-show="!loadingtrue" >
+            <div v-if="goodsList.length!=0" v-show="!loadingtrue">
                 <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
                     <div class="cardText" @click="checkReportDetail(item.id)">
                         <div class="cardTextLeft">
                             <div class="listData">
                                 <span>{{item.name}}</span>
-                                <span class="mu-secondary-text-color">报告已出</span>
                             </div>
                             <p class="partLine"></p>
                             <p>检查科室：{{item.execDept}}</p>

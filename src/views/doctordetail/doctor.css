@@ -249,6 +249,8 @@
  .doctordetal {
     box-shadow: 0 0 0.17rem #c8dff7
  }
- .available-info:last-child{
-   border: none
+
+ .available-info li:last-child {
+    border: none;
+    padding-bottom: 30px;
  }

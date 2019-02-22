@@ -3,12 +3,12 @@
         <Header post-title="检验检查" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
             <div class="pageContent">
-                <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
+                <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(item.type,index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
                     {{item.title}}
                 </span>
             </div>
-            <div class="outCarint" v-if="titleIndex==0">
-                <div class="card margin16" v-for="(item,i) in examineData" :key="i">
+            <div v-if="examineData.length!=0" v-show="!loadingtrue" class="outCarint">
+                <div class="card margin16" v-for="(item,i) in examineData" :key="i" v-if="titleIndex==0">
                     <div class="cardText">
                         <div class="listData">
                             <span>{{item.patientName}}（{{item.className}}）</span>
@@ -32,9 +32,7 @@
                     </div>
 
                 </div>
-            </div>
-            <div class="outCarint" v-if="titleIndex===1">
-                <div class="card margin16" v-for="(item,i) in orderRecord" :key="i">
+                <div class="card margin16" v-for="(item,i) in examineData" :key="i" v-if="titleIndex===1">
                     <div class="cardText">
                         <div class="listData">
                             <span>{{item.patientName}}（{{item.className}}）</span>
@@ -53,13 +51,22 @@
                         </div>
                         <div class="listData">
                             <span>预约日期：
-                                <span class="mu-secondary-text-color">{{item.serialTime}}</span>
+                            <span class="mu-secondary-text-color">{{item.serialTime}}</span>
                             </span>
                         </div>
                     </div>
-
                 </div>
+                <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
+            <div v-show="!loadingtrue" class="nullDiv" v-else>
+                <img src="@/assets/images/null1.png">
+            </div>
+            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+                <span v-if="examineData.length!=0&&!nomore">
+                    <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+                </span>
+            </div>
+            <Loading v-show="loadingtrue"></Loading>
         </div>
     </div>
 </template>
@@ -70,8 +77,8 @@
             return {
                 isWeixin: false,
                 changeTitle: [
-                    { title: '预约项目' },
-                    { title: '预约记录' },
+                    { title: '预约项目',type: 1 },
+                    { title: '预约记录',type:2 },
                 ],
                 titleIndex: 0,
                 examineData:[],
@@ -85,6 +92,7 @@
                 loadingtrue: true,
                 busy: true,
                 nomore: false,
+                status:0,
             };
         },
         filters:{
@@ -104,31 +112,7 @@
         },
         mounted() {
             let _this = this;
-            this.$axios.put(bizExamApplyreadpage,{status:0,pageSize:this.pageSize,pageNumber:this.page},{
-                headers: {
-                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                    'UUID': `AAA`
-                },
-            }).then((res) => {
-                if (res.data.code == '200') {
-                    this.examineData=res.data.rows;
-                }
-            }).catch(function (err) {
-                console.log(err);
-            });
-
-            this.$axios.put(bizExamApplyreadpage,{applyRecord:'Y',pageSize:this.pageSize,pageNumber:this.page},{
-                headers: {
-                    'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                    'UUID': `AAA`
-                },
-            }).then((res) => {
-                if (res.data.code == '200') {
-                    this.orderRecord=res.data.rows;
-                }
-            }).catch(function (err) {
-                console.log(err);
-            });
+            this.examineFun(false);
             let myDate = new Date();
             let month=myDate.getMonth();
             let day=myDate.getDate();
@@ -146,9 +130,6 @@
                 this.isWeixin = true;
                 return false;
             }
-
-
-
             let Request = new UrlSearch(); //实例化
             this.TOKEN = Request.TOKEN;
             this.UUID = Request.UUID;
@@ -156,46 +137,52 @@
 
         },
         methods: {
-            // examineFun(){
-            //         const params = {};
-            //         params.pageNumber = this.page;
-            //         params.pageSize = this.pageSize;
-            //         params.type = this.type;
-            //         this.$axios.put(bizLisReportreadpage, params).then((res) => {
-            //             if (res.data.rows) {
-            //                 this.loadingtrue = false;
-            //                 if (flag) {
-            //                     this.examineData = this.examineData.concat(res.data.rows);  //concat数组串联进行合并
-            //                     if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-            //                         this.busy = false;
-            //                         this.nomore = false;
-            //                     } else {
-            //                         this.busy = true;
-            //                         this.nomore = true;
-            //                     };
-            //                 } else {
-            //                     this.examineData = res.data.rows;
-            //                     this.busy = true;
-            //                     if (res.data.total < 10) {
-            //                         this.busy = true;
-            //                         this.nomore = true;
-            //                     } else {
-            //                         this.busy = false;
-            //                         this.nomore = false;
-            //                     }
-            //                 }
-            //             } else {
-            //                 this.examineData = []
-            //             }
-            //         })
-            // },
-            switchTo(num) {
+            examineFun(flag){
+                    const params = {};
+                    params.pageNumber = this.page;
+                    params.pageSize = this.pageSize;
+                    params.type = this.type;
+                    if(this.type==1){
+                        params.status=this.status;
+                    }else if(this.type==2){
+                        params.applyRecord='Y';
+                    }
+                    this.$axios.put(bizExamApplyreadpage, params).then((res) => {
+                        if (res.data.rows) {
+                            this.loadingtrue = false;
+                            if (flag) {
+                                this.examineData = this.examineData.concat(res.data.rows);  //concat数组串联进行合并
+                                if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                                    this.busy = false;
+                                    this.nomore = false;
+                                } else {
+                                    this.busy = true;
+                                    this.nomore = true;
+                                };
+                            } else {
+                                this.examineData = res.data.rows;
+                                console.log(this.examineData)
+                                this.busy = true;
+                                if (res.data.total < 10) {
+                                    this.busy = true;
+                                    this.nomore = true;
+                                } else {
+                                    this.busy = false;
+                                    this.nomore = false;
+                                }
+                            }
+                        } else {
+                            this.examineData = []
+                        }
+                    })
+            },
+            switchTo(data,num) {
                 this.titleIndex = num;
-                // this.type = data;
-                // this.examineData = [];
-                // this.page = 1;
-                // this.loadingtrue = true;
-                // this.examineFun(false);
+                this.type = data;
+                this.examineData = [];
+                this.page = 1;
+                this.loadingtrue = true;
+                this.examineFun();
             },
             rightNowOrder(){
                 let argu = {};
@@ -203,7 +190,14 @@
                     name: 'examineOrder',
                     query: argu
                 });
-            }
+            },
+            loadMore() {
+                this.busy = true;  //将无限滚动给禁用
+                setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+                    this.page++;  //滚动之后加载第二页
+                    this.examineFun(true);
+                }, 500);
+            },
         },
         computed: {
 
