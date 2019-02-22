@@ -53,8 +53,8 @@
     </div>
   </div>
 </template>
-<script  >
-    let pay_list_url="wechat/bizCostBill/selectCostBillList";
+<script >
+    let pay_list_url="app/bizCostBill/selectCostBillList";
     let bizPatientCard = "/wechat/bizPatientCard/read/page";
 export default {
   data() {
