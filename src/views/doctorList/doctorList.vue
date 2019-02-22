@@ -47,16 +47,16 @@
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
         <ul v-if="amList.length!=0">
-          <li v-for="(item2,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(item2)">
+          <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info)">
             <div class="card">
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">>{{item.name}}
-                    <span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>
-                    <span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>
+                  <p class="headname">{{info.name}}
+                    <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
+                    <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
                   </p>
-                  <p class="headdesc">擅长:{{item.introduce}}</p>
+                  <p class="headdesc">擅长:{{info.introduce}}</p>
                 </div>
               </div>
             </div>
@@ -91,52 +91,7 @@
           <p>暂无号源</p>
         </div>
       </div>
-      <!-- <p class="forenoon">夜诊</p>
-      <div class="doctorList">
-        <ul v-show="!valNum">
-          <li>
-            <div class="card">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">医师
-                    <span class="have">余0</span>
-                  </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="card">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">医师
-                    <span class="have no">余0</span>
-                  </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <ul v-show="valNum">
-          <li>
-            <div class="card">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">医师
-                    <span class="have  ">余10</span>
-                  </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div> -->
+    
     </div>
   </div>
 </template>
@@ -267,7 +222,7 @@ export default {
         query: { doctorId: data.id }
       });
     },
-    
+
     goMornign() {
       this.isActive = 1
       document.querySelector("#mornign").scrollIntoView();

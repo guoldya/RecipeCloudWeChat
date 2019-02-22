@@ -19,6 +19,7 @@ export default new Vuex.Store({
         photo0Data: '',
         feeActiveId:'',
         payType:'',
+        patientId: '',
     },
     mutations: {
         addjumpArr: (state, n) => {
@@ -52,6 +53,9 @@ export default new Vuex.Store({
         feeActiveFun: (state, n) => {
             state.feeActiveId = n;
         },
+        patientIdFun: (state, n) => {
+            state.patientId = n;
+        },
         TOKENFun: (state, n) => {
             state.TOKEN = n;
         },
@@ -62,9 +66,6 @@ export default new Vuex.Store({
             state.payType = n;
         },
     },
-
-
-
     actions: {
 
     }

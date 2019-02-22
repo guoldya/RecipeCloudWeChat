@@ -1,9 +1,9 @@
 <template>
   <div class="feerecord">
     <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
-            <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
-                <img src="@/assets/images/icon_back.png">
-            </span>
+      <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
+        <img src="@/assets/images/icon_back.png">
+      </span>
       <div class="aui-center">
         <span class="aui-center-title">缴费记录</span>
       </div>
@@ -88,6 +88,7 @@ export default {
       this.personFun();
     document.title = '缴费记录';
     var ua = window.navigator.userAgent.toLowerCase();
+    this.selectorValue = this.optionsData[0][0].text;
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
       return true;
@@ -228,7 +229,7 @@ export default {
   padding: 15px 40px;
   text-align: center;
 }
-  .feerecord .demo-text .card:first-child{
-     margin-top: 0px;
-   }
+.feerecord .demo-text .card:first-child {
+  margin-top: 0px;
+}
 </style>

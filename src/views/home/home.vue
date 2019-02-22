@@ -3,30 +3,13 @@
 </style>
 <template>
     <div>
-        <div class="homePage">
-            <div class="bindCard">
-                <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
-            </div>
-            <!-- 就诊卡片 -->
-            <div class="homeCard margin16" v-for="(item, index) in cardlist" v-if="showindex==index" :key="'cardlist' + index">
-                <div class="homeCardText">
-                    <div class="homeCardTextLeft">
-                        <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
-                        <p>{{item.cardNo}}</p>
-                        <p>
-                            <span class="icon_switch" @click="switchCard(index+1)"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
-                        </p>
-                    </div>
-                    <div class="towma">
-                        <p><img src="@/assets/images/lili.jpg" alt=""></p>
-                        <p>刷卡请出示</p>
-                    </div>
-                </div>
-            </div>
-
+        <div class="homeheader">
+            医院
+        </div>
+        <div class="hometop">
             <ul class="home-cz home-flex">
                 <li @click="choosedepart">
-                    <img src="@/assets/images/icon_register1.png" alt="" class="image">
+                    <img src="@/assets/images/icon_register(1).png" alt="" class="image">
                     <p>预约挂号</p>
                 </li>
                 <li @click="feerecord">
@@ -38,6 +21,33 @@
                     <p>就诊签到</p>
                 </li>
             </ul>
+        </div>
+        <div class="homePage">
+            <!-- <div class="homeCard bindCard marginbott16">
+                <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
+            </div> -->
+            <!-- 就诊卡片v-if="showindex==index" -->
+            <div v-if="cardlist.length!=0">
+                <div class="homeCard marginbott16" v-for="(item, index) in cardlist" v-if=" showindex==index" :key="'cardlist' + index">
+                    <div class="homeCardText">
+                        <div class="homeCardTextLeft">
+                            <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                            <p>{{item.cardNo}}</p>
+                            <p>
+                                <span class="icon_switch" @click="switchCard(item,index+1)"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
+                            </p>
+                        </div>
+                        <div class="towma">
+                            <p><img src="@/assets/images/lili.jpg" alt=""></p>
+                            <p>刷卡请出示</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="homeCard bindCard marginbott16">
+                <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
+            </div>
+
             <div class="home-zy home-flex">
                 <img @click="inhospital" src="@/assets/images/AAAA.png" alt="" class="image float-left">
             </div>
@@ -46,7 +56,7 @@
                     <img src="@/assets/images/1.png" alt="" class="image">
                     <p>智能导诊</p>
                 </li>
-                <li @click="reportquery">
+                <li @click="examine">
                     <img src="@/assets/images/2.png" alt="" class="image">
                     <p>检验检查</p>
                 </li>
@@ -62,7 +72,7 @@
                     <img src="@/assets/images/5.png" alt="" class="image">
                     <p>医生排班</p>
                 </li>
-                <li @click="reportquery">
+                <li>
                     <img src="@/assets/images/6.png" alt="" class="image">
                     <p>病案复印</p>
                 </li>
@@ -77,16 +87,14 @@
             </ul>
             <!-- 测试的code：{{code}} -->
         </div>
-        <div style="height:100px">
 
-        </div>
         <Footer></Footer>
     </div>
 
 </template>
 <script>
 let appLoginlogin = '/appLogin/login';
-let wechatbizPatientCardreadpage = "wechat/bizPatientCard/read/page";
+let wechatbizPatientCardreadpage = "/wechat/bizPatientCard/read/list";
 export default {
     data() {
         return {
@@ -150,14 +158,15 @@ export default {
                 query: argu
             });
         },
-
-        switchCard(data) {
+ 
+        switchCard(data1, data) {
             if (data < this.maxindex) {
                 this.showindex = data;
             } else {
                 this.showindex = 0;
             }
-            console.log(data, this.showindex);
+            this.$store.commit('patientIdFun', data1.patientId);
+
         },
 
         feerecord() {
@@ -206,6 +215,14 @@ export default {
             });
         },
 
+        //  
+        examine() {
+            let argu = {}
+            this.$router.push({
+                name: 'examine',
+                query: argu
+            });
+        },
         // 医生排班
         workdepart() {
             let argu = {}

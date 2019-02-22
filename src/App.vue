@@ -281,4 +281,13 @@ textarea::-webkit-input-placeholder {
   text-align: center;
   padding-bottom: 20px;
 }
+.nullDiv {
+  text-align: center;
+}
+.nullDiv img {
+  width: 50%;
+  margin-top: 150px;
+}
+
+ 
 </style>

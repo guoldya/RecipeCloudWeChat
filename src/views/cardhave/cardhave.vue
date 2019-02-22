@@ -84,6 +84,15 @@ export default {
 
   },
   mounted() {
+
+    var date = '20150305';
+
+
+    var date1 = date.substring(0, 4);
+    var date2 = date.substring(4, 6);
+    var date3 = date.substring(6, 8);
+    var aa = date1 + "-" + date2 + "-" + date3;
+    //  alert(aa.replace(/\b(0+)/gi, ""));
     document.title = '资料确认';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -101,8 +110,6 @@ export default {
       this.sex = this.photo0Data.sex;
       this.national = this.photo0Data.national;
       this.birth = this.photo0Data.birth;
-
-
     }
     if (this.$store.state.photo1Data) {
       console.log(this.$store.state.photo1Data);
