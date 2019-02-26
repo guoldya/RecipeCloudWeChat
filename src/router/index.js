@@ -129,7 +129,7 @@ export default new Router({
       name: 'moan',
       component: moan
     },
-   
+
     {
       path: '/my',
       name: 'my',
@@ -432,11 +432,11 @@ export default new Router({
       name: 'submitOrder',
       component: submitOrder,
     },
-      {
-          path: '/registrecorddetail',
-          name: 'registrecorddetail',
-          component: registrecorddetail,
-      },
+    {
+      path: '/registrecorddetail',
+      name: 'registrecorddetail',
+      component: registrecorddetail,
+    },
 
   ]
 })

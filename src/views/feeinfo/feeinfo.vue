@@ -55,7 +55,7 @@
 
         </div>
       </div>
-      <div class="card margin16">
+      <div v-if="feeButtomDetail.length!=0" class="card margin16">
         <div class="cardText">
           <div class="cardTextKind spanWid">
             <span style="text-align: left">类别</span>
@@ -83,8 +83,8 @@
 </template>
 <script>
 let fee_detail_url = "app/bizCostBill/detail";
-let fconfirm_pay_url = "wechat/bizCostBill/confirmPay";
-let now_pay_url = "wechat/bizCostBill/nowPay";
+let fconfirm_pay_url = "app/bizCostBill/confirmPay";
+let now_pay_url = "app/bizCostBill/nowPay";
 import { Toast, Button } from 'mand-mobile'
 export default {
   data() {
@@ -159,7 +159,7 @@ export default {
         this.postTitle = "我的缴费-已缴费";
         document.title = "我的缴费-已缴费";
       }
-      this.$axios.put(fee_detail_url, { id: this.$route.query.id  }, {
+      this.$axios.put(fee_detail_url, { id: this.$route.query.id }, {
         headers: {
           'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
           'UUID': `AAA`

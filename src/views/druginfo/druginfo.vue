@@ -96,7 +96,7 @@
                   <div>
                     <div class="starleft">
                       <div class="startop">
-                        <span>和平药房渝北店铺</span>
+                        <span>{{item2.nickname}}</span>
                       </div>
                       <span class="colo13">{{item2.createTime}} </span>
                     </div>

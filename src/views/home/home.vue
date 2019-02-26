@@ -94,7 +94,7 @@
 </template>
 <script>
 let appLoginlogin = '/appLogin/login';
-let wechatbizPatientCardreadpage = "/wechat/bizPatientCard/read/list";
+let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {

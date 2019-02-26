@@ -41,9 +41,9 @@
   </div>
 </template>
 <script type="text/babel">
-let bizPatientCardinsert = "/wechat/bizPatientCard/insert";
+let bizPatientCardinsert = "/app/bizPatientCard/insert";
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let appLogingetVerifyCode = "/wechat/bizPatientCard/checkMobile";
+let appLogingetVerifyCode = "/app/bizPatientCard/checkMobile";
 export default {
   data() {
     return {
