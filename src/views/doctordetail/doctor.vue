@@ -80,7 +80,7 @@
 <script>
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
-let appbdHospitalDoctorreaddetail2 = "/biz/app/bdHospitalDoctor/read/detail2";
+let appbdHospitalDoctorreaddetail2 = "/app/bdHospitalDoctor/read/detail2";
  
 export default {
     data() {

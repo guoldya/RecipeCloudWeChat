@@ -27,7 +27,7 @@
 <script>
 import { InputItem, Field } from 'mand-mobile'
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let wechatbizPatientCardbinding = "/biz/app/bizPatientCard/binding";
+let wechatbizPatientCardbinding = "/app/bizPatientCard/binding";
 export default {
   name: 'input-item-demo',
   title: '普通输入框',

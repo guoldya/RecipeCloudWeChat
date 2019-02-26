@@ -96,7 +96,7 @@
     </div>
 </template>
 <script type="text/babel">
-    let recipe_getDetails_url="app/recipe/getDetails ";
+    let recipe_getDetails_url="/app/recipe/getDetails ";
     export default {
         data() {
             return {

@@ -96,8 +96,8 @@
   </div>
 </template>
 <script type="text/babel">
-let selectDoctorList = "/biz/app/bdHospitalDoctor/read/selectDoctorList";
-let bdHospitalOrg = '/biz/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
+let selectDoctorList = "/app/bdHospitalDoctor/read/selectDoctorList";
+let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     return {

@@ -63,8 +63,8 @@
    </div>
 </template>
 <script type="text/babel">
-let bizLisReportreadpage = '/biz/app/bizLisReport/read/page';
-let bizPatientCard = "/biz/app/bizPatientCard/read/list";
+let bizLisReportreadpage = '/app/bizLisReport/read/page';
+let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
    data() {
       return {

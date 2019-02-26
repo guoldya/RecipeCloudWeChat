@@ -19,7 +19,7 @@
 <script>
 import { InputItem, Field } from 'mand-mobile'
 import district from 'mand-mobile/components/picker/demo/data/district'
-let appshippingAddressareaList = '/biz/app/shippingAddress/areaList';
+let appshippingAddressareaList = '/app/shippingAddress/areaList';
 
 export default {
    name: 'input-item-demo',

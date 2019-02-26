@@ -83,10 +83,10 @@
 
 </template>
 <script type="text/babel">
-let appbdHospitalDoctorreaddetail2 = "/biz/app/bdHospitalDoctor/read/detail2";
-let fee_detail_url = "/biz/app/bizCostBill/detail";
-let fconfirm_pay_url = "/biz/app/bizCostBill/confirmPay";
-let now_pay_url = "/biz/app/bizCostBill/nowPay";
+let appbdHospitalDoctorreaddetail2 = "/app/bdHospitalDoctor/read/detail2";
+let fee_detail_url = "/app/bizCostBill/detail";
+let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
+let now_pay_url = "/app/bizCostBill/nowPay";
 export default {
    data() {
       return {
