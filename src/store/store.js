@@ -8,7 +8,6 @@ export default new Vuex.Store({
     state: {
         jumpArr: [],
         payWay: [],
-        detailData: [],
         posUrl: '',
         othUrl: '',
         activeId: '',
@@ -18,7 +17,6 @@ export default new Vuex.Store({
         photo1Data: '',
         photo0Data: '',
         feeActiveId: '',
-        feeActiveId:'',
         payType:'',
         patientId: '',
     },
@@ -34,9 +32,6 @@ export default new Vuex.Store({
         },
         payWayFun: (state, n) => {
             state.payWay = n;
-        },
-        recordDetailFun: (state, n) => {
-            state.detailData = n;
         },
         // 身份证信息
         fileDataFun: (state, n) => {

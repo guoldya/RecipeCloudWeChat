@@ -3,7 +3,7 @@
   <div class="feeinfo">
     <Header :post-title="postTitle" v-show="isWeixin"></Header>
     <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
-      <div class="card margin16" v-for="(item,i) in feeDetailData">
+      <div class="card margin16" v-for="(item,i) in feeDetailData" :key="i">
         <div class="cardText">
           <div v-if="feeActiveId==1">
             <p class="cardTextPP">

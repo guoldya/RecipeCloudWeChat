@@ -2,9 +2,9 @@
     <div class="recordDetail">
         <Header post-title="处方详情" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div>
+            <div v-show="!loadingtrue">
                 <div class="card margin16">
-                    <div class="cardText" v-for="(item,i) in detailData" :key="i">
+                    <div class="cardText" v-for="(item,i) in recipeData" :key="i">
                         <!--<div class="userInfo">-->
                             <!--<span>取药码：092231</span>-->
                             <!--<span>2019-01-12</span>-->
@@ -12,106 +12,108 @@
                         <!--</div>-->
                         <!--<p class="partLine"></p>-->
                         <div class="hospital">
-                            <p>{{item.add}}</p>
+                            <p>{{item.orgName}}</p>
                         </div>
                         <div class="userInfo">
                             <div>
                                 <p>姓名</p>
-                                <p class="mu-light-text-color">{{item.userName}}</p>
+                                <p class="mu-light-text-color">{{item.patientName}}</p>
                             </div>
                             <div>
                                 <p>性别</p>
-                                <p class="mu-light-text-color">男</p>
+                                <p class="mu-light-text-color">{{item.sex}}</p>
                             </div>
                             <div>
                                 <p>年龄</p>
-                                <p class="mu-light-text-color">22岁</p>
+                                <p class="mu-light-text-color">{{item.age}}岁</p>
                             </div>
                             <div>
                                 <p>科室</p>
-                                <p class="mu-light-text-color">内科</p>
+                                <p class="mu-light-text-color">{{item.dept}}</p>
                             </div>
                         </div>
                         <p class="partLine"></p>
                         <div>
-                            <span>临床诊断：上呼吸道感染</span>
+                            <span>临床诊断：{{item.diag}}</span>
                         </div>
                     </div>
                 </div>
-                <div class="card margin16">
+                <div class="card margin16" >
                     <div class="cardText">
-                        <div v-for="(item,i) in medicineData">
+                        <div v-for="(item,i) in detailData">
                             <div class="listData medName">
                                 <span>{{item.name}}</span>
-                                <span>{{item.weight}}</span>
+                                <span>{{item.spec}}</span>
                             </div>
                             <div class="listData userNum">
                                 <div class="useAmount">
                                     <span>用法用量：</span>
-                                    <span>{{item.piece}}</span>
-                                    <span>{{item.way}}</span>
-                                    <span>{{item.time}}</span>
+                                    <span>{{item.eachDose}}</span>
+                                    <span>{{item.usage}}</span>
+                                    <span>{{item.freq}}</span>
                                 </div>
-                                <span>{{item.package}}盒</span>
+                                <span>{{item.total}}盒</span>
                             </div>
-                            <div class="listData userNum docTip">
-                                <span>医生嘱托：用温开水送服</span>
+                            <div class="listData userNum docTip" v-if="item.remark!=null">
+                                <span>医生嘱托：{{item.remark}}</span>
                             </div>
-                            <p class="partLine" v-if="i!=medicineData.length-1"></p>
+                            <p class="partLine" v-if="i!=detailData.length-1"></p>
                         </div>
                     </div>
                 </div>
-                <div class="card margin16">
+                <div class="card margin16" v-for="(item,i) in recipeData" :key="i">
                     <div class="cardText">
                         <div class="userSign">
                             <div class="listData userNum">
-                                <span>医师：李四</span>
-                                <span>签名：李四</span>
+                                <span>医师：{{item.doctorName}}</span>
+                                <span>签名：<img style="position: relative;top: 5px;margin-top: -13px;" src="@/assets/images/jiaxingming.png" alt=""></span>
                             </div>
                             <p class="partLine"></p>
                             <div class="listData userNum">
                                 <span>药师审方</span>
-                                <span>审核通过</span>
+                                <span class="mu-secondary-text-color">{{item.status |drugCheck}}</span>
                             </div>
                             <p class="partLine"></p>
                             <div class="listData userNum">
                                 <span>审方时间</span>
-                                <span>2019-01-12</span>
+                                <span>{{item.authTime |time}}</span>
                             </div>
                             <p class="partLine"></p>
                             <div class="listData userNum">
-                                <span>医师</span>
-                                <span>李五</span>
+                                <span>药师</span>
+                                <span>{{item.druggistName}}</span>
                             </div>
-                            <p class="partLine"></p>
-                            <div class="listData userNum">
-                                <span>注意：在服用时请注意含量</span>
+                            <p class="partLine" v-if="item.remark!=null"></p>
+                            <div class="listData userNum" v-if="item.remark!=null">
+                                <span>注意：{{item.remark}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Loading v-show="loadingtrue"></Loading>
         </div>
     </div>
 </template>
 <script type="text/babel">
+    let recipe_getDetails_url="app/recipe/getDetails ";
     export default {
         data() {
             return {
                 isWeixin: false,
+                recipeData:[],
                 detailData:[],
-                medicineData:[
-                    {name:"盐酸曲美他嗪片（万爽力）",weight:"20mgx30片",piece:"20mg",way:"口服",time:"每天三次",package:"x1"},
-                    {name:"盐酸曲美他嗪片（万爽力）",weight:"20mgx30片",piece:"20mg",way:"口服",time:"每天三次",package:"x1"},
-                ],
+                loadingtrue:true,
+                detailInfoId:null,
             };
         },
         created() {
 
         },
         mounted() {
-            console.log(this.detailData)
-            this.detailData.push(this.$store.state.detailData);
+            //console.log(this.detailData);
+            this.detailInfo();
+            //this.detailData.push(this.$store.state.detailData);
             document.title = '处方详情';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -124,7 +126,22 @@
 
         },
         methods: {
-
+            detailInfo(){
+                this.detailInfoId=parseInt(this.$route.query.id);
+                this.payType=this.$store.state.payType;
+                this.$axios.put(recipe_getDetails_url,{recipeId:this.detailInfoId}, {
+                }).then(res => {
+                    if (res.data.code == '200') {
+                        this.loadingtrue = false;
+                        this.recipeData.push(res.data.data.recipe);
+                        this.detailData=res.data.data.details;
+                        console.log(this.recipeData);
+                        console.log(this.detailData);
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
         },
         computed: {
 
