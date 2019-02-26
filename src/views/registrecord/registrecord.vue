@@ -35,7 +35,7 @@
    </div>
 </template>
 <script type="text/babel">
-   let read_page_url="/biz/app/bizPatientRegister/read/page";
+   let read_page_url="/app/bizPatientRegister/read/page";
 export default {
    data() {
       return {

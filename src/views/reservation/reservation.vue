@@ -8,7 +8,6 @@
                <span class="doctor-name">{{doctorInfo.name}}</span>
                <span>{{doctorInfo.title}}</span>
             </div>
-
             <ul>
                <li>
                   <label>就诊院区：</label>
@@ -22,14 +21,11 @@
                   <label>看诊时间：</label>
                   <p class="mu-secondary-text-color">2019-02-22&nbsp;周五下午</p>
                </li>
-
                <li>
                   <label>挂号费用：</label>
                   <p class="mu-secondary-text-color">￥ 20</p>
                </li>
-
             </ul>
-
          </div>
       </div>
       <div style="height:20px; background: #f8f8f8"></div>
@@ -72,21 +68,19 @@
                </div>
             </li>
          </ul>
-
       </div>
       <div class="outCarint">
          <md-button type="primary" round @click="rightPay">提交</md-button>
       </div>
-
       <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
    </div>
 
 </template>
 <script type="text/babel">
-let appbdHospitalDoctorreaddetail2 = "/biz/app/bdHospitalDoctor/read/detail2";
-let fee_detail_url = "/biz/app/bizCostBill/detail";
-let fconfirm_pay_url = "/biz/app/bizCostBill/confirmPay";
-let now_pay_url = "/biz/app/bizCostBill/nowPay";
+let appbdHospitalDoctorreaddetail2 = "/app/bdHospitalDoctor/read/detail2";
+let fee_detail_url = "/app/bizCostBill/detail";
+let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
+let now_pay_url = "/app/bizCostBill/nowPay";
 export default {
    data() {
       return {

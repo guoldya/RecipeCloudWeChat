@@ -23,7 +23,7 @@
 </template>
 <script>
 
-let bizPatientCard = "/biz/app/bizPatientCard/read/list";
+let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
    data() {
       return {

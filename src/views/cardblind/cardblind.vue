@@ -27,7 +27,7 @@
 <script>
 import { InputItem, Field } from 'mand-mobile'
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let wechatbizPatientCardbinding = "/biz/app/bizPatientCard/binding";
+let wechatbizPatientCardbinding = "/app/bizPatientCard/binding";
 export default {
   name: 'input-item-demo',
   title: '普通输入框',
@@ -119,17 +119,17 @@ export default {
 
     },
     tijiao() {
-
       if (this.phonenumber.length < 11 || this.name.length == 0) {
         this.$toast.info('请完善信息')
       } else {
         this.$axios.post(wechatbizPatientCardbinding, {
-          patientName: _this.name,
-          mobile: _this.phonenumber,
+          patientName: this.name,
+          mobile: this.phonenumber,
           verifyType: 1,
-          type: _this.type,
-          cardNo: _this.cardNo,
-          verifyCode: _this.cardNo,
+          type: this.type,
+          cardNo: this.cardNo,
+          verifyCode: this.verifyCode,
+          orgCode: localStorage.getItem("hospitalId") * 1,
         }, {
             headers: {
               'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
@@ -142,9 +142,7 @@ export default {
                 content: '该卡绑定成功!',
                 confirmText: '确定',
                 onConfirm: () => {
-                  this.$router.push({
-                    name: 'cardmy',
-                  });
+                  this.$router.go(-1);
                 },
               });
             } else if (res.data.code == '800') {

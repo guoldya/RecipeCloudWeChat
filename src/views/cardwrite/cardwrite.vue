@@ -41,9 +41,9 @@
   </div>
 </template>
 <script type="text/babel">
-let bizPatientCardinsert = "/biz/app/bizPatientCard/insert";
+let bizPatientCardinsert = "/app/bizPatientCard/insert";
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let appLogingetVerifyCode = "/biz/app/bizPatientCard/checkMobile";
+let appLogingetVerifyCode = "/app/bizPatientCard/checkMobile";
 export default {
   data() {
     return {
@@ -117,6 +117,7 @@ export default {
           verifyType: 1,
         }).then(res => {
           if (res.data.code == '200') {
+            this.$store.commit('mobileFun', this.phonenumber);
             let argu = {}
             this.$router.push({
               name: 'cardwritesecond',

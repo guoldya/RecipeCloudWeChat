@@ -17,7 +17,7 @@
    </div>
 </template>
 <script>
-let selectDoctorList = "/biz/app/bdHospitalDoctor/read/selectDoctorList";
+let selectDoctorList = "/app/bdHospitalDoctor/read/selectDoctorList";
 export default {
    data() {
       return {

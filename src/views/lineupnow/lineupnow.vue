@@ -97,7 +97,7 @@
   </div>
 </template>
 <script type="text/babel">
-let appbizWaitingQueuereadlist = "/biz/app/bizWaitingQueue/read/list";
+let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
 export default {
   data() {
     return {

@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-let searchClinicListByClinicOrDoctor = "/biz/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+let searchClinicListByClinicOrDoctor = "/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
 export default {
   data() {
     return {

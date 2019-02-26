@@ -99,8 +99,8 @@
     </div>
 </template>
 <script>
-let appLoginlogin = '/biz/appLogin/login';
-let wechatbizPatientCardreadpage = "/biz/app/bizPatientCard/read/list";
+let appLoginlogin = '/appLogin/login';
+let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {

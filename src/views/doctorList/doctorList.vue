@@ -47,7 +47,7 @@
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
         <ul v-if="amList.length!=0">
-          <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info)">
+          <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info,1 )">
             <div class="card">
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
@@ -70,7 +70,7 @@
       <div class="doctorList" id="afternoon">
         <ul v-if="pmList.length!=0">
           <li v-for="(item,index) in pmList" :key="index">
-            <div class="card" @click="intodoctordetail(item)">
+            <div class="card" @click="intodoctordetail(item,2)">
               <div class="cardText">
                 <div class="headimg">
                   <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
@@ -91,19 +91,19 @@
           <p>暂无号源</p>
         </div>
       </div>
-    
+
     </div>
   </div>
 </template>
 <script type="text/babel">
-let selectDoctorList = "/biz/app/bdHospitalDoctor/read/selectDoctorList";
-let bdHospitalOrg = '/biz/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
+let selectDoctorList = "/app/bdHospitalDoctor/read/selectDoctorList";
+let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     return {
       isSelectorShow: false,
       selectorValue: '',
-        orgId: '',
+      orgId: '',
       num: 5,
       isTop: true,
       isActive: 1,
@@ -196,7 +196,6 @@ export default {
             }
             this.departData.push(neslist);
           }
-          console.log(this.departData)
         } else {
           console.log(res.msg);
         }
@@ -204,7 +203,6 @@ export default {
         console.log(err);
       });
     },
-
 
     showSelector() {
       this.isSelectorShow = true
@@ -215,11 +213,11 @@ export default {
       this.doctorListFun();
     },
 
-    intodoctordetail(data) {
+    intodoctordetail(data, index) {
       let argu = {}
       this.$router.push({
         name: 'doctordetail',
-        query: { doctorId: data.id }
+        query: { doctorId: data.id, time: this.isTime, week: this.chooseweek, afternoon: index }
       });
     },
 
@@ -257,7 +255,6 @@ export default {
       data.newData = m + '-' + d.getDate();
       data.newYear = y;
       data.newDay = newDay;
-
       return data;
     },
     searchT: function () {
