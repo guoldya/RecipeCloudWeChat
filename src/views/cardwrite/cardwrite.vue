@@ -122,13 +122,14 @@ export default {
               name: 'cardwritesecond',
               query: argu
             });
-          } else if (res.data.code == '800') {
-
+          } else {
+            this.$toast.info(res.data.msg)
           }
         }).catch(function (err) {
           console.log(err);
         });
       }
+
 
 
     },

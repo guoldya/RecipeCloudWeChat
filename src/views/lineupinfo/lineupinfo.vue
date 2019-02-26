@@ -15,6 +15,10 @@
             </p>
             <p>排队类目：{{lineupinfo.deptName}}</p>
           </div>
+          <p>我的号码：
+            <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}} </span>号
+          </p>
+          <p>排队类目：{{lineupinfo.deptName}}</p>
         </div>
         <!-- <div class="card margin16">
           <div class="cardHEADER">
@@ -132,6 +136,6 @@ export default {
 }
 
 .size18 {
-  font-size: 36px;
+  font-size: 43px;
 }
 </style>

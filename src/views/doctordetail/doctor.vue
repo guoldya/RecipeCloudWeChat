@@ -4,24 +4,24 @@
         <Header post-title="医生详情" v-show="isWeixin"></Header>
         <div class="doctor-head">
             <div class="outCarint">
-                <div class="doctor-img float-left" style="margin-top:20px">
-                    <img :src="img" alt="医生图片">
-                </div>
-                <div class="doctor-inro float-left" style="margin-top:20px">
-                    <div class="doctor-decrib">
-                        <p>
-                            <span class="doctor-name">{{doctorInfo.name}} </span>
-                            <span class="doctor-tag">{{doctorInfo.title}} </span>
+                <div class="doctor-info">
+                    <div class="header"><img src="@/assets/images/3.jpg"></div>
+                    <div class="doctor-right">
+                        <p class="introduce">
+                            <span class="doctor-name">名字{{doctorInfo.name}} </span>
+                            <span class="doctor-tag">名字{{doctorInfo.title}} </span>
                         </p>
-                        <p class="hospital"> {{doctorInfo.hospital}} 科室</p>
+                        <p class="hospital"> 名字{{doctorInfo.hospital}} </p>
+                        <p class="content"> 擅长：儿科常见病、多发病多发病多发病 </p>
+                        <p class="open" @click="showMaskClosable=true"> 更多</p>
                     </div>
-                    <p> {{doctorInfo.introduce}} 展开</p>
                 </div>
             </div>
-
-            <div>
-
-            </div>
+            <md-landscape v-model="showMaskClosable" :mask-closable="true">
+                <div class="describ">
+                    <p>擅长：儿科常见病、多发病 #先天性心脏病儿科常见病、多发病 擅长：儿科常见病、多发病 #先天性心脏病儿科常见病、多发病 </p>
+                </div>
+            </md-landscape>
         </div>
 
         <div class="outCarint">
@@ -36,7 +36,7 @@
                                     <span class="mu-secondary-text-color">￥20</span>
                                 </span>
                             </div>
-                            <div @click="reservation" class="available-tag">预约</div>
+                            <div @click="reservation " class="available-tag">预约</div>
                         </li>
                         <p class="colo13">全部排班</p>
                     </ul>
@@ -81,9 +81,11 @@
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
 let appbdHospitalDoctorreaddetail2 = "/app/bdHospitalDoctor/read/detail2";
+ 
 export default {
     data() {
         return {
+            showMaskClosable: false,
             isWeixin: false,
             img,
             start,
@@ -108,11 +110,10 @@ export default {
         open() {
 
         },
-        reservation(data) {
-            console.log(data)
+        reservation() {
             this.$router.push({
                 name: 'reservation',
-                query: {}
+                query: { doctorId: this.$route.query.doctorId }
             });
         },
 

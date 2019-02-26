@@ -174,8 +174,8 @@
 <script>
 import { Toast } from 'mand-mobile';
 let bdProductreaddetail = '/app/bdProduct/read/detail';
-let appbizCollectionaddCollection = 'app/bizCollection/addCollection';
-let appbizCollectiondeleteCollection = 'app/bizCollection/deleteCollection';
+let appbizCollectionaddCollection = '/app/bizCollection/addCollection';
+let appbizCollectiondeleteCollection = '/app/bizCollection/deleteCollection';
 let appbizProductEvaluatereadpage = "/app/bizProductEvaluate/read/page";
 export default {
   data() {

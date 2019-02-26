@@ -116,8 +116,8 @@
   </div>
 </template>
 <script  >
-    let bizbizPacsReportreaddetail = 'app/bizPacsReport/read/detail';
-    let bizLisReportreaddetail = 'app/bizLisReport/read/detail';
+    let bizbizPacsReportreaddetail = '/app/bizPacsReport/read/detail';
+    let bizLisReportreaddetail = '/app/bizLisReport/read/detail';
 export default {
   data() {
     return {

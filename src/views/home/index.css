@@ -2,6 +2,16 @@
    padding: 20px;
 }
 
+.home .spinner {
+   text-align: center
+}
+
+.home .spinner .md-icon.icon-svg.lg {
+   width: 77px;
+   height: 77px;
+   margin-top: 70px;
+}
+
 .font-12 {
    font-size: 12px;
 }
@@ -42,7 +52,7 @@
 }
 
 .home-cz {
-   padding:20px 66px 77px;
+   padding: 20px 66px 77px;
 }
 
 .home-cz li {
@@ -196,6 +206,7 @@
    position: relative;
    top: -120px;
 }
-.marginbott16{
+
+.marginbott16 {
    margin-bottom: 32px
 }

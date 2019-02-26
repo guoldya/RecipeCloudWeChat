@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    let bizExamSchedulereadlist="app/bizExamSchedule/daySchedule";
+    let bizExamSchedulereadlist="/app/bizExamSchedule/daySchedule";
     export default {
         data() {
             return {

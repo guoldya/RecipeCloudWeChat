@@ -2,7 +2,7 @@
 @import "index.css";
 </style>
 <template>
-    <div>
+    <div class="home">
         <div class="homeheader">
             医院
         </div>
@@ -23,31 +23,36 @@
             </ul>
         </div>
         <div class="homePage">
-            <!-- <div class="homeCard bindCard marginbott16">
-                <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
-            </div> -->
-            <!-- 就诊卡片v-if="showindex==index" -->
+
+            <!-- 就诊卡片  -->
             <div v-if="cardlist.length!=0">
-                <div class="homeCard marginbott16" v-for="(item, index) in cardlist" v-if=" showindex==index" :key="'cardlist' + index">
+                <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in cardlist" v-if="showindex==index" :key="'cardlist' + index">
                     <div class="homeCardText">
                         <div class="homeCardTextLeft">
                             <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard(item,index+1)"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
+                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
-                        <div class="towma">
+                        <div class="towma" @click="showPic=true">
                             <p><img src="@/assets/images/lili.jpg" alt=""></p>
                             <p>刷卡请出示</p>
                         </div>
                     </div>
+
+                    <div v-show="cardLoading" class="spinner">
+                        <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+                    </div>
+
                 </div>
             </div>
             <div v-else class="homeCard bindCard marginbott16">
-                <span class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
+                <div class="spinner" v-show="cardLoading">
+                    <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+                </div>
+                <span v-show="!cardLoading" class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
-
             <div class="home-zy home-flex">
                 <img @click="inhospital" src="@/assets/images/AAAA.png" alt="" class="image float-left">
             </div>
@@ -87,10 +92,11 @@
             </ul>
             <!-- 测试的code：{{code}} -->
         </div>
-
+        <md-landscape v-model="showPic" :mask-closable="true">
+            <img src="@/assets/images/lili.jpg" alt="">
+        </md-landscape>
         <Footer></Footer>
     </div>
-
 </template>
 <script>
 let appLoginlogin = '/appLogin/login';
@@ -99,9 +105,11 @@ export default {
     data() {
         return {
             code: 'ss',
+            showPic: false,
             cardlist: [],
             showindex: 0,
             maxindex: '',
+            cardLoading: true,
         }
     },
     mounted() {
@@ -132,6 +140,7 @@ export default {
                 // });
                 var storage = window.localStorage;
                 storage.setItem("token1", "edd169b85704410aa5219512cb6f1f00");
+                storage.setItem("hospitalId", "49");
             }
         });
 
@@ -140,6 +149,9 @@ export default {
             if (res.data.code == '200') {
                 this.cardlist = res.data.rows;
                 this.maxindex = res.data.total;
+                this.cardLoading = false;
+                this.$store.commit('patientIdFun', res.data.rows[0].patientId);
+                this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
             } else if (res.data.code == '800') {
                 console.log(res.data.msg)
             }
@@ -158,7 +170,7 @@ export default {
                 query: argu
             });
         },
- 
+
         switchCard(data1, data) {
             if (data < this.maxindex) {
                 this.showindex = data;
@@ -166,7 +178,7 @@ export default {
                 this.showindex = 0;
             }
             this.$store.commit('patientIdFun', data1.patientId);
-
+            this.$store.commit('cardNoFun', data1.cardNo);
         },
 
         feerecord() {
@@ -240,7 +252,14 @@ export default {
                 query: argu
             });
         },
-    }
+    },
+
+
+    computed: {
+        _cardlist() {
+            return this.cardlist.filter((item, index) => this.showindex == index)
+        }
+    },
 
 }
 </script>

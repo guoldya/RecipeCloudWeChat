@@ -82,9 +82,9 @@
   </div>
 </template>
 <script>
-let fee_detail_url = "app/bizCostBill/detail";
-let fconfirm_pay_url = "app/bizCostBill/confirmPay";
-let now_pay_url = "app/bizCostBill/nowPay";
+let fee_detail_url = "/app/bizCostBill/detail";
+let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
+let now_pay_url = "/app/bizCostBill/nowPay";
 import { Toast, Button } from 'mand-mobile'
 export default {
   data() {
@@ -139,10 +139,8 @@ export default {
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
-      return true;
     } else {
       this.isWeixin = true;
-      return false;
     }
 
   },

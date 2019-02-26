@@ -42,9 +42,10 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
   }, false)
 }
 
-Vue.config.productionTip = false
-const BASE_URL = '/api';
-// const BASE_URL = '/api/biz';
+Vue.config.productionTip = false;
+
+const BASE_URL = '/api/biz';
+ 
 axios.defaults.baseURL = BASE_URL;
 
 axios.interceptors.request.use(function (config) {
