@@ -108,7 +108,7 @@ input:-ms-input-placeholder {
   color: #979797;
 }
 .margin16 {
-  margin: 32px 0;
+  margin:0 0 32px 0;
 }
 .margin45 {
   margin-top: 110px;
@@ -226,7 +226,7 @@ input:-ms-input-placeholder {
 .appTab {
   display: flex;
   justify-content: space-between;
-  padding: 32px 100px;
+  padding:0  100px 32px;
 }
 .appTab span {
   padding: 0 8px 8px;

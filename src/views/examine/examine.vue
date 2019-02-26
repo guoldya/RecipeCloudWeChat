@@ -2,13 +2,13 @@
     <div class="examine">
         <Header post-title="检验检查" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="pageContent">
-                <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(item.type,index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div>
-            <div v-if="examineData.length!=0" v-show="!loadingtrue" class="outCarint">
-                <div class="card margin16" v-for="(item,i) in examineData" :key="i" v-if="titleIndex==0">
+            <!--<div class="pageContent">-->
+                <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(item.type,index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
+                    <!--{{item.title}}-->
+                <!--</span>-->
+            <!--</div>-->
+            <div v-if="examineData.length!=0" v-show="!loadingtrue">
+                <div class="card margin16" v-for="(item,i) in examineData" :key="i">
                     <div class="cardText">
                         <div class="listData">
                             <span>{{item.patientName}}（{{item.className}}）</span>
@@ -32,30 +32,6 @@
                     </div>
 
                 </div>
-                <div class="card margin16" v-for="(item,i) in examineData" :key="i" v-if="titleIndex===1">
-                    <div class="cardText">
-                        <div class="listData">
-                            <span>{{item.patientName}}（{{item.className}}）</span>
-                            <span class="mu-secondary-text-color">{{item.status | statusFilter}}</span>
-                        </div>
-                        <p style="border-bottom: 1px solid #e9e9e9;margin: 6px 0px"></p>
-                        <div class="listData">
-                            <span>预约科室：
-                                <span class="mu-secondary-text-color">{{item.examDept}}（{{item.hospital}}）</span>
-                            </span>
-                        </div>
-                        <div class="listData">
-                            <span>预约项目：
-                                <span class="mu-secondary-text-color">{{item.className}}</span>
-                            </span>
-                        </div>
-                        <div class="listData">
-                            <span>预约日期：
-                            <span class="mu-secondary-text-color">{{item.serialTime}}</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
             <div v-show="!loadingtrue" class="nullDiv" v-else>
@@ -76,11 +52,11 @@
         data() {
             return {
                 isWeixin: false,
-                changeTitle: [
-                    { title: '预约项目',type: 1 },
-                    { title: '预约记录',type:2 },
-                ],
-                titleIndex: 0,
+                // changeTitle: [
+                //     { title: '预约项目',type: 1 },
+                //     { title: '预约记录',type:2 },
+                // ],
+                // titleIndex: 0,
                 examineData:[],
                 orderRecord:[],
                 TOKEN: '',
@@ -88,25 +64,12 @@
                 nowDate:"",
                 pageSize:10,
                 page:1,
-                type:1,
                 loadingtrue: true,
                 busy: true,
                 nomore: false,
                 status:0,
                 isTime:"",
             };
-        },
-        filters:{
-            statusFilter: function (value) {
-                if(value=="1"){
-                    return "已预约"
-                }else if(value=="2"){
-                    return "已检查"
-                }else if(value=="3"){
-                    return "检查中"
-                }
-            },
-
         },
         created() {
 
@@ -134,12 +97,7 @@
                     const params = {};
                     params.pageNumber = this.page;
                     params.pageSize = this.pageSize;
-                    //params.type = this.type;
-                    if(this.type==1){
-                        params.status=this.status;
-                    }else if(this.type==2){
-                        params.applyRecord='Y';
-                    }
+                    params.status=this.status;
                     this.$axios.put(bizExamApplyreadpage, params).then((res) => {
                         if (res.data.rows) {
                             this.loadingtrue = false;
@@ -169,8 +127,6 @@
                     })
             },
             switchTo(data,num) {
-                this.titleIndex = num;
-                this.type = data;
                 this.examineData = [];
                 this.page = 1;
                 this.loadingtrue = true;

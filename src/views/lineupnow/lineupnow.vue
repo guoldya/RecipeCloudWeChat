@@ -8,7 +8,7 @@
         </span>
       </div>
       <div class="outCarint">
-        <div v-show="goodsList.length!=0 " class="card">
+        <div class="card margin16">
           <div class="cardHEADER" style="display:flex;">
             <div class="fleft">
               <img src="@/assets/images/icon_calendar.png" alt="">
@@ -24,33 +24,44 @@
             </div>
           </div>
         </div>
-        <div v-show="goodsList.length!=0" class="card margin16" v-for="(item,index) in goodsList" :key="index">
-          <div class="cardText">
-            <p class="cardTextPP">
+        <div v-if="goodsList.length!=0 "  v-show="!loadingtrue">
+          <div class="card margin16" v-for="(item,index) in goodsList" :key="index">
+            <div class="cardText">
+              <p class="cardTextPP">
               <span>等待时间：
                 <span class="mu-secondary-text-color">{{item.waitingTime}}分钟</span>
               </span>
-              <span>排队号码：
+                <span>排队号码：
                 <span class="mu-secondary-text-color">{{item.currentNo}}号</span>
               </span>
-            </p>
-            <p class="cardTextPP">
+              </p>
+              <p class="cardTextPP">
               <span>排队科室：{{item.deptName}}
               </span>
-              <span>当前号码：
+                <span>当前号码：
                 <span class="mu-secondary-text-color">{{item.queueNo}}号</span>
               </span>
-            </p>
-            <p>您前面还有：{{item.waitingNo}}位</p>
-            <p class="learnMore" @click="intolineupinfo(item)">
-              详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
-            </p>
+              </p>
+              <p>您前面还有：{{item.waitingNo}}位</p>
+              <p class="learnMore" @click="intolineupinfo(item)">
+                详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
+              </p>
+            </div>
           </div>
+          <p v-show="nomore" class="noMore">没有更多数据了</p>
         </div>
-        <div v-show="goodsList.length==0" class="nullDiv">
+        <div v-show="!loadingtrue" class="nullDiv" v-else>
           <img src="@/assets/images/null1.png">
         </div>
+        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+         <span v-if="goodsList.length!=0&&!nomore">
+             <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+         </span>
+        </div>
+        <Loading v-show="loadingtrue"></Loading>
       </div>
+
+
       <!-- <div class="outCarint" v-if="type === 2">
         <div class="card">
           <div class="cardHEADER" style="display:flex;">
@@ -126,16 +137,6 @@ export default {
   created() {
 
   },
-  watch: {
-    queryType: function (newqueryType, oldqueryType) {
-      this.queryType = newqueryType;
-      this.goodsList = [];
-      this.page = 1;
-      this.isActive = false;
-      this.loadingtrue = true;
-      this.getGoodslist();
-    },
-  },
   mounted() {
 
     document.title = '就诊队列';
@@ -146,39 +147,55 @@ export default {
       this.isWeixin = true;
     }
     var today = new Date();
-    this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日";
-
+      var m = today.getMonth() + 1;
+      m = m <= 9 ? "0" + m : m;
+      var newDate=today.getDate();
+      newDate = newDate <= 9 ? "0" + newDate : newDate;
+    this.nowTime = today.getFullYear() + "年" + m + "月" + newDate + "日";
     this.waitingDate = today;
-    // str = str.replace(/MM/, today.getMonth() > 9 ? today.getMonth().toString() : '0' + today.getMonth());
-    // console.log(str);
-
-
-    var Month = (today.getMonth() + 1) > 9 ? (today.getMonth() + 1) : "0" + (today.getMonth() + 1);
-    console.log(Month)
-
     this.getGoodslist()
-
 
   },
   methods: {
     handler(name, active) {
+        console.log(name,active);
+        console.log(this.isActive)
       this.getGoodslist()
     },
-    getGoodslist() {
-      this.$axios.put(appbizWaitingQueuereadlist, {
-        queryType: this.queryType,
-        onlyWaiting: this.isActive ? 'Y' : undefined,
-        waitingDate: "2019-02-22",
-      }).then(res => {
-        if (res.data.code == '200') {
-          this.goodsList = res.data.rows;
-          // this.nowTime = res.data.rows[0].waitingDate;
-        } else if (res.data.code == '800') {
-
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
+    getGoodslist(flag) {
+        const params = {};
+        params.pageNumber = this.page;
+        params.pageSize = this.pageSize;
+        params.onlyWaiting = this.isActive ? 'Y' : undefined;
+        params.queryType = this.queryType;
+        params.waitingDate = "2019-02-22";
+        this.$axios.put(appbizWaitingQueuereadlist,params).then((res) => {
+            if (res.data.rows) {
+                this.loadingtrue = false;
+                if (flag) {
+                    this.goodsList = this.goodsList.concat(res.data.rows);  //concat数组串联进行合并
+                    if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                        this.busy = false;
+                        this.nomore = false;
+                    } else {
+                        this.busy = true;
+                        this.nomore = true;
+                    };
+                } else {
+                    this.goodsList = res.data.rows;
+                    this.busy = true;
+                    if (res.data.total < 10) {
+                        this.busy = true;
+                        this.nomore = true;
+                    } else {
+                        this.busy = false;
+                        this.nomore = false;
+                    }
+                }
+            } else {
+                this.goodsList = []
+            }
+        })
     },
     switchTo(data) {
 
@@ -198,6 +215,13 @@ export default {
         query: argu
       });
     },
+      loadMore() {
+          this.busy = true;  //将无限滚动给禁用
+          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+              this.page++;  //滚动之后加载第二页
+              this.getGoodslist(true);
+          }, 500);
+      },
     // lunbo() {
     //   let mySwiper = new Swiper('.swiper-container', {
     //     // freeMode: false,

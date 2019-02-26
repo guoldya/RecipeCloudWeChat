@@ -18,7 +18,7 @@ const keepTwoNum=function(value){
         }
         return value;
     }
-}
+};
 const payTypeFilter=function(value){
     if(value==undefined){
         return ""
@@ -36,14 +36,14 @@ const payTypeFilter=function(value){
     }else if(value==5){
         return "已取消"
     }
-}
+};
 const time=function(value){
     if(value==undefined){
         return ""
     }
     let val=value.split(' ')[0];
     return val
-}
+};
 const drugCheck=function(value){
     if(value==undefined){
         return ""
@@ -61,10 +61,23 @@ const drugCheck=function(value){
     }else if(value==5){
         return "已下订单"
     }
-}
+};
+const examStatus=function(value){
+    if(value==undefined){
+        return ""
+    }
+    if(value==1){
+        return "已预约"
+    }else if(value==2){
+        return "已检查"
+    }else if(value==3){
+        return "检查中"
+    }
+};
 export default {
     keepTwoNum,
     payTypeFilter,
     time,
     drugCheck,
+    examStatus,
 }
