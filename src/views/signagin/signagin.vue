@@ -52,8 +52,14 @@ export default {
         var circle = new BMap.Circle(r.point, 300, { strokeColor: "rgba(29, 161, 243, 0.7)", fillColor: "rgba(29, 161, 243, 0.2) ", strokeWeight: 2, strokeOpacity: 0.9 }); //创建圆
         map.addOverlay(circle); //增加圆
         map.addOverlay(mk);
- 
+
         map.panTo(r.point);
+
+        //创建小狐狸
+        var pt = new BMap.Point(106.53063501, 29.54460611);
+        var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300, 157));
+        var marker2 = new BMap.Marker(pt, { icon: myIcon });  // 创建标注
+        map.addOverlay(marker2);
 
 
         var pointA = new BMap.Point(r.point.lng, r.point.lat);  // 创建点坐标A--大渡口区

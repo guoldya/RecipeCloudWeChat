@@ -2,7 +2,7 @@
     <div class="registrecorddetail">
         <Header post-title="挂号记录详情" v-show="isWeixin"></Header>
         <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
-            <div class="card" v-for="(item,i) in cordInfoData" :key="i">
+            <div class="card" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
                 <div class="cardText">
                     <p>科室：内科</p>
                     <p>医生：{{item.doctorName}}</p>
@@ -15,6 +15,7 @@
                     <p>预约来源：华仪通</p>
                 </div>
             </div>
+            <Loading v-show="loadingtrue"></Loading>
             <div class="cardText warnText">
                 注意事项：
                 <p>1、请在半个小时内完成支付，逾期记录作废</p>
@@ -35,7 +36,7 @@
                         <md-button type="primary" round @click="applyBack">申请退号</md-button>
                     </div>
                     <div v-if="payType==2">
-                        <md-button type="default" round @click="applyBack">已退号/已失效</md-button>
+                        <md-button type="default" round>已退号/已失效</md-button>
                     </div>
                 </div>
             </div>
@@ -64,6 +65,7 @@
                 cordInfoId:null,
                 cordInfoData:[],
                 payType:'',
+                loadingtrue:true,
             };
         },
         created() {
@@ -86,6 +88,7 @@
                 this.$axios.put(cord_info_url,{id:this.cordInfoId,payType:this.payType}, {
                 }).then(res => {
                     if (res.data.code == '200') {
+                        this.loadingtrue = false;
                         this.cordInfoData.push(res.data.data);
                         console.log(this.cordInfoData)
                     }

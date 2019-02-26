@@ -15,6 +15,7 @@ import feesucces from '@/views/feesucces/feesucces.vue'
 import doctor from '@/views/doctordetail/doctor.vue'
 import payment from '@/views/payment/payment.vue'
 import doctorList from '@/views/doctorList/doctorList.vue'
+import reportrecord from '@/views/reportrecord/reportrecord.vue'
 import reportquery from '@/views/reportquery/reportquery.vue'
 import reportinfo from '@/views/reportinfo/reportinfo.vue'
 import lineupnow from '@/views/lineupnow/lineupnow.vue'
@@ -115,6 +116,11 @@ export default new Router({
       component: reservation
     },
     {
+      path: '/reportrecord',
+      name: 'reportrecord',
+      component: reportrecord
+    },
+    {
       path: '/signsucceed',
       name: 'signsucceed',
       component: signsucceed
@@ -129,7 +135,7 @@ export default new Router({
       name: 'unblind',
       component: unblind
     },
-     
+
     {
       path: '/cardblind',
       name: 'cardblind',

@@ -12,8 +12,9 @@
     font-weight: bold;
 }
 .recipeRecord .fold span{
-    font-size: 24px;
+    font-size: 28px;
     color: #979797;
+    padding: 20px 0px;
 }
 .foldImg img{
     width: 36px;

@@ -81,7 +81,7 @@ export default {
                    } else {
                        this.cordData = res.data.rows;
                        this.busy = true;
-                       if (res.data.total < 10) {
+                       if (res.data.total <= 10) {
                            this.busy = true;
                            this.nomore = true;
                        } else {

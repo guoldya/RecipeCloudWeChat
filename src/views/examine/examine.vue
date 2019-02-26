@@ -93,6 +93,7 @@
                 busy: true,
                 nomore: false,
                 status:0,
+                isTime:"",
             };
         },
         filters:{
@@ -113,14 +114,6 @@
         mounted() {
             let _this = this;
             this.examineFun(false);
-            let myDate = new Date();
-            let month=myDate.getMonth();
-            let day=myDate.getDate();
-            month = month <= 9 ? "0" +(month+1) : (month+1);
-            day = day<= 9 ? "0" + day : day;
-
-            this.nowDate=myDate.getFullYear()+'-'+month+'-'+day;
-
             document.title = '检验检查';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -141,7 +134,7 @@
                     const params = {};
                     params.pageNumber = this.page;
                     params.pageSize = this.pageSize;
-                    params.type = this.type;
+                    //params.type = this.type;
                     if(this.type==1){
                         params.status=this.status;
                     }else if(this.type==2){
@@ -161,7 +154,6 @@
                                 };
                             } else {
                                 this.examineData = res.data.rows;
-                                console.log(this.examineData)
                                 this.busy = true;
                                 if (res.data.total < 10) {
                                     this.busy = true;
