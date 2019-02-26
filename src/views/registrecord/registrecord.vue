@@ -1,7 +1,7 @@
 <template>
-   <div :class="{'outCarint':true,'margin45':isWeixin}" class="registrecord">
+   <div class="registrecord">
       <Header post-title="挂号记录" v-show="isWeixin"></Header>
-      <div :class="{margin45:isWeixin,outCarint:true}">
+      <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
          <div v-if="cordData.length!=0" v-show="!loadingtrue">
                <div class="card margin16" v-for="(item,i) in cordData" :key="i">
                   <p class="appTitle">

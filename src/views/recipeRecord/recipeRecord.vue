@@ -63,7 +63,7 @@
                 <!--</div>-->
             <!--</div>-->
 
-            <div v-if="efficacyData.length!=0" v-show="!loadingtrue" class="outCarint">
+            <div v-if="efficacyData.length!=0" v-show="!loadingtrue">
                 <div class="card margin16" v-for="(item,i) in efficacyData" >
                     <div class="cardText">
                         <div @click="recordDetail(i,item.id)">
