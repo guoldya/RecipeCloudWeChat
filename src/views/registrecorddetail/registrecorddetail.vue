@@ -46,7 +46,7 @@
 </template>
 <script  >
     import {Dialog} from 'mand-mobile'
-    let cord_info_url="app/bizPatientRegister/read/detail";
+    let cord_info_url="/biz/app/bizPatientRegister/read/detail";
     export default {
         data() {
             return {

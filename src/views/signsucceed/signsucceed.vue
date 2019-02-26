@@ -42,7 +42,7 @@
 
 </template>
 <script>
-let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
+let appbizWaitingQueuereadlist = "/biz/app/bizWaitingQueue/read/list";
 export default {
   data() {
     return {

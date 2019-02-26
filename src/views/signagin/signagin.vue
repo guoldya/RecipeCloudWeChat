@@ -19,7 +19,7 @@
 </template>
 <script>
 import { TMap } from '../sign/TMap'
-let appbizPatientRegistersign = '/app/bizPatientRegister/sign';
+let appbizPatientRegistersign = '/biz/app/bizPatientRegister/sign';
 export default {
   data() {
     return {
@@ -41,8 +41,6 @@ export default {
     var point = new BMap.Point(106.53063501, 29.54460611);
     map.centerAndZoom(point, 17);
 
-
-
     //创建小狐狸
 
     var geolocation = new BMap.Geolocation();
@@ -50,7 +48,7 @@ export default {
       if (this.getStatus() == BMAP_STATUS_SUCCESS) {
         var mk = new BMap.Marker(r.point);// 创建自己点
         var hospital = new BMap.Point(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);
-        var marker = new BMap.Marker(hospital);//创建医院点
+        var marker = new BMap.Marker(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);//创建医院点
         var circle = new BMap.Circle(hospital, 300, { strokeColor: "rgba(29, 161, 243, 0.7)", fillColor: "rgba(29, 161, 243, 0.2) ", strokeWeight: 2, strokeOpacity: 0.9 }); //创建圆
         map.addOverlay(circle); //增加圆
         map.addOverlay(mk);
@@ -58,8 +56,13 @@ export default {
         map.panTo(r.point);
 
         //创建小狐狸
-
-
+        //创建小狐狸
+        var pt = new BMap.Point(106.53063501, 29.54460611);
+        var myIcon = new BMap.Icon(require(`./depart.png`), new BMap.Size(50, 50), {
+          imageOffset: new BMap.Size(-100, 0)
+        });
+        var marker2 = new BMap.Marker(pt, { icon: myIcon });  // 创建标注
+        map.addOverlay(marker2);
 
         var pointA = new BMap.Point(r.point.lng, r.point.lat);  // 创建点坐标A--大渡口区
         var pointB = new BMap.Point(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);

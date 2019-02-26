@@ -58,7 +58,7 @@
 </template>
 <script >
 import { Toast } from 'mand-mobile';
-let bdProductreaddetail = '/app/bizArticle/read/detail';
+let bdProductreaddetail = '/biz/app/bizArticle/read/detail';
 let bizArticleCmtreadpage = 'bizArticleCmt/read/page';
 let appbizCollectionaddCollection = 'app/bizCollection/addCollection';
 let appbizCollectiondeleteCollection = 'app/bizCollection/deleteCollection';

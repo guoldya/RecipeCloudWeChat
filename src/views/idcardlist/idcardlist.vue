@@ -37,7 +37,7 @@
    </div>
 </template>
 <script type="text/babel">
-let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
+let wechatbizPatientCardreadpage = "/biz/app/bizPatientCard/read/list";
 import { Dialog, Button, Toast } from 'mand-mobile'
 export default {
    data() {
