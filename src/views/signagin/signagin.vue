@@ -48,18 +48,17 @@ export default {
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function (r) {
       if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-        var mk = new BMap.Marker(r.point);// 创建点
-        var circle = new BMap.Circle(r.point, 300, { strokeColor: "rgba(29, 161, 243, 0.7)", fillColor: "rgba(29, 161, 243, 0.2) ", strokeWeight: 2, strokeOpacity: 0.9 }); //创建圆
+        var mk = new BMap.Marker(r.point);// 创建自己点
+        var hospital = new BMap.Point(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);
+        var marker = new BMap.Marker(hospital);//创建医院点
+        var circle = new BMap.Circle(hospital, 300, { strokeColor: "rgba(29, 161, 243, 0.7)", fillColor: "rgba(29, 161, 243, 0.2) ", strokeWeight: 2, strokeOpacity: 0.9 }); //创建圆
         map.addOverlay(circle); //增加圆
         map.addOverlay(mk);
-
+        map.addOverlay(marker);
         map.panTo(r.point);
 
         //创建小狐狸
-        var pt = new BMap.Point(106.53063501, 29.54460611);
-        var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300, 157));
-        var marker2 = new BMap.Marker(pt, { icon: myIcon });  // 创建标注
-        map.addOverlay(marker2);
+
 
 
         var pointA = new BMap.Point(r.point.lng, r.point.lat);  // 创建点坐标A--大渡口区
@@ -72,7 +71,7 @@ export default {
           var label = new BMap.Label("当前没有在签到区域", { offset: new BMap.Size(20, -10) });
         }
 
-        mk.setLabel(label);
+        mk.setLabel(label);//自己点添加lable
         // alert('您的位置：' + r.point.lng + ',' + r.point.lat);
       }
       else {
