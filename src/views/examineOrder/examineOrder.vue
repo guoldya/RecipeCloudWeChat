@@ -10,44 +10,40 @@
                     </li>
                 </ul>
             </div>
-            <div  class="order">
+            <div class="order" v-show="!loadingtrue" v-if="timeData.length!=0">
                 <div class="orderDetail" v-for="(item,i) in timeData" :key="i">
                     <div>
-                        <span class="orderTime">{{item.time}}</span>
+                        <span class="orderTime">{{item.stage}}</span>
                     </div>
                     <div class="nowOrder">
-                        <span>还剩余名额{{item.reset}}人</span>
+                        <span>还剩余名额{{item.totalNum}}人</span>
                         <span class="num noNum" v-if="item.reset==0">无号</span>
-                        <span class="num" v-else @click="makeOrder(i)">预约</span>
+                        <span class="num" v-else @click="makeOrder(item.id)">预约</span>
                     </div>
                     <div style="clear: both"></div>
                     <p class="partLine"></p>
                 </div>
+
             </div>
+            <div style="padding: 10px" v-else>暂无号源</div>
+            <Loading v-show="loadingtrue"></Loading>
         </div>
     </div>
 </template>
 
 <script>
-    let bizExamSchedulereadlist="app/bizExamSchedule/read/list";
+    let bizExamSchedulereadlist="app/bizExamSchedule/daySchedule";
     export default {
         data() {
             return {
                 activetime: 0,
-                active: 0,
-                value: '',
-                isSeemore: false,
-                choosedate: '',
-                chooseweek: '',
                 isTime: '',
                 isWeixin: false,
                 time: [],
                 dayWeek: ["日", "一", "二", "三", "四", "五", "六"],
-                timeData:[
-                    {time:"7:00-8:00",reset:"1"},
-                    {time:"8:00-9:00",reset:"0"},
-                ],
+                timeData:[],
                 classId:'',
+                loadingtrue:true,
             }
         },
         mounted() {
@@ -59,8 +55,6 @@
             } else {
                 this.isWeixin = true;
             };
-            var today = new Date();
-            this.choosedate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
             this.getData();
             this.addWeek()
         },
@@ -69,27 +63,22 @@
                 console.log(num);
                 console.log(item);
                 this.activetime = num;
-                this.choosedate = item.date;
-                this.chooseweek = item.week;
                 this.isTime = item.year + '-' + item.date;
-            },
-
-            choose(value, index) {
-                this.active = index;
-                this.choosedate = value.year + '-' + value.month + '-' + value.date;
+                this.getTime();
             },
             getData() {
                 for (let i = 0; i < 15; i++) {
                     let nowTime = new Date();
                     let d = nowTime.setDate(nowTime.getDate() + i - 1);
                     let data = this.addDate(d, 1);
+                    console.log(data)
                     let time = {};
                     if (i == 0) {
                         time = { date: data.newData, week: '当日号', year: data.newYear }
                     } else {
                         time = { date: data.newData, week: data.newDay, year: data.newYear }
                     }
-                    this.time.push(time)
+                    this.time.push(time);
                 }
             },
             addWeek() {
@@ -105,23 +94,41 @@
               d.setDate(d.getDate() + days);
               var y = d.getFullYear();
               var m = d.getMonth() + 1;
+              m = m <= 9 ? "0" + m : m;
               var newDay = dayArr[d.getDay()];
-              data.newData = m + '-' + d.getDate();
+              var newDate=d.getDate();
+              newDate = newDate <= 9 ? "0" + newDate : newDate;
+              data.newData = m + '-' + newDate;
               data.newYear = y;
               data.newDay = newDay;
               return data;
             },
             makeOrder(val){
-
+                let argu = {id:this.classId,scheduleId:val};
+                this.$router.push({
+                    name: 'examineDetail',
+                    query: argu
+                });
             },
             getTime(){
                 this.classId=this.$route.query.classId;
+                if (!this.isTime) {
+                    var today = new Date();
+                    var m=today.getMonth()+1;
+                    m = m <= 9 ? "0" + m : m;
+                    var d=today.getDate();
+                    d = d <= 9 ? "0" + d : d;
+                    this.isTime = today.getFullYear() + "-" + (m) + "-" + d;
+                }
                 let getTimeParam={};
                 getTimeParam.orgId=49;
                 getTimeParam.classId=parseInt(this.classId);
+                getTimeParam.day=this.isTime;
+                console.log(this.isTime)
                 this.$axios.put(bizExamSchedulereadlist,getTimeParam).then((res) => {
                     if(res.data.code=='200'){
-
+                        this.loadingtrue = false;
+                        this.timeData=res.data.rows;
                     }
                 }).catch(function (err) {
                     console.log(err);

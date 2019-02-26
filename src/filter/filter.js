@@ -37,6 +37,34 @@ const payTypeFilter=function(value){
         return "已取消"
     }
 }
+const time=function(value){
+    if(value==undefined){
+        return ""
+    }
+    let val=value.split(' ')[0];
+    return val
+}
+const drugCheck=function(value){
+    if(value==undefined){
+        return ""
+    }
+    if(value==0){
+        return "新处方"
+    }else if(value==1){
+        return "已审核"
+    }else if(value==2){
+        return "已取药"
+    }else if(value==3){
+        return "已退药"
+    }else if(value==4){
+        return "已失效"
+    }else if(value==5){
+        return "已下订单"
+    }
+}
 export default {
-    keepTwoNum, payTypeFilter
+    keepTwoNum,
+    payTypeFilter,
+    time,
+    drugCheck,
 }
