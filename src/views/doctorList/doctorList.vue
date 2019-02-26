@@ -214,10 +214,11 @@ export default {
     },
 
     intodoctordetail(data, index) {
+      this.$store.commit('majorFun', this.selectorValue);
       let argu = {}
       this.$router.push({
         name: 'doctordetail',
-        query: { doctorId: data.id, time: this.isTime, week: this.chooseweek, afternoon: index }
+        query: { sourceId: data.regId, doctorId: data.id, time: this.isTime, week: this.chooseweek, afternoon: index }
       });
     },
 

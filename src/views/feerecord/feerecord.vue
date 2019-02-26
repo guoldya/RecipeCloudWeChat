@@ -17,13 +17,13 @@
                 <span class="downImg"><img src="@/assets/images/icon_down.png"></span> -->
             </span>
         </header>
-        <div :class="{'outCarint':true,'margin45':isWeixin}">
+        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
             <div class="appTab">
                 <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="waitPayData.length!=0" v-show="!loadingtrue" class="outCarint">
+            <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
                 <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
                     <p class="appTitle">
                         <span>{{item.type}}费</span>

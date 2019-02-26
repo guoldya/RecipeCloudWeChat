@@ -3,8 +3,8 @@
     <Header post-title="选择科室" v-show="isWeixin"></Header>
     <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
       <Search></Search>
-      <div class="appTab">
-        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.id,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+      <div class="appTab" style="margin-top:10px">
+        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
           {{item.orgName}}
         </span>
       </div>
@@ -73,6 +73,7 @@ export default {
       if (res.data.code == '200') {
         this.departs = res.data.rows;
         this.yuanId = res.data.rows[0].id;
+        this.$store.commit('departFun', res.data.rows[0].orgName);
         this.orgFun(this.yuanId);
       } else {
         console.log(res.msg);
@@ -90,6 +91,7 @@ export default {
       }).then((res) => {
         if (res.data.code == '200') {
           this.departData = res.data.rows;
+
         } else {
           console.log(res.msg);
         }
@@ -97,12 +99,14 @@ export default {
         console.log(err);
       });
     },
-    switchTo(num, index) {
 
+    switchTo(num, index) {
       this.active1 = index;
-      this.yuanId = num;
+      this.$store.commit('departFun', num.orgName);
+      this.yuanId = num.id;
       this.orgFun(this.yuanId)
     },
+    
     switchDE(num) {
       this.active2 = num;
     },

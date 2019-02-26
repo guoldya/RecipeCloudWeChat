@@ -24,11 +24,11 @@
             <!--</span>-->
             <!--</div>-->
             <div class="appTab">
-                <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+                <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="goodsList.length!=0" v-show="!loadingtrue" class="outCarint">
+            <div v-if="goodsList.length!=0" v-show="!loadingtrue">
                 <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
                     <div class="cardText" @click="checkReportDetail(item.id)">
                         <div class="cardTextLeft">
@@ -51,7 +51,8 @@
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
             <div v-show="!loadingtrue" class="nullDiv" v-else>
-                <img src="@/assets/images/null1.png">
+                <!--<img src="@/assets/images/null1.png">-->
+                <p>您近三个月没有{{noDataTitle}}记录</p>
             </div>
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
                 <span v-if="goodsList.length!=0&&!nomore">
@@ -104,7 +105,8 @@
                 collectPageNumber: 1,
                 choseValue: '',
                 list: [],
-                listInfo:[]
+                listInfo:[],
+                noDataTitle:"检查报告",
             };
         },
         created() {
@@ -199,9 +201,10 @@
                     query: { id: val },
                 });
             },
-            switchTo(data, num) {
+            switchTo(item, num) {
                 this.active1 = num;
-                this.type = data;
+                this.type = item.type;
+                this.noDataTitle = item.title;
                 this.goodsList = [];
                 this.page = 1;
                 this.loadingtrue = true;

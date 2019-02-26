@@ -11,7 +11,7 @@
                             <span class="doctor-name">{{doctorInfo.name}} </span>
                             <span class="doctor-tag">{{doctorInfo.title}} </span>
                         </p>
-                        <p class="hospital"> 院区{{doctorInfo.hospital}} </p>
+                        <p class="hospital"> {{depart}} </p>
                         <p class="content"> 擅长：{{doctorInfo.introduce}} </p>
                         <p class="open" @click="showMaskClosable=true"> 更多</p>
                     </div>
@@ -23,28 +23,27 @@
                 </div>
             </md-landscape>
         </div>
-
         <div class="outCarint">
             <div class="doctordetal">
                 <div class="outCarint">
-                    <ul class="available-info">
+                    <ul class="available-info" v-show="!islist">
                         <li style="border: none;">
                             <div> {{time}} {{week}} {{afternoon}} <br/>
                                 <span class="colo13">
-                                    儿科门诊 华西院区 <br/> 余
-                                    <span class="mu-secondary-text-color">0</span>&nbsp;
-                                    <span class="mu-secondary-text-color">￥20</span>
+                                    {{major}} {{depart}} <br/> 余
+                                    <span class="mu-secondary-text-color">{{orderinfo.valNum}}</span>&nbsp;
+                                    <span class="mu-secondary-text-color">￥{{orderinfo.money}}</span>
                                 </span>
                             </div>
-                            <div @click="todayreservation()" class="available-tag">预约</div>
+                            <div @click="todayreservation(orderinfo)" class="available-tag">预约</div>
                         </li>
-                        <p class="colo13">全部排班</p>
                     </ul>
+                    <p class="home-article-combo--slogan">全部排班</p>
                     <ul class="available-info">
                         <li v-for="(item,i) in dateList" :key="i">
-                            <div> {{item.regDate|time}} 星期一 {{item.regStageVO}} <br/>
+                            <div> {{item.regDate}} 星期一 {{item.regStageVO}} <br/>
                                 <span class="colo13">
-                                    {{item.dept}} 华西院区 <br/> 余
+                                    {{item.dept}} {{depart}} <br/> 余
                                     <span class="mu-secondary-text-color">{{item.valNum}}</span>&nbsp;
                                     <span class="mu-secondary-text-color">￥{{item.money}}</span>
                                 </span>
@@ -63,7 +62,7 @@ import start from '@/assets/images/icon_star@2x.png'
 
 let appbdHospitalDoctorreaddetail = "/app/bdHospitalDoctor/read/detail";
 let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/rankWorld";
-
+let appbizRegisterSourcereadsourceDetail = "/app/bizRegisterSource/read/sourceDetail";
 export default {
     data() {
         return {
@@ -74,10 +73,14 @@ export default {
             collapsed: false,
             isActive: true,
             doctorInfo: '',
-            dateList: [],
+            dateList: '',
             week: '',
             time: '',
             afternoon: '下午',
+            depart: '',
+            major: '',
+            islist: false,
+            orderinfo: '',
         }
     },
     mounted() {
@@ -91,8 +94,30 @@ export default {
         if (this.$route.query.afternoon * 1 == 1) {
             this.afternoon = '上午';
         }
+        if (this.$route.query.islist) {
+            this.islist = true;
+
+
+        }
+        else {
+            this.$axios.put(appbizRegisterSourcereadsourceDetail, {
+                id: this.$route.query.sourceId * 1,
+            }).then((res) => {
+                console.log(res)
+                if (res.data.code == '200') {
+                    this.orderinfo = res.data.data;
+                } else {
+                    console.log(res.msg);
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+
         this.week = this.$route.query.week;
         this.time = this.$route.query.time;
+        this.depart = this.$store.state.depart;
+        this.major = this.$store.state.major;
         this.doctordataFun();
         this.dateListFun();
     },
@@ -102,17 +127,17 @@ export default {
 
         },
 
-        todayreservation() {
+        todayreservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: { doctorId: this.$route.query.doctorId, }
+                query: { money: data.money, sourceId: this.$route.query.sourceId, doctorId: this.$route.query.doctorId, time: this.$route.query.time, week: this.$route.query.week, afternoon: this.$route.query.afternoon }
             });
         },
 
         reservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: { doctorId: this.$route.query.doctorId, time: data.regDate.split(' ')[0] }
+                query: { sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.dept, money: data.money }
             });
         },
 
@@ -128,7 +153,7 @@ export default {
         },
         doctordataFun() {
             this.$axios.put(appbdHospitalDoctorreaddetail, {
-                id: 2,
+                id: this.$route.query.doctorId * 1,
                 stageType: this.$route.query.afternoon * 1,
                 time: this.$route.query.time,
             }).then((res) => {
@@ -146,6 +171,9 @@ export default {
                 id: this.$route.query.doctorId * 1,
             }).then((res) => {
                 if (res.data.code == '200') {
+                    for (let i = 0; i < res.data.rows.length; i++) {
+                        res.data.rows[i].regDate = res.data.rows[i].regDate.split(' ')[0];
+                    }
                     this.dateList = res.data.rows;
                 } else {
                     console.log(res.msg);
