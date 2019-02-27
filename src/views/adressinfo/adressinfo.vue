@@ -1,13 +1,13 @@
 <template>
 
-   <div class="md-example-child md-example-child-input-item-0">
+   <div class="adressinfo">
       <Header :post-title="post" v-show="isWeixin"></Header>
       <div :class="{margin45:isWeixin,outCarint:true }">
          <md-field>
             <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名" is-highlight></md-input-item>
             <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
             <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码" is-highlight></md-input-item>
-            <md-field-item title="所在区域" v-model="areaId" arrow="arrow-right" :addon="pickerValue1" @click="isPickerShow1 = true">
+            <md-field-item title="所在区域" v-model="areaId" arrow="arrow-right" :content="pickerValue1" @click="isPickerShow1 = true">
             </md-field-item>
             <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址" is-highlight></md-input-item>
             <md-button type="primary" @click="tijiao" round style="margin-top:16px">保存</md-button>
@@ -42,6 +42,7 @@ export default {
          post: "编辑地址",
          pickerDefaultIndex: [],
          pickerDefaultValue: [],
+         test: '',
       }
    },
    /* DELETE */
@@ -50,7 +51,7 @@ export default {
       [Field.name]: Field,
    },
    mounted() {
-      this.pickerDefaultValue = ['500000', '500100', '500104']
+
       if (this.$route.query.id) {
          document.title = '编辑地址';
          this.post = '编辑地址';
@@ -65,7 +66,10 @@ export default {
                // var aa = String(res.data.data.areaId);
                // this.pickerDefaultIndex = [Number(aa.substring(0, 2)), Number(aa.substring(2, 4)), Number(aa.substring(4, 6))]
                // this.pickerDefaultIndex = [500000 ,500100 ,500104];
-               console.log(this.pickerDefaultIndex)
+
+               this.pickerDefaultValue = [parseInt(this.areaId / 1000) * 1000, parseInt(this.areaId / 100) * 100, this.areaId]
+               console.log(this.pickerDefaultValue, "sss")
+
                this.zipCode = res.data.data.zipCode;
             }
          }).catch(function (err) {
@@ -85,8 +89,9 @@ export default {
       this.$axios.put(appshippingAddressareaList, {
       }).then(res => {
          if (res.data.code == '200') {
-            this.pickerData1 = [this.areaList(res.data.rows)];
+            this.areaAAA(res.data.rows);
 
+            this.pickerData1 = [this.areaList(res.data.rows)];
          }
       }).catch(function (err) {
          console.log(err);
@@ -111,6 +116,32 @@ export default {
          }
          return newArea;
       },
+      areaAAA(AAA) {
+         AAA.forEach(value => {
+            if (value.areaCode == this.pickerDefaultValue[0]) {
+               console.log(value.label, "AAA")
+               var aa = value.label;
+               value.children.forEach(test => {
+                  if (test.areaCode == this.pickerDefaultValue[1]) {
+                     console.log(test.label, "AAA")
+                     var bb = test.label;
+
+                     test.children.forEach(data => {
+                        if (data.areaCode == this.pickerDefaultValue[2]) {
+                           console.log(data.label, "label");
+                           var cc = data.label;
+                           this.pickerValue1 = aa + bb + cc;
+                        }
+
+
+                     })
+                  }
+               })
+            }
+
+         })
+
+      },
       onPickerConfirm(index) {
 
          const values = this.$refs[`picker${index}`].getColumnValues()
@@ -125,7 +156,7 @@ export default {
             value && (test += `${value.value || value.label} `)
 
          })
-         // console.log(test, test.split(' ')[2])
+         console.log(test, test.split(' ')[2])
          this.areaId = test.split(' ')[2];
          this[`pickerValue${index}`] = res
 
@@ -157,3 +188,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.adressinfo .md-field-item-control {
+  margin-left: 30px;
+}
+</style>

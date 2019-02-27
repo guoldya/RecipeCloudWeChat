@@ -46,6 +46,10 @@
     <div :class="{ pt50: !isTop  ,'outCarint':true}" style="margin-bottom:20px; ">
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
+        <ul v-if="amList.length!=0"  v-show="!loadingtrue">
+          <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info)">
+          </li>
+        </ul>
         <ul v-if="amList.length!=0">
           <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info,1 )">
             <div class="card">
@@ -62,13 +66,14 @@
             </div>
           </li>
         </ul>
-        <div v-else>
+        <div v-else  v-show="!loadingtrue">
           <p>暂无号源</p>
         </div>
+        <Loading v-show="loadingtrue"></Loading>
       </div>
       <p class="forenoon">下午</p>
       <div class="doctorList" id="afternoon">
-        <ul v-if="pmList.length!=0">
+        <ul v-if="pmList.length!=0" v-show="!loadingtrue">
           <li v-for="(item,index) in pmList" :key="index">
             <div class="card" @click="intodoctordetail(item,2)">
               <div class="cardText">
@@ -87,9 +92,10 @@
             </div>
           </li>
         </ul>
-        <div v-else>
+        <div v-else v-show="!loadingtrue">
           <p>暂无号源</p>
         </div>
+        <Loading v-show="loadingtrue"></Loading>
       </div>
 
     </div>
@@ -123,6 +129,7 @@ export default {
       isTime: '',
       amList: [],
       pmList: [],
+        loadingtrue: true,
     };
   },
   created() {
@@ -282,6 +289,7 @@ export default {
         time: this.isTime,
       }).then((res) => {
         if (res.data.code == '200') {
+            this.loadingtrue=false;
           this.amList = res.data.data.amList;
           this.pmList = res.data.data.pmList;
         } else {

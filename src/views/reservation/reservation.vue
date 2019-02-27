@@ -207,7 +207,8 @@ export default {
       },
       rightPay() {
          this.$axios.post(fconfirm_pay_url, {
-            sourceId: this.$route.query.sourceId
+            sourceId: this.$route.query.sourceId,
+            cardId:this.$store.state.cardId,
          }).then((res) => {
             if (res.data.code == '200') {
                this.isCashierhow = !this.isCashierhow;

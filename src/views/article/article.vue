@@ -9,8 +9,8 @@
           <span>文章详情</span>
         </div>
         <span v-show="!isout" class="aui-navBar-item">
-          <img v-show="isCollect==0" @click="select" src="@/assets/images/icon_collect1.png" style="width:25px;margin-right:10px">
-          <img v-show="isCollect==1" @click="cancleselect" src="@/assets/images/icon_collect1_pre.png" style="width:25px;margin-right:10px">
+          <img v-show="isCollect==0" @click="select" src="@/assets/images/icon_collect1.png" style="width:22px;margin-right:10px">
+          <img v-show="isCollect==1" @click="cancleselect" src="@/assets/images/icon_collect1_pre.png" style="width:23px;margin-right:10px">
           <img src="@/assets/images/icon_share.png" style="width:24px;height:28px" @click="share">
         </span>
       </header>

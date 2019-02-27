@@ -14,7 +14,7 @@
                      <p>预约时间：{{item.createTime}}</p>
                      <!--<p>就诊时间：2019-12-05 12:30:00</p>-->
                   </div>
-                  <div class="cardTextRight" @click="cordInfo(item.id,item.payType)">
+                  <div class="cardTextRight" @click="cordInfo(item.id,item.payType,item.sourceId)">
                      <span>详情</span>
                      <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
                   </div>
@@ -101,11 +101,11 @@ export default {
                this.cordFun(true);
            }, 500);
        },
-       cordInfo(val,type){
+       cordInfo(val,type,sourceId){
            this.$store.commit('payTypeFun', type);
            this.$router.push({
                name: 'registrecorddetail',
-               query: {id:val}
+               query: {id:val,sourceId:sourceId}
            });
        }
    },

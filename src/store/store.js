@@ -28,12 +28,15 @@ export default new Vuex.Store({
         depart: '',
         major: '',
         patientName: '',
+        cardId: '',
     },
     mutations: {
         mobileFun: (state, n) => {
             state.mobile = n;
         },
-
+        cardIdFun: (state, n) => {
+            state.cardId = n;
+        },
         cardNnameFun: (state, n) => {
             state.patientName = n;
         },
