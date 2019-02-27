@@ -60,8 +60,6 @@
         },
         methods: {
             switchTo(num, item) {
-                console.log(num);
-                console.log(item);
                 this.activetime = num;
                 this.isTime = item.year + '-' + item.date;
                 this.getTime();

@@ -3,7 +3,7 @@
   <div class="feeinfo">
     <Header :post-title="postTitle" v-show="isWeixin"></Header>
     <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
-      <div class="card margin16" v-for="(item,i) in feeDetailData" :key="i">
+      <div class="card margin16" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
         <div class="cardText">
           <div v-if="feeActiveId==1">
             <p class="cardTextPP">
@@ -55,7 +55,7 @@
 
         </div>
       </div>
-      <div v-if="feeButtomDetail.length!=0" class="card margin16">
+      <div v-if="feeButtomDetail.length!=0" class="card margin16" v-show="!loadingtrue">
         <div class="cardText">
           <div class="cardTextKind spanWid">
             <span style="text-align: left">类别</span>
@@ -71,6 +71,7 @@
           </div>
         </div>
       </div>
+      <Loading v-show="loadingtrue"></Loading>
       <div class="md-example-child md-example-child-cashier" v-if="feeActiveId==0">
         <md-button class="margin16" type="primary" @click="rightPay" round>立即缴费</md-button>
         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
@@ -128,6 +129,7 @@ export default {
       orderCode: '',
       feeActiveId: '',
       postTitle: '',
+        loadingtrue: true,
     };
   },
   created() {
@@ -157,13 +159,9 @@ export default {
         this.postTitle = "我的缴费-已缴费";
         document.title = "我的缴费-已缴费";
       }
-      this.$axios.put(fee_detail_url, { id: this.$route.query.id }, {
-        headers: {
-          'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-          'UUID': `AAA`
-        },
-      }).then((res) => {
+      this.$axios.put(fee_detail_url, { id: this.$route.query.id }).then((res) => {
         if (res.data.code == '200') {
+            this.loadingtrue = false;
           this.feeDetailData.push(res.data.data);
           for (let i = 0; i < this.feeDetailData.length; i++) {
             this.feeDetailData[i].createTime = this.feeDetailData[i].createTime.split(' ')[0];
@@ -177,12 +175,7 @@ export default {
     },
     rightPay() {
       this.isCashierhow = !this.isCashierhow;
-      this.$axios.put(fconfirm_pay_url, { id: this.feeId }, {
-        headers: {
-          'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-          'UUID': `AAA`
-        },
-      }).then((res) => {
+      this.$axios.put(fconfirm_pay_url, { id: this.feeId }).then((res) => {
         if (res.data.code == '200') {
           this.orderCode = res.data.data.orderCode;
         }
@@ -276,12 +269,7 @@ export default {
       nowPayParams.orderCode = this.orderCode;
       nowPayParams.orderType = "4";
       nowPayParams.payType = item.value;
-      this.$axios.post(now_pay_url, nowPayParams, {
-        headers: {
-          'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-          'UUID': `AAA`
-        },
-      }).then((res) => {
+      this.$axios.post(now_pay_url, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.feeDetailData.push(res.data.data);
           this.feeButtomDetail = res.data.data.details;
@@ -291,12 +279,13 @@ export default {
           this.doPay();
         } else {
           this.$toast.info(res.data.msg);
-          setTimeout(() => {
-            this.$router.push({
-              name: 'feerecord',
-              query: {}
-            });
-          }, 3000)
+            this.isCashierhow = false;
+          // setTimeout(() => {
+          //   this.$router.push({
+          //     name: 'feerecord',
+          //     query: {}
+          //   });
+          // }, 3000)
         }
       }).catch(function (err) {
         console.log(err);
