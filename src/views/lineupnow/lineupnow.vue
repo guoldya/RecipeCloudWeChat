@@ -198,18 +198,18 @@ export default {
         })
     },
     switchTo(data) {
-
       this.queryType = data.queryType;
+      this.getGoodslist();
     },
     intolineupinfo(data) {
-      let argu = {}
+      let argu = {};
       this.$router.push({
         name: 'lineupinfo',
         query: { id: data.id,queryType:this.queryType }
       });
     },
     intoreportinfo() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
         name: 'reportinfo',
         query: argu

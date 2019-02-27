@@ -12,34 +12,20 @@
 
       <div class="card">
         <div class="cardText">
-          <!-- <mu-row class="lineheight50">
-                  <mu-col span="6">
-                     <div class="grid-cell">
-                        支付方式
-                     </div>
-                  </mu-col>
-                  <mu-col span="6" style="text-align: right;">
-                     <div class="grid-cell">
-                        支付宝
-                     </div>
-                  </mu-col>
-               </mu-row>
-               <mu-row class="lineheight50">
-                  <mu-col span="6">
-                     <div class="grid-cell">
-                        付款总额
-                     </div>
-                  </mu-col>
-                  <mu-col span="6" style="text-align: right;">
-                     <div class="grid-cell mu-secondary-text-color ">
-                        ￥13.00
-                     </div>
-                  </mu-col>
-               </mu-row> -->
+            <div class="listData">
+              <span>付款总额</span>
+              <span>￥{{jumpPar.money |keepTwoNum}}</span>
+            </div>
+          <div class="listData">
+            <span>支付时间</span>
+            <span>{{jumpPar.payTime}}</span>
+          </div>
+          <div class="listData">
+            <span>订单单号</span>
+            <span>{{jumpPar.orderCode}}</span>
+          </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </template>
@@ -59,12 +45,14 @@ export default {
         { title: '预约成功' },
         { title: '预约关闭' }
       ],
+        jumpPar:{},
     };
   },
   created() {
 
   },
   mounted() {
+      this.jumpPar=this.$route.query;
     document.title = '支付结果';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {

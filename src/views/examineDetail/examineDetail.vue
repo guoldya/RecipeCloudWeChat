@@ -2,7 +2,7 @@
     <div class="examineDetail">
         <Header post-title="预约详情" v-show="isWeixin"></Header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div v-show="!loadingtrue" v-for="(item,i) in orderData" :key="i">
+            <div v-if="orderData.length!=0" v-show="!loadingtrue" v-for="(item,i) in orderData" :key="i">
                 <div class="successImg">
                     <img src="@/assets/images/icon_success.png" alt="">
                     <p>预约成功</p>
@@ -30,6 +30,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div v-show="!loadingtrue" v-if="orderData.length==0">
+                <div class="successImg">
+                    <img src="@/assets/images/fail.png" alt="">
+                    <p>预约失败</p>
                 </div>
             </div>
             <Loading v-show="loadingtrue"></Loading>
@@ -78,8 +84,10 @@
                 this.$axios.post(ready_order_url,orderPar).then((res) => {
                     if(res.data.code=='200'){
                         this.loadingtrue = false;
-                        console.log(res.data);
                         this.orderData.push(res.data.data)
+                    }else if(res.data.code=='800'){
+                        this.loadingtrue = false;
+                        this.orderData=[];
                     }
                 }).catch(function (err) {
                     console.log(err);
@@ -98,8 +106,8 @@
         margin-top: 180px;
     }
     .examineDetail .successImg img{
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
     }
     .examineDetail .successImg p{
         font-size: 30px;
