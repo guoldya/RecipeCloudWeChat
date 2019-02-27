@@ -45,28 +45,24 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 Vue.config.productionTip = false;
 
 const BASE_URL = '/api/biz';
- 
 axios.defaults.baseURL = BASE_URL;
 
 axios.interceptors.request.use(function (config) {
   let url = config.url;
   // console.log(localStorage.getItem("token1"), "我是缓存的token哦")
   // 如果是登陆 
-  if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
-    localStorage.setItem('token', "");
-    config.headers.TOKEN = "";
-  } else {
-    config.headers.TOKEN = localStorage.getItem("token1");
-    config.headers.UUID = "AAA";
 
-    // if (this.$store.state.TOKEN) {
-    //   config.headers.TOKEN = this.$store.state.TOKEN;
-    //   config.headers.UUID = this.$store.state.UUID;
-    // } else {
-    //   console.log("一二善思", localStorage.getItem("token"))
-    //   config.headers.TOKEN = localStorage.getItem("token");
-    //   config.headers.UUID = "AAA";
-    // }
+
+  if (localStorage.getItem("token1")) {
+    if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
+      config.headers.TOKEN = "";
+    } else {
+      config.headers.TOKEN = localStorage.getItem("token1");
+      config.headers.UUID = "AAA";
+    };
+  } else {
+    config.headers.TOKEN = localStorage.getItem("token7");
+    config.headers.UUID = localStorage.getItem("UUID7");
   }
   return config;
 }, function (err) {

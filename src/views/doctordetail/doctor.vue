@@ -8,18 +8,18 @@
                     <div class="header"><img src="@/assets/images/3.jpg"></div>
                     <div class="doctor-right">
                         <p class="introduce">
-                            <span class="doctor-name">名字{{doctorInfo.name}} </span>
-                            <span class="doctor-tag">名字{{doctorInfo.title}} </span>
+                            <span class="doctor-name">{{doctorInfo.name}} </span>
+                            <span class="doctor-tag">{{doctorInfo.title}} </span>
                         </p>
-                        <p class="hospital"> 名字{{doctorInfo.hospital}} </p>
-                        <p class="content"> 擅长：儿科常见病、多发病多发病多发病 </p>
+                        <p class="hospital"> 院区{{doctorInfo.hospital}} </p>
+                        <p class="content"> 擅长：{{doctorInfo.introduce}} </p>
                         <p class="open" @click="showMaskClosable=true"> 更多</p>
                     </div>
                 </div>
             </div>
             <md-landscape v-model="showMaskClosable" :mask-closable="true">
                 <div class="describ">
-                    <p>擅长：儿科常见病、多发病 #先天性心脏病儿科常见病、多发病 擅长：儿科常见病、多发病 #先天性心脏病儿科常见病、多发病 </p>
+                    <p>擅长：{{doctorInfo.introduce}} </p>
                 </div>
             </md-landscape>
         </div>
@@ -29,47 +29,27 @@
                 <div class="outCarint">
                     <ul class="available-info">
                         <li style="border: none;">
-                            <div> 2019-02-22 今日 上午 <br/>
+                            <div> {{time}} {{week}} {{afternoon}} <br/>
                                 <span class="colo13">
                                     儿科门诊 华西院区 <br/> 余
                                     <span class="mu-secondary-text-color">0</span>&nbsp;
                                     <span class="mu-secondary-text-color">￥20</span>
                                 </span>
                             </div>
-                            <div @click="reservation " class="available-tag">预约</div>
+                            <div @click="todayreservation()" class="available-tag">预约</div>
                         </li>
                         <p class="colo13">全部排班</p>
                     </ul>
                     <ul class="available-info">
-                        <li>
-                            <div> 2019-02-22 星期一 上午 <br/>
+                        <li v-for="(item,i) in dateList" :key="i">
+                            <div> {{item.regDate|time}} 星期一 {{item.regStageVO}} <br/>
                                 <span class="colo13">
-                                    儿科门诊 华西院区 <br/> 余
-                                    <span class="mu-secondary-text-color">0</span>&nbsp;
-                                    <span class="mu-secondary-text-color">￥20</span>
+                                    {{item.dept}} 华西院区 <br/> 余
+                                    <span class="mu-secondary-text-color">{{item.valNum}}</span>&nbsp;
+                                    <span class="mu-secondary-text-color">￥{{item.money}}</span>
                                 </span>
                             </div>
-                            <div @click="reservation" class="available-tag">预约</div>
-                        </li>
-                        <li>
-                            <div> 2019-02-22 星期一 上午 <br/>
-                                <span class="colo13">
-                                    儿科门诊 华西院区 <br/> 余
-                                    <span class="mu-secondary-text-color">0</span>&nbsp;
-                                    <span class="mu-secondary-text-color">￥20</span>
-                                </span>
-                            </div>
-                            <div @click="reservation" class="available-tag">预约</div>
-                        </li>
-                        <li>
-                            <div> 2019-02-22 星期二 上午 <br/>
-                                <span class="colo13">
-                                    儿科门诊 华西院区 <br/> 余
-                                    <span class="mu-secondary-text-color">0</span>&nbsp;
-                                    <span class="mu-secondary-text-color">￥20</span>
-                                </span>
-                            </div>
-                            <div @click="reservation" class="available-tag">预约</div>
+                            <div @click="reservation(item)" class="available-tag">预约</div>
                         </li>
                     </ul>
                 </div>
@@ -80,8 +60,10 @@
 <script>
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
-let appbdHospitalDoctorreaddetail2 = "/app/bdHospitalDoctor/read/detail2";
- 
+
+let appbdHospitalDoctorreaddetail = "/app/bdHospitalDoctor/read/detail";
+let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/rankWorld";
+
 export default {
     data() {
         return {
@@ -93,6 +75,9 @@ export default {
             isActive: true,
             doctorInfo: '',
             dateList: [],
+            week: '',
+            time: '',
+            afternoon: '下午',
         }
     },
     mounted() {
@@ -103,17 +88,31 @@ export default {
         } else {
             this.isWeixin = true;
         };
-
+        if (this.$route.query.afternoon * 1 == 1) {
+            this.afternoon = '上午';
+        }
+        this.week = this.$route.query.week;
+        this.time = this.$route.query.time;
         this.doctordataFun();
+        this.dateListFun();
     },
     methods: {
+
         open() {
 
         },
-        reservation() {
+
+        todayreservation() {
             this.$router.push({
                 name: 'reservation',
-                query: { doctorId: this.$route.query.doctorId }
+                query: { doctorId: this.$route.query.doctorId, }
+            });
+        },
+
+        reservation(data) {
+            this.$router.push({
+                name: 'reservation',
+                query: { doctorId: this.$route.query.doctorId, time: data.regDate.split(' ')[0] }
             });
         },
 
@@ -128,12 +127,13 @@ export default {
             }
         },
         doctordataFun() {
-            this.$axios.put(appbdHospitalDoctorreaddetail2, {
-                id: this.$route.query.doctorId * 1,
+            this.$axios.put(appbdHospitalDoctorreaddetail, {
+                id: 2,
+                stageType: this.$route.query.afternoon * 1,
+                time: this.$route.query.time,
             }).then((res) => {
                 if (res.data.code == '200') {
-                    this.doctorInfo = res.data.data.doctorInfo;
-                    this.dateList = res.data.data.dateList;
+                    this.doctorInfo = res.data.data;
                 } else {
                     console.log(res.msg);
                 }
@@ -141,7 +141,19 @@ export default {
                 console.log(err);
             });
         },
-
+        dateListFun() {
+            this.$axios.put(appbdHospitalDoctorreadrankWorld, {
+                id: this.$route.query.doctorId * 1,
+            }).then((res) => {
+                if (res.data.code == '200') {
+                    this.dateList = res.data.rows;
+                } else {
+                    console.log(res.msg);
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        },
     }
 }
 </script>

@@ -32,6 +32,9 @@ export default {
 </script>
 
 <style  >
+body{
+  background: #ffffff
+}
 .headimg {
   width: 92px;
   height: 92px;

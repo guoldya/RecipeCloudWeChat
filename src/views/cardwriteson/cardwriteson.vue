@@ -170,6 +170,11 @@ export default {
             console.log(res.data.fileInfo[1].fileName, "我是正面");
             this.posUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
             this.othUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].filename;
+
+
+            this.$store.commit('idCardFrontImgFun', res.data.fileInfo[0]);
+            this.$store.commit('idCardBackImgFun', res.data.fileInfo[1]);
+
             this.$store.commit('posUrlFun', this.posUrl);
             this.$store.commit('othUrlFun', this.othUrl);
             this.$router.push({

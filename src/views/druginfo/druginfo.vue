@@ -296,8 +296,11 @@ export default {
     this.TOKEN = Request.TOKEN;
     this.UUID = Request.UUID;
 
-    this.$store.commit('UUIDFun', this.UUID);
-    this.$store.commit('TOKENFun', this.TOKEN);
+
+    var storage = window.localStorage;
+    storage.setItem("token7", this.TOKEN);
+    storage.setItem("UUID7", this.UUID);
+
 
     this.$axios.put(bdProductreaddetail, {
       id: _this.drugId

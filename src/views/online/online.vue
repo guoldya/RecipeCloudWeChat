@@ -85,7 +85,7 @@
             <p class="colo13">
               <span>咨询数：66 </span>&nbsp;
               <span>平均回复时长：1小时</span>&nbsp; </p>
-            <p class="price"> ￥20起 </p>
+            <p class="price"> ￥20 起 </p>
             <em>已满</em>
           </div>
         </div>

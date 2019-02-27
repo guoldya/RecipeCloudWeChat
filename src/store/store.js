@@ -19,11 +19,17 @@ export default new Vuex.Store({
         feeActiveId: '',
         feeActiveId: '',
         payType: '',
-        payType:'',
+        payType: '',
         patientId: '',
         cardNo: '',
+        idCardFrontImg: '',
+        idCardBackImg: '',
+        mobile: '',
     },
     mutations: {
+        mobileFun: (state, n) => {
+            state.mobile = n;
+        },
         addjumpArr: (state, n) => {
             state.jumpArr = n;
         },
@@ -66,6 +72,12 @@ export default new Vuex.Store({
         },
         payTypeFun: (state, n) => {
             state.payType = n;
+        },
+        idCardFrontImgFun: (state, n) => {
+            state.idCardFrontImg = n;
+        },
+        idCardBackImgFun: (state, n) => {
+            state.idCardBackImg = n;
         },
     },
     actions: {

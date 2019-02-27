@@ -14,35 +14,23 @@
     <div class="linesign"></div>
     <div class="outCarint">
       <p class="signsucceedtitle">就诊预约情况</p>
-      <div class="card">
+      <div class="card" v-for="(item,i) in waitList" :key="i">
         <div class="cardText">
           <p class="cardTextPP">就诊项目：
-            <span class="mu-secondary-text-color">血液分析</span>
+            <span class="mu-secondary-text-color">{{item.className}}</span>
           </p>
           <p class="cardTextPP">
-            <span>就诊科室：检查科</span>
-            <span>预约时间：25：00~14：30</span>
+            <span>就诊科室：{{item.examDept}}</span>
+            <span>预约时间：{{item.serialTime}}</span>
           </p>
         </div>
       </div>
-      <div class="card">
-        <div class="cardText">
-          <p class="cardTextPP">就诊项目：
-            <span class="mu-secondary-text-color">血液分析</span>
-          </p>
-          <p class="cardTextPP">
-            <span>就诊科室：检查科</span>
-            <span>预约时间：25：00~14：30</span>
-          </p>
-        </div>
-      </div>
-
     </div>
   </div>
 
 </template>
 <script>
-let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
+let bizExamApply = "/app/bizExamApply/read/page";
 export default {
   data() {
     return {
@@ -60,10 +48,14 @@ export default {
     }
 
 
-    this.$axios.put(appbizWaitingQueuereadlist, {
-      hospitalId: localStorage.getItem("hospitalId"),
+    this.$axios.put(bizExamApply, {
+      queryType: 1,
     }).then(res => {
       if (res.data.code == '200') {
+
+        for (let i = 0; i < res.data.rows.length; i++) {
+          res.data.rows[i].serialTime = res.data.rows[i].serialTime.split(' ')[1];
+        }
         this.waitList = res.data.rows;
       } else {
         this.$toast.info(res.data.msg)

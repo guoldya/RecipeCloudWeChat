@@ -117,6 +117,7 @@ export default {
           verifyType: 1,
         }).then(res => {
           if (res.data.code == '200') {
+            this.$store.commit('mobileFun', this.phonenumber);
             let argu = {}
             this.$router.push({
               name: 'cardwritesecond',

@@ -30,8 +30,8 @@
               <input class="flexF" type="text" name="username" id="phone" placeholder="姓名" :value="name" maxlength="11">
             </div>
             <md-field-item title="性别" solid>
-              <md-radio name="2" v-model="marriage" label="男" inline />
-              <md-radio name="1" v-model="marriage" label="女" inline />
+              <md-radio name="1" v-model="sex" label="男" inline />
+              <md-radio name="2" v-model="sex" label="女" inline />
             </md-field-item>
             <div class="login-box-div">
               <span class="flexF">民族</span>
@@ -39,7 +39,7 @@
             </div>
             <div class="login-box-div">
               <span class="flexF">出生日期</span>
-              <input id="verify" type="text" class="infos flexF" name="yanz" :value="birth" placeholder="出生日期" maxlength="4" />
+              <input id="verify" type="text" class="infos flexF" name="yanz" :value="birth" placeholder="出生日期" />
             </div>
             <div class="login-box-div">
               <span class="flexF">地址</span>
@@ -57,11 +57,12 @@
         </div>
       </div>
     </div>
-    <md-button type="primary" round class="margin16">正确</md-button>
+    <md-button type="primary" round class="margin16" @click="tijiao">正确</md-button>
     <md-button @click="$router.go(-1)" type="default" round style="margin-bottom:20px;">错误，重新上传</md-button>
   </div>
 </template>
 <script type="text/babel">
+let bizPatientCard = "/app/bizPatientCard/insert"
 export default {
   data() {
     return {
@@ -72,8 +73,7 @@ export default {
       birth: '',
       address: '',
       goodtime: '',
-      gender: '1',
-      marriage: '2',
+      sex: '1',
       licenseTime: '',
       validityTime: '',
       photo0Data: [],
@@ -85,13 +85,11 @@ export default {
   },
   mounted() {
 
-    var date = '20150305';
-
-
-    var date1 = date.substring(0, 4);
-    var date2 = date.substring(4, 6);
-    var date3 = date.substring(6, 8);
-    var aa = date1 + "-" + date2 + "-" + date3;
+    // var date = '20150305';
+    // var date1 = date.substring(0, 4);
+    // var date2 = date.substring(4, 6);
+    // var date3 = date.substring(6, 8);
+    // var aa = date1 + "-" + date2 + "-" + date3;
     //  alert(aa.replace(/\b(0+)/gi, ""));
     document.title = '资料确认';
     var ua = window.navigator.userAgent.toLowerCase();
@@ -102,14 +100,22 @@ export default {
     }
 
     if (this.$store.state.photo0Data) {
+      console.log(this.$store.state.photo0Data.sex)
       console.log(this.$store.state.photo0Data)
       this.photo0Data = this.$store.state.photo0Data;
       this.address = this.photo0Data.address;
       this.name = this.photo0Data.name;
       this.idCard = this.photo0Data.idCard;
-      this.sex = this.photo0Data.sex;
+      if (this.photo0Data.sex == "男") {
+        this.sex = "1";
+      } else {
+        this.sex = "2";
+      }
       this.national = this.photo0Data.national;
-      this.birth = this.photo0Data.birth;
+      var date1 = this.photo0Data.birth.substring(0, 4);
+      var date2 = this.photo0Data.birth.substring(4, 6);
+      var date3 = this.photo0Data.birth.substring(6, 8);
+      this.birth = date1 + "-" + date2 + "-" + date3;
     }
     if (this.$store.state.photo1Data) {
       console.log(this.$store.state.photo1Data);
@@ -120,7 +126,38 @@ export default {
 
   },
   methods: {
+    tijiao() {
 
+      if (this.$store.state.photo0Data) {
+        if (this.idCard != this.photo0Data.idCard) {
+          this.$toast.info("请核对身份证号码");
+          return
+        }
+      }
+
+
+      this.$axios.post(bizPatientCard, {
+        idCardFrontImg: this.$store.state.idCardFrontImg,
+        idCardBackImg: this.$store.state.idCardBackImg,
+        orgCode: localStorage.getItem("hospitalId") * 1,
+        address: this.address,
+        patientName: this.name,
+        idCard: this.idCard,
+        sex: this.sex * 1,
+        national: this.national,
+        birthday: this.birth,
+        mobile: this.$store.state.mobile,
+      }).then((res) => {
+        if (res.data.code == '200') {
+          this.$toast.info("绑定成功");
+          this.$router.go(-4);
+        } else {
+          console.log(res.msg);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
   },
   computed: {
 

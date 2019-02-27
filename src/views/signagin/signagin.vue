@@ -46,20 +46,22 @@ export default {
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function (r) {
       if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-        var mk = new BMap.Marker(r.point);// 创建自己点
-        var hospital = new BMap.Point(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);
-        var marker = new BMap.Marker(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);//创建医院点
-        var circle = new BMap.Circle(hospital, 300, { strokeColor: "rgba(29, 161, 243, 0.7)", fillColor: "rgba(29, 161, 243, 0.2) ", strokeWeight: 2, strokeOpacity: 0.9 }); //创建圆
+        var AAA = new BMap.Point(106.528353, 29.59526);
+        //var AAA = new BMap.Point(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);
+        console.log(r.point, AAA, "r.point")
+        var circle = new BMap.Circle(AAA, 300, { strokeColor: "rgba(29, 161, 243, 0.7)", fillColor: "rgba(29, 161, 243, 0.2) ", strokeWeight: 2, strokeOpacity: 0.9 }); //创建圆
         map.addOverlay(circle); //增加圆
-        map.addOverlay(mk);
-        map.addOverlay(marker);
         map.panTo(r.point);
+        // 创建自己
 
-        //创建小狐狸
-        //创建小狐狸
-        var pt = new BMap.Point(106.53063501, 29.54460611);
-        var myIcon = new BMap.Icon(require(`./depart.png`), new BMap.Size(50, 50), {
-          imageOffset: new BMap.Size(-100, 0)
+        var selfIcon = new BMap.Icon(require(`@/assets/images/mysign.png`), new BMap.Size(60, 60), {
+        });
+        var markerself = new BMap.Marker(r.point, { icon: selfIcon });  // 创建标注
+        map.addOverlay(markerself);
+        //创建医院
+        var pt = new BMap.Point(106.528353, 29.59526);
+        var myIcon = new BMap.Icon(require(`@/assets/images/signhospital.png`), new BMap.Size(60, 60), {
+          // imageOffset: new BMap.Size(0, -10)
         });
         var marker2 = new BMap.Marker(pt, { icon: myIcon });  // 创建标注
         map.addOverlay(marker2);
@@ -68,13 +70,13 @@ export default {
         var pointB = new BMap.Point(_this.$route.query.pointBposition * 1, _this.$route.query.pointBpositionlat * 1);
         if ((map.getDistance(pointA, pointB)).toFixed(2) * 1 <= 300) {
           _this.ishave = true;
-          var label = new BMap.Label("已进入签到区域", { offset: new BMap.Size(20, -10) });
+          var label = new BMap.Label("已进入签到区域", { offset: new BMap.Size(20, -25) });
         } else {
           _this.ishave = false;
-          var label = new BMap.Label("当前没有在签到区域", { offset: new BMap.Size(20, -10) });
+          var label = new BMap.Label("当前没有在签到区域", { offset: new BMap.Size(20, -25) });
         }
 
-        mk.setLabel(label);//自己点添加lable
+        markerself.setLabel(label);//自己点添加lable
         // alert('您的位置：' + r.point.lng + ',' + r.point.lat);
       }
       else {
