@@ -89,8 +89,9 @@
                 var element=document.getElementsByClassName("wh_content")[1].children;
                 for(let i=0;i<element.length;i++){
                     var para=document.createElement("div");
-                    para.style.color="red";
-                    para.style.marginTop="-10px";
+                    para.style.color="#b5b5b5";
+                    para.style.height="20px";
+                    para.style.marginTop="-8px";
                     var node=document.createTextNode("上午");
                     para.appendChild(node);
                     element[i].appendChild(para);
@@ -133,40 +134,42 @@
 </script>
 
 <style scoped>
-  .doctorschedu  .doctor-head{
-      height:auto;
-  }
-  /deep/.wh_content_all{
-      background-color: transparent !important;
-  }
-  /deep/.wh_item_date, /deep/.wh_top_tag,/deep/.wh_top_changge li{
-      color: #333333;
-  }
-  /deep/.wh_jiantou1{
-      border-top: 4px solid #333333;
-      border-left: 4px solid #333333;
-  }
-  /deep/.wh_jiantou2{
-      border-top: 4px solid #333;
-      border-right: 4px solid #333;
-   }
-  /deep/.wh_content{
-      margin-left: 22px;
-  }
-  /deep/.wh_content_item .wh_isToday{
-      background-color: #e5e5e5;
-  }
-  /deep/.wh_content_item .wh_chose_day{
-      background-color: #e5e5e5;
-  }
-  .nomore{
-      overflow: hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;
-  }
-  .yy_dateAA {
-      height: auto;
-  }
+    .doctorschedu  .doctor-head{
+        height:auto;
+    }
+    /deep/.wh_content_all{
+        background-color: transparent !important;
+    }
+    /deep/.wh_item_date, /deep/.wh_top_tag,/deep/.wh_top_changge li{
+        color: #333333;
+        width: 64px;
+        height: 64px;
+    }
+    /deep/.wh_jiantou1{
+        border-top: 4px solid #333333;
+        border-left: 4px solid #333333;
+    }
+    /deep/.wh_jiantou2{
+        border-top: 4px solid #333;
+        border-right: 4px solid #333;
+    }
+    /deep/.wh_content{
+        margin-left: 22px;
+    }
+    /deep/.wh_content_item .wh_isToday{
+        background-color: #e5e5e5;
+    }
+    /deep/.wh_content_item .wh_chose_day{
+        background-color: #e5e5e5;
+    }
+    .nomore{
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+    .yy_dateAA {
+        height: auto;
+    }
     .doctorschedu .open{
         padding: 10px 14px 0;
     }

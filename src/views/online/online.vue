@@ -237,7 +237,9 @@ export default {
     },
     filter() {
       this.isChecked = 2;
-      this.testshow = true;
+      // this.testshow = true;
+
+      this.$actionsheet.create({ /* ... */ }) 
     },
     chooseDepart({ options }) {
       this.address = options;

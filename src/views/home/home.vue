@@ -119,12 +119,11 @@ export default {
         let _this = this;
         function UrlSearch() {
             let name, value;
-            //  let str = location.href;
+            // let str = location.href;
             let str = "http://192.168.0.26:8080/?code=081qs5ZX03iwTU1YH5YX0Kv6ZX0qs5Zn"; //取得整个地址栏
             let num = str.indexOf("?");
             str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
             _this.code = str.match(/code=[^&]+/)[0].split("=")[1];
-
         };
         let Request = new UrlSearch(); //实例化
         this.$axios.get(appLoginlogin + '?wechatCode=' + _this.code + '&verifyType=' + 1, {
@@ -139,6 +138,11 @@ export default {
                 //     name: 'register',
                 // });
                 var storage = window.localStorage;
+                // storage.setItem("token7", "");
+                // storage.setItem("UUID7", "");
+
+                localStorage.removeItem('token7');
+                localStorage.removeItem('UUID7');
                 storage.setItem("token1", "edd169b85704410aa5219512cb6f1f00");
                 storage.setItem("hospitalId", "49");
             }

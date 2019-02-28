@@ -49,7 +49,6 @@ axios.defaults.baseURL = BASE_URL;
 
 axios.interceptors.request.use(function (config) {
   let url = config.url;
-  // console.log(localStorage.getItem("token1"), "我是缓存的token哦")
   // 如果是登陆 
 
 
@@ -60,7 +59,7 @@ axios.interceptors.request.use(function (config) {
     if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
       config.headers.TOKEN = "";
     } else {
-      config.headers.TOKEN = localStorage.getItem("token1");
+      config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
       config.headers.UUID = "AAA";
     };
   }
