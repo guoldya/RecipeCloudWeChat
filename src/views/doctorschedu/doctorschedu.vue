@@ -55,7 +55,23 @@ export default {
         }
     },
     mounted() {
-        $(".wh_content_item").append("<p class='reset'>上午</p>");
+
+
+
+
+
+        // $(".wh_content_item").append("<p class='reset'>上午</p>");
+        this.$nextTick(() => {
+            var test = document.getElementsByClassName("wh_content_item");
+            for (let i = 0; i < test.length; i++) {
+                var a = document.createElement("P");
+                a.style = "color:red";
+                a.innerText = "下午";
+                test[i].appendChild(a);
+            }
+        })
+
+
         $(".reset").css({ "color": "#b5b5b5", marginTop: "24px" });
         //console.log($(".reset"));
         document.title = '医生排班';
@@ -120,6 +136,9 @@ export default {
 }
 .doctorschedu .open {
   padding: 10px 14px 0;
+}
+.wh_content_item {
+  color: black !important;
 }
 </style>
 
