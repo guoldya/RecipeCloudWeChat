@@ -12,14 +12,14 @@
                             <span class="doctor-tag">{{doctorInfo.title}} </span>
                         </p>
                         <p class="hospital"> {{depart}} </p>
-                        <p class="content"> 擅长：{{doctorInfo.introduce}} </p>
+                        <p class="content"> 擅长：{{doctorInfo.skill}} </p>
                         <p class="open" @click="showMaskClosable=true"> 更多</p>
                     </div>
                 </div>
             </div>
             <md-landscape v-model="showMaskClosable" :mask-closable="true">
                 <div class="describ">
-                    <p>擅长：{{doctorInfo.introduce}} </p>
+                    <p>擅长：{{doctorInfo.skill}} </p>
                 </div>
             </md-landscape>
         </div>

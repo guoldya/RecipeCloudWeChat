@@ -23,7 +23,7 @@
  }
 
  .doctor-info .content {
-    height: 40px;
+    /*height: 40px;*/
     opacity: 0.7;
     display: -webkit-box;
     display: block;

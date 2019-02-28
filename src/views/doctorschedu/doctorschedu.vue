@@ -2,29 +2,28 @@
     <div class="doctorschedu">
         <Header post-title="医生排班" v-show="isWeixin"></Header>
         <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
-            <div class="doctor-head">
+            <div class="doctor-head" v-show="!loadingtrue">
                 <div class="outCarint">
                     <div class="doctor-info">
-                        <div class="header"><img src="@/assets/images/3.jpg"></div>
+                        <div class="header">
+                            <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
+                        </div>
                         <div class="doctor-right">
                             <p class="introduce">
-                                <span class="doctor-name">我问问 </span>
-                                <span class="doctor-tag">本办法 </span>
+                                <span class="doctor-name">{{doctorData.name}} </span>
+                                <span class="doctor-tag">{{doctorData.title}} </span>
                             </p>
-                            <p class="hospital"> 院区不管你 </p>
+                            <p class="hospital"> {{depart}} </p>
+                            <p v-if="doctorData.skill" class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
+                                擅长：{{doctorData.skill}}
+                            </p>
                             <p class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
-                                擅长：还成都公司当你开始复苏v是个大帅哥当地给v夫斯克v你说的v非vv你死党i你舒服时代的司法所能发给你
+                                介绍：{{doctorData.introduce}}
                             </p>
-                            <!--<p class="open" @click="showMaskClosable=true"> 更多</p>-->
                             <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
                         </div>
                     </div>
                 </div>
-                <!--<md-landscape v-model="showMaskClosable" :mask-closable="true">-->
-                    <!--<div class="describ">-->
-                        <!--<p>擅长：医生 </p>-->
-                    <!--</div>-->
-                <!--</md-landscape>-->
             </div>
             <div>
                 <!--<div class="yy_date_today">-->
@@ -52,14 +51,15 @@
                 <!--</div>-->
                 <!--</div>-->
             </div>
-            <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
+            <Calendar v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
+            <Loading v-show="loadingtrue"></Loading>
+
         </div>
 
     </div>
 </template>
 <script>
-    let doctor_url="/app/bdHospitalDoctor/read/selectDoctorList";
-    let doctor_query_url="/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+    let doctor_url="/app/bdHospitalDoctor/read/selectOne ";
     import Calendar from 'vue-calendar-component';
     import $ from "jquery"
     export default {
@@ -76,12 +76,26 @@
                 isWeixin: false,
                 time: [],
                 dayWeek: ["日", "一", "二", "三", "四", "五", "六"],
+                docId:'',
+                loadingtrue:true,
+                doctorData:[],
+                depart:'',
             }
         },
         mounted() {
-            $(".wh_content_item").append("<p class='reset'>上午</p>");
-            $(".reset").css({"color":"#b5b5b5",marginTop:"24px"});
-            //console.log($(".reset"));
+            this.docId=this.$route.query.id;
+            this.depart = this.$store.state.depart;
+            this.$nextTick(()=>{
+                var element=document.getElementsByClassName("wh_content")[1].children;
+                for(let i=0;i<element.length;i++){
+                    var para=document.createElement("div");
+                    para.style.color="red";
+                    para.style.marginTop="-10px";
+                    var node=document.createTextNode("上午");
+                    para.appendChild(node);
+                    element[i].appendChild(para);
+                }
+            })
             document.title = '医生排班';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -89,8 +103,21 @@
             } else {
                 this.isWeixin = true;
             };
+            this.doctorscheduFun();
         },
         methods: {
+            doctorscheduFun(){
+                let scheduPar={};
+                scheduPar.id=this.docId;
+                this.$axios.put(doctor_url, scheduPar).then((res) => {
+                    if (res.data.code == '200') {
+                        this.loadingtrue=false;
+                        this.doctorData=res.data.data;
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
             clickDay(data) {
                 console.log(data); //选中某天
             },
@@ -142,6 +169,9 @@
   }
     .doctorschedu .open{
         padding: 10px 14px 0;
+    }
+    .doctorschedu .content{
+        margin: 4px 0;
     }
 </style>
 
