@@ -11,19 +11,19 @@
             <ul>
                <li>
                   <label>就诊院区：</label>
-                  <p>冉家坝院区</p>
+                  <p>{{depart}}</p>
                </li>
                <li>
                   <label>科室：</label>
-                  <p>{{doctorInfo.hospital}} </p>
+                  <p>{{major}} </p>
                </li>
                <li>
                   <label>看诊时间：</label>
-                  <p class="mu-secondary-text-color">2019-02-22&nbsp;周五下午</p>
+                  <p class="mu-secondary-text-color">{{time}}&nbsp;周五 {{afternoon}}</p>
                </li>
                <li>
                   <label>挂号费用：</label>
-                  <p class="mu-secondary-text-color">￥ 20</p>
+                  <p class="mu-secondary-text-color">￥ {{money}}</p>
                </li>
             </ul>
          </div>
@@ -35,60 +35,57 @@
                <div>
                   <label class="nowidth">就诊人：</label>
                   <span class="input-box">
-                     王小双
+                     {{cardName}}
                   </span>
                </div>
             </li>
             <input type="hidden" class="patient_type" value="0">
-            <!-- <li class="input-line g-arrow-r GJ_Dropdown J_AdjustWidth J_TimeSelect">
-
-               <div>
-                  <label class="nowidth">预约时间段：</label>
-                  <span class="input-box">
-
-                  </span>
-               </div>
-
-            </li> -->
-            <!-- <li class="input-line g-arrow-r GJ_Dropdown J_AdjustWidth">
-
-               <div>
-                  <label class="nowidth">初/复诊：</label>
-                  <span class="input-box">
-                     初诊（初次就诊时，选择此项）
-                  </span>
-               </div>
-            </li> -->
-
             <li class="input-line g-arrow-r" id="J_SelectDis" data-init="[{&quot;name&quot;:&quot;尚未确诊&quot;,&quot;uuid&quot;:&quot;0&quot;}]">
                <div>
                   <label class="nowidth">就诊卡：</label>
-                  <span class="input-box">No666666
+                  <span class="input-box">{{cardNo}}
                   </span>
                </div>
             </li>
          </ul>
       </div>
-      <div class="outCarint">
+      <div class="outCarint" v-show="!isSucceed">
          <md-button type="primary" round @click="rightPay">提交</md-button>
       </div>
-      <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
+
+      <div v-show="isSucceed" class="bottomback">
+         <span class="payatnow" @click="backindex()">返回主页</span>
+         <span class="cancle" @click="registrecord()">预约记录</span>
+      </div>
+      <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="money" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
    </div>
 
 </template>
 <script type="text/babel">
-let appbdHospitalDoctorreaddetail2 = "/app/bdHospitalDoctor/read/detail2";
+let doctorInfo = "/app/bdHospitalDoctor/read/detail";
 let fee_detail_url = "/app/bizCostBill/detail";
-let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
-let now_pay_url = "/app/bizCostBill/nowPay";
+// 生成预约
+let fconfirm_pay_url = "/app/bizPatientRegister/subscribe";
+// 付钱
+let now_pay_url = "/app/bizPatientRegister/nowPay";
+
+
 export default {
    data() {
       return {
          isWeixin: false,
+         depart: '',
+         major: '',
+         time: '',
+         afternoon: '',
          doctorInfo: '',
+         cardNo: '',
+         cardName: '',
+         isSucceed: false,
          isCashierhow: false,
+         money: '',
          cashierResult: 'success',
-         cashierAmount: '',
+
          cashierChannels: [
             {
                icon: 'cashier-icon-2',
@@ -109,17 +106,19 @@ export default {
       };
    },
    created() {
-      this.$axios.put(appbdHospitalDoctorreaddetail2, {
+
+      this.$axios.put(doctorInfo, {
          id: this.$route.query.doctorId * 1,
       }).then((res) => {
          if (res.data.code == '200') {
-            this.doctorInfo = res.data.data.doctorInfo;
+            this.doctorInfo = res.data.data;
          } else {
             console.log(res.msg);
          }
       }).catch(function (err) {
          console.log(err);
       });
+
    },
    mounted() {
       document.title = '预约信息';
@@ -129,10 +128,38 @@ export default {
       } else {
          this.isWeixin = true;
       }
+
+      this.depart = this.$store.state.depart;
+      this.major = this.$store.state.major;
+      this.afternoon = this.$route.query.afternoon;
+      this.time = this.$route.query.time;
+
+
+      this.cardName = this.$store.state.patientName;
+      this.cardNo = this.$store.state.cardNo;
+      this.money = this.$route.query.money;
    },
    methods: {
       onCashierPay() {
+
+         let nowPayParams = {};
+         nowPayParams.sourceId = this.$route.query.sourceId * 1;
+         nowPayParams.payType = 1;
+         this.$axios.post(now_pay_url, nowPayParams).then((res) => {
+            if (res.data.code == '200') {
+               this.isCashierhow = false;
+               this.isSucceed = true;
+               // this.doPay()
+            } else {
+               this.$toast.info(res.data.msg);
+               this.isCashierhow = false;
+            }
+         }).catch(function (err) {
+            console.log(err);
+         });
       },
+
+
       onCashierSelect(item) {
          console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
       },
@@ -166,35 +193,53 @@ export default {
                },
             })
          } else {
+            console.log()
             this.createPay().then(() => {
                this.cashier.next(this.cashierResult, {
                   buttonText: '好的',
                   handler: () => {
                      this.isCashierhow = false;
-                     this.$router.push({
-                        name: 'feerecord',
-                        query: {}
-                     });
+                     this.isSucceed = true;
                   },
                })
             })
          }
       },
       rightPay() {
-         this.isCashierhow = !this.isCashierhow;
-         this.$axios.put(fconfirm_pay_url, { id: this.feeId }, {
-            headers: {
-               'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-               'UUID': `AAA`
-            },
+         this.$axios.post(fconfirm_pay_url, {
+            sourceId: this.$route.query.sourceId,
+            cardId:this.$store.state.cardId,
          }).then((res) => {
             if (res.data.code == '200') {
-               this.orderCode = res.data.data.orderCode;
+               this.isCashierhow = !this.isCashierhow;
+            } else {
+               this.$toast.info("提交失败")
             }
          }).catch(function (err) {
             console.log(err);
          });
       },
+      createPay() {
+         this.cashier.next('loading')
+         return new Promise(resolve => {
+            this.timer = setTimeout(() => {
+               resolve()
+            }, 3000)
+         })
+      },
+
+      backindex() {
+         this.$router.push({
+            name: 'home',
+         });
+      },
+
+      registrecord() {
+         this.$router.replace({
+            name: 'registrecord',
+         });
+      },
+
    },
    computed: {
 

@@ -40,7 +40,7 @@
     background: linear-gradient(to right, rgba(118, 186, 250, 0.349), rgb(2, 105, 202));
     width: 100px; */
     text-align: right;
-    padding:0 5px;
+    padding: 0 5px;
  }
 
  .doctor-info .doctor-right {
@@ -83,5 +83,35 @@
 
  .available-info li:last-child {
     border: none;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
+ }
+
+ .home-article-combo--slogan {
+    position: relative;
+    width: 100%;
+    line-height: 40px;
+    margin: 10px 0 40px;
+    text-align: center;
+    font-size: 28px;
+    color: #c4c5ce;
+ }
+
+ .home-article-combo--slogan:after,
+ .home-article-combo--slogan:before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    width: 194px;
+    height: 2px;
+    background-color: #ebecf1;
+ }
+
+ .home-article-combo--slogan:after {
+    right: 50%;
+    margin-right: -270px;
+ }
+
+ .home-article-combo--slogan:before {
+    left: 50%;
+    margin-left: -270px;
  }

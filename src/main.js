@@ -53,16 +53,16 @@ axios.interceptors.request.use(function (config) {
   // 如果是登陆 
 
 
-  if (localStorage.getItem("token1")) {
+  if (localStorage.getItem("token7")) {
+    config.headers.TOKEN = localStorage.getItem("token7");
+    config.headers.UUID = localStorage.getItem("UUID7");
+  } else {
     if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
       config.headers.TOKEN = "";
     } else {
       config.headers.TOKEN = localStorage.getItem("token1");
       config.headers.UUID = "AAA";
     };
-  } else {
-    config.headers.TOKEN = localStorage.getItem("token7");
-    config.headers.UUID = localStorage.getItem("UUID7");
   }
   return config;
 }, function (err) {

@@ -229,5 +229,19 @@ export default {
 .sign .md-notice-bar {
   color: #1da1f3 !important;
 }
+
+.sign .md-notice-bar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    z-index: 1301;
+    font-size: 0.26rem;
+    min-height: 0.64rem;
+    background-color: rgba(89,158,248,.08);
+    color: #2f86f6;
+    position: relative;
+    padding-left: 0.32rem;
+    box-sizing: border-box;
+}
 </style>
 

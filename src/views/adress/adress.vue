@@ -3,23 +3,33 @@
       <Header post-title="地址管理" v-show="isWeixin"></Header>
       <div :class="{margin45:isWeixin,outCarint:true}" style="margin-bottom:70px">
          <ul>
-            <li v-for="(i,index) in num" :key="i">
+            <li v-for="(item,index) in addressInfo" :key="index">
                <div class="card">
                   <div class="cardText">
                      <p class="order-number">
-                        <span>冉有钱</span>
-                        <span>13594409399</span>
+                        <span>{{item.receiver}}</span>
+                        <span>{{item.mobile}}</span>
                      </p>
-                     <p class="headdesc">重庆市渝北区洪湖西路</p>
+                     <p class="headdesc">{{item.address}}</p>
                      <p class="order-bottom">
                         <span>
-                           <md-radio :name="index+'a'" v-model="checked" label="默认地址" />
+                           <div class="md-agree" @click="onChange(item.id,item.isDefault)">
+                              <div :class="{ 'md-agree-icon':true,'checked':item.isDefault==1}">
+                                 <div class="md-agree-icon-container">
+                                    <i class="md-icon icon-font md-icon-checked md"></i>
+                                    <i class="md-icon icon-font md-icon-check md"></i>
+                                 </div>
+                              </div>
+                              <div class="md-agree-content">
+                                 默认地址
+                              </div>
+                           </div>
                         </span>
                         <span class="fr">
-                           <span @click="adressinfo" class="bbb mui-icon mui-icon-compose">
+                           <span @click="adressinfo(item.id)" class="bbb mui-icon mui-icon-compose">
                               <label class="bianji">编辑</label>
                            </span>
-                           <span class="mui-icon" style="font-size: 13px;" @click="dedete">
+                           <span class="mui-icon" style="font-size: 13px;" @click="dedete(item.id)">
                               <img class="lajitong" src="@/assets/images/lajitong.png"> 删除
                            </span>
                         </span>
@@ -30,57 +40,134 @@
          </ul>
       </div>
 
-      <p class="add">添加地址</p>
+      <p class="add" @click="addadress()">添加地址</p>
 
    </div>
 </template>
 <script type="text/babel">
 import { Toast } from 'mand-mobile';
 import { Dialog, Button } from 'mand-mobile'
+
+let appshippingAddressaddressList = "/app/shippingAddress/addressList";
+let deleteAddress = "/app/shippingAddress/delete";
+
+
+
+let isDefault = "/app/shippingAddress/isDefault"
 export default {
    data() {
       return {
          isWeixin: false,
          num: 7,
          checked: '0a',
+         addressInfo: '',
+
+         agreeConf: {
+            checked: true,
+            name: 'agree0',
+            size: 'md',
+            disabled: false,
+            introduction: '选中状态',
+         },
+
+
       };
    },
    created() {
 
+
+      this.$axios.put(appshippingAddressaddressList, {
+      }).then((res) => {
+         console.log(res)
+         if (res.data.code == '200') {
+            this.addressInfo = res.data.rows;
+         } else {
+            console.log(res.msg);
+         }
+      }).catch(function (err) {
+         console.log(err);
+      });
    },
    watch: {
-      checked: function (newChecked, oldChecked) {
-         // this.checked = newnewChecked;
-         Toast.succeed('操作成功')
-      },
+
    },
    mounted() {
       document.title = '地址管理';
       var ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i) == 'micromessenger') {
          this.isWeixin = false;
-         return true;
       } else {
          this.isWeixin = true;
-         return false;
       }
    },
    methods: {
-      dedete() {
+
+      onChange(data, index) {
+         if (index == 1) {
+            return
+         }
+         this.$axios.post(isDefault, {
+            id: data
+         }).then((res) => {
+            console.log(res)
+            if (res.data.code == '200') {
+               this.$toast.info("设置成功");
+               this.$axios.put(appshippingAddressaddressList, {
+               }).then((res) => {
+                  console.log(res)
+                  if (res.data.code == '200') {
+                     this.addressInfo = res.data.rows;
+                  } else {
+                     console.log(res.msg);
+                  }
+               }).catch(function (err) {
+                  console.log(err);
+               });
+            } else {
+               console.log(res.msg);
+            }
+         }).catch(function (err) {
+            console.log(err);
+         });
+      },
+      dedete(data) {
+         console.log(data)
+         let params={},p_data={};
+         p_data.id=data;
+         params.data=p_data;
          Dialog.confirm({
             title: '确认',
             content: '请确认删除该地址吗',
             confirmText: '确定',
-            onConfirm: () => console.log('[Dialog.confirm] confirm clicked'),
+            onConfirm: () => {
+               this.$axios.delete(deleteAddress, params).then((res) => {
+                  console.log(res)
+                  if (res.data.code == '200') {
+                     this.$toast.info("删除成功")
+                  } else {
+                     console.log(res.msg);
+                  }
+               }).catch(function (err) {
+                  console.log(err);
+               });
+            }
          })
       },
-      adressinfo() {
-         let argu = {}
+      adressinfo(data) {
          this.$router.push({
             name: 'adressinfo',
-            query: argu
+            query: { id: data }
          });
       },
+
+
+      addadress() {
+         this.$router.push({
+            name: 'adressinfo',
+            query: { addadress: 1 }
+         });
+      },
+
 
    },
    computed: {

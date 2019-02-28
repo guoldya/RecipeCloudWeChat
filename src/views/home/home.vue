@@ -152,6 +152,8 @@ export default {
                 this.cardLoading = false;
                 this.$store.commit('patientIdFun', res.data.rows[0].patientId);
                 this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
+                this.$store.commit('cardNnameFun', res.data.rows[0].patientName);
+                this.$store.commit('cardIdFun', res.data.rows[0].id);
             } else if (res.data.code == '800') {
                 console.log(res.data.msg)
             }
@@ -179,6 +181,8 @@ export default {
             }
             this.$store.commit('patientIdFun', data1.patientId);
             this.$store.commit('cardNoFun', data1.cardNo);
+            this.$store.commit('cardIdFun', data1.id);
+            this.$store.commit('cardNnameFun', data1.patientName);
         },
 
         feerecord() {

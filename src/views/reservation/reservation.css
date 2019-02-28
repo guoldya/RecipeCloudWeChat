@@ -82,6 +82,31 @@
     margin: 0 20px;
  }
 
+ .bottomback {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto
+ }
+
+ .bottomback span {
+    font-size: 28px;
+    color: #ffffff;
+    float: right;
+    background: #1da1f3;
+    border-radius: 40px;
+    letter-spacing: 1px;
+    padding: 17px 40px;
+    text-align: center;
+    margin-top: 40px;
+    border: 2px solid #1da1f3;
+ }
+
+ .bottomback .payatnow {
+    background: #ffffff;
+    color: #1da1f3;
+ }
+
  /* 
  .g-arrow-b:after,
  .g-arrow-d:after,

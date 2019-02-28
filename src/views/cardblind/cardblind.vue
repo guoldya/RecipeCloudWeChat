@@ -6,7 +6,7 @@
         <md-input-item ref="input13" v-model="name" title="姓名" placeholder="姓名" is-highlight></md-input-item>
         <md-field-item title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector ">
         </md-field-item>
-        <md-input-item ref="input13" v-model="cardno" :title="selectorValue+'号'" placeholder="请输入卡号" is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="cardNo" :title="selectorValue+'号'" placeholder="请输入卡号" is-highlight></md-input-item>
         <md-input-item type="phone" v-model="phonenumber" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
         <div class="hq login-box-div">
           <span class="flexF">验证码</span>
@@ -27,7 +27,7 @@
 <script>
 import { InputItem, Field } from 'mand-mobile'
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let wechatbizPatientCardbinding = "/app/bizPatientCard/binding";
+let wechatbizPatientCardbinding = "/app/bizPatientCard/insert";
 export default {
   name: 'input-item-demo',
   title: '普通输入框',
@@ -36,7 +36,7 @@ export default {
       phonenumber: '',
       type: 1,
       name: '',
-      cardno: '',
+      cardNo: '',
       verifyCode: '',
       count: '',
       show: true,
@@ -100,20 +100,15 @@ export default {
             }
           }, 1000);
           this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.phonenumber + '&verifyType=' + 1, {
-          }, {
-              headers: {
-                'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                'UUID': `AAA`
-              },
-            }).then(res => {
-              if (res.data.code == '200') {
-                _this.$toast.info('请查看验证码')
-              } else if (res.data.code == '800') {
+          }).then(res => {
+            if (res.data.code == '200') {
+              _this.$toast.info('请查看验证码')
+            } else if (res.data.code == '800') {
 
-              }
-            }).catch(function (err) {
-              console.log(err);
-            });
+            }
+          }).catch(function (err) {
+            console.log(err);
+          });
         }
       }
 

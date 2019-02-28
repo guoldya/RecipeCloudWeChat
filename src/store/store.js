@@ -25,11 +25,28 @@ export default new Vuex.Store({
         idCardFrontImg: '',
         idCardBackImg: '',
         mobile: '',
+        depart: '',
+        major: '',
+        patientName: '',
+        cardId: '',
     },
     mutations: {
         mobileFun: (state, n) => {
             state.mobile = n;
         },
+        cardIdFun: (state, n) => {
+            state.cardId = n;
+        },
+        cardNnameFun: (state, n) => {
+            state.patientName = n;
+        },
+        majorFun: (state, n) => {
+            state.major = n;
+        },
+        departFun: (state, n) => {
+            state.depart = n;
+        },
+
         addjumpArr: (state, n) => {
             state.jumpArr = n;
         },
