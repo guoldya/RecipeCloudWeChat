@@ -62,6 +62,10 @@
     border: none
  }
 
+ .doctorinfo .available-info .no {
+    background: #cccbcb;
+ }
+
  .doctordetal {
     background: #ffffff;
  }
@@ -114,4 +118,13 @@
  .home-article-combo--slogan:before {
     left: 50%;
     margin-left: -270px;
+ }
+
+ .lookmore {
+    height: 100px;
+    text-align: center;
+    color: #979797;
+    font-size: 30px;
+    border-top: 2px solid #ebecf1;
+    line-height: 100px;
  }

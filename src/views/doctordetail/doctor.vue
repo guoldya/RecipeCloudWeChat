@@ -1,6 +1,6 @@
  
 <template>
-    <div :class="{'margin45':isWeixin,'doctorinfo':true}">
+    <div :class="{'margin45':isWeixin,'doctorinfo':true, }">
         <Header post-title="医生详情" v-show="isWeixin"></Header>
         <div class="doctor-head">
             <div class="outCarint">
@@ -35,11 +35,13 @@
                                     <span class="mu-secondary-text-color">￥{{orderinfo.money}}</span>
                                 </span>
                             </div>
-                            <div @click="todayreservation(orderinfo)" class="available-tag">预约</div>
+                            <div v-show="orderinfo.valNum!=0" @click="todayreservation(orderinfo)" class="available-tag">预约</div>
+                            <div v-show="orderinfo.valNum==0" class="available-tag no">无号</div>
                         </li>
                     </ul>
-                    <p class="home-article-combo--slogan">全部排班</p>
-                    <ul class="available-info">
+                    <div v-show="!islook" class="lookmore" @click="islook=!islook">查看全部排班</div>
+                    <p v-show="islook" class="home-article-combo--slogan">全部排班</p>
+                    <ul v-show="islook" class="available-info">
                         <li v-for="(item,i) in dateList" :key="i">
                             <div> {{item.regDate}} 星期一 {{item.regStageVO}} <br/>
                                 <span class="colo13">
@@ -48,9 +50,11 @@
                                     <span class="mu-secondary-text-color">￥{{item.money}}</span>
                                 </span>
                             </div>
-                            <div @click="reservation(item)" class="available-tag">预约</div>
+                            <div v-show="item.valNum!=0" @click="reservation(item)" class="available-tag">预约</div>
+                            <div v-show="item.valNum==0" class="available-tag no">无号</div>
                         </li>
                     </ul>
+                    <div v-show="islook" class="lookmore" @click="islook=!islook">收起全部排班</div>
                 </div>
             </div>
         </div>
@@ -81,6 +85,7 @@ export default {
             major: '',
             islist: false,
             orderinfo: '',
+            islook: false,
         }
     },
     mounted() {
