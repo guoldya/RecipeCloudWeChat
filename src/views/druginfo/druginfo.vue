@@ -300,7 +300,7 @@ export default {
     var storage = window.localStorage;
     storage.setItem("token7", this.TOKEN);
     storage.setItem("UUID7", this.UUID);
-    storage.setItem("token1", "");
+    localStorage.removeItem('token1');
 
 
     this.$axios.put(bdProductreaddetail, {

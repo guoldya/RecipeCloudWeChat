@@ -40,6 +40,7 @@ import cardblind from '@/views/cardblind/cardblind.vue'
 import cardhave from '@/views/cardhave/cardhave.vue'
 import resultdocotor from '@/views/resultdocotor/resultdocotor.vue'
 import registrecorddetail from '@/views/registrecorddetail/registrecorddetail.vue'
+import doctorschedu from '@/views/doctorschedu/doctorschedu.vue'
 
 
 import cardmy from '@/views/cardmy/cardmy.vue'
@@ -459,6 +460,10 @@ export default new Router({
       name: 'registrecorddetail',
       component: registrecorddetail,
     },
-
+      {
+          path: '/doctorschedu',
+          name: 'doctorschedu',
+          component: doctorschedu,
+      },
   ]
 })

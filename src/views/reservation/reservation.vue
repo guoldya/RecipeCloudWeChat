@@ -68,7 +68,7 @@ let fee_detail_url = "/app/bizCostBill/detail";
 let fconfirm_pay_url = "/app/bizPatientRegister/subscribe";
 // 付钱
 let now_pay_url = "/app/bizPatientRegister/nowPay";
-
+ 
 
 export default {
    data() {
@@ -121,6 +121,7 @@ export default {
 
    },
    mounted() {
+      console.log(this.$store.state.cardId)
       document.title = '预约信息';
       var ua = window.navigator.userAgent.toLowerCase();
       if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -137,7 +138,7 @@ export default {
 
       this.cardName = this.$store.state.patientName;
       this.cardNo = this.$store.state.cardNo;
-      this.money = this.$route.query.money;
+      this.money = String(this.$route.query.money);
    },
    methods: {
       onCashierPay() {
@@ -208,7 +209,7 @@ export default {
       rightPay() {
          this.$axios.post(fconfirm_pay_url, {
             sourceId: this.$route.query.sourceId,
-            cardId:this.$store.state.cardId,
+            cardId: this.$store.state.cardId,
          }).then((res) => {
             if (res.data.code == '200') {
                this.isCashierhow = !this.isCashierhow;

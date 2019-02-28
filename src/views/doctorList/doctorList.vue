@@ -46,7 +46,7 @@
     <div :class="{ pt50: !isTop  ,'outCarint':true}" style="margin-bottom:20px; ">
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
-        <ul v-if="amList.length!=0"  v-show="!loadingtrue">
+        <ul v-if="amList.length!=0" v-show="!loadingtrue">
           <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info)">
           </li>
         </ul>
@@ -66,7 +66,7 @@
             </div>
           </li>
         </ul>
-        <div v-else  v-show="!loadingtrue">
+        <div v-else v-show="!loadingtrue">
           <p>暂无号源</p>
         </div>
         <Loading v-show="loadingtrue"></Loading>
@@ -129,7 +129,7 @@ export default {
       isTime: '',
       amList: [],
       pmList: [],
-        loadingtrue: true,
+      loadingtrue: true,
     };
   },
   created() {
@@ -215,6 +215,7 @@ export default {
       this.isSelectorShow = true
     },
     onSelectorChoose(data) {
+      this.isSelectorShow = false;
       this.selectorValue = data.text;
       this.deptId = data.value;
       this.doctorListFun();
@@ -289,7 +290,7 @@ export default {
         time: this.isTime,
       }).then((res) => {
         if (res.data.code == '200') {
-            this.loadingtrue=false;
+          this.loadingtrue = false;
           this.amList = res.data.data.amList;
           this.pmList = res.data.data.pmList;
         } else {

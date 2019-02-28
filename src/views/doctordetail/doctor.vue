@@ -4,7 +4,7 @@
         <Header post-title="医生详情" v-show="isWeixin"></Header>
         <div class="doctor-head">
             <div class="outCarint">
-                <div class="doctor-info">
+                <!-- <div class="doctor-info">
                     <div class="header"><img src="@/assets/images/3.jpg"></div>
                     <div class="doctor-right">
                         <p class="introduce">
@@ -12,16 +12,30 @@
                             <span class="doctor-tag">{{doctorInfo.title}} </span>
                         </p>
                         <p class="hospital"> {{depart}} </p>
-                        <p class="content"> 擅长：{{doctorInfo.introduce}} </p>
-                        <p class="open" @click="showMaskClosable=true"> 更多</p>
+                        <p class="content"> 擅长：{{doctorInfo.skill}} </p>
+                        <p :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
+                            jieh{{doctorInfo.introduce}}
+                        </p>
+                        <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
+                    </div>
+                </div> -->
+
+                <div class="doctor-info doctor-infoFATHER">
+                    <div class="header"><img src="@/assets/images/3.jpg"></div>
+                    <div class="doctor-right">
+                        <p class="introduce">
+                            <span class="doctor-name">{{doctorInfo.name}} </span>
+                            <span class="doctor-tag">{{doctorInfo.title}} </span>
+                        </p>
+                        <p class="hospital"> {{depart}} </p>
+                        <p class="content"> 擅长：{{doctorInfo.skill}} </p>
+                        <p :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
+                            介绍：{{doctorInfo.introduce}}
+                        </p>
+                        <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
                     </div>
                 </div>
             </div>
-            <md-landscape v-model="showMaskClosable" :mask-closable="true">
-                <div class="describ">
-                    <p>擅长：{{doctorInfo.introduce}} </p>
-                </div>
-            </md-landscape>
         </div>
         <div class="outCarint">
             <div class="doctordetal">
@@ -86,6 +100,7 @@ export default {
             islist: false,
             orderinfo: '',
             islook: false,
+            isSeemore: false,
         }
     },
     mounted() {
