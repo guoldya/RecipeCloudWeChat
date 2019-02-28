@@ -260,3 +260,6 @@ nput {
 .yy_date .have {
    color: #24a5f1;
 }
+.workdoctor .card:last-child{
+   margin-bottom: 20px;
+}

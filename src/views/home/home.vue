@@ -140,6 +140,9 @@ export default {
                 var storage = window.localStorage;
                 // storage.setItem("token7", "");
                 // storage.setItem("UUID7", "");
+
+                localStorage.removeItem('token7');
+                localStorage.removeItem('UUID7');
                 storage.setItem("token1", "edd169b85704410aa5219512cb6f1f00");
                 storage.setItem("hospitalId", "49");
             }
