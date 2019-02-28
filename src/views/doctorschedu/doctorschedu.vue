@@ -12,16 +12,19 @@
                                 <span class="doctor-tag">本办法 </span>
                             </p>
                             <p class="hospital"> 院区不管你 </p>
-                            <p class="content"> 擅长：还能发给你 </p>
-                            <p class="open" @click="showMaskClosable=true"> 更多</p>
+                            <p class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
+                                擅长：还成都公司当你开始复苏v是个大帅哥当地给v夫斯克v你说的v非vv你死党i你舒服时代的司法所能发给你
+                            </p>
+                            <!--<p class="open" @click="showMaskClosable=true"> 更多</p>-->
+                            <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
                         </div>
                     </div>
                 </div>
-                <md-landscape v-model="showMaskClosable" :mask-closable="true">
-                    <div class="describ">
-                        <p>擅长：医生 </p>
-                    </div>
-                </md-landscape>
+                <!--<md-landscape v-model="showMaskClosable" :mask-closable="true">-->
+                    <!--<div class="describ">-->
+                        <!--<p>擅长：医生 </p>-->
+                    <!--</div>-->
+                <!--</md-landscape>-->
             </div>
             <div>
                 <!--<div class="yy_date_today">-->
@@ -58,6 +61,7 @@
     let doctor_url="/app/bdHospitalDoctor/read/selectDoctorList";
     let doctor_query_url="/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
     import Calendar from 'vue-calendar-component';
+    import $ from "jquery"
     export default {
         components: {
             Calendar
@@ -75,7 +79,9 @@
             }
         },
         mounted() {
-
+            $(".wh_content_item").append("<p class='reset'>上午</p>");
+            $(".reset").css({"color":"#b5b5b5",marginTop:"24px"});
+            //console.log($(".reset"));
             document.title = '医生排班';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -83,11 +89,6 @@
             } else {
                 this.isWeixin = true;
             };
-            var today = new Date();
-            this.choosedate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-            this.getData();
-            this.addWeek();
-
         },
         methods: {
             clickDay(data) {
@@ -100,43 +101,13 @@
                 this.active = index;
                 this.choosedate = value.year + '-' + value.month + '-' + value.date;
             },
-            getData() {
-                for (let i = 0; i < 30; i++) {
-                    let nowTime = new Date();
-                    let d = nowTime.setDate(nowTime.getDate() + i - 1);
-                    let data = this.addDate(d, 1);
-                    let time = {};
-                    time = { date: data.newData, month: data.newMonth, year: data.newYear }
-                    this.time.push(time);
-                }
-            },
-            addWeek() {
-                var today = new Date();
-                var dayWeeka = this.dayWeek.slice(0, today.getDay());
-                var dayWeekb = this.dayWeek.slice(today.getDay(), 7);
-                this.dayWeek = dayWeekb.concat(dayWeeka);
-            },
-            addDate(val, days) {
-                var d = new Date(val);
-                var data = {};
-                let dayArr = ["日", "一", "二", "三", "四", "五", "六"];
-                d.setDate(d.getDate() + days);
-                var m = d.getMonth() + 1;
-                var y = d.getFullYear();
-                var newDay = dayArr.slice(0, d.getDay());
-                data.newData = d.getDate();
-                data.newDay = newDay;
-                data.newMonth = d.getMonth() + 1;
-                data.newYear = d.getFullYear();
-                return data;
-            },
         }
     }
 </script>
 
 <style scoped>
   .doctorschedu  .doctor-head{
-      height: 250px;
+      height:auto;
   }
   /deep/.wh_content_all{
       background-color: transparent !important;
@@ -161,5 +132,16 @@
   /deep/.wh_content_item .wh_chose_day{
       background-color: #e5e5e5;
   }
+  .nomore{
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+  }
+  .yy_dateAA {
+      height: auto;
+  }
+    .doctorschedu .open{
+        padding: 10px 14px 0;
+    }
 </style>
 
