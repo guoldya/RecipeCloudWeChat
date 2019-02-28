@@ -1,84 +1,38 @@
 <template>
   <div class="workdoctor">
-    <Header post-title="医生排班" v-show="isWeixin"></Header>
+    <Header :post-title="postTitle" v-show="isWeixin"></Header>
     <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
-      <div class="yy_date_today">
-        <span class="date_today">{{choosedate}}</span>
-        <a @click="isSeemore=!isSeemore" id="date_btn" class="change_date" href="javascript:void(0);">更多时间
-          <span :class="{'time_btn':true,'tinmdown':!isSeemore,'tinmup':isSeemore}" ></span>
-        </a>
-      </div>
-      <div class="yy_date_wrap">
-        <div class="wx_week">
-          <a v-for="(item,index) in dayWeek" :key="index+'aa'">{{item}}</a>
-        </div>
-      </div>
-      <div :class="{'yy_date':true,'yy_dateAA':isSeemore}">
-        <div v-for="(item,index) in time" :key="index+'aa'" @click="choose(item,index)">
-          <span class="state_full" :class="{'state_full':true,'current': index == active}">
-            <span class="date">{{item.date}}</span>
-            <input type="hidden" class="getFullDate" value="2019-02-16">
-            <span>无号</span>
-          </span>
-        </div>
-        <div>
-          <span class="state_full have">
-            <span class="date">14</span>
-            <input type="hidden" class="getFullDate" value="2019-02-14">
-            <span>剩 13</span>
-          </span>
-        </div>
-      </div>
-      <div class="doctorList outCarint margin16">
-        <ul>
-          <li>
-            <div class="card" @click="intodoctordetail">
+      <div class="doctorList">
+        <ul v-show="!loadingtrue" v-if="doctorData.length!=0">
+          <li v-for="(item,i) in doctorData" :key="i" class="outCarint">
+            <div class="card" @click="intodoctordetail(item,2)">
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">刘秀娟
-                    <span class="levle">主任医师</span>
-                    <span class="have">余56</span>
-                  </p>
-                  <p class="headdesc">擅长:儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学儿科、新生儿疾病、急救医学</p>
+                <div class="headimg">
+                  <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
                 </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="card" @click="intodoctordetail">
-              <div class="cardText">
-                <div class="headimg"><img src="https://kano.guahao.cn/iPb2687320_image140.jpg?timestamp=1504077956258" alt="医生头像"></div>
                 <div>
-                  <p class="headname">孙强
-                    <span class="levle">副主任医师</span>
-                    <span class="have">余56</span>
+                  <p class="headname">{{item.name}}
+                    <span class="levle">{{item.title}}</span>
+                    <!--<span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>-->
+                    <!--<span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>-->
                   </p>
-                  <p class="headdesc">擅长:前列腺增生微创治疗、腹腔镜及输尿管镜等腔内泌尿外科、泌尿系肿瘤的诊...</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="card" @click="intodoctordetail">
-              <div class="cardText">
-                <div class="headimg"><img src="https://kano.guahao.cn/u0w2684511_image140.jpg" alt="医生头像"></div>
-                <div>
-                  <p class="headname">胡必杰
-                    <span class="levle">主任医师</span>
-                    <span class="have">余56</span>
-                  </p>
-                  <p class="headdesc">擅长:心脏病的临床诊断，心血管影像诊断，尤其是各种冠心病治疗方法的合理选择。</p>
+                  <p class="headdesc">擅长:{{item.introduce}}</p>
                 </div>
               </div>
             </div>
           </li>
         </ul>
+        <div v-show="!loadingtrue" class="nullDiv" v-else>
+          <img src="@/assets/images/null1.png">
+        </div>
+        <Loading v-show="loadingtrue"></Loading>
       </div>
     </div>
   </div>
 </template>
 <script>
+    let doctor_url="/app/bdHospitalDoctor/read/selectDoctorList";
+    let doctor_query_url="/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
     export default {
         data() {
             return {
@@ -89,10 +43,16 @@
                 isWeixin: false,
                 time: [],
                 dayWeek: ["日", "一", "二", "三", "四", "五", "六"],
+                postTitle:'',
+                deptId:'',
+                loadingtrue: true,
+                doctorData:[],
             }
         },
         mounted() {
-          
+          this.postTitle=this.$route.query.deptName;
+          this.deptId=parseInt(this.$route.query.deptId);
+          console.log(this.$route.query);
             document.title = '医生排班';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -104,6 +64,7 @@
             this.choosedate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
             this.getData();
             this.addWeek();
+            this.workDoctorFun();
 
         },
         methods: {
@@ -144,11 +105,29 @@
             intodoctordetail() {
                 let argu = {}
                 this.$router.push({
-                    name: 'doctordetail',
+                    name: 'doctorschedu',
                     query: argu
                 });
             },
-
+            workDoctorFun(){
+                this.$axios.put(doctor_url, { orgId: this.deptId }).then((res) => {
+                    if (res.data.code == '200') {
+                        this.loadingtrue=false;
+                        for(let i=0;i<res.data.data.amList.length;i++){
+                            this.doctorData.push(res.data.data.amList[i])
+                        }
+                        for(let i=0;i<res.data.data.otherList.length;i++){
+                            this.doctorData.push(res.data.data.otherList[i])
+                        }
+                        for(let i=0;i<res.data.data.pmList.length;i++){
+                            this.doctorData.push(res.data.data.pmList[i])
+                        }
+                        console.log(this.doctorData);
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
 
 
         }
@@ -157,6 +136,5 @@
 
 <style scoped>
 
-  
 </style>
 

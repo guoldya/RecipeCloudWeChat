@@ -59,6 +59,7 @@ body {
 }
 .noMore {
   text-align: center;
+  padding: 10px 0px;
 }
 #app {
   font-family: "PingFang-SC-Medium";
