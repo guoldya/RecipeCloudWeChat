@@ -87,15 +87,31 @@
             this.depart = this.$store.state.depart;
             this.$nextTick(()=>{
                 var element=document.getElementsByClassName("wh_content")[1].children;
-                for(let i=0;i<element.length;i++){
                     var para=document.createElement("div");
+                    var paraPm=document.createElement("div");
+                    var paraAll=document.createElement("div");
                     para.style.color="#b5b5b5";
                     para.style.height="20px";
-                    para.style.marginTop="-8px";
-                    var node=document.createTextNode("上午");
-                    para.appendChild(node);
-                    element[i].appendChild(para);
+                    para.style.marginTop="-5px";
+                    paraPm.style.color="#b5b5b5";
+                    paraPm.style.height="20px";
+                    paraPm.style.marginTop="-5px";
+                    paraAll.style.color="#b5b5b5";
+                    paraAll.style.height="20px";
+                    paraAll.style.marginTop="-5px";
+                    var am=document.createTextNode("上午");
+                    var pm=document.createTextNode("下午");
+                    var all=document.createTextNode("全天");
+                    para.appendChild(am);
+                for(let i=0;i<element.length;i++){
+                    if(element[i].children[0].className=="wh_item_date wh_isToday"){
+                        element[i].appendChild(para);
+                    }
                 }
+                    paraPm.appendChild(pm);
+                    paraAll.appendChild(all);
+                element[8].appendChild(paraPm);
+                element[6].appendChild(paraAll);
             })
             document.title = '医生排班';
             var ua = window.navigator.userAgent.toLowerCase();
@@ -155,6 +171,9 @@
     }
     /deep/.wh_content{
         margin-left: 22px;
+    }
+    /deep/.wh_content_item{
+        height: 90px;
     }
     /deep/.wh_content_item .wh_isToday{
         background-color: #e5e5e5;
