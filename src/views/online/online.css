@@ -191,3 +191,86 @@
 .online .comment-info:last-child {
    border: none;
 }
+
+.online-mask {
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   position: absolute;
+   pointer-events: auto;
+   z-index: 1;
+   background-color: rgba(37, 38, 45, .7);
+}
+
+.components-screenbox {
+   height: 650px;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -webkit-flex-direction: column;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   position: relative;
+   z-index: 21;
+}
+
+.components-screenbox ul {
+   height: 100%;
+   overflow-y: auto;
+   overflow-x: hidden;
+   -webkit-overflow-scrolling: touch;
+}
+
+.components-screenbox ul .components-screenbox--item {
+   padding: 30px 24px 16px;
+   border-bottom: 1px solid #ebecf1;
+}
+
+.components-screenbox ul .components-screenbox--item h3 {
+   height: 44px;
+   font-size: 28px;
+   font-weight: 400;
+   margin-bottom: 26px;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: justify;
+   -webkit-justify-content: space-between;
+   -ms-flex-pack: justify;
+   justify-content: space-between;
+}
+
+.components-screenbox ul .components-screenbox--item .components-screenbox--other span.tag,
+.components-screenbox ul .components-screenbox--item h3 span.tag {
+   display: inline-block;
+   min-width: 102px;
+   height: 54px;
+   text-align: center;
+   line-height: 54px;
+   padding-left: 20px;
+   padding-right: 20px;
+   background-color: #f5f6f6;
+   color: #83889a;
+   border-radius: 200px;
+   margin-right: 20px;
+   margin-bottom: 20px;
+}
+
+.components-screenbox .components-screenbox--btn-group {
+   height: 87px;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+}
+
+.components-screenbox .components-screenbox--btn-group a.components-screenbox-reset {
+   color: #3f86ff;
+   background-color: #fff;
+   border-top: 1px solid #ebecf1;
+}

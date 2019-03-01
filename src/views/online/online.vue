@@ -1,7 +1,6 @@
 <template>
   <div class="online">
     <div :class="{'outCarint':true, }">
-
       <div class="onlineheader">在线问诊</div>
       <Search></Search>
       <div class="tools">
@@ -33,16 +32,69 @@
         </div>
 
       </div>
-      <!-- <md-check-group v-model="insurants">
-        <md-check-box name="self">自己</md-check-box>
-        <md-check-box name="couple">配偶</md-check-box>
-        <md-check-box name="parent">父母</md-check-box>
-        <md-check-box name="child">子女</md-check-box>
-      </md-check-group> -->
+      <div class="online-mask"></div>
+      <div class="g-filter-ssr--content" style="">
+        <section class="components-screenbox">
+          <ul>
+            <li class="components-screenbox--item">
+              <h3>
+                <label>服务类型</label>
+                <div>
+                  <!---->
+                  <!---->
+                </div>
+              </h3>
+              <div class="components-screenbox--other">
+                <div>
+                  <span class="tag">可咨询</span>
+                  <span class="tag">可挂号</span>
+                  <span class="tag">服务包</span>
+                  <span class="tag">手术预约</span>
+                </div>
+              </div>
+            </li>
+            <li class="components-screenbox--item">
+              <h3>
+                <label>医院等级</label>
+                <div>
+                  <!---->
+                  <!---->
+                </div>
+              </h3>
+              <div class="components-screenbox--other">
+                <div>
+                  <span class="tag">三级甲等</span>
+                </div>
+              </div>
+            </li>
+            <li class="components-screenbox--item">
+              <h3>
+                <label>医生职称</label>
+                <div>
+                  <!---->
+                  <!---->
+                </div>
+              </h3>
+              <div class="components-screenbox--other">
+                <div>
+                  <span class="tag">主任医生</span>
+                  <span class="tag">副主任医生</span>
+                  <span class="tag">主治医生</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="components-screenbox--btn-group">
+            <a class="components-screenbox-reset">重置</a>
+            <a class="components-screenbox-confirm">确定</a>
+          </div>
+        </section>
+      </div>
+
       <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" />
       <md-selector v-model="isSelectorShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
       <md-action-sheet v-model="testshow" cancel-text="取消" confir-text="重置" @selected="$_selected" @cancel="$_cancel">
-
+        <div>我是要一个</div>
       </md-action-sheet>
       <h2>药品资讯</h2>
       <div class="yaobutton">
@@ -237,46 +289,8 @@ export default {
     },
     filter() {
       this.isChecked = 2;
-      // this.testshow = true;
+      this.testshow = true;
 
-      this.$actionsheet.create({
-
-        value: true,
-        title: '操作说明的标题',
-        options: [
-          {
-            label: '选项1',
-            value: 0,
-          },
-          {
-            label: '选项2',
-            value: 1,
-          },
-          {
-            label: '选项3',
-            value: 2,
-          },
-        ],
-        options2: [
-          {
-            label: '选项1fff',
-            value: 0,
-          },
-          {
-            label: '选项2fff',
-            value: 1,
-          },
-          {
-            label: '选项3ff',
-            value: 2,
-          },
-        ],
-        defaultIndex: 1,
-        invalidIndex: 2,
-        cancelText: '取消',
-        onCancel: this.$_cancel,
-        onSelected: this.$_selected,
-      })
     },
 
     $_selected(item) {
