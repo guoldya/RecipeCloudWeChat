@@ -53,6 +53,7 @@ axios.interceptors.request.use(function (config) {
 
 
   if (localStorage.getItem("token7")) {
+    alert("执行安卓")
     config.headers.TOKEN = localStorage.getItem("token7");
     config.headers.UUID = localStorage.getItem("UUID7");
   } else {

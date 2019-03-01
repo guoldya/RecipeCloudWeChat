@@ -4,7 +4,7 @@
       <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
          <Search></Search>
          <div class="appTab">
-        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.id,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
           {{item.orgName}}
         </span>
          </div>
@@ -72,6 +72,7 @@
                 if (res.data.code == '200') {
                     this.departs = res.data.rows;
                     this.yuanId = res.data.rows[0].id;
+                    this.$store.commit('departFun', res.data.rows[0].orgName);
                     this.orgFun();
                 } else {
                     console.log(res.msg);
@@ -128,7 +129,8 @@
             },
             switchTo(num, index) {
                 this.active1 = index;
-                this.yuanId = num;
+                this.yuanId = num.id;
+                this.$store.commit('departFun', num.orgName);
                 this.orgFun(this.yuanId)
             },
             switchDE(num) {

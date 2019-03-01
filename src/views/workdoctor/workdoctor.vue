@@ -5,7 +5,7 @@
       <div class="doctorList">
         <ul v-show="!loadingtrue" v-if="doctorData.length!=0">
           <li v-for="(item,i) in doctorData" :key="i" class="outCarint">
-            <div class="card" @click="intodoctordetail(item,2)">
+            <div class="card" @click="intodoctorschedu(item.id)">
               <div class="cardText">
                 <div class="headimg">
                   <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
@@ -16,7 +16,7 @@
                     <!--<span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>-->
                     <!--<span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>-->
                   </p>
-                  <p class="headdesc">擅长:{{item.introduce}}</p>
+                  <p class="headdesc">擅长:{{item.skill}}</p>
                 </div>
               </div>
             </div>
@@ -52,7 +52,6 @@
         mounted() {
           this.postTitle=this.$route.query.deptName;
           this.deptId=parseInt(this.$route.query.deptId);
-          console.log(this.$route.query);
             document.title = '医生排班';
             var ua = window.navigator.userAgent.toLowerCase();
             if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -102,8 +101,8 @@
                 data.newYear = d.getFullYear();
                 return data;
             },
-            intodoctordetail() {
-                let argu = {}
+            intodoctorschedu(val) {
+                let argu = {id:val};
                 this.$router.push({
                     name: 'doctorschedu',
                     query: argu
