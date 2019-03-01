@@ -32,21 +32,20 @@
         </div>
 
       </div>
+     
       <div class="online-mask"></div>
-      <div class="g-filter-ssr--content" style="">
+      <div class="g-filter-ssr--content"  >
         <section class="components-screenbox">
           <ul>
             <li class="components-screenbox--item">
               <h3>
                 <label>服务类型</label>
                 <div>
-                  <!---->
-                  <!---->
                 </div>
               </h3>
               <div class="components-screenbox--other">
                 <div>
-                  <span class="tag">可咨询</span>
+                  <span class="tag chosen-condition">可咨询</span>
                   <span class="tag">可挂号</span>
                   <span class="tag">服务包</span>
                   <span class="tag">手术预约</span>
@@ -57,13 +56,11 @@
               <h3>
                 <label>医院等级</label>
                 <div>
-                  <!---->
-                  <!---->
                 </div>
               </h3>
               <div class="components-screenbox--other">
                 <div>
-                  <span class="tag">三级甲等</span>
+                  <span class="tag chosen-condition">三级甲等</span>
                 </div>
               </div>
             </li>
@@ -71,13 +68,11 @@
               <h3>
                 <label>医生职称</label>
                 <div>
-                  <!---->
-                  <!---->
                 </div>
               </h3>
               <div class="components-screenbox--other">
                 <div>
-                  <span class="tag">主任医生</span>
+                  <span class="tag chosen-condition">主任医生</span>
                   <span class="tag">副主任医生</span>
                   <span class="tag">主治医生</span>
                 </div>
@@ -165,6 +160,7 @@
         </div>
       </div>
     </div>
+ 
     <Footer></Footer>
   </div>
 
