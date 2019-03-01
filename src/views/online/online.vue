@@ -30,60 +30,6 @@
             <img src="@/assets/images/online10.png" alt="">
           </div>
         </div>
-
-      </div>
-     
-      <div class="online-mask"></div>
-      <div class="g-filter-ssr--content"  >
-        <section class="components-screenbox">
-          <ul>
-            <li class="components-screenbox--item">
-              <h3>
-                <label>服务类型</label>
-                <div>
-                </div>
-              </h3>
-              <div class="components-screenbox--other">
-                <div>
-                  <span class="tag chosen-condition">可咨询</span>
-                  <span class="tag">可挂号</span>
-                  <span class="tag">服务包</span>
-                  <span class="tag">手术预约</span>
-                </div>
-              </div>
-            </li>
-            <li class="components-screenbox--item">
-              <h3>
-                <label>医院等级</label>
-                <div>
-                </div>
-              </h3>
-              <div class="components-screenbox--other">
-                <div>
-                  <span class="tag chosen-condition">三级甲等</span>
-                </div>
-              </div>
-            </li>
-            <li class="components-screenbox--item">
-              <h3>
-                <label>医生职称</label>
-                <div>
-                </div>
-              </h3>
-              <div class="components-screenbox--other">
-                <div>
-                  <span class="tag chosen-condition">主任医生</span>
-                  <span class="tag">副主任医生</span>
-                  <span class="tag">主治医生</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div class="components-screenbox--btn-group">
-            <a class="components-screenbox-reset">重置</a>
-            <a class="components-screenbox-confirm">确定</a>
-          </div>
-        </section>
       </div>
 
       <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" />
@@ -136,7 +82,7 @@
             <em>已满</em>
           </div>
         </div>
-        <div class="comment-info">
+        <!-- <div class="comment-info">
           <div class="header"><img src="@/assets/images/3.jpg"></div>
           <div class="comment-right">
             <p class="introduce">
@@ -158,9 +104,86 @@
             <em>已满</em>
           </div>
         </div>
+        <div class="comment-info">
+          <div class="header"><img src="@/assets/images/3.jpg"></div>
+          <div class="comment-right">
+            <p class="introduce">
+              <span class="name">何某</span>&nbsp;
+              <span>主任医师</span>&nbsp;
+              <span>内科</span>&nbsp;
+            </p>
+            <p class="colo13">
+              <span class="picture">图文</span>&nbsp;
+              <span class="picture">电话</span>&nbsp;
+              <span class="video">视频</span>&nbsp;
+              <span class="reputation">好评率 98%</span>&nbsp;
+            </p>
+            <p class="content  "> 擅长：儿科常见病、多发病 #先天性心脏病</p>
+            <p class="colo13">
+              <span>咨询数：66 </span>&nbsp;
+              <span>平均回复时长：1小时</span>&nbsp; </p>
+            <p class="price"> ￥20 起</p>
+            <em>已满</em>
+          </div>
+        </div> -->
       </div>
     </div>
- 
+    <div class="components-mask">
+      <div class="online-mask"></div>
+      <div class="g-filter-ssr--content">
+        <section class="components-screenbox">
+          <ul>
+            <li class="components-screenbox--item">
+              <h3>
+                <label>服务类型</label>
+                <div>
+                </div>
+              </h3>
+              <div class="components-screenbox--other">
+                <div>
+                  <span class="tag chosen-condition">可咨询</span>
+                  <span class="tag">可挂号</span>
+                  <span class="tag">服务包</span>
+                  <span class="tag">手术预约</span>
+                </div>
+              </div>
+            </li>
+            <li class="components-screenbox--item">
+              <h3>
+                <label>医院等级</label>
+                <div>
+                </div>
+              </h3>
+              <div class="components-screenbox--other">
+                <div>
+                  <span class="tag chosen-condition">三级甲等</span>
+                </div>
+              </div>
+            </li>
+            <li class="components-screenbox--item">
+              <h3>
+                <label>医生职称</label>
+                <div>
+                </div>
+              </h3>
+              <div class="components-screenbox--other">
+                <div>
+                  <span class="tag chosen-condition">主任医生</span>
+                  <span class="tag">副主任医生</span>
+                  <span class="tag">主治医生</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="components-screenbox--btn-group">
+            <a class="components-screenbox-reset">重置</a>
+            <a class="components-screenbox-confirm">确定</a>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
     <Footer></Footer>
   </div>
 

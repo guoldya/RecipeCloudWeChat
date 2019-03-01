@@ -191,7 +191,10 @@
 .online .comment-info:last-child {
    border: none;
 }
-
+.components-mask{
+   z-index: 1103;
+   /* position: fixed; */
+}
 .online-mask {
    top: 0;
    right: 0;
@@ -202,7 +205,14 @@
    z-index: 1;
    background-color: rgba(37, 38, 45, .7);
 }
-
+.md-popup-box {
+   position: relative;
+   pointer-events: auto;
+   z-index: 2;
+   max-width: 100%;
+   max-height: 100%;
+   overflow: auto;
+}
 .components-screenbox {
    height: 650px;
    display: -webkit-box;
@@ -216,6 +226,8 @@
    flex-direction: column;
    position: relative;
    z-index: 21;
+   background: #ffffff;
+   justify-content: flex-end;
 }
 
 .components-screenbox ul {
@@ -272,7 +284,6 @@
 .components-screenbox .components-screenbox--btn-group a.components-screenbox-reset {
    color: #24a5f1;
    background-color: #fff;
-   border-top: 1px solid #ebecf1;
 }
 
 .components-screenbox .components-screenbox--btn-group a {
