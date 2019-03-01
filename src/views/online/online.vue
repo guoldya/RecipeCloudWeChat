@@ -34,9 +34,7 @@
 
       <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" />
       <md-selector v-model="isSelectorShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
-      <md-action-sheet v-model="testshow" cancel-text="取消" confir-text="重置" @selected="$_selected" @cancel="$_cancel">
-        <div>我是要一个</div>
-      </md-action-sheet>
+
       <h2>药品资讯</h2>
       <div class="yaobutton">
         <div :class="{'yaoActive':isChecked==0}" @click="choose">
@@ -82,28 +80,6 @@
             <em>已满</em>
           </div>
         </div>
-        <!-- <div class="comment-info">
-          <div class="header"><img src="@/assets/images/3.jpg"></div>
-          <div class="comment-right">
-            <p class="introduce">
-              <span class="name">何某</span>&nbsp;
-              <span>主任医师</span>&nbsp;
-              <span>内科</span>&nbsp;
-            </p>
-            <p class="colo13">
-              <span class="picture">图文</span>&nbsp;
-              <span class="picture">电话</span>&nbsp;
-              <span class="video">视频</span>&nbsp;
-              <span class="reputation">好评率 98%</span>&nbsp;
-            </p>
-            <p class="content  "> 擅长：儿科常见病、多发病 #先天性心脏病</p>
-            <p class="colo13">
-              <span>咨询数：66 </span>&nbsp;
-              <span>平均回复时长：1小时</span>&nbsp; </p>
-            <p class="price"> ￥20 起</p>
-            <em>已满</em>
-          </div>
-        </div>
         <div class="comment-info">
           <div class="header"><img src="@/assets/images/3.jpg"></div>
           <div class="comment-right">
@@ -125,61 +101,76 @@
             <p class="price"> ￥20 起</p>
             <em>已满</em>
           </div>
-        </div> -->
+        </div>
+
       </div>
     </div>
     <div class="components-mask">
-      <div class="online-mask"></div>
-      <div class="g-filter-ssr--content">
-        <section class="components-screenbox">
-          <ul>
-            <li class="components-screenbox--item">
-              <h3>
-                <label>服务类型</label>
-                <div>
+      <div class="md-popup with-mask bottom" v-show="testshow">
+        <div class="md-popup-mask" @click="testshow=false"></div>
+        <div class="md-popup-box md-slide-up">
+          <div class="md-action-sheet-content">
+            <!--筛选框-->
+            <div class="g-filter-ssr--content">
+              <div class="md-popup-title-bar">
+                <div class="title-bar-left md-popup-cancel" @click="testshow=false">
+                  <i class="md-icon icon-font md-icon-close close lg"></i>
                 </div>
-              </h3>
-              <div class="components-screenbox--other">
-                <div>
-                  <span class="tag chosen-condition">可咨询</span>
-                  <span class="tag">可挂号</span>
-                  <span class="tag">服务包</span>
-                  <span class="tag">手术预约</span>
+                <div class="title-bar-title">
+                  <p class="title">筛选</p>
                 </div>
               </div>
-            </li>
-            <li class="components-screenbox--item">
-              <h3>
-                <label>医院等级</label>
-                <div>
+              <section class="components-screenbox">
+                <ul>
+                  <li class="components-screenbox--item">
+                    <h3>
+                      <label>服务类型</label>
+                      <div>
+                      </div>
+                    </h3>
+                    <div class="components-screenbox--other">
+                      <div>
+                        <span class="tag" v-for="(item, index) in sortData" :key="index">{{item.text}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="components-screenbox--item">
+                    <h3>
+                      <label>医生职称</label>
+                      <div>
+                      </div>
+                    </h3>
+                    <div class="components-screenbox--other">
+                      <div>
+                        <span @click="chooseTitle(index2)" :class="active1 === index2 ? 'chosen-condition' : '' " class="tag" v-for="(item2,index2) in sortData" :key="index2+'ss'">{{item2.text}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="components-screenbox--item">
+                    <h3>
+                      <label>价格区间</label>
+                      <div>
+                      </div>
+                    </h3>
+                    <div class="components-screenbox--other">
+                      <div>
+                        <span class="tag chosen-condition">25</span>
+                        <span class="tag">20~50</span>
+                        <span class="tag">20~50</span>
+                        <span class="tag">50~100</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="components-screenbox--btn-group">
+                  <a class="components-screenbox-reset">重置</a>
+                  <a class="components-screenbox-confirm">确定</a>
                 </div>
-              </h3>
-              <div class="components-screenbox--other">
-                <div>
-                  <span class="tag chosen-condition">三级甲等</span>
-                </div>
-              </div>
-            </li>
-            <li class="components-screenbox--item">
-              <h3>
-                <label>医生职称</label>
-                <div>
-                </div>
-              </h3>
-              <div class="components-screenbox--other">
-                <div>
-                  <span class="tag chosen-condition">主任医生</span>
-                  <span class="tag">副主任医生</span>
-                  <span class="tag">主治医生</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div class="components-screenbox--btn-group">
-            <a class="components-screenbox-reset">重置</a>
-            <a class="components-screenbox-confirm">确定</a>
+              </section>
+            </div>
+            <!--  -->
           </div>
-        </section>
+        </div>
       </div>
 
     </div>
@@ -197,6 +188,8 @@ export default {
 
   data() {
     return {
+      num: 10,
+      active1: '',
       testshow: false,
       insurants: ['self'],
       isChecked: 0,
@@ -270,7 +263,11 @@ export default {
             }
           },
         ],
+
         testshow: false,
+
+
+
 
       }
     };
@@ -289,6 +286,9 @@ export default {
     }
   },
   methods: {
+    chooseTitle(data) {
+      this.active1 = data;
+    },
     expertpage() {
       this.$router.push({
         name: 'expertpage',
@@ -309,7 +309,9 @@ export default {
     filter() {
       this.isChecked = 2;
       this.testshow = true;
+      this.$nextTick(() => {
 
+      })
     },
 
     $_selected(item) {

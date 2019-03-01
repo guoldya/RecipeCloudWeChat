@@ -191,10 +191,12 @@
 .online .comment-info:last-child {
    border: none;
 }
-.components-mask{
+
+.components-mask {
    z-index: 1103;
    /* position: fixed; */
 }
+
 .online-mask {
    top: 0;
    right: 0;
@@ -205,6 +207,7 @@
    z-index: 1;
    background-color: rgba(37, 38, 45, .7);
 }
+
 .md-popup-box {
    position: relative;
    pointer-events: auto;
@@ -213,6 +216,7 @@
    max-height: 100%;
    overflow: auto;
 }
+
 .components-screenbox {
    height: 650px;
    display: -webkit-box;
@@ -274,16 +278,21 @@
 }
 
 .components-screenbox .components-screenbox--btn-group {
-   height: 87px;
+   height: 120px;
    display: -webkit-box;
    display: -webkit-flex;
    display: -ms-flexbox;
    display: flex;
 }
 
+.components-screenbox ul .components-screenbox--item:last-child {
+   border-bottom: 0;
+}
+
 .components-screenbox .components-screenbox--btn-group a.components-screenbox-reset {
    color: #24a5f1;
    background-color: #fff;
+   border-top: 1px solid #ebecf1
 }
 
 .components-screenbox .components-screenbox--btn-group a {
@@ -311,7 +320,7 @@
 .components-screenbox .components-screenbox--btn-group a {
    display: block;
    height: 100%;
-   line-height: 87px;
+   line-height: 100px;
    text-align: center;
 }
 
@@ -324,4 +333,60 @@
 .components-screenbox ul .components-screenbox--item h3 span.tag.chosen-condition {
    background-color: #24a5f1;
    color: #fff;
+}
+
+.md-popup .md-action-sheet-content {
+   text-align: left;
+   font-size: 28px
+}
+
+.md-popup-title-bar {
+   position: relative;
+   width: 100%;
+   height: 1.2rem;
+   background-color: #f9fafb;
+   border-radius: 0.08rem 0.08rem 0 0;
+   overflow: hidden;
+}
+  .md-popup-box {
+   background-color: #fff;
+   border-radius: 0.08rem 0.08rem 0 0;
+}
+.md-popup-title-bar .title-bar-left,
+.md-popup-title-bar .title-bar-right {
+   position: absolute;
+   width: 20%;
+   max-height: 1.2rem;
+   font-size: 0.36rem;
+   font-weight: 500;
+   box-sizing: border-box;
+}
+
+.md-popup-title-bar .title-bar-title {
+   width: 100%;
+   padding: 0 20%;
+   box-sizing: border-box;
+}
+
+.md-popup-title-bar>div {
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: flex;
+   float: left;
+   height: 100%;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   word-break: break-all;
+   word-wrap: break-word;
+   white-space: nowrap;
 }
