@@ -130,7 +130,7 @@
                     </h3>
                     <div class="components-screenbox--other">
                       <div>
-                        <span class="tag" v-for="(item, index) in sortData" :key="index">{{item.text}}</span>
+                        <span v-for="(item, index) in consultList" :key="index" @click="select(item, index)" :class="[{ 'chosen-condition': item.checked }, 'tag']">{{item.text}}</span>
                       </div>
                     </div>
                   </li>
@@ -142,7 +142,7 @@
                     </h3>
                     <div class="components-screenbox--other">
                       <div>
-                        <span @click="chooseTitle(index2)" :class="active1 === index2 ? 'chosen-condition' : '' " class="tag" v-for="(item2,index2) in sortData" :key="index2+'ss'">{{item2.text}}</span>
+                        <span v-for="(item2,index2) in selectList" :key="index2" :class="[{ 'chosen-condition': item2.checked }, 'tag']" @click="select2(item2,index2)">{{item2.text}}</span>
                       </div>
                     </div>
                   </li>
@@ -163,8 +163,8 @@
                   </li>
                 </ul>
                 <div class="components-screenbox--btn-group">
-                  <a class="components-screenbox-reset">重置</a>
-                  <a class="components-screenbox-confirm">确定</a>
+                  <a class="components-screenbox-reset" @click="reset">重置</a>
+                  <a class="components-screenbox-confirm" @click="getSelect">确定</a>
                 </div>
               </section>
             </div>
@@ -199,6 +199,8 @@ export default {
       addressStr: '科室',
       selectorValue: '排序',
       isWeixin: false,
+      selectList: [],
+      consultList: [],
       sortData: [
         {
           value: '1',
@@ -221,6 +223,7 @@ export default {
           text: '价格从低到高',
         },
       ],
+
       Fdata: {
         // 唯一键名
         name: '科室',
@@ -283,12 +286,70 @@ export default {
       this.isWeixin = false;
     } else {
       this.isWeixin = true;
-    }
+    };
+    const doctorlist = [
+      {
+        value: 1,
+        text: '副主任医师',
+      },
+      {
+        value: 2,
+        text: '主任医师',
+      },
+      {
+        value: 3,
+        text: '医师',
+      },
+
+    ]
+
+    doctorlist.forEach(item => item.checked = false);
+
+    this.selectList = doctorlist;
+
+    const list = [
+      {
+        value: 1,
+        text: '图文咨询',
+        checked: false,
+      },
+      {
+        value: 2,
+        text: '电话咨询',
+        checked: false,
+      },
+      {
+        value: 3,
+        text: '视频咨询',
+        checked: false,
+      },
+    ]
+
+    this.consultList = list;
+    console.log(this.consultList, " this.consultList")
   },
   methods: {
-    chooseTitle(data) {
-      this.active1 = data;
+    select(current, index) {
+
+      this.consultList[index].checked = !this.consultList[index].checked;
+      console.log("点击事件", this.consultList[index])
     },
+    select2(current, index) {
+      this.selectList[index].checked = !this.selectList[index].checked
+      console.log("点击事件")
+
+    },
+
+    getSelect() {
+      const selects = this.selectList.filter(item => item.checked)
+      const selects2 = this.consultList.filter(item => item.checked)
+      console.log(selects.map(item => item).join(','))
+    },
+    reset() {
+      this.selectList.forEach(item => item.checked = false)
+      this.consultList.forEach(item => item.checked = false)
+    },
+
     expertpage() {
       this.$router.push({
         name: 'expertpage',

@@ -201,7 +201,7 @@ input:-ms-input-placeholder {
 }
 
 .card {
-  box-shadow: 0 0 17px #c8dff7;
+  box-shadow: 0 0 17px rgba(131, 179, 208, 0.3);
   background-color: #fff;
   position: relative;
   border-radius: 20px;

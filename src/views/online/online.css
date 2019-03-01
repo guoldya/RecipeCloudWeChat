@@ -348,10 +348,12 @@
    border-radius: 0.08rem 0.08rem 0 0;
    overflow: hidden;
 }
-  .md-popup-box {
+
+.md-popup-box {
    background-color: #fff;
    border-radius: 0.08rem 0.08rem 0 0;
 }
+
 .md-popup-title-bar .title-bar-left,
 .md-popup-title-bar .title-bar-right {
    position: absolute;

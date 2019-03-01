@@ -39,7 +39,7 @@
    text-align: center;
    line-height: 240px;
    border-radius: 20px;
-   box-shadow: 0 0 17px #c8dff7;
+   box-shadow: 0 0 17px rgba(131, 179, 208, 0.3);
 }
 
 .bindCard .bindCardBtn {
@@ -105,7 +105,8 @@
 }
 
 .home-menu li p {
-   line-height: 20px
+   line-height: 20px;
+   font-family: "PingFang-SC-Medium"
 }
 
 .home-footer {
@@ -129,7 +130,7 @@
 .homeCard {
    height: 240px;
    border-radius: 20px;
-   box-shadow: 0 0 17px #c8dff7;
+   box-shadow: 0 0 18px rgba(131, 179, 208, 0.3);
    background: #ffffff;
 }
 
