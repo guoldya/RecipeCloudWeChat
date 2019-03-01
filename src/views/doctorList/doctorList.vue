@@ -60,7 +60,7 @@
                     <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
                     <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
                   </p>
-                  <p class="headdesc">擅长:{{info.introduce}}</p>
+                  <p class="headdesc">擅长:{{info.skill}}</p>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@
                     <span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>
                     <span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>
                   </p>
-                  <p class="headdesc">擅长:{{item.introduce}}</p>
+                  <p class="headdesc">擅长:{{item.skill}}</p>
                 </div>
               </div>
             </div>
