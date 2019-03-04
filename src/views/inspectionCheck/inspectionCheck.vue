@@ -7,15 +7,15 @@
             <div class="aui-center">
                 <span class="aui-center-title">慢病续方</span>
             </div>
-            <span class="aui-navBar-item">
-                <div>
-                    <md-field>
-                        <md-field-item :content="selectorValue" @click="showSelector" solid/>
-                    </md-field>
-                    <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData[0]" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
-                </div>
-                <span class="downImg"><img src="@/assets/images/icon_down.png"></span>
-            </span>
+            <!--<span class="aui-navBar-item">-->
+                <!--<div>-->
+                    <!--<md-field>-->
+                        <!--<md-field-item :content="selectorValue" @click="showSelector" solid/>-->
+                    <!--</md-field>-->
+                    <!--<md-selector v-model="isSelectorShow" default-value="7" :data="optionsData[0]" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>-->
+                <!--</div>-->
+                <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
+            <!--</span>-->
         </header>
         <div :class="{margin45:isWeixin,outCarint:true}">
             <div class="pageContent">

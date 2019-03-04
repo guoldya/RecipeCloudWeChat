@@ -2,7 +2,7 @@
 
   <div class="reportinfo">
     <Header :post-title="postTitle" v-show="isWeixin"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true}" v-for="(item,i) in reportInfoData" :key="i">
+    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}" v-for="(item,i) in reportInfoData" :key="i">
         <div v-if="activeId==0">
             <div class="card margin16">
                 <div class="cardText" >
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <p style="margin-top:15px;font-weight:700">检查结果</p>
+            <p style="margin:15px 0px;font-weight:700">检查结果</p>
             <div class="card margin16">
                 <div class="cardText">
                     <div class="cardTextPP">
@@ -53,8 +53,8 @@
                         <span style="width: 86%;">{{item.advise}}</span>
                     </div>
                     <div class="listData cardTextPP">
-                        <span style="width: 15%;">备注：</span>
-                        <span style="width: 85%;">{{item.remark}}</span>
+                        <span style="width: 14%;">备注：</span>
+                        <span style="width: 86%;">{{item.remark}}</span>
                     </div>
                 </div>
             </div>

@@ -69,7 +69,6 @@
                     let nowTime = new Date();
                     let d = nowTime.setDate(nowTime.getDate() + i - 1);
                     let data = this.addDate(d, 1);
-                    console.log(data)
                     let time = {};
                     if (i == 0) {
                         time = { date: data.newData, week: '当日号', year: data.newYear }
@@ -122,7 +121,6 @@
                 getTimeParam.orgId=49;
                 getTimeParam.classId=parseInt(this.classId);
                 getTimeParam.day=this.isTime;
-                console.log(this.isTime)
                 this.$axios.put(bizExamSchedulereadlist,getTimeParam).then((res) => {
                     if(res.data.code=='200'){
                         this.loadingtrue = false;
@@ -132,7 +130,6 @@
                     console.log(err);
                 });
             }
-
         }
     }
 </script>

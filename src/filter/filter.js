@@ -37,6 +37,7 @@ const payTypeFilter=function(value){
         return "已取消"
     }
 };
+//时间保留号数
 const time=function(value){
     if(value==undefined){
         return ""

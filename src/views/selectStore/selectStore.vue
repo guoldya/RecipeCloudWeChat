@@ -174,11 +174,10 @@ export default {
             if (this.downImg == true) {
                 this.downImg = false;
                 this.imgIndex = val;
-            } else
-                if (this.downImg == false) {
-                    this.downImg = true;
-                    this.imgIndex = -1;
-                }
+            } else if (this.downImg == false) {
+                this.downImg = true;
+                this.imgIndex = -1;
+            }
         },
         switchTo(num) {
             this.farIndex = null;
@@ -231,9 +230,13 @@ export default {
         },
         reset: function () {
             this.farIndex = "-1";
+            this.filterNumArr.push(3);
+            this.filterUpImg = require("@/assets/images/icon_up_pre@2x.png");
         },
         confirm: function () {
             this.farIndex = "-1";
+            this.filterNumArr.push(3);
+            this.filterUpImg = require("@/assets/images/icon_up_pre@2x.png");
         },
         shopMethodFun: function (num) {
             this.methodIndex = num;

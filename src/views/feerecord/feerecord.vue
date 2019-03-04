@@ -1,6 +1,6 @@
 <template>
     <div class="feerecord">
-        <header class="aui-navBar aui-navBar-fixed">
+        <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
             </span>

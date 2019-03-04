@@ -115,20 +115,17 @@
                         for(let i=0;i<res.data.data.amList.length;i++){
                             this.doctorData.push(res.data.data.amList[i])
                         }
-                        for(let i=0;i<res.data.data.otherList.length;i++){
-                            this.doctorData.push(res.data.data.otherList[i])
+                        for(let i=0;i<res.data.data.pmList.length;i++){
+                            this.doctorData.push(res.data.data.pmList[i])
                         }
                         for(let i=0;i<res.data.data.pmList.length;i++){
                             this.doctorData.push(res.data.data.pmList[i])
                         }
-                        console.log(this.doctorData);
                     }
                 }).catch(function (err) {
                     console.log(err);
                 });
             },
-
-
         }
     }
 </script>

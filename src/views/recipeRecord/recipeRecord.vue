@@ -1,7 +1,7 @@
 <template>
     <div class="recipeRecord">
         <Header post-title="处方记录" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
             <!--<div class="pageContent">-->
                 <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
                     <!--{{item.title}}-->

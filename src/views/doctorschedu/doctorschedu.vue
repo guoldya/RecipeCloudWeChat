@@ -25,32 +25,6 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <!--<div class="yy_date_today">-->
-                <!--<span class="date_today">{{choosedate}}</span>-->
-                <!--</div>-->
-                <!--<div class="yy_date_wrap">-->
-                <!--<div class="wx_week">-->
-                <!--<a v-for="(item,index) in dayWeek" :key="index+'aa'">{{item}}</a>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div :class="{'yy_date':true,'yy_dateAA':!isSeemore}">-->
-                <!--<div v-for="(item,index) in time" :key="index+'aa'" @click="choose(item,index)">-->
-                <!--<span class="state_full" :class="{'state_full':true,'current': index == active}">-->
-                <!--<span class="date">{{item.date}}</span>-->
-                <!--<input type="hidden" class="getFullDate" value="2019-02-16">-->
-                <!--<span>无号</span>-->
-                <!--</span>-->
-                <!--</div>-->
-                <!--<div>-->
-                <!--<span class="state_full have">-->
-                <!--<span class="date">14</span>-->
-                <!--<input type="hidden" class="getFullDate" value="2019-02-14">-->
-                <!--<span>剩 13</span>-->
-                <!--</span>-->
-                <!--</div>-->
-                <!--</div>-->
-            </div>
             <Calendar v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
             <Loading v-show="loadingtrue"></Loading>
 
@@ -68,14 +42,8 @@
         },
         data() {
             return {
-                showMaskClosable: false,
-                active: 0,
-                value: '',
                 isSeemore: false,
-                choosedate: '',
                 isWeixin: false,
-                time: [],
-                dayWeek: ["日", "一", "二", "三", "四", "五", "六"],
                 docId:'',
                 loadingtrue:true,
                 doctorData:[],
@@ -140,10 +108,6 @@
             },
             changeDate(data) {
                 console.log(data); //左右点击切换月份
-            },
-            choose(value, index) {
-                this.active = index;
-                this.choosedate = value.year + '-' + value.month + '-' + value.date;
             },
         }
     }

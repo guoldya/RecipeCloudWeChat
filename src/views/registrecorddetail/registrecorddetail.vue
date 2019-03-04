@@ -4,14 +4,45 @@
         <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
             <div class="card" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
                 <div class="cardText">
-                    <p>科室：{{item.deptName}}</p>
-                    <p>医生：{{item.doctorName}}</p>
-                    <p>姓名：{{item.patientName}}</p>
-                    <p>日期：{{item.regDate}}</p>
-                    <p>时段：{{item.regStage}}</p>
-                    <p>诊号：{{item.sourceId}}</p>
-                    <p>金额：<span v-if="item.money!=null">{{item.money}}元</span></p>
-                    <p>地点：{{item.address}}</p>
+                    <div class="listData">
+                        <span>科室</span>
+                        <span>{{item.deptName}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="listData">
+                        <span>医生</span>
+                        <span>{{item.doctorName}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="listData">
+                        <span>患者姓名</span>
+                        <span>{{item.patientName}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="listData">
+                        <span>日期</span>
+                        <span>{{item.regDate}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="listData">
+                        <span>时段</span>
+                        <span>{{item.regStage}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="listData">
+                        <span>诊号</span>
+                        <span>{{item.sourceId}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="listData">
+                        <span>金额</span>
+                        <span>{{item.money}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="listData">
+                        <span>地点</span>
+                        <span>{{item.address}}</span>
+                    </div>
                 </div>
             </div>
             <Loading v-show="loadingtrue"></Loading>
@@ -55,18 +86,7 @@ let order_cancle_url="/app/bizPatientRegister/outSourceId";
 export default {
     data() {
         return {
-            active1: 0,
             isWeixin: false,
-            normal: {
-                checkbox: true,
-                radio: 1,
-                switch: false
-            },
-            time: [
-                { title: '待支付' },
-                { title: '预约成功' },
-                { title: '预约关闭' }
-            ],
             cordInfoId: null,
             cordInfoData: [],
             payType: '',
@@ -94,6 +114,7 @@ export default {
             ],
             sourceId:null,
             okParams:[],
+            feeId:'',
         };
     },
     created() {
@@ -236,10 +257,6 @@ export default {
             // Abort pay request or checking request
             this.timer && clearTimeout(this.timer)
         },
-
-        switchTo(num) {
-            this.active1 = num;
-        },
         setStyle(rowIndex, row) {
             if (row.id === this.currentRow.id) {
                 return 'background-color:#ddd'
@@ -319,5 +336,8 @@ export default {
 }
 .registrecorddetail .default:after {
   border: none !important;
+}
+.registrecorddetail .partLine{
+    margin: 16px 0px;
 }
 </style>

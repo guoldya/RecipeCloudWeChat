@@ -132,7 +132,7 @@ export default {
       this.isSelectorShow = true
     },
     onSelectorChoose({ text }) {
-      this.selectorValue = text
+      this.selectorValue = text;
     },
 
 
@@ -140,10 +140,10 @@ export default {
     cardconfirm() {
       let param = new FormData(); //创建form对象
       console.log(this.AAA.name, this.BBB.name, "sss");
-      if (!this.AAA.name || !this.BBB.name) {
-        this.$toast.info("请上传图片")
-        return;
-      }
+      // if (!this.AAA.name || !this.BBB.name) {
+      //   this.$toast.info("请上传图片")
+      //   return;
+      // }
 
       var index1 = this.AAA.name.lastIndexOf(".");
       var index2 = this.AAA.name.length;
@@ -155,12 +155,12 @@ export default {
 
       param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
       param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
+        console.log(param);
       let config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
       };  //添加请求头
-
       this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {

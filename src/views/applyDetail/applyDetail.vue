@@ -120,7 +120,7 @@
                     </div>
 
                 </div>
-                <div>
+                <div style="margin: 10px 0">
                     <md-button type="primary" round  v-if="isContinue==true" @click="look">查看续方处方</md-button>
                 </div>
             </div>
@@ -136,17 +136,12 @@
                     {no:"CQ11111111",date:"2018年11月11日", name:this.$route.query.name,age:"18",
                         sex:"男",dept:"内科",doc:"杜甫李白",type:"首诊续方", result:"高血压",
                         applyDate:"2018年11月11日",auditState:"审核未通过",
-                        recipeReason:"杜甫李白首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方" +
-                        "首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方首诊续续方首诊续方首诊续方首诊续方首诊续方首诊续" +
-                        "续方首诊续方首诊续方首诊续方首诊续方首诊续续方首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方",
+                        recipeReason:"首诊续方首诊续方首诊续方",
                         recipeDate:"2018年11月11日",recipeNo:"内科",auditDoc:"杜甫李白",
                         auditDate:"2018年11月11日",
-                        docRemark:"杜甫李白首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方杜甫李白首诊续" +
-                        "方首诊续方首诊续方首诊续方首诊续方首诊续方首诊续方杜甫李白首诊续方首诊续方首诊续方首" +
-                        "诊续方首诊续方首诊续方首诊续方",
+                        docRemark:"首诊续方首诊续方首诊续方",
                         teacherDoc:"黄药师",teacherDate:"2018年11月11日",
-                        teacherRemark:"杜甫李白首诊续方首诊续方首诊续方首诊续方首诊续方首诊杜甫李白首诊续" +
-                        "方首诊续方首诊续方首诊续方首诊续方首诊杜甫李白首诊续方首诊续方首诊续方首诊续方首诊续方首诊",
+                        teacherRemark:"首诊续方首诊续方首诊续方首诊续方首诊续方首诊",
                     }
                 ],
                 listBottom:[

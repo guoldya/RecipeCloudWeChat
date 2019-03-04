@@ -17,7 +17,7 @@
             <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
             <!--</span>-->
         </header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
             <!--<div class="timeTab" style="margin-top:20px">-->
             <!--<span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">-->
             <!--{{item.title}}-->

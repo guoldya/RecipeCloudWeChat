@@ -1,7 +1,7 @@
 <template>
     <div class="medicalEva">
         <Header post-title="就医评价" selectOption="" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
             <div>
                 <div class="card margin16">
                     <div class="cardText">
