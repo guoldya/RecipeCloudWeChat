@@ -1,7 +1,6 @@
 <template>
   <div class="online">
     <div :class="{'outCarint':true, }">
-
       <div class="onlineheader">在线问诊</div>
       <Search></Search>
       <div class="tools">
@@ -31,19 +30,11 @@
             <img src="@/assets/images/online10.png" alt="">
           </div>
         </div>
-
       </div>
-      <!-- <md-check-group v-model="insurants">
-        <md-check-box name="self">自己</md-check-box>
-        <md-check-box name="couple">配偶</md-check-box>
-        <md-check-box name="parent">父母</md-check-box>
-        <md-check-box name="child">子女</md-check-box>
-      </md-check-group> -->
+
       <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" />
       <md-selector v-model="isSelectorShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
-      <md-action-sheet v-model="testshow" cancel-text="取消" confir-text="重置" @selected="$_selected" @cancel="$_cancel">
 
-      </md-action-sheet>
       <h2>药品资讯</h2>
       <div class="yaobutton">
         <div :class="{'yaoActive':isChecked==0}" @click="choose">
@@ -111,8 +102,79 @@
             <em>已满</em>
           </div>
         </div>
+
       </div>
     </div>
+    <div class="components-mask">
+      <div class="md-popup with-mask bottom" v-show="testshow">
+        <div class="md-popup-mask" @click="testshow=false"></div>
+        <div class="md-popup-box md-slide-up">
+          <div class="md-action-sheet-content">
+            <!--筛选框-->
+            <div class="g-filter-ssr--content">
+              <div class="md-popup-title-bar">
+                <div class="title-bar-left md-popup-cancel" @click="testshow=false">
+                  <i class="md-icon icon-font md-icon-close close lg"></i>
+                </div>
+                <div class="title-bar-title">
+                  <p class="title">筛选</p>
+                </div>
+              </div>
+              <section class="components-screenbox">
+                <ul>
+                  <li class="components-screenbox--item">
+                    <h3>
+                      <label>服务类型</label>
+                      <div>
+                      </div>
+                    </h3>
+                    <div class="components-screenbox--other">
+                      <div>
+                        <span v-for="(item, index) in consultList" :key="index" @click="select(item, index)" :class="[{ 'chosen-condition': item.checked }, 'tag']">{{item.text}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="components-screenbox--item">
+                    <h3>
+                      <label>医生职称</label>
+                      <div>
+                      </div>
+                    </h3>
+                    <div class="components-screenbox--other">
+                      <div>
+                        <span v-for="(item2,index2) in selectList" :key="index2" :class="[{ 'chosen-condition': item2.checked }, 'tag']" @click="select2(item2,index2)">{{item2.text}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="components-screenbox--item">
+                    <h3>
+                      <label>价格区间</label>
+                      <div>
+                      </div>
+                    </h3>
+                    <div class="components-screenbox--other">
+                      <div>
+                        <span class="tag chosen-condition">25</span>
+                        <span class="tag">20~50</span>
+                        <span class="tag">20~50</span>
+                        <span class="tag">50~100</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="components-screenbox--btn-group">
+                  <a class="components-screenbox-reset" @click="reset">重置</a>
+                  <a class="components-screenbox-confirm" @click="getSelect">确定</a>
+                </div>
+              </section>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
     <Footer></Footer>
   </div>
 
@@ -126,6 +188,8 @@ export default {
 
   data() {
     return {
+      num: 10,
+      active1: '',
       testshow: false,
       insurants: ['self'],
       isChecked: 0,
@@ -135,6 +199,8 @@ export default {
       addressStr: '科室',
       selectorValue: '排序',
       isWeixin: false,
+      selectList: [],
+      consultList: [],
       sortData: [
         {
           value: '1',
@@ -157,6 +223,7 @@ export default {
           text: '价格从低到高',
         },
       ],
+
       Fdata: {
         // 唯一键名
         name: '科室',
@@ -199,7 +266,11 @@ export default {
             }
           },
         ],
+
         testshow: false,
+
+
+
 
       }
     };
@@ -215,9 +286,70 @@ export default {
       this.isWeixin = false;
     } else {
       this.isWeixin = true;
-    }
+    };
+    const doctorlist = [
+      {
+        value: 1,
+        text: '副主任医师',
+      },
+      {
+        value: 2,
+        text: '主任医师',
+      },
+      {
+        value: 3,
+        text: '医师',
+      },
+
+    ]
+
+    doctorlist.forEach(item => item.checked = false);
+
+    this.selectList = doctorlist;
+
+    const list = [
+      {
+        value: 1,
+        text: '图文咨询',
+        checked: false,
+      },
+      {
+        value: 2,
+        text: '电话咨询',
+        checked: false,
+      },
+      {
+        value: 3,
+        text: '视频咨询',
+        checked: false,
+      },
+    ]
+
+    this.consultList = list;
+    console.log(this.consultList, " this.consultList")
   },
   methods: {
+    select(current, index) {
+
+      this.consultList[index].checked = !this.consultList[index].checked;
+      console.log("点击事件", this.consultList[index])
+    },
+    select2(current, index) {
+      this.selectList[index].checked = !this.selectList[index].checked
+      console.log("点击事件")
+
+    },
+
+    getSelect() {
+      const selects = this.selectList.filter(item => item.checked)
+      const selects2 = this.consultList.filter(item => item.checked)
+      console.log(selects.map(item => item).join(','))
+    },
+    reset() {
+      this.selectList.forEach(item => item.checked = false)
+      this.consultList.forEach(item => item.checked = false)
+    },
+
     expertpage() {
       this.$router.push({
         name: 'expertpage',
@@ -237,9 +369,23 @@ export default {
     },
     filter() {
       this.isChecked = 2;
-      // this.testshow = true;
+      this.testshow = true;
+      this.$nextTick(() => {
 
-      this.$actionsheet.create({ /* ... */ }) 
+      })
+    },
+
+    $_selected(item) {
+      Dialog.alert({
+        content: `selected: ${JSON.stringify(item)}`,
+      })
+      console.log('action-sheet selected:', JSON.stringify(item))
+    },
+    $_cancel() {
+      Dialog.alert({
+        content: 'cancel',
+      })
+      console.log('action-sheet cancel')
     },
     chooseDepart({ options }) {
       this.address = options;

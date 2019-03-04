@@ -277,8 +277,8 @@ export default {
 
     function UrlSearch() {
       let name, value;
-      //  let str = location.href;
-      let str = "http://192.168.0.26:8080/?drugId=30&TOKEN=f2567e7382504422a684166a1ee7b934&UUID=fdafaa584aea7545"; //取得整个地址栏
+      let str = location.href;
+      // let str = "http://192.168.0.150:40080/h5/#/druginfo?drugId=104&TOKEN=e7d2cd089b714246aec4f5397bebaef8&UUID=f04b86567903f9de"; //取得整个地址栏
       let num = str.indexOf("?");
       str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
       _this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;
@@ -298,9 +298,10 @@ export default {
 
 
     var storage = window.localStorage;
+    localStorage.removeItem('token1');
     storage.setItem("token7", this.TOKEN);
     storage.setItem("UUID7", this.UUID);
-    localStorage.removeItem('token1');
+
 
 
     this.$axios.put(bdProductreaddetail, {

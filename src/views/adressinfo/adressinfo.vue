@@ -90,7 +90,6 @@ export default {
     this.$axios.put(appshippingAddressareaList, {
     }).then(res => {
       if (res.data.code == '200') {
-
         res.data.rows.forEach(value => {
           if (value.areaCode == this.pickerDefaultValue[0]) {
             var aa = value.label;
