@@ -29,8 +29,12 @@ export default new Vuex.Store({
         major: '',
         patientName: '',
         cardId: '',
+        cardList: '',
     },
     mutations: {
+        cardListFun: (state, n) => {
+            state.cardList = n;
+        },
         mobileFun: (state, n) => {
             state.mobile = n;
         },

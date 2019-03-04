@@ -29,10 +29,10 @@
                 <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in cardlist" v-if="showindex==index" :key="'cardlist' + index">
                     <div class="homeCardText">
                         <div class="homeCardTextLeft">
-                            <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                            <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)"> 
+                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)">
                                     <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
@@ -45,7 +45,6 @@
                     <div v-show="cardLoading" class="spinner">
                         <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                     </div>
-
                 </div>
             </div>
             <div v-else class="homeCard bindCard marginbott16">
@@ -266,8 +265,13 @@ export default {
 
     computed: {
         _cardlist() {
-            return this.cardlist.filter((item, index) => this.showindex == index)
-        }
+            // return this.cardlist.filter((item, index) => this.showindex == index)
+            return this.$store.state.cardList;
+        },
+        reversedMessage: function () {
+            // `this` 指向 vm 实例
+
+        },
     },
 
 }

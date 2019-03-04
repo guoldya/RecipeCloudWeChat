@@ -22,7 +22,7 @@ input {
    outline: none;
    font-size: 28px !important;
    color: #000;
-   z-index: 999;
+   /* z-index: 999; */
 }
 
 .doctorList .titleTag {
