@@ -140,10 +140,10 @@ export default {
     cardconfirm() {
       let param = new FormData(); //创建form对象
       console.log(this.AAA.name, this.BBB.name, "sss");
-      // if (!this.AAA.name || !this.BBB.name) {
-      //   this.$toast.info("请上传图片")
-      //   return;
-      // }
+      if (!this.AAA.name || !this.BBB.name) {
+        this.$toast.info("请上传图片")
+        return;
+      }
 
       var index1 = this.AAA.name.lastIndexOf(".");
       var index2 = this.AAA.name.length;
