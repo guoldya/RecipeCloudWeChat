@@ -114,7 +114,13 @@ export default {
     },
     mounted() {
         // 用于测试
-
+        //this.$route.meta.keepAlive=false;
+        console.log(this.$store.state);
+        if(this.$store.state.keepAlive=='2'){
+            this.$route.meta.keepAlive=false;
+        }else{
+            this.$route.meta.keepAlive=true;
+        }
         document.title = '互联网医院';
         let _this = this;
         function UrlSearch() {
@@ -261,8 +267,6 @@ export default {
             });
         },
     },
-
-
     computed: {
         _cardlist() {
             return this.cardlist.filter((item, index) => this.showindex == index)

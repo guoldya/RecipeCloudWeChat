@@ -17,8 +17,6 @@ export default new Vuex.Store({
         photo1Data: '',
         photo0Data: '',
         feeActiveId: '',
-        feeActiveId: '',
-        payType: '',
         payType: '',
         patientId: '',
         cardNo: '',
@@ -29,6 +27,7 @@ export default new Vuex.Store({
         major: '',
         patientName: '',
         cardId: '',
+        keepAlive:'',
     },
     mutations: {
         mobileFun: (state, n) => {
@@ -96,6 +95,9 @@ export default new Vuex.Store({
         idCardBackImgFun: (state, n) => {
             state.idCardBackImg = n;
         },
+        cacheFun:(state, n)=>{
+            state.keepAlive = n;
+        }
     },
     actions: {
 
