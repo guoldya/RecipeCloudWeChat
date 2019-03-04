@@ -1,10 +1,10 @@
 <template>
   <div class="doctorList">
     <div class="titleTag">
-      <div class="tag1" @click="showSelector">
+      <div class="tag1">
         <div class="tagdiv">
           <div class="showSelecA">
-            <span>{{selectorValue}}</span>
+            <span @click="showSelector">{{selectorValue}}</span>
           </div>
           <md-selector v-model="isSelectorShow" :data="departData" max-height="320px" title="选择科室" @choose="onSelectorChoose"></md-selector>
         </div>

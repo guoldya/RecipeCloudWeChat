@@ -53,7 +53,7 @@ axios.interceptors.request.use(function (config) {
 
 
   if (localStorage.getItem("token7")) {
-      console.log("执行测试")
+     alert("执行测试",localStorage.getItem("token7"),localStorage.getItem("UUID7"))
     config.headers.TOKEN = localStorage.getItem("token7");
     config.headers.UUID = localStorage.getItem("UUID7");
   } else {

@@ -332,11 +332,11 @@ export default {
     select(current, index) {
 
       this.consultList[index].checked = !this.consultList[index].checked;
-      console.log("点击事件", this.consultList[index])
+    
     },
     select2(current, index) {
       this.selectList[index].checked = !this.selectList[index].checked
-      console.log("点击事件")
+    
 
     },
 

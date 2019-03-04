@@ -28,8 +28,12 @@ export default new Vuex.Store({
         patientName: '',
         cardId: '',
         keepAlive:'',
+        cardList: '',
     },
     mutations: {
+        cardListFun: (state, n) => {
+            state.cardList = n;
+        },
         mobileFun: (state, n) => {
             state.mobile = n;
         },
@@ -95,9 +99,6 @@ export default new Vuex.Store({
         idCardBackImgFun: (state, n) => {
             state.idCardBackImg = n;
         },
-        cacheFun:(state, n)=>{
-            state.keepAlive = n;
-        }
     },
     actions: {
 

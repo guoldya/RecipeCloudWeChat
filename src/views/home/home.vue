@@ -29,10 +29,11 @@
                 <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in cardlist" v-if="showindex==index" :key="'cardlist' + index">
                     <div class="homeCardText">
                         <div class="homeCardTextLeft">
-                            <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                            <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
+                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)">
+                                    <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
                         <div class="towma" @click="showPic=true">
@@ -44,7 +45,6 @@
                     <div v-show="cardLoading" class="spinner">
                         <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                     </div>
-
                 </div>
             </div>
             <div v-else class="homeCard bindCard marginbott16">
@@ -115,12 +115,6 @@ export default {
     },
     mounted() {
         // 用于测试
-        //this.$route.meta.keepAlive=false;
-        console.log(this.$store.state);
-        this.$nextTick(()=>{})
-
-
-
         document.title = '互联网医院';
         let _this = this;
         function UrlSearch() {
@@ -153,12 +147,6 @@ export default {
                 storage.setItem("hospitalId", "49");
             }
         });
-        // if(this.$store.state.keepAlive=='2'){
-        //     this.$route.meta.keepAlive=false;
-        //     document.title="545454";
-        // }else{
-        //     this.$route.meta.keepAlive=true;
-        // }
         this.$axios.put(wechatbizPatientCardreadpage, {
         }).then(res => {
             if (res.data.code == '200') {
@@ -278,11 +266,11 @@ export default {
     },
     computed: {
         _cardlist() {
-            return this.cardlist.filter((item, index) => this.showindex == index)
+
         },
-        cacheFun(){
-            // return this.
-        }
+        reversedMessage: function () {
+            // `this` 指向 vm 实例
+        },
     },
 
 }
