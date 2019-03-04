@@ -50,8 +50,7 @@ export default {
     [InputItem.name]: InputItem,
     [Field.name]: Field,
   },
-  mounted() {
-
+  created() {
     if (this.$route.query.id) {
       document.title = '编辑地址';
       this.post = '编辑地址';
@@ -63,14 +62,7 @@ export default {
           this.mobile = res.data.data.mobile;
           this.address = res.data.data.address;
           this.areaId = res.data.data.areaId;
-
-
-
-
-
           this.pickerDefaultValue = [parseInt(this.areaId / 1000) * 1000, parseInt(this.areaId / 100) * 100, this.areaId]
-          console.log(this.pickerDefaultValue, "sss")
-
           this.zipCode = res.data.data.zipCode;
         }
       }).catch(function (err) {
@@ -90,6 +82,23 @@ export default {
     this.$axios.put(appshippingAddressareaList, {
     }).then(res => {
       if (res.data.code == '200') {
+        // var a = res.data.rows.find(item => {
+        //   item.areaCode == this.pickerDefaultValue[0];
+        //   var aa = item.label;
+        //   return item;
+        // });
+        // var b = a.find(item => {
+        //   item.areaCode == this.pickerDefaultValue[1];
+        //   var bb = item.label;
+        //   console.log(item, bb);
+        //   return item;
+        // });
+        // b.find(item => {
+        //   item.areaCode == this.pickerDefaultValue[2];
+        //   var cc = item.label;
+        //   console.log(item, cc);
+        //   return item;
+        // });
         res.data.rows.forEach(value => {
           if (value.areaCode == this.pickerDefaultValue[0]) {
             var aa = value.label;
@@ -101,21 +110,23 @@ export default {
                     var cc = data.label;
                     this.pickerValue1 = aa + bb + cc;
                   }
-
                 })
               }
             })
           }
         })
-        // var a = res.data.rows.find(item => item.areaCode == this.pickerDefaultValue[0]);
-        // var b = a.children.find(item => item.code == this.pickerDefaultValue[1]);
-        // var c = b.children.find(item => item.code == this.pickerDefaultValue[2]);
+        
+
+
 
         this.pickerData1 = [this.areaList(res.data.rows)];
       }
     }).catch(function (err) {
       console.log(err);
     });
+  },
+  mounted() {
+
 
 
 
@@ -136,24 +147,21 @@ export default {
       }
       return newArea;
     },
-  
-    onPickerConfirm(index) {
 
+    onPickerConfirm(index) {
       const values = this.$refs[`picker${index}`].getColumnValues()
       let res = ''
       let test = ''
       values.forEach(value => {
         value && (res += `${value.text || value.label} `)
-
       })
 
       values.forEach(value => {
         value && (test += `${value.value || value.label} `)
-
       })
       console.log(test, test.split(' ')[2])
       this.areaId = test.split(' ')[2];
-      this[`pickerValue${index}`] = res
+      this[`pickerValue${index}`] = res;
 
 
     },
