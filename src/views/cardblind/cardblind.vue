@@ -56,7 +56,6 @@ export default {
           text: '社保卡',
         },
       ],
-        keepAlive:'1',
     }
   },
   /* DELETE */
@@ -65,7 +64,6 @@ export default {
     [Field.name]: Field,
   },
   mounted() {
-      this.keepAlive='1';
     document.title = '绑定就诊卡';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -73,8 +71,6 @@ export default {
     } else {
       this.isWeixin = true;
     };
-      this.$store.commit('cacheFun', this.keepAlive);
-      console.log(this.$store.state);
   },
   methods: {
     showSelector() {
@@ -141,10 +137,7 @@ export default {
                 confirmText: '确定',
                 onConfirm: () => {
                   this.$router.go(-1);
-                  this.keepAlive='2';
-                    this.$store.commit('cacheFun', this.keepAlive);
-                  //this.$router.options.routes[0].meta.keepAlive=false;
-                  // console.log(this.$router.options.routes[0].meta.keepAlive);
+                  this.$router.options.routes[0].meta.keepAlive=false;
                 },
               });
             } else if (res.data.code == '800') {

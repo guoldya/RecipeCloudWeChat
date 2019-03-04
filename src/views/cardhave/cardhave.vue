@@ -151,6 +151,7 @@ export default {
         if (res.data.code == '200') {
           this.$toast.info("绑定成功");
           this.$router.go(-4);
+          this.$router.options.routes[0].meta.keepAlive=false;
         } else {
           console.log(res.msg);
         }
