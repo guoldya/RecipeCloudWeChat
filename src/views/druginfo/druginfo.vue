@@ -297,7 +297,7 @@ export default {
     this.UUID = Request.UUID;
 
 
-    var storage = window.localStorage;
+     var storage = window.localStorage;
     localStorage.removeItem('token1');
     storage.setItem("token7", this.TOKEN);
     storage.setItem("UUID7", this.UUID);
@@ -306,12 +306,7 @@ export default {
 
     this.$axios.put(bdProductreaddetail, {
       id: _this.drugId
-    }, {
-        headers: {
-          'TOKEN': `${_this.TOKEN}`,
-          'UUID': `${_this.UUID}`
-        },
-      }).then((res) => {
+    } ).then((res) => {
         if (res.data.code == '200') {
           _this.drugInfo = res.data.data.drug;
           _this.drugStoreId = res.data.data.drugStoreId;

@@ -53,10 +53,12 @@ axios.interceptors.request.use(function (config) {
 
 
   if (localStorage.getItem("token7")) {
-     alert("执行测试",localStorage.getItem("token7"),localStorage.getItem("UUID7"))
+    alert("执行测试", localStorage.getItem("token7"), localStorage.getItem("UUID7"))
     config.headers.TOKEN = localStorage.getItem("token7");
     config.headers.UUID = localStorage.getItem("UUID7");
   } else {
+    alert("执行错误的请求测试", )
+
     if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
       config.headers.TOKEN = "";
     } else {
