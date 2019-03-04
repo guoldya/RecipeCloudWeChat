@@ -32,7 +32,8 @@
                             <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)"> <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
+                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)"> 
+                                    <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
                         <div class="towma" @click="showPic=true">
