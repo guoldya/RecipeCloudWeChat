@@ -71,7 +71,6 @@ export default {
     } else {
       this.isWeixin = true;
     };
-
   },
   methods: {
     showSelector() {
@@ -138,6 +137,7 @@ export default {
                 confirmText: '确定',
                 onConfirm: () => {
                   this.$router.go(-1);
+                  this.$router.options.routes[0].meta.keepAlive=false;
                 },
               });
             } else if (res.data.code == '800') {
@@ -147,10 +147,7 @@ export default {
             console.log(err);
           });
       }
-
     },
-
-
   },
 }
 

@@ -94,7 +94,7 @@ export default new Router({
       path: '/',
       name: 'home',
       component: index,
-        meta: { keepAlive: true }
+      meta: { keepAlive: true }
     },
     {
       path: '/register',

@@ -17,8 +17,6 @@ export default new Vuex.Store({
         photo1Data: '',
         photo0Data: '',
         feeActiveId: '',
-        feeActiveId: '',
-        payType: '',
         payType: '',
         patientId: '',
         cardNo: '',
@@ -29,6 +27,7 @@ export default new Vuex.Store({
         major: '',
         patientName: '',
         cardId: '',
+        keepAlive:'',
         cardList: '',
     },
     mutations: {
