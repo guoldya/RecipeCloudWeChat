@@ -297,7 +297,7 @@ export default {
     this.UUID = Request.UUID;
 
 
-     var storage = window.localStorage;
+    var storage = window.localStorage;
     localStorage.removeItem('token1');
     storage.setItem("token7", this.TOKEN);
     storage.setItem("UUID7", this.UUID);

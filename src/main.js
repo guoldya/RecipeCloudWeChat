@@ -18,7 +18,7 @@ Vue.use(mandMobile)
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
-// import 'normalize.css'
+ 
 
 import './assets/responsive'
 import './assets/global.css'
@@ -31,7 +31,8 @@ Vue.component('Footer', Footer);
 Vue.component('rater', rater);
 Vue.config.productionTip = false;
 Vue.use(infiniteScroll);
-
+import Vconsole from 'vconsole';
+const vConsole = new Vconsole();
 
 if ('addEventListener' in document && 'ontouchstart' in window) {
   FastClick.prototype.focus = function (targetElement) {
@@ -50,8 +51,6 @@ console.log("测试一波")
 // axios.interceptors.request.use(function (config) {
 //   let url = config.url;
 //   // 如果是登陆 
-
-
 //   if (localStorage.getItem("token7")) {
 //     alert("执行测试", localStorage.getItem("token7"), localStorage.getItem("UUID7"))
 //     config.headers.TOKEN = localStorage.getItem("token7");
