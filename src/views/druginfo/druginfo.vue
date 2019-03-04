@@ -306,7 +306,12 @@ export default {
 
     this.$axios.put(bdProductreaddetail, {
       id: _this.drugId
-    } ).then((res) => {
+    }, {
+        headers: {
+          'TOKEN': `${_this.TOKEN}`,
+          'UUID': `${_this.UUID}`
+        },
+      }).then((res) => {
         if (res.data.code == '200') {
           _this.drugInfo = res.data.data.drug;
           _this.drugStoreId = res.data.data.drugStoreId;

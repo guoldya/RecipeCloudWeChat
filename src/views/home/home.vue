@@ -110,11 +110,11 @@ export default {
             showindex: 0,
             maxindex: '',
             cardLoading: true,
+            aliveValue:'2',
         }
     },
     mounted() {
         // 用于测试
-
         document.title = '互联网医院';
         let _this = this;
         function UrlSearch() {
@@ -147,7 +147,6 @@ export default {
                 storage.setItem("hospitalId", "49");
             }
         });
-
         this.$axios.put(wechatbizPatientCardreadpage, {
         }).then(res => {
             if (res.data.code == '200') {
@@ -163,7 +162,7 @@ export default {
             }
         }).catch(function (err) {
             console.log(err)
-        });;
+        });
 
 
     },
@@ -261,16 +260,16 @@ export default {
             });
         },
     },
-
-
+    beforeRouteLeave(to, from, next) {
+         from.meta.keepAlive = true;
+        next();
+    },
     computed: {
         _cardlist() {
-            // return this.cardlist.filter((item, index) => this.showindex == index)
-            return this.$store.state.cardList;
+
         },
         reversedMessage: function () {
             // `this` 指向 vm 实例
-
         },
     },
 
