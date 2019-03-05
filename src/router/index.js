@@ -88,16 +88,20 @@ import payfee from '@/views/inhospital/payfee/payfee.vue'
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 
+import followDoctor from '@/views/onlines/followDr'
+import inquiryRecord from '@/views/onlines/inquiryRecord'
+
 Vue.use(Router)
 
 export default new Router({
   mode: 'hash',
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
       component: index,
-      meta: { keepAlive: true }
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/register',
@@ -281,13 +285,12 @@ export default new Router({
       path: '/reportquery',
       name: 'reportquery',
       component: reportquery,
-      //meta: { keepAlive: true }
+      meta: { keepAlive: true }
     },
     {
       path: '/reportinfo',
       name: 'reportinfo',
       component: reportinfo,
-      //meta: { keepAlive: true }
     },
     {
       path: '/lineupnow',
@@ -339,7 +342,9 @@ export default new Router({
       path: '/inspectionCheck',
       name: 'inspectionCheck',
       component: inspectionCheck,
-      meta: { keepAlive: true }
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/medicalEva',
@@ -462,7 +467,9 @@ export default new Router({
       path: '/acceptAdd',
       name: 'acceptAdd',
       component: acceptAdd,
-      meta: { keepAlive: true }
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/storeInfo',
@@ -484,5 +491,14 @@ export default new Router({
       name: 'doctorschedu',
       component: doctorschedu,
     },
+    {
+      path: '/followDoctor',
+      name: 'followDoctor',
+      component: followDoctor
+    },{
+      path:'/inquiryRecord',
+      name:'inquiryRecord',
+      component:inquiryRecord
+    }
   ]
 })
