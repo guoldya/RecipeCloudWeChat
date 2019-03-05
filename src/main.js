@@ -48,30 +48,25 @@ Vue.config.productionTip = false;
 const BASE_URL = '/api/biz';
 axios.defaults.baseURL = BASE_URL;
  
-console.log("安装3.0")
- 
- 
-// axios.interceptors.request.use(function (config) {
-//   let url = config.url;
-//   // 如果是登陆 
-//   if (localStorage.getItem("token7")) {
-//     alert("执行测试", localStorage.getItem("token7"), localStorage.getItem("UUID7"))
-//     config.headers.TOKEN = localStorage.getItem("token7");
-//     config.headers.UUID = localStorage.getItem("UUID7");
-//   } else {
-//     alert("执行错误的请求测试", )
+axios.interceptors.request.use(function (config) {
+  let url = config.url;
+  // 如果是登陆 
+  if (localStorage.getItem("token7")) {
+    config.headers.TOKEN = localStorage.getItem("token7");
+    config.headers.UUID = localStorage.getItem("UUID7");
+  } else {
 
-//     if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
-//       config.headers.TOKEN = "";
-//     } else {
-//       config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
-//       config.headers.UUID = "AAA";
-//     };
-//   }
-//   return config;
-// }, function (err) {
-//   return Promise.reject(err);
-// });
+    if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
+      config.headers.TOKEN = "";
+    } else {
+      config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
+      config.headers.UUID = "AAA";
+    };
+  }
+  return config;
+}, function (err) {
+  return Promise.reject(err);
+});
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (res) {
   if (res.data.code == 401 && res.data.msg && res.data.msg.indexOf('未登录') || (res.data.code == 402) || (res.data.code == 800)) {

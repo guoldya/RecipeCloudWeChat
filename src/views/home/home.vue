@@ -143,7 +143,7 @@ export default {
 
                 localStorage.removeItem('token7');
                 localStorage.removeItem('UUID7');
-                storage.setItem("token1", "edd169b85704410aa5219512cb6f1f00");
+                storage.setItem("token1", "2136a544595a4c638e8969bfafc2a1a1");
                 storage.setItem("hospitalId", "49");
             }
         });

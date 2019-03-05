@@ -1,3 +1,4 @@
+<!-- 在线问诊首页-->
 <template>
   <div class="online">
     <div :class="{ outCarint: true }">
@@ -26,18 +27,18 @@
         </div>
       </div>
       <div class="tabA">
-        <div class="tabAdiv">
+        <router-link to="/followDoctor" tag="div" class="tabAdiv">
           <div class="yellowWarn">关注的医生</div>
           <div class="tabAdivright">
             <img src="@/assets/images/online9.png" alt="" />
           </div>
-        </div>
-        <div class="tabAdiv">
+        </router-link>
+        <router-link class="tabAdiv" to="/inquiryRecord" tag="div">
           <div class="yellowWarn">问诊记录</div>
           <div class="tabAdivright">
             <img src="@/assets/images/online10.png" alt="" />
           </div>
-        </div>
+        </router-link>
       </div>
 
       <md-tab-picker
@@ -79,6 +80,7 @@
       </div>
       <!-- 医生列表 -->
       <doctorList></doctorList>
+      <doctorList></doctorList>
     </div>
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
@@ -89,7 +91,7 @@
 </template>
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from "mand-mobile";
-import filterPop from "@/components/filterPop";
+import filterPop from "../component/filterPop";
 import doctorList from "../component/doctorList";
 export default {
   name: "action-sheet-demo",

@@ -1,6 +1,6 @@
+<!--医生信息列表组件 -->
 <template>
-  <div class="doctor-list">
-    <div class="comment-info">
+    <div class="doctor-list">
       <div class="header"><img src="@/assets/images/3.jpg" /></div>
       <div class="comment-right">
         <p class="introduce">
@@ -21,7 +21,6 @@
         <em>已满</em>
       </div>
     </div>
-  </div>
 </template>
 <script>
 export default {
@@ -31,7 +30,29 @@ export default {
 };
 </script>
 <style scoped>
-.comment-info em {
+/* .doctor-list {} */
+.doctor-list {
+   position: relative;
+   margin-top: 20px;
+   border-bottom: 1px solid #e0e0e0;
+}
+
+.doctor-list .header {
+   width: 98px;
+   position: absolute;
+}
+
+.doctor-list .header img {
+   width: 100%;
+   border-radius: 50%;
+   padding: 5px;
+}
+
+.doctor-list .comment-right {
+   padding: 10px 0px 30px 108px;
+}
+/* #e2e4ea */
+.doctor-list em {
   position: absolute;
   top: 0;
   right: 0;
@@ -45,18 +66,18 @@ export default {
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-.comment-info p {
+.doctor-list p {
   line-height: 50px;
 }
 
-.comment-info .name {
+.doctor-list .name {
   font-size: 32px;
 }
-.comment-info p {
+.doctor-list p {
   line-height: 50px;
 }
 
-.comment-info .name {
+.doctor-list .name {
   font-size: 32px;
 }
 
@@ -74,13 +95,13 @@ export default {
   color: #979797;
 }
 
-.comment-info .price {
+.doctor-list .price {
   color: #24a5f1;
   font-weight: 500;
   letter-spacing: 1px;
 }
 
-.comment-info:last-child {
+.doctor-list:last-child {
   border: none;
 }
 </style>

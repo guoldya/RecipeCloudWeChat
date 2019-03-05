@@ -1,6 +1,6 @@
+<!-- 专家问诊 -->
 <template>
   <div :class="{ outCarint: true, margin45: isWeixin }">
-    <Header post-title="专家问诊" v-show="isWeixin"></Header>
     <!-- 搜索框 -->
     <Search></Search>
     <md-tab-picker
@@ -48,7 +48,7 @@
 </template>
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from "mand-mobile";
-import filterPop from "@/components/filterPop";
+import filterPop from "../component/filterPop";
 import doctorList from "../component/doctorList";
 
 export default {

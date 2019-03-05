@@ -85,16 +85,20 @@ import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
 import register from '@/views/register/register.vue'
 import inhospital from '@/views/inhospital/inhospital.vue'
 
+import followDoctor from '@/views/onlines/followDr'
+import inquiryRecord from '@/views/onlines/inquiryRecord'
+
 Vue.use(Router)
 
 export default new Router({
   mode: 'hash',
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
       component: index,
-      meta: { keepAlive: true }
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/register',
@@ -320,7 +324,9 @@ export default new Router({
       path: '/inspectionCheck',
       name: 'inspectionCheck',
       component: inspectionCheck,
-      meta: { keepAlive: true }
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/medicalEva',
@@ -443,7 +449,9 @@ export default new Router({
       path: '/acceptAdd',
       name: 'acceptAdd',
       component: acceptAdd,
-      meta: { keepAlive: true }
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/storeInfo',
@@ -460,10 +468,19 @@ export default new Router({
       name: 'registrecorddetail',
       component: registrecorddetail,
     },
-      {
-          path: '/doctorschedu',
-          name: 'doctorschedu',
-          component: doctorschedu,
-      },
+    {
+      path: '/doctorschedu',
+      name: 'doctorschedu',
+      component: doctorschedu,
+    },
+    {
+      path: '/followDoctor',
+      name: 'followDoctor',
+      component: followDoctor
+    },{
+      path:'/inquiryRecord',
+      name:'inquiryRecord',
+      component:inquiryRecord
+    }
   ]
 })
