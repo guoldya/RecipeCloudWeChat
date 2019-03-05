@@ -53,7 +53,6 @@
                 </div>
                 <div class="star staraa">
                   <img src="@/assets/images/icon_star@2x.png" v-for="(item5, index5) in drugstore5" :key="'aa' + index5">
-
                 </div>
               </div>
               <div class="dateRight" @click="intoStore">
@@ -177,6 +176,7 @@ let bdProductreaddetail = '/app/bdProduct/read/detail';
 let appbizCollectionaddCollection = '/app/bizCollection/addCollection';
 let appbizCollectiondeleteCollection = '/app/bizCollection/deleteCollection';
 let appbizProductEvaluatereadpage = "/app/bizProductEvaluate/read/page";
+let appbizShoppingCartadd = "/app/bizShoppingCart/add"
 export default {
   data() {
     return {
@@ -485,13 +485,25 @@ export default {
       );
     },
     addCar() {
-      WebViewJavascriptBridge.callHandler(
-        'addCar'
-        , this.num
-        , function (responseData) {
-
+      // WebViewJavascriptBridge.callHandler(
+      //   'addCar'
+      //   , this.num
+      //   , function (responseData) {
+      //   }
+      // );
+      this.$axios.post(appbizShoppingCartadd, {
+        productId: this.drugId,
+        total: this.num,
+      }).then((res) => {
+        if (res.data.code == '200') {
+          Toast.succeed("添加成功");
+        } else {
+          Toast.succeed(res.data.msg);
         }
-      );
+      }).catch(function (err) {
+        console.log(err);
+      });
+
     },
     lunbo(data) {
       let mySwiper = new Swiper('.swiper-container', {

@@ -41,7 +41,6 @@
     </div>
     <!-- 医生列表 -->
     <doctorList></doctorList>
-
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
   </div>

@@ -86,6 +86,7 @@ import register from '@/views/register/register.vue'
 import inhospital from '@/views/inhospital/inhospital.vue'
 import payfee from '@/views/inhospital/payfee/payfee.vue'
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
+import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
@@ -123,6 +124,12 @@ export default new Router({
       name: 'paymeet',
       component: paymeet
     },
+    {
+      path: '/quickpay',
+      name: 'quickpay',
+      component: quickpay
+    },
+
     {
       path: '/resultdocotor',
       name: 'resultdocotor',
