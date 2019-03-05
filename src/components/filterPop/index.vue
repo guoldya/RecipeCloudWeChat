@@ -27,7 +27,7 @@
                       </h3>
                       <div class="components-screenbox--other">
                         <div>
-                          <span v-for="(item, index) in consultList" :key="index" @click="select(item, index)" :class="[{ 'chosen-condition': item.checked }, 'tag']">{{item.text}}</span>
+                          <span v-for="(item, index) in consultList" :key="index" @click="selectService(index)" :class="[{ 'chosen-condition': item.checked }, 'tag']">{{item.text}}</span>
                         </div>
                       </div>
                     </li>
@@ -39,7 +39,7 @@
                       </h3>
                       <div class="components-screenbox--other">
                         <div>
-                          <span v-for="(item2,index2) in selectList" :key="index2" :class="[{ 'chosen-condition': item2.checked }, 'tag']" @click="select2(item2,index2)">{{item2.text}}</span>
+                          <span v-for="(item,index) in selectList" :key="index" :class="[{ 'chosen-condition': item.checked }, 'tag']" @click="selectLevel(index)">{{item.text}}</span>
                         </div>
                       </div>
                     </li>
@@ -72,3 +72,274 @@
       </transition>
     </div>
 </template>
+<script type="text/babel">
+export default {
+    data() {
+        return {
+        testshow:false,
+        consultList:[
+            {
+                value: 1,
+                text: '图文咨询',
+                checked: false,
+            },
+            {
+                value: 2,
+                text: '电话咨询',
+                checked: false,
+            },
+            {
+                value: 3,
+                text: '视频咨询',
+                checked: false,
+            },
+        ],
+        selectList:[
+         {
+            value: 1,
+            text: '副主任医师',
+            checked: false,
+        },
+        {
+            value: 2,
+            text: '主任医师',
+            checked: false,
+        },
+        {
+            value: 3,
+            text: '医师',
+            checked: false,
+        },
+        ]
+        }
+    },
+    methods:{
+    openPop() {
+        this.testshow = true;
+    },
+    // 选择服务
+    selectService(index) {
+      this.consultList[index].checked = !this.consultList[index].checked;
+    },
+    // 选择职称
+    selectLevel(index) {
+      this.selectList[index].checked = !this.selectList[index].checked
+    },
+    reset() {
+      this.selectList.forEach(item => item.checked = false)
+      this.consultList.forEach(item => item.checked = false)
+    },
+    getSelect() {
+      this.testshow = false;
+    }
+    }
+    
+}
+</script>
+
+<style scoped>
+.md-popup-box {
+   position: relative;
+   pointer-events: auto;
+   z-index: 2;
+   max-width: 100%;
+   max-height: 100%;
+   overflow: auto;
+}
+.components-screenbox {
+   height: 650px;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -webkit-flex-direction: column;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   position: relative;
+   z-index: 21;
+   background: #ffffff;
+   justify-content: flex-end;
+}
+
+.components-screenbox ul {
+   height: 100%;
+   overflow-y: auto;
+   overflow-x: hidden;
+   -webkit-overflow-scrolling: touch;
+}
+
+.components-screenbox ul .components-screenbox--item {
+   padding: 30px 24px 16px;
+   border-bottom: 1px solid #ebecf1;
+}
+
+.components-screenbox ul .components-screenbox--item h3 {
+   height: 44px;
+   font-size: 28px;
+   font-weight: 400;
+   margin-bottom: 26px;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: justify;
+   -webkit-justify-content: space-between;
+   -ms-flex-pack: justify;
+   justify-content: space-between;
+}
+
+.components-screenbox ul .components-screenbox--item .components-screenbox--other span.tag,
+.components-screenbox ul .components-screenbox--item h3 span.tag {
+   display: inline-block;
+   min-width: 102px;
+   height: 54px;
+   text-align: center;
+   line-height: 54px;
+   padding-left: 20px;
+   padding-right: 20px;
+   background-color: #f5f6f6;
+   color: #83889a;
+   border-radius: 200px;
+   margin-right: 20px;
+   margin-bottom: 20px;
+}
+
+.components-screenbox .components-screenbox--btn-group {
+   height: 120px;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+}
+
+.components-screenbox ul .components-screenbox--item:last-child {
+   border-bottom: 0;
+}
+
+.components-screenbox .components-screenbox--btn-group a.components-screenbox-reset {
+   color: #24a5f1;
+   background-color: #fff;
+   border-top: 1px solid #ebecf1
+}
+
+.components-screenbox .components-screenbox--btn-group a {
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   -ms-flex-align: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   -webkit-justify-content: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   -webkit-box-flex: 1;
+   -webkit-flex: 1;
+   -ms-flex: 1;
+   flex: 1;
+   font-size: 29px;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+.components-screenbox .components-screenbox--btn-group a {
+   display: block;
+   height: 100%;
+   line-height: 100px;
+   text-align: center;
+}
+
+.components-screenbox .components-screenbox--btn-group a.components-screenbox-confirm {
+   color: #fff;
+   background-color: #24a5f1;
+}
+
+.components-screenbox ul .components-screenbox--item .components-screenbox--other span.tag.chosen-condition,
+.components-screenbox ul .components-screenbox--item h3 span.tag.chosen-condition {
+   background-color: #24a5f1;
+   color: #fff;
+}
+.md-popup1{
+   width:100%;
+   height:7.7rem;
+   position: fixed;
+   bottom:0;
+   left:0;
+   z-index: 1000;
+   background:red;
+   /* overflow: hidden; */
+}
+.md-popup1 .md-action-sheet-content {
+   text-align: left;
+   font-size: 28px
+}
+
+.md-popup-title-bar {
+   position: relative;
+   width: 100%;
+   height: 1.2rem;
+   background-color: #f9fafb;
+   border-radius: 0.08rem 0.08rem 0 0;
+   overflow: hidden;
+}
+ .md-popup-box {
+   background-color: #fff;
+   border-radius: 0.08rem 0.08rem 0 0;
+}
+
+.md-popup-title-bar .title-bar-left,
+.md-popup-title-bar .title-bar-right {
+   position: absolute;
+   width: 20%;
+   max-height: 1.2rem;
+   font-size: 0.36rem;
+   font-weight: 500;
+   box-sizing: border-box;
+}
+
+.md-popup-title-bar .title-bar-title {
+   width: 100%;
+   padding: 0 20%;
+   box-sizing: border-box;
+}
+
+.md-popup-title-bar>div {
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: flex;
+   float: left;
+   height: 100%;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   word-break: break-all;
+   word-wrap: break-word;
+   white-space: nowrap;
+}
+.fade-enter-active, .fade-leave-active {
+   transition: opacity .3s;
+ }
+ .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+   opacity: 0;
+ }
+ .fade1-enter-active, .fade1-leave-active {
+   transition: height .3s;
+
+ }
+ .fade1-enter, .fade1-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    height:0;
+ }
+</style>
