@@ -47,7 +47,11 @@ Vue.config.productionTip = false;
 
 const BASE_URL = '/api/biz';
 axios.defaults.baseURL = BASE_URL;
+<<<<<<< HEAD
 console.log("安装3.0")
+=======
+console.log("安装2.0")
+>>>>>>> 18d67a55094477c23f8ca30db710d9dce3ec8aba
 // axios.interceptors.request.use(function (config) {
 //   let url = config.url;
 //   // 如果是登陆 
