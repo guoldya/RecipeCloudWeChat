@@ -84,6 +84,8 @@ import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
 import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
 import register from '@/views/register/register.vue'
 import inhospital from '@/views/inhospital/inhospital.vue'
+import payfee from '@/views/inhospital/payfee/payfee.vue'
+import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 
 Vue.use(Router)
 
@@ -105,6 +107,16 @@ export default new Router({
       path: '/inhospital',
       name: 'inhospital',
       component: inhospital
+    },
+    {
+      path: '/payfee',
+      name: 'payfee',
+      component: payfee
+    },
+    {
+      path: '/paymeet',
+      name: 'paymeet',
+      component: paymeet
     },
     {
       path: '/resultdocotor',
@@ -459,10 +471,10 @@ export default new Router({
       name: 'registrecorddetail',
       component: registrecorddetail,
     },
-      {
-          path: '/doctorschedu',
-          name: 'doctorschedu',
-          component: doctorschedu,
-      },
+    {
+      path: '/doctorschedu',
+      name: 'doctorschedu',
+      component: doctorschedu,
+    },
   ]
 })
