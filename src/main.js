@@ -51,7 +51,6 @@ axios.interceptors.request.use(function (config) {
   let url = config.url;
   // 如果是登陆 
 
-
   if (localStorage.getItem("token7")) {
      alert("执行测试",localStorage.getItem("token7"),localStorage.getItem("UUID7"))
     config.headers.TOKEN = localStorage.getItem("token7");

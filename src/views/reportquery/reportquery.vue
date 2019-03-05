@@ -97,12 +97,6 @@
                 ],
                 TOKEN: '',
                 UUID: '',
-                reportData: [],
-                reportDetailData: [],
-                collectData: [],
-                collectDetailData: [],
-                checkPageNumber: 1,
-                collectPageNumber: 1,
                 choseValue: '',
                 list: [],
                 listInfo:[],
@@ -241,6 +235,10 @@
                 }, 500);
             },
 
+        },
+        beforeRouteLeave(to, from, next) {
+            from.meta.keepAlive = false;
+            next();
         }
     };
 </script>

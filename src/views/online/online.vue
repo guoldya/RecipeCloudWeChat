@@ -280,6 +280,7 @@ export default {
 
   },
   mounted() {
+      console.log(this);
     document.title = '在线问诊';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -343,7 +344,7 @@ export default {
     getSelect() {
       const selects = this.selectList.filter(item => item.checked)
       const selects2 = this.consultList.filter(item => item.checked)
-      console.log(selects.map(item => item).join(','))
+      console.log(selects.map(item => item).join(','));
     },
     reset() {
       this.selectList.forEach(item => item.checked = false)
