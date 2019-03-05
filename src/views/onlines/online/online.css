@@ -23,17 +23,6 @@
    -webkit-align-items: center;
 }
 
-.online .downtitle {
-   /* width: 100px;
-   overflow: hidden;
-   display: -webkit-box;
-   -webkit-line-clamp: 1;
-   -webkit-box-orient: vertical !important;
-   text-overflow: ellipsis;
-   height: 28px;
-   line-height: 1; */
-}
-
 .online .tools .nav2>span {
    width: 25%;
    display: block;
@@ -112,85 +101,12 @@
    color: #24a5f1;
 }
 
-.fast-consult-card-item .bottom {
-   border-bottom: 1px solid #ebecf1;
-}
-
-.fast-consult-card-item .bottom>img {
-   display: block;
-   width: 100px;
-   height: 100px;
-   margin-right: 20px;
-   border-radius: 50%;
-}
-
-.fast-consult-card-item .bottom .fast-consult-card-item--content {
-   position: relative;
-   -webkit-box-flex: 1;
-   -webkit-flex: 1;
-   -ms-flex: 1;
-   flex: 1;
-   font-size: 28px;
-   color: #28354c;
-}
-
-.fast-consult-card-item .fast-consult-card-item--content .fast-consult-card-item--content-title {
-   margin-bottom: 40px;
-   padding-right: 30px;
-}
-
-.comment-info em {
-   position: absolute;
-   top: 0;
-   right: 0;
-   height: 40px;
-   line-height: 40px;
-   padding: 0 20px;
-   font-size: 28px;
-   font-style: normal;
-   color: #fff;
-   background: #979797;
-   border-top-right-radius: 15px;
-   border-bottom-left-radius: 15px;
-}
-
 .onlineheader {
    height: 100px;
    text-align: center;
    line-height: 100px;
 }
 
-.online .comment-info p {
-   line-height: 50px;
-}
-
-.online .comment-info .name {
-   font-size: 32px;
-}
-
-.online .picture {
-   border: 1px solid #24a5f1;
-   padding: 1px 10px;
-   border-radius: 7px;
-   color: #24a5f1;
-}
-
-.online .video {
-   border: 1px solid #979797;
-   padding: 1px 10px;
-   border-radius: 7px;
-   color: #979797;
-}
-
-.online .comment-info .price {
-   color: #24a5f1;
-   font-weight: 500;
-   letter-spacing: 1px;
-}
-
-.online .comment-info:last-child {
-   border: none;
-}
 
 .components-mask {
    z-index: 1103;

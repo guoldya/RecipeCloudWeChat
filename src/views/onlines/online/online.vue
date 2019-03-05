@@ -57,56 +57,13 @@
           </span>
         </div>
       </div>
-      <div class="fast-consult-card-item">
-        <div class="comment-info">
-          <div class="header"><img src="@/assets/images/3.jpg"></div>
-          <div class="comment-right">
-            <p class="introduce">
-              <span class="name">何某</span>&nbsp;
-              <span>主任医师</span>&nbsp;
-              <span>内科</span>&nbsp;
-            </p>
-            <p class="colo13">
-              <span class="picture">图文</span>&nbsp;
-              <span class="picture">电话</span>&nbsp;
-              <span class="video">视频</span>&nbsp;
-              <span class="reputation">好评率 98%</span>&nbsp;
-            </p>
-            <p class="content"> 擅长：儿科常见病、多发病 #先天性心脏病</p>
-            <p class="colo13">
-              <span>咨询数：66 </span>&nbsp;
-              <span>平均回复时长：1小时</span>&nbsp; </p>
-            <p class="price"> ￥20 起 </p>
-            <em>已满</em>
-          </div>
-        </div>
-        <div class="comment-info">
-          <div class="header"><img src="@/assets/images/3.jpg"></div>
-          <div class="comment-right">
-            <p class="introduce">
-              <span class="name">何某</span>&nbsp;
-              <span>主任医师</span>&nbsp;
-              <span>内科</span>&nbsp;
-            </p>
-            <p class="colo13">
-              <span class="picture">图文</span>&nbsp;
-              <span class="picture">电话</span>&nbsp;
-              <span class="video">视频</span>&nbsp;
-              <span class="reputation">好评率 98%</span>&nbsp;
-            </p>
-            <p class="content  "> 擅长：儿科常见病、多发病 #先天性心脏病</p>
-            <p class="colo13">
-              <span>咨询数：66 </span>&nbsp;
-              <span>平均回复时长：1小时</span>&nbsp; </p>
-            <p class="price"> ￥20 起</p>
-            <em>已满</em>
-          </div>
-        </div>
+       <!-- 医生列表 -->
+       <doctorList></doctorList>
 
-      </div>
     </div>
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
+    
     <!-- 底部 -->
     <Footer></Footer>
   </div>
@@ -115,6 +72,7 @@
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from 'mand-mobile'
 import filterPop from '@/components/filterPop'
+import doctorList from '../component/doctorList'
 export default {
   name: 'action-sheet-demo',
   height: 500,
@@ -130,8 +88,6 @@ export default {
       addressStr: '科室',
       selectorValue: '排序',
       isWeixin: false,
-      selectList: [],
-      consultList: [],
       sortData: [
         {
           value: '1',
@@ -207,47 +163,7 @@ export default {
       this.isWeixin = false;
     } else {
       this.isWeixin = true;
-    };
-    const doctorlist = [
-      {
-        value: 1,
-        text: '副主任医师',
-      },
-      {
-        value: 2,
-        text: '主任医师',
-      },
-      {
-        value: 3,
-        text: '医师',
-      },
-
-    ]
-
-    doctorlist.forEach(item => item.checked = false);
-
-    this.selectList = doctorlist;
-
-    const list = [
-      {
-        value: 1,
-        text: '图文咨询',
-        checked: false,
-      },
-      {
-        value: 2,
-        text: '电话咨询',
-        checked: false,
-      },
-      {
-        value: 3,
-        text: '视频咨询',
-        checked: false,
-      },
-    ]
-
-    this.consultList = list;
-    console.log(this.consultList, " this.consultList")
+    }
   },
   methods: {
     expertpage() {
@@ -300,7 +216,8 @@ export default {
 
   },
   components:{
-    filterPop
+    filterPop,
+    doctorList
   }
 
 };

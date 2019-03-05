@@ -1,14 +1,3 @@
-.aui-navBar {
-   height: 100px;
-   position: fixed;
-   display: flex;
-   z-index: 9999;
-}
-
-header {
-   background: #e2e2e2;
-   z-index: 9999;
-}
 
 .aui-navBar-item {
    height: 100px;
@@ -109,12 +98,12 @@ header {
    height: 100px;
    position: fixed;
    display: flex;
-   z-index: 9999;
+   z-index: 10;
 }
 
 header {
    background: #e2e2e2;
-   z-index: 9999;
+   z-index: 10;
 }
 
 .aui-navBar-item {

@@ -1,0 +1,21 @@
+.selectTool{
+  display:flex;
+}
+.selectTool div{
+  width:33.33%;
+  height: 50px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin:20px;
+  overflow: hidden;
+}
+.selectTool .isActive {
+    color: #24a5f1;
+}
+.selectTool div span:nth-of-type(1){
+    display:inline-block;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}

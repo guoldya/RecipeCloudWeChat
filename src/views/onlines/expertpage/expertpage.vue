@@ -29,57 +29,18 @@
           </span>
          </div>
       </div>
-      <!-- 列表 -->
-      <div class="fast-consult-card-item">
-        <div class="comment-info">
-          <div class="header"><img src="@/assets/images/3.jpg"></div>
-          <div class="comment-right">
-            <p class="introduce">
-              <span class="name">何某</span>&nbsp;
-              <span>主任医师</span>&nbsp;
-              <span>内科</span>&nbsp;
-            </p>
-            <p class="colo13">
-              <span class="picture">图文</span>&nbsp;
-              <span class="picture">电话</span>&nbsp;
-              <span class="video">视频</span>&nbsp;
-              <span class="reputation">好评率 98%</span>&nbsp;
-            </p>
-            <p class="content"> 擅长：儿科常见病、多发病 #先天性心脏病</p>
-            <p class="colo13">
-              <span>咨询数：66 </span>&nbsp;
-              <span>平均回复时长：1小时</span>&nbsp; </p>
-            <p class="price"> ￥20 起 </p>
-            <em>已满</em>
-          </div>
-        </div>
-        <div class="comment-info">
-          <div class="header"><img src="@/assets/images/3.jpg"></div>
-          <div class="comment-right">
-            <p class="introduce">
-              <span class="name">何某</span>&nbsp;
-              <span>主任医师</span>&nbsp;
-              <span>内科</span>&nbsp;
-            </p>
-            <p class="colo13">
-              <span class="picture">图文</span>&nbsp;
-              <span class="picture">电话</span>&nbsp;
-              <span class="video">视频</span>&nbsp;
-              <span class="reputation">好评率 98%</span>&nbsp;
-            </p>
-            <p class="content  "> 擅长：儿科常见病、多发病 #先天性心脏病</p>
-            <p class="colo13">
-              <span>咨询数：66 </span>&nbsp;
-              <span>平均回复时长：1小时</span>&nbsp; </p>
-            <p class="price"> ￥20 起</p>
-            <em>已满</em>
-          </div>
-        </div>
-      </div>
+      <!-- 医生列表 -->
+       <doctorList></doctorList>      
+
+      <!-- 筛选弹窗 -->
+    <filterPop ref="filterPop"></filterPop>
+
    </div>
 </template>
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from 'mand-mobile'
+import filterPop from '@/components/filterPop'
+import doctorList from '../component/doctorList'
 
 export default {
    data() {
@@ -158,9 +119,10 @@ export default {
         }
       };
    },
-   created() {
-
-   },
+    components:{
+    filterPop,
+    doctorList
+  },
    mounted() {
       document.title = '专家问诊';
       var ua = window.navigator.userAgent.toLowerCase();
@@ -184,6 +146,7 @@ export default {
     // 内容筛选
     filterCotent() {
       this.isChecked = 2;
+      this.$refs.filterPop.openPop()
     },
     // 科室选择弹窗返回的数据
     chooseDepart({options}) {

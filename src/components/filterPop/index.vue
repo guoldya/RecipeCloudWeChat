@@ -125,6 +125,7 @@ export default {
     selectLevel(index) {
       this.selectList[index].checked = !this.selectList[index].checked
     },
+    // 重置
     reset() {
       this.selectList.forEach(item => item.checked = false)
       this.consultList.forEach(item => item.checked = false)
@@ -138,6 +139,9 @@ export default {
 </script>
 
 <style scoped>
+.filter-pop .md-popup-mask{
+ z-index: 1000;
+}
 .md-popup-box {
    position: relative;
    pointer-events: auto;
