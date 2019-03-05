@@ -7,7 +7,7 @@
         <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名" is-highlight></md-input-item>
         <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
         <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码" is-highlight></md-input-item>
-        <md-field-item title="所在区域" v-model="areaId" arrow="arrow-right" :content="pickerValue1" @click="isPickerShow1 = true">
+        <md-field-item title="所在区域" v-model="areaId" arrow="arrow-right" :addon="pickerValue1" @click="isPickerShow1 = true">
         </md-field-item>
         <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址" is-highlight></md-input-item>
         <md-button type="primary" @click="tijiao" round style="margin-top:16px">保存</md-button>

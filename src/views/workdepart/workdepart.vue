@@ -38,11 +38,6 @@
                 departs: [],
                 num: 10,
                 active2: 0,
-                spacia: [
-                    { title: '普通门诊', value: 1 },
-                    { title: '专家门诊', value: 2 },
-                    { title: '特色门诊', value: 3 },
-                ],
                 departData: [],
                 page:1,
                 pageSize:10,
@@ -132,14 +127,6 @@
                 this.yuanId = num.id;
                 this.$store.commit('departFun', num.orgName);
                 this.orgFun(this.yuanId)
-            },
-            switchDE(num) {
-                this.active2 = num;
-            },
-            lookagain() {
-                this.$router.push({
-                    name: 'lookagain',
-                });
             },
             intoworkdoctor(data) {
                 this.$router.push({

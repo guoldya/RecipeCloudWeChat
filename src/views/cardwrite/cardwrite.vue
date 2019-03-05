@@ -121,7 +121,7 @@ export default {
             let argu = {}
             this.$router.push({
               name: 'cardwritesecond',
-              query: argu
+              query: argu,
             });
           } else {
             this.$toast.info(res.data.msg)

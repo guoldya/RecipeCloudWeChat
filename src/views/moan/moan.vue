@@ -1,11 +1,10 @@
 <template>
   <div class="md-example-child md-example-child-picker md-example-child-picker-2">
     <md-field>
-
       <md-field-item title="省市区/县" arrow="arrow-right" :addon="pickerValue1" @click="isPickerShow1 = true">
       </md-field-item>
     </md-field>
-    <md-picker ref="picker1" v-model="isPickerShow1" :default-index="pickerDefaultIndex" :default-value="pickerDefaultValue" :data="pickerData1" :cols="3" is-cascade title="选择省市区/县" @confirm="onPickerConfirm(1)"></md-picker>
+    <md-picker ref="picker1" v-model="isPickerShow1"  :default-index="pickerDefaultIndex" :default-value="pickerDefaultValue" :data="pickerData1" :cols="3" is-cascade title="选择省市区/县" @confirm="onPickerConfirm(1)"></md-picker>
   </div>
 </template>
 
@@ -30,7 +29,7 @@ export default {
     return {
       isPickerShow1: false,
       pickerData1: district,
-      pickerValue1: '',
+      pickerValue1: 'sss',
       pickerDefaultIndex: [],
       pickerDefaultValue: [],
     }

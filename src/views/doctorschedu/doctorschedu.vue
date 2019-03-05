@@ -35,7 +35,6 @@
 <script>
     let doctor_url="/app/bdHospitalDoctor/read/selectOne ";
     import Calendar from 'vue-calendar-component';
-    import $ from "jquery"
     export default {
         components: {
             Calendar
@@ -48,13 +47,27 @@
                 loadingtrue:true,
                 doctorData:[],
                 depart:'',
+                spliceM:'',
+                nowMonth:'',
             }
         },
         mounted() {
+            this.changeCalendar();
             this.docId=this.$route.query.id;
             this.depart = this.$store.state.depart;
-            this.$nextTick(()=>{
-                var element=document.getElementsByClassName("wh_content")[1].children;
+            document.title = '医生排班';
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                this.isWeixin = false;
+            } else {
+                this.isWeixin = true;
+            };
+            this.doctorscheduFun();
+        },
+        methods: {
+            changeCalendar(){
+                this.$nextTick(()=> {
+                    var element=document.getElementsByClassName("wh_content")[1].children;
                     var para=document.createElement("div");
                     var paraPm=document.createElement("div");
                     var paraAll=document.createElement("div");
@@ -71,26 +84,24 @@
                     var pm=document.createTextNode("下午");
                     var all=document.createTextNode("全天");
                     para.appendChild(am);
-                for(let i=0;i<element.length;i++){
-                    if(element[i].children[0].className=="wh_item_date wh_isToday"){
-                        element[i].appendChild(para);
-                    }
-                }
                     paraPm.appendChild(pm);
                     paraAll.appendChild(all);
-                element[8].appendChild(paraPm);
-                element[6].appendChild(paraAll);
+                    for(let i=0;i<element.length;i++){
+                        // if(element[i].children[0].className=="wh_item_date wh_isToday" && this.spliceM==this.nowMonth){
+                        //     element[i].appendChild(para);
+                        // }else if(element[i].children[1]){
+                        //     element[i].children[1].parentNode.removeChild(element[i].children[1]);
+                        // }
+                    }
+                    if(this.spliceM==this.nowMonth){
+                        element[8].appendChild(paraPm);
+                        element[6].appendChild(paraAll);
+                    }else if(element[8].children[1]){
+                        element[8].children[1].parentNode.removeChild(element[8].children[1]);
+                        element[6].children[1].parentNode.removeChild(element[6].children[1]);
+                    }
             })
-            document.title = '医生排班';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-            } else {
-                this.isWeixin = true;
-            };
-            this.doctorscheduFun();
-        },
-        methods: {
+            },
             doctorscheduFun(){
                 let scheduPar={};
                 scheduPar.id=this.docId;
@@ -107,7 +118,16 @@
                 console.log(data); //选中某天
             },
             changeDate(data) {
-                console.log(data); //左右点击切换月份
+                // console.log(data); //左右点击切换月份
+                var nowTime = new Date();
+                this.nowMonth=nowTime.getMonth()+1;
+                if(data.length==8){
+                    this.spliceM=data.substr(5,1)
+                }else if(data.length==9){
+                    this.spliceM=data.substr(5,2)
+                }
+                this.changeCalendar();
+
             },
         }
     }

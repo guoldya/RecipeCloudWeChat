@@ -84,6 +84,8 @@ import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
 import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
 import register from '@/views/register/register.vue'
 import inhospital from '@/views/inhospital/inhospital.vue'
+import payfee from '@/views/inhospital/payfee/payfee.vue'
+import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
@@ -109,6 +111,16 @@ export default new Router({
       path: '/inhospital',
       name: 'inhospital',
       component: inhospital
+    },
+    {
+      path: '/payfee',
+      name: 'payfee',
+      component: payfee
+    },
+    {
+      path: '/paymeet',
+      name: 'paymeet',
+      component: paymeet
     },
     {
       path: '/resultdocotor',
@@ -266,13 +278,12 @@ export default new Router({
       path: '/reportquery',
       name: 'reportquery',
       component: reportquery,
-      //meta: { keepAlive: true }
+      meta: { keepAlive: true }
     },
     {
       path: '/reportinfo',
       name: 'reportinfo',
       component: reportinfo,
-      //meta: { keepAlive: true }
     },
     {
       path: '/lineupnow',
