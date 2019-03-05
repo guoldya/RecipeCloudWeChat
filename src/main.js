@@ -17,7 +17,7 @@ import 'mand-mobile/lib/mand-mobile.css'
 Vue.prototype.$conf = Config;
 Vue.use(mandMobile)
 Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
+    Vue.filter(key, filters[key])
 })
 
 
@@ -37,12 +37,12 @@ import Vconsole from 'vconsole';
 const vConsole = new Vconsole();
 
 if ('addEventListener' in document && 'ontouchstart' in window) {
-  FastClick.prototype.focus = function (targetElement) {
-    targetElement.focus()
-  }
-  document.addEventListener('DOMContentLoaded', function () {
-    FastClick.attach(document.body)
-  }, false)
+    FastClick.prototype.focus = function (targetElement) {
+        targetElement.focus()
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body)
+    }, false)
 }
 
 Vue.config.productionTip = false;
@@ -53,39 +53,39 @@ axios.defaults.baseURL = BASE_URL;
 
 
 axios.interceptors.request.use(function (config) {
-  let url = config.url;
-  // 如果是登陆 
-  if (localStorage.getItem("token7")) {
-    config.headers.TOKEN = localStorage.getItem("token7");
-    config.headers.UUID = localStorage.getItem("UUID7");
-  } else {
-    if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
-      config.headers.TOKEN = "";
+    let url = config.url;
+    // 如果是登陆
+    if (localStorage.getItem("token7")) {
+        config.headers.TOKEN = localStorage.getItem("token7");
+        config.headers.UUID = localStorage.getItem("UUID7");
     } else {
-      config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
-      config.headers.UUID = "AAA";
-    };
-  }
-  return config;
+        if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
+            config.headers.TOKEN = "";
+        } else {
+            config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
+            config.headers.UUID = "AAA";
+        };
+    }
+    return config;
 }, function (err) {
-  return Promise.reject(err);
+    return Promise.reject(err);
 });
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (res) {
-  if (res.data.code == 401 && res.data.msg && res.data.msg.indexOf('未登录') || (res.data.code == 402) || (res.data.code == 800)) {
-    // 未登录操作npm
-    // router.replace('/login?back=1');
-    console.log(res)
-    // router.replace('/control');
-  }
-  return res;
+    if (res.data.code == 401 && res.data.msg && res.data.msg.indexOf('未登录') || (res.data.code == 402) || (res.data.code == 800)) {
+        // 未登录操作npm
+        // router.replace('/login?back=1');
+        console.log(res)
+        // router.replace('/control');
+    }
+    return res;
 });
 Vue.prototype.$axios = axios;
 
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App),
+    el: '#app',
+    router,
+    store,
+    render: h => h(App),
 });
