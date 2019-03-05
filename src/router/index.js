@@ -89,6 +89,7 @@ import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
+import consultDetail from '@/views/onlines/consultDetail' 
 
 Vue.use(Router)
 
@@ -492,6 +493,10 @@ export default new Router({
       path:'/inquiryRecord',
       name:'inquiryRecord',
       component:inquiryRecord
+    },{
+      path:'/consultDetail',
+      name:'consultDetail',
+      component:consultDetail
     }
   ]
 })
