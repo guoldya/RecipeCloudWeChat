@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/views/home/home.vue'
 import druginfo from '@/views/druginfo/druginfo.vue'
-import online from '@/views/online/online.vue'
+import online from '@/views/onlines/online/online.vue'
 import article from '@/views/article/article.vue'
 import my from '@/views/my/my.vue'
 import appoint from '@/views/appoint/appoint.vue'
@@ -72,7 +72,7 @@ import paySuccess from '@/views/paySuccess/paySuccess.vue'
 import recordDetail from '@/views/recordDetail/recordDetail.vue'
 import examineDetail from '@/views/examineDetail/examineDetail.vue'
 import examineOrder from '@/views/examineOrder/examineOrder.vue'
-import expertpage from '@/views/expertpage/expertpage.vue'
+import expertpage from '@/views/onlines/expertpage/expertpage.vue'
 
 
 
