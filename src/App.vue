@@ -32,8 +32,8 @@ export default {
 </script>
 
 <style  >
-body{
-  background: #ffffff
+body {
+  background: #ffffff;
 }
 .headimg {
   width: 92px;
@@ -109,7 +109,7 @@ input:-ms-input-placeholder {
   color: #979797;
 }
 .margin16 {
-  margin:0 0 32px 0;
+  margin: 0 0 32px 0;
 }
 .margin45 {
   margin-top: 110px;
@@ -227,7 +227,7 @@ input:-ms-input-placeholder {
 .appTab {
   display: flex;
   justify-content: space-between;
-  padding:0  100px 32px;
+  padding: 0 100px 32px;
 }
 .appTab span {
   padding: 0 8px 8px;
@@ -245,6 +245,11 @@ input:-ms-input-placeholder {
   border-bottom: 2px solid #e9e9e9;
   width: 100%;
   margin: 20px 0px;
+}
+.payfee .md-field-item-content {
+  -webkit-box-align: inherit !important;
+  -webkit-align-items: inherit !important;
+  align-items: inherit !important;
 }
 textarea {
   border: none;
@@ -278,6 +283,11 @@ textarea::-webkit-input-placeholder {
 .default {
   background-color: #43484b;
 }
+.divHeight {
+  width: 100%;
+  height: 20px;
+  background: #f0f3fa;
+}
 .default:after {
   border: 1px solid #43484b !important;
 }
@@ -292,8 +302,7 @@ textarea::-webkit-input-placeholder {
   width: 50%;
   margin-top: 150px;
 }
-.md-button-content{
+.md-button-content {
   font-size: 28px !important;
 }
- 
 </style>

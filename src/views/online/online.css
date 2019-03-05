@@ -349,6 +349,10 @@
    overflow: hidden;
 }
 
+.md-check-box {
+   margin-right: 20px;
+}
+
 .online .md-popup-box {
    background-color: #fff;
    border-radius: 0.08rem 0.08rem 0 0;
