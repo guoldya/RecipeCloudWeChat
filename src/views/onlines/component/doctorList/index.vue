@@ -1,6 +1,6 @@
 <!--医生信息列表组件 -->
 <template>
-    <div class="doctor-list">
+    <router-link tag="div" to="/consultDetail" class="doctor-list">
       <div class="header"><img src="@/assets/images/3.jpg" /></div>
       <div class="comment-right">
         <p class="introduce">
@@ -20,7 +20,7 @@
         <p class="price">￥20 起</p>
         <em>已满</em>
       </div>
-    </div>
+    </router-link>
 </template>
 <script>
 export default {
