@@ -47,7 +47,7 @@ export default {
 
       childByValue: function (childValue) {
          console.log(childValue, "childValue")
-         this.selectType = childValue;
+         this.selectType = childValue.type;
       },
 
 

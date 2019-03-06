@@ -8,12 +8,10 @@
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
       active1: 0,
-
     }
   },
   props: ['tabTitle'],
@@ -27,7 +25,7 @@ export default {
   methods: {
     switchTo(item, index) {
       this.active1 = index;
-      this.$emit('childByValue', item.type);
+      this.$emit('childByValue', item);
     },
   },
 }
@@ -37,6 +35,9 @@ export default {
 /**tab样式*/
 .appTabCarint {
   margin: 110px 20px 0px;
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
 }
 .appTitle {
   padding: 28px 0px;

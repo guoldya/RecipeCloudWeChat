@@ -1,13 +1,6 @@
 <template>
   <div class="lineupnow">
     <Header post-title="就诊队列"></Header>
-    <!-- <div :class="{margin45:isWeixin}">
-      <div :class="{'margin45':isWeixin,'appTab':true}">
-        <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item)" :class="queryType === (index+1) ? 'appTabAcitive' : '' ">
-          {{item.title}}
-        </span>
-      </div> -->
-
     <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
     <div class="outCarint">
       <div class="card margin16">
@@ -106,7 +99,7 @@
       </div> -->
 
   </div>
-  </div>
+
 </template>
 <script type="text/babel">
 let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
@@ -159,7 +152,10 @@ export default {
   },
   methods: {
     childByValue: function (childValue) {
-      this.queryType = childValue;
+      this.queryType = childValue.type;
+      this.goodsList = [];
+      this.loadingtrue = true;
+      this.page = 1;
       this.getGoodslist();
     },
     handler(name, active) {
