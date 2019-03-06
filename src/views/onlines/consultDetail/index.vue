@@ -32,17 +32,21 @@
     </div>
     <!-- 沟通方式 -->
     <div class="doctor-way doctor-item b-m">
-      <div class="doctor-way-item ">
-        <div class="doctor-way-item-img"><img src="./image.png" alt=""></div>
+      <div class="doctor-way-item" @click="consult('img')">
+        <div class="doctor-way-item-img"><img src="./image.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-image">￥20/次</div>
       </div>
-      <div class="doctor-way-item ">
-        <div class="doctor-way-item-img"><img src="./phone.png" alt=""></div>
+      <div class="doctor-way-item" @click="consult('phone')">
+        <div class="doctor-way-item-img"><img src="./phone.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-phone">￥20/次</div>
       </div>
       <div class="doctor-way-item video">
-        <div class="doctor-way-item-img"><img src="./video.png" alt=""></div>
-        <div class="doctor-way-item-money doctor-way-item-video">暂未开通</div>
+        <div class="doctor-way-item-img"><img src="./video.png" alt="" /></div>
+        <div
+          class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled"
+        >
+          暂未开通
+        </div>
       </div>
     </div>
     <!--擅长-->
@@ -61,6 +65,7 @@
     <div class="doctor-comment b-m">
       <div class="b-m">评论</div>
     </div>
+    <!-- 评论详情 -->
     <div class="doctor-comment-item b-m">
       <div class="b-m doctor-comment-item-header">
         <span>15444**8444</span>
@@ -78,12 +83,80 @@
         </div>
       </div>
     </div>
+    <!-- 咨询弹窗 -->
+    <md-dialog
+      :title="basicDialog.title"
+      :closable="true"
+      v-model="basicDialog.open"
+      :btns="basicDialog.btns"
+    >
+      <p class="money">$20.0/次</p>
+      <p>咨询师-周扬</p>
+      <p class="ways">通过文字,图片进行咨询</p>
+      <md-agree v-model="basicDialog.checked" :disabled="false" size="sm">
+        同意<a>《重庆市妇幼保健院在线问诊用户协议》</a>
+      </md-agree>
+    </md-dialog>
   </div>
 </template>
 <script>
+import { Dialog, Agree, Toast } from "mand-mobile";
 export default {
   data() {
-    return {};
+    return {
+      // 咨询弹窗
+      basicDialog: {
+        open: false,
+        checked: true,
+        title: "",
+        type: null, // 咨询弹窗类型 type 1 图文 2 电话 3视频
+        btns: [
+          {
+            text: "取消申请",
+            handler: this.onBasicCancel
+          },
+          {
+            text: "申请咨询",
+            handler: this.onConfirm
+          }
+        ]
+      }
+    };
+  },
+  methods: {
+    // 取消按钮
+    onCancel() {
+      this.basicDialog.open = false;
+    },
+    // 点击申请咨询按钮
+    onConfirm() {
+      if (!this.basicDialog.checked) {
+        Toast.info("请同意用户协议");
+        return false;
+      }
+      this.basicDialog.open = false;
+      Dialog.confirm({
+        title: "温馨提示",
+        content: `
+        <div class="info">1、咨询服务可提供相关建议。</div>
+        <div class="info">2、仅为复诊患者提供诊疗服务。</div>
+        <div class="info">3、为保证医疗安全，特殊药品如精神类药物，强心类药物等需要门诊就诊后开具。</div>`,
+        confirmText: "确定",
+        onConfirm: () => console.log("[Dialog.confirm] confirm clicked")
+      });
+    },
+    // 咨询
+    consult(val) {
+      this.basicDialog.open = true;
+      if (val === "img") {
+        this.basicDialog.title = "图文咨询";
+      } else if (val === "phone") {
+        this.basicDialog.title = "电话咨询";
+      }
+    }
+  },
+  components: {
+    Dialog
   }
 };
 </script>
@@ -140,7 +213,7 @@ export default {
       flex-direction: column;
       font-size: 24px;
       align-items: center;
-      &.video  .doctor-way-item-img {
+      &.video .doctor-way-item-img {
         background: #e3e3e3;
       }
     }
@@ -149,9 +222,9 @@ export default {
       height: 90px;
       border-radius: 45px;
       overflow: hidden;
-      img{
-        width:100%;
-        height:100%;
+      img {
+        width: 100%;
+        height: 100%;
       }
     }
     .doctor-way-item-money {
@@ -163,18 +236,17 @@ export default {
       text-align: center;
     }
     .doctor-way-item-image {
-        border:1px solid  #4ad962;
-        color:#4ad962;
+      border: 1px solid #4ad962;
+      color: #4ad962;
     }
-     .doctor-way-item-phone {
-        border:1px solid  #57a8ee;
-        color:#57a8ee;
+    .doctor-way-item-phone {
+      border: 1px solid #57a8ee;
+      color: #57a8ee;
     }
-      .doctor-way-item-video {
-        border:1px solid  #e3e3e3;
-        color:#999;
-      }
-
+    .doctor-way-item-disabled {
+      border: 1px solid #e3e3e3;
+      color: #999;
+    }
   }
   .doctor-speciality,
   .doctor-abstract,
@@ -220,4 +292,40 @@ export default {
     }
   }
 }
+.md-dialog {
+  /deep/ .md-dialog-body {
+    padding: 0.52rem 30px 0.2rem;
+    p {
+      text-align: center;
+      color: #000;
+      line-height: 50px;
+    }
+    .money {
+      color: #ff9b00;
+    }
+    .ways {
+      color: #999;
+    }
+    .md-agree {
+      /deep/ .md-agree-content {
+        color: #999;
+        font-size: 24px;
+      }
+    }
+    
+  }
+}
+
 </style>
+<style lang="less">
+.md-dialog {
+    .md-dialog-text {
+      flex-wrap:wrap;
+      .info{
+        width:100%;
+      }
+    }
+}
+</style>
+
+

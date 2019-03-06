@@ -74,7 +74,7 @@ export default {
     }).then(res => {
       if (res.data.code == '200') {
         this.cardlist = res.data.rows;
-        this.$store.commit('cardListFun', cardlist);
+        this.$store.commit('cardListFun',  this.cardlist);
         this.loadingtrue = false;
       } else if (res.data.code == '800') {
         console.log(res.data.msg)

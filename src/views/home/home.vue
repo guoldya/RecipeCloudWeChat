@@ -264,8 +264,8 @@ export default {
         },
     },
     // beforeRouteLeave(to, from, next) {
-    //     // from.meta.keepAlive = true;
-    //     // next();
+    //       from.meta.keepAlive = true;
+    //       next();
     // },
     computed: {
         _cardlist() {
