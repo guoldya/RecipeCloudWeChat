@@ -18,11 +18,7 @@
             </span>
         </header>
         <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
-            <div class="appTab">
-                <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div>
+            <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
                 <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
                     <p class="appTitle">
@@ -134,12 +130,12 @@ export default {
                 query: { id: value }
             });
         },
-        switchTo(data, num) {
-            this.active1 = num;
-            this.type = data;
+
+        childByValue: function (childValue) {
+            this.type = childValue.type;
             this.waitPayData = [];
-            this.page = 1;
             this.loadingtrue = true;
+            this.page = 1;
             this.WaitPay();
         },
         WaitPay(flag) {
@@ -147,7 +143,7 @@ export default {
             params.pageNumber = this.page;
             params.pageSize = this.pageSize;
             //params.patientId = parseInt(this.choseValue);
-            params.payType = this.active1;
+            params.payType = this.type;
             this.$axios.put(pay_list_url, params).then((res) => {
                 if (res.data.rows) {
                     this.loadingtrue = false;

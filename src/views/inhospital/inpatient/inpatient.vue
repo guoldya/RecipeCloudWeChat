@@ -49,5 +49,5 @@ export default {
 };
 </script>
  <style scoped>
-@import url("./inhospital.css");
+@import url("./inpatient.css");
 </style>

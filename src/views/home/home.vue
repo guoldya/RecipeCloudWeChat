@@ -54,7 +54,7 @@
                 <span v-show="!cardLoading" class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
             <div class="home-zy home-flex">
-                <img @click="inhospital" src="@/assets/images/AAAA.png" alt="" class="image float-left">
+                <img @click="inpatient" src="@/assets/images/AAAA.png" alt="" class="image float-left">
             </div>
             <ul class="home-menu">
                 <li>
@@ -226,10 +226,10 @@ export default {
             });
         },
         // 我的住院
-        inhospital() {
+        inpatient() {
             let argu = {}
             this.$router.push({
-                name: 'inhospital',
+                name: 'inpatient',
                 query: argu
             });
         },
