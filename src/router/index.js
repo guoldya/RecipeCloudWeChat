@@ -90,6 +90,7 @@ import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
+import consultDetail from '@/views/onlines/consultDetail'
 
 Vue.use(Router)
 
@@ -470,6 +471,39 @@ export default new Router({
     meta: {
       keepAlive: true
     }
+  },
+  {
+    path: '/storeInfo',
+    name: 'storeInfo',
+    component: storeInfo
+  },
+  {
+    path: '/submitOrder',
+    name: 'submitOrder',
+    component: submitOrder,
+  },
+  {
+    path: '/registrecorddetail',
+    name: 'registrecorddetail',
+    component: registrecorddetail,
+  },
+  {
+    path: '/doctorschedu',
+    name: 'doctorschedu',
+    component: doctorschedu,
+  },
+  {
+    path: '/followDoctor',
+    name: 'followDoctor',
+    component: followDoctor
+  }, {
+    path: '/inquiryRecord',
+    name: 'inquiryRecord',
+    component: inquiryRecord
+  }, {
+    path: '/consultDetail',
+    name: 'consultDetail',
+    component: consultDetail
   },
   {
     path: '/storeInfo',
