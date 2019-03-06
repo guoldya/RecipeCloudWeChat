@@ -33,15 +33,15 @@
     <!-- 沟通方式 -->
     <div class="doctor-way doctor-item b-m">
       <div class="doctor-way-item" @click="consult('img')">
-        <div class="doctor-way-item-img"><img src="./image.png" alt="" /></div>
+        <div class="doctor-way-item-img"><img src="../images/image.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-image">￥20/次</div>
       </div>
       <div class="doctor-way-item" @click="consult('phone')">
-        <div class="doctor-way-item-img"><img src="./phone.png" alt="" /></div>
+        <div class="doctor-way-item-img"><img src="../images/phone.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-phone">￥20/次</div>
       </div>
       <div class="doctor-way-item video">
-        <div class="doctor-way-item-img"><img src="./video.png" alt="" /></div>
+        <div class="doctor-way-item-img"><img src="../images/video.png" alt="" /></div>
         <div
           class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled"
         >
@@ -142,7 +142,9 @@ export default {
         <div class="info">2、仅为复诊患者提供诊疗服务。</div>
         <div class="info">3、为保证医疗安全，特殊药品如精神类药物，强心类药物等需要门诊就诊后开具。</div>`,
         confirmText: "确定",
-        onConfirm: () => console.log("[Dialog.confirm] confirm clicked")
+        onConfirm: () => {
+          this.$router.push('/buyService')
+        }
       });
     },
     // 咨询
@@ -195,7 +197,7 @@ export default {
     margin-top: 20px;
     > div {
       flex: 1;
-      border-right: 1px solid #e0e0e0;
+      border-right: 1px solid #f1f3f1;
       &:last-child {
         border-right: none;
       }

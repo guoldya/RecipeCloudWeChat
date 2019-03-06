@@ -91,7 +91,7 @@ import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
 import consultDetail from '@/views/onlines/consultDetail'
-
+import buyService from '@/views/onlines/buyService'
 Vue.use(Router)
 
 export default new Router({
@@ -533,6 +533,10 @@ export default new Router({
     path: '/inquiryRecord',
     name: 'inquiryRecord',
     component: inquiryRecord
+  }, {
+    path:'/buyService',
+    name:'buyService',
+    component:buyService
   }
   ]
 })
