@@ -19,7 +19,7 @@
         <div class="nav2">
           <span><img src="@/assets/images/icon_hospitalization.png" alt="">我的住院</span>
           <span @click="recipeRecord"><img src="@/assets/images/icon_prescription.png" alt="">处方记录</span>
-          <span><img src="@/assets/images/icon_copy.png" alt="">复印记录</span>
+          <span @click="business"><img src="@/assets/images/icon_copy.png" alt="">复印记录</span>
           <span @click="askorder"><img src="@/assets/images/icon_order.png" alt="">问诊订单</span>
         </div>
       </div>
@@ -48,8 +48,8 @@ export default {
       account: '',
     }
   },
-  created() { 
-      this.$store.commit('feeActiveFun', 1);
+  created() {
+    this.$store.commit('feeActiveFun', 1);
   },
   mounted() {
     document.title = '个人中心';
@@ -107,8 +107,14 @@ export default {
         query: argu
       });
     },
-
-
+    // 处方记录
+    business() {
+      let argu = {}
+      this.$router.push({
+        name: 'business',
+        query: argu
+      });
+    },
     askorder() {
       let argu = {}
       this.$router.push({

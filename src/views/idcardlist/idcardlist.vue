@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       loadingtrue: true,
-      isWeixin: false,
+
       showPic: false,
       num: 2,
       cardlist: '',
@@ -50,9 +50,9 @@ export default {
         open: false,
         btns: [
           {
-            text: '没有',
+            text: '取消',
             type: 'danger',
-            handler: this.onActConfirm2,
+            handler: this.onActConfirm,
           },
           {
             text: '已有',
@@ -60,9 +60,9 @@ export default {
             handler: this.onActConfirm3,
           },
           {
-            text: '取消',
+            text: '没有',
             type: 'danger',
-            handler: this.onActConfirm,
+            handler: this.onActConfirm2,
           },
         ],
       },
@@ -74,7 +74,7 @@ export default {
     }).then(res => {
       if (res.data.code == '200') {
         this.cardlist = res.data.rows;
-        this.$store.commit('cardListFun',  this.cardlist);
+        this.$store.commit('cardListFun', this.cardlist);
         this.loadingtrue = false;
       } else if (res.data.code == '800') {
         console.log(res.data.msg)
@@ -85,19 +85,12 @@ export default {
   },
   watch: {
     selected3: function (newselectedStatus, oldselectedStatus) {
-      
+
     },
   },
   mounted() {
     document.title = '医生列表';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-      return true;
-    } else {
-      this.isWeixin = true;
-      return false;
-    };
+
 
 
   },
@@ -142,7 +135,6 @@ export default {
 </script>
  <style   scoped>
 @import "../doctorList/doctorList.css";
-
 .idcardlist .homeCard {
   height: 200px;
 }

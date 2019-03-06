@@ -92,6 +92,15 @@ import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
 import consultDetail from '@/views/onlines/consultDetail'
 
+
+
+
+
+import business from '@/views/copyrecord/business/business.vue'
+import certificate from '@/views/copyrecord/certificate/certificate.vue'
+import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -286,7 +295,7 @@ export default new Router({
     path: '/reportquery',
     name: 'reportquery',
     component: reportquery,
-    meta: { keepAlive: true }
+    // meta: { keepAlive: true }
   },
   {
     path: '/reportinfo',
@@ -533,6 +542,20 @@ export default new Router({
     path: '/inquiryRecord',
     name: 'inquiryRecord',
     component: inquiryRecord
-  }
+  },
+  {
+    path: '/business',
+    name: 'business',
+    component: business,
+  },
+  {
+    path: '/certificate',
+    name: 'certificate',
+    component: certificate
+  }, {
+    path: '/putinfo',
+    name: 'putinfo',
+    component: putinfo
+  },
   ]
 })

@@ -33,8 +33,8 @@ Vue.component('Footer', Footer);
 Vue.component('rater', rater);
 Vue.config.productionTip = false;
 Vue.use(infiniteScroll);
-import Vconsole from 'vconsole';
-const vConsole = new Vconsole();
+// import Vconsole from 'vconsole';
+// const vConsole = new Vconsole();
 
 if ('addEventListener' in document && 'ontouchstart' in window) {
     FastClick.prototype.focus = function (targetElement) {

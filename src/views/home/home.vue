@@ -23,7 +23,6 @@
             </ul>
         </div>
         <div class="homePage">
-
             <!-- 就诊卡片  -->
             <div v-if=" _cardlist.length!=0">
                 <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in  _cardlist" v-if="showindex==index" :key="'cardlist' + index">
@@ -76,7 +75,7 @@
                     <img src="@/assets/images/5.png" alt="" class="image">
                     <p>医生排班</p>
                 </li>
-                <li>
+                <li @click="business">
                     <img src="@/assets/images/6.png" alt="" class="image">
                     <p>病案复印</p>
                 </li>
@@ -253,7 +252,14 @@ export default {
                 query: argu
             });
         },
-
+        // 医生排班
+        business() {
+            let argu = {}
+            this.$router.push({
+                name: 'business',
+                query: argu
+            });
+        },
         // 我的处方
         myinspectionCheck() {
             let argu = {}
@@ -272,7 +278,6 @@ export default {
             this.cardLoading = false;
             return this.$store.state.cardList
         },
-
     },
 
 }

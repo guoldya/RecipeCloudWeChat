@@ -161,7 +161,7 @@
       <a href="javascript:;" class="aui-tabBar-item " @click="intoCar">
         <img src="@/assets/images/icon_car2.png" alt="">
       </a>
-      <a href="javascript:;" class="aui-tabBar-item2" @click="addCar">
+      <a href="javascript:;" class="aui-tabBar-item2" @click="addGood">
         <button class="abtn car">加入购物车</button>
       </a>
       <a href="javascript:;" class="aui-tabBar-item2" @click="payNow">
@@ -338,7 +338,7 @@ export default {
 
     this.getGoodslist(false);
     window.payNow = this.payNow;
-
+    window.addCar = this.addCar;
   },
   methods: {
     getGoodslist(flag) {
@@ -484,19 +484,25 @@ export default {
         }
       );
     },
-    addCar() {
-      // WebViewJavascriptBridge.callHandler(
-      //   'addCar'
-      //   , this.num
-      //   , function (responseData) {
-      //   }
-      // );
+    addCar(data) {
+      let _this = this;
+      WebViewJavascriptBridge.callHandler(
+        'addCar'
+        , data
+        , function (responseData) {
+          bridgeLog('来自原生回传数据： ' + responseData);
+        }
+      );
+    },
+    addGood() {
+
       this.$axios.post(appbizShoppingCartadd, {
         productId: this.drugId,
         total: this.num,
       }).then((res) => {
         if (res.data.code == '200') {
           Toast.succeed("添加成功");
+          this.addCar(res.data);
         } else {
           Toast.succeed(res.data.msg);
         }

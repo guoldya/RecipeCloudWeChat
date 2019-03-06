@@ -1,6 +1,6 @@
 <template>
     <div class="reportquery">
-        <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
+        <header class="aui-navBar aui-navBar-fixed">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
             </span>
@@ -101,13 +101,13 @@ export default {
         };
     },
     created() {
-
-    },
-    mounted() {
-        //this.personFun();
         if (this.$store.state.feeActiveId) {
             this.type = this.$store.state.feeActiveId
         }
+    },
+    mounted() {
+        //this.personFun();
+
         this.getGoodslist(false);
         document.title = '报告查询';
         var ua = window.navigator.userAgent.toLowerCase();
