@@ -95,6 +95,7 @@ import buyService from '@/views/onlines/buyService'
 import pictureConsult from '@/views/onlines/pictureConsult'
 import selectPeople from '@/views/onlines/selectPeople'
 import addPeople from '@/views/onlines/addPeople'
+import seeCase from '@/views/onlines/seeCase'
 
 Vue.use(Router)
 
@@ -553,6 +554,10 @@ export default new Router({
     path: '/addPeople',
     name:'addPeople',
     component:addPeople
+  }, {
+    path: '/seeCase',
+    name:'seeCase',
+    component:seeCase
   }
   ]
 })

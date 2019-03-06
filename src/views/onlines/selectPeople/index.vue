@@ -15,10 +15,10 @@
           <img src="../images/m.png" alt="">
           <p>爸爸</p>
        </li>
-       <li>
+       <router-link tag="li" to="addPeople">
          <img src="../images/w.png" alt="">
           <p class="add">添加家人</p>
-       </li>
+       </router-link>
      </ul>
   </div>
 </template>
