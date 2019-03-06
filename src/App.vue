@@ -238,6 +238,7 @@ input:-ms-input-placeholder {
   color: #1da1f3;
   border-bottom: 2px solid #1da1f3;
 }
+/**大大大大的**/
 .methodTabAcitive {
   color: #1da1f3;
 }

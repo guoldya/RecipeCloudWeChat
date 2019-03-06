@@ -6,6 +6,7 @@ import Config from './config/config.js';
 import store from './store/store';
 import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
+import Apptab from './components/apptab/apptab.vue';
 import Search from './components/search/search.vue';
 import Footer from './components/footer/footer.vue';
 import Loading from './components/loading/loading.vue';
@@ -26,6 +27,7 @@ import rater from 'w-rater'
 
 Vue.component('Header', Header);
 Vue.component('Search', Search);
+Vue.component('Apptab', Apptab)
 Vue.component('Loading', Loading);
 Vue.component('Footer', Footer);
 Vue.component('rater', rater);

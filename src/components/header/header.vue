@@ -13,15 +13,14 @@
   </header>
 </template>
 <script>
-import Vue from 'vue';
+
 export default {
   data() {
     return {
-      selected: null,
-      num: 0,
+
     }
   },
-  props: ['postTitle','selectOption'],
+  props: ['postTitle'],
   created() {
 
   },
@@ -30,18 +29,6 @@ export default {
 
   },
   methods: {
-    back() {
-      Toast('提示信息');
-    },
-    select() {
-      if (this.selected == 1) {
-        this.selected = 2;
-      } else {
-        this.selected = 1;
-
-      }
-
-    },
 
   },
 }

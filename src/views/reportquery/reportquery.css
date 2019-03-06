@@ -2,10 +2,7 @@
    padding: 0 12px;
    font-size: 28px;
 }
-.reportquery .appTab {
-   width: 80%;
-   margin-left: 10%
-}
+ 
 
 .reportquery .datepick {
    display: flex;

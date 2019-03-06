@@ -17,11 +17,6 @@
    justify-content: space-between;
 }
 
-.lineupnow .appTab {
-   width: 80%;
-   margin: auto;
-}
-
 .lineupnow .cardHEADER {
    padding: 16px 0px;
    font-size: 14px;
@@ -66,10 +61,6 @@
    width: 12px;
    position: relative;
    top: 2px;
-}
-
-.lineupnow .appTab {
-   padding-top: 0;
 }
 
 .lineupnow .lineheight30 {
