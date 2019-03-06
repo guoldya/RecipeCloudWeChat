@@ -32,16 +32,16 @@
     </div>
     <!-- 沟通方式 -->
     <div class="doctor-way doctor-item b-m">
-      <div class="doctor-way-item">
-        <div class="doctor-way-item-img"></div>
-        <div class="doctor-way-item-money ">￥20/次</div>
+      <div class="doctor-way-item ">
+        <div class="doctor-way-item-img"><img src="./image.png" alt=""></div>
+        <div class="doctor-way-item-money doctor-way-item-image">￥20/次</div>
       </div>
-      <div class="doctor-way-item">
-        <div class="doctor-way-item-img"></div>
+      <div class="doctor-way-item ">
+        <div class="doctor-way-item-img"><img src="./phone.png" alt=""></div>
         <div class="doctor-way-item-money doctor-way-item-phone">￥20/次</div>
       </div>
-      <div class="doctor-way-item">
-        <div class="doctor-way-item-img"></div>
+      <div class="doctor-way-item video">
+        <div class="doctor-way-item-img"><img src="./video.png" alt=""></div>
         <div class="doctor-way-item-money doctor-way-item-video">暂未开通</div>
       </div>
     </div>
@@ -140,23 +140,41 @@ export default {
       flex-direction: column;
       font-size: 24px;
       align-items: center;
+      &.video  .doctor-way-item-img {
+        background: #e3e3e3;
+      }
     }
     .doctor-way-item-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 40px;
-      background: Red;
+      width: 90px;
+      height: 90px;
+      border-radius: 45px;
+      overflow: hidden;
+      img{
+        width:100%;
+        height:100%;
+      }
     }
     .doctor-way-item-money {
       margin-top: 20px;
       width: 160px;
-      border: 1px solid red;
       height: 46px;
       line-height: 46px;
       border-radius: 23px;
       text-align: center;
-      color: red;
     }
+    .doctor-way-item-image {
+        border:1px solid  #4ad962;
+        color:#4ad962;
+    }
+     .doctor-way-item-phone {
+        border:1px solid  #57a8ee;
+        color:#57a8ee;
+    }
+      .doctor-way-item-video {
+        border:1px solid  #e3e3e3;
+        color:#999;
+      }
+
   }
   .doctor-speciality,
   .doctor-abstract,
