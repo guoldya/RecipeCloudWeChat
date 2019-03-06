@@ -6,8 +6,8 @@
     <div class="aui-center">
       <span class="aui-center-title">{{postTitle}}</span>
     </div>
-    <a href="javascript:;" class="aui-navBar-item">
-      <!--{{selectOption}} -->
+    <a href="javascript:;" class="aui-navBar-item" >
+       <!--{{selectOption}} -->
 
     </a>
   </header>
