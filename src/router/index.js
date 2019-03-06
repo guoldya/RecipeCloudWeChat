@@ -83,427 +83,456 @@ import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
 
 import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
 import register from '@/views/register/register.vue'
-import inhospital from '@/views/inhospital/inhospital.vue'
+import inpatient from '@/views/inhospital/inpatient/inpatient.vue'
 import payfee from '@/views/inhospital/payfee/payfee.vue'
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
-import consultDetail from '@/views/onlines/consultDetail' 
+import consultDetail from '@/views/onlines/consultDetail'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'hash',
   routes: [{
-      path: '/',
-      name: 'home',
-      component: index,
-      meta: {
-        keepAlive: true
-      }
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: register
-    },
-    {
-      path: '/inhospital',
-      name: 'inhospital',
-      component: inhospital
-    },
-    {
-      path: '/payfee',
-      name: 'payfee',
-      component: payfee
-    },
-    {
-      path: '/paymeet',
-      name: 'paymeet',
-      component: paymeet
-    },
-    {
-      path: '/quickpay',
-      name: 'quickpay',
-      component: quickpay
-    },
-
-    {
-      path: '/resultdocotor',
-      name: 'resultdocotor',
-      component: resultdocotor
-    },
-    {
-      path: '/reservation',
-      name: 'reservation',
-      component: reservation
-    },
-    {
-      path: '/reportrecord',
-      name: 'reportrecord',
-      component: reportrecord
-    },
-    {
-      path: '/signsucceed',
-      name: 'signsucceed',
-      component: signsucceed
-    },
-    {
-      path: '/cardhave',
-      name: 'cardhave',
-      component: cardhave
-    },
-    {
-      path: '/unblind',
-      name: 'unblind',
-      component: unblind
-    },
-
-    {
-      path: '/cardblind',
-      name: 'cardblind',
-      component: cardblind
-    },
-    {
-      path: '/moan',
-      name: 'moan',
-      component: moan
-    },
-
-    {
-      path: '/my',
-      name: 'my',
-      component: my
-    },
-    {
-      path: '/sign',
-      name: 'sign',
-      component: sign
-    },
-    {
-      path: '/signagin',
-      name: 'signagin',
-      component: signagin
-    },
-    {
-      path: '/cardmy',
-      name: 'cardmy',
-      component: cardmy
-    },
-    {
-      path: '/cardwrite',
-      name: 'cardwrite',
-      component: cardwrite
-    },
-    {
-      path: '/cardwritesecond',
-      name: 'cardwritesecond',
-      component: cardwritesecond
-    },
-    {
-      path: '/cardwriteson',
-      name: 'cardwriteson',
-      component: cardwriteson
-    },
-    {
-      path: 'cardconfirm',
-      name: 'cardconfirm',
-      component: cardconfirm
-    },
-    {
-      path: '/cardneed',
-      name: 'cardneed',
-      component: cardneed
-    },
-
-    {
-      path: '/druginfo',
-      name: 'druginfo',
-      component: druginfo
-    },
-    {
-      path: '/article',
-      name: 'article',
-      component: article
-    },
-    {
-      path: '/online',
-      name: 'online',
-      component: online
-    },
-    {
-      path: '/appoint',
-      name: 'appoint',
-      component: appoint
-    },
-    {
-      path: '/appointinfo',
-      name: 'appointinfo',
-      component: appointinfo
-    },
-    {
-      path: '/choosedepart',
-      name: 'choosedepart',
-      component: choosedepart
-    },
-    {
-      path: '/result',
-      name: 'result',
-      component: result
-    },
-    {
-      path: '/feeinfo',
-      name: 'feeinfo',
-      component: feeinfo
-    },
-    {
-      path: '/feerecord',
-      name: 'feerecord',
-      component: feerecord
-    },
-    {
-      path: '/feesucces',
-      name: 'feesucces',
-      component: feesucces
-    },
-    {
-      path: '/payment',
-      name: 'payment',
-      component: payment
-    },
-    {
-      path: '/doctorList',
-      name: 'doctorList',
-      component: doctorList
-    },
-    {
-      path: '/doctordetail',
-      name: 'doctordetail',
-      component: doctor
-    }, {
-      path: '/reportquery',
-      name: 'reportquery',
-      component: reportquery,
-      meta: { keepAlive: true }
-    },
-    {
-      path: '/reportinfo',
-      name: 'reportinfo',
-      component: reportinfo,
-    },
-    {
-      path: '/lineupnow',
-      name: 'lineupnow',
-      component: lineupnow
-    },
-    {
-      path: '/lineupinfo',
-      name: 'lineupinfo',
-      component: lineupinfo
-    },
-    {
-      path: '/notice',
-      name: 'notice',
-      component: notice
-    },
-
-    {
-      path: '/fillinfo',
-      name: 'fillinfo',
-      component: fillinfo
-    },
-    {
-      path: '/lookagain',
-      name: 'lookagain',
-      component: lookagain
-    },
-    {
-      path: '/identity',
-      name: 'identity',
-      component: identity
-    },
-    {
-      path: '/idcard',
-      name: 'idcard',
-      component: idcard
-    },
-    {
-      path: '/idcardlist',
-      name: 'idcardlist',
-      component: idcardlist
-    },
-    {
-      path: '/doctorplan',
-      name: 'doctorplan',
-      component: doctorplan
-    },
-    {
-      path: '/inspectionCheck',
-      name: 'inspectionCheck',
-      component: inspectionCheck,
-      meta: {
-        keepAlive: true
-      }
-    },
-    {
-      path: '/medicalEva',
-      name: 'medicalEva',
-      component: medicalEva
-    },
-
-    {
-      path: '/recipeDetail',
-      name: 'recipeDetail',
-      component: recipeDetail
-    },
-    {
-      path: '/slowConfirm',
-      name: 'slowConfirm',
-      component: slowConfirm
-    },
-    {
-      path: '/applyDetail',
-      name: 'applyDetail',
-      component: applyDetail
-    },
-    {
-      path: '/examine',
-      name: 'examine',
-      component: examine
-    },
-    {
-      path: '/workdepart',
-      name: 'workdepart',
-      component: workdepart
-    },
-    {
-      path: '/workdoctor',
-      name: 'workdoctor',
-      component: workdoctor
-    },
-    {
-      path: '/workdotorinfo',
-      name: 'workdotorinfo',
-      component: workdotorinfo
-    },
-    {
-      path: '/onlineEva',
-      name: 'onlineEva',
-      component: onlineEva
-    },
-    {
-      path: '/expertpage',
-      name: 'expertpage',
-      component: expertpage
-    },
-    {
-      path: '/adress',
-      name: 'adress',
-      component: adress
-    },
-    {
-      path: '/adressinfo',
-      name: 'adressinfo',
-      component: adressinfo
-    },
-    {
-      path: '/evaContent',
-      name: 'evaContent',
-      component: evaContent
-    },
-    {
-      path: '/recipeRecord',
-      name: 'recipeRecord',
-      component: recipeRecord
-    },
-    {
-      path: '/orderrecord',
-      name: 'orderrecord',
-      component: orderrecord
-    },
-    {
-      path: '/orderinfo',
-      name: 'orderinfo',
-      component: orderinfo
-    },
-    {
-      path: '/selectStore',
-      name: 'selectStore',
-      component: selectStore
-    },
-    {
-      path: '/askorder',
-      name: 'askorder',
-      component: askorder
-    },
-    {
-      path: '/registrecord',
-      name: 'registrecord',
-      component: registrecord
-    },
-
-    {
-      path: '/paySuccess',
-      name: 'paySuccess',
-      component: paySuccess,
-    },
-    {
-      path: '/recordDetail',
-      name: 'recordDetail',
-      component: recordDetail,
-    },
-    {
-      path: '/examineDetail',
-      name: 'examineDetail',
-      component: examineDetail,
-    },
-    {
-      path: '/examineOrder',
-      name: 'examineOrder',
-      component: examineOrder,
-    },
-    {
-      path: '/acceptAdd',
-      name: 'acceptAdd',
-      component: acceptAdd,
-      meta: {
-        keepAlive: true
-      }
-    },
-    {
-      path: '/storeInfo',
-      name: 'storeInfo',
-      component: storeInfo
-    },
-    {
-      path: '/submitOrder',
-      name: 'submitOrder',
-      component: submitOrder,
-    },
-    {
-      path: '/registrecorddetail',
-      name: 'registrecorddetail',
-      component: registrecorddetail,
-    },
-    {
-      path: '/doctorschedu',
-      name: 'doctorschedu',
-      component: doctorschedu,
-    },
-    {
-      path: '/followDoctor',
-      name: 'followDoctor',
-      component: followDoctor
-    },{
-      path:'/inquiryRecord',
-      name:'inquiryRecord',
-      component:inquiryRecord
-    },{
-      path:'/consultDetail',
-      name:'consultDetail',
-      component:consultDetail
+    path: '/',
+    name: 'home',
+    component: index,
+    meta: {
+      keepAlive: true
     }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: register
+  },
+  {
+    path: '/inpatient',
+    name: 'inpatient',
+    component: inpatient
+  },
+  {
+    path: '/payfee',
+    name: 'payfee',
+    component: payfee
+  },
+  {
+    path: '/paymeet',
+    name: 'paymeet',
+    component: paymeet
+  },
+  {
+    path: '/quickpay',
+    name: 'quickpay',
+    component: quickpay
+  },
+
+  {
+    path: '/resultdocotor',
+    name: 'resultdocotor',
+    component: resultdocotor
+  },
+  {
+    path: '/reservation',
+    name: 'reservation',
+    component: reservation
+  },
+  {
+    path: '/reportrecord',
+    name: 'reportrecord',
+    component: reportrecord
+  },
+  {
+    path: '/signsucceed',
+    name: 'signsucceed',
+    component: signsucceed
+  },
+  {
+    path: '/cardhave',
+    name: 'cardhave',
+    component: cardhave
+  },
+  {
+    path: '/unblind',
+    name: 'unblind',
+    component: unblind
+  },
+
+  {
+    path: '/cardblind',
+    name: 'cardblind',
+    component: cardblind
+  },
+  {
+    path: '/moan',
+    name: 'moan',
+    component: moan
+  },
+
+  {
+    path: '/my',
+    name: 'my',
+    component: my
+  },
+  {
+    path: '/sign',
+    name: 'sign',
+    component: sign
+  },
+  {
+    path: '/signagin',
+    name: 'signagin',
+    component: signagin
+  },
+  {
+    path: '/cardmy',
+    name: 'cardmy',
+    component: cardmy
+  },
+  {
+    path: '/cardwrite',
+    name: 'cardwrite',
+    component: cardwrite
+  },
+  {
+    path: '/cardwritesecond',
+    name: 'cardwritesecond',
+    component: cardwritesecond
+  },
+  {
+    path: '/cardwriteson',
+    name: 'cardwriteson',
+    component: cardwriteson
+  },
+  {
+    path: 'cardconfirm',
+    name: 'cardconfirm',
+    component: cardconfirm
+  },
+  {
+    path: '/cardneed',
+    name: 'cardneed',
+    component: cardneed
+  },
+
+  {
+    path: '/druginfo',
+    name: 'druginfo',
+    component: druginfo
+  },
+  {
+    path: '/article',
+    name: 'article',
+    component: article
+  },
+  {
+    path: '/online',
+    name: 'online',
+    component: online
+  },
+  {
+    path: '/appoint',
+    name: 'appoint',
+    component: appoint
+  },
+  {
+    path: '/appointinfo',
+    name: 'appointinfo',
+    component: appointinfo
+  },
+  {
+    path: '/choosedepart',
+    name: 'choosedepart',
+    component: choosedepart
+  },
+  {
+    path: '/result',
+    name: 'result',
+    component: result
+  },
+  {
+    path: '/feeinfo',
+    name: 'feeinfo',
+    component: feeinfo
+  },
+  {
+    path: '/feerecord',
+    name: 'feerecord',
+    component: feerecord
+  },
+  {
+    path: '/feesucces',
+    name: 'feesucces',
+    component: feesucces
+  },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: payment
+  },
+  {
+    path: '/doctorList',
+    name: 'doctorList',
+    component: doctorList
+  },
+  {
+    path: '/doctordetail',
+    name: 'doctordetail',
+    component: doctor
+  }, {
+    path: '/reportquery',
+    name: 'reportquery',
+    component: reportquery,
+    meta: { keepAlive: true }
+  },
+  {
+    path: '/reportinfo',
+    name: 'reportinfo',
+    component: reportinfo,
+  },
+  {
+    path: '/lineupnow',
+    name: 'lineupnow',
+    component: lineupnow
+  },
+  {
+    path: '/lineupinfo',
+    name: 'lineupinfo',
+    component: lineupinfo
+  },
+  {
+    path: '/notice',
+    name: 'notice',
+    component: notice
+  },
+
+  {
+    path: '/fillinfo',
+    name: 'fillinfo',
+    component: fillinfo
+  },
+  {
+    path: '/lookagain',
+    name: 'lookagain',
+    component: lookagain
+  },
+  {
+    path: '/identity',
+    name: 'identity',
+    component: identity
+  },
+  {
+    path: '/idcard',
+    name: 'idcard',
+    component: idcard
+  },
+  {
+    path: '/idcardlist',
+    name: 'idcardlist',
+    component: idcardlist
+  },
+  {
+    path: '/doctorplan',
+    name: 'doctorplan',
+    component: doctorplan
+  },
+  {
+    path: '/inspectionCheck',
+    name: 'inspectionCheck',
+    component: inspectionCheck,
+    meta: {
+      keepAlive: true
+    }
+  },
+  {
+    path: '/medicalEva',
+    name: 'medicalEva',
+    component: medicalEva
+  },
+
+  {
+    path: '/recipeDetail',
+    name: 'recipeDetail',
+    component: recipeDetail
+  },
+  {
+    path: '/slowConfirm',
+    name: 'slowConfirm',
+    component: slowConfirm
+  },
+  {
+    path: '/applyDetail',
+    name: 'applyDetail',
+    component: applyDetail
+  },
+  {
+    path: '/examine',
+    name: 'examine',
+    component: examine
+  },
+  {
+    path: '/workdepart',
+    name: 'workdepart',
+    component: workdepart
+  },
+  {
+    path: '/workdoctor',
+    name: 'workdoctor',
+    component: workdoctor
+  },
+  {
+    path: '/workdotorinfo',
+    name: 'workdotorinfo',
+    component: workdotorinfo
+  },
+  {
+    path: '/onlineEva',
+    name: 'onlineEva',
+    component: onlineEva
+  },
+  {
+    path: '/expertpage',
+    name: 'expertpage',
+    component: expertpage
+  },
+  {
+    path: '/adress',
+    name: 'adress',
+    component: adress
+  },
+  {
+    path: '/adressinfo',
+    name: 'adressinfo',
+    component: adressinfo
+  },
+  {
+    path: '/evaContent',
+    name: 'evaContent',
+    component: evaContent
+  },
+  {
+    path: '/recipeRecord',
+    name: 'recipeRecord',
+    component: recipeRecord
+  },
+  {
+    path: '/orderrecord',
+    name: 'orderrecord',
+    component: orderrecord
+  },
+  {
+    path: '/orderinfo',
+    name: 'orderinfo',
+    component: orderinfo
+  },
+  {
+    path: '/selectStore',
+    name: 'selectStore',
+    component: selectStore
+  },
+  {
+    path: '/askorder',
+    name: 'askorder',
+    component: askorder
+  },
+  {
+    path: '/registrecord',
+    name: 'registrecord',
+    component: registrecord
+  },
+
+  {
+    path: '/paySuccess',
+    name: 'paySuccess',
+    component: paySuccess,
+  },
+  {
+    path: '/recordDetail',
+    name: 'recordDetail',
+    component: recordDetail,
+  },
+  {
+    path: '/examineDetail',
+    name: 'examineDetail',
+    component: examineDetail,
+  },
+  {
+    path: '/examineOrder',
+    name: 'examineOrder',
+    component: examineOrder,
+  },
+  {
+    path: '/acceptAdd',
+    name: 'acceptAdd',
+    component: acceptAdd,
+    meta: {
+      keepAlive: true
+    }
+  },
+  {
+    path: '/storeInfo',
+    name: 'storeInfo',
+    component: storeInfo
+  },
+  {
+    path: '/submitOrder',
+    name: 'submitOrder',
+    component: submitOrder,
+  },
+  {
+    path: '/registrecorddetail',
+    name: 'registrecorddetail',
+    component: registrecorddetail,
+  },
+  {
+    path: '/doctorschedu',
+    name: 'doctorschedu',
+    component: doctorschedu,
+  },
+  {
+    path: '/followDoctor',
+    name: 'followDoctor',
+    component: followDoctor
+  }, {
+    path: '/inquiryRecord',
+    name: 'inquiryRecord',
+    component: inquiryRecord
+  }, {
+    path: '/consultDetail',
+    name: 'consultDetail',
+    component: consultDetail
+  },
+  {
+    path: '/storeInfo',
+    name: 'storeInfo',
+    component: storeInfo
+  },
+  {
+    path: '/submitOrder',
+    name: 'submitOrder',
+    component: submitOrder,
+  },
+  {
+    path: '/registrecorddetail',
+    name: 'registrecorddetail',
+    component: registrecorddetail,
+  },
+  {
+    path: '/doctorschedu',
+    name: 'doctorschedu',
+    component: doctorschedu,
+  },
+  {
+    path: '/followDoctor',
+    name: 'followDoctor',
+    component: followDoctor
+  }, {
+    path: '/inquiryRecord',
+    name: 'inquiryRecord',
+    component: inquiryRecord
+  }
   ]
 })

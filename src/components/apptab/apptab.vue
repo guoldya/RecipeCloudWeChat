@@ -1,35 +1,35 @@
 <template>
   <div class="appTabCarint">
     <div class="appTab">
-      <span v-for="(item, index) in postTitle" :key="'time' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+      <span v-for="(item, index) in tabTitle" :key="'time' + index" @click="switchTo(item)" :class="active1 === (index+1) ? 'appTabAcitive' : '' ">
         {{item.title}}
       </span>
     </div>
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
-      active1: 0,
-
+      active1: 1,
     }
   },
-  props: ['postTitle'],
+  props: ['tabTitle'],
   created() {
 
   },
   mounted() {
-
+    
+    if (this.$store.state.feeActiveId) {
+      this.active1 = this.$store.state.feeActiveId
+    }
 
   },
   methods: {
-    switchTo(item, index) {
-      this.active1 = index;
-      this.$emit('childByValue', item.type);
+    switchTo(item) {
+      this.active1 = item.type;
+      this.$emit('childByValue', item);
     },
-
   },
 }
 </script>
@@ -38,6 +38,9 @@ export default {
 /**tab样式*/
 .appTabCarint {
   margin: 110px 20px 0px;
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
 }
 .appTitle {
   padding: 28px 0px;

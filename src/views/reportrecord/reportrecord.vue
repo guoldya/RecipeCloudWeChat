@@ -23,11 +23,12 @@
          <!--{{item.title}}-->
          <!--</span>-->
          <!--</div>-->
-         <div class="appTab">
+         <!-- <div class="appTab">
             <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
                {{item.title}}
             </span>
-         </div>
+         </div> -->
+         <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
          <div v-if="goodsList.length!=0" v-show="!loadingtrue" class="outCarint">
             <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
                <div class="cardText" @click="checkReportDetail(item.id)">
@@ -199,12 +200,13 @@ export default {
             query: { id: val },
          });
       },
-      switchTo(data, num) {
-         this.active1 = num;
-         this.type = data;
+
+
+      childByValue: function (childValue) {
+         this.type = childValue.type;
          this.goodsList = [];
-         this.page = 1;
          this.loadingtrue = true;
+         this.page = 1;
          this.getGoodslist();
       },
       timeSwitchTo(num) {

@@ -18,11 +18,7 @@
             </span>
         </header>
         <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
-            <div class="appTab">
-                <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div>
+            <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
                 <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
                     <p class="appTitle">
@@ -32,9 +28,9 @@
                     <div class="cardText">
                         <p>患者：{{item.patientName}}</p>
                         <p>医院：{{item.hospital}}</p>
-                        <p v-if="active1 === 0">开单时间：{{item.createTime}}</p>
-                        <p v-if="active1 === 1">支付时间：{{item.payTime}}</p>
-                        <div style="height:30px;  text-align: right;" v-if="active1 === 0">
+                        <p v-if="type === 1">开单时间：{{item.createTime}}</p>
+                        <p v-if="type === 2">支付时间：{{item.payTime}}</p>
+                        <div style="height:30px;  text-align: right;" v-if="type === 1">
                             <span class="payatnow">立即支付</span>
                         </div>
                     </div>
@@ -59,7 +55,6 @@ let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {
-            active1: 0,
             isWeixin: false,
             time: [
                 { title: '待支付', type: 1 },
@@ -94,6 +89,10 @@ export default {
         } else {
             this.isWeixin = true;
         }
+        if (this.$store.state.feeActiveId) {
+            this.type = this.$store.state.feeActiveId
+        }
+
 
     },
     methods: {
@@ -128,18 +127,18 @@ export default {
             this.isSelectorShow = true
         },
         appointinfo: function (value) {
-            this.$store.commit('feeActiveFun', this.active1);
+            this.$store.commit('feeActiveFun', this.type);
             this.$router.push({
                 name: 'feeinfo',
                 query: { id: value }
             });
         },
-        switchTo(data, num) {
-            this.active1 = num;
-            this.type = data;
+
+        childByValue: function (childValue) {
+            this.type = childValue.type;
             this.waitPayData = [];
-            this.page = 1;
             this.loadingtrue = true;
+            this.page = 1;
             this.WaitPay();
         },
         WaitPay(flag) {
@@ -147,7 +146,7 @@ export default {
             params.pageNumber = this.page;
             params.pageSize = this.pageSize;
             //params.patientId = parseInt(this.choseValue);
-            params.payType = this.active1;
+            params.payType = this.type;
             this.$axios.put(pay_list_url, params).then((res) => {
                 if (res.data.rows) {
                     this.loadingtrue = false;
