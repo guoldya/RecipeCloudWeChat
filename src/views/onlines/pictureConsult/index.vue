@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <md-cell-item title="动作条目" addon="点击选择就诊人" arrow />
+    <md-cell-item title="为谁咨询" addon="点击选择就诊人" arrow @click="routerTo(1)"/>
     <!-- 问题描述 -->
     <div class="picture-consult-problem">
       <p>
@@ -74,8 +74,8 @@
       </ul>
     </div>
 
-    <md-cell-item title="选择报告" arrow />
-    <md-cell-item title="选择病例" arrow />
+    <md-cell-item title="选择报告" arrow @click="routerTo(2)"/>
+    <md-cell-item title="选择病例" arrow @click="routerTo(3)"/>
     <div class="btn">
       <md-button type="primary" round>发送给医生</md-button>
     </div>
@@ -91,6 +91,18 @@ export default {
     };
   },
   methods: {
+    // 路由跳转 type 1 为谁咨询 2  选择报告 3选择病例
+    routerTo(type) { 
+      let url = ''
+      if(type === 1) {
+        url = '/selectPeople'
+      } else if(type === 2) {
+        
+      } else if(type === 3) {
+
+      }
+      this.$router.push(url)
+    },
     onReaderSelect(name, { files }) {
       files.forEach(file => {
         console.log(

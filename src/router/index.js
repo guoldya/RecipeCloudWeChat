@@ -93,6 +93,8 @@ import inquiryRecord from '@/views/onlines/inquiryRecord'
 import consultDetail from '@/views/onlines/consultDetail'
 import buyService from '@/views/onlines/buyService'
 import pictureConsult from '@/views/onlines/pictureConsult'
+import selectPeople from '@/views/onlines/selectPeople'
+import addPeople from '@/views/onlines/addPeople'
 
 Vue.use(Router)
 
@@ -543,6 +545,14 @@ export default new Router({
     path:'/pictureConsult',
     name:'pictureConsult',
     component:pictureConsult
+  }, {
+    path: '/selectPeople',
+    name:'selectPeople',
+    component:selectPeople
+  }, {
+    path: '/addPeople',
+    name:'addPeople',
+    component:addPeople
   }
   ]
 })
