@@ -38,7 +38,7 @@
     export default {
         components: {
             Calendar
-        },
+        },//修改
         data() {
             return {
                 isSeemore: false,
@@ -118,16 +118,15 @@
                 console.log(data); //选中某天
             },
             changeDate(data) {
-                // console.log(data); //左右点击切换月份
+                 console.log(data); //左右点击切换月份
                 var nowTime = new Date();
                 this.nowMonth=nowTime.getMonth()+1;
                 if(data.length==8){
                     this.spliceM=data.substr(5,1)
-                }else if(data.length==9){
+                }else if((data.length==9 || data.length==10)&& data.split("/")[1].length==2){
                     this.spliceM=data.substr(5,2)
                 }
                 this.changeCalendar();
-
             },
         }
     }
