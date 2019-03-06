@@ -1,7 +1,7 @@
 <template>
   <div class="appTabCarint">
     <div class="appTab">
-      <span v-for="(item, index) in tabTitle" :key="'time' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+      <span v-for="(item, index) in tabTitle" :key="'time' + index" @click="switchTo(item)" :class="active1 === (index+1) ? 'appTabAcitive' : '' ">
         {{item.title}}
       </span>
     </div>
@@ -11,7 +11,7 @@
 export default {
   data() {
     return {
-      active1: 0,
+      active1: 1,
     }
   },
   props: ['tabTitle'],
@@ -19,12 +19,15 @@ export default {
 
   },
   mounted() {
-
+    console.log(this.$store.state.feeActiveId,"this.$store.state.feeActiveId")
+    if (this.$store.state.feeActiveId) {
+      this.active1 = this.$store.state.feeActiveId
+    }
 
   },
   methods: {
-    switchTo(item, index) {
-      this.active1 = index;
+    switchTo(item) {
+      this.active1 = item.type;
       this.$emit('childByValue', item);
     },
   },

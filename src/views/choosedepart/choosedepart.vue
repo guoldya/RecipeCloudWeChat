@@ -12,7 +12,7 @@
         <!-- <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
           {{item.title}}
         </div> -->
-        <p class="xuanze">选择科室
+        <!-- <p class="xuanze">选择科室
           <span class="warn">(周末及节假日不可预约)</span>
         </p>
         <div v-if="this.active1==0">
@@ -20,7 +20,23 @@
         </div>
         <div v-if="this.active1==1">
           <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.orgName" />
+        </div> -->
+        <p class="xuanze">选择科室
+          <span class="warn">(周末及节假日不可预约)</span>
+        </p>
+        <div v-if="departData.length!=0" v-show="!loadingtrue">
+          <md-cell-item v-for="(item,index) in departData" arrow @click="intodoctorList(item)" :key="index" :title="item.orgName" />
+          <p v-show="nomore" class="noMore">没有更多数据了</p>
         </div>
+        <div v-show="!loadingtrue" class="nullDiv" v-else>
+          <img src="@/assets/images/null1.png">
+        </div>
+        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+          <span v-if="departData.length!=0&&!nomore">
+            <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+          </span>
+        </div>
+        <Loading v-show="loadingtrue"></Loading>
       </div>
     </div>
     <!-- <div class="aui-footer" @click="lookagain">
@@ -46,10 +62,11 @@ export default {
         { title: '特色门诊', value: 3 },
       ],
       departData: [],
-      test3: [
-        { name: "不孕不育", value: 555 },
-        { name: "生殖内分泌门诊", value: 888 },
-      ],
+      page: 1,
+      pageSize: 10,
+      loadingtrue: true,
+      busy: true,
+      nomore: false,
     };
   },
   created() {
@@ -85,28 +102,70 @@ export default {
 
   },
   methods: {
-    orgFun(data) {
-      this.$axios.put(bdHospitalOrg, {
-        id: data
-      }).then((res) => {
-        if (res.data.code == '200') {
-          this.departData = res.data.rows;
+    // orgFun(data) {
+    //   this.$axios.put(bdHospitalOrg, {
+    //     id: data
+    //   }).then((res) => {
+    //     if (res.data.code == '200') {
+    //       this.departData = res.data.rows;
 
-        } else {
-          console.log(res.msg);
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    },
+    //     } else {
+    //       console.log(res.msg);
+    //     }
+    //   }).catch(function (err) {
+    //     console.log(err);
+    //   });
+    // },
 
     switchTo(num, index) {
       this.active1 = index;
       this.$store.commit('departFun', num.orgName);
       this.yuanId = num.id;
-      this.orgFun(this.yuanId)
+      this.orgFun()
     },
-    
+    orgFun(flag) {
+      let deptparams = {};
+      deptparams.pageNumber = this.page;
+      deptparams.pageSize = this.pageSize;
+      deptparams.id = this.yuanId;
+      this.$axios.put(bdHospitalOrg, deptparams).then((res) => {
+        if (res.data.rows) {
+          this.loadingtrue = false;
+          this.departData = [];
+          if (flag) {
+            this.departData = this.departData.concat(res.data.rows);  //concat数组串联进行合并
+            if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+              this.busy = false;
+              this.nomore = false;
+            } else {
+              this.busy = true;
+              this.nomore = true;
+            };
+          } else {
+            this.departData = res.data.rows;
+            this.busy = true;
+            if (res.data.total <= 10) {
+              this.busy = true;
+              this.nomore = true;
+            } else {
+              this.busy = false;
+              this.nomore = false;
+            }
+          }
+        } else {
+          this.departData = []
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    loadMore() {
+      this.busy = true;  //将无限滚动给禁用
+      setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+        this.page++;  //滚动之后加载第二页
+        this.orgFun(true);
+      }, 500);
+    },
     switchDE(num) {
       this.active2 = num;
     },

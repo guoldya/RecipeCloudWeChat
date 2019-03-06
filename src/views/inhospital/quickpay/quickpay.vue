@@ -30,14 +30,16 @@ export default {
             { title: '待支付', type: 1 },
             { title: '待支付', type: 2 },
          ],
-         selectType: 1,
+         type: 1,
       }
    },
    created() {
 
    },
    mounted() {
-
+      if (this.$store.state.feeActiveId) {
+         this.type = this.$store.state.feeActiveId
+      }
 
    },
    watch: {
@@ -47,7 +49,8 @@ export default {
 
       childByValue: function (childValue) {
          console.log(childValue, "childValue")
-         this.selectType = childValue.type;
+         this.$store.commit('feeActiveFun', childValue.type);
+         this.type = childValue.type;
       },
 
 

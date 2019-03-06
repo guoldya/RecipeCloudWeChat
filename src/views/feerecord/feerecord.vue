@@ -28,9 +28,9 @@
                     <div class="cardText">
                         <p>患者：{{item.patientName}}</p>
                         <p>医院：{{item.hospital}}</p>
-                        <p v-if="active1 === 0">开单时间：{{item.createTime}}</p>
-                        <p v-if="active1 === 1">支付时间：{{item.payTime}}</p>
-                        <div style="height:30px;  text-align: right;" v-if="active1 === 0">
+                        <p v-if="type === 1">开单时间：{{item.createTime}}</p>
+                        <p v-if="type === 2">支付时间：{{item.payTime}}</p>
+                        <div style="height:30px;  text-align: right;" v-if="type === 1">
                             <span class="payatnow">立即支付</span>
                         </div>
                     </div>
@@ -55,7 +55,6 @@ let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {
-            active1: 0,
             isWeixin: false,
             time: [
                 { title: '待支付', type: 1 },
@@ -90,7 +89,9 @@ export default {
         } else {
             this.isWeixin = true;
         }
-
+        if (this.$store.state.feeActiveId) {
+            this.type = this.$store.state.feeActiveId
+        }
     },
     methods: {
         personFun() {
@@ -124,7 +125,7 @@ export default {
             this.isSelectorShow = true
         },
         appointinfo: function (value) {
-            this.$store.commit('feeActiveFun', this.active1);
+
             this.$router.push({
                 name: 'feeinfo',
                 query: { id: value }
@@ -133,6 +134,7 @@ export default {
 
         childByValue: function (childValue) {
             this.type = childValue.type;
+            this.$store.commit('feeActiveFun', childValue.type);
             this.waitPayData = [];
             this.loadingtrue = true;
             this.page = 1;

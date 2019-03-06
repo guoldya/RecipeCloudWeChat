@@ -134,6 +134,10 @@ export default {
   mounted() {
 
     document.title = '就诊队列';
+
+    if (this.$store.state.feeActiveId) {
+      this.queryType = this.$store.state.feeActiveId
+    }
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
@@ -153,6 +157,7 @@ export default {
   methods: {
     childByValue: function (childValue) {
       this.queryType = childValue.type;
+      this.$store.commit('feeActiveFun', childValue.type);
       this.goodsList = [];
       this.loadingtrue = true;
       this.page = 1;
