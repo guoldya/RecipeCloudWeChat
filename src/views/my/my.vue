@@ -48,7 +48,9 @@ export default {
       account: '',
     }
   },
-  created() { },
+  created() { 
+      this.$store.commit('feeActiveFun', 1);
+  },
   mounted() {
     document.title = '个人中心';
     this.account = localStorage.getItem("account");
