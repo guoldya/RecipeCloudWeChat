@@ -92,6 +92,8 @@ import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
 import consultDetail from '@/views/onlines/consultDetail'
 import buyService from '@/views/onlines/buyService'
+import pictureConsult from '@/views/onlines/pictureConsult'
+
 Vue.use(Router)
 
 export default new Router({
@@ -537,6 +539,10 @@ export default new Router({
     path:'/buyService',
     name:'buyService',
     component:buyService
+  }, {
+    path:'/pictureConsult',
+    name:'pictureConsult',
+    component:pictureConsult
   }
   ]
 })
