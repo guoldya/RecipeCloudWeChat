@@ -134,7 +134,7 @@ export default {
   mounted() {
 
     document.title = '就诊队列';
-
+    console.log(this.$store.state.feeActiveId,"this.$store.state.feeActiveId")
     if (this.$store.state.feeActiveId) {
       this.queryType = this.$store.state.feeActiveId
     }

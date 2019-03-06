@@ -25,14 +25,14 @@
         <div class="homePage">
 
             <!-- 就诊卡片  -->
-            <div v-if="cardlist.length!=0">
-                <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in cardlist" v-if="showindex==index" :key="'cardlist' + index">
+            <div v-if=" _cardlist.length!=0">
+                <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in  _cardlist" v-if="showindex==index" :key="'cardlist' + index">
                     <div class="homeCardText">
                         <div class="homeCardTextLeft">
                             <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard(cardlist[index+1],index+1)">
+                                <span class="icon_switch" @click="switchCard( _cardlist[index+1],index+1)">
                                     <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
@@ -41,7 +41,6 @@
                             <p>刷卡请出示</p>
                         </div>
                     </div>
-
                     <div v-show="cardLoading" class="spinner">
                         <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                     </div>
@@ -113,10 +112,12 @@ export default {
             aliveValue: '2',
         }
     },
+    created() {
+        this.$store.commit('feeActiveFun', 1);
+    },
     mounted() {
         // 用于测试
         document.title = '互联网医院';
-        this.$store.commit('feeActiveFun', 1);
         let _this = this;
         function UrlSearch() {
             let name, value;
@@ -154,6 +155,7 @@ export default {
                 this.cardlist = res.data.rows;
                 this.maxindex = res.data.total;
                 this.cardLoading = false;
+                this.$store.commit('cardListFun', res.data.rows);
                 this.$store.commit('patientIdFun', res.data.rows[0].patientId);
                 this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
                 this.$store.commit('cardNnameFun', res.data.rows[0].patientName);
@@ -261,17 +263,16 @@ export default {
             });
         },
     },
-    beforeRouteLeave(to, from, next) {
-        from.meta.keepAlive = true;
-        next();
-    },
+    // beforeRouteLeave(to, from, next) {
+    //     // from.meta.keepAlive = true;
+    //     // next();
+    // },
     computed: {
         _cardlist() {
+            this.cardLoading = false;
+            return this.$store.state.cardList
+        },
 
-        },
-        reversedMessage: function () {
-            // `this` 指向 vm 实例
-        },
     },
 
 }

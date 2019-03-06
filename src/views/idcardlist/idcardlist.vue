@@ -74,6 +74,7 @@ export default {
     }).then(res => {
       if (res.data.code == '200') {
         this.cardlist = res.data.rows;
+        this.$store.commit('cardListFun', cardlist);
         this.loadingtrue = false;
       } else if (res.data.code == '800') {
         console.log(res.data.msg)
@@ -84,7 +85,7 @@ export default {
   },
   watch: {
     selected3: function (newselectedStatus, oldselectedStatus) {
-      console.log(newselectedStatus)
+      
     },
   },
   mounted() {
