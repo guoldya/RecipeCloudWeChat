@@ -1,7 +1,7 @@
 <template>
   <div class="appTabCarint">
     <div class="appTab">
-      <span v-for="(item, index) in postTitle" :key="'time' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
+      <span v-for="(item, index) in tabTitle" :key="'time' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
         {{item.title}}
       </span>
     </div>
@@ -16,7 +16,7 @@ export default {
 
     }
   },
-  props: ['postTitle'],
+  props: ['tabTitle'],
   created() {
 
   },
@@ -29,7 +29,6 @@ export default {
       this.active1 = index;
       this.$emit('childByValue', item.type);
     },
-
   },
 }
 </script>

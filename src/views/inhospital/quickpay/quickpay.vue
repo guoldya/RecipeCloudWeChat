@@ -1,7 +1,7 @@
 <template>
    <div class="outCarint">
       <Header post-title="快捷结算"></Header>
-      <Apptab :post-title="time" v-on:childByValue="childByValue"></Apptab>
+      <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
       <div class="card cardcc margin16">
          <p class="appTitle">
             <span> em.type}}费</span>
@@ -46,6 +46,7 @@ export default {
    methods: {
 
       childByValue: function (childValue) {
+         console.log(childValue, "childValue")
          this.selectType = childValue;
       },
 

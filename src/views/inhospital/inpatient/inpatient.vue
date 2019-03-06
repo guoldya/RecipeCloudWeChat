@@ -7,7 +7,6 @@
          <img src="@/assets/images/hh2.png" alt="" width="94%">
          <img src="@/assets/images/hh3.png" alt="" width="94%" @click="quickpay">
       </div>
-      
    </div>
 </template>
 <script type="text/babel">
