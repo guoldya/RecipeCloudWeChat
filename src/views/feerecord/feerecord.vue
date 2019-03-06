@@ -92,8 +92,6 @@ export default {
         if (this.$store.state.feeActiveId) {
             this.type = this.$store.state.feeActiveId
         }
-
-
     },
     methods: {
         personFun() {
@@ -127,7 +125,7 @@ export default {
             this.isSelectorShow = true
         },
         appointinfo: function (value) {
-            this.$store.commit('feeActiveFun', this.type);
+
             this.$router.push({
                 name: 'feeinfo',
                 query: { id: value }
@@ -136,6 +134,7 @@ export default {
 
         childByValue: function (childValue) {
             this.type = childValue.type;
+            this.$store.commit('feeActiveFun', childValue.type);
             this.waitPayData = [];
             this.loadingtrue = true;
             this.page = 1;

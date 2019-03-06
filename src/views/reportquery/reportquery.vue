@@ -105,6 +105,9 @@ export default {
     },
     mounted() {
         //this.personFun();
+        if (this.$store.state.feeActiveId) {
+            this.type = this.$store.state.feeActiveId
+        }
         this.getGoodslist(false);
         document.title = '报告查询';
         var ua = window.navigator.userAgent.toLowerCase();
@@ -205,6 +208,7 @@ export default {
         childByValue: function (childValue) {
             this.type = childValue.type;
             this.noDataTitle = childValue.title;
+            this.$store.commit('feeActiveFun', childValue.type);
             this.goodsList = [];
             this.loadingtrue = true;
             this.page = 1;

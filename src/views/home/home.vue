@@ -110,12 +110,13 @@ export default {
             showindex: 0,
             maxindex: '',
             cardLoading: true,
-            aliveValue:'2',
+            aliveValue: '2',
         }
     },
     mounted() {
         // 用于测试
         document.title = '互联网医院';
+        this.$store.commit('feeActiveFun', 1);
         let _this = this;
         function UrlSearch() {
             let name, value;
@@ -261,7 +262,7 @@ export default {
         },
     },
     beforeRouteLeave(to, from, next) {
-         from.meta.keepAlive = true;
+        from.meta.keepAlive = true;
         next();
     },
     computed: {
