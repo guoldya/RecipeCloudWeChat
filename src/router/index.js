@@ -97,6 +97,8 @@ import selectPeople from '@/views/onlines/selectPeople'
 import addPeople from '@/views/onlines/addPeople'
 import seeCase from '@/views/onlines/seeCase'
 import inspectionReport from '@/views/onlines/inspectionReport'
+import inquriyDetail from '@/views/onlines/inquriyDetail'
+
 
 
 
@@ -587,6 +589,10 @@ export default new Router({
     path: '/inspectionReport',
     name:'inspectionReport',
     component:inspectionReport
+  }, {
+    path: '/inquriyDetail',
+    name: 'inquriyDetail',
+    component: inquriyDetail
   }
   ]
 })
