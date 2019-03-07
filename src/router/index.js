@@ -91,6 +91,12 @@ import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
 import consultDetail from '@/views/onlines/consultDetail'
+import buyService from '@/views/onlines/buyService'
+import pictureConsult from '@/views/onlines/pictureConsult'
+import selectPeople from '@/views/onlines/selectPeople'
+import addPeople from '@/views/onlines/addPeople'
+import seeCase from '@/views/onlines/seeCase'
+import inspectionReport from '@/views/onlines/inspectionReport'
 
 
 
@@ -557,5 +563,30 @@ export default new Router({
     name: 'putinfo',
     component: putinfo
   },
+    {
+    path:'/buyService',
+    name:'buyService',
+    component:buyService
+  }, {
+    path:'/pictureConsult',
+    name:'pictureConsult',
+    component:pictureConsult
+  }, {
+    path: '/selectPeople',
+    name:'selectPeople',
+    component:selectPeople
+  }, {
+    path: '/addPeople',
+    name:'addPeople',
+    component:addPeople
+  }, {
+    path: '/seeCase',
+    name:'seeCase',
+    component:seeCase
+  }, {
+    path: '/inspectionReport',
+    name:'inspectionReport',
+    component:inspectionReport
+  }
   ]
 })
