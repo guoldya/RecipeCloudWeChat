@@ -143,7 +143,7 @@ export default {
         <div class="info">3、为保证医疗安全，特殊药品如精神类药物，强心类药物等需要门诊就诊后开具。</div>`,
         confirmText: "确定",
         onConfirm: () => {
-          this.$router.push('/buyService')
+          this.$router.push({path:'/buyService'})
         }
       });
     },

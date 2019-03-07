@@ -54,7 +54,7 @@
         title="选择排序"
       ></md-selector>
 
-      <h2>药品资讯</h2>
+      <h2>推荐医生</h2>
       <div class="yaobutton">
         <div :class="{ yaoActive: isChecked == 0 }" @click="choose">
           {{ addressStr }}

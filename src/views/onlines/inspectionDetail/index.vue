@@ -27,19 +27,20 @@
       </thead>
       <tr>
         <td>白细胞计数</td>
-        <td>4.3</td>
+        <td class="result">4.3<img src="../images/down.png" alt="">
+        </td>
         <td>10…9/L</td>
         <td>4-12</td>
       </tr>
       <tr>
         <td>白细胞计数</td>
-        <td>4.3</td>
+        <td class="result">4.3<img src="../images/up.png" alt=""></td>
         <td>10…9/L</td>
         <td>4-12</td>
       </tr>
            <tr>
         <td>白细胞计数</td>
-        <td>4.3</td>
+        <td class="result">4.3</td>
         <td>10…9/L</td>
         <td>4-12</td>
       </tr>
@@ -97,6 +98,14 @@ export default {
       padding:6px 16px;
       &:nth-child(1) {
         width:34%;
+      }
+
+    }
+    .result {
+      text-align: left;
+      img {
+        width:40px;
+        vertical-align: bottom;
       }
     }
     tr:nth-of-type(2n){

@@ -101,7 +101,7 @@ export default {
       } else if(type === 3) {
 
       }
-      this.$router.push(url)
+      this.$router.push({path:url})
     },
     onReaderSelect(name, { files }) {
       files.forEach(file => {

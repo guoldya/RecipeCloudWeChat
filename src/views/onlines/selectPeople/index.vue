@@ -33,7 +33,7 @@ export default {
 <style lang="less" scoped>
 .select-people {
   padding:100px 40px 0;
-  background: rgb(242,242,242);
+  background: #F2F2F2;
   height:100vh;
   overflow:auto;
   ul {
@@ -59,7 +59,7 @@ export default {
         text-align: center;
       }
       .add {
-        color:rgb(77, 174, 215);
+        color:#4DAED7;
       }
     }
   }
