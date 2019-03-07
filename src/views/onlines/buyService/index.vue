@@ -4,7 +4,7 @@
     <Header post-title="购买服务"></Header>
     <div class="buy-service-info">
       <div class="buy-service-info-content">
-       <img src="../images/image.png" alt="">
+       <img src="../images/icon_teletext.png" alt="">
        <p class="money">￥20.00/次</p>
        <p>医生-周扬</p>
        <p class="ways">通过文字、图片等进行咨询</p>

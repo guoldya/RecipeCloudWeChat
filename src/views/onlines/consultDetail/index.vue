@@ -2,7 +2,7 @@
 <template>
   <div class="doctor-detail">
     <!-- 医生信息 -->
-    <div class="doctor-info doctor-item b-m">
+    <div class="doctor-info  ">
       <div class="doctor-info-top">
         <div class="doctor-info-header">
           <img src="@/assets/images/3.jpg" alt="" />
@@ -12,38 +12,38 @@
           <p class="gray"><span>主治医生</span><span>儿科</span></p>
         </div>
         <div class="doctor-info-follow">
-          <img src="../images/shoucang1.png" alt="">
-          <img v-if="false" src="../images/shoucang2.png" alt="">
+          <img v-if="false" src="../images/icon_follow.png" alt="">
+          <img  src="../images/icon_follow_pre.png" alt="">
 
         </div>
       </div>
       <div class="doctor-info-bottom">
         <div>
-          <p class="gray">问诊量</p>
+          <p>问诊量</p>
           <p>6555</p>
         </div>
         <div>
-          <p class="gray">评论率</p>
+          <p >评论率</p>
           <p>80%</p>
         </div>
         <div>
-          <p class="gray">关注</p>
+          <p>关注</p>
           <p>3625</p>
         </div>
       </div>
     </div>
     <!-- 沟通方式 -->
-    <div class="doctor-way doctor-item b-m">
+    <div class="doctor-way   ">
       <div class="doctor-way-item" @click="consult('img')">
-        <div class="doctor-way-item-img"><img src="../images/image.png" alt="" /></div>
+        <div class="doctor-way-item-img"><img src="../images/icon_teletext.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-image">￥20/次</div>
       </div>
       <div class="doctor-way-item" @click="consult('phone')">
-        <div class="doctor-way-item-img"><img src="../images/phone.png" alt="" /></div>
+        <div class="doctor-way-item-img"><img src="../images/icon_telephone.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-phone">￥20/次</div>
       </div>
       <div class="doctor-way-item video">
-        <div class="doctor-way-item-img"><img src="../images/video.png" alt="" /></div>
+        <div class="doctor-way-item-img"><img src="../images/icon_video.png" alt="" /></div>
         <div
           class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled"
         >
@@ -52,36 +52,31 @@
       </div>
     </div>
     <!--擅长-->
-    <div class="doctor-speciality b-m">
-      <div class="b-m">擅长</div>
+    <div class="doctor-speciality doctor-item">
+      <div class="title">擅长</div>
       <div>儿科常见病、多发病 #先天性心脏病</div>
     </div>
     <!--简介  -->
-    <div class="doctor-abstract b-m">
-      <div class="b-m">简介</div>
+    <div class="doctor-abstract doctor-item">
+      <div class="title">简介</div>
       <div>
         周扬，儿科主治医师，多年来专注于儿科临床工作，具有丰富的临床经验，擅长儿科常见病、多发病诊治，尤其在先天性心脏病诊疗方面经验丰富
       </div>
     </div>
     <!-- 评论 -->
-    <div class="doctor-comment b-m">
-      <div class="b-m">评论</div>
+    <div class="doctor-comment doctor-item ">
+      <div class="title">评论</div>
     </div>
     <!-- 评论详情 -->
-    <div class="doctor-comment-item b-m">
-      <div class="b-m doctor-comment-item-header">
-        <span>15444**8444</span>
+    <div class="doctor-comment-item  ">
+      <div class="  doctor-comment-item-header">
+        <span>李**</span>
         <span class="assess">满意</span>
         <span>8月14日</span>
       </div>
       <div class="doctor-comment-item-content">
         <div class="ellipsis">
           非常感谢周大夫，从宝宝出生到现在有任何问题都是咨询她，z每次都z每次都z每次都z每次都很及时心的回复，谢谢！
-        </div>
-        <div class="describe ">
-          <div class="ellipsis">
-            问题描述：周大夫您好，我家宝宝发烧三天半了还不好，化验血说病毒感染，刚38.宝宝发烧三天半了还不好，化验血说病毒感染，刚38.5喝了诺泰林不.
-          </div>
         </div>
       </div>
     </div>
@@ -166,14 +161,26 @@ export default {
 </script>
 <style lang="less" scoped>
 .doctor-detail {
+  padding:0 30px;
+  overflow: hidden;
   .gray {
     color: #999;
   }
-  .b-m {
-    border-bottom: 1px solid #f1f3f1;
-  }
+ 
   .doctor-item {
-    padding: 24px 40px;
+    margin-bottom:20px;
+    .title {
+      color:#000;
+      font-weight: bold;
+      font-size:30px;
+    }
+    // padding: 24px 40px;
+  }
+  .doctor-info {
+    margin-top:40px;
+    padding:40px 30px;
+    box-shadow: 0 0 0.18rem rgba(131, 179, 208, 0.3);
+    border-radius: 16px;
   }
   .doctor-info-top {
     display: flex;
@@ -212,6 +219,7 @@ export default {
   .doctor-way {
     display: flex;
     justify-content: space-between;
+    padding: 40px 40px;
     .doctor-way-item {
       display: inherit;
       flex-direction: column;
@@ -240,16 +248,16 @@ export default {
       text-align: center;
     }
     .doctor-way-item-image {
-      border: 1px solid #4ad962;
-      color: #4ad962;
+      border: 1px solid #1da1f2;
+      color: #1da1f2;
     }
     .doctor-way-item-phone {
-      border: 1px solid #57a8ee;
-      color: #57a8ee;
+      border: 1px solid #16c2c2;
+      color: #16c2c2;
     }
     .doctor-way-item-disabled {
-      border: 1px solid #e3e3e3;
-      color: #999;
+      border: 1px solid #d5d5d5;
+      color: #d3d3d3;
     }
   }
   .doctor-speciality,
@@ -257,11 +265,7 @@ export default {
   .doctor-comment,
   .doctor-comment-item {
     > div {
-      padding: 14px 40px;
-    }
-    .b-m {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding: 14px 0;
     }
   }
   .doctor-comment-item-header {
@@ -273,7 +277,10 @@ export default {
       }
     }
     .assess {
-      color: #ff9b00;
+      color: #1da1f3;
+      border:1px solid #1da1f3;
+      padding:0px 10px;
+      border-radius: 6px;
     }
   }
   .doctor-comment-item-content {
@@ -287,12 +294,6 @@ export default {
       /* autoprefixer: on */
       text-overflow: ellipsis;
       -webkit-line-clamp: 2;
-    }
-    .describe {
-      background: #f1f3f1;
-      padding: 16px 20px;
-      margin-top: 20px;
-      box-sizing: content-box;
     }
   }
   .doctor-info-follow {
