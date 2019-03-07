@@ -247,7 +247,10 @@ export default new Router({
   {
     path: '/online',
     name: 'online',
-    component: online
+    component: online,
+    meta: {
+      title: '在线问诊'
+    }
   },
   {
     path: '/appoint',
@@ -511,15 +514,24 @@ export default new Router({
   {
     path: '/followDoctor',
     name: 'followDoctor',
-    component: followDoctor
+    component: followDoctor,
+    meta:{
+      title:'关注的医生'
+    }
   }, {
     path: '/inquiryRecord',
     name: 'inquiryRecord',
-    component: inquiryRecord
+    component: inquiryRecord,
+    meta:{
+      title:'问诊记录'
+    }
   }, {
     path: '/consultDetail',
     name: 'consultDetail',
-    component: consultDetail
+    component: consultDetail,
+    meta:{
+      title:'医生详情'
+    }
   },
   {
     path: '/storeInfo',
@@ -567,35 +579,59 @@ export default new Router({
     {
     path:'/buyService',
     name:'buyService',
-    component:buyService
+    component:buyService,
+    meta:{
+      title:'购买服务'
+    }
   }, {
     path:'/pictureConsult',
     name:'pictureConsult',
-    component:pictureConsult
+    component:pictureConsult, 
+    meta:{
+      title:'图文咨询'
+    }
   }, {
     path: '/selectPeople',
     name:'selectPeople',
-    component:selectPeople
+    component:selectPeople,
+    meta:{
+      title:'选择就诊人'
+    }
   }, {
     path: '/addPeople',
     name:'addPeople',
-    component:addPeople
+    component:addPeople,
+    meta:{
+      title:'添加就诊人'
+    }
   }, {
     path: '/seeCase',
     name:'seeCase',
-    component:seeCase
+    component:seeCase,
+    meta:{
+      title:'查看病例'
+    }
   }, {
     path: '/inspectionReport',
     name:'inspectionReport',
-    component:inspectionReport
+    component:inspectionReport,
+    meta:{
+      title: '检查报告'
+    }
   }, {
     path: '/caseDetail',
     name: 'caseDetail',
-    component: caseDetail
+    component: caseDetail,
+    meta:{
+      title: '病例详情'
+    }
   }, {
     path: '/inspectionDetail',
     name: 'inspectionDetail',
-    component:inspectionDetail
+    component:inspectionDetail,
+    meta:{
+      title: '报告详情'
+    }
   }
   ]
 })

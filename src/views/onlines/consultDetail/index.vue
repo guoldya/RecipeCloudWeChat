@@ -12,7 +12,9 @@
           <p class="gray"><span>主治医生</span><span>儿科</span></p>
         </div>
         <div class="doctor-info-follow">
-          ss
+          <img src="../images/shoucang1.png" alt="">
+          <img v-if="false" src="../images/shoucang2.png" alt="">
+
         </div>
       </div>
       <div class="doctor-info-bottom">
@@ -291,6 +293,12 @@ export default {
       padding: 16px 20px;
       margin-top: 20px;
       box-sizing: content-box;
+    }
+  }
+  .doctor-info-follow {
+    img {
+      width:40px;
+      height:40px;
     }
   }
 }

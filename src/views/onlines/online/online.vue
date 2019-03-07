@@ -177,7 +177,6 @@ export default {
     };
   },
   mounted() {
-    document.title = "在线问诊";
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == "micromessenger") {
       this.isWeixin = false;
