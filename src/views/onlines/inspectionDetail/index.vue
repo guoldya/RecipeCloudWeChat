@@ -55,21 +55,21 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-@color: #4daed7;
-@border: 1px solid #f1f3f1;
+<style lang="scss" scoped>
+$color: #4daed7;
+$border: 1px solid #f1f3f1;
 .inspection-detail {
   padding-top: 1rem;
   .inspection-info {
     padding: 20px 40px;
-    border-bottom: @border;
+    border-bottom: $border;
     li {
       display: flex;
       line-height: 56px;
       span {
         flex: 1;
         label {
-          color: @color;
+          color: $color;
         }
       }
     }
@@ -78,13 +78,13 @@ export default {
     width: 100%;
     box-sizing: border-box;
     border-collapse: collapse;
-    border-bottom: @border;
+    border-bottom: $border;
     
     thead {
-      color:@color;
+      color:$color;
       th {
         padding: 14px 0;
-        border-bottom: @border;
+        border-bottom: $border;
       }
     }
     th,
@@ -109,7 +109,7 @@ export default {
       }
     }
     tr:nth-of-type(2n){
-      background: @color;
+      background: $color;
       color:#fff;
     }
   }

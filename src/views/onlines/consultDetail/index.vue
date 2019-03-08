@@ -160,7 +160,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .doctor-detail {
   padding:0 30px;
   overflow: hidden;
@@ -329,7 +329,7 @@ export default {
 }
 
 </style>
-<style lang="less">
+<style lang="scss">
 .md-dialog {
     .md-dialog-text {
       flex-wrap:wrap;

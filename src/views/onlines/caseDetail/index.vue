@@ -48,9 +48,9 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-@color: #4daed7;
-@border: 1px solid #f1f3f1;
+<style lang="scss" scoped>
+$color: #4daed7;
+$border: 1px solid #f1f3f1;
 .case-detail {
   padding-top: 1rem;
   .case-info {
@@ -61,7 +61,7 @@ export default {
       span {
         flex: 1;
         label {
-          color: @color;
+          color: $color;
         }
       }
     }

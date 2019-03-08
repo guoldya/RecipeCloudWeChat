@@ -55,21 +55,21 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
-@border: 1px solid #f1f3f1;
-@yellow: #ff9b00;
+<style lang="scss" scoped>
+$border: 1px solid #f1f3f1;
+$yellow: #ff9b00;
 .buy-service {
   padding-top:100px;
   .buy-service-info {
     padding: 20px 40px;
-    border-bottom:@border;
+    border-bottom:$border;
   }
   .buy-service-info-content {
     display: flex;
     justify-content: center;
     flex-wrap:wrap;
     padding-bottom:40px;
-    border-bottom:@border;
+    border-bottom:$border;
     img {
      width:100px;
      height:100px;
@@ -82,7 +82,7 @@ export default {
       line-height: 50px;
     }
     .money {
-      color: @yellow;
+      color: $yellow;
     }
     .ways {
       color: #999;
@@ -94,11 +94,11 @@ export default {
   }
   .pay-money{
     padding:20px;
-    border-bottom:@border;
+    border-bottom:$border;
     overflow:hidden;
     span {
       float:right;
-      color:@yellow;
+      color:$yellow;
     }
   }
   .buy-service-btn {

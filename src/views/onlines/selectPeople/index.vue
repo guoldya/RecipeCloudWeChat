@@ -30,7 +30,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .select-people {
   padding:100px 40px 0;
   background: #F2F2F2;
