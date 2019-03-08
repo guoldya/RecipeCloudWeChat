@@ -98,6 +98,7 @@
 </template>
 <script>
 import { Dialog, Agree, Toast } from "mand-mobile";
+
 export default {
   data() {
     return {
