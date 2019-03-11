@@ -188,9 +188,10 @@ export default {
     // 得到某院区下的所有科室
     async  getDepartment() {
       let res = await  this.$axios.put(departmentUrl, {
-        orgId: localStorage.getItem("hospitalId") * 1
+        orgId: Number(localStorage.getItem("hospitalId")),
+        orgType: 3
       })
-      console.log(res)
+      console.log(res.data)
     },
     expertpage() {
       this.$router.push({
