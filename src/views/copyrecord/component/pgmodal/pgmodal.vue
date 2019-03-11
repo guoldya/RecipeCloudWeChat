@@ -1,15 +1,15 @@
 <template>
-   <div class="outCarint margin45 ">
-      <div class="pgwModalWrapper" v-show="showPgwModal" @click="closePgmodal"></div>
-      <div id="pgwModal" class="confirm" v-show="showPgwModal">
-         <div class="pm-container">
-            <div class="pm-body active transition" style="max-width: 85%; margin-top: 75px; margin-left: 7.5%">
-               <div class="pm-title"></div>
-               <div class="pm-content cntr">
-                  <div class="g-msg">
-                     <p class="g-msg-title">病案复印规定</p>
-                     <div class="book-rules">
-                        <pre> 
+  <div class="outCarint margin45 ">
+    <div class="pgwModalWrapper" v-show="showPgwModal"></div>
+    <div id="pgwModal" @click="closePgmodal" class="confirm" v-show="showPgwModal">
+      <div class="pm-container">
+        <div class="pm-body active transition" style="max-width: 85%; margin-top: 75px; margin-left: 7.5%">
+          <div class="pm-title"></div>
+          <div class="pm-content cntr">
+            <div class="g-msg">
+              <p class="g-msg-title">病案复印规定</p>
+              <div class="book-rules">
+                <pre> 
  尊敬的患者和家属:
      首先，感谢您对我院的信任并前来就医，为了满足广大患者复印住院病历的需求，解决在以往复印住院病历过程中排队拥挤、填表缴费等候时间较长等不便问题，更好地为您提供高效、精确、满意的服务，我们开展通过关注微信公众号-办理预约病案打印和邮寄业务，以下是您需要注意的几点:
  
@@ -25,30 +25,36 @@
 
    五、收费问题:凡申请邮寄的病历均通过微信支付复印费用，快递费用到付，超过24小时未支付的申请单自动取消;自提的病历到现场复印时再核算金额
                         </pre>
-                     </div>
-                  </div>
-                  <p @click="closePgmodal">
-                     <span class="dob">我已了解，关闭</span>
-                  </p>
-               </div>
+              </div>
             </div>
-         </div>
+            <p @click="closePgmodal">
+              <span class="dob">我已了解，关闭</span>
+            </p>
+          </div>
+        </div>
       </div>
+    </div>
 
-   </div>
+  </div>
 </template>
 <script type="text/babel">
 export default {
-   data() {
-      return {
-         showPgwModal: true,
-      };
-   },
-   methods: {
-      closePgmodal() {
-         this.showPgwModal = false;
-      }
-   }
+  data() {
+    return {
+      showPgwModal: false,
+    };
+  },
+  props: ['showPgw'],
+  created() {
+  },
+  methods: {
+    closePgmodal() {
+      this.showPgwModal = false;
+    },
+    openPgmodel() {
+      this.showPgwModal = true;
+    }
+  }
 };
 </script>
  <style scoped>

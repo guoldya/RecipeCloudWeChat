@@ -5,16 +5,16 @@
     <div class="inspection-info">
       <ul>
         <li>
-          <span><label>姓名 :&nbsp;&nbsp;</label>张丽</span>
-          <span><label>性别 :&nbsp;&nbsp;</label>女</span>
-          <span><label>年龄 :&nbsp;&nbsp;</label>30岁</span>
+          <span>姓名 :&nbsp;&nbsp;<label>张丽</label></span>
+          <span>性别 :&nbsp;&nbsp;<label>女</label></span>
+          <span>年龄 :&nbsp;&nbsp;<label>30岁</label></span>
         </li>
         <li>
-          <span><label>门诊号 :&nbsp;&nbsp;</label>18082000001</span>
-          <span><label>科室 :&nbsp;&nbsp;</label>呼吸内科</span>
+          <span>门诊号 :&nbsp;&nbsp;<label>18082000001</label></span>
+          <span>科室 :&nbsp;&nbsp;<label>呼吸内科</label></span>
         </li>
         <li>
-          <span><label>时间 :&nbsp;&nbsp;</label>2018-08-20 08:30</span>
+          <span>时间 :&nbsp;&nbsp;<label>2018-08-20 08:30</label></span>
         </li>
       </ul>
     </div>
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color: #4daed7;
+$color: #1da1f3;
 $border: 1px solid #f1f3f1;
 .inspection-detail {
   padding-top: 1rem;
