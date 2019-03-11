@@ -2,8 +2,8 @@
 
     <div class="reportinfo">
         <Header :post-title="postTitle" v-show="isWeixin"></Header>
-        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}" v-for="(item,i) in reportInfoData" :key="i">
-            <div v-if="activeId==0">
+        <div v-if="reportInfoData.length!=0" :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}" v-for="(item,i) in reportInfoData" :key="i">
+            <div v-if="activeId==0"  v-show="!loadingtrue">
                 <div class="card margin16">
                     <div class="cardText">
                         <div class="cardTextPP">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="activeId==1">
+            <div v-if="activeId==1"  v-show="!loadingtrue">
                 <div class="card margin16">
                     <div class="cardText">
                         <div class="cardTextPP">
@@ -113,7 +113,7 @@
                 </div>
                 <p class="textCenter">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
             </div>
-
+            <Loading v-show="loadingtrue"></Loading>
         </div>
     </div>
 </template>
@@ -144,6 +144,7 @@ export default {
             postTitle: '',
             before: [],
             after: [],
+            loadingtrue: true,
         };
     },
 
@@ -193,6 +194,7 @@ export default {
             this.$axios.put(bizbizPacsReportreaddetail, checkParams, {
             }).then((res) => {
                 if (res.data.code == '200') {
+                    this.loadingtrue = false;
                     this.reportInfoData.push(res.data.data);
                 }
             }).catch(function (err) {
@@ -205,6 +207,7 @@ export default {
             this.$axios.put(bizLisReportreaddetail, { id: parseInt(this.collectInfoId), pageSize: this.pageSize, pageNumber: this.pageNumber }, {
             }).then((res) => {
                 if (res.data.code == '200') {
+                    this.loadingtrue = false;
                     this.reportInfoData.push(res.data.data);
                     this.reportResult = res.data.data.details;
                 }

@@ -8,6 +8,7 @@ import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
 import Apptab from './components/apptab/apptab.vue';
 import Search from './components/search/search.vue';
+import Address from './components/address/address.vue';
 import Footer from './components/footer/footer.vue';
 import Loading from './components/loading/loading.vue';
 import infiniteScroll from 'vue-infinite-scroll';
@@ -30,6 +31,7 @@ Vue.component('Search', Search);
 Vue.component('Apptab', Apptab)
 Vue.component('Loading', Loading);
 Vue.component('Footer', Footer);
+Vue.component('Address', Address);
 Vue.component('rater', rater);
 Vue.config.productionTip = false;
 Vue.use(infiniteScroll);
