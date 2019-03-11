@@ -581,8 +581,8 @@ export default new Router({
     path: '/chooseCase',
     name: 'chooseCase',
     component: chooseCase,
-    meta:{
-      title:"选择复印病案"
+    meta: {
+      title: "选择复印病案"
     }
   },
   {
@@ -624,10 +624,10 @@ export default new Router({
     path: '/inspectionReport',
     name: 'inspectionReport',
     component: inspectionReport,
-    meta: {
-      title: '检查报告'
-    }
-  }, {
+      meta: {
+        title: '检查报告'
+      }
+    }, {
     path: '/caseDetail',
     name: 'caseDetail',
     component: caseDetail,

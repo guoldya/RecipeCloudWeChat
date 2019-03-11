@@ -1,6 +1,6 @@
 <template>
-   <div :class="{'outCarint':true,'margin45':isWeixin, }">
-      <Header post-title="上传证件" v-show="isWeixin"></Header>
+   <div class=" outCarint margin45  ">
+      <Header post-title="上传证件"></Header>
       <div class="rebinding-box card margin16">
          <div class="box-timeline  cardText">
             <div class="alltimeball">
@@ -113,7 +113,7 @@ export default {
          DDD: '',
          FFF: '',
          EEE: '',
-         isWeixin: false,
+
          name: '',
          idcard: '',
          isSelf: false,
@@ -159,14 +159,7 @@ export default {
       //   this.othUrl = pg_positive
       // }
 
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
 
-      } else {
-         this.isWeixin = true;
-
-      }
    },
    methods: {
       uploadPos(e) {

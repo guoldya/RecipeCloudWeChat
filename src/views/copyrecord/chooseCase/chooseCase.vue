@@ -1,46 +1,50 @@
 <template>
-   <div class="adress">
-      <Header post-title="地址管理" v-show="isWeixin"></Header>
-      <div :class="{margin45:isWeixin,outCarint:true}" style="margin-bottom:70px">
-         <ul>
-            <li v-for="(item,index) in addressInfo" :key="index">
-               <div class="card">
-                  <div class="cardText">
-                     <p class="order-number">
-                        <span>{{item.receiver}}</span>
-                        <span>{{item.mobile}}</span>
-                     </p>
-                     <p class="headdesc">{{item.address}}</p>
-                     <p class="order-bottom">
-                        <span>
-                           <div class="md-agree" @click="onChange(item.id,item.isDefault)">
-                              <div :class="{ 'md-agree-icon':true,'checked':item.isDefault==1}">
-                                 <div class="md-agree-icon-container">
-                                    <i class="md-icon icon-font md-icon-checked md"></i>
-                                    <i class="md-icon icon-font md-icon-check md"></i>
-                                 </div>
-                              </div>
-                              <div class="md-agree-content">
-                                 默认地址
-                              </div>
-                           </div>
-                        </span>
-                        <span class="fr">
-                           <span @click="adressinfo(item.id)" class="bbb mui-icon mui-icon-compose">
-                              <label class="bianji">编辑</label>
-                           </span>
-                           <span class="mui-icon" style="font-size: 13px;" @click="dedete(item.id)">
-                              <img class="lajitong" src="@/assets/images/lajitong.png"> 删除
-                           </span>
-                        </span>
-                     </p>
+   <div class="chooseCase">
+      <Header post-title="选择复印病案"></Header>
+      <div class="margin45 outCarint" style="margin-bottom:70px">
+         <div class="tabAdiv">
+            <div class="chooseCaseBtn">
+               <div class="md-agree" @click="onChange()">
+                  <div :class="{ 'md-agree-icon':true,'checked':true}">
+                     <div class="md-agree-icon-container">
+                        <i class="md-icon icon-font md-icon-checked md"></i>
+                        <i class="md-icon icon-font md-icon-check md"></i>
+                     </div>
                   </div>
                </div>
-            </li>
-         </ul>
+            </div>
+            <div class="chooseCaseText">
+               <p>住院科室：</p>
+               <p>出院诊断： </p>
+               <p>如愿日期：217-12-12 12:22</p>
+               <p>出院日期：217-12-12 12:22</p>
+            </div>
+            <div class="chooseCaseTime"> 第
+               <span class="number">1</span>次</div>
+         </div>
+         <div class="tabAdiv">
+            <div class="chooseCaseBtn">
+               <div class="md-agree" @click="onChange()">
+                  <div :class="{ 'md-agree-icon':true,'checked':true}">
+                     <div class="md-agree-icon-container">
+                        <i class="md-icon icon-font md-icon-checked md"></i>
+                        <i class="md-icon icon-font md-icon-check md"></i>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="chooseCaseText">
+               <p>住院科室：</p>
+               <p>出院诊断： </p>
+               <p>如愿日期：217-12-12 12:22</p>
+               <p>出院日期：217-12-12 12:22</p>
+            </div>
+            <div class="chooseCaseTime"> 第
+               <span class="number">1</span>次
+            </div>
+         </div>
+         <md-button type="primary" round class="margin16">确认提交</md-button>
       </div>
-
-      <p class="add" @click="addadress()">添加地址</p>
 
    </div>
 </template>
@@ -48,19 +52,11 @@
 import { Toast } from 'mand-mobile';
 import { Dialog, Button } from 'mand-mobile'
 
-let appshippingAddressaddressList = "/app/shippingAddress/addressList";
-let deleteAddress = "/app/shippingAddress/delete";
 
-
-
-let isDefault = "/app/shippingAddress/isDefault"
 export default {
    data() {
       return {
-         isWeixin: false,
-         num: 7,
-         checked: '0a',
-         addressInfo: '',
+
 
          agreeConf: {
             checked: true,
@@ -76,95 +72,19 @@ export default {
    created() {
 
 
-      this.$axios.put(appshippingAddressaddressList, {
-      }).then((res) => {
-         console.log(res)
-         if (res.data.code == '200') {
-            this.addressInfo = res.data.rows;
-         } else {
-            console.log(res.msg);
-         }
-      }).catch(function (err) {
-         console.log(err);
-      });
+
    },
    watch: {
 
    },
    mounted() {
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      }
+
    },
    methods: {
 
-      onChange(data, index) {
-         if (index == 1) {
-            return
-         }
-         this.$axios.post(isDefault, {
-            id: data
-         }).then((res) => {
-            console.log(res)
-            if (res.data.code == '200') {
-               this.$toast.info("设置成功");
-               this.$axios.put(appshippingAddressaddressList, {
-               }).then((res) => {
-                  console.log(res)
-                  if (res.data.code == '200') {
-                     this.addressInfo = res.data.rows;
-                  } else {
-                     console.log(res.msg);
-                  }
-               }).catch(function (err) {
-                  console.log(err);
-               });
-            } else {
-               console.log(res.msg);
-            }
-         }).catch(function (err) {
-            console.log(err);
-         });
-      },
-      dedete(data) {
-         console.log(data)
-         let params={},p_data={};
-         p_data.id=data;
-         params.data=p_data;
-         Dialog.confirm({
-            title: '确认',
-            content: '请确认删除该地址吗',
-            confirmText: '确定',
-            onConfirm: () => {
-               this.$axios.delete(deleteAddress, params).then((res) => {
-                  console.log(res)
-                  if (res.data.code == '200') {
-                     this.$toast.info("删除成功")
-                  } else {
-                     console.log(res.msg);
-                  }
-               }).catch(function (err) {
-                  console.log(err);
-               });
-            }
-         })
-      },
-      adressinfo(data) {
-         this.$router.push({
-            name: 'adressinfo',
-            query: { id: data }
-         });
-      },
-
 
       addadress() {
-         this.$router.push({
-            name: 'adressinfo',
-            query: { addadress: 1 }
-         });
+
       },
 
 
@@ -176,5 +96,51 @@ export default {
 };
 </script>
  <style scoped>
-@import "../../adress/adress.css";
+.chooseCase .tabAdiv {
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 0 0.17rem rgba(131, 179, 208, 0.3);
+  border-radius: 20px;
+  font-size: 28px;
+  margin-bottom: 32px;
+}
+.chooseCase .tabAdiv div:first-child {
+  line-height: 200px;
+}
+.chooseCase .chooseCaseBtn {
+  width: 15%;
+  height: 200px;
+  text-align: center;
+  display: inline-block;
+  color: #ffffff;
+}
+
+.chooseCase .chooseCaseText {
+  width: 60%;
+  height: 200px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.chooseCase .chooseCaseTime {
+  width: 25%;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  background: #1da1f3;
+  display: inline-block;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: #ffffff;
+}
+.chooseCase .chooseCaseTime .number {
+  background: #ffffff;
+  color: #1da1f3;
+  font-size: 34px;
+  line-height: 1;
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 50%;
+}
 </style>

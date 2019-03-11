@@ -179,17 +179,13 @@ export default {
                 }
             })
         },
-
-
         checkReportDetail(val) {
-            this.$store.commit('activeFun', this.active1);
             this.$router.push({
                 name: 'reportinfo',
                 query: { id: val },
             });
         },
         collectReportDetail(val) {
-            this.$store.commit('activeFun', this.active1);
             this.$router.push({
                 name: 'reportinfo',
                 query: { id: val },

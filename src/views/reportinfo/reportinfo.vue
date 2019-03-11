@@ -2,8 +2,8 @@
 
     <div class="reportinfo">
         <Header :post-title="postTitle" v-show="isWeixin"></Header>
-        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}" v-for="(item,i) in reportInfoData" :key="i">
-            <div v-if="activeId==0">
+        <div v-if="reportInfoData.length!=0" :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}" v-for="(item,i) in reportInfoData" :key="i">
+            <div v-if="feeActiveId==1"  v-show="!loadingtrue">
                 <div class="card margin16">
                     <div class="cardText">
                         <div class="cardTextPP">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="activeId==1">
+            <div v-if="feeActiveId==2"  v-show="!loadingtrue">
                 <div class="card margin16">
                     <div class="cardText">
                         <div class="cardTextPP">
@@ -104,7 +104,7 @@
                         <div class="cardTextPP spanWid  reportInfo" v-for="(item,i) in reportResult">
                             <span>{{item.itemName}}</span>
                             <span>{{item.itemValue}}
-                                <span style="color: red">{{item.contrast}}</span>
+                                <span>{{item.contrast}}</span>
                             </span>
                             <span>{{item.unit}}</span>
                             <span>{{item.referenceValue}}</span>
@@ -113,7 +113,7 @@
                 </div>
                 <p class="textCenter">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
             </div>
-
+            <Loading v-show="loadingtrue"></Loading>
         </div>
     </div>
 </template>
@@ -140,10 +140,11 @@ export default {
             reportResult: [],
             pageSize: 10,
             pageNumber: 1,
-            activeId: '',
+            feeActiveId: '',
             postTitle: '',
             before: [],
             after: [],
+            loadingtrue: true,
         };
     },
 
@@ -151,16 +152,16 @@ export default {
 
     },
     mounted() {
-        this.activeId = this.$store.state.activeId;
-        if (this.$store.state.activeId == 0) {
+        this.feeActiveId = this.$store.state.feeActiveId;
+        if (this.$store.state.feeActiveId == 1) {
             this.checkReportDetail();
             this.postTitle = "检查报告详情";
-        } else if (this.$store.state.activeId == 1) {
+            document.title = '检查报告详情';
+        } else if (this.$store.state.feeActiveId == 2) {
             this.collectReportDetail();
-            this.postTitle = "检验报告详情"
+            this.postTitle = "检验报告详情";
+            document.title = '检验报告详情';
         }
-
-        document.title = '检查报告详情';
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
             this.isWeixin = false;
@@ -193,6 +194,7 @@ export default {
             this.$axios.put(bizbizPacsReportreaddetail, checkParams, {
             }).then((res) => {
                 if (res.data.code == '200') {
+                    this.loadingtrue = false;
                     this.reportInfoData.push(res.data.data);
                 }
             }).catch(function (err) {
@@ -205,6 +207,7 @@ export default {
             this.$axios.put(bizLisReportreaddetail, { id: parseInt(this.collectInfoId), pageSize: this.pageSize, pageNumber: this.pageNumber }, {
             }).then((res) => {
                 if (res.data.code == '200') {
+                    this.loadingtrue = false;
                     this.reportInfoData.push(res.data.data);
                     this.reportResult = res.data.data.details;
                 }
@@ -276,6 +279,12 @@ export default {
 }
 .reportinfo .spanWid span:nth-child(2) {
   width: 28%;
+    display: flex;
+}
+.reportinfo .spanWid span:nth-child(2) span{
+   color: red;
+    position: relative;
+    left: -40px;
 }
 .reportinfo .spanWid span:nth-child(3) {
   width: 20%;

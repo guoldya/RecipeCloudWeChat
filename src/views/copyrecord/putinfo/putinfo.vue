@@ -21,7 +21,25 @@
       <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名" is-highlight></md-input-item>
       <md-input-item ref="input13" v-model="idcard" title="身份证号" placeholder="身份证号" is-highlight></md-input-item>
     </div>
-    <p style="background: #1da1f3 "> <img src="@/assets/images/jia.png" @click="num--"></p>
+    <p class="chooseBtn" @click="chooseCase">
+      <img src="@/assets/images/jia.png">
+      <span>
+        选择复印病案
+      </span>
+    </p>
+    <p class="smallTitle">
+      病案信息
+    </p>
+    <div class="card margin16">
+      <md-input-item ref="input13" v-model="name" title="住院科室" placeholder="住院科室" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="住院诊断" placeholder="住院诊断" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="住院次数" placeholder="住院次数" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="name" title="入院时间" placeholder="入院时间" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="出院时间" placeholder="出院时间" is-highlight></md-input-item>
+    </div>
+    <p class="smallTitle">
+      复印用途
+    </p>
     <div class="card margin16">
       <div class="content">
         <div class="login-box">
@@ -108,7 +126,8 @@ export default {
     };
   },
   created() {
-    this.$refs.Pgmodal.type = 2
+
+
   },
   watch: {
     num(newValue) {
@@ -117,6 +136,7 @@ export default {
   },
   mounted() {
     document.title = '资料确认';
+    this.$refs.Pgmodal.istype = 2;
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
@@ -125,6 +145,11 @@ export default {
     }
   },
   methods: {
+    chooseCase() {
+      this.$router.push({
+        name: 'chooseCase'
+      })
+    },
     onChange(checked) {
       console.log(`agree name =  ${checked ? 'checked' : 'unchecked'}`);
     },
@@ -180,5 +205,21 @@ export default {
 @import url("../../cardwrite/cardwrite.css");
 .calculate {
   margin-left: 100px;
+}
+.chooseBtn {
+  background: #1da1f3;
+  line-height: 100px;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-align: center;
+  margin: 30px;
+}
+.chooseBtn img {
+  width: 40px;
+  position: relative;
+  top: 10px;
+}
+.smallTitle {
+  line-height: 70px;
 }
 </style>

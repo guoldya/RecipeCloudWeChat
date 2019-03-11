@@ -290,9 +290,8 @@ export default {
     .ellipsis {
       overflow: hidden;
       display: -webkit-box;
-      /* autoprefixer: off */
+     /* autoprefixer: ignore next */
       -webkit-box-orient: vertical;
-      /* autoprefixer: on */
       text-overflow: ellipsis;
       -webkit-line-clamp: 2;
     }
