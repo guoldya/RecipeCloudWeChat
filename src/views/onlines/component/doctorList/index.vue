@@ -1,6 +1,6 @@
 <!--医生信息列表组件 -->
 <template>
-    <router-link tag="div" to="/consultDetail" class="doctor-list">
+    <div  class="doctor-list">
       <div class="header"><img src="@/assets/images/3.jpg" /></div>
       <div class="comment-right">
         <p class="introduce">
@@ -17,10 +17,13 @@
         <p class="colo13">
           <span>咨询数：66 </span>&nbsp; <span>平均回复时长：1小时</span>&nbsp;
         </p>
-        <p class="price">￥20 起</p>
+        <p class="price">￥20 起
+          <router-link to="/consultDetail" class="consult">立即咨询</router-link>
+          <router-link v-show="false" to="/pictureConsult">免费咨询</router-link>
+        </p>
         <em>已满</em>
       </div>
-    </router-link>
+    </div>
 </template>
 <script>
 export default {
@@ -29,7 +32,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 /* .doctor-list {} */
 .doctor-list {
    position: relative;
@@ -82,10 +85,10 @@ export default {
 }
 
 .picture {
-  border: 1px solid #24a5f1;
+  border: 1px solid #1da1f3;
   padding: 1px 10px;
   border-radius: 7px;
-  color: #24a5f1;
+  color: #1da1f3;
 }
 
 .video {
@@ -96,9 +99,27 @@ export default {
 }
 
 .doctor-list .price {
-  color: #24a5f1;
+  color: #1da1f3;
   font-weight: 500;
   letter-spacing: 1px;
+  overflow: hidden;
+  margin-top:10px;
+  a {
+    font-size:24px;
+    float:right;
+    display:inline-block;
+    height:50px;
+    line-height:50px;
+    padding:0 20px;
+    border:1px solid #1da1f3;
+    border-radius:25px;
+    margin-left:30px;
+    color: #1da1f3;
+  }
+  .consult{
+    color:#fff;
+    background: #1da1f3;
+  }
 }
 
 .doctor-list:last-child {

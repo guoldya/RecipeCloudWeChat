@@ -1,6 +1,6 @@
 <template>
-  <div :class="{'outCarint':true,'margin45':isWeixin}">
-    <Header post-title="信息确认" v-show="isWeixin"></Header>
+  <div class=" outCarint margin45 ">
+    <Header post-title="信息确认"></Header>
     <div class="rebinding-box card margin16">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
@@ -43,7 +43,8 @@
     <div class="card margin16">
       <div class="content">
         <div class="login-box">
-          <md-input-item ref="input13" v-model="copyUse" title="复印用途" placeholder="复印用途" is-highlight></md-input-item>
+          <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
+          <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明" is-highlight></md-input-item>
           <div class="login-box-div">
             <span class="flexF">复印份数</span>
             <div class="flexR calculate">
@@ -54,8 +55,6 @@
               </span>
             </div>
           </div>
-          <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
-          <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明" is-highlight></md-input-item>
           <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注" is-highlight></md-input-item>
           <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
           <div class="hq login-box-div">
@@ -75,7 +74,7 @@
       <a @click="openPgmodel" style="color:#1da1f3">《病历复印规定》</a>
     </md-agree>
     <Pgmodal ref="Pgmodal"></Pgmodal>
-    <md-button type="primary" round class="margin16">确认提交</md-button>
+    <md-button type="primary" round class="margin16" @click="copyresult">确认提交</md-button>
   </div>
 </template>
 <script type="text/babel">
@@ -148,6 +147,11 @@ export default {
     chooseCase() {
       this.$router.push({
         name: 'chooseCase'
+      })
+    },
+    copyresult() {
+      this.$router.push({
+        name: 'copyresult'
       })
     },
     onChange(checked) {

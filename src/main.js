@@ -24,6 +24,9 @@ Object.keys(filters).forEach(key => {
 
 import './assets/responsive'
 import './assets/global.css'
+
+
+
 import rater from 'w-rater'
 
 Vue.component('Header', Header);
@@ -40,10 +43,10 @@ Vue.use(infiniteScroll);
 
 // 路由拦截
 router.beforeEach((to, from, next) => {
-  if(to.meta&&to.meta.title) {
-    document.title = to.meta.title
-  }
-  next()
+    if (to.meta && to.meta.title) {
+        document.title = to.meta.title
+    }
+    next()
 })
 
 if ('addEventListener' in document && 'ontouchstart' in window) {

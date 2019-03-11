@@ -74,10 +74,10 @@ export default {
     this.$axios.put(appbdHospitalOrgreadselectHospital, {
     }).then(res => {
       if (res.data.code == '200') {
-        console.log(res.data.rows[0].hospitalName);
-        this.titlename = res.data.rows[0].hospitalName;
-        this.pointBposition = res.data.rows[0].longitude;
-        this.pointBpositionlat = res.data.rows[0].latitude;
+        console.log(res.data.rows[1].hospitalName);
+        this.titlename = res.data.rows[1].hospitalName;
+        this.pointBposition = res.data.rows[1].longitude;
+        this.pointBpositionlat = res.data.rows[1].latitude;
 
       } else {
         console.log(res.data);
@@ -134,7 +134,6 @@ export default {
         }
       });
     },
-
     continueApply() {
       let argu = { name: this.selectorValue };
       this.$router.push({

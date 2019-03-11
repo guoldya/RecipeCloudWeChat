@@ -316,4 +316,7 @@ textarea::-webkit-input-placeholder {
   width: 33%;
   text-align: center;
 }
+.md-check-box{
+  border: 2px solid  #c5cad5;
+}
 </style>

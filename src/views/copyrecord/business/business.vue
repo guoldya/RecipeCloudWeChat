@@ -75,7 +75,7 @@ export default {
    },
    mounted() {
       document.title = '病案复印';
-      // this.$refs.Pgmodal.showPgwModal = true
+      this.$refs.Pgmodal.showPgwModal = true
    },
    watch: {
       mail(newValue) {

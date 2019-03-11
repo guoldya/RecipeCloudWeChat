@@ -80,6 +80,11 @@ export default {
       testshow: false,
       consultList: [
         {
+          value: 0,
+          text: '免费咨询',
+          checked: false,
+        },
+        {
           value: 1,
           text: '图文咨询',
           checked: false,
