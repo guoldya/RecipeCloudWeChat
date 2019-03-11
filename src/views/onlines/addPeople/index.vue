@@ -68,7 +68,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .add-people {
   padding-top:100px;
   .btn {

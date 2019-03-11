@@ -26,7 +26,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .inquiry-record {
   box-sizing: border-box;
   padding-top:1rem;

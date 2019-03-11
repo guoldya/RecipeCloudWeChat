@@ -41,17 +41,15 @@
                      <span class="flexF">复印份数</span>
                      <input class="flexF" type="text" name="username" id="phone" placeholder="地址" value="" maxlength="11">
                   </div>
-                  <div class="login-box-div">
-                     <span class="flexF">手机号码</span>
-                     <input id="verify" type="text" class="infos flexF" name="yanz" placeholder="手机号码" maxlength="4" />
-                  </div>
 
-                
-                     <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名" is-highlight></md-input-item>
-                     <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
-                     <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码" is-highlight></md-input-item>
-                     <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
-                     <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址" is-highlight></md-input-item>
+                  <!-- <md-input-item ref="input13" v-model="receiver" title="name" placeholder="姓名" is-highlight></md-input-item>
+                  <md-input-item ref="input13" v-model="receiver" title="idcard" placeholder="身份证号" is-highlight></md-input-item>
+                  <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
+                  <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码" is-highlight></md-input-item>
+                  <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
+                  <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址" is-highlight></md-input-item>
+              
+               -->
                </div>
             </div>
          </div>
@@ -71,6 +69,7 @@ export default {
       return {
          isWeixin: false,
          name: '张三丰',
+         idcard:'',
          gender: '1',
          marriage: '2',
          agreeConf: {

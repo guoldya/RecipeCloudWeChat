@@ -4,7 +4,7 @@
     <Header post-title="购买服务"></Header>
     <div class="buy-service-info">
       <div class="buy-service-info-content">
-       <img src="../images/image.png" alt="">
+       <img src="../images/icon_teletext.png" alt="">
        <p class="money">￥20.00/次</p>
        <p>医生-周扬</p>
        <p class="ways">通过文字、图片等进行咨询</p>
@@ -55,21 +55,21 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
-@border: 1px solid #f1f3f1;
-@yellow: #ff9b00;
+<style lang="scss" scoped>
+$border: 1px solid #f1f3f1;
+$yellow: #ff9b00;
 .buy-service {
   padding-top:100px;
   .buy-service-info {
     padding: 20px 40px;
-    border-bottom:@border;
+    border-bottom:$border;
   }
   .buy-service-info-content {
     display: flex;
     justify-content: center;
     flex-wrap:wrap;
     padding-bottom:40px;
-    border-bottom:@border;
+    border-bottom:$border;
     img {
      width:100px;
      height:100px;
@@ -82,7 +82,7 @@ export default {
       line-height: 50px;
     }
     .money {
-      color: @yellow;
+      color: $yellow;
     }
     .ways {
       color: #999;
@@ -94,11 +94,11 @@ export default {
   }
   .pay-money{
     padding:20px;
-    border-bottom:@border;
+    border-bottom:$border;
     overflow:hidden;
     span {
       float:right;
-      color:@yellow;
+      color:$yellow;
     }
   }
   .buy-service-btn {
