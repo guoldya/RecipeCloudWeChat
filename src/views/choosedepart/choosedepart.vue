@@ -3,11 +3,12 @@
     <Header post-title="选择科室" v-show="isWeixin"></Header>
     <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
       <Search></Search>
-      <div class="appTab" style="margin-top:10px">
-        <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-          {{item.orgName}}
-        </span>
-      </div>
+      <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
+      <!--<div class="appTab" style="margin-top:10px">-->
+        <!--<span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">-->
+          <!--{{item.orgName}}-->
+        <!--</span>-->
+      <!--</div>-->
       <div>
         <!-- <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
           {{item.title}}
@@ -69,9 +70,12 @@ export default {
       nomore: false,
     };
   },
-  created() {
-
-  },
+    created() {
+        if (this.$store.state.feeActiveId) {
+            this.yuanId = this.$store.state.feeActiveId;
+            console.log(this.yuanId)
+        }
+    },
   watch: {
 
   },
@@ -89,8 +93,13 @@ export default {
     }).then((res) => {
       if (res.data.code == '200') {
         this.departs = res.data.rows;
-        this.yuanId = res.data.rows[0].id;
-        this.$store.commit('departFun', res.data.rows[0].orgName);
+          for(let i=0;i<res.data.rows.length;i++){
+              this.departs[i].title = res.data.rows[i].orgName;
+          }
+          if(!this.yuanId){
+              this.yuanId = res.data.rows[0].id;
+          }
+        // this.$store.commit('departFun', res.data.rows[0].orgName);
         this.orgFun(this.yuanId);
       } else {
         console.log(res.msg);
@@ -116,7 +125,17 @@ export default {
     //     console.log(err);
     //   });
     // },
-
+      childByValue: function (childValue) {
+          console.log(childValue);
+          //this.active1 = index;
+          this.yuanId = childValue.id;
+          this.$store.commit('departFun', childValue.orgName);
+          this.orgFun(this.yuanId);
+          // this.type = childValue.type;
+          this.$store.commit('feeActiveFun', childValue.id);
+          this.loadingtrue = true;
+          this.page = 1;
+      },
     switchTo(num, index) {
       this.active1 = index;
       this.$store.commit('departFun', num.orgName);

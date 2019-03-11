@@ -5,7 +5,7 @@
     <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
       <div class="card margin16" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
         <div class="cardText">
-          <div v-if="feeActiveId==1">
+          <div v-if="feeActiveId==2">
             <p class="cardTextPP">
               <span>订单编号</span>
               <span>{{item.orderCode}}</span>
@@ -20,6 +20,10 @@
             </p>
             <p class="test"></p>
           </div>
+          <p class="cardTextPP">
+            <span>开单医院</span>
+            <span>{{item.hospital}}</span>
+          </p>
           <p class="cardTextPP">
             <span>开单科室</span>
             <span>{{item.dept}}</span>
@@ -44,11 +48,11 @@
             <span>开单序号</span>
             <span>{{item.code}}</span>
           </p>
-          <p class="cardTextPP" v-if="feeActiveId==0">
+          <p class="cardTextPP" v-if="feeActiveId==1">
             <span>处方金额</span>
             <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}</span>
           </p>
-          <p class="cardTextPP" v-if="feeActiveId==1">
+          <p class="cardTextPP" v-if="feeActiveId==2">
             <span>实付金额</span>
             <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}</span>
           </p>
@@ -72,7 +76,7 @@
         </div>
       </div>
       <Loading v-show="loadingtrue"></Loading>
-      <div class="md-example-child md-example-child-cashier" v-if="feeActiveId==0">
+      <div class="md-example-child md-example-child-cashier" v-if="feeActiveId==1">
         <md-button class="margin16" type="primary" @click="rightPay" round>立即缴费</md-button>
         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
       </div>
@@ -137,6 +141,7 @@ export default {
   },
   mounted() {
     this.feeActiveId = this.$store.state.feeActiveId;
+    console.log(this.feeActiveId,"详情");
     this.feeDetail();
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -147,12 +152,9 @@ export default {
 
   },
   methods: {
-    switchTo(num) {
-      this.active1 = num;
-    },
     feeDetail() {
       this.feeId = this.$route.query.id;
-      if (this.feeActiveId == 0) {
+      if (this.feeActiveId == 1) {
         this.postTitle = "我的缴费-待缴费";
         document.title = "我的缴费-待缴费";
       } else {
