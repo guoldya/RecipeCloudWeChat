@@ -79,6 +79,9 @@ export default {
 
     },
     mounted() {
+        if (this.$store.state.feeActiveId) {
+            this.type = this.$store.state.feeActiveId;
+        }
         this.WaitPay(false);
         // this.personFun();
         document.title = '缴费记录';
@@ -88,9 +91,6 @@ export default {
             this.isWeixin = false;
         } else {
             this.isWeixin = true;
-        }
-        if (this.$store.state.feeActiveId) {
-            this.type = this.$store.state.feeActiveId
         }
     },
     methods: {
