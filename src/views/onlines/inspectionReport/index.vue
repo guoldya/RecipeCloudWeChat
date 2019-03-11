@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color:#4DAED7;
+$color:#1da1f3;
 $border: 1px solid #f1f3f1;
  .inspection-report {
     padding-top:100px;

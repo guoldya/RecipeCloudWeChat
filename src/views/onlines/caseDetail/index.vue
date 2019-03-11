@@ -5,36 +5,36 @@
     <div class="case-info">
       <ul>
         <li>
-          <span><label>姓名 :&nbsp;&nbsp;</label>张丽</span>
-          <span><label>性别 :&nbsp;&nbsp;</label>女</span>
-          <span><label>年龄 :&nbsp;&nbsp;</label>30岁</span>
+          <span>姓名 :&nbsp;&nbsp;<label>张丽</label></span>
+          <span>性别 :&nbsp;&nbsp;<label>女</label></span>
+          <span>年龄 :&nbsp;&nbsp;<label>30岁</label></span>
         </li>
         <li>
-          <span><label>门诊号 :&nbsp;&nbsp;</label>18082000001</span>
-          <span><label>科室 :&nbsp;&nbsp;</label>呼吸内科</span>
+          <span>门诊号 :&nbsp;&nbsp;<label>18082000001</label></span>
+          <span>科室 :&nbsp;&nbsp;<label>呼吸内科</label></span>
         </li>
         <li>
-          <span><label>时间 :&nbsp;&nbsp;</label>2018-08-20 08:30</span>
+          <span>时间 :&nbsp;&nbsp;<label>2018-08-20 08:30</label></span>
         </li>
           <li>
-          <span><label>主诉 :&nbsp;&nbsp;</label>病人于两周前咳嗽，吐痰</span>
+          <span>主诉 :&nbsp;&nbsp;<label>病人于两周前咳嗽，吐痰</label></span>
         </li>
           <li>
-          <span><label>现病史 :&nbsp;&nbsp;</label></span>
+          <span>现病史 :&nbsp;&nbsp;<label>得瑟得瑟</label></span>
         </li>
           <li>
-          <span><label>既往病史 :&nbsp;&nbsp;</label>无</span>
+          <span>既往病史 :&nbsp;&nbsp;<label>无</label></span>
         </li>
         <li>
-          <span><label>查体:&nbsp;&nbsp;</label>精神状态佳</span>
+          <span>查体:&nbsp;&nbsp;<label>精神状态佳</label></span>
         </li>
           <li>
-          <span><label>初步诊断:&nbsp;&nbsp;</label>上呼吸道感染</span>
+          <span>初步诊断:&nbsp;&nbsp;<label>上呼吸道感染</label></span>
         </li>
           <li>
-          <span><label>处置:&nbsp;&nbsp;</label>血常规（全血），肝功能全套（静脉血），
+          <span>处置:&nbsp;&nbsp;<label>血常规（全血），肝功能全套（静脉血），
       肾功能全套（静脉血），CT检查头颅（平扫+增
-      强扫描）</span>
+      强扫描）</label></span>
         </li>
       </ul>
     </div>
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color: #4daed7;
+$color: #1da1f3;
 $border: 1px solid #f1f3f1;
 .case-detail {
   padding-top: 1rem;
