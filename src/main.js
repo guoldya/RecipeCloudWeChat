@@ -38,6 +38,14 @@ Vue.use(infiniteScroll);
 // import Vconsole from 'vconsole';
 // const vConsole = new Vconsole();
 
+// 路由拦截
+router.beforeEach((to, from, next) => {
+  if(to.meta&&to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+})
+
 if ('addEventListener' in document && 'ontouchstart' in window) {
     FastClick.prototype.focus = function (targetElement) {
         targetElement.focus()

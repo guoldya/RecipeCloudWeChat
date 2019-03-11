@@ -11,12 +11,12 @@
     </div> 
   </div>
 </template>
-<style lang="less" scoped>
-@border:1px solid #f1f3f1;
-@color:#4DAED7;
+<style lang="scss" scoped>
+$border:1px solid #f1f3f1;
+$color:#4DAED7;
 .report-list {
   padding: 20px;
-  border-bottom:@border;
+  border-bottom:$border;
   >div{
     overflow: hidden;
   }
@@ -25,7 +25,7 @@
   }
   .report-info {
    .title {
-     color:@color;
+     color:$color;
    }
    .gary  {
      color:#999;

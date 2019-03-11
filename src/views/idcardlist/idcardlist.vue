@@ -18,18 +18,19 @@
         </li>
         <Loading v-show="loadingtrue"></Loading>
       </ul>
-      <md-button @click="blidcard" type="primary" round>注册电子就诊卡</md-button>
-      <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
-        是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
-      </md-dialog>
-      <p class="warnbottitle margin16">温馨提示：</p>
-      <p class="warnbot">
-        您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
-      </p>
-      <p class="warnbottom" @click="cardneed">
-        电子就诊卡需知</p>
+      <div v-show="!loadingtrue">
+        <md-button @click="blidcard" type="primary" round>注册电子就诊卡</md-button>
+        <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
+          是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
+        </md-dialog>
+        <p class="warnbottitle margin16">温馨提示：</p>
+        <p class="warnbot">
+          您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
+        </p>
+        <p class="warnbottom" @click="cardneed">
+          电子就诊卡需知</p>
+      </div>
     </div>
-
     <md-landscape v-model="showPic" :mask-closable="true">
       <img src="@/assets/images/lili.jpg" alt="">
     </md-landscape>
@@ -69,7 +70,6 @@ export default {
     };
   },
   created() {
-
     this.$axios.put(wechatbizPatientCardreadpage, {
     }).then(res => {
       if (res.data.code == '200') {

@@ -54,7 +54,7 @@
         title="选择排序"
       ></md-selector>
 
-      <h2>药品资讯</h2>
+      <h2>推荐医生</h2>
       <div class="yaobutton">
         <div :class="{ yaoActive: isChecked == 0 }" @click="choose">
           {{ addressStr }}
@@ -93,6 +93,8 @@
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
 import doctorList from "../component/doctorList";
+const departmentUrl  = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
+
 export default {
   name: "action-sheet-demo",
   height: 500,
@@ -107,7 +109,6 @@ export default {
       address: [],
       addressStr: "科室",
       selectorValue: "排序",
-      isWeixin: false,
       sortData: [
         {
           value: "1",
@@ -177,15 +178,20 @@ export default {
     };
   },
   mounted() {
-    document.title = "在线问诊";
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == "micromessenger") {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
+    this.init()
   },
   methods: {
+     // 初始化
+    init() {
+        this.getDepartment()
+    },
+    // 得到某院区下的所有科室
+    async  getDepartment() {
+      let res = await  this.$axios.put(departmentUrl, {
+        orgId: localStorage.getItem("hospitalId") * 1
+      })
+      console.log(res)
+    },
     expertpage() {
       this.$router.push({
         name: "expertpage",

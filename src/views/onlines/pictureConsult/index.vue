@@ -101,7 +101,7 @@ export default {
       } else if(type === 3) {
 
       }
-      this.$router.push(url)
+      this.$router.push({path:url})
     },
     onReaderSelect(name, { files }) {
       files.forEach(file => {
@@ -128,8 +128,8 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-@border: 1px solid #e0e0e0;
+<style lang="scss" scoped>
+$border: 1px solid #e0e0e0;
 .picture-consult {
   .b-m {
     border-bottom: 1px solid #f1f3f1;
@@ -183,7 +183,7 @@ export default {
   .picture-consult-problem {
     padding: 40px;
     overflow: hidden;
-    border-bottom: @border;
+    border-bottom: $border;
     p span {
       color: #999;
       font-size: 24px;
@@ -194,7 +194,7 @@ export default {
       margin-top: 20px;
       box-sizing: border-box;
       resize: none;
-      border: @border;
+      border: $border;
       padding: 10px;
     }
   }
@@ -209,7 +209,7 @@ export default {
       height: 156px;
     }
     .md-image-reader {
-      border: @border;
+      border: $border;
     }
     .add {
       p {

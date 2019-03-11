@@ -25,24 +25,24 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@color:#4DAED7;
-@border: 1px solid #f1f3f1;
+<style lang="scss" scoped>
+$color:#1da1f3;
+$border: 1px solid #f1f3f1;
  .inspection-report {
     padding-top:100px;
     .inspection-report-people {
       padding:30px 40px;
-      color:@color;
-      border-bottom:@border;
+      color:$color;
+      border-bottom:$border;
       span {
         margin-right:30px;
       }
     }
     .inspection-report-num {
       padding:20px 40px;
-      border-bottom:@border;
+      border-bottom:$border;
       span {
-        color:@color;
+        color:$color;
       }
     }
  }

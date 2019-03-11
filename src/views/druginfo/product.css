@@ -323,7 +323,10 @@ button :active {
 }
 
 .addValue span {
-   margin: 10px;
+   /* margin: 10px; */
+   width: 60px;
+   display: inline-block;
+   text-align: center;
 }
 
 .addValue img {
