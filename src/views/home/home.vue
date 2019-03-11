@@ -106,7 +106,7 @@ export default {
             showPic: false,
             cardlist: [],
             showindex: 0,
-            maxindex: '',
+            maxindex: 0,
             cardLoading: true,
             aliveValue: '2',
         }
@@ -148,23 +148,30 @@ export default {
                 storage.setItem("hospitalId", "49");
             }
         });
-        this.$axios.put(wechatbizPatientCardreadpage, {
-        }).then(res => {
-            if (res.data.code == '200') {
-                this.cardlist = res.data.rows;
-                this.maxindex = res.data.total;
-                this.cardLoading = false;
-                this.$store.commit('cardListFun', res.data.rows);
-                this.$store.commit('patientIdFun', res.data.rows[0].patientId);
-                this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
-                this.$store.commit('cardNnameFun', res.data.rows[0].patientName);
-                this.$store.commit('cardIdFun', res.data.rows[0].id);
-            } else if (res.data.code == '800') {
-                console.log(res.data.msg)
-            }
-        }).catch(function (err) {
-            console.log(err)
-        });
+      
+        if (!this.$store.state.cardList) {
+            this.$axios.put(wechatbizPatientCardreadpage, {
+            }).then(res => {
+                if (res.data.code == '200') {
+                    this.cardlist = res.data.rows;
+                    this.maxindex = res.data.total;
+                    this.cardLoading = false;
+                    this.$store.commit('cardListFun', res.data.rows);
+                    this.$store.commit('patientIdFun', res.data.rows[0].patientId);
+                    this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
+                    this.$store.commit('cardNnameFun', res.data.rows[0].patientName);
+                    this.$store.commit('cardIdFun', res.data.rows[0].id);
+                } else if (res.data.code == '800') {
+                    console.log(res.data.msg)
+                }
+            }).catch(function (err) {
+                console.log(err)
+            })
+        } else {
+            this.maxindex = this.$store.state.cardList.length;
+        }
+
+
 
 
     },
