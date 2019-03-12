@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     switchTo(item) {
-        console.log(item);
         if(item.orgName){
             this.active1 = item.id;
         }else{

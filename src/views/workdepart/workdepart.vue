@@ -87,15 +87,13 @@
         },
         methods: {
             childByValue: function (childValue) {
-                console.log(childValue);
                 //this.active1 = index;
                 this.yuanId = childValue.id;
                 this.$store.commit('departFun', childValue.orgName);
                 this.orgFun(this.yuanId);
-                // this.type = childValue.type;
-                 this.$store.commit('feeActiveFun', childValue.id);
-                // this.loadingtrue = true;
-                // this.page = 1;
+                this.$store.commit('feeActiveFun', childValue.id);
+                this.loadingtrue = true;
+                this.page = 1;
             },
             orgFun(flag) {
                 let deptparams = {};

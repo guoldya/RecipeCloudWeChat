@@ -181,7 +181,10 @@ export default {
                 this.WaitPay(true);
             }, 500);
         },
-
+        beforeRouteLeave(to, from, next) {
+            from.meta.keepAlive = false;
+            next();
+        },
     },
     computed: {
 
