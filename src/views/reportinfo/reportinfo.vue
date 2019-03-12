@@ -216,14 +216,14 @@ export default {
             });
         },
     },
-    // beforeRouteLeave(to, from, next) {
-    //     if (to.path == "/reportquery") {
-    //         to.meta.keepAlive = true;
-    //     } else {
-    //         to.meta.keepAlive = false;
-    //     }
-    //     next();
-    // },
+    beforeRouteLeave(to, from, next) {
+        if (to.path == "/reportquery") {
+            to.meta.keepAlive = true;
+        } else {
+            to.meta.keepAlive = false;
+        }
+        next();
+    },
     computed: {
 
     },
