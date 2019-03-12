@@ -4,24 +4,9 @@
 <template>
     <div class="home">
         <div class="homeheader">
-            医院
+            <p>互联网医院</p>
         </div>
-        <div class="hometop">
-            <ul class="home-cz home-flex">
-                <li @click="choosedepart">
-                    <img src="@/assets/images/icon_register(1).png" alt="" class="image">
-                    <p>预约挂号</p>
-                </li>
-                <li @click="feerecord">
-                    <img src="@/assets/images/icon_self.png" alt="" class="image">
-                    <p>门诊缴费</p>
-                </li>
-                <li @click="sign">
-                    <img src="@/assets/images/icon_signin.png" alt="" class="image">
-                    <p>就诊签到</p>
-                </li>
-            </ul>
-        </div>
+        <div><img src="@/assets/images/bg.png" alt="" style="width:100%"></div>
         <div class="homePage">
             <!-- 就诊卡片  -->
             <div v-if=" _cardlist.length!=0">
@@ -37,7 +22,7 @@
                         </div>
                         <div class="towma" @click="showPic=true">
                             <p><img src="@/assets/images/lili.jpg" alt=""></p>
-                            <p>刷卡请出示</p>
+                            <p>点击扫码</p>
                         </div>
                     </div>
                     <div v-show="cardLoading" class="spinner">
@@ -51,14 +36,31 @@
                 </div>
                 <span v-show="!cardLoading" class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
-            <div class="home-zy home-flex">
-                <img @click="inpatient" src="@/assets/images/AAAA.png" alt="" class="image float-left">
+            <div>
+                <ul class="home-cz home-flex">
+                    <li @click="choosedepart">
+                        <img src="@/assets/images/icon_register1.png" alt="" class="image">
+                        <p>预约挂号</p>
+                    </li>
+                    <li @click="feerecord">
+                        <img src="@/assets/images/icon_self.png" alt="" class="image">
+                        <p>门诊缴费</p>
+                    </li>
+                    <li @click="sign">
+                        <img src="@/assets/images/icon_signin.png" alt="" class="image">
+                        <p>就诊签到</p>
+                    </li>
+                </ul>
             </div>
+            <div class="home-zy home-flex">
+                <img @click="inpatient" src="@/assets/images/icon_Inpatient.png" alt="" class="image float-left">
+            </div>
+
             <ul class="home-menu">
-                <li>
+                <!-- <li>
                     <img src="@/assets/images/1.png" alt="" class="image">
                     <p>智能导诊</p>
-                </li>
+                </li> -->
                 <li @click="examine">
                     <img src="@/assets/images/2.png" alt="" class="image">
                     <p>检验检查</p>
@@ -83,12 +85,28 @@
                     <img src="@/assets/images/7.png" alt="" class="image">
                     <p>我的处方</p>
                 </li>
-                <li>
+                <!-- <li>
                     <img src="@/assets/images/8.png" alt="" class="image">
                     <p>就诊导航</p>
-                </li>
+                </li> -->
             </ul>
             <!-- 测试的code：{{code}} -->
+            <div class="home-zy home-flex">
+                <img @click="inpatient" src="@/assets/images/icon_continuation.png" alt="" class="image float-left">
+            </div>
+            <div class="home-Intel home-flex">
+                <img @click="inpatient" src="@/assets/images/icon_Intelligent.png" alt="">
+                <img src="@/assets/images/icon_navigation.png" alt="">
+            </div>
+            <div class="tools home-Intel" :class="{'isDownIntel':isDown}">
+                <h2>医院简介</h2>
+                <div class="introduce">
+                    <p>互联网医院是集医疗、教学、科研、预防、保健、康复为一体，具有较强救治能力、较高科研水平和国际交流能力的二级甲等医院，先后被评为全国文明单位、全国“百佳医院、全国卫生计生系统先进集体、全国医院信息化建没先进单位、全国县级医院帮扶示范基地、中国PTC突出贡献团队奖、全国优质护理服务优秀医院、全国医院后勤管理先进集体、全国医院文化建设先进单位等荣誉称号。</p>
+                </div>
+            </div>
+            <div class="lookupmore" :class="{'down':isDown}" @click="isDown=!isDown">
+                <img src="@/assets/images/icon_up.png" alt="">
+            </div>
         </div>
         <md-landscape v-model="showPic" :mask-closable="true">
             <img src="@/assets/images/lili.jpg" alt="">
@@ -109,6 +127,7 @@ export default {
             maxindex: 0,
             cardLoading: true,
             aliveValue: '2',
+            isDown: false,
         }
     },
     created() {
@@ -148,7 +167,7 @@ export default {
                 storage.setItem("hospitalId", "49");
             }
         });
-      
+
         if (!this.$store.state.cardList) {
             this.$axios.put(wechatbizPatientCardreadpage, {
             }).then(res => {

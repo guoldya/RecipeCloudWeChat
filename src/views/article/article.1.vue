@@ -129,7 +129,6 @@ export default {
   },
   mounted() {
     this.lunbo();
-
     var u = navigator.userAgent;
     this.isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
     this.isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端

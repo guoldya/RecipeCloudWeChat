@@ -242,10 +242,10 @@ export default {
         },
 
     },
-    // beforeRouteLeave(to, from, next) {
-    //     from.meta.keepAlive = false;
-    //     next();
-    // }
+    beforeRouteLeave(to, from, next) {
+        from.meta.keepAlive = false;
+        next();
+    }
 };
 </script>
 <style   scoped>

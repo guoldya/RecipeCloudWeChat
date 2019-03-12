@@ -51,8 +51,6 @@ import { Dialog, Button } from 'mand-mobile'
 let appshippingAddressaddressList = "/app/shippingAddress/addressList";
 let deleteAddress = "/app/shippingAddress/delete";
 
-
-
 let isDefault = "/app/shippingAddress/isDefault"
 export default {
    data() {

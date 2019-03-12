@@ -279,7 +279,8 @@ export default new Router({
   {
     path: '/feerecord',
     name: 'feerecord',
-    component: feerecord
+    component: feerecord,
+      meta:{keepAlive:true}
   },
   {
     path: '/feesucces',
@@ -304,7 +305,7 @@ export default new Router({
     path: '/reportquery',
     name: 'reportquery',
     component: reportquery,
-    // meta: { keepAlive: true }
+     meta: { keepAlive: true }
   },
   {
     path: '/reportinfo',
