@@ -22,7 +22,19 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
 }
+.online .more {
+  width:100%;
+  text-align: center;
+  padding:10px 0;
+  color:#1da1f3;
 
+}
+.online .more  img {
+  width:30px;
+  display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
 .online .tools .nav2>span {
   width: 25%;
   display: block;
