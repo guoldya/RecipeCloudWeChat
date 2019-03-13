@@ -1,6 +1,5 @@
 <template>
   <div class="gp-profile-index">
-
     <div class="aui-head-yellow">
       <div class="aui-head-box">
         <div class="aui-head-user"><img src="@/assets/images/user.png" alt=""></div>
@@ -32,7 +31,6 @@
         </div>
       </div>
     </div>
-
     <Footer></Footer>
   </div>
 </template>

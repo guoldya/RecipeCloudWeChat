@@ -1,7 +1,7 @@
 <template>
   <div class="idcardlist">
     <Header post-title="管理就诊卡"></Header>
-    <div class="outCarint" style="margin:117px 0 0">
+    <div class="outCarint" style="margin:57px 0 0">
       <ul v-show="!loadingtrue">
         <li v-for="(item,index) in cardlist" :key="index" class="margin16">
           <div class="homeCard">
@@ -135,7 +135,12 @@ export default {
 </script>
  <style   scoped>
 @import "../doctorList/doctorList.css";
+ 
+
 .idcardlist .homeCard {
   height: 200px;
+  border-radius: 20px;
+  box-shadow: 0 0 18px rgba(131, 179, 208, 0.3);
+  background: #ffffff;
 }
 </style>

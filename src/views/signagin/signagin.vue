@@ -117,11 +117,7 @@ export default {
       } else {
         this.$toast.info("没在就诊范围")
       }
-
-
     },
-
-
 
   },
   created: function () {
