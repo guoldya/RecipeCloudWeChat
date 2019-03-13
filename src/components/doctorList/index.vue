@@ -4,14 +4,14 @@
       <div class="header"><img src="@/assets/images/3.jpg" /></div>
       <div class="comment-right">
         <p class="introduce">
-          <span class="name">{{datas.name}}</span>&nbsp; <span>主任医师</span>&nbsp;
-          <span>{{datas.orgName}}</span>&nbsp;
+          <span class="name">{{datas.name||'--'}}</span>&nbsp; <span>主任医师</span>&nbsp;
+          <span>{{datas.orgName||'--'}}</span>&nbsp;
         </p>
         <p class="colo13">
           <span class="picture" :class="datas.type<1||!datas.type ?'noOpen' :''">图文</span>&nbsp;
           <span class="picture" :class="datas.type<2||!datas.type ?'noOpen' :''">电话</span>&nbsp;
           <span class="picture" :class="datas.type<3||!datas.type ?'noOpen' :''">视频</span>&nbsp;
-          <span class="reputation">好评率 {{datas.diagnosisNum}}%</span>&nbsp;
+          <span class="reputation">好评率 {{datas.diagnosisNum||'--'}}%</span>&nbsp;
         </p>
         <p class="content">擅长：儿科常见病、多发病 #先天性心脏病</p>
         <p class="colo13">

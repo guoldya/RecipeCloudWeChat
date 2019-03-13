@@ -65,8 +65,8 @@
         </div>
       </div>
       <!-- 医生列表 -->
-      <doctorList></doctorList>
-      <doctorList></doctorList>
+      <doctorList :datas="{}"></doctorList>
+      <doctorList :datas="{}"></doctorList>
     </div>
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
