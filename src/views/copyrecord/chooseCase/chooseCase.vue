@@ -20,7 +20,8 @@
                <p>出院日期：217-12-12 12:22</p>
             </div>
             <div class="chooseCaseTime"> 第
-               <span class="number">1</span>次</div>
+               <div class="number">1</div>
+               次</div>
          </div>
          <div class="tabAdiv">
             <div class="chooseCaseBtn">
@@ -40,7 +41,8 @@
                <p>出院日期：217-12-12 12:22</p>
             </div>
             <div class="chooseCaseTime"> 第
-               <span class="number">1</span>次
+               <div class="number">12</div>
+               次
             </div>
          </div>
          <md-button type="primary" round class="margin16">确认提交</md-button>
@@ -135,12 +137,14 @@ export default {
   color: #ffffff;
 }
 .chooseCase .chooseCaseTime .number {
-  background: #ffffff;
   color: #1da1f3;
-  font-size: 34px;
-  line-height: 1;
-  display: inline-block;
-  padding: 13px 23px;
+  width: 54px;
+  height: 54px;
+  background: #ffffff;
   border-radius: 50%;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 54px !important;
 }
 </style>

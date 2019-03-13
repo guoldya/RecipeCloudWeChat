@@ -1,5 +1,5 @@
 <template>
-  <div class="lineupnow">
+  <div class="lineupnow margin45">
     <Header post-title="就诊队列"></Header>
     <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
     <div class="outCarint">
