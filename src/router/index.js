@@ -100,11 +100,9 @@ import inspectionReport from '@/views/onlines/inspectionReport'
 import caseDetail from '@/views/onlines/caseDetail'
 import inspectionDetail from '@/views/onlines/inspectionDetail'
 
-
-
-
 import business from '@/views/copyrecord/business/business.vue'
 import chooseCase from '@/views/copyrecord/chooseCase/chooseCase.vue'
+import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 
@@ -281,7 +279,8 @@ export default new Router({
   {
     path: '/feerecord',
     name: 'feerecord',
-    component: feerecord
+    component: feerecord,
+      meta:{keepAlive:true}
   },
   {
     path: '/feesucces',
@@ -306,7 +305,7 @@ export default new Router({
     path: '/reportquery',
     name: 'reportquery',
     component: reportquery,
-    // meta: { keepAlive: true }
+     meta: { keepAlive: true }
   },
   {
     path: '/reportinfo',
@@ -586,6 +585,15 @@ export default new Router({
     }
   },
   {
+    path: '/copyresult',
+    name: 'copyresult',
+    component: copyresult,
+    meta: {
+      title: "支付确认"
+    }
+  },
+
+  {
     path: '/buyService',
     name: 'buyService',
     component: buyService,
@@ -624,10 +632,10 @@ export default new Router({
     path: '/inspectionReport',
     name: 'inspectionReport',
     component: inspectionReport,
-      meta: {
-        title: '检查报告'
-      }
-    }, {
+    meta: {
+      title: '检查报告'
+    }
+  }, {
     path: '/caseDetail',
     name: 'caseDetail',
     component: caseDetail,

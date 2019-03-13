@@ -339,7 +339,5 @@ export default {
   font-size: 15px;
 }
 
-.md-cell-item-title {
-  font-size: 24px !important;
-}
+ 
 </style>

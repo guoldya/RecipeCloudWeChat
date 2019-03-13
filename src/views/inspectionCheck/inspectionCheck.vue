@@ -23,7 +23,7 @@
                     {{item.title}}
                 </span>
             </div>
-            <div v-if="titleIndex === 0" class="outCarint">
+            <div v-if="titleIndex === 0">
                 <div class="card margin16">
                     <div class="cardHEADER headCard">
                         <span>仅看3日内续方</span>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div  v-if="titleIndex === 1" class="outCarint">
+            <div  v-if="titleIndex === 1">
                 <div class="card margin16">
                     <div class="cardHEADER headCard">
                         <span>仅看通过</span>

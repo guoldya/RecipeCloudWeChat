@@ -1,6 +1,6 @@
 <template>
-  <div :class="{'outCarint':true,'margin45':isWeixin}">
-    <Header post-title="信息确认" v-show="isWeixin"></Header>
+  <div class=" outCarint margin45 ">
+    <Header post-title="信息确认"></Header>
     <div class="rebinding-box card margin16">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
@@ -21,11 +21,30 @@
       <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名" is-highlight></md-input-item>
       <md-input-item ref="input13" v-model="idcard" title="身份证号" placeholder="身份证号" is-highlight></md-input-item>
     </div>
-    <p style="background: #1da1f3 "> <img src="@/assets/images/jia.png" @click="num--"></p>
+    <p class="chooseBtn" @click="chooseCase">
+      <img src="@/assets/images/jia.png">
+      <span>
+        选择复印病案
+      </span>
+    </p>
+    <p class="smallTitle">
+      病案信息
+    </p>
+    <div class="card margin16">
+      <md-input-item ref="input13" v-model="name" title="住院科室" placeholder="住院科室" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="住院诊断" placeholder="住院诊断" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="住院次数" placeholder="住院次数" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="name" title="入院时间" placeholder="入院时间" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="出院时间" placeholder="出院时间" is-highlight></md-input-item>
+    </div>
+    <p class="smallTitle">
+      复印用途
+    </p>
     <div class="card margin16">
       <div class="content">
         <div class="login-box">
-          <md-input-item ref="input13" v-model="copyUse" title="复印用途" placeholder="复印用途" is-highlight></md-input-item>
+          <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
+          <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明" is-highlight></md-input-item>
           <div class="login-box-div">
             <span class="flexF">复印份数</span>
             <div class="flexR calculate">
@@ -36,8 +55,6 @@
               </span>
             </div>
           </div>
-          <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
-          <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明" is-highlight></md-input-item>
           <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注" is-highlight></md-input-item>
           <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
           <div class="hq login-box-div">
@@ -57,7 +74,7 @@
       <a @click="openPgmodel" style="color:#1da1f3">《病历复印规定》</a>
     </md-agree>
     <Pgmodal ref="Pgmodal"></Pgmodal>
-    <md-button type="primary" round class="margin16">确认提交</md-button>
+    <md-button type="primary" round class="margin16" @click="copyresult">确认提交</md-button>
   </div>
 </template>
 <script type="text/babel">
@@ -108,7 +125,8 @@ export default {
     };
   },
   created() {
-    this.$refs.Pgmodal.type = 2
+
+
   },
   watch: {
     num(newValue) {
@@ -117,6 +135,7 @@ export default {
   },
   mounted() {
     document.title = '资料确认';
+    this.$refs.Pgmodal.istype = 2;
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;
@@ -125,6 +144,16 @@ export default {
     }
   },
   methods: {
+    chooseCase() {
+      this.$router.push({
+        name: 'chooseCase'
+      })
+    },
+    copyresult() {
+      this.$router.push({
+        name: 'copyresult'
+      })
+    },
     onChange(checked) {
       console.log(`agree name =  ${checked ? 'checked' : 'unchecked'}`);
     },
@@ -180,5 +209,21 @@ export default {
 @import url("../../cardwrite/cardwrite.css");
 .calculate {
   margin-left: 100px;
+}
+.chooseBtn {
+  background: #1da1f3;
+  line-height: 100px;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-align: center;
+  margin: 30px;
+}
+.chooseBtn img {
+  width: 40px;
+  position: relative;
+  top: 10px;
+}
+.smallTitle {
+  line-height: 70px;
 }
 </style>
