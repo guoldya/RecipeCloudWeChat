@@ -11,7 +11,7 @@
       <div class="tools">
         <h2>就医信息</h2>
         <div class="nav2">
-          <span @click="registrecord"><img src="@/assets/images/icon_register.png" alt="">挂号记录</span>
+          <span @click="registrecord"><img src="@/assets/images/icon_registerMy.png" alt="">挂号记录</span>
           <span @click="feerecord"><img src="@/assets/images/icon_pay.png" alt="">缴费记录</span>
           <span @click="appoint"><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
           <span @click="reportrecord" monitor="my_subject"><img src="@/assets/images/icon_report.png" alt="">报告记录</span>

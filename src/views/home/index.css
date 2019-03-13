@@ -240,9 +240,13 @@
 
 .homePage {
    position: relative;
-   top: -115px;
+   /* top: -100px; */
 }
-
+.homeCard{
+   position: absolute;
+   width: 93.7%;
+   top: -100px;
+}
 .marginbott16 {
    margin-bottom: 32px
 }
