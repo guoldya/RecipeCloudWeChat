@@ -3,29 +3,15 @@
   <div class="online">
     <div :class="{ outCarint: true }">
       <div class="onlineheader">在线问诊</div>
-      <Search></Search>
+      <Search type="onlines"></Search>
       <div class="tools">
         <div class="nav2">
-          <span @click="expertpage"
-            ><img src="@/assets/images/online1.png" alt="" />内科</span
-          >
-          <span @click="expertpage"
-            ><img src="@/assets/images/online2.png" alt="" />外科</span
-          >
-          <span @click="expertpage"
-            ><img src="@/assets/images/online3.png" alt="" />妇科</span
-          >
-          <span @click="expertpage"
-            ><img src="@/assets/images/online4.png" alt="" />产科</span
-          >
-        </div>
-        <div class="nav2">
-          <span><img src="@/assets/images/online5.png" alt="" />儿科</span>
-          <span><img src="@/assets/images/online6.png" alt="" />五官科</span>
-          <span><img src="@/assets/images/online7.png" alt="" />骨科</span>
-          <span><img src="@/assets/images/online8.png" alt="" />皮肤科</span>
+          <span v-for="(item ,index) in departmentList" :key="index">
+            <img :src="item.orgPicFileName" alt="">{{item.orgName}}
+          </span>
         </div>
       </div>
+      <div class="more" @click="loadMore" v-if="departmenParams.pages>1&&departmenParams.num<departmenParams.pages">展开<img src="./xiangxia.png" alt=""></div>
       <div class="tabA">
         <router-link to="/followDoctor" tag="div" class="tabAdiv">
           <div class="yellowWarn">关注的医生</div>
@@ -79,8 +65,8 @@
         </div>
       </div>
       <!-- 医生列表 -->
-      <doctorList></doctorList>
-      <doctorList></doctorList>
+      <doctorList :datas="{}"></doctorList>
+      <doctorList :datas="{}"></doctorList>
     </div>
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
@@ -92,7 +78,7 @@
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
-import doctorList from "../component/doctorList";
+import doctorList from "../../../components/doctorList";
 const departmentUrl  = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 
 export default {
@@ -100,9 +86,6 @@ export default {
   height: 500,
   data() {
     return {
-      num: 10,
-      active1: "",
-      insurants: ["self"],
       isChecked: 0,
       show: false,
       isSelectorShow: false,
@@ -131,7 +114,7 @@ export default {
           text: "价格从低到高"
         }
       ],
-
+ 
       Fdata: {
         // 唯一键名
         name: "科室",
@@ -174,6 +157,11 @@ export default {
             }
           }
         ]
+      },
+      departmentList:[], // 科室数据
+      departmenParams:{ // 科室分页信息
+        num:1,
+        pages:1
       }
     };
   },
@@ -187,11 +175,24 @@ export default {
     },
     // 得到某院区下的所有科室
     async  getDepartment() {
-      let res = await  this.$axios.put(departmentUrl, {
-        orgId: Number(localStorage.getItem("hospitalId")),
-        orgType: 3
-      })
-      console.log(res.data)
+      try {
+        let res = await  this.$axios.put(departmentUrl, {
+          orgId: Number(localStorage.getItem("hospitalId")),
+          orgType: 3,
+          pageNumber:this.departmenParams.num
+        })
+        if(res.data.code != 200) {
+          throw Error(res.data.msg)
+        }
+         this.departmenParams.pages = res.data.pages
+         this.departmentList = this.departmentList.concat(res.data.rows)
+      } catch (error) {
+          console.log(error)
+      }
+    },
+    loadMore() { // 加载更多
+      this.departmenParams.num++;
+      this.getDepartment()
     },
     expertpage() {
       this.$router.push({

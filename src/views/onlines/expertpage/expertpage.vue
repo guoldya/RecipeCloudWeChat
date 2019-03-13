@@ -48,7 +48,8 @@
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
-import doctorList from "../component/doctorList";
+import doctorList from "../../../components/doctorList";
+
 
 export default {
   data() {
