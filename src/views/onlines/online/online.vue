@@ -3,7 +3,7 @@
   <div class="online">
     <div :class="{ outCarint: true }">
       <div class="onlineheader">在线问诊</div>
-      <Search></Search>
+      <Search type="onlines"></Search>
       <div class="tools">
         <div class="nav2">
           <span v-for="(item ,index) in departmentList" :key="index">
@@ -78,7 +78,7 @@
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
-import doctorList from "../component/doctorList";
+import doctorList from "../../../components/doctorList";
 const departmentUrl  = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 
 export default {

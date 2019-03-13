@@ -1,29 +1,39 @@
 <template>
-
   <div class="search" style=" text-align: center;">
-    <input class="oc_val" placeholder="搜索医生、科室" value="" type="text" @click="searchT()" />
+    <input
+      class="oc_val"
+      placeholder="搜索医生、科室"
+      value=""
+      type="text"
+      @click="searchT()"
+    />
   </div>
 </template>
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 export default {
   data() {
     return {
       selected: null,
-      num: 0,
-    }
+      num: 0
+    };
   },
+  props: ["type"],
   methods: {
-    searchT: function () {
-      this.$router.push({
-        path: '/result'
-        // query: argu,
-      });
-    },
-
-
-  },
-}
+    searchT: function() {
+      if (this.type == "onlines") {
+        this.$router.push({
+          path: "/resultDoctor"
+        });
+      } else {
+        this.$router.push({
+          path: "/result"
+          // query: argu,
+        });
+      }
+    }
+  }
+};
 </script>
 <style>
 input {
