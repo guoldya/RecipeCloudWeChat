@@ -36,6 +36,9 @@
                 </div>
                 <span v-show="!cardLoading" class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
+            <div style="height:70px;">
+
+            </div>
             <div>
                 <ul class="home-cz home-flex">
                     <li @click="choosedepart">
