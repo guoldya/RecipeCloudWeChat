@@ -13,19 +13,10 @@ export default {
       num: 0,
     }
   },
-  props: ['postTitle'],
-  created() {
-
-  },
-  mounted() {
-
-
-  },
   methods: {
     searchT: function () {
-      // let argu = { selected3: this.selected3 };
       this.$router.push({
-        name: 'result',
+        path: '/result'
         // query: argu,
       });
     },
