@@ -11,7 +11,7 @@
         <p>暂无科室信息</p>
       </div> -->
       <div class="mu-sub-header margin16">医生</div>
-      <doctorItem v-for="(item,index) in doctorList" :key="index"></doctorItem>
+      <doctorItem v-for="(item,index) in doctorList" :key="index" :datas="item"></doctorItem>
       <div v-if="doctorList.length==0">
         <p>暂无医生信息</p>
       </div>
@@ -73,7 +73,8 @@ export default {
       clearTimeout(_self.timer);
       _self.timer = setTimeout(() => {
         _self.$axios.put(searchClinicListByClinicOrDoctor, {
-          name: value
+          name: value,
+          orgType:3
         }).then(function (res) {
           if (res.data.code == 200) {
             _self.doctorList = res.data.data.doctorList;
