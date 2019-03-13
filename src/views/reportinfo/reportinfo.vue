@@ -88,7 +88,7 @@
                         </div>
                         <div class="cardTextPP">
                             <span>临床诊断：</span>
-                            <span style="width: 76%;">{{item.diag}}</span>
+                            <span style="width: 78%;">{{item.diag}}</span>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                             <span>单位</span>
                             <span style="text-align: right">参考值</span>
                         </div>
-                        <div class="cardTextPP spanWid  reportInfo" v-for="(item,i) in reportResult">
+                        <div class="cardTextPP spanWid arrow reportInfo" v-for="(item,i) in reportResult">
                             <span>{{item.itemName}}</span>
                             <span>{{item.itemValue}}
                                 <span>{{item.contrast}}</span>
@@ -113,8 +113,8 @@
                 </div>
                 <p class="textCenter">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
             </div>
-            <Loading v-show="loadingtrue"></Loading>
         </div>
+        <Loading v-show="loadingtrue"></Loading>
     </div>
 </template>
 <script  >
@@ -279,16 +279,16 @@ export default {
 }
 .reportinfo .spanWid span:nth-child(2) {
   width: 28%;
-    display: flex;
 }
-.reportinfo .spanWid span:nth-child(2) span{
+.reportinfo .arrow span:nth-child(2) span{
    color: red;
+    display: flex;
     position: relative;
-    left: -40px;
+    left: 140px;
+    top: -62px;
 }
 .reportinfo .spanWid span:nth-child(3) {
   width: 20%;
-  /*text-align: center;*/
 }
 .reportinfo .spanWid span:last-child {
   width: 20%;
