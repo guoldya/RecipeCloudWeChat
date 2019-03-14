@@ -4,7 +4,7 @@
          <Header post-title="预约信息" v-show="isWeixin"></Header>
          <div class="order-info">
             <div class="doctor-info g-clear">
-               <img src="https://kano.guahao.cn/pYf27810846" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
+               <img src="@/assets/images/user.png" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
                <span class="doctor-name">{{doctorInfo.name}}</span>
                <span>{{doctorInfo.title}}</span>
             </div>
@@ -68,7 +68,7 @@ let fee_detail_url = "/app/bizCostBill/detail";
 let fconfirm_pay_url = "/app/bizPatientRegister/subscribe";
 // 付钱
 let now_pay_url = "/app/bizPatientRegister/nowPay";
- 
+
 
 export default {
    data() {
@@ -132,7 +132,12 @@ export default {
 
       this.depart = this.$store.state.depart;
       this.major = this.$store.state.major;
-      this.afternoon = this.$route.query.afternoon;
+      if (this.$route.query.afternoon * 1 == 1) {
+         this.afternoon = '上午';
+      } else {
+         this.afternoon = this.$route.query.afternoon;
+      }
+
       this.time = this.$route.query.time;
 
 
