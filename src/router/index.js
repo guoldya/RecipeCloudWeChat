@@ -546,35 +546,6 @@ export default new Router({
     }
   },
   {
-    path: '/storeInfo',
-    name: 'storeInfo',
-    component: storeInfo
-  },
-  {
-    path: '/submitOrder',
-    name: 'submitOrder',
-    component: submitOrder,
-  },
-  {
-    path: '/registrecorddetail',
-    name: 'registrecorddetail',
-    component: registrecorddetail,
-  },
-  {
-    path: '/doctorschedu',
-    name: 'doctorschedu',
-    component: doctorschedu,
-  },
-  {
-    path: '/followDoctor',
-    name: 'followDoctor',
-    component: followDoctor
-  }, {
-    path: '/inquiryRecord',
-    name: 'inquiryRecord',
-    component: inquiryRecord
-  },
-  {
     path: '/business',
     name: 'business',
     component: business,

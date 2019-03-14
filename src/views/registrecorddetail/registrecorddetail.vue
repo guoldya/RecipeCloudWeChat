@@ -56,7 +56,7 @@
                 <p>3、如需退号，请提前两天进行操作</p>
                 <p>4、一个自然月内只能退三次号</p>
             </div>
-            <div>
+            <div style="margin-bottom:30px;">
                 <div class="myButton">
                     <div v-if="payType==0">
                         <span class="cancle" @click="orderCancle">取消订单</span>

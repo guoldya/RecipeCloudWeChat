@@ -8,7 +8,7 @@
           <img src="@/assets/images/icon_success.png" width="60px">
         </div>
         <p>签到成功</p>
-        <p>2018-10-31 12：00</p>
+        <p>{{nowTime}}</p>
       </div>
     </div>
     <div class="linesign"></div>
@@ -17,28 +17,34 @@
       <div class="card" v-for="(item,i) in waitList" :key="i">
         <div class="cardText">
           <p class="cardTextPP">就诊项目：
-            <span class="mu-secondary-text-color">{{item.className}}</span>
+            <span class="mu-secondary-text-color">{{item.orgName}}</span>
           </p>
           <p class="cardTextPP">
-            <span>就诊科室：{{item.examDept}}</span>
-            <span>预约时间：{{item.serialTime}}</span>
+            <span>就诊科室：{{item.orgName}}</span>
+            <span>预约时间：{{item.regStage}}</span>
           </p>
         </div>
       </div>
     </div>
   </div>
-
 </template>
 <script>
-let bizExamApply = "/app/bizExamApply/read/page";
+let bizExamApply = "/app/bizPatientRegister/read/selectSignList";
 export default {
   data() {
     return {
       isWeixin: false,
-      waitList: []
+      waitList: [],
+      nowTime: '',
     }
   },
   mounted() {
+
+    // 获取当前时间
+    var today = new Date();
+    this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
+
+
     document.title = '签到成功';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
@@ -46,16 +52,13 @@ export default {
     } else {
       this.isWeixin = true;
     }
-
-
     this.$axios.put(bizExamApply, {
-      queryType: 1,
     }).then(res => {
       if (res.data.code == '200') {
 
-        for (let i = 0; i < res.data.rows.length; i++) {
-          res.data.rows[i].serialTime = res.data.rows[i].serialTime.split(' ')[1];
-        }
+        // for (let i = 0; i < res.data.rows.length; i++) {
+        //   res.data.rows[i].signTime = res.data.rows[i].signTime.split(' ')[1];
+        // }
         this.waitList = res.data.rows;
       } else {
         this.$toast.info(res.data.msg)
@@ -63,8 +66,6 @@ export default {
     }).catch(function (err) {
       console.log(err);
     });
-
-
   },
   methods: {
     choosedepart() {

@@ -55,9 +55,9 @@
                   <img src="@/assets/images/icon_star@2x.png" v-for="(item5, index5) in drugstore5" :key="'aa' + index5">
                 </div>
               </div>
-              <div class="dateRight" @click="intoStore">
+              <!-- <div class="dateRight" @click="intoStore">
                 <button class="abtn abtnBIG">进入店铺</button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -217,6 +217,7 @@ export default {
       { filename: "https://kano.guahao.cn/elarge_E2w2711261.jpg?timestamp=1538979619031" },
       { filename: "http://192.168.0.150:40080/res/e11e8d39-eb75-48b5-af69-92fc1db0eb15.jpg" }],
       picUrl: '',
+      nowTime: '',
     }
   },
   created() {
@@ -228,7 +229,9 @@ export default {
     }
   },
   mounted() {
-
+    // 获取当前时间
+    var today = new Date();
+    this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
     document.title = '药品详情';
     // 注册方法
 

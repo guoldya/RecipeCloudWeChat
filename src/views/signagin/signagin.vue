@@ -94,6 +94,7 @@ export default {
     var today = new Date();
     this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
 
+
   },
   methods: {
 

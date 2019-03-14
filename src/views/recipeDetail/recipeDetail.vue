@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div  style="margin-bottom:30px;">
                     <md-button type="primary" round v-if="isContinue==true" @click="confirmApply">提交申请</md-button>
                     <md-button type="default" round v-else @click="confirmApply">续方失效</md-button>
                 </div>
