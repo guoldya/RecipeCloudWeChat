@@ -95,7 +95,7 @@
             </ul>
             <!-- 测试的code：{{code}} -->
             <div class="home-zy home-flex">
-                <img @click="inpatient" src="@/assets/images/icon_continuation.png" alt="" class="image float-left">
+                <img  src="@/assets/images/icon_continuation.png" alt="" class="image float-left">
             </div>
             <div class="home-Intel home-flex">
                 <img src="@/assets/images/icon_Intelligent.png" alt="">
