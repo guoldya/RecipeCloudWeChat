@@ -172,7 +172,7 @@ export default {
       params.pageSize = this.pageSize;
       params.onlyWaiting = this.isActive ? 'Y' : undefined;
       params.queryType = this.queryType;
-      params.waitingDate = "2019-02-22";
+      // params.waitingDate = "2019-02-22";
       this.$axios.put(appbizWaitingQueuereadlist, params).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;
