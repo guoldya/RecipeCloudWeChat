@@ -95,7 +95,7 @@
             </ul>
             <!-- 测试的code：{{code}} -->
             <div class="home-zy home-flex">
-                <img  src="@/assets/images/icon_continuation.png" alt="" class="image float-left">
+                <img @click="inspectionCheck" src="@/assets/images/icon_continuation.png" alt="" class="image float-left">
             </div>
             <div class="home-Intel home-flex">
                 <img src="@/assets/images/icon_Intelligent.png" alt="">
@@ -264,7 +264,14 @@ export default {
                 query: argu
             });
         },
-
+        // 慢病徐方
+        inspectionCheck() {
+            let argu = {}
+            this.$router.push({
+                name: 'inspectionCheck',
+                query: argu
+            });
+        },
         //  
         examine() {
             let argu = {}

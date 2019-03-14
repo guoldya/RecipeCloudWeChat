@@ -1,5 +1,5 @@
 <template>
-   <div class="outCarint">
+   <div class="outCarint margin45">
       <Header post-title="快捷结算"></Header>
       <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
       <div class="card cardcc margin16">

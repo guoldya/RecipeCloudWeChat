@@ -59,7 +59,7 @@ export default {
 }
 .appTab span {
   padding: 0 8px 8px;
-  font-size: 28px;
+  font-size: 30px;
 }
 
 .appTabAcitive {
