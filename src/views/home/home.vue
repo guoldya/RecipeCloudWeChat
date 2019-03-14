@@ -98,7 +98,7 @@
                 <img @click="inpatient" src="@/assets/images/icon_continuation.png" alt="" class="image float-left">
             </div>
             <div class="home-Intel home-flex">
-                <img @click="inpatient" src="@/assets/images/icon_Intelligent.png" alt="">
+                <img src="@/assets/images/icon_Intelligent.png" alt="">
                 <img src="@/assets/images/icon_navigation.png" alt="">
             </div>
             <div class="tools home-Intel" :class="{'isDownIntel':isDown}">
