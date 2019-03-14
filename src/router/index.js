@@ -106,6 +106,7 @@ import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 
+import resultDoctor from '@/views/resultDr/result.vue'
 
 Vue.use(Router)
 
@@ -269,7 +270,18 @@ export default new Router({
   {
     path: '/result',
     name: 'result',
-    component: result
+    component: result,
+    meta:{
+      title:'搜索'
+    }
+  },
+  {
+    path: '/resultDoctor',
+    name: 'resultDoctor',
+    component: resultDoctor,
+    meta:{
+      title:'搜索'
+    }
   },
   {
     path: '/feeinfo',

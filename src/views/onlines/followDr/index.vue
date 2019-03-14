@@ -9,7 +9,8 @@
   </div>
 </template>
 <script>
-import doctorList from '../component/doctorList'
+import doctorList from "../../../components/doctorList";
+
 export default {
   data() {
   return{

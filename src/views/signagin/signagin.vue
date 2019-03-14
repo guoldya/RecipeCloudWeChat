@@ -5,14 +5,17 @@
 
     </div>
     <div class="outCarint">
-      <p style="padding:10px 0">
-        <md-icon name="location" size="md"></md-icon>
-        <span>
-          重庆西南医院.骨科 重庆西南医院.骨科 重庆西南医院.骨科 重庆西南医院.骨科
-        </span>
-      </p>
-      <md-button v-if="ishave" type="primary" round @click="signUp">{{nowTime}} 签到</md-button>
-      <md-button v-else type="primary" round inactive>没在区域范围</md-button>
+      <div class="locationAgin">
+        <p style="padding:10px 0">
+          <md-icon name="location" size="md"></md-icon>
+          <span>
+            重庆西南医院.骨科 重庆西南医院.骨科 重庆西南医院.骨科 重庆西南医院.骨科
+          </span>
+        </p>
+        <md-button v-if="ishave" type="primary" round @click="signUp">{{nowTime}} 签到</md-button>
+        <md-button v-else type="primary" round inactive>没在区域范围</md-button>
+      </div>
+
     </div>
   </div>
 
@@ -129,5 +132,13 @@ export default {
 #container {
   min-width: 600px;
   min-height: 767px;
+}
+.locationAgin {
+  position: absolute;
+  background: #ffffff;
+  margin: 0 auto;
+  padding: 20px;
+  left: 0;
+  bottom: 0;
 }
 </style>
