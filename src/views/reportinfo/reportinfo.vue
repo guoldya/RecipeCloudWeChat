@@ -274,7 +274,7 @@ export default {
   font-size: 25px;
 }
 .reportinfo .spanWid span:first-child {
-  width: 32%;
+  width: 28%;
   text-align: left;
 }
 .reportinfo .spanWid span:nth-child(2) {
