@@ -2,7 +2,7 @@
   <div class="sign">
     <Header post-title="资料确认" v-show="isWeixin"></Header>
     <div :class="{ 'margin45':isWeixin}">
-      <md-notice-bar icon="location">
+      <md-notice-bar icon="location"  v-show="isHaveOrder" >
         {{titlename}}
       </md-notice-bar>
       <div id="allmap"></div>

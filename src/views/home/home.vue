@@ -198,7 +198,6 @@ export default {
 
     },
     methods: {
-
         choosedepart() {
             let argu = {}
             this.$router.push({
@@ -206,7 +205,6 @@ export default {
                 query: argu
             });
         },
-
         switchCard(data1, data) {
             if (data < this.maxindex) {
                 this.showindex = data;
@@ -218,7 +216,6 @@ export default {
             this.$store.commit('cardIdFun', data1.id);
             this.$store.commit('cardNnameFun', data1.patientName);
         },
-
         feerecord() {
             let argu = {}
             this.$router.push({
