@@ -4,7 +4,7 @@
       <img src="@/assets/images/hospital.png" alt="" width="100%">
       <div class="inhospitalcontent">
          <img src="@/assets/images/hh1.png" alt="" width="94%" @click="payfee">
-         <img src="@/assets/images/hh2.png" alt="" width="94%">
+         <img src="@/assets/images/hh2.png" alt="" width="94%" @click="admission">
          <img src="@/assets/images/hh3.png" alt="" width="94%" @click="quickpay">
       </div>
    </div>
@@ -31,6 +31,12 @@ export default {
       payfee() {
          this.$router.push({
             name: 'payfee',
+         })
+      },
+      // 入院办理
+      admission() {
+         this.$router.push({
+            name: 'admission',
          })
       },
 

@@ -2,8 +2,8 @@
   <div class="gp-profile-index">
     <div class="aui-head-yellow">
       <div class="aui-head-box">
-        <div class="aui-head-user"><img src="@/assets/images/user.png" alt=""></div>
-        <p>李医生</p>
+        <div class="aui-head-user"><img :src="headURL" alt=""></div>
+        <p>{{name}}</p>
       </div>
     </div>
     <div class="outCarint">
@@ -35,15 +35,17 @@
   </div>
 </template>
 <script>
-let logout = '/logout';
-let sysUserselectUserByAccount = 'sysUser/selectUserByAccount';
+let sysUserselectUserByAccount = '/app/sysPatient/read/myDetailed';
+
+import pg_positive from '@/assets/images/user.png'
 export default {
   data() {
     return {
       userInfo: '',
       outInfo: '',
       id: '',
-      account: '',
+      name: '',
+      headURL: pg_positive,
     }
   },
   created() {
@@ -51,18 +53,20 @@ export default {
   },
   mounted() {
     document.title = '个人中心';
-    this.account = localStorage.getItem("account");
     let _this = this;
-    // this.$axios.put(sysUserselectUserByAccount, {
-    //   account: this.account,
-    // }).then(function (res) {
-    //   if (res.data.code == '200') {
-    //     _this.userInfo = res.data.data;
-    //     _this.id = res.data.data.id;
-    //   }
-    // }).catch(function (err) {
-    //   console.log(err);
-    // });
+    this.$axios.put(sysUserselectUserByAccount, {
+    }).then(function (res) {
+      if (res.data.code == '200') {
+        console.log(res.data.data.name, "ss");
+        _this.name = res.data.data.name;
+        if (res.data.data.headUrl) {
+          _this.headURL = _this.$conf.constant.img_base_url + res.data.data.headUrl;
+        }
+
+      }
+    }).catch(function (err) {
+      console.log(err);
+    });
 
 
   },
