@@ -134,6 +134,8 @@ export default {
       this.major = this.$store.state.major;
       if (this.$route.query.afternoon * 1 == 1) {
          this.afternoon = '上午';
+      } else if (this.$route.query.afternoon * 1 == 2) {
+         this.afternoon = '下午';
       } else {
          this.afternoon = this.$route.query.afternoon;
       }
