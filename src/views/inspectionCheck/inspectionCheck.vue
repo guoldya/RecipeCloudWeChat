@@ -18,12 +18,8 @@
             <!--</span>-->
         </header>
         <div :class="{margin45:isWeixin,outCarint:true}">
-            <div class="pageContent">
-                <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div>
-            <div v-if="titleIndex === 0">
+            <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
+            <div v-if="titleIndex === 1">
                 <div class="card margin16">
                     <div class="cardHEADER headCard">
                         <span>仅看3日内续方</span>
@@ -64,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div  v-if="titleIndex === 1">
+            <div  v-if="titleIndex === 2">
                 <div class="card margin16">
                     <div class="cardHEADER headCard">
                         <span>仅看通过</span>
@@ -115,11 +111,11 @@ export default {
     data() {
         return {
             isWeixin: false,
-            changeTitle: [
-                { title: '处方记录' },
-                { title: '申请记录' },
+            departs: [
+                { title: '处方记录', type: 1 },
+                { title: '申请记录', type: 2 },
             ],
-            titleIndex: 0,
+            titleIndex: 1,
             cardData: [
                 { date: "2019年1月30日", type: "高血压", source: "人民医院", restDate: "8日", first: "1" },
                 { date: "2019年1月30日", type: "高血压", source: "人民医院", restDate: "7日", first: "2" },
@@ -168,8 +164,17 @@ export default {
             this.selectorValue = text;
             this.choseValue=value;
         },
-        switchTo(num) {
-            this.titleIndex = num;
+        // switchTo(num) {
+        //     this.titleIndex = num;
+        // },
+        childByValue: function (childValue) {
+            this.titleIndex = childValue.type;
+            //this.noDataTitle = childValue.title;
+            this.$store.commit('feeActiveFun', childValue.type);
+            //this.goodsList = [];
+            //this.loadingtrue = true;
+            this.page = 1;
+            //this.getGoodslist();
         },
         continueApply() {
             let argu = { name: this.selectorValue };

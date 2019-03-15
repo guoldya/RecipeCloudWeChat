@@ -115,6 +115,7 @@ import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 import resultDoctor from '@/views/resultDr/result.vue'
 
 import privacy from '@/views/appwarn/privacy/privacy.vue'
+import agreement from '@/views/appwarn/agreement/agreement.vue'
 
 
 
@@ -204,11 +205,13 @@ export default new Router({
     name: 'moan',
     component: moan
   },
-
   {
     path: '/my',
     name: 'my',
-    component: my
+    component: my,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/sign',
@@ -592,6 +595,15 @@ export default new Router({
       title: "处方云隐私政策"
     }
   },
+  {
+    path: '/agreement',
+    name: 'agreement',
+    component: agreement,
+    meta: {
+      title: "用户协议"
+    }
+  },
+
   {
     path: '/copyresult',
     name: 'copyresult',
