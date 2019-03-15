@@ -71,20 +71,61 @@
       <div class="outCarint">
          <div class="card">
             <div class="cardText">
-               <p class="cardTextPP">就诊项目
-                  <span class="mu-secondary-text-color">产科门诊</span>
+               <p class="cardTextPP">
+                  预交款总额
+                  <span class="mu-secondary-text-color">￥2000.00</span>
                </p>
                <p class="cardTextPP">
-                  <span>就诊科室：产科门诊</span>
-                  <span>预约时间：13:30-14:00</span>
+                  未结总费用
+                  <span class="mu-secondary-text-color">-￥2000.00</span>
                </p>
+               <p class="cardTextPP">
+                  剩余款
+                  <span class="mu-secondary-text-color">￥2000.00</span>
+               </p>
+
             </div>
          </div>
       </div>
       <div class="outCarint">
          <div class="card">
             <div class="cardText">
-               sss
+               <p class="cardTextPP cardTextTitle">
+                  <span>类别</span>
+                  <span>项目名</span>
+                  <span>数量</span>
+                  <span>金额</span>
+               </p>
+               <p class="cardTextPP">
+                  <span>西药费</span>
+                  <span>
+                     <p>肺力咳合剂</p>
+                     <p>肺力咳合剂 </p>
+                  </span>
+                  <span>
+                     <p>1</p>
+                     <p>1</p>
+                  </span>
+                  <span>
+                     <p>1</p>
+                     <p>1</p>
+                  </span>
+               </p>
+               <p class="cardTextPP">
+                  <span>检查费</span>
+                  <span>
+                     <p>肺力咳合剂</p>
+                     <p>肺力咳合剂 </p>
+                  </span>
+                  <span>
+                     <p>1</p>
+                     <p>1</p>
+                  </span>
+                  <span>
+                     <p>1</p>
+                     <p>1</p>
+                  </span>
+               </p>
             </div>
          </div>
       </div>
@@ -168,7 +209,7 @@ export default {
   white-space: nowrap;
   background: transparent;
   margin-top: 10px;
-  padding: 0 20px 20px;
+  padding: 0 10px 20px;
 }
 .big_date li p:last-child {
   line-height: 65px;
@@ -203,5 +244,8 @@ export default {
 }
 .admission .cardText .cardTextPP:last-child {
   border: none;
+}
+.admission .cardText .cardTextTitle {
+  font-weight: 600;
 }
 </style>
