@@ -8,7 +8,6 @@
     </div>
     <a href="javascript:;" class="aui-navBar-item" >
        <!--{{selectOption}} -->
-
     </a>
   </header>
 </template>

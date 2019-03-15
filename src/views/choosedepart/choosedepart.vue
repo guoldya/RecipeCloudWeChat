@@ -200,7 +200,6 @@ export default {
         query: { deptId: data.id, yuanId: this.yuanId, departName: data.orgName }
       });
     },
-
   },
   computed: {
 

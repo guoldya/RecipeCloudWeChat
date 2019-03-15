@@ -7,7 +7,7 @@
       <div class="tools">
         <div class="nav2">
           <span v-for="(item ,index) in departmentList" :key="index">
-            <img :src="item.orgPicFileName" alt="">{{item.orgName}}
+            <img :src="$conf.constant.img_base_url+item.orgPicFileName" alt="">{{item.orgName}}
           </span>
         </div>
       </div>
@@ -27,18 +27,8 @@
         </router-link>
       </div>
 
-      <md-tab-picker
-        title="请选择科室"
-        :data="Fdata"
-        v-model="show"
-        @change="chooseDepart"
-      />
-      <md-selector
-        v-model="isSelectorShow"
-        :data="sortData"
-        @choose="chooseSort"
-        title="选择排序"
-      ></md-selector>
+      <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" />
+      <md-selector v-model="isSelectorShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
 
       <h2>推荐医生</h2>
       <div class="yaobutton">
@@ -79,7 +69,7 @@
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
 import doctorList from "../../../components/doctorList";
-const departmentUrl  = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
+const departmentUrl = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 
 export default {
   name: "action-sheet-demo",
@@ -114,7 +104,7 @@ export default {
           text: "价格从低到高"
         }
       ],
- 
+
       Fdata: {
         // 唯一键名
         name: "科室",
@@ -158,10 +148,10 @@ export default {
           }
         ]
       },
-      departmentList:[], // 科室数据
-      departmenParams:{ // 科室分页信息
-        num:1,
-        pages:1
+      departmentList: [], // 科室数据
+      departmenParams: { // 科室分页信息
+        num: 1,
+        pages: 1
       }
     };
   },
@@ -169,25 +159,25 @@ export default {
     this.init()
   },
   methods: {
-     // 初始化
+    // 初始化
     init() {
-        this.getDepartment()
+      this.getDepartment()
     },
     // 得到某院区下的所有科室
     async  getDepartment() {
       try {
-        let res = await  this.$axios.put(departmentUrl, {
+        let res = await this.$axios.put(departmentUrl, {
           orgId: Number(localStorage.getItem("hospitalId")),
           orgType: 3,
-          pageNumber:this.departmenParams.num
+          pageNumber: this.departmenParams.num
         })
-        if(res.data.code != 200) {
+        if (res.data.code != 200) {
           throw Error(res.data.msg)
         }
-         this.departmenParams.pages = res.data.pages
-         this.departmentList = this.departmentList.concat(res.data.rows)
+        this.departmenParams.pages = res.data.pages
+        this.departmentList = this.departmentList.concat(res.data.rows)
       } catch (error) {
-          console.log(error)
+        console.log(error)
       }
     },
     loadMore() { // 加载更多

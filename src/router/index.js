@@ -87,6 +87,9 @@ import inpatient from '@/views/inhospital/inpatient/inpatient.vue'
 import payfee from '@/views/inhospital/payfee/payfee.vue'
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
+import admission from '@/views/inhospital/admission/admission.vue'
+
+
 
 import followDoctor from '@/views/onlines/followDr'
 import inquiryRecord from '@/views/onlines/inquiryRecord'
@@ -99,18 +102,20 @@ import seeCase from '@/views/onlines/seeCase'
 import inspectionReport from '@/views/onlines/inspectionReport'
 import caseDetail from '@/views/onlines/caseDetail'
 import inspectionDetail from '@/views/onlines/inspectionDetail'
- 
+
 import business from '@/views/copyrecord/business/business.vue'
 import chooseCase from '@/views/copyrecord/chooseCase/chooseCase.vue'
 import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 
- 
+
+
 
 import resultDoctor from '@/views/resultDr/result.vue'
 
 import privacy from '@/views/appwarn/privacy/privacy.vue'
+import agreement from '@/views/appwarn/agreement/agreement.vue'
 
 
 
@@ -151,7 +156,14 @@ export default new Router({
     name: 'quickpay',
     component: quickpay
   },
-
+  {
+    path: '/admission',
+    name: 'admission',
+    component: admission,
+    meta: {
+      title: '入院办理'
+    }
+  },
   {
     path: '/resultdocotor',
     name: 'resultdocotor',
@@ -193,11 +205,13 @@ export default new Router({
     name: 'moan',
     component: moan
   },
-
   {
     path: '/my',
     name: 'my',
-    component: my
+    component: my,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/sign',
@@ -380,9 +394,9 @@ export default new Router({
     path: '/inspectionCheck',
     name: 'inspectionCheck',
     component: inspectionCheck,
-    // meta: {
-    //   keepAlive: true
-    // }
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/medicalEva',
@@ -581,6 +595,15 @@ export default new Router({
       title: "处方云隐私政策"
     }
   },
+  {
+    path: '/agreement',
+    name: 'agreement',
+    component: agreement,
+    meta: {
+      title: "用户协议"
+    }
+  },
+
   {
     path: '/copyresult',
     name: 'copyresult',
