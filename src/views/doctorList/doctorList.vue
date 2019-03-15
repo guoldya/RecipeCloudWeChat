@@ -141,7 +141,6 @@ export default {
   },
   mounted() {
     document.title = '医生列表';
-
     if (!this.deptId) {
       this.deptId = this.$route.query.deptId;
       this.selectorValue = this.$route.query.departName;
@@ -149,7 +148,6 @@ export default {
     if (!this.yuanId) {
       this.yuanId = this.$route.query.yuanId * 1;
     }
-
     var box = document.getElementById('mornign');
     var w = box.style.width;
     var h = box.style.height;
@@ -189,8 +187,6 @@ export default {
     this.doctorListFun();
   },
   methods: {
-
-
     orgFun() {
       this.$axios.put(bdHospitalOrg, {
         id: this.yuanId,

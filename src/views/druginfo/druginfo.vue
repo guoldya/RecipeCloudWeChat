@@ -412,7 +412,7 @@ export default {
           },
         }).then((res) => {
           if (res.data.code == '200') {
-            Toast.succeed("收藏成功");
+            // Toast.succeed("收藏成功");
             this.isCollection = 1;
           } else {
             console.log(res.msg);
@@ -430,7 +430,7 @@ export default {
         },
       }).then((res) => {
         if (res.data.code == '200') {
-          Toast.succeed("取消收藏");
+          // Toast.succeed("取消收藏");
           _this.isCollection = 0;
         } else {
           Toast.succeed(res.data.msg);
@@ -504,7 +504,7 @@ export default {
         total: this.num,
       }).then((res) => {
         if (res.data.code == '200') {
-          Toast.succeed("添加成功");
+          // Toast.succeed("添加成功");
           this.addCar(res.data);
         } else {
           Toast.succeed(res.data.msg);
