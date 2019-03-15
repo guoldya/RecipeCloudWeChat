@@ -76,7 +76,7 @@
         </div>
       </div>
       <Loading v-show="loadingtrue"></Loading>
-      <div class="md-example-child md-example-child-cashier" v-if="feeActiveId==1">
+      <div v-show="!loadingtrue" class="md-example-child md-example-child-cashier" v-if="feeActiveId==1">
         <md-button class="margin16" type="primary" @click="rightPay" round>立即缴费</md-button>
         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
       </div>

@@ -28,7 +28,7 @@
             </ul>
          </div>
       </div>
-      <div style="height:20px; background: #f8f8f8"></div>
+      <div style="height:15px; background: #f8f8f8"></div>
       <div class="order-info ">
          <ul class="g-items">
             <li class="input-line g-arrow-r J_PatientsDropDown J_AdjustWidth">

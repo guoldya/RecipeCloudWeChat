@@ -33,7 +33,6 @@ export default {
                               var cc = data.label;
                               this.pickerValue1 = aa + bb + cc;
                               this.pickerDefaultIndex.push(index);
-                              console.log(this.pickerDefaultIndex)
                            }
                         })
                      }
