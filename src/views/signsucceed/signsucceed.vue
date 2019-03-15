@@ -16,7 +16,7 @@
       <p class="signsucceedtitle">就诊预约情况</p>
       <div class="card" v-for="(item,i) in waitList" :key="i">
         <div class="cardText">
-          <p class="cardTextPP">就诊项目：
+          <p class="cardTextPPTilt">就诊项目：
             <span class="mu-secondary-text-color">{{item.orgName}}</span>
           </p>
           <p class="cardTextPP">
@@ -151,12 +151,20 @@ export default {
 .signsucceed .card {
   margin-bottom: 40px;
 }
+
 .signsucceed .cardText .cardTextPP {
   display: flex;
   justify-content: space-between;
   padding: 25px 0;
   font-size: 28px;
   border-bottom: 1px solid #e9e9e9;
+}
+
+.signsucceed .cardText .cardTextPPTilt {
+  display: inherit;
+  padding: 25px 0;
+  font-size: 28px;
+  border-bottom: 1px solid #f5f5f5;
 }
 .signsucceed .cardText .cardTextPP:last-child {
   border: none;

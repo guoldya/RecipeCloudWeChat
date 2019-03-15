@@ -52,7 +52,9 @@ export default {
           this.address = res.data.data.address;
           this.areaId = res.data.data.areaId;
           this.pickerDefaultValue = [parseInt(this.areaId / 1000) * 1000, parseInt(this.areaId / 100) * 100, this.areaId]
-          this.zipCode = res.data.data.zipCode;
+         
+         console.log( this.pickerDefaultValue," this.pickerDefaultValue")
+         this.zipCode = res.data.data.zipCode;
         }
       }).catch(function (err) {
         console.log(err);

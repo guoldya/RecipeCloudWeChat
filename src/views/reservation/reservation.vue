@@ -28,7 +28,7 @@
             </ul>
          </div>
       </div>
-      <div style="height:20px; background: #f8f8f8"></div>
+      <div style="height:15px; background: #f8f8f8"></div>
       <div class="order-info ">
          <ul class="g-items">
             <li class="input-line g-arrow-r J_PatientsDropDown J_AdjustWidth">
@@ -85,7 +85,7 @@ export default {
          isCashierhow: false,
          money: '',
          cashierResult: 'success',
-
+         backId: '',
          cashierChannels: [
             {
                icon: 'cashier-icon-2',
@@ -134,6 +134,8 @@ export default {
       this.major = this.$store.state.major;
       if (this.$route.query.afternoon * 1 == 1) {
          this.afternoon = '上午';
+      } else if (this.$route.query.afternoon * 1 == 2) {
+         this.afternoon = '下午';
       } else {
          this.afternoon = this.$route.query.afternoon;
       }
@@ -147,9 +149,9 @@ export default {
    },
    methods: {
       onCashierPay() {
-
          let nowPayParams = {};
          nowPayParams.sourceId = this.$route.query.sourceId * 1;
+         nowPayParams.id = this.backId;
          nowPayParams.payType = 1;
          this.$axios.post(now_pay_url, nowPayParams).then((res) => {
             if (res.data.code == '200') {
@@ -164,8 +166,6 @@ export default {
             console.log(err);
          });
       },
-
-
       onCashierSelect(item) {
          console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
       },
@@ -218,6 +218,7 @@ export default {
          }).then((res) => {
             if (res.data.code == '200') {
                this.isCashierhow = !this.isCashierhow;
+               this.backId = res.data.data;
             } else {
                this.$toast.info("提交失败")
             }
