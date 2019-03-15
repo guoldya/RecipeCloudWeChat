@@ -6,7 +6,7 @@
                 <div class="cardText">
                     <div class="listData">
                         <span>科室</span>
-                        <span>{{item.deptName}}</span>
+                        <span>{{item.orgName}}</span>
                     </div>
                     <p class="partLine"></p>
                     <div class="listData">

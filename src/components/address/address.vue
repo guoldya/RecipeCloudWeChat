@@ -1,7 +1,7 @@
 <template>
    <div class="adressinfo">
-      <md-field-item title="所在区域"   arrow="arrow-right" :addon="pickerValue1" @click="openAdress"> </md-field-item>
-      <md-picker ref="picker1" v-model="isPickerShow1" :data="pickerData1" :cols="3" is-cascade title="选择省市区/县" @confirm="onPickerConfirm(1)"></md-picker>
+      <md-field-item title="所在区域" arrow="arrow-right" :addon="pickerValue1" @click="openAdress"> </md-field-item>
+      <md-picker ref="picker1" v-model="isPickerShow1" :default-index="pickerDefaultIndex" :data="pickerData1" :cols="3" is-cascade title="选择省市区/县" @confirm="onPickerConfirm(1)"></md-picker>
    </div>
 </template>
 <script>
@@ -12,6 +12,7 @@ export default {
          pickerData1: [],
          pickerValue1: '',
          isPickerShow1: false,
+         pickerDefaultIndex: [],
       }
    },
    props: ['defaultValue'],
@@ -19,40 +20,26 @@ export default {
       this.$axios.put(appshippingAddressareaList, {
       }).then(res => {
          if (res.data.code == '200') {
-            res.data.rows.forEach(value => {
-               // var a = res.data.rows.find(item => {
-               //   item.areaCode == this.pickerDefaultValue[0];
-               //   var aa = item.label;
-               //   return item;
-               // });
-               // var b = a.find(item => {
-               //   item.areaCode == this.pickerDefaultValue[1];
-               //   var bb = item.label;
-               //   console.log(item, bb);
-               //   return item;
-               // });
-               // b.find(item => {
-               //   item.areaCode == this.pickerDefaultValue[2];
-               //   var cc = item.label;
-               //   console.log(item, cc);
-               //   return item;
-               // });
+            res.data.rows.forEach((value, index) => {
                if (value.areaCode == this.defaultValue[0]) {
                   var aa = value.label;
-                  value.children.forEach(test => {
+                  this.pickerDefaultIndex.push(index)
+                  value.children.forEach((test, index) => {
                      if (test.areaCode == this.defaultValue[1]) {
                         var bb = test.label;
-                        test.children.forEach(data => {
+                        this.pickerDefaultIndex.push(index)
+                        test.children.forEach((data, index) => {
                            if (data.areaCode == this.defaultValue[2]) {
                               var cc = data.label;
                               this.pickerValue1 = aa + bb + cc;
+                              this.pickerDefaultIndex.push(index);
+                              console.log(this.pickerDefaultIndex)
                            }
                         })
                      }
                   })
                }
             })
-
 
             this.pickerData1 = [this.areaList(res.data.rows)];
          }
@@ -63,7 +50,8 @@ export default {
 
    },
    mounted() {
-
+      // console.log(this.defaultValue, "我是");
+      // this.pickerDefaultIndex = this.defaultValue;
    },
    methods: {
       openAdress() {

@@ -85,7 +85,7 @@ export default {
          isCashierhow: false,
          money: '',
          cashierResult: 'success',
-
+         backId: '',
          cashierChannels: [
             {
                icon: 'cashier-icon-2',
@@ -149,9 +149,9 @@ export default {
    },
    methods: {
       onCashierPay() {
-
          let nowPayParams = {};
          nowPayParams.sourceId = this.$route.query.sourceId * 1;
+         nowPayParams.id = this.backId;
          nowPayParams.payType = 1;
          this.$axios.post(now_pay_url, nowPayParams).then((res) => {
             if (res.data.code == '200') {
@@ -166,8 +166,6 @@ export default {
             console.log(err);
          });
       },
-
-
       onCashierSelect(item) {
          console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
       },
@@ -220,6 +218,7 @@ export default {
          }).then((res) => {
             if (res.data.code == '200') {
                this.isCashierhow = !this.isCashierhow;
+               this.backId = res.data.data;
             } else {
                this.$toast.info("提交失败")
             }

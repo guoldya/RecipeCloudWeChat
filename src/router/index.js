@@ -99,14 +99,20 @@ import seeCase from '@/views/onlines/seeCase'
 import inspectionReport from '@/views/onlines/inspectionReport'
 import caseDetail from '@/views/onlines/caseDetail'
 import inspectionDetail from '@/views/onlines/inspectionDetail'
-
+ 
 import business from '@/views/copyrecord/business/business.vue'
 import chooseCase from '@/views/copyrecord/chooseCase/chooseCase.vue'
 import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 
+ 
+
 import resultDoctor from '@/views/resultDr/result.vue'
+
+import privacy from '@/views/appwarn/privacy/privacy.vue'
+
+
 
 Vue.use(Router)
 
@@ -271,16 +277,16 @@ export default new Router({
     path: '/result',
     name: 'result',
     component: result,
-    meta:{
-      title:'搜索'
+    meta: {
+      title: '搜索'
     }
   },
   {
     path: '/resultDoctor',
     name: 'resultDoctor',
     component: resultDoctor,
-    meta:{
-      title:'搜索'
+    meta: {
+      title: '搜索'
     }
   },
   {
@@ -292,7 +298,7 @@ export default new Router({
     path: '/feerecord',
     name: 'feerecord',
     component: feerecord,
-      meta:{keepAlive:true}
+    meta: { keepAlive: true }
   },
   {
     path: '/feesucces',
@@ -317,7 +323,7 @@ export default new Router({
     path: '/reportquery',
     name: 'reportquery',
     component: reportquery,
-     meta: { keepAlive: true }
+    meta: { keepAlive: true }
   },
   {
     path: '/reportinfo',
@@ -565,6 +571,14 @@ export default new Router({
     component: chooseCase,
     meta: {
       title: "选择复印病案"
+    }
+  },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: privacy,
+    meta: {
+      title: "处方云隐私政策"
     }
   },
   {
