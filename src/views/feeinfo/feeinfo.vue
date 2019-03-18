@@ -180,7 +180,6 @@ export default {
       this.$axios.put(fconfirm_pay_url, { id: this.feeId }).then((res) => {
         if (res.data.code == '200') {
           this.orderCode = res.data.data.orderCode;
-
         }
       }).catch(function (err) {
         console.log(err);
@@ -298,16 +297,15 @@ export default {
       // Abort pay request or checking request
       this.timer && clearTimeout(this.timer)
     },
-      beforeRouteLeave(to, from, next) {
-          console.log(to.path);
-          if (to.path == "/feerecord") {
-              to.meta.keepAlive = true;
-          } else {
-              to.meta.keepAlive = false;
-          }
-          next();
-      },
   },
+    beforeRouteLeave(to, from, next) {
+        if (to.path == "/feerecord") {
+            to.meta.keepAlive = true;
+        } else {
+            to.meta.keepAlive = false;
+        }
+        next();
+    },
   computed: {
     cashier() {
       return this.$refs.cashier

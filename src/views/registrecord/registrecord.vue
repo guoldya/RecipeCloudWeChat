@@ -67,8 +67,6 @@ export default {
             params.pageNumber = this.page;
             params.pageSize = this.pageSize;
             params.cardId = this.$store.state.cardId;
-
-
             this.$axios.put(read_page_url, params).then((res) => {
                 if (res.data.rows) {
                     this.loadingtrue = false;

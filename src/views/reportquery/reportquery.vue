@@ -74,10 +74,8 @@ export default {
             page: 1,
             pageSize: 10,
             type: 1,
-            datepick: false,
             date: undefined,
             isWeixin: false,
-            isDatePickerShow: false,
             active1: 0,
             reportactive1: 0,
             departs: [
@@ -209,12 +207,6 @@ export default {
             this.loadingtrue = true;
             this.page = 1;
             this.getGoodslist();
-        },
-        timeSwitchTo(num) {
-            this.reportactive1 = num;
-        },
-        datePick() {
-            this.datepick = !this.datepick
         },
         showSelector() {
             this.isSelectorShow = true
