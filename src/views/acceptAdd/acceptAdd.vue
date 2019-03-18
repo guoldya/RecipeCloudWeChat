@@ -1,9 +1,9 @@
 <template>
     <div class="acceptAdd">
-        <Header post-title="选择收获地址" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="选择收获地址"  ></Header>
+        <div class="outCarint margin45">
             <div class="outCarint">
-                <div class=" " v-for="(item,i) in addInfo">
+                <div   v-for="(item,i) in addInfo">
                     <div class="cardText submitUser">
                         <div class="iconInfo">
                             <div class="addImg" >

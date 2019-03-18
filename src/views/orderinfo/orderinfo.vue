@@ -1,7 +1,7 @@
 <template>
 
    <div class="orderinfo">
-      <Header post-title="预约详情" v-show="isWeixin"></Header>
+      <Header post-title="预约详情"  ></Header>
       <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
          <div class="card margin16">
             <div class="cardText  ">

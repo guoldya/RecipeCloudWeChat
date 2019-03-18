@@ -2,7 +2,7 @@
 
   <div class="page-loadmore">
     <Header post-title="预约记录"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true}">
+    <div class="outCarint margin45">
       <div style="text-align: center;margin:80px  0 40px">
         <div>
           <img src="@/assets/images/icon_success.png" width="60px">

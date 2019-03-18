@@ -209,9 +209,9 @@ export default new Router({
     path: '/my',
     name: 'my',
     component: my,
-    meta: {
-      keepAlive: true
-    }
+    // meta: {
+    //   keepAlive: true
+    // }
   },
   {
     path: '/sign',
@@ -337,7 +337,6 @@ export default new Router({
     path: '/reportquery',
     name: 'reportquery',
     component: reportquery,
-    meta: { keepAlive: true }
   },
   {
     path: '/reportinfo',
@@ -403,7 +402,6 @@ export default new Router({
     name: 'medicalEva',
     component: medicalEva
   },
-
   {
     path: '/recipeDetail',
     name: 'recipeDetail',

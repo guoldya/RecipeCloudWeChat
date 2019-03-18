@@ -1,6 +1,6 @@
 <template>
   <div class="cardblind">
-    <Header post-title="绑定就诊卡" v-show="isWeixin"></Header>
+    <Header post-title="绑定就诊卡"  ></Header>
     <div :class="{margin45:isWeixin,outCarint:true }">
       <md-field>
         <md-input-item ref="input13" v-model="name" title="姓名" placeholder="姓名" is-highlight></md-input-item>

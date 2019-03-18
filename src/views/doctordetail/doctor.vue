@@ -1,7 +1,7 @@
 
 <template>
-    <div :class="{'margin45':isWeixin,'doctorinfo':true, }">
-        <Header post-title="医生详情" v-show="isWeixin"></Header>
+    <div class="outCarint margin45">
+        <Header post-title="医生详情"></Header>
         <div class="doctor-head">
             <div class="outCarint">
                 <!-- <div class="doctor-info">
@@ -46,7 +46,7 @@
                                 <span class="colo13">
                                     {{major}} {{depart}} <br/> 余
                                     <span class="mu-secondary-text-color">{{orderinfo.valNum}}</span>&nbsp;
-                                    <span class="mu-secondary-text-color">￥{{orderinfo.money}}</span>
+                                    <span class="mu-secondary-text-color">￥{{orderinfo.money | keepTwoNum}}</span>
                                 </span>
                             </div>
                             <div v-show="orderinfo.valNum!=0" @click="todayreservation(orderinfo)" class="available-tag">预约</div>
@@ -61,7 +61,7 @@
                                 <span class="colo13">
                                     {{item.dept}} {{depart}} <br/> 余
                                     <span class="mu-secondary-text-color">{{item.valNum}}</span>&nbsp;
-                                    <span class="mu-secondary-text-color">￥{{item.money}}</span>
+                                    <span class="mu-secondary-text-color">￥{{item.money | keepTwoNum}}</span>
                                 </span>
                             </div>
                             <div v-show="item.valNum!=0" @click="reservation(item)" class="available-tag">预约</div>

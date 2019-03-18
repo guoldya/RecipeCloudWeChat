@@ -1,6 +1,6 @@
 <template>
       <div class="cardmy">
-            <Header post-title="管理就诊卡" v-show="isWeixin"></Header>
+            <Header post-title="管理就诊卡"  ></Header>
             <div :class="{'margin45':isWeixin}">
                   <div class="tiptop">
                         <div class="tiptopwarn">

@@ -1,6 +1,6 @@
 <template>
    <div class="orderrecord">
-      <Header post-title="预约记录" v-show="isWeixin"></Header>
+      <Header post-title="预约记录"  ></Header>
       <div :class="{'outCarint':true,'margin45':isWeixin}">
          <div class="appTab">
             <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">

@@ -1,6 +1,6 @@
 <template>
   <div class="workdoctor">
-    <Header :post-title="postTitle" v-show="isWeixin"></Header>
+    <Header :post-title="postTitle"  ></Header>
     <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
       <div class="doctorList">
         <ul v-show="!loadingtrue" v-if="doctorData.length!=0">

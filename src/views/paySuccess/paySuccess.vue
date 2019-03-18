@@ -1,7 +1,7 @@
 <template>
     <div class="paySuccess">
-        <Header post-title="支付成功" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="支付成功"  ></Header>
+        <div class="outCarint margin45">
             <div class="outCarint">
                 <div class="card margin16">
                     <div class="cardText">

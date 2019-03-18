@@ -1,7 +1,7 @@
 <template>
    <div class="doctorList">
-      <Header post-title="复诊医生" v-show="isWeixin"></Header>
-      <div :class="{margin45:isWeixin,outCarint:true}">
+      <Header post-title="复诊医生"  ></Header>
+      <div class="outCarint margin45">
          <ul>
             <li v-for="i in num" :key="i">
                <div class="card margin16" @click="intodoctordetail">

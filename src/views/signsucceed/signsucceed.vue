@@ -1,7 +1,7 @@
  
 <template>
   <div class="signsucceed">
-    <Header post-title="签到成功" v-show="isWeixin"></Header>
+    <Header post-title="签到成功"  ></Header>
     <div :class="{margin45:isWeixin,signsucceedtop:true,margin16:!isWeixin}">
       <div style="text-align: center;margin-bottom: 20px">
         <div>

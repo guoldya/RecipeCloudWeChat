@@ -1,8 +1,8 @@
 <template>
 
   <div class="lineupnow">
-    <Header post-title="排队详情" v-show="isWeixin"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true}" v-show="!loadingtrue">
+    <Header post-title="排队详情"  ></Header>
+    <div class="outCarint margin45" v-show="!loadingtrue">
       <div  v-if="lineupinfo!=null">
         <div class="card margin16">
           <div class="cardHEADER">

@@ -1,6 +1,6 @@
 <template>
    <div :class="{'outCarint':true,'margin45':isWeixin, }">
-      <Header post-title="注册" v-show="isWeixin"></Header>
+      <Header post-title="注册"  ></Header>
       <div>
          <!-- <img src="@/assets/images/AAAA.png" alt=""> -->
       </div>

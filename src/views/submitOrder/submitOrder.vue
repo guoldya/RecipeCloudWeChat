@@ -1,7 +1,7 @@
 <template>
     <div class="submitOrder">
-        <Header post-title="提交订单" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="提交订单"  ></Header>
+        <div class="outCarint margin45">
             <div class="outCarint">
                 <div class="pageContent">
                     <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">

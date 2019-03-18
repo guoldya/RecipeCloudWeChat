@@ -1,6 +1,6 @@
 <template>
     <div class="examineOrder">
-        <Header post-title="检验检查" v-show="isWeixin"></Header>
+        <Header post-title="检验检查"  ></Header>
         <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
             <div class="time">
                 <ul>

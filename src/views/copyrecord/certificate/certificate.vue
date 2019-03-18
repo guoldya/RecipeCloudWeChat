@@ -1,5 +1,5 @@
 <template>
-   <div class=" outCarint margin45  ">
+   <div class="outCarint margin45">
       <Header post-title="上传证件"></Header>
       <div class="rebinding-box card margin16">
          <div class="box-timeline  cardText">

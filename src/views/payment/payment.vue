@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="payment">
-        <Header post-title="订单信息" v-show="isWeixin"></Header>
+        <Header post-title="订单信息"  ></Header>
         <div class="payment-head">
             <span class="payment-head-text">订单信息</span>
         </div>

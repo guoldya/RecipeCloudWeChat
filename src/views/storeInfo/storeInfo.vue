@@ -1,7 +1,7 @@
 <template>
     <div class="storeInfo">
-        <Header post-title="药店信息" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="药店信息"  ></Header>
+        <div class="outCarint margin45">
             <div class="outCarint">
                 <div class="margin16">
                     <div class="cardText title">

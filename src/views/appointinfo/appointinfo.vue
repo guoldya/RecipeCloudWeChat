@@ -1,7 +1,7 @@
 <template>
   <div class="appointinfo">
-    <Header post-title="预约记录详情" v-show="isWeixin"></Header>
-    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+    <Header post-title="预约记录详情"  ></Header>
+    <div class="outCarint margin45">
       <div class="card">
         <div class="cardText">
           <a class="headimg" style="margin-right:5px"> <img src="@/assets/images/3.jpg" alt="店铺头像"></a>

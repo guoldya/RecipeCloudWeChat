@@ -1,6 +1,6 @@
 <template>
    <div class="reportquery">
-      <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
+      <header class="aui-navBar aui-navBar-fixed"  >
          <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
             <img src="@/assets/images/icon_back.png">
          </span>
@@ -17,7 +17,7 @@
          <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
          <!--</span>-->
       </header>
-      <div :class="{margin45:isWeixin,outCarint:true}">
+      <div class="outCarint margin45">
          <!--<div class="timeTab" style="margin-top:20px">-->
          <!--<span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">-->
          <!--{{item.title}}-->

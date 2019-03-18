@@ -51,45 +51,44 @@
         </div>
       </div>
     </div>
+
     <div class="outCarint">
       <div class="card">
         <div class="cardText">
           <p class="cardTextPP cardTextTitle">
-            <span>类别</span>
-            <span>项目名</span>
-            <span>数量</span>
-            <span>金额</span>
+            <span style="width: 20%;">类别</span>
+            <span style="width: 44%;">项目名</span>
+            <span style="width: 18%;text-align:right">数量</span>
+            <span style="width: 18%;text-align:right">金额</span>
           </p>
-          <p class="cardTextPP">
-            <span>西药费</span>
-            <span>
-              <p>肺力咳合剂</p>
-              <p>肺力咳合剂 </p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查费</span>
-            <span>
-              <p>肺力咳合剂</p>
-              <p>肺力咳合剂 </p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-          </p>
+          <div style="border-bottom:1px solid #e9e9e9">
+            <div class="cardTextPP" style="border-bottom:none">
+              <span style="width: 20%;">西药费</span>
+              <span style="width: 44%;">双肺纹理增多</span>
+              <span style="width: 18%;text-align:right">100</span>
+              <span style="width: 18%;text-align:right">1</span>
+            </div>
+            <div class="cardTextPP">
+              <span style="width: 20%;"> </span>
+              <span style="width: 44%;">心影形态大小未见明显异常</span>
+              <span style="width: 18%;text-align:right">10</span>
+              <span style="width: 18%;text-align:right">100</span>
+            </div>
+          </div>
+          <div >
+            <div class="cardTextPP" style="border-bottom:none">
+              <span style="width: 20%;">检查费</span>
+              <span style="width: 44%;">双肺纹理增多</span>
+              <span style="width: 18%;text-align:right">100</span>
+              <span style="width: 18%;text-align:right">1</span>
+            </div>
+            <div class="cardTextPP">
+              <span style="width: 20%;"> </span>
+              <span style="width: 44%;">心影形态大小未见明显异常</span>
+              <span style="width: 18%;text-align:right">10</span>
+              <span style="width: 18%;text-align:right">100</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card">

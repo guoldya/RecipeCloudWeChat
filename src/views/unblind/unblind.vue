@@ -1,6 +1,6 @@
 <template>
   <div :class="{'outCarint':true,'margin45':isWeixin}">
-    <Header post-title="解除绑定" v-show="isWeixin"></Header>
+    <Header post-title="解除绑定"  ></Header>
 
     <p>
       <md-icon name="warn-color" size="lg" color="orange" svg style="position:relative;top:5px; "></md-icon>

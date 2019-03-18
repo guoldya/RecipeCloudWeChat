@@ -1,7 +1,7 @@
 <template>
    <div class="adress">
-      <Header post-title="地址管理" v-show="isWeixin"></Header>
-      <div :class="{margin45:isWeixin,outCarint:true}" style="margin-bottom:70px">
+      <Header post-title="地址管理"  ></Header>
+      <div class="outCarint margin45" style="margin-bottom:70px">
          <ul>
             <li v-for="(item,index) in addressInfo" :key="index">
                <div class="card">

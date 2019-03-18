@@ -1,6 +1,6 @@
 <template>
     <div class="inspectionCheck">
-        <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
+        <header class="aui-navBar aui-navBar-fixed"  >
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
             </span>
@@ -17,7 +17,7 @@
                 <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
             <!--</span>-->
         </header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <div class="outCarint margin45">
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="titleIndex === 1">
                 <div class="card margin16">

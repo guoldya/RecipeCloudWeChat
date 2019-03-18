@@ -1,7 +1,7 @@
 <template>
     <div class="recipeDetail">
-        <Header post-title="处方详情" v-show="isWeixin"></Header>
-        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+        <Header post-title="处方详情"  ></Header>
+        <div class="outCarint margin45">
             <div>
                 <div class="card margin16" v-for="(item,i) in recipeData">
                     <div class="cardText ">
