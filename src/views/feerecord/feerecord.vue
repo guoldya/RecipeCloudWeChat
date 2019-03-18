@@ -28,9 +28,9 @@
                     <div class="cardText">
                         <p>患者：{{item.patientName}}</p>
                         <p>医院：{{item.hospital}}</p>
-                        <p v-if="type === 1">开单时间：{{item.createTime}}</p>
-                        <p v-if="type === 2">支付时间：{{item.payTime}}</p>
-                        <div style="height:30px;  text-align: right;" v-if="type === 1">
+                        <p v-if="type === 0">开单时间：{{item.createTime}}</p>
+                        <p v-if="type === 1">支付时间：{{item.payTime}}</p>
+                        <div style="height:30px;  text-align: right;" v-if="type === 0">
                             <span class="payatnow">立即支付</span>
                         </div>
                     </div>
@@ -68,7 +68,7 @@ export default {
             optionsData: [],
             page: 1,
             pageSize: 10,
-            type: 1,
+            type: 0,
             busy: true,
             nomore: false,
             loadingtrue: true,
@@ -79,9 +79,9 @@ export default {
 
     },
     mounted() {
-        if (this.$store.state.feeActiveId) {
-            this.type = this.$store.state.feeActiveId;
-        }
+        // if (this.$store.state.feeActiveId) {
+        //     this.type = this.$store.state.feeActiveId;
+        // }
         this.WaitPay(false);
         // this.personFun();
         document.title = '缴费记录';
@@ -134,6 +134,7 @@ export default {
 
         childByValue: function (childValue) {
             this.type = childValue.type;
+            if(childValue.type==1){this.type=0;}else{this.type=1;}
             this.$store.commit('feeActiveFun', childValue.type);
             this.waitPayData = [];
             this.loadingtrue = true;
@@ -181,10 +182,10 @@ export default {
                 this.WaitPay(true);
             }, 500);
         },
-        beforeRouteLeave(to, from, next) {
-            from.meta.keepAlive = false;
-            next();
-        },
+    },
+    beforeRouteLeave(to, from, next) {
+        from.meta.keepAlive = false;
+        next();
     },
     computed: {
 

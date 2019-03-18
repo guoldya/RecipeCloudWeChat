@@ -20,7 +20,7 @@
                             <p class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
                                 介绍：{{doctorData.introduce}}
                             </p>
-                            <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
+                            <p class="open" @click="isSeemore=!isSeemore" v-show="moreButton"> 更多</p>
                         </div>
                     </div>
                 </div>
@@ -45,10 +45,12 @@
                 isWeixin: false,
                 docId:'',
                 loadingtrue:true,
+                moreButton:false,
                 doctorData:[],
                 depart:'',
                 spliceM:'',
                 nowMonth:'',
+                nowDate:'',
             }
         },
         mounted() {
@@ -67,10 +69,10 @@
         methods: {
             changeCalendar(){
                 this.$nextTick(()=> {
-                    var element=document.getElementsByClassName("wh_content")[1].children;
-                    var para=document.createElement("div");
-                    var paraPm=document.createElement("div");
-                    var paraAll=document.createElement("div");
+                    let element=document.getElementsByClassName("wh_content")[1].children;
+                    let para=document.createElement("div");
+                    let paraPm=document.createElement("div");
+                    let paraAll=document.createElement("div");
                     para.style.color="#b5b5b5";
                     para.style.height="20px";
                     para.style.marginTop="-5px";
@@ -86,13 +88,17 @@
                     para.appendChild(am);
                     paraPm.appendChild(pm);
                     paraAll.appendChild(all);
-                    for(let i=0;i<element.length;i++){
-                        // if(element[i].children[0].className=="wh_item_date wh_isToday" && this.spliceM==this.nowMonth){
-                        //     element[i].appendChild(para);
-                        // }else if(element[i].children[1]){
-                        //     element[i].children[1].parentNode.removeChild(element[i].children[1]);
-                        // }
-                    }
+                    // if(this.spliceM==this.nowMonth){
+                    //     for(let i=0;i<element.length;i++){
+                    //         if(element[i].children[0].className!="wh_item_date wh_other_dayhide"){
+                    //             if(element[i].children[0].innerText==this.nowDate){
+                    //                 element[i].appendChild(paraPm)
+                    //             }else if(element[i].children[1]){
+                    //                 element[i].children[1].parentNode.removeChild(element[i].children[1]);
+                    //             }
+                    //         }
+                    //     }
+                    // }
                     if(this.spliceM==this.nowMonth){
                         element[8].appendChild(paraPm);
                         element[6].appendChild(paraAll);
@@ -109,6 +115,9 @@
                     if (res.data.code == '200') {
                         this.loadingtrue=false;
                         this.doctorData=res.data.data;
+                        if(this.doctorData.aaa.length>16){
+                            this.moreButton=true;
+                        }
                     }
                 }).catch(function (err) {
                     console.log(err);
@@ -120,11 +129,16 @@
             changeDate(data) {
                  console.log(data); //左右点击切换月份
                 var nowTime = new Date();
+                this.nowDate= nowTime.getDate();
                 this.nowMonth=nowTime.getMonth()+1;
                 if(data.length==8){
                     this.spliceM=data.substr(5,1)
-                }else if((data.length==9 || data.length==10)&& data.split("/")[1].length==2){
-                    this.spliceM=data.substr(5,2)
+                }else if(data.length==9 || data.length==10){
+                    if(data.split("/")[1].length==2){
+                        this.spliceM=data.substr(5,2)
+                    }else{
+                        this.spliceM=data.substr(5,1)
+                    }
                 }
                 this.changeCalendar();
             },
@@ -169,6 +183,7 @@
         text-overflow:ellipsis;
         white-space: nowrap;
     }
+
     .yy_dateAA {
         height: auto;
     }
@@ -177,6 +192,9 @@
     }
     .doctorschedu .content{
         margin: 4px 0;
+    }
+    .doctorschedu .introduce {
+        height: 72px;
     }
 </style>
 

@@ -140,6 +140,7 @@ export default {
             selectorValue: '陈楚生得',
             isActive: true,
             choseValue:'',
+            loadingtrue:'',
         };
     },
     created() {
