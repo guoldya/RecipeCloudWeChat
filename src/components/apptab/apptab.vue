@@ -55,7 +55,7 @@ export default {
 }
 .appTab {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .appTab span {
   padding: 0 8px 8px;

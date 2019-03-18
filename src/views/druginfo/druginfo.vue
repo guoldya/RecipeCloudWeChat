@@ -24,10 +24,10 @@
       </div>
       <div class="content">
         <div class="cainter border1">
-          <h1>{{drugInfo.name}}</h1>
-          <p class="colo13">快递：0</p>
-          <p class="price">￥ {{drugInfo.price}} </p>
-          <p class="colob13">规格：{{drugInfo.packSpec}}</p>
+          <h1>{{drugInfo.name}} {{drugInfo.packSpec}}/{{drugInfo.packUnit}}</h1>
+          <p class="colo13">快递：￥0.00</p>
+          <p class="price">￥{{drugInfo.price | keepTwoNum}} </p>
+          <!-- <p class="colob13">规格：{{drugInfo.packSpec}}</p> -->
           <p class="colob13">批准文号：{{drugInfo.authNo}}</p>
           <p class="colob13">生产厂商：{{drugInfo.factory}}</p>
           <p class="colob13 mb13">
@@ -40,11 +40,12 @@
           </p>
         </div>
       </div>
-      <div class="content contentDrug">
+      <div class="xianLine"></div>
+      <div class="content contentDrug ">
         <div class="cainter">
           <div class="cainterDrug">
             <div class="drugHead">
-              <img src="@/assets/images/3.jpg" alt="店铺头像">
+              <img src="@/assets/images/4.jpg" alt="店铺头像">
             </div>
             <div class="headRight">
               <div class="starleft">
@@ -62,34 +63,33 @@
           </div>
         </div>
       </div>
-      <div class="content">
-        <div class="cainter cainterOUt border1">
-          <div class="cainterAA">
-            <p class="colo13">客户服务</p>
-            <p class="fenshu">{{drugstore1}}分</p>
-          </div>
-          <div class="cainterAA">
-            <p class="colo13">发货速度</p>
-            <p class="fenshu">{{drugstore2}}分</p>
-          </div>
-          <div class="cainterAA">
-            <p class="colo13">物流速度</p>
-            <p class="fenshu">{{drugstore3}}分</p>
-          </div>
-          <div class="cainterAA">
-            <p class="colo13">商品包装</p>
-            <p class="fenshu">{{drugstore4}}分</p>
-          </div>
+      <div class="grade mb13">
+        <div class="cainterAA">
+          <p class="fenshuTitle">客户服务</p>
+          <p class="fenshu">{{drugstore1}}分</p>
+        </div>
+        <div class="cainterAA">
+          <p class="fenshuTitle">发货速度</p>
+          <p class="fenshu">{{drugstore2}}分</p>
+        </div>
+        <div class="cainterAA">
+          <p class="fenshuTitle">物流速度</p>
+          <p class="fenshu">{{drugstore3}}分</p>
+        </div>
+        <div class="cainterAA">
+          <p class="fenshuTitle">商品包装</p>
+          <p class="fenshu">{{drugstore4}}分</p>
         </div>
       </div>
-      <div class="content" style="margin-bottom:60px">
+      <div class="xianLine"></div>
+      <div class="content" style="margin-bottom:60px; ">
         <div class="cainter">
           <h1 class="pingjia" style="width:100%;">用户评价</h1>
           <ul v-show="!loadingtrue" v-if="goodsList.length!=0" id="newsList" class="news-list">
             <li v-for="(item2,index) in goodsList" :key='index' class="border1" style="width:100%">
               <div class="detaileTop">
                 <div class="headimg">
-                  <img src="@/assets/images/3.jpg" alt="店铺头像">
+                  <img src="@/assets/images/user.png" alt="店铺头像">
                 </div>
                 <div class="headRight headRightPJ">
                   <div>
@@ -126,7 +126,7 @@
     <div v-show="!isdelice">
       <div class="content margin120">
         <div class="cainter">
-          <div class="btn" style="width:95%;display: flex; flex-direction:row; justify-content:space-between">
+          <div class="btn" style=" display: flex; flex-direction:row; justify-content:space-around">
             <button v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="timeIndex === index ? 'abtninfo activebtn' : 'abtninfo' ">
               {{item.title}}
             </button>
@@ -174,7 +174,7 @@
 import { Toast } from 'mand-mobile';
 let bdProductreaddetail = '/app/bdProduct/read/detail';
 let appbizCollectionaddCollection = '/app/bizCollection/addCollection';
-let appbizCollectiondeleteCollection = '/app/bizCollection/deleteCollection';
+let appbizCollectiondeleteCollection = '/app/bizCollection/deleteByContentId';
 let appbizProductEvaluatereadpage = "/app/bizProductEvaluate/read/page";
 let appbizShoppingCartadd = "/app/bizShoppingCart/add"
 export default {
@@ -281,7 +281,7 @@ export default {
     function UrlSearch() {
       let name, value;
       let str = location.href;
-      // let str = "http://192.168.0.150:40080/h5/#/druginfo?drugId=104&TOKEN=e7d2cd089b714246aec4f5397bebaef8&UUID=f04b86567903f9de"; //取得整个地址栏
+      //let str = "http://192.168.0.150:40080/h5/#/druginfo?drugId=104&TOKEN=1d89a26bfc02417bab4755f298c5bf3e&UUID=FE3B570FA5FE47F88F468B5735189AB2"; //取得整个地址栏
       let num = str.indexOf("?");
       str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
       _this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;
@@ -423,7 +423,7 @@ export default {
     },
     cancleselect() {
       let _this = this;
-      this.$axios.delete(appbizCollectiondeleteCollection + '?id=' + _this.drugId, {
+      this.$axios.delete(appbizCollectiondeleteCollection + '?id=' + _this.drugId + '&collectType=' + 1, {
         headers: {
           'TOKEN': `${_this.TOKEN}`,
           'UUID': `${_this.UUID}`
