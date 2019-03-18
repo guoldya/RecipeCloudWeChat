@@ -107,6 +107,7 @@ input:-ms-input-placeholder {
 .colo13 {
   font-size: 26px;
   color: #979797;
+  line-height: 60px;
 }
 .margin16 {
   margin: 0 0 32px 0;
@@ -127,7 +128,7 @@ input:-ms-input-placeholder {
 
 /* 轮播图样式 */ /* 全局样式 */
 .swiper-container {
-  margin-top: 120px !important;
+  margin-top: 100px  ;
   padding-bottom: 30px;
 }
 
@@ -153,7 +154,7 @@ input:-ms-input-placeholder {
 .wannianli-info {
   height: 340px;
   background: #ffffff;
-  /* box-shadow: 0 0 10px rgba(79, 94, 105, 0.301); */
+  box-shadow: 0 0 20px rgba(131, 179, 208, 0.3);
   text-align: center;
   overflow: hidden;
   border-radius: 10px;
@@ -311,12 +312,12 @@ textarea::-webkit-input-placeholder {
   justify-content: space-between !important;
   flex-direction: row !important;
 }
-.md-dialog-btn  {
+.md-dialog-btn {
   border-right: 1px solid #ededed;
   width: 33%;
   text-align: center;
 }
-.md-check-box{
-  border: 2px solid  #c5cad5;
+.md-check-box {
+  border: 2px solid #c5cad5;
 }
 </style>

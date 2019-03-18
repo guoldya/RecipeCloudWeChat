@@ -1,5 +1,5 @@
 <template>
-  <div class="appTabCarint" >
+  <div class="appTabCarint">
     <div class="appTab">
       <span v-for="(item, index) in tabTitle" v-if="item.orgName" :key="'time' + index" @click="switchTo(item)" :class="active1 === item.id ? 'appTabAcitive' : '' ">
         {{item.title}}
@@ -28,11 +28,11 @@ export default {
   },
   methods: {
     switchTo(item) {
-        if(item.orgName){
-            this.active1 = item.id;
-        }else{
-            this.active1 = item.type;
-        }
+      if (item.orgName) {
+        this.active1 = item.id;
+      } else {
+        this.active1 = item.type;
+      }
       this.$emit('childByValue', item);
     },
   },
@@ -44,8 +44,8 @@ export default {
 .appTabCarint {
   /*margin: 110px 20px 0px;*/
   text-align: center;
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;
+  /* margin-left: 10%; */
 }
 .appTitle {
   padding: 28px 0px;
@@ -55,7 +55,7 @@ export default {
 }
 .appTab {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .appTab span {
   padding: 0 8px 8px;
