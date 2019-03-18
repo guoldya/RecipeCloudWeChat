@@ -20,7 +20,7 @@
                             <p class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
                                 介绍：{{doctorData.introduce}}
                             </p>
-                            <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
+                            <p class="open" @click="isSeemore=!isSeemore" v-show="moreButton"> 更多</p>
                         </div>
                     </div>
                 </div>
@@ -45,6 +45,7 @@
                 isWeixin: false,
                 docId:'',
                 loadingtrue:true,
+                moreButton:false,
                 doctorData:[],
                 depart:'',
                 spliceM:'',
@@ -114,6 +115,9 @@
                     if (res.data.code == '200') {
                         this.loadingtrue=false;
                         this.doctorData=res.data.data;
+                        if(this.doctorData.aaa.length>16){
+                            this.moreButton=true;
+                        }
                     }
                 }).catch(function (err) {
                     console.log(err);
@@ -179,6 +183,7 @@
         text-overflow:ellipsis;
         white-space: nowrap;
     }
+
     .yy_dateAA {
         height: auto;
     }
