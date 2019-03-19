@@ -119,7 +119,7 @@ export default {
         this.$toast.info('请完善信息')
       } else {
         this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1, {
-          
+
         }).then(res => {
           if (res.data.code == '200') {
             this.$axios.post(wechatbizPatientCardbinding, {

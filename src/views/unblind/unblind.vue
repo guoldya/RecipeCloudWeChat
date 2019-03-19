@@ -1,12 +1,11 @@
 <template>
   <div :class="{'outCarint':true,'margin45':isWeixin}">
-    <Header post-title="解除绑定"  ></Header>
-
+    <Header post-title="就诊卡详情"></Header>
     <p>
       <md-icon name="warn-color" size="lg" color="orange" svg style="position:relative;top:5px; "></md-icon>
       <span style="margin-left:10px;color:red">绑定3个月以上才可以解绑一次</span>
     </p>
-    <div class="card margin16">
+    <div class="card margin16"  style="margin-top:10px">
       <div class="cardText login-box">
         <div class="content">
           <div class="login-box">
@@ -18,11 +17,10 @@
               <span class="flexF">电子就诊卡号</span>
               <input class="flexF" type="text" name="cardNo" placeholder="电子就诊卡号" :value="cardNo">
             </div>
-            <div class="login-box-div">
+            <!-- <div class="login-box-div">
               <span class="flexF">登记号</span>
               <input type="text" class="infos flexF" name="yanz" placeholder="登记号" :value="registerNo" maxlength="4" />
-            </div>
-
+            </div> -->
           </div>
         </div>
       </div>
@@ -88,7 +86,7 @@ export default {
   },
   mounted() {
 
-    document.title = '解除绑定';
+    document.title = '就诊卡详情';
     var ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
       this.isWeixin = false;

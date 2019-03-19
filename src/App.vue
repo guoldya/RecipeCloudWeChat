@@ -124,7 +124,7 @@ input:-ms-input-placeholder {
 .outCarint {
   padding: 0 24px;
 }
-
+ 
 /* 轮播图样式 */ /* 全局样式 */
 .swiper-container {
   margin-top: 100px;
@@ -190,7 +190,7 @@ input:-ms-input-placeholder {
   > .swiper-pagination-bullets
   .swiper-pagination-bullet {
   position: relative;
-  top:10px;
+  top: 10px;
 }
 .swiper-pagination-bullet {
   width: 12px;
@@ -223,7 +223,7 @@ input:-ms-input-placeholder {
   color: #979797;
 }
 /**tab样式*/
- 
+
 /**大大大大的**/
 .methodTabAcitive {
   color: #1da1f3;
@@ -304,5 +304,13 @@ textarea::-webkit-input-placeholder {
 }
 .md-check-box {
   border: 2px solid #c5cad5;
+}
+.md-agree-icon .md-agree-icon-container .md-icon.md-icon-check {
+  color: #1da1f3;
+}
+.md-agree-icon.checked .md-agree-icon-container .md-icon-checked {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  color: #1da1f3;
 }
 </style>

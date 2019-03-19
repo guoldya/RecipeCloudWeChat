@@ -209,9 +209,9 @@ export default new Router({
     path: '/my',
     name: 'my',
     component: my,
-    // meta: {
-    //   keepAlive: true
-    // }
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/sign',
@@ -312,7 +312,7 @@ export default new Router({
     path: '/feerecord',
     name: 'feerecord',
     component: feerecord,
-    meta: { keepAlive: true }
+    // meta: { keepAlive: true }
   },
   {
     path: '/feesucces',
