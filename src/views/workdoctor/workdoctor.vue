@@ -16,8 +16,8 @@
                     <!--<span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>-->
                     <!--<span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>-->
                   </p>
-                  <p class="headdesc" v-if="item.skill">擅长:{{item.skill}}</p>
-                  <p class="headdesc">介绍:{{item.introduce}}</p>
+                  <p class="headdesc" v-if="item.skill">擅长：{{item.skill}}</p>
+                  <!--<p class="headdesc">介绍：{{item.introduce}}</p>-->
                 </div>
               </div>
             </div>
@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-    let doctor_url="/app/bdHospitalDoctor/read/selectDoctorList";
+    let doctor_url="/app/bdHospitalDoctor/read/selectDoctorPage";
     let doctor_query_url="/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
     export default {
         data() {
@@ -113,15 +113,17 @@
                 this.$axios.put(doctor_url, { orgId: this.deptId }).then((res) => {
                     if (res.data.code == '200') {
                         this.loadingtrue=false;
-                        for(let i=0;i<res.data.data.amList.length;i++){
-                            this.doctorData.push(res.data.data.amList[i])
-                        }
-                        for(let i=0;i<res.data.data.pmList.length;i++){
-                            this.doctorData.push(res.data.data.pmList[i])
-                        }
-                        for(let i=0;i<res.data.data.pmList.length;i++){
-                            this.doctorData.push(res.data.data.pmList[i])
-                        }
+                        this.doctorData=[];
+                        // for(let i=0;i<res.data.data.amList.length;i++){
+                        //     this.doctorData.push(res.data.data.amList[i])
+                        // }
+                        // for(let j=0;j<res.data.data.pmList.length;j++){
+                        //     this.doctorData.push(res.data.data.pmList[j]);
+                        // }
+                        // for(let k=0;k<res.data.data.otherList.length;k++){
+                        //     this.doctorData.push(res.data.data.otherList[k])
+                        // }
+                        this.doctorData=res.data.rows;
                     }
                 }).catch(function (err) {
                     console.log(err);

@@ -32,7 +32,7 @@
                         <p :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
                             介绍：{{doctorInfo.introduce}}
                         </p>
-                        <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
+                        <p class="open" @click="isSeemore=!isSeemore" v-show="moreButton"> 更多</p>
                     </div>
                 </div>
             </div>
@@ -101,6 +101,7 @@ export default {
             orderinfo: '',
             islook: false,
             isSeemore: false,
+            moreButton:false,
         }
     },
     mounted() {
@@ -179,6 +180,9 @@ export default {
             }).then((res) => {
                 if (res.data.code == '200') {
                     this.doctorInfo = res.data.data;
+                    if(this.doctorInfo.introduce.length>16){
+                        this.moreButton=true;
+                    }
                 } else {
                     console.log(res.msg);
                 }
