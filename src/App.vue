@@ -306,11 +306,11 @@ textarea::-webkit-input-placeholder {
   border: 2px solid #c5cad5;
 }
 .md-agree-icon .md-agree-icon-container .md-icon.md-icon-check {
-  color: #1da1f3;
+  color: #1da1f3 !important;
 }
 .md-agree-icon.checked .md-agree-icon-container .md-icon-checked {
   -webkit-transform: scale(1);
   transform: scale(1);
-  color: #1da1f3;
+  color: #1da1f3 !important;
 }
 </style>
