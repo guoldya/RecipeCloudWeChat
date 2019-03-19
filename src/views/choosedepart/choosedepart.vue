@@ -1,14 +1,9 @@
 <template>
   <div class="choosedepart">
-    <Header post-title="选择科室"  ></Header>
+    <Header post-title="选择科室"></Header>
     <div class="outCarint margin45">
       <Search></Search>
       <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
-      <!--<div class="appTab" style="margin-top:10px">-->
-      <!--<span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">-->
-      <!--{{item.orgName}}-->
-      <!--</span>-->
-      <!--</div>-->
       <div>
         <!-- <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
           {{item.title}}
@@ -73,7 +68,6 @@ export default {
   created() {
     if (this.$store.state.feeActiveId) {
       this.yuanId = this.$store.state.feeActiveId;
-      console.log(this.yuanId)
     }
   },
   watch: {
@@ -99,7 +93,7 @@ export default {
         if (!this.yuanId) {
           this.yuanId = res.data.rows[0].id;
         }
-        // this.$store.commit('departFun', res.data.rows[0].orgName);
+        this.$store.commit('departFun', res.data.rows[0].orgName);
         this.orgFun(this.yuanId);
       } else {
         console.log(res.msg);

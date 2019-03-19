@@ -1,25 +1,9 @@
 
 <template>
-    <div class="outCarint margin45">
+    <div class="margin45">
         <Header post-title="医生详情"></Header>
         <div class="doctor-head">
             <div class="outCarint">
-                <!-- <div class="doctor-info">
-                    <div class="header"><img src="@/assets/images/3.jpg"></div>
-                    <div class="doctor-right">
-                        <p class="introduce">
-                            <span class="doctor-name">{{doctorInfo.name}} </span>
-                            <span class="doctor-tag">{{doctorInfo.title}} </span>
-                        </p>
-                        <p class="hospital"> {{depart}} </p>
-                        <p class="content"> 擅长：{{doctorInfo.skill}} </p>
-                        <p :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
-                            jieh{{doctorInfo.introduce}}
-                        </p>
-                        <p class="open" @click="isSeemore=!isSeemore"> 更多</p>
-                    </div>
-                </div> -->
-
                 <div class="doctor-info doctor-infoFATHER">
                     <div class="header"><img src="@/assets/images/user.png"></div>
                     <div class="doctor-right">
@@ -85,7 +69,6 @@ export default {
     data() {
         return {
             showMaskClosable: false,
-            isWeixin: false,
             img,
             start,
             collapsed: false,
@@ -101,23 +84,17 @@ export default {
             orderinfo: '',
             islook: false,
             isSeemore: false,
-            moreButton:false,
+            moreButton: false,
         }
     },
     mounted() {
         document.title = '医生详情';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-        } else {
-            this.isWeixin = true;
-        };
+
         if (this.$route.query.afternoon * 1 == 1) {
             this.afternoon = '上午';
         }
         if (this.$route.query.islist) {
             this.islist = true;
-
 
         }
         else {
@@ -138,15 +115,13 @@ export default {
         this.week = this.$route.query.week;
         this.time = this.$route.query.time;
         this.depart = this.$store.state.depart;
+        console.log(this.$store.state.depart)
         this.major = this.$store.state.major;
         this.doctordataFun();
         this.dateListFun();
     },
     methods: {
 
-        open() {
-
-        },
 
         todayreservation(data) {
             this.$router.push({
@@ -180,8 +155,8 @@ export default {
             }).then((res) => {
                 if (res.data.code == '200') {
                     this.doctorInfo = res.data.data;
-                    if(this.doctorInfo.introduce.length>16){
-                        this.moreButton=true;
+                    if (this.doctorInfo.introduce.length > 16) {
+                        this.moreButton = true;
                     }
                 } else {
                     console.log(res.msg);

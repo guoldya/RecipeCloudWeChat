@@ -124,7 +124,7 @@ export default {
       departData: [],
       time: [],
       choosedate: '1-01',
-      chooseweek: '星期六',
+      chooseweek: '当日号',
       isTime: '',
       amList: [],
       pmList: [],
@@ -284,7 +284,6 @@ export default {
           this.amList = res.data.data.amList;
           this.pmList = res.data.data.pmList;
         } else {
-           
           console.log(res.msg);
         }
       }).catch(function (err) {

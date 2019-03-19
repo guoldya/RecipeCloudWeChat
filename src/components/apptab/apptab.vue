@@ -22,7 +22,6 @@ export default {
 
   },
   mounted() {
-    console.log(this.$store.state.feeActiveId,"this.$store.state.feeActiveId")
     if (this.$store.state.feeActiveId) {
       this.active1 = this.$store.state.feeActiveId
     }
