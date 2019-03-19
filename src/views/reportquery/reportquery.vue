@@ -233,7 +233,11 @@ export default {
         },
 
     },
-    
+    beforeRouteLeave(to, from, next) {
+        console.log(from);
+        from.meta.keepAlive = false;
+        next();
+    }
 };
 </script>
 <style   scoped>
