@@ -28,9 +28,9 @@
                     <div class="cardText">
                         <p>患者：{{item.patientName}}</p>
                         <p>医院：{{item.hospital}}</p>
-                        <p v-if="type === 0">开单时间：{{item.createTime}}</p>
-                        <p v-if="type === 1">支付时间：{{item.payTime}}</p>
-                        <div style="height:30px;  text-align: right;" v-if="type === 0">
+                        <p v-if="disType == 1">开单时间：{{item.createTime}}</p>
+                        <p v-if="disType == 2">支付时间：{{item.payTime}}</p>
+                        <div style="height:30px;  text-align: right;" v-if="disType == 1">
                             <span class="payatnow">立即支付</span>
                         </div>
                     </div>
@@ -72,6 +72,7 @@ export default {
             busy: true,
             nomore: false,
             loadingtrue: true,
+            disType:'',
         };
     },
 
@@ -79,9 +80,10 @@ export default {
 
     },
     mounted() {
-        // if (this.$store.state.feeActiveId) {
-        //     this.type = this.$store.state.feeActiveId;
-        // }
+        console.log(this.$store.state.feeActiveId,"feerecord mounted");
+        if (this.$store.state.feeActiveId) {
+            this.disType = this.$store.state.feeActiveId;
+        }
         this.WaitPay(false);
         // this.personFun();
         document.title = '缴费记录';
@@ -125,7 +127,6 @@ export default {
             this.isSelectorShow = true
         },
         appointinfo: function (value) {
-
             this.$router.push({
                 name: 'feeinfo',
                 query: { id: value }
@@ -134,6 +135,7 @@ export default {
 
         childByValue: function (childValue) {
             //this.type = childValue.type;
+            this.disType = childValue.type;
             if(childValue.type==1){this.type=0;}else{this.type=1;}
             this.$store.commit('feeActiveFun', childValue.type);
             this.waitPayData = [];
@@ -183,6 +185,11 @@ export default {
             }, 500);
         },
     },
+    // beforeRouteEnter(to, from, next) {
+    //     console.log(to);
+    //     to.meta.keepAlive=false;
+    //     next();
+    // },
     beforeRouteLeave(to, from, next) {
         from.meta.keepAlive = false;
         next();

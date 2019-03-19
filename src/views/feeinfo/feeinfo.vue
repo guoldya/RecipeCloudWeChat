@@ -298,14 +298,14 @@ export default {
       this.timer && clearTimeout(this.timer)
     },
   },
-    beforeRouteLeave(to, from, next) {
-        if (to.path == "/feerecord") {
-            to.meta.keepAlive = true;
-        } else {
-            to.meta.keepAlive = false;
-        }
-        next();
-    },
+    // beforeRouteLeave(to, from, next) {
+    //     if (to.path == "/feerecord") {
+    //         to.meta.keepAlive = true;
+    //     } else {
+    //         to.meta.keepAlive = false;
+    //     }
+    //     next();
+    // },
   computed: {
     cashier() {
       return this.$refs.cashier
