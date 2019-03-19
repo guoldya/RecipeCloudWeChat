@@ -40,7 +40,6 @@ export default {
   data() {
     return {
       active1: 0,
-      isWeixin: false,
       normal: {
         checkbox: true,
         radio: 1,
@@ -58,12 +57,7 @@ export default {
   },
   mounted() {
     document.title = '预约记录';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
+  
   },
   methods: {
     switchTo(num) {

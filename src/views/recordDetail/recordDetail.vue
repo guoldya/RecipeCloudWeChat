@@ -100,7 +100,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 recipeData:[],
                 detailData:[],
                 loadingtrue:true,
@@ -115,14 +115,6 @@
             this.detailInfo();
             //this.detailData.push(this.$store.state.detailData);
             document.title = '处方详情';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
 
         },
         methods: {

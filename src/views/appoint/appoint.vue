@@ -3,7 +3,7 @@
   <div class="appoint">
     <Header post-title="预约记录"></Header>
     <div class="outCarint margin45">
-      <div  v-show="!loadingtrue" v-if="appointData.length!=0">
+      <div v-show="!loadingtrue" v-if="appointData.length!=0">
         <div class="card margin16" v-for="(item,i) in appointData" :key="i">
           <div class="cardText">
             <div class="listData">
@@ -13,7 +13,7 @@
             <p style="border-bottom: 1px solid #e9e9e9;margin: 6px 0px"></p>
             <div class="listData">
               <span>预约科室：
-              <span>{{item.examDept}}（{{item.hospital}}）</span>
+                <span>{{item.examDept}}（{{item.hospital}}）</span>
               </span>
             </div>
             <div class="listData">
@@ -34,84 +34,78 @@
         <img src="@/assets/images/null1.png">
       </div>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
-                <span v-if="appointData.length!=0&&!nomore">
-                    <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
-                </span>
+        <span v-if="appointData.length!=0&&!nomore">
+          <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+        </span>
       </div>
       <Loading v-show="loadingtrue"></Loading>
     </div>
   </div>
 </template>
 <script  >
-    let appoint_order_url="app/bizExamApply/read/page";
+let appoint_order_url = "app/bizExamApply/read/page";
 export default {
   data() {
     return {
       active1: 0,
-      isWeixin: false,
-        appointData:[],
-        loadingtrue:true,
-        busy: true,
-        nomore: false,
-        page:1,
-        pageSize:10,
-        payType:0,
+      appointData: [],
+      loadingtrue: true,
+      busy: true,
+      nomore: false,
+      page: 1,
+      pageSize: 10,
+      payType: 0,
     };
   },
   created() {
 
   },
   mounted() {
-      this.appointFun();
+    this.appointFun();
     document.title = '预约记录';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
+   
   },
   methods: {
-      appointFun(flag) {
-          const params = {};
-          params.pageNumber = this.page;
-          params.pageSize = this.pageSize;
-          params.applyRecord = "Y";
-          this.$axios.put(appoint_order_url, params).then((res) => {
-              if (res.data.rows) {
-                  this.loadingtrue = false;
-                  if (flag) {
-                      this.appointData = this.appointData.concat(res.data.rows);  //concat数组串联进行合并
-                      if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-                          this.busy = false;
-                          this.nomore = false;
-                      } else {
-                          this.busy = true;
-                          this.nomore = true;
-                      }
-                  } else {
-                      this.appointData = res.data.rows;
-                      this.busy = true;
-                      if (res.data.total <= 10) {
-                          this.busy = true;
-                          this.nomore = true;
-                      } else {
-                          this.busy = false;
-                          this.nomore = false;
-                      }
-                  }
-              } else {
-                  this.appointData = []
-              }
-          })
-      },
-      loadMore() {
-          this.busy = true;  //将无限滚动给禁用
-          setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
-              this.page++;  //滚动之后加载第二页
-              this.appointFun(true);
-          }, 500);
-      },
+    appointFun(flag) {
+      const params = {};
+      params.pageNumber = this.page;
+      params.pageSize = this.pageSize;
+      params.applyRecord = "Y";
+      this.$axios.put(appoint_order_url, params).then((res) => {
+        if (res.data.rows) {
+          this.loadingtrue = false;
+          if (flag) {
+            this.appointData = this.appointData.concat(res.data.rows);  //concat数组串联进行合并
+            if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+              this.busy = false;
+              this.nomore = false;
+            } else {
+              this.busy = true;
+              this.nomore = true;
+            }
+          } else {
+            this.appointData = res.data.rows;
+            this.busy = true;
+            if (res.data.total <= 10) {
+              this.busy = true;
+              this.nomore = true;
+            } else {
+              this.busy = false;
+              this.nomore = false;
+            }
+          }
+        } else {
+          this.appointData = []
+        }
+      })
+    },
+    loadMore() {
+      this.busy = true;  //将无限滚动给禁用
+      setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+        this.page++;  //滚动之后加载第二页
+        this.appointFun(true);
+      }, 500);
+    },
   },
   computed: {
 
@@ -123,10 +117,10 @@ export default {
 .appoint .card {
   margin-bottom: 32px;
 }
-.appoint .appointText{
+.appoint .appointText {
   padding-top: 10px;
 }
-   .appoint .appointText p{
-     line-height: 60px;
-   }
+.appoint .appointText p {
+  line-height: 60px;
+}
 </style>

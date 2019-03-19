@@ -12,10 +12,10 @@
 
       <div class="card">
         <div class="cardText">
-            <div class="listData">
-              <span>付款总额</span>
-              <span>￥{{jumpPar.money |keepTwoNum}}</span>
-            </div>
+          <div class="listData">
+            <span>付款总额</span>
+            <span>￥{{jumpPar.money |keepTwoNum}}</span>
+          </div>
           <div class="listData">
             <span>支付时间</span>
             <span>{{jumpPar.payTime}}</span>
@@ -33,7 +33,7 @@
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       active1: 0,
       normal: {
         checkbox: true,
@@ -45,23 +45,16 @@ export default {
         { title: '预约成功' },
         { title: '预约关闭' }
       ],
-        jumpPar:{},
+      jumpPar: {},
     };
   },
   created() {
 
   },
   mounted() {
-      this.jumpPar=this.$route.query;
+    this.jumpPar = this.$route.query;
     document.title = '支付结果';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-      return true;
-    } else {
-      this.isWeixin = true;
-      return false;
-    }
+
   },
   methods: {
     switchTo(num) {

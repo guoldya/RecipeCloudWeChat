@@ -117,14 +117,16 @@ input:-ms-input-placeholder {
 .margin7 {
   margin-top: 14px;
 }
-
+.margin14 {
+  margin-top: 28px;
+}
 .margin120 {
   margin-top: 120px;
 }
 .outCarint {
   padding: 0 24px;
 }
- 
+
 /* 轮播图样式 */ /* 全局样式 */
 .swiper-container {
   margin-top: 100px;

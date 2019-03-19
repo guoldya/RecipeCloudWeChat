@@ -79,7 +79,7 @@ export default {
          type: 1,
          datepick: false,
          date: undefined,
-         isWeixin: false,
+         
          isDatePickerShow: false,
          active1: 0,
          reportactive1: 0,
@@ -117,13 +117,6 @@ export default {
       }
       this.getGoodslist(false);
       document.title = '报告记录';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      }
-
    },
    methods: {
       personFun() {

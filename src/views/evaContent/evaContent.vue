@@ -25,7 +25,7 @@
 export default {
     data() {
         return {
-            isWeixin: false,
+            
             evaData: [
                 {                    name: "王***", date: "2018年12月12日", score: 3,
                     content: "好好好好好好好好好好好好好好好好好好好好好好好好"                },
@@ -57,15 +57,10 @@ export default {
     },
     mounted() {
         document.title = '就医评价';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-            return true;
-        } else {
-            this.isWeixin = true;
-            return false;
-        }
-
+        
+        
+            
+            
     },
     methods: {
 

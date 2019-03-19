@@ -23,7 +23,6 @@
 export default {
    data() {
       return {
-         isWeixin: false,
 
       };
    },
@@ -32,14 +31,7 @@ export default {
    },
    mounted() {
       document.title = '电子就诊卡需知';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-         return true;
-      } else {
-         this.isWeixin = true;
-         return false;
-      }
+     
    },
    methods: {
 

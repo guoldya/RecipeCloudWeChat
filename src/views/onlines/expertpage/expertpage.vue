@@ -1,6 +1,6 @@
 <!-- 专家问诊 -->
 <template>
-  <div :class="{ outCarint: true, margin45: isWeixin }">
+  <div class="outCarint margin45">
     <!-- 搜索框 -->
     <Search></Search>
     <md-tab-picker
@@ -54,7 +54,7 @@ import doctorList from "../../../components/doctorList";
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       isChecked: 0,
       departmentText: "科室",
       sortText: "排序",
@@ -136,12 +136,7 @@ export default {
   },
   mounted() {
     document.title = "专家问诊";
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == "micromessenger") {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
+    
   },
   methods: {
     // 科室选择

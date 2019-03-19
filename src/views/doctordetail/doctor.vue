@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="outCarint">
-            <div class="doctordetal">
+            <div class="doctordetal" v-if="isHave">
                 <div class="outCarint">
                     <ul class="available-info" v-show="!islist">
                         <li style="border: none;">
@@ -37,6 +37,7 @@
                             <div v-show="orderinfo.valNum==0" class="available-tag no">无号</div>
                         </li>
                     </ul>
+
                     <div v-show="!islook" class="lookmore" @click="islook=!islook">查看全部排班</div>
                     <p v-show="islook" class="home-article-combo--slogan">全部排班</p>
                     <ul v-show="islook" class="available-info">
@@ -54,6 +55,9 @@
                     </ul>
                     <div v-show="islook" class="lookmore" @click="islook=!islook">收起全部排班</div>
                 </div>
+            </div>
+            <div class="nullDiv" v-else>
+                <img src="@/assets/images/null1.png">
             </div>
         </div>
     </div>
@@ -74,6 +78,7 @@ export default {
             collapsed: false,
             isActive: true,
             doctorInfo: '',
+            isHave: false,
             dateList: '',
             week: '',
             time: '',
@@ -115,7 +120,7 @@ export default {
         this.week = this.$route.query.week;
         this.time = this.$route.query.time;
         this.depart = this.$store.state.depart;
-        console.log(this.$store.state.depart)
+
         this.major = this.$store.state.major;
         this.doctordataFun();
         this.dateListFun();
@@ -150,8 +155,8 @@ export default {
         doctordataFun() {
             this.$axios.put(appbdHospitalDoctorreaddetail, {
                 id: this.$route.query.doctorId * 1,
-                stageType: this.$route.query.afternoon * 1,
-                time: this.$route.query.time,
+                stageType: this.$route.query.afternoon ? this.$route.query.afternoon * 1 : undefined,
+                time: this.$route.query.time ? this.$route.query.time : undefined,
             }).then((res) => {
                 if (res.data.code == '200') {
                     this.doctorInfo = res.data.data;
@@ -170,10 +175,16 @@ export default {
                 id: this.$route.query.doctorId * 1,
             }).then((res) => {
                 if (res.data.code == '200') {
-                    for (let i = 0; i < res.data.rows.length; i++) {
-                        res.data.rows[i].regDate = res.data.rows[i].regDate.split(' ')[0];
+                    if (res.data.rows.length != 0) {
+                        this.isHave = true;
+                        for (let i = 0; i < res.data.rows.length; i++) {
+                            res.data.rows[i].regDate = res.data.rows[i].regDate.split(' ')[0];
+                        }
+                        this.dateList = res.data.rows;
+                    } else {
+                        this.isHave = false;
                     }
-                    this.dateList = res.data.rows;
+
                 } else {
                     console.log(res.msg);
                 }

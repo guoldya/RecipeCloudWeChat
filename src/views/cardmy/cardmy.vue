@@ -1,7 +1,7 @@
 <template>
       <div class="cardmy">
-            <Header post-title="管理就诊卡"  ></Header>
-            <div :class="{'margin45':isWeixin}">
+            <Header post-title="管理就诊卡"></Header>
+            <div  class="margin45">
                   <div class="tiptop">
                         <div class="tiptopwarn">
                               <md-notice-bar>
@@ -37,7 +37,6 @@ import { Dialog, Button, Toast } from 'mand-mobile'
 export default {
       data() {
             return {
-                  isWeixin: false,
                   actDialog: {
                         open: false,
                         btns: [
@@ -65,14 +64,8 @@ export default {
       },
       mounted() {
             document.title = '管理就诊卡';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                  this.isWeixin = false;
-                  return true;
-            } else {
-                  this.isWeixin = true;
-                  return false;
-            }
+            
+            
       },
       methods: {
             cardneed() {

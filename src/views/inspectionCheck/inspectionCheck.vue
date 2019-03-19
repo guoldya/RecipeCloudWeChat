@@ -110,7 +110,7 @@
 export default {
     data() {
         return {
-            isWeixin: false,
+            
             departs: [
                 { title: '处方记录', type: 1 },
                 { title: '申请记录', type: 2 },
@@ -147,15 +147,6 @@ export default {
     },
     mounted() {
         document.title = '慢病续方';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-            return true;
-        } else {
-            this.isWeixin = true;
-            return false;
-        }
-
     },
     methods: {
         showSelector() {

@@ -84,7 +84,7 @@
 export default {
     data() {
         return {
-            isWeixin: false,
+            
             normal: {
                 radio: null,
                 radio1: '快捷'
@@ -99,14 +99,6 @@ export default {
     },
     mounted() {
         document.title = '支付';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-            return true;
-        } else {
-            this.isWeixin = true;
-            return false;
-        }
     },
     methods: {
         radioChange() {

@@ -382,7 +382,10 @@ export default new Router({
   {
     path: '/idcardlist',
     name: 'idcardlist',
-    component: idcardlist
+    component: idcardlist,
+    meta: {
+      title: '管理就诊卡'
+    }
   },
   {
     path: '/doctorplan',

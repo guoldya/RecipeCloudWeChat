@@ -1,7 +1,7 @@
 <template>
    <div class="orderrecord">
       <Header post-title="预约记录"  ></Header>
-      <div :class="{'outCarint':true,'margin45':isWeixin}">
+      <div class="outCarint margin45">
          <div class="appTab">
             <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
                {{item.title}}
@@ -65,7 +65,7 @@ export default {
    data() {
       return {
          active1: 0,
-         isWeixin: false,
+         
          time: [
             { title: '待支付' },
             { title: '预约成功' },
@@ -78,12 +78,6 @@ export default {
    },
    mounted() {
       document.title = '缴费记录';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      }
    },
    methods: {
       appointinfo: function (value) {

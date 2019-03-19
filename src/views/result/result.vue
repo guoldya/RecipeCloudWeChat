@@ -1,20 +1,20 @@
 <template>
   <div class="result">
-    <Header post-title="搜索"  ></Header>
+    <Header post-title="搜索"></Header>
     <div class="outCarint margin45">
       <div style="text-align:center;">
         <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
       </div>
-      <div class="mu-sub-header margin16">科室</div>
+      <div class="mu-sub-header margin14">科室</div>
       <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
-      <div v-if="departData.length==0">
+      <div v-if="departData.length==0" class="margin7">
         <p>暂无科室信息</p>
       </div>
-      <div class="mu-sub-header margin16">医生</div>
+      <div class="mu-sub-header  margin14">医生</div>
       <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
         <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
       </md-cell-item>
-      <div v-if="doctorList.length==0">
+      <div v-if="doctorList.length==0" class="margin7">
         <p>暂无医生信息</p>
       </div>
     </div>
@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       value: '',
-      isWeixin: false,
+
       departData: [
         // { name: "妇科门诊" },
         // { name: "生殖内分泌门诊生殖内分泌" },
@@ -43,14 +43,6 @@ export default {
   },
   mounted() {
     document.title = '搜索';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-      return true;
-    } else {
-      this.isWeixin = true;
-      return false;
-    }
   },
   methods: {
     intodoctordetail() {
@@ -61,7 +53,6 @@ export default {
       });
     },
     intodoctorList(data) {
-      console.log(data)
       this.$router.push({
         name: 'doctorList',
         query: { deptId: data.id, yuanId: data.parentId, departName: data.orgName }
@@ -75,10 +66,13 @@ export default {
       });
     },
     loadMorelist(value) {
-      if (!value) return;
+      this.doctorList = [];
+      this.departData = [];
       value = value.trim() // 清除空格
+      if (!value) return;
+      console.log("搜索数据", value, value.length);
       let _this = this;
-      console.log("搜索数据", value);
+      // console.log("搜索数据", value);
       clearTimeout(this.t);
       this.t = setTimeout(function () {
         _this.$axios.put(searchClinicListByClinicOrDoctor, {

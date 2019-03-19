@@ -51,7 +51,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 // changeTitle: [
                 //     { title: '预约项目',type: 1 },
                 //     { title: '预约记录',type:2 },
@@ -59,8 +59,6 @@
                 // titleIndex: 0,
                 examineData:[],
                 orderRecord:[],
-                TOKEN: '',
-                UUID: '',
                 nowDate:"",
                 pageSize:10,
                 page:1,
@@ -78,19 +76,6 @@
             let _this = this;
             this.examineFun(false);
             document.title = '检验检查';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
-            let Request = new UrlSearch(); //实例化
-            this.TOKEN = Request.TOKEN;
-            this.UUID = Request.UUID;
-
-
         },
         methods: {
             examineFun(flag){

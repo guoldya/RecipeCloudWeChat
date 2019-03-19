@@ -1,6 +1,6 @@
 <template>
   <div class="outCarint margin45">
-    <Header post-title="上传证件"></Header>
+    <Header post-title="身份验证"></Header>
     <div class="rebinding-box card margin16">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
@@ -10,7 +10,7 @@
         </div>
         <div class="alltimeball">
           <span class="acitivestep">手机验证</span>
-          <span class="acitivestep">上传证件</span>
+          <span class="acitivestep">身份验证</span>
           <span>资料确认</span>
         </div>
         <div class="timeballline"></div>
@@ -53,7 +53,6 @@ export default {
     return {
       AAA: '',
       BBB: '',
-      isWeixin: false,
       isSon: false,
       isSelectorShow: false,
       selectorValue: '爸爸',
@@ -95,14 +94,7 @@ export default {
     if (this.$route.query.isSon * 1 == 2) {
       this.isSon = true;
     }
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-
-    } else {
-      this.isWeixin = true;
-
-    }
+  
   },
   methods: {
     uploadPos(e) {

@@ -75,7 +75,7 @@ export default {
             pageSize: 10,
             type: 1,
             date: undefined,
-            isWeixin: false,
+            
             active1: 0,
             reportactive1: 0,
             departs: [
@@ -108,12 +108,6 @@ export default {
 
         this.getGoodslist(false);
         document.title = '报告查询';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-        } else {
-            this.isWeixin = true;
-        }
 
     },
     methods: {

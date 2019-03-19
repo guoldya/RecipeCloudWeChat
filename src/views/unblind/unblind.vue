@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'outCarint':true,'margin45':isWeixin}">
+  <div class="outCarint margin45">
     <Header post-title="就诊卡详情"></Header>
     <p>
       <md-icon name="warn-color" size="lg" color="orange" svg style="position:relative;top:5px; "></md-icon>
@@ -56,7 +56,7 @@ let cardDetail = "/app/bizPatientCard/read/detail";
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       patientName: '',
       cardNo: '',
       registerNo: '',
@@ -87,13 +87,6 @@ export default {
   mounted() {
 
     document.title = '就诊卡详情';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
-
   },
   methods: {
     unBlind() {

@@ -39,7 +39,7 @@ let read_page_url = "/app/bizPatientRegister/read/selectPage";
 export default {
     data() {
         return {
-            isWeixin: false,
+            
             page: 1,
             pageSize: 10,
             loadingtrue: true,
@@ -53,12 +53,7 @@ export default {
     },
     mounted() {
         document.title = '挂号记录';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-        } else {
-            this.isWeixin = true;
-        }
+       
         this.cordFun(false);
     },
     methods: {

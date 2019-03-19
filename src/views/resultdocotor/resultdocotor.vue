@@ -21,20 +21,12 @@ export default {
    data() {
       return {
          value: '',
-         isWeixin: false,
+         
          doctorList: [],
       }
    },
    mounted() {
       document.title = '搜索医生';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-         return true;
-      } else {
-         this.isWeixin = true;
-         return false;
-      }
    },
    methods: {
       intodoctordetail() {

@@ -35,7 +35,6 @@
 export default {
   data() {
     return {
-      isWeixin: false,
       currentStep: 0,
       checked: '0',
     };
@@ -45,14 +44,6 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-      return true;
-    } else {
-      this.isWeixin = true;
-      return false;
-    }
   },
   methods: {
     cardwriteson: function (value) {

@@ -48,7 +48,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 loadingtrue:true,
                 orderData:[],
             };
@@ -59,14 +59,6 @@
         mounted() {
             this.readyOrderFun();
             document.title = '预约详情';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
 
         },
         methods: {

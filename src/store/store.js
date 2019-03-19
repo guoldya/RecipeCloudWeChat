@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 
 
 Vue.use(Vuex);
-
 export default new Vuex.Store({
     state: {
         jumpArr: [],
@@ -27,10 +26,14 @@ export default new Vuex.Store({
         major: '',
         patientName: '',
         cardId: '',
-        keepAlive:'',
+        keepAlive: '',
         cardList: '',
+        cardIndex: '',
     },
     mutations: {
+        cardIndexFun: (state, n) => {
+            state.cardIndex = n;
+        },
         cardListFun: (state, n) => {
             state.cardList = n;
         },

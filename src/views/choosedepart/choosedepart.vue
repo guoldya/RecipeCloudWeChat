@@ -46,7 +46,7 @@ let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       active1: 0,
       yuanId: "",
       departs: [],
@@ -75,12 +75,10 @@ export default {
   },
   mounted() {
     document.title = '选择科室';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
+    
+    
+      
+   
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
       orgId: localStorage.getItem("hospitalId") * 1

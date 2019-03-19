@@ -1,5 +1,5 @@
 <template>
-   <div :class="{'outCarint':true,'margin45':isWeixin}">
+   <div class="outCarint margin45">
       <Header post-title="资料确认"  ></Header>
       <div class="rebinding-box card margin16">
          <div class="box-timeline  cardText">
@@ -10,7 +10,7 @@
             </div>
             <div class="alltimeball">
                <span class="acitivestep">手机验证</span>
-               <span class="acitivestep">上传证件</span>
+               <span class="acitivestep">身份验证</span>
                <span class="acitivestep">资料确认</span>
             </div>
             <div class="timeballline"></div>
@@ -65,7 +65,6 @@
 export default {
    data() {
       return {
-         isWeixin: false,
          name: '张三丰',
          gender: '1',
          marriage: '2',
@@ -76,12 +75,7 @@ export default {
    },
    mounted() {
       document.title = '资料确认';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      }
+     
    },
    methods: {
 
