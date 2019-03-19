@@ -1,7 +1,7 @@
 <template>
     <div class="examineDetail">
-        <Header post-title="预约详情" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="预约详情"  ></Header>
+        <div class="outCarint margin45">
             <div v-if="orderData.length!=0" v-show="!loadingtrue" v-for="(item,i) in orderData" :key="i">
                 <div class="successImg">
                     <img src="@/assets/images/icon_success.png" alt="">

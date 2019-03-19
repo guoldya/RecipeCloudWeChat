@@ -1,6 +1,6 @@
 <template>
     <div class="doctorschedu">
-        <Header post-title="医生排班" v-show="isWeixin"></Header>
+        <Header post-title="医生排班"  ></Header>
         <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
             <div class="doctor-head" v-show="!loadingtrue">
                 <div class="outCarint">

@@ -1,7 +1,7 @@
 <template>
     <div class="registrecorddetail">
-        <Header post-title="挂号记录详情" v-show="isWeixin"></Header>
-        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+        <Header post-title="挂号记录详情"  ></Header>
+        <div class="outCarint margin45">
             <div class="card" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
                 <div class="cardText">
                     <div class="listData">

@@ -1,7 +1,7 @@
 <template>
     <div class="selectStore">
-        <Header post-title="药店选择" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="药店选择"  ></Header>
+        <div class="outCarint margin45">
             <div class="outCarint">
                 <div class="card margin16" v-for="(item,i) in acceptJumpData">
                     <div class="cardText">

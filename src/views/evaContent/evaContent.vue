@@ -1,7 +1,7 @@
 <template>
     <div class="evaContent">
-        <Header post-title="就医评价" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="就医评价"  ></Header>
+        <div class="outCarint margin45">
             <div class="outCarint">
                 <div class="card margin16" v-for="item in evaData">
                     <div class="cardText">

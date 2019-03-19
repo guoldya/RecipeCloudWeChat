@@ -88,7 +88,7 @@ axios.interceptors.response.use(function (res) {
     if (res.data.code == 401 && res.data.msg && res.data.msg.indexOf('未登录') || (res.data.code == 402) || (res.data.code == 800)) {
         // 未登录操作npm
         // router.replace('/login?back=1');
-        console.log(res)
+        // console.log(res)
         // router.replace('/control');
     }
     return res;

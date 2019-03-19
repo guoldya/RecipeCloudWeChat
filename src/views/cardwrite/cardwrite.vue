@@ -1,6 +1,6 @@
 <template>
-  <div :class="{'outCarint':true,'margin45':isWeixin, }">
-    <Header post-title="手机验证" v-show="isWeixin"></Header>
+  <div class="outCarint margin45">
+    <Header post-title="手机验证"></Header>
     <div class="rebinding-box card margin16">
       <div class="box-timeline  cardText">
         <div class="alltimeball">

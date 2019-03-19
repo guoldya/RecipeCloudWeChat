@@ -1,7 +1,7 @@
 <template>
    <div class="gp-order">
       <div :class="{'outCarint':true,'margin45':isWeixin}">
-         <Header post-title="预约信息" v-show="isWeixin"></Header>
+         <Header post-title="预约信息"  ></Header>
          <div class="order-info">
             <div class="doctor-info g-clear">
                <img src="@/assets/images/user.png" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
@@ -23,7 +23,7 @@
                </li>
                <li>
                   <label>挂号费用：</label>
-                  <p class="mu-secondary-text-color">￥ {{money}}</p>
+                  <p class="mu-secondary-text-color">￥ {{money | keepTwoNum}}</p>
                </li>
             </ul>
          </div>

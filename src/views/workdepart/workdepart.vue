@@ -1,7 +1,7 @@
 <template>
    <div class="choosedepart">
-      <Header post-title="医生排班" v-show="isWeixin"></Header>
-      <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+      <Header post-title="医生排班"  ></Header>
+      <div class="outCarint margin45">
          <Search></Search>
           <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
          <!--<div class="appTab">-->

@@ -1,7 +1,6 @@
 <template>
-   <div :class="{'outCarint':true,'margin45':isWeixin}">
-      <Header post-title="电子就诊卡需知" v-show="isWeixin"></Header>
-
+   <div class="outCarint margin45">
+      <Header post-title="电子就诊卡需知"></Header>
       <p>XXXXX医院推出电子就诊卡，实现全流程无卡就医。解决忘记带卡、多卡、丢卡难题，提升患者就医体验，方便快捷。电子就诊卡使用规则如下：</p>
 
       <p>1、每位微信用户可以注册电子就诊卡最多5张；</p>

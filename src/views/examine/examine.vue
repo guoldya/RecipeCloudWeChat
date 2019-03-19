@@ -1,7 +1,7 @@
 <template>
     <div class="examine">
-        <Header post-title="检验检查" v-show="isWeixin"></Header>
-        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+        <Header post-title="检验检查"  ></Header>
+        <div class="outCarint margin45">
             <!--<div class="pageContent">-->
                 <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(item.type,index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
                     <!--{{item.title}}-->

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header post-title="就诊签到" v-show="isWeixin"></Header>
+    <Header post-title="就诊签到"  ></Header>
     <div id="allmap" :class="{ 'margin45':isWeixin}" style="width:100%;height:500px">
 
     </div>

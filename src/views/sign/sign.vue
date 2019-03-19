@@ -1,6 +1,6 @@
 <template>
   <div class="sign">
-    <Header post-title="资料确认" v-show="isWeixin"></Header>
+    <Header post-title="资料确认"  ></Header>
     <div :class="{ 'margin45':isWeixin}">
       <md-notice-bar icon="location"  v-show="isHaveOrder" >
         {{titlename}}

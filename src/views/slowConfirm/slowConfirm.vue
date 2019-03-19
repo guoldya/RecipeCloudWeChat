@@ -1,7 +1,7 @@
 <template>
     <div class="slowConfirm">
-        <Header post-title="申请详情" v-show="isWeixin"></Header>
-        <div :class="{margin45:isWeixin,outCarint:true}">
+        <Header post-title="申请详情"  ></Header>
+        <div class="outCarint margin45">
             <div class="successImg">
                 <img src="@/assets/images/icon_success.png" alt="">
                 <p>申请成功</p>

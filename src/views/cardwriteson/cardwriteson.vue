@@ -1,6 +1,6 @@
 <template>
-  <div :class="{'outCarint':true,'margin45':isWeixin, }">
-    <Header post-title="上传证件" v-show="isWeixin"></Header>
+  <div class="outCarint margin45">
+    <Header post-title="上传证件"></Header>
     <div class="rebinding-box card margin16">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
@@ -155,7 +155,7 @@ export default {
 
       param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
       param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
-        console.log(param);
+      console.log(param);
       let config = {
         headers: {
           'Content-Type': 'multipart/form-data',

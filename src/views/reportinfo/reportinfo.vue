@@ -1,8 +1,8 @@
 <template>
 
     <div class="reportinfo">
-        <Header :post-title="postTitle" v-show="isWeixin"></Header>
-        <div v-if="reportInfoData.length!=0" :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}" v-for="(item,i) in reportInfoData" :key="i">
+        <Header :post-title="postTitle"  ></Header>
+        <div v-if="reportInfoData.length!=0" class="outCarint margin45" v-for="(item,i) in reportInfoData" :key="i">
             <div v-if="feeActiveId==1"  v-show="!loadingtrue">
                 <div class="card margin16">
                     <div class="cardText">
@@ -216,16 +216,7 @@ export default {
             });
         },
     },
-    beforeRouteLeave(to, from, next) {
-        if (to.path == "/reportquery") {
-            to.meta.keepAlive = true;
-        } else {
-            to.meta.keepAlive = false;
-        }
-        next();
-    },
     computed: {
-
     },
 };
 </script>

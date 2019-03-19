@@ -17,7 +17,7 @@
             <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
             <!--</span>-->
         </header>
-        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+        <div class="outCarint margin45">
             <!-- <div class="appTab">
                 <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
                     {{item.title}}
@@ -133,7 +133,6 @@ export default {
 
                             };
                             this.optionsData.push(neslist);
-                            console.log(this.optionsData);
                         }
                     }
                 } else if (res.data.code == '800') {

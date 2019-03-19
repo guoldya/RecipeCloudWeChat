@@ -1,7 +1,7 @@
 <template>
   <div class="result">
-    <Header post-title="搜索" v-show="isWeixin"></Header>
-    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+    <Header post-title="搜索"  ></Header>
+    <div class="outCarint margin45">
       <div style="text-align:center;">
         <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
       </div>

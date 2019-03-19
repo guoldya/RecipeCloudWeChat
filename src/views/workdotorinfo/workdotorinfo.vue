@@ -1,7 +1,7 @@
  
 <template>
    <div class="workdotorinfo">
-      <Header post-title="医生详情" v-show="isWeixin"></Header>
+      <Header post-title="医生详情"  ></Header>
       <div :class="{ 'margin45':isWeixin,  }">
          <div class="doctor-head">
             <div class="outCarint">

@@ -1,8 +1,8 @@
 <template>
 
   <div class="appoint">
-    <Header post-title="预约记录" v-show="isWeixin"></Header>
-    <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+    <Header post-title="预约记录"></Header>
+    <div class="outCarint margin45">
       <div  v-show="!loadingtrue" v-if="appointData.length!=0">
         <div class="card margin16" v-for="(item,i) in appointData" :key="i">
           <div class="cardText">

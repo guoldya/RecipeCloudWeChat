@@ -1,6 +1,6 @@
 <template>
     <div class="feerecord">
-        <header class="aui-navBar aui-navBar-fixed" v-show="isWeixin">
+        <header class="aui-navBar aui-navBar-fixed"  >
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
             </span>
@@ -17,7 +17,7 @@
                 <span class="downImg"><img src="@/assets/images/icon_down.png"></span> -->
             </span>
         </header>
-        <div :class="{'outCarint':true,'margin45':isWeixin,'margin7':!isWeixin}">
+        <div class="outCarint margin45">
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
                 <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
