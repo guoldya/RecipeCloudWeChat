@@ -133,7 +133,7 @@ export default {
         },
 
         childByValue: function (childValue) {
-            this.type = childValue.type;
+            //this.type = childValue.type;
             if(childValue.type==1){this.type=0;}else{this.type=1;}
             this.$store.commit('feeActiveFun', childValue.type);
             this.waitPayData = [];

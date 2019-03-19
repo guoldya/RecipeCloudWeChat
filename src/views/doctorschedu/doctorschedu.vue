@@ -69,6 +69,7 @@
         methods: {
             changeCalendar(){
                 this.$nextTick(()=> {
+                    let _this=this;
                     let element=document.getElementsByClassName("wh_content")[1].children;
                     let para=document.createElement("div");
                     let paraPm=document.createElement("div");
@@ -88,25 +89,23 @@
                     para.appendChild(am);
                     paraPm.appendChild(pm);
                     paraAll.appendChild(all);
-                    // if(this.spliceM==this.nowMonth){
-                    //     for(let i=0;i<element.length;i++){
-                    //         if(element[i].children[0].className!="wh_item_date wh_other_dayhide"){
-                    //             if(element[i].children[0].innerText==this.nowDate){
-                    //                 element[i].appendChild(paraPm)
-                    //             }else if(element[i].children[1]){
-                    //                 element[i].children[1].parentNode.removeChild(element[i].children[1]);
-                    //             }
+                    // for(let i=0;i<element.length;i++){
+                    //     if(element[i].children[0].className!="wh_item_date wh_other_dayhide"){
+                    //         if(element[i].children[0].innerText==this.nowDate && this.spliceM==this.nowMonth){
+                    //             element[i].appendChild(paraPm)
+                    //         }else if(element[i].children[1]){
+                    //             element[i].children[1].parentNode.removeChild(element[i].children[1]);
                     //         }
                     //     }
                     // }
                     if(this.spliceM==this.nowMonth){
-                        element[8].appendChild(paraPm);
-                        element[6].appendChild(paraAll);
-                    }else if(element[8].children[1]){
-                        element[8].children[1].parentNode.removeChild(element[8].children[1]);
-                        element[6].children[1].parentNode.removeChild(element[6].children[1]);
+                        element[12].appendChild(paraPm);
+                        element[16].appendChild(paraAll);
+                    }else if(element[12].children[1]){
+                        element[12].children[1].parentNode.removeChild(element[12].children[1]);
+                        element[16].children[1].parentNode.removeChild(element[16].children[1]);
                     }
-            })
+                })
             },
             doctorscheduFun(){
                 let scheduPar={};
@@ -114,7 +113,7 @@
                 this.$axios.put(doctor_url, scheduPar).then((res) => {
                     if (res.data.code == '200') {
                         this.loadingtrue=false;
-                        this.doctorData=res.data.data;
+                         this.doctorData=res.data.data;
                         if(this.doctorData.introduce.length>16){
                             this.moreButton=true;
                         }
@@ -127,7 +126,7 @@
                 console.log(data); //选中某天
             },
             changeDate(data) {
-                 console.log(data); //左右点击切换月份
+                 //console.log(data); //左右点击切换月份
                 var nowTime = new Date();
                 this.nowDate= nowTime.getDate();
                 this.nowMonth=nowTime.getMonth()+1;

@@ -33,6 +33,7 @@ export default {
       } else {
         this.active1 = item.type;
       }
+      console.log(this.active1);
       this.$emit('childByValue', item);
     },
   },
