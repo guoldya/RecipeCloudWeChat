@@ -10,7 +10,7 @@
         </div>
         <div class="alltimeball">
           <span class="acitivestep">手机验证</span>
-          <span class="acitivestep">上传证件</span>
+          <span class="acitivestep">身份验证</span>
           <span class="acitivestep">资料确认</span>
         </div>
         <div class="timeballline"></div>
@@ -19,7 +19,7 @@
     </div>
     <p>
       <md-icon name="success-color" size="lg" svg style="position:relative;top:5px; "></md-icon>
-      <span style="margin-left:10px;color:#1da1f3">验证成功！请确认家长信息是否正确</span>
+      <span style="margin-left:10px;color:#1da1f3">验证成功！请确认个人信息是否正确</span>
     </p>
     <div class="card margin16">
       <div class="cardText login-box">

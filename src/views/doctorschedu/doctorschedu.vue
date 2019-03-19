@@ -115,7 +115,7 @@
                     if (res.data.code == '200') {
                         this.loadingtrue=false;
                         this.doctorData=res.data.data;
-                        if(this.doctorData.aaa.length>16){
+                        if(this.doctorData.introduce.length>16){
                             this.moreButton=true;
                         }
                     }

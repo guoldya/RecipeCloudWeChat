@@ -107,7 +107,6 @@ input:-ms-input-placeholder {
 .colo13 {
   font-size: 26px;
   color: #979797;
-  line-height: 60px;
 }
 .margin16 {
   margin: 0 0 32px 0;
@@ -128,7 +127,7 @@ input:-ms-input-placeholder {
 
 /* 轮播图样式 */ /* 全局样式 */
 .swiper-container {
-  margin-top: 100px  ;
+  margin-top: 100px;
   padding-bottom: 30px;
 }
 
@@ -157,7 +156,7 @@ input:-ms-input-placeholder {
   box-shadow: 0 0 20px rgba(131, 179, 208, 0.3);
   text-align: center;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .swiper-container img {
   width: 100%;
@@ -186,6 +185,12 @@ input:-ms-input-placeholder {
   > .swiper-pagination-bullets
   .swiper-pagination-bullet {
   margin: 0 2px;
+}
+.swiper-container-horizontal
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  position: relative;
+  top:10px;
 }
 .swiper-pagination-bullet {
   width: 12px;
@@ -218,27 +223,7 @@ input:-ms-input-placeholder {
   color: #979797;
 }
 /**tab样式*/
-
-.appTitle {
-  padding: 28px 0px;
-  border-bottom: 1px solid #ededed;
-  display: flex;
-  justify-content: space-between;
-}
-.appTab {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 100px 32px;
-}
-.appTab span {
-  padding: 0 8px 8px;
-  font-size: 30px;
-}
-
-.appTabAcitive {
-  color: #1da1f3;
-  border-bottom: 2px solid #1da1f3;
-}
+ 
 /**大大大大的**/
 .methodTabAcitive {
   color: #1da1f3;

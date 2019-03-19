@@ -1,6 +1,6 @@
 <template>
    <div class="adress">
-      <Header post-title="地址管理"  ></Header>
+      <Header post-title="地址管理"></Header>
       <div class="outCarint margin45" style="margin-bottom:70px">
          <ul>
             <li v-for="(item,index) in addressInfo" :key="index">
@@ -26,7 +26,7 @@
                            </div>
                         </span>
                         <span class="fr">
-                           <span @click="adressinfo(item.id)" class="bbb mui-icon mui-icon-compose">
+                           <span @click="adressinfo(item)" class="bbb mui-icon mui-icon-compose">
                               <label class="bianji">编辑</label>
                            </span>
                            <span class="mui-icon" style="font-size: 13px;" @click="dedete(item.id)">
@@ -130,9 +130,9 @@ export default {
       },
       dedete(data) {
          console.log(data)
-         let params={},p_data={};
-         p_data.id=data;
-         params.data=p_data;
+         let params = {}, p_data = {};
+         p_data.id = data;
+         params.data = p_data;
          Dialog.confirm({
             title: '确认',
             content: '请确认删除该地址吗',
@@ -154,7 +154,7 @@ export default {
       adressinfo(data) {
          this.$router.push({
             name: 'adressinfo',
-            query: { id: data }
+            query: { id: data.id, isDefault: data.isDefault }
          });
       },
 

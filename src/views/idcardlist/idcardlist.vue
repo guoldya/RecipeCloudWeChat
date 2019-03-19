@@ -19,11 +19,11 @@
         <Loading v-show="loadingtrue"></Loading>
       </ul>
       <div v-show="!loadingtrue">
-        <md-button @click="blidcard" type="primary" round>注册电子就诊卡</md-button>
+        <md-button @click="blidcard" type="primary" round :inactive="isFive">注册电子就诊卡</md-button>
         <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
           是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
         </md-dialog>
-        <p class="warnbottitle margin16">温馨提示：</p>
+        <p class="warnbottitle margin7">温馨提示：</p>
         <p class="warnbot">
           您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
         </p>
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       loadingtrue: true,
-
+      isFive: false,
       showPic: false,
       num: 2,
       cardlist: '',
@@ -74,6 +74,11 @@ export default {
     }).then(res => {
       if (res.data.code == '200') {
         this.cardlist = res.data.rows;
+        if (res.data.rows.length > 5) {
+          this.isFive = true
+        } else {
+          this.isFive = false
+        }
         this.$store.commit('cardListFun', this.cardlist);
         this.loadingtrue = false;
       } else if (res.data.code == '800') {
@@ -135,7 +140,6 @@ export default {
 </script>
  <style   scoped>
 @import "../doctorList/doctorList.css";
- 
 
 .idcardlist .homeCard {
   height: 200px;

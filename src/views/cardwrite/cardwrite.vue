@@ -89,20 +89,16 @@ export default {
             }
           }, 1000);
           this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.phonenumber + '&verifyType=' + 1, {
-          }, {
-              headers: {
-                'TOKEN': `edd169b85704410aa5219512cb6f1f00`,
-                'UUID': `AAA`
-              },
-            }).then(res => {
-              if (res.data.code == '200') {
-                _this.$toast.info('请查看验证码')
-              } else if (res.data.code == '800') {
-
-              }
-            }).catch(function (err) {
-              console.log(err);
-            });
+            
+          }).then(res => {
+            if (res.data.code == '200') {
+              _this.$toast.info('请查看验证码')
+            } else {
+              _this.$toast.info(res.data.msg)
+            }
+          }).catch(function (err) {
+            console.log(err);
+          });
         }
       }
 
