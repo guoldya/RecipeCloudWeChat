@@ -1,15 +1,15 @@
 <template>
    <div class="result">
-      <Header post-title="搜索医生"  ></Header>
+      <Header post-title="搜索医生"></Header>
       <div class="outCarint margin45">
          <div style="text-align:center;">
             <input v-model="value" placeholder="搜索医生" class="oc_val" @input="loadMorelist(value)">
          </div>
-         <div class="mu-sub-header margin16">医生</div>
+         <div class="mu-sub-header margin14">医生</div>
          <md-cell-item v-for="(item,index) in doctorList" :key="index+'aa'" @click="intodoctorinfo(item)" :title="item.name" :brief="item.introduce" arrow>
             <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
          </md-cell-item>
-         <div v-if="doctorList.length==0">
+         <div v-if="doctorList.length==0" class="margin7">
             <p>暂无医生信息</p>
          </div>
       </div>
@@ -21,7 +21,6 @@ export default {
    data() {
       return {
          value: '',
-         
          doctorList: [],
       }
    },
@@ -82,8 +81,9 @@ export default {
 
 
       loadMorelist(value) {
+         this.doctorList = [];
+         value = value.trim(); // 清除空格
          if (!value) return;
-         value = value.trim() // 清除空格
          let _this = this;
          console.log("搜索数据", value);
          clearTimeout(this.t);
