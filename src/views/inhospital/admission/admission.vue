@@ -19,18 +19,14 @@
           <span class="week">{{chooseDate}}</span>
         </span>
       </div>
-
       <div class="big_date">
         <ul>
           <li v-for="(item,index) in time" :key="index" @click="choose(item,index)">
             <p>{{item.week}}</p>
             <p :class="activetime === index ? 'aa' : '' ">{{item.day}}</p>
           </li>
-
         </ul>
-
       </div>
-
     </div>
     <div class="outCarint">
       <div class="card">
@@ -47,11 +43,9 @@
             剩余款
             <span class="mu-secondary-text-color">￥2000.00</span>
           </p>
-
         </div>
       </div>
     </div>
-
     <div class="outCarint">
       <div class="card">
         <div class="cardText">
@@ -175,8 +169,6 @@
   </div>
 </template>
 <script type="text/babel">
-
-
 export default {
   data() {
     return {

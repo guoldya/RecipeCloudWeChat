@@ -126,7 +126,12 @@ input:-ms-input-placeholder {
 .outCarint {
   padding: 0 24px;
 }
-
+.appTitle {
+  padding: 28px 0px;
+  border-bottom: 2px solid #ededed;
+  display: flex;
+  justify-content: space-between;
+}
 /* 轮播图样式 */ /* 全局样式 */
 .swiper-container {
   margin-top: 100px;

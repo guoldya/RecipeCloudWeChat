@@ -87,7 +87,7 @@
                     <span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>
                     <span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>
                   </p>
-                  <p class="headdesc"><span> {{item.regStage}}</span></p>
+                  <!-- <p class="headdesc"><span> {{item.regStage}}</span></p> -->
                   <p class="headdesc">擅长:{{item.skill}}</p>
                 </div>
               </div>
