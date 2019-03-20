@@ -171,6 +171,7 @@ export default {
                             this.nomore = false;
                         }
                     }
+                    //2、
                 } else {
                     this.waitPayData = []
                 }

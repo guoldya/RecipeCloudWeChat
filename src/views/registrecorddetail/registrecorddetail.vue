@@ -70,7 +70,10 @@
                         <md-button type="primary" round @click="applyBack">申请退号</md-button>
                     </div>
                     <div v-if="payType==2">
-                        <md-button type="default" round>已退号/已失效</md-button>
+                        <md-button type="default" round>已退号</md-button>
+                    </div>
+                    <div v-if="payType==5">
+                        <md-button type="default" round>已取消</md-button>
                     </div>
                 </div>
             </div>
@@ -156,7 +159,34 @@ export default {
             });
         },
         orderCancle(){
-
+            Dialog.confirm({
+                title: '温馨提示',
+                content: '是否取消订单',
+                confirmText: '确定',
+                onConfirm: () => {
+                    this.$axios.post(order_cancle_url, { id: this.feeId,sourceId:this.sourceId}).then((res) => {
+                        if (res.data.code == '200') {
+                            this.$toast.info("取消成功");
+                            setTimeout(() => {
+                                this.$router.push({
+                                    name: 'registrecord',
+                                    query: {}
+                                });
+                            }, 3000)
+                        }else if(res.data.code == '800'){
+                            this.$toast.info(res.data.msg);
+                            setTimeout(() => {
+                                this.$router.push({
+                                    name: 'registrecord',
+                                    query: {}
+                                });
+                            }, 3000)
+                        }
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
+                },
+            })
         },
         doPay() {
             if (this.isCashierCaptcha) {
@@ -265,9 +295,17 @@ export default {
                 content: '是否申请退号',
                 confirmText: '确定',
                 onConfirm: () => {
-                    this.$axios.post(order_cancle_url, { id: this.feeId }).then((res) => {
+                    this.$axios.post(order_cancle_url, { id: this.feeId,sourceId:this.sourceId}).then((res) => {
                         if (res.data.code == '200') {
-                            this.$toast.info("订单已取消");
+                            this.$toast.info("退号成功");
+                            setTimeout(() => {
+                                this.$router.push({
+                                    name: 'registrecord',
+                                    query: {}
+                                });
+                            }, 3000)
+                        }else if(res.data.code == '800'){
+                            this.$toast.info(res.data.msg);
                             setTimeout(() => {
                                 this.$router.push({
                                     name: 'registrecord',

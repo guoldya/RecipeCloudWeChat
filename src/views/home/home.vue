@@ -280,6 +280,7 @@ export default {
                 query: argu
             });
         },
+        
         // 医生排班
         workdepart() {
             let argu = {}
@@ -288,6 +289,7 @@ export default {
                 query: argu
             });
         },
+
         // 医生排班
         business() {
             let argu = {}
@@ -296,6 +298,7 @@ export default {
                 query: argu
             });
         },
+
         // 我的处方
         myinspectionCheck() {
             let argu = {}
@@ -304,6 +307,9 @@ export default {
                 query: argu
             });
         },
+
+
+
     },
     // beforeRouteLeave(to, from, next) {
     //       from.meta.keepAlive = true;

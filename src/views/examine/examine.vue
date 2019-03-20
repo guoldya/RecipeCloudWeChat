@@ -25,7 +25,7 @@
                                 <span class="mu-secondary-text-color">{{item.examDept}}（{{item.hospital}}）</span>
                             </span>
                         </div>
-                        <div class="nowOrder" @click="rightNowOrder(item.id)">
+                        <div class="nowOrder" @click="rightNowOrder(item.classId)">
                             <span>立即预约</span>
                         </div>
                         <div style="clear: both"></div>
