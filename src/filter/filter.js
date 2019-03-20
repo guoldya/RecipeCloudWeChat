@@ -44,6 +44,18 @@ const time=function(value){
     }
     let val=value.split(' ')[0];
     return val
+    // if(!ms){return;};
+    // let curTime = new Date(ms);
+    // let year = curTime.getFullYear();
+    // let month = curTime.getMonth() + 1;
+    // let day = curTime.getDate();
+    // let hours = curTime.getHours();
+    // let minutes = curTime.getMinutes();
+    // month = month <= 9 ? "0" + month : month;
+    // day = day <= 9 ? "0" + day : day;
+    // hours = hours <= 9 ? "0" + hours : hours;
+    // minutes = minutes <= 9 ? "0" + minutes : minutes;
+    // return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
 };
 const drugCheck=function(value){
     if(value==undefined){

@@ -109,7 +109,8 @@
                     if (res.data.code == '200') {
                         this.loadingtrue=false;
                          this.doctorData=res.data.data;
-                        if(this.doctorData.introduce.length>16){
+                         console.log(this.doctorData.introduce)
+                        if(this.doctorData.introduce.length>14){
                             this.moreButton=true;
                         }
                     }

@@ -161,7 +161,6 @@ export default {
         if (res.data.code == '200') {
             this.loadingtrue = false;
           this.feeDetailData.push(res.data.data);
-            this.$store.commit('tabAliveFun', res.data.data);
           for (let i = 0; i < this.feeDetailData.length; i++) {
             this.feeDetailData[i].createTime = this.feeDetailData[i].createTime.split(' ')[0];
           }
