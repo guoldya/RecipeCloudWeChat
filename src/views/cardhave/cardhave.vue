@@ -1,6 +1,6 @@
 <template>
-  <div :class="{'outCarint':true,'margin45':isWeixin}">
-    <Header post-title="资料确认"  ></Header>
+  <div class="outCarint margin45 cardhave">
+    <Header post-title="资料确认"></Header>
     <div class="rebinding-box card margin16">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
@@ -10,7 +10,7 @@
         </div>
         <div class="alltimeball">
           <span class="acitivestep">手机验证</span>
-          <span class="acitivestep">上传证件</span>
+          <span class="acitivestep">身份验证</span>
           <span class="acitivestep">资料确认</span>
         </div>
         <div class="timeballline"></div>
@@ -18,12 +18,12 @@
       </div>
     </div>
     <p>
-      <md-icon name="success-color" size="lg" svg style="position:relative;top:5px; "></md-icon>
-      <span style="margin-left:10px;color:#1da1f3">验证成功！请确认家长信息是否正确</span>
+      <md-icon name="success-color" size="lg" svg style="position:relative;top:5px  "></md-icon>
+      <span style="margin-left:10px;color:#1da1f3">验证成功！请确认个人信息是否正确</span>
     </p>
-    <div class="card margin16">
+    <div class="card margin16" style="margin-top:20px">
       <div class="cardText login-box">
-        <div class="content">
+        <!-- <div class="content">
           <div class="login-box">
             <div class="login-box-div">
               <span class="flexF">姓名</span>
@@ -37,6 +37,7 @@
               <span class="flexF">民族</span>
               <input class="flexF" type="text" name="username" id="phone" placeholder="民族" :value="national" maxlength="11">
             </div>
+            <md-field-item solid title="民族" placeholder="提示文本" />
             <div class="login-box-div">
               <span class="flexF">出生日期</span>
               <input id="verify" type="text" class="infos flexF" name="yanz" :value="birth" placeholder="出生日期" />
@@ -54,7 +55,19 @@
               <input id="verify" type="text" class="infos flexF" name="yanz" placeholder="身份证有效期" :value="goodtime" maxlength="4" />
             </div>
           </div>
-        </div>
+        </div> -->
+        <md-field>
+          <md-detail-item title="姓名" :content="name" />
+          <md-detail-item v-if="sex==1" title="性别" content="男" />
+          <md-detail-item v-else title="性别" content="女" />
+          <md-detail-item title="民族" :content="national" />
+          <md-detail-item title="出生日期" :content="birth" />
+          <md-detail-item title="地址" :content="address" />
+          <md-detail-item title="身份证号" :content="idCard" />
+          <md-detail-item title="身份证有效期" :content="goodtime">
+          </md-detail-item>
+        </md-field>
+
       </div>
     </div>
     <md-button type="primary" round class="margin16" @click="tijiao">正确</md-button>
@@ -151,9 +164,9 @@ export default {
         if (res.data.code == '200') {
           this.$toast.info("绑定成功");
           this.$router.go(-4);
-          this.$router.options.routes[0].meta.keepAlive=false;
+          // this.$router.options.routes[0].meta.keepAlive = false;
         } else {
-          console.log(res.msg);
+          this.$toast.info(res.data.msg);
         }
       }).catch(function (err) {
         console.log(err);
@@ -168,4 +181,8 @@ export default {
 </script>
  <style scoped>
 @import url("../cardwrite/cardwrite.css");
+.cardhave .md-detail-item {
+  line-height: 1.7;
+  font-size: 30px;
+}
 </style>

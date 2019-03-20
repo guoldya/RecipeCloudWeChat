@@ -121,7 +121,6 @@ export default {
         radio: 1,
         switch: false
       },
-      isWeixin: false,
       departData: [],
       time: [],
       choosedate: '1-01',
@@ -172,12 +171,7 @@ export default {
       }
     })
 
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
+
     if (!this.isTime) {
       var today = new Date();
       this.isTime = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -285,11 +279,12 @@ export default {
         valNum: this.valNum ? 1 : undefined,
         time: this.isTime,
       }).then((res) => {
+         this.loadingtrue = false;
         if (res.data.code == '200') {
-          this.loadingtrue = false;
           this.amList = res.data.data.amList;
           this.pmList = res.data.data.pmList;
         } else {
+           
           console.log(res.msg);
         }
       }).catch(function (err) {

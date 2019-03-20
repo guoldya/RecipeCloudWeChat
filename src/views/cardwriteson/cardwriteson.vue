@@ -41,7 +41,7 @@
       </div>
     </div>
     <md-button @click="cardconfirm" type="primary" round style="margin-top:150px">下一步</md-button>
-    <md-selector v-model="isSelectorShow" default-value="2" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
+    <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
   </div>
 </template>
 <script type="text/babel">

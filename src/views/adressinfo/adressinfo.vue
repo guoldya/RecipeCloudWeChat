@@ -1,13 +1,24 @@
 <template>
   <div class="adressinfo">
     <Header :post-title="post"></Header>
-    <div class="outCarint">
+    <div class="outCarint margin45">
       <md-field>
         <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名" is-highlight></md-input-item>
         <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
         <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码" is-highlight></md-input-item>
         <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
         <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址" is-highlight></md-input-item>
+        <div class="md-agree margin7" @click="isDefault=!isDefault">
+          <div :class="{ 'md-agree-icon':true,'checked':isDefault}">
+            <div class="md-agree-icon-container">
+              <i class="md-icon icon-font md-icon-checked md"></i>
+              <i class="md-icon icon-font md-icon-check md"></i>
+            </div>
+          </div>
+          <div class="md-agree-content">
+            默认地址
+          </div>
+        </div>
         <md-button type="primary" @click="tijiao" round style="margin-top:16px">保存</md-button>
       </md-field>
     </div>
@@ -25,6 +36,7 @@ export default {
   titleEnUS: 'Normal input',
   data() {
     return {
+      isDefault: false,
       receiver: '',
       mobile: '',
       address: '',
@@ -52,9 +64,9 @@ export default {
           this.address = res.data.data.address;
           this.areaId = res.data.data.areaId;
           this.pickerDefaultValue = [parseInt(this.areaId / 1000) * 1000, parseInt(this.areaId / 100) * 100, this.areaId]
-         
-         console.log( this.pickerDefaultValue," this.pickerDefaultValue")
-         this.zipCode = res.data.data.zipCode;
+
+          console.log(this.pickerDefaultValue, " this.pickerDefaultValue")
+          this.zipCode = res.data.data.zipCode;
         }
       }).catch(function (err) {
         console.log(err);
@@ -73,7 +85,11 @@ export default {
 
   },
   mounted() {
-
+    if (this.$route.query.isDefault * 1 == 1) {
+      this.isDefault = true
+    } else {
+      this.isDefault - false
+    }
   },
   methods: {
     adressByValue: function (childValue) {

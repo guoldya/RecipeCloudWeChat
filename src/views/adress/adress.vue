@@ -1,8 +1,8 @@
 <template>
    <div class="adress">
-      <Header post-title="地址管理"  ></Header>
+      <Header post-title="地址管理"></Header>
       <div class="outCarint margin45" style="margin-bottom:70px">
-         <ul>
+         <ul v-if="addressInfo.length!=0" v-show="!loadingtrue">
             <li v-for="(item,index) in addressInfo" :key="index">
                <div class="card">
                   <div class="cardText">
@@ -26,7 +26,7 @@
                            </div>
                         </span>
                         <span class="fr">
-                           <span @click="adressinfo(item.id)" class="bbb mui-icon mui-icon-compose">
+                           <span @click="adressinfo(item)" class="bbb mui-icon mui-icon-compose">
                               <label class="bianji">编辑</label>
                            </span>
                            <span class="mui-icon" style="font-size: 13px;" @click="dedete(item.id)">
@@ -38,8 +38,12 @@
                </div>
             </li>
          </ul>
-      </div>
 
+         <div v-show="!loadingtrue" v-else class="nullDurg">
+            <img src="@/assets/images/null.png" alt="">
+         </div>
+      </div>
+      <Loading v-show="loadingtrue"></Loading>
       <p class="add" @click="addadress()">添加地址</p>
 
    </div>
@@ -55,7 +59,7 @@ let isDefault = "/app/shippingAddress/isDefault"
 export default {
    data() {
       return {
-         isWeixin: false,
+         loadingtrue: true,
          num: 7,
          checked: '0a',
          addressInfo: '',
@@ -67,16 +71,12 @@ export default {
             disabled: false,
             introduction: '选中状态',
          },
-
-
       };
    },
    created() {
-
-
       this.$axios.put(appshippingAddressaddressList, {
       }).then((res) => {
-         console.log(res)
+          this.loadingtrue = false;
          if (res.data.code == '200') {
             this.addressInfo = res.data.rows;
          } else {
@@ -91,12 +91,7 @@ export default {
    },
    mounted() {
       document.title = '地址管理';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      }
+
    },
    methods: {
 
@@ -130,9 +125,9 @@ export default {
       },
       dedete(data) {
          console.log(data)
-         let params={},p_data={};
-         p_data.id=data;
-         params.data=p_data;
+         let params = {}, p_data = {};
+         p_data.id = data;
+         params.data = p_data;
          Dialog.confirm({
             title: '确认',
             content: '请确认删除该地址吗',
@@ -154,7 +149,7 @@ export default {
       adressinfo(data) {
          this.$router.push({
             name: 'adressinfo',
-            query: { id: data }
+            query: { id: data.id, isDefault: data.isDefault }
          });
       },
 

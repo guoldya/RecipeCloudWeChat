@@ -15,12 +15,23 @@
     <div v-show="isdelice">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-
+          <!-- <div class="swiper-slide">
+            <div class="wannianli-info"><img src="https://p0.ssl.qhimg.com/t01446789d1170e7d14.jpg" alt="轮播图"></div>
+          </div>
+          <div class="swiper-slide">
+            <div class="wannianli-info"><img src="https://p0.ssl.qhimg.com/t01e40f48348f568b3c.jpg" alt="轮播图"></div>
+          </div>
+          <div class="swiper-slide">
+            <div class="wannianli-info"><img src="https://p.ssl.qhimg.com/dmfd/125_71_75/t017b3671075590b86c.webp?size=651x262" alt="轮播图"></div>
+          </div> -->
         </div>
         <div class="swiper-pagination"></div>
       </div>
       <div class="btn tagsbtn">
-        <button class="abtn" v-for="(item,index) in drugInfo.tags" :key="'tags'+index">{{item}} </button>
+        <!-- <button class="abtn" v-for="(item,index) in drugInfo.tags" :key="'tags'+index">{{item}} </button> -->
+        <button class="abtn">清热解毒</button>
+        <button class="abtn">清热解毒</button>
+        <button class="abtn">清热解毒</button>
       </div>
       <div class="content">
         <div class="cainter border1">
@@ -281,7 +292,7 @@ export default {
     function UrlSearch() {
       let name, value;
       let str = location.href;
-      //let str = "http://192.168.0.150:40080/h5/#/druginfo?drugId=104&TOKEN=1d89a26bfc02417bab4755f298c5bf3e&UUID=FE3B570FA5FE47F88F468B5735189AB2"; //取得整个地址栏
+      //let str = "http://192.168.0.150:40080/h5/#/druginfo?drugId=104&TOKEN=edd169b85704410aa5219512cb6f1f00&UUID=AAA"; //取得整个地址栏
       let num = str.indexOf("?");
       str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
       _this.drugId = str.match(/drugId=[^&]+/)[0].split("=")[1] * 1;
@@ -530,13 +541,15 @@ export default {
         followFinger: false,
       });
       for (let i = 0; i < data.length; i++) {
+
         mySwiper.appendSlide(this.slidedata(data[i]));
       };
     },
     slidedata(i) {
       let _this = this;
-      return '<div class="swiper-slide"><div class="wannianli-info"><img src="' + this.$conf.constant.img_base_url + i + '" alt="轮播图"> </div></div>';
+      return '<div class="swiper-slide"><div class="wannianli-info"><img src="' + this.$conf.constant.img_base_url + i + '" alt="轮播图"></div></div>';
     },
+
 
   },
 }
