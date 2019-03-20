@@ -1,8 +1,8 @@
  
 <template>
   <div class="signsucceed">
-    <Header post-title="签到成功"  ></Header>
-    <div :class="{margin45:isWeixin,signsucceedtop:true,margin16:!isWeixin}">
+    <Header post-title="签到成功"></Header>
+    <div class=" margin45 signsucceedtop ">
       <div style="text-align: center;margin-bottom: 20px">
         <div>
           <img src="@/assets/images/icon_success.png" width="60px">
@@ -33,7 +33,7 @@ let bizExamApply = "/app/bizPatientRegister/read/selectSignList";
 export default {
   data() {
     return {
-      isWeixin: false,
+
       waitList: [],
       nowTime: '',
     }
@@ -46,12 +46,7 @@ export default {
 
 
     document.title = '签到成功';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
+
     this.$axios.put(bizExamApply, {
     }).then(res => {
       if (res.data.code == '200') {

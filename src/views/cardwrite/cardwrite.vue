@@ -49,7 +49,7 @@ export default {
     return {
       phonenumber: '',
       verifyCode: '',
-      isWeixin: false,
+      
       show: true,
       count: '',
       timer: null,
@@ -60,14 +60,10 @@ export default {
   },
   mounted() {
     document.title = '手机验证';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-      return true;
-    } else {
-      this.isWeixin = true;
-      return false;
-    }
+    
+    
+      
+     
   },
   methods: {
     getCode() {

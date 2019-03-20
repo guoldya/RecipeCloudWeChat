@@ -57,6 +57,7 @@
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
                   <p class="headname">{{info.name}}
+                    <span class="levle">{{item.title}}</span>
                     <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
                     <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
                   </p>
@@ -86,6 +87,7 @@
                     <span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>
                     <span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>
                   </p>
+                  <p class="headdesc"><span> {{item.regStage}}</span></p>
                   <p class="headdesc">擅长:{{item.skill}}</p>
                 </div>
               </div>
@@ -124,7 +126,7 @@ export default {
       departData: [],
       time: [],
       choosedate: '1-01',
-      chooseweek: '星期六',
+      chooseweek: '当日号',
       isTime: '',
       amList: [],
       pmList: [],
@@ -279,12 +281,11 @@ export default {
         valNum: this.valNum ? 1 : undefined,
         time: this.isTime,
       }).then((res) => {
-         this.loadingtrue = false;
+        this.loadingtrue = false;
         if (res.data.code == '200') {
           this.amList = res.data.data.amList;
           this.pmList = res.data.data.pmList;
         } else {
-           
           console.log(res.msg);
         }
       }).catch(function (err) {

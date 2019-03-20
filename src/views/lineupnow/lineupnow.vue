@@ -113,7 +113,6 @@ export default {
       page: 1,
       pageSize: 10,
       queryType: 1,
-      isWeixin: false,
       isActive: false,
       nowTime: '',
       onlyWaiting: '',
@@ -138,12 +137,7 @@ export default {
     if (this.$store.state.feeActiveId) {
       this.queryType = this.$store.state.feeActiveId
     }
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
+   
     var today = new Date();
     var m = today.getMonth() + 1;
     m = m <= 9 ? "0" + m : m;

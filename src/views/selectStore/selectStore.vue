@@ -103,7 +103,7 @@
 export default {
     data() {
         return {
-            isWeixin: false,
+            
             imgIndex: null,
             downImg: true,
             acceptJumpData: [],
@@ -158,15 +158,6 @@ export default {
     mounted() {
         this.acceptJumpData=this.$store.state.jumpArr;
         document.title = '药店选择';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-            return true;
-        } else {
-            this.isWeixin = true;
-            return false;
-        }
-
     },
     methods: {
         foldFun: function (val) {

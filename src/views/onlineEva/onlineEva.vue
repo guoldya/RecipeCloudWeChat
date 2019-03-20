@@ -87,7 +87,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 starArray:[
                     {
                         light:require("@/assets/images/icon_star@2x.png"),
@@ -121,14 +121,9 @@
         mounted() {
             this.evaluation();
             document.title = '就医评价';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
+            
+            
+             
 
 
         },

@@ -1,7 +1,7 @@
 <template>
   <div class="cardblind">
     <Header post-title="绑定就诊卡"></Header>
-    <div :class="{margin45:isWeixin,outCarint:true }">
+    <div class="outCarint margin45">
       <md-field>
         <md-input-item ref="input13" v-model="name" title="姓名" placeholder="姓名" is-highlight></md-input-item>
         <md-field-item title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector ">
@@ -45,7 +45,7 @@ export default {
       isSelectorShow: false,
       pickerData1: [],
       pickerValue1: '',
-      isWeixin: false,
+      
       selectorValue: '就诊卡',
       test: [
         {
@@ -66,12 +66,7 @@ export default {
   },
   mounted() {
     document.title = '绑定就诊卡';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
+ 
   },
   methods: {
     showSelector() {

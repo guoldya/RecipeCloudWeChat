@@ -139,7 +139,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 changeTitle: [
                     { title: '配送到家' },
                     { title: '门店自提' },
@@ -186,15 +186,6 @@
                 this.addJumpInfo.push(this.$route.query);
             }
             document.title = '提交订单';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
-
         },
         methods: {
             switchTo(num) {

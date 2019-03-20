@@ -2,7 +2,7 @@
 
    <div class="orderinfo">
       <Header post-title="预约详情"  ></Header>
-      <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
+      <div class="outCarint margin45">
          <div class="card margin16">
             <div class="cardText  ">
                <p class="cardTextPP">
@@ -58,7 +58,7 @@ import { Toast, Button, Dialog } from 'mand-mobile'
 export default {
    data() {
       return {
-         isWeixin: false,
+         
          active1: 0,
          shixiao: false,
          istuihao: false,
@@ -77,12 +77,7 @@ export default {
    },
    mounted() {
       document.title = '预约详情';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      };
+       
       if (this.$route.query.aa * 1 == 2) {
          this.shixiao = true;
       }

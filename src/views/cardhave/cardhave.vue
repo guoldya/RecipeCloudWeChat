@@ -79,7 +79,7 @@ let bizPatientCard = "/app/bizPatientCard/insert"
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       name: '',
       idCard: '',
       national: '',
@@ -105,12 +105,10 @@ export default {
     // var aa = date1 + "-" + date2 + "-" + date3;
     //  alert(aa.replace(/\b(0+)/gi, ""));
     document.title = '资料确认';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
+    
+    
+      
+    
 
     if (this.$store.state.photo0Data) {
       console.log(this.$store.state.photo0Data.sex)

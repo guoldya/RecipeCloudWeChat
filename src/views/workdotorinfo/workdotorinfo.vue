@@ -1,8 +1,8 @@
  
 <template>
    <div class="workdotorinfo">
-      <Header post-title="医生详情"  ></Header>
-      <div :class="{ 'margin45':isWeixin,  }">
+      <Header post-title="医生详情"></Header>
+      <div class=" margin45 ">
          <div class="doctor-head">
             <div class="outCarint">
                <div class="doctor-img float-left">
@@ -85,7 +85,7 @@ import start from '@/assets/images/icon_star@2x.png'
 export default {
    data() {
       return {
-         isWeixin: false,
+
          img,
          start,
          collapsed: false,
@@ -94,14 +94,6 @@ export default {
    },
    mounted() {
       document.title = '医生详情';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-         return true;
-      } else {
-         this.isWeixin = true;
-         return false;
-      }
    },
    methods: {
       toggleClick() {

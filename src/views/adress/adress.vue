@@ -102,7 +102,6 @@ export default {
          this.$axios.post(isDefault, {
             id: data
          }).then((res) => {
-            console.log(res)
             if (res.data.code == '200') {
                this.$toast.info("设置成功");
                this.$axios.put(appshippingAddressaddressList, {

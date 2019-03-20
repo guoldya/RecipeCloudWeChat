@@ -38,7 +38,6 @@
     export default {
         data() {
             return {
-                isWeixin: false,
                 favorites: [],
                 addInfo:[
                     {name:"土木君",tel:"188****5489",add:"重庆市渝北区仙桃街道xx号",addDefault:"1"},
@@ -55,15 +54,7 @@
         mounted() {
             this.checked=this.$route.query.checked;
             document.title = '选择收获地址';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
-
+           
         },
         methods: {
             checkedFun:function(val){},

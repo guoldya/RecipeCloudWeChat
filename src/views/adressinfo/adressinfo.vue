@@ -75,14 +75,6 @@ export default {
       document.title = '新增地址';
       this.post = '新增地址';
     }
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
-
-
   },
   mounted() {
     if (this.$route.query.isDefault * 1 == 1) {
@@ -106,6 +98,7 @@ export default {
           address: this.address,
           areaId: this.areaId,
           zipCode: this.zipCode,
+          isDefault: this.isDefault ? 1 : undefined,
         }).then(res => {
           if (res.data.code == '200') {
             this.$router.go(-1);

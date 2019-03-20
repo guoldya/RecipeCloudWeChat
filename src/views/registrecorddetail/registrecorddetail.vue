@@ -86,7 +86,7 @@ let order_cancle_url="/app/bizPatientRegister/outSourceId";
 export default {
     data() {
         return {
-            isWeixin: false,
+            
             cordInfoId: null,
             cordInfoData: [],
             payType: '',
@@ -125,12 +125,7 @@ export default {
         this.sourceId=parseInt(this.$route.query.sourceId);
         this.cordInfo();
         document.title = '预约记录';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-        } else {
-            this.isWeixin = true;
-        };
+       
     },
     methods: {
         cordInfo() {

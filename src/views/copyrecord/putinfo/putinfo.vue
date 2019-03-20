@@ -83,7 +83,7 @@ let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       name: '张三丰',
       copyUse: '',
       idcard: '454444444',
@@ -136,12 +136,10 @@ export default {
   mounted() {
     document.title = '资料确认';
     this.$refs.Pgmodal.istype = 2;
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
+    
+    
+      
+    
   },
   methods: {
     chooseCase() {

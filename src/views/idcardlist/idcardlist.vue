@@ -94,9 +94,6 @@ export default {
     },
   },
   mounted() {
-    document.title = '医生列表';
-
-
 
   },
   methods: {

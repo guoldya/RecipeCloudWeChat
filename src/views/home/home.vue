@@ -36,7 +36,7 @@
                 </div>
                 <span v-show="!cardLoading" class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
-            <div style="height:70px;">
+            <div class="cardPositon">
 
             </div>
             <div>
@@ -135,6 +135,9 @@ export default {
     },
     created() {
         this.$store.commit('feeActiveFun', 1);
+
+
+
     },
     mounted() {
         // 用于测试
@@ -178,6 +181,7 @@ export default {
                     this.cardlist = res.data.rows;
                     this.maxindex = res.data.total;
                     this.cardLoading = false;
+                    this.$store.commit('cardIndexFun', 0);
                     this.$store.commit('cardListFun', res.data.rows);
                     this.$store.commit('patientIdFun', res.data.rows[0].patientId);
                     this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
@@ -192,9 +196,6 @@ export default {
         } else {
             this.maxindex = this.$store.state.cardList.length;
         }
-
-
-
 
     },
     methods: {
@@ -211,6 +212,7 @@ export default {
             } else {
                 this.showindex = 0;
             }
+            this.$store.commit('cardIndexFun', data);
             this.$store.commit('patientIdFun', data1.patientId);
             this.$store.commit('cardNoFun', data1.cardNo);
             this.$store.commit('cardIdFun', data1.id);
@@ -309,7 +311,12 @@ export default {
     computed: {
         _cardlist() {
             this.cardLoading = false;
-            return this.$store.state.cardList
+            if (this.$store.state.cardIndex) {
+                var dayWeeka = this.$store.state.cardList.slice(0, this.$store.state.cardIndex);
+                var dayWeekb = this.$store.state.cardList.slice(this.$store.state.cardIndex, this.$store.state.cardList.length);
+                this.$store.state.cardList = dayWeekb.concat(dayWeeka);
+            }
+            return this.$store.state.cardList;
         },
     },
 

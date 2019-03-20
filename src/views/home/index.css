@@ -11,7 +11,9 @@
    height: 77px;
    margin-top: 77px;
 }
-
+.cardPositon{
+   height: 140px;
+}
 .font-12 {
    font-size: 12px;
 }

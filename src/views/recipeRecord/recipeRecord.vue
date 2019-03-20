@@ -128,7 +128,7 @@ export default {
 
     data() {
         return {
-            isWeixin: false,
+            
             changeTitle: [
                 { title: '进行中' },
                 { title: '历史记录' },
@@ -193,12 +193,7 @@ export default {
     mounted() {
         this.recipeFun(false);
         document.title = '处方记录';
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-        } else {
-            this.isWeixin = true;
-        }
+         
     },
     methods: {
         recipeFun(flag) {

@@ -1,7 +1,7 @@
 <template>
     <div class="examineOrder">
         <Header post-title="检验检查"  ></Header>
-        <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
+        <div class="outCarint margin45">
             <div class="time">
                 <ul>
                     <li @click="switchTo(index,item)" v-for="(item,index) in time" :class="activetime === index ? 'timeAcitve' : '' " :key="index+'aa'">
@@ -38,7 +38,7 @@
             return {
                 activetime: 0,
                 isTime: '',
-                isWeixin: false,
+                
                 time: [],
                 dayWeek: ["日", "一", "二", "三", "四", "五", "六"],
                 timeData:[],
@@ -49,12 +49,6 @@
         mounted() {
             this.getTime();
             document.title = '检验检查';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-            } else {
-                this.isWeixin = true;
-            };
             this.getData();
             this.addWeek()
         },

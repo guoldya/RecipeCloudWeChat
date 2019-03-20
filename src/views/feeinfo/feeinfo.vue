@@ -2,7 +2,7 @@
 
   <div class="feeinfo">
     <Header :post-title="postTitle"  ></Header>
-    <div :class="{margin45:isWeixin,outCarint:true,'margin7':!isWeixin}">
+    <div class="outCarint margin45">
       <div class="card margin16" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
         <div class="cardText">
           <div v-if="feeActiveId==2">
@@ -94,7 +94,7 @@ import { Toast, Button } from 'mand-mobile'
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       active1: 0,
       normal: {
         checkbox: true,
@@ -145,12 +145,6 @@ export default {
     this.feeActiveId = this.$store.state.feeActiveId;
     console.log(this.feeActiveId,"详情");
     this.feeDetail();
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    }
 
   },
   methods: {

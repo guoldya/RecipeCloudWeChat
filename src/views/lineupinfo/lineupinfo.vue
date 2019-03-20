@@ -55,7 +55,7 @@ let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       lineupinfo: '',
       loadingtrue: true,
     };
@@ -66,13 +66,7 @@ export default {
   mounted() {
     this.getData()
     document.title = '排队详情';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-
-    } else {
-      this.isWeixin = true;
-    }
+    
 
   },
   methods: {

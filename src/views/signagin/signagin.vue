@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header post-title="就诊签到"  ></Header>
-    <div id="allmap" :class="{ 'margin45':isWeixin}" style="width:100%;height:500px">
+    <Header post-title="就诊签到"></Header>
+    <div id="allmap" class=" margin45 " style="width:100%;height:500px">
 
     </div>
     <div class="outCarint">
@@ -26,18 +26,12 @@ let appbizPatientRegistersign = '/app/bizPatientRegister/sign';
 export default {
   data() {
     return {
-      isWeixin: false,
       nowTime: '',
       ishave: false,
     }
   },
   mounted() {
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
+
     // 百度地图API功能
     let _this = this;
     var map = new BMap.Map("allmap");

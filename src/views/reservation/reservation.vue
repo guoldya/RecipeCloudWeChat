@@ -1,6 +1,6 @@
 <template>
    <div class="gp-order">
-      <div :class="{'outCarint':true,'margin45':isWeixin}">
+      <div class="outCarint margin45">
          <Header post-title="预约信息"  ></Header>
          <div class="order-info">
             <div class="doctor-info g-clear">
@@ -73,7 +73,7 @@ let now_pay_url = "/app/bizPatientRegister/nowPay";
 export default {
    data() {
       return {
-         isWeixin: false,
+         
          depart: '',
          major: '',
          time: '',
@@ -123,13 +123,7 @@ export default {
    mounted() {
       console.log(this.$store.state.cardId)
       document.title = '预约信息';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      }
-
+     
       this.depart = this.$store.state.depart;
       this.major = this.$store.state.major;
       if (this.$route.query.afternoon * 1 == 1) {
@@ -220,7 +214,7 @@ export default {
                this.isCashierhow = !this.isCashierhow;
                this.backId = res.data.data;
             } else {
-               this.$toast.info("提交失败")
+               this.$toast.info(res.data.msg)
             }
          }).catch(function (err) {
             console.log(err);

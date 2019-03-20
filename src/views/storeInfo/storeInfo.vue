@@ -85,7 +85,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 titleIndex:0,
                 evaData:[
                     {name:"王***",date:"2018-12-12",score:3,
@@ -123,15 +123,6 @@
         },
         mounted() {
             document.title = '药店信息';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
-
         },
         methods: {
             storeHistory:function(){},

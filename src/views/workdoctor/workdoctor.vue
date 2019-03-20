@@ -1,7 +1,7 @@
 <template>
   <div class="workdoctor">
     <Header :post-title="postTitle"  ></Header>
-    <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
+    <div class="outCarint margin45">
       <div class="doctorList">
         <ul v-show="!loadingtrue" v-if="doctorData.length!=0">
           <li v-for="(item,i) in doctorData" :key="i" class="outCarint">
@@ -41,7 +41,7 @@
                 value: '',
                 isSeemore: false,
                 choosedate: '',
-                isWeixin: false,
+                
                 time: [],
                 dayWeek: ["日", "一", "二", "三", "四", "五", "六"],
                 postTitle:'',
@@ -54,12 +54,6 @@
           this.postTitle=this.$route.query.deptName;
           this.deptId=parseInt(this.$route.query.deptId);
             document.title = '医生排班';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-            } else {
-                this.isWeixin = true;
-            };
             var today = new Date();
             this.choosedate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
             this.getData();

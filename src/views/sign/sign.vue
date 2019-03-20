@@ -1,7 +1,7 @@
 <template>
   <div class="sign">
     <Header post-title="资料确认"  ></Header>
-    <div :class="{ 'margin45':isWeixin}">
+    <div  class="margin45">
       <md-notice-bar icon="location"  v-show="isHaveOrder" >
         {{titlename}}
       </md-notice-bar>
@@ -41,7 +41,7 @@ let readselectRegisterList = "read/selectRegisterList";
 export default {
   data() {
     return {
-      isWeixin: false,
+      
       optionsData: [],
       titlename: '',
       isSelectorShow: false,
@@ -88,14 +88,8 @@ export default {
 
   },
   mounted() {
-    console.log(this.$store.state.cardNo)
     document.title = '就诊签到';
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-      this.isWeixin = false;
-    } else {
-      this.isWeixin = true;
-    };
+    
     var today = new Date();
     this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
 

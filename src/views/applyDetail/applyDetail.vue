@@ -129,7 +129,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 recipeData:[
                     {no:"CQ11111111",date:"2018年11月11日", name:this.$route.query.name,age:"18",
                         sex:"男",dept:"内科",doc:"杜甫李白",type:"首诊续方", result:"高血压",
@@ -155,14 +155,6 @@
         },
         mounted() {
             document.title = '申请详情';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
 
         },
         methods: {

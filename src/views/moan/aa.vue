@@ -1,5 +1,5 @@
 <template>
-   <div :class="{'outCarint':true,'margin45':isWeixin}">
+   <div class="outCarint margin45">
       <Header post-title="选择科室"  ></Header>
       
    </div>
@@ -8,7 +8,7 @@
 export default {
    data() {
       return {
-         isWeixin: false,
+         
 
       };
    },
@@ -17,12 +17,6 @@ export default {
    },
    mounted() {
       document.title = '选择科室';
-      var ua = window.navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-         this.isWeixin = false;
-      } else {
-         this.isWeixin = true;
-      }
    },
    methods: {
 

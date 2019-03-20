@@ -35,7 +35,7 @@
     export default {
         data() {
             return {
-                isWeixin: false,
+                
                 payWay:[],
                 acceptIndex:null,
             };
@@ -47,15 +47,6 @@
             this.payWay.push(this.$store.state.payWay[0]);
             this.acceptIndex=this.$store.state.payWay[1];
             document.title = '支付成功';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-                return true;
-            } else {
-                this.isWeixin = true;
-                return false;
-            }
-
         },
         methods: {
 

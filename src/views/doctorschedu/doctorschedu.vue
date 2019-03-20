@@ -1,7 +1,7 @@
 <template>
     <div class="doctorschedu">
         <Header post-title="医生排班"  ></Header>
-        <div :class="{'outCarint':false,'margin45':isWeixin,'margin7':!isWeixin}">
+        <div class="outCarint margin45">
             <div class="doctor-head" v-show="!loadingtrue">
                 <div class="outCarint">
                     <div class="doctor-info">
@@ -42,7 +42,7 @@
         data() {
             return {
                 isSeemore: false,
-                isWeixin: false,
+                
                 docId:'',
                 loadingtrue:true,
                 moreButton:false,
@@ -58,12 +58,7 @@
             this.docId=this.$route.query.id;
             this.depart = this.$store.state.depart;
             document.title = '医生排班';
-            var ua = window.navigator.userAgent.toLowerCase();
-            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                this.isWeixin = false;
-            } else {
-                this.isWeixin = true;
-            };
+             
             this.doctorscheduFun();
         },
         methods: {

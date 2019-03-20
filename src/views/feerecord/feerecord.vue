@@ -55,7 +55,7 @@ let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {
-            isWeixin: false,
+            
             time: [
                 { title: '待支付', type: 1 },
                 { title: '已支付', type: 2 },
@@ -87,13 +87,9 @@ export default {
         this.WaitPay(false);
         // this.personFun();
         document.title = '缴费记录';
-        var ua = window.navigator.userAgent.toLowerCase();
+        
         // this.selectorValue = this.optionsData[0][0].text;
-        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            this.isWeixin = false;
-        } else {
-            this.isWeixin = true;
-        }
+       
     },
     methods: {
         personFun() {
