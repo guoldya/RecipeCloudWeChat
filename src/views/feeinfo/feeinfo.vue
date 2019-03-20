@@ -134,6 +134,8 @@ export default {
       feeActiveId: '',
       postTitle: '',
         loadingtrue: true,
+        code:'',
+        routeLoad:'',
     };
   },
   created() {
@@ -161,7 +163,7 @@ export default {
         this.postTitle = "我的缴费-已缴费";
         document.title = "我的缴费-已缴费";
       }
-      this.$axios.put(fee_detail_url, { id: this.$route.query.id }).then((res) => {
+      this.$axios.put(fee_detail_url, { id: this.$route.query.id ,code:this.$route.query.code}).then((res) => {
         if (res.data.code == '200') {
             this.loadingtrue = false;
           this.feeDetailData.push(res.data.data);
@@ -229,6 +231,7 @@ export default {
             buttonText: '好的',
             handler: () => {
               this.isCashierhow = false;
+              this.routeLoad = 1;
               this.$router.push({
                 name: 'feerecord',
                 query: {}
@@ -272,10 +275,13 @@ export default {
       nowPayParams.orderCode = this.orderCode;
       nowPayParams.orderType = "4";
       nowPayParams.payType = item.value;
+      nowPayParams.code = this.$route.query.code;
       this.$axios.post(now_pay_url, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.feeDetailData.push(res.data.data);
-          this.feeButtomDetail = res.data.data.details;
+          if(res.data.data.details){
+              this.feeButtomDetail = res.data.data.details;
+          }
           if (res.data.data.total) {
             this.cashierAmount = res.data.data.total.toFixed(2);
           }
@@ -283,12 +289,6 @@ export default {
         } else {
           this.$toast.info(res.data.msg);
             this.isCashierhow = false;
-          // setTimeout(() => {
-          //   this.$router.push({
-          //     name: 'feerecord',
-          //     query: {}
-          //   });
-          // }, 3000)
         }
       }).catch(function (err) {
         console.log(err);
@@ -299,8 +299,20 @@ export default {
       this.timer && clearTimeout(this.timer)
     },
   },
+    // watch:{
+    //     "$route":function(to,from){
+    //         if (to.path == "/feerecord") {
+    //             to.meta.keepAlive = true;
+    //             //this.$destroy();
+    //         } else {
+    //             to.meta.keepAlive = false;
+    //             //this.$destroy();
+    //         }
+    //         next();
+    //     }
+    // },
     beforeRouteLeave(to, from, next) {
-        if (to.path == "/feerecord") {
+        if (to.path == "/feerecord" &&this.routeLoad!=1) {
             to.meta.keepAlive = true;
             //this.$destroy();
         } else {

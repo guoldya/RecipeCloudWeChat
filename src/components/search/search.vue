@@ -20,6 +20,7 @@ export default {
   },
   props: ["type"],
   methods: {
+
     searchT: function() {
       if (this.type == "onlines") {
         this.$router.push({

@@ -20,7 +20,7 @@
         <div class="outCarint margin45">
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
-                <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id)">
+                <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
                     <p class="appTitle">
                         <span>{{item.type}}费</span>
                         <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
@@ -80,9 +80,9 @@ export default {
 
     },
     mounted() {
-        console.log();
         if (this.$store.state.feeActiveId) {
             this.disType = this.$store.state.feeActiveId;
+            if(this.$store.state.feeActiveId==1){this.type=0;}else{this.type=1;}
         }
         this.WaitPay(false);
         // this.personFun();
@@ -126,14 +126,17 @@ export default {
         showSelector() {
             this.isSelectorShow = true
         },
-        appointinfo: function (value) {
+        appointinfo: function (val,code) {
+            console.log(val);//8
+            console.log(code);//x0003
             this.$router.push({
                 name: 'feeinfo',
-                query: { id: value }
+                query: {id:val,code:code}
             });
         },
 
         childByValue: function (childValue) {
+            console.log(childValue);
             //this.type = childValue.type;
             this.disType = childValue.type;
             if(childValue.type==1){this.type=0;}else{this.type=1;}
@@ -188,9 +191,25 @@ export default {
     watch:{
         "$route":function(to,from){
             from.meta.keepAlive=false;
-            next();
+            to.meta.keepAlive=false;
         }
     },
+    // beforeRouteLeave(to, from, next) {
+    //     from.meta.keepAlive = false;
+    //     console.log(next);
+    //     next();
+    //     // if(to.name == "feeinfo"){
+    //     //     if(!from.meta.keepAlive){
+    //     //         from.meta.keepAlive=true;
+    //     //     }
+    //     //     next();
+    //     // }else{
+    //     //     from.meta.keepAlive=false;
+    //     //     to.meta.keepAlive=false;
+    //     //     this.$destroy();
+    //     //     next();
+    //     // }
+    // },
     computed: {
 
     },

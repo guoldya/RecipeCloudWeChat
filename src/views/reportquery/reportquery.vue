@@ -234,9 +234,10 @@ export default {
 
     },
     watch:{
-        "$route":function(to,from){
+        "$route":function(to,from,next){
             from.meta.keepAlive=false;
-            next();
+            to.meta.keepAlive=false;
+            //next();
         }
     },
 };
