@@ -159,6 +159,7 @@ export default {
         if (res.data.code == '200') {
             this.loadingtrue = false;
           this.feeDetailData.push(res.data.data);
+            this.$store.commit('tabAliveFun', res.data.data);
           for (let i = 0; i < this.feeDetailData.length; i++) {
             this.feeDetailData[i].createTime = this.feeDetailData[i].createTime.split(' ')[0];
           }
@@ -292,14 +293,16 @@ export default {
       this.timer && clearTimeout(this.timer)
     },
   },
-    // beforeRouteLeave(to, from, next) {
-    //     if (to.path == "/feerecord") {
-    //         to.meta.keepAlive = true;
-    //     } else {
-    //         to.meta.keepAlive = false;
-    //     }
-    //     next();
-    // },
+    beforeRouteLeave(to, from, next) {
+        if (to.path == "/feerecord") {
+            to.meta.keepAlive = true;
+            //this.$destroy();
+        } else {
+            to.meta.keepAlive = false;
+            //this.$destroy();
+        }
+        next();
+    },
   computed: {
     cashier() {
       return this.$refs.cashier

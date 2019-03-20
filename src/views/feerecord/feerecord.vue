@@ -80,7 +80,7 @@ export default {
 
     },
     mounted() {
-        console.log(this.$store.state.feeActiveId,"feerecord mounted");
+        console.log();
         if (this.$store.state.feeActiveId) {
             this.disType = this.$store.state.feeActiveId;
         }
@@ -181,14 +181,11 @@ export default {
             }, 500);
         },
     },
-    // beforeRouteEnter(to, from, next) {
-    //     console.log(to);
-    //     to.meta.keepAlive=false;
-    //     next();
-    // },
-    beforeRouteLeave(to, from, next) {
-        from.meta.keepAlive = false;
-        next();
+    watch:{
+        "$route":function(to,from){
+            from.meta.keepAlive=false;
+            next();
+        }
     },
     computed: {
 

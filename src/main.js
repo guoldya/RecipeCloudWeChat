@@ -48,6 +48,21 @@ router.beforeEach((to, from, next) => {
     }
     next()
 })
+//重新刷新页面拦截器
+// const reloadInterceptor=(to,from)=>{
+//     if((from.name=='home'||from.name=='my')&&(to.name=='feerecord'||from.name=='reportquery')){
+//         let isRefresh=sessionStorage.get('isRefresh');
+//         console.log('isRefresh:'+isRefresh);
+//         if(isRefresh=='0'){
+//             sessionStorage.setItem('isRefresh',null);
+//             window.location.reload();
+//         }else{
+//             sessionStorage.set('isRefresh',0);
+//         }
+//     }else if((from.name=='feerecord'||from.name=='reportquery')&&(to.name=='home'||from.name=='my')){
+//         sessionStorage.set('isRefresh',0);
+//     }
+// };
 
 if ('addEventListener' in document && 'ontouchstart' in window) {
     FastClick.prototype.focus = function (targetElement) {
