@@ -29,8 +29,12 @@ export default new Vuex.Store({
         cardId: '',
         keepAlive:'',
         cardList: '',
+        tabAlive:'',
     },
     mutations: {
+        tabAliveFun:(state, n)=>{
+            state.tabAlive = n;
+        },
         cardListFun: (state, n) => {
             state.cardList = n;
         },
