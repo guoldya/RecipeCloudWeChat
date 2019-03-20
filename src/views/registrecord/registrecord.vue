@@ -11,7 +11,7 @@
                     <div class="cordText">
                         <p>科室：{{item.deptName}}</p>
                         <p>医生：{{item.doctorName}}</p>
-                        <p>预约时间：{{item.createTime}}</p>
+                        <p>预约时间：{{item.regDate |time}} {{item.regStage}}</p>
                         <!--<p>就诊时间：2019-12-05 12:30:00</p>-->
                     </div>
                     <div class="cardTextRight" @click="cordInfo(item.id,item.payType,item.sourceId)">
@@ -127,5 +127,9 @@ export default {
   position: relative;
   top: 2px;
   margin-left: 10px;
+}
+.registrecord .appTitle{
+    display: flex;
+    justify-content: space-between;
 }
 </style>
