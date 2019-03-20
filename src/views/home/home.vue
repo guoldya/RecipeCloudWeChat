@@ -212,6 +212,7 @@ export default {
             } else {
                 this.showindex = 0;
             }
+            console.log(data1.patientName,"选择的")
             this.$store.commit('cardIndexFun', data);
             this.$store.commit('patientIdFun', data1.patientId);
             this.$store.commit('cardNoFun', data1.cardNo);
@@ -316,6 +317,7 @@ export default {
                 var dayWeekb = this.$store.state.cardList.slice(this.$store.state.cardIndex, this.$store.state.cardList.length);
                 this.$store.state.cardList = dayWeekb.concat(dayWeeka);
             }
+            // console.log(this.$store.state.cardList)
             return this.$store.state.cardList;
         },
     },
