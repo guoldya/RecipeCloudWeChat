@@ -80,7 +80,6 @@ export default {
           name: value,
           orgId: _this.$store.state.feeActiveId,
         }).then(function (res) {
-          console.log("状态", res.data.code, res.data.data);
           if (res.data.code == '200') {
             _this.doctorList = res.data.data.doctorList;
             _this.departData = res.data.data.orgList;
