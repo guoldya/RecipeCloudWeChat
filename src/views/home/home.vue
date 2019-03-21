@@ -200,13 +200,14 @@ export default {
     },
     methods: {
         choosedepart() {
-            let argu = {}
+            let argu = {};
             this.$router.push({
                 name: 'choosedepart',
                 query: argu
             });
         },
         switchCard(data1, data) {
+            console.log(data1.id);
             if (data < this.maxindex) {
                 this.showindex = data;
             } else {

@@ -16,8 +16,8 @@
                         <span class="orderTime">{{item.stage}}</span>
                     </div>
                     <div class="nowOrder">
-                        <span>还剩余名额{{item.totalNum}}人</span>
-                        <span class="num noNum" v-if="item.reset==0">无号</span>
+                        <span>还剩余名额{{item.remaindNum}}人</span>
+                        <span class="num noNum" v-if="item.remaindNum==0">无号</span>
                         <span class="num" v-else @click="makeOrder(item.id)">预约</span>
                     </div>
                     <div style="clear: both"></div>

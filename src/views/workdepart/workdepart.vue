@@ -31,11 +31,8 @@
         data() {
             return {
                 value:'',
-                active1: 0,
                 yuanId: "",
                 departs: [],
-                num: 10,
-                active2: 0,
                 departData: [],
                 page:1,
                 pageSize:10,
