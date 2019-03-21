@@ -57,7 +57,7 @@
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
                   <p class="headname">{{info.name}}
-                    <span class="levle">{{item.title}}</span>
+                    <span class="levle">{{info.title}}</span>
                     <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
                     <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
                   </p>
@@ -75,20 +75,20 @@
       <p class="forenoon">下午</p>
       <div class="doctorList" id="afternoon">
         <ul v-if="pmList.length!=0" v-show="!loadingtrue">
-          <li v-for="(item,index) in pmList" :key="index">
-            <div class="card" @click="intodoctordetail(item,2)">
+          <li v-for="(pmItem,index) in pmList" :key="index">
+            <div class="card" @click="intodoctordetail(pmItem,2)">
               <div class="cardText">
                 <div class="headimg">
                   <img src="@/assets/images/user.png" alt="医生头像">
                 </div>
                 <div>
-                  <p class="headname">{{item.name}}
-                    <span class="levle">{{item.title}}</span>
-                    <span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>
-                    <span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>
+                  <p class="headname">{{pmItem.name}}
+                    <span class="levle">{{pmItem.title}}</span>
+                    <span v-if="pmItem.valNum!=0" class="have">余{{pmItem.valNum}}</span>
+                    <span v-if="pmItem.valNum==0" class="have no">余{{pmItem.valNum}}</span>
                   </p>
-                  <!-- <p class="headdesc"><span> {{item.regStage}}</span></p> -->
-                  <p class="headdesc">擅长:{{item.skill}}</p>
+                  <!-- <p class="headdesc"><span> {{pmItem.regStage}}</span></p> -->
+                  <p class="headdesc">擅长:{{pmItem.skill}}</p>
                 </div>
               </div>
             </div>
