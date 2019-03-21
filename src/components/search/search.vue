@@ -48,7 +48,7 @@ input {
 .search .oc_val {
   /* position: fixed; */
   width: 100%;
-  height: 90px;
+  height: 80px;
   border-radius: 10px;
   left: 0;
   right: 0;
@@ -58,7 +58,7 @@ input {
   background-size: auto 40% !important;
   opacity: 1;
   outline: none;
-  font-size: 32px !important;
+  font-size: 30px !important;
   color: #000;
   z-index: 999;
 }

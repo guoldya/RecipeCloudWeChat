@@ -20,7 +20,7 @@
                                     <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
-                        <div class="towma" @click="showPic=true">
+                        <div class="towma" @click="showPicFun(item)">
                             <p><img src="@/assets/images/lili.jpg" alt=""></p>
                             <p>点击扫码</p>
                         </div>
@@ -48,33 +48,33 @@
                     <li @click="feerecord">
                         <img src="@/assets/images/icon_self.png" alt="" class="image">
                         <p>门诊缴费</p>
+                        <a class="signNumber">99</a>
                     </li>
                     <li @click="sign">
                         <img src="@/assets/images/icon_signin.png" alt="" class="image">
                         <p>就诊签到</p>
+                        <span class="signNumber">1</span>
                     </li>
                 </ul>
             </div>
             <div class="home-zy home-flex">
                 <img @click="inpatient" src="@/assets/images/icon_Inpatient.png" alt="" class="image float-left">
             </div>
-
             <ul class="home-menu">
-                <!-- <li>
-                    <img src="@/assets/images/1.png" alt="" class="image">
-                    <p>智能导诊</p>
-                </li> -->
-                <li @click="examine">
+                <li @click="examine" class="examineLi">
                     <img src="@/assets/images/2.png" alt="" class="image">
                     <p>检验检查</p>
+                    <span class="examineNumber">1</span>
                 </li>
-                <li @click="reportquery">
+                <li @click="reportquery" class="examineLi">
                     <img src="@/assets/images/3.png" alt="" class="image">
                     <p>报告查询</p>
+                    <span class="examineNumber">1</span>
                 </li>
-                <li @click="lineupnow">
+                <li @click="lineupnow" class="examineLi">
                     <img src="@/assets/images/4.png" alt="" class="image">
                     <p>我的排队</p>
+                    <span class="examineNumber">1</span>
                 </li>
                 <li @click="workdepart">
                     <img src="@/assets/images/5.png" alt="" class="image">
@@ -112,7 +112,11 @@
             </div>
         </div>
         <md-landscape v-model="showPic" :mask-closable="true">
-            <img src="@/assets/images/lili.jpg" alt="">
+            <div class="codema">
+                <p class="namecodema">{{picName}}</p>
+                <img src="@/assets/images/lili.jpg" alt="">
+                <p class="namecodema">就诊卡二维码</p>
+            </div>
         </md-landscape>
         <Footer></Footer>
     </div>
@@ -133,11 +137,11 @@ export default {
             isDown: false,
             chooseId: '',
             test: '',
+            picName: '',
         }
     },
     created() {
         this.$store.commit('feeActiveFun', 1);
-        console.log(this.$store.state.cardList)
     },
     mounted() {
         // 用于测试
@@ -216,6 +220,10 @@ export default {
                 name: 'choosedepart',
                 query: argu
             });
+        },
+        showPicFun(data) {
+            this.picName = data.patientName;
+            this.showPic = true;
         },
         switchCard(index) {
             let current = this._cardlist[index + 1];
@@ -307,7 +315,6 @@ export default {
                 query: argu
             });
         },
-
         // 我的处方
         myinspectionCheck() {
             let argu = {}
@@ -316,7 +323,6 @@ export default {
                 query: argu
             });
         },
-
 
     },
     // beforeRouteLeave(to, from, next) {

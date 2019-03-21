@@ -83,7 +83,7 @@
 }
 
 .doctordetal {
-    box-shadow: 0 0 17px #c8dff7
+    box-shadow: 0 0 17px rgba(131, 179, 208, 0.3)
 }
 
 .available-info li:last-child {
