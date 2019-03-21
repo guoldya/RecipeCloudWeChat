@@ -68,6 +68,7 @@ export default {
     loadMorelist(value) {
       this.doctorList = [];
       this.departData = [];
+      if (!value) return;
       value = value.trim() // 清除空格
       if (!value) return;
       console.log("搜索数据", value, value.length);
@@ -76,11 +77,15 @@ export default {
       clearTimeout(this.t);
       this.t = setTimeout(function () {
         _this.$axios.put(searchClinicListByClinicOrDoctor, {
-          name: value
+          name: value,
+          id: _this.$store.state.feeActiveId,
         }).then(function (res) {
           console.log("状态", res.data.code, res.data.data);
           if (res.data.code == '200') {
-            _this.doctorList = res.data.data.doctorList;
+            if (res.data.data.doctorList) {
+              // _this.doctorList = res.data.data.doctorList;
+            }
+
             _this.departData = res.data.data.orgList;
           } else {
           }

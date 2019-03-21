@@ -16,7 +16,7 @@
                             <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard(_cardlist[index+1],index+1)">
+                                <span class="icon_switch" @click="switchCard(index)">
                                     <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
@@ -137,7 +137,7 @@ export default {
     },
     created() {
         this.$store.commit('feeActiveFun', 1);
-
+        console.log(this.$store.state.cardList)
     },
     mounted() {
         // 用于测试
@@ -217,21 +217,16 @@ export default {
                 query: argu
             });
         },
-        switchCard(data1, data) {
-            // cardlist[index + 1] ? cardlist[index + 1].id : cardlist[0].id;
-            // console.log(data1, "data1");
-            // console.log(data, "fff")
-            if (data < this.maxindex - 1) {
-                this.chooseId = data1.id;
-            } else {
-                console.log("ssssss")
-                this.chooseId = this.test;
+        switchCard(index) {
+            let current = this._cardlist[index + 1];
+            if (!current) {
+                current = this._cardlist[0]
             }
-            console.log(data1.patientName, "选择的", this.chooseId)
-            this.$store.commit('patientIdFun', data1.patientId);
-            this.$store.commit('cardNoFun', data1.cardNo);
-            this.$store.commit('cardIdFun', data1.id);
-            this.$store.commit('cardNnameFun', data1.patientName);
+            this.chooseId = current.id;
+            this.$store.commit('patientIdFun', current.patientId);
+            this.$store.commit('cardNoFun', current.cardNo);
+            this.$store.commit('cardIdFun', current.id);
+            this.$store.commit('cardNnameFun', current.patientName);
         },
         feerecord() {
             let argu = {}
