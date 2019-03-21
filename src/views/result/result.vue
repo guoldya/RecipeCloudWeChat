@@ -78,14 +78,11 @@ export default {
       this.t = setTimeout(function () {
         _this.$axios.put(searchClinicListByClinicOrDoctor, {
           name: value,
-          id: _this.$store.state.feeActiveId,
+          orgId: _this.$store.state.feeActiveId,
         }).then(function (res) {
           console.log("状态", res.data.code, res.data.data);
           if (res.data.code == '200') {
-            if (res.data.data.doctorList) {
-              // _this.doctorList = res.data.data.doctorList;
-            }
-
+            _this.doctorList = res.data.data.doctorList;
             _this.departData = res.data.data.orgList;
           } else {
           }
