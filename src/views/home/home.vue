@@ -10,13 +10,13 @@
         <div class="homePage">
             <!-- 就诊卡片  -->
             <div v-if=" _cardlist.length!=0">
-                <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in  _cardlist" v-if="showindex==index" :key="'cardlist' + index">
+                <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in  _cardlist" v-if="item.id==chooseId" :key="'cardlist' + index">
                     <div class="homeCardText">
                         <div class="homeCardTextLeft">
                             <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard( _cardlist[index+1],index+1)">
+                                <span class="icon_switch" @click="switchCard(_cardlist[index+1],index+1)">
                                     <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
@@ -131,12 +131,12 @@ export default {
             cardLoading: true,
             aliveValue: '2',
             isDown: false,
+            chooseId: '',
+            test: '',
         }
     },
     created() {
         this.$store.commit('feeActiveFun', 1);
-
-
 
     },
     mounted() {
@@ -181,6 +181,12 @@ export default {
                     this.cardlist = res.data.rows;
                     this.maxindex = res.data.total;
                     this.cardLoading = false;
+                    if (this.$store.state.cardId) {
+                        this.chooseId = this.$store.state.cardId;
+                    } else {
+                        this.chooseId = res.data.rows[0].id;
+                    }
+                    this.test = res.data.rows[0].id;
                     this.$store.commit('cardIndexFun', 0);
                     this.$store.commit('cardListFun', res.data.rows);
                     this.$store.commit('patientIdFun', res.data.rows[0].patientId);
@@ -194,26 +200,34 @@ export default {
                 console.log(err)
             })
         } else {
+            if (this.$store.state.cardId) {
+                this.chooseId = this.$store.state.cardId;
+            } else {
+                this.chooseId = this.$store.state.cardList.id;
+            }
             this.maxindex = this.$store.state.cardList.length;
         }
 
     },
     methods: {
         choosedepart() {
-            let argu = {}
+            let argu = {};
             this.$router.push({
                 name: 'choosedepart',
                 query: argu
             });
         },
         switchCard(data1, data) {
-            if (data < this.maxindex) {
-                this.showindex = data;
+            // cardlist[index + 1] ? cardlist[index + 1].id : cardlist[0].id;
+            // console.log(data1, "data1");
+            // console.log(data, "fff")
+            if (data < this.maxindex - 1) {
+                this.chooseId = data1.id;
             } else {
-                this.showindex = 0;
+                console.log("ssssss")
+                this.chooseId = this.test;
             }
-            console.log(data1.patientName,"选择的")
-            this.$store.commit('cardIndexFun', data);
+            console.log(data1.patientName, "选择的", this.chooseId)
             this.$store.commit('patientIdFun', data1.patientId);
             this.$store.commit('cardNoFun', data1.cardNo);
             this.$store.commit('cardIdFun', data1.id);
@@ -280,7 +294,7 @@ export default {
                 query: argu
             });
         },
-        
+
         // 医生排班
         workdepart() {
             let argu = {}
@@ -318,12 +332,6 @@ export default {
     computed: {
         _cardlist() {
             this.cardLoading = false;
-            if (this.$store.state.cardIndex) {
-                var dayWeeka = this.$store.state.cardList.slice(0, this.$store.state.cardIndex);
-                var dayWeekb = this.$store.state.cardList.slice(this.$store.state.cardIndex, this.$store.state.cardList.length);
-                this.$store.state.cardList = dayWeekb.concat(dayWeeka);
-            }
-            // console.log(this.$store.state.cardList)
             return this.$store.state.cardList;
         },
     },

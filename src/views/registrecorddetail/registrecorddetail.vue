@@ -85,7 +85,8 @@ import { Dialog } from 'mand-mobile'
 let cord_info_url = "/app/bizPatientRegister/read/detail";
 let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
 let now_pay_url = "/app/bizPatientRegister/nowPay";
-let order_cancle_url="/app/bizPatientRegister/outSourceId";
+let order_back_url="/app/bizPatientRegister/outSourceId";
+let order_cancle_url="/app/bizPatientRegister/cancelSourceId";
 export default {
     data() {
         return {
@@ -164,7 +165,7 @@ export default {
                 content: '是否取消订单',
                 confirmText: '确定',
                 onConfirm: () => {
-                    this.$axios.post(order_cancle_url, { id: this.feeId,sourceId:this.sourceId}).then((res) => {
+                    this.$axios.post(order_cancle_url, { id: this.feeId}).then((res) => {
                         if (res.data.code == '200') {
                             this.$toast.info("取消成功");
                             setTimeout(() => {
@@ -295,7 +296,7 @@ export default {
                 content: '是否申请退号',
                 confirmText: '确定',
                 onConfirm: () => {
-                    this.$axios.post(order_cancle_url, { id: this.feeId,sourceId:this.sourceId}).then((res) => {
+                    this.$axios.post(order_back_url, { id: this.feeId,sourceId:this.sourceId}).then((res) => {
                         if (res.data.code == '200') {
                             this.$toast.info("退号成功");
                             setTimeout(() => {
