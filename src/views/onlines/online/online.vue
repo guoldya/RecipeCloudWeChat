@@ -4,21 +4,26 @@
     <div class="outCarint">
       <div class="onlineheader">在线问诊</div>
       <Search type="onlines"></Search>
-
-      <div class="online-content" v-if="!isloading">
+      <Loading v-if="isloading"></Loading>
+      <div class="online-content" v-else>
         <div class="tools">
           <div class="nav2">
-            <span v-for="(item, index) in departmentList" :key="index">
+            <router-link
+              tag="span"
+              :to="{ path: 'expertpage', query: { id: item.id ,orgName:item.orgName} }"
+              v-for="(item, index) in departmentList"
+              :key="index"
+            >
               <img
                 :src="$conf.constant.img_base_url + item.orgPicFileName"
                 alt=""
               />{{ item.orgName }}
-            </span>
+            </router-link>
           </div>
         </div>
         <div
           class="more"
-          @click="loadMore"
+          @click="loadMoredepartment"
           v-if="
             departmenParams.pages > 1 &&
               departmenParams.num < departmenParams.pages
@@ -88,13 +93,28 @@
           </div>
         </div>
         <!-- 医生列表 -->
-        <doctorList v-for="(item,index) in doctorList" :datas="item" :key="index"></doctorList>
-        <div  class="loadmore" v-infinite-scroll="loadMoreDoctor" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-          <md-icon v-if="!isloading&&busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
-          <div class="nomore" v-if="doctorParams.pageNumber == doctorPages">没有更多了</div>
-        </div> 
+        <doctorList
+          v-for="(item, index) in doctorList"
+          :datas="item"
+          :key="index"
+        ></doctorList>
+        <div
+          class="loadmore"
+          v-infinite-scroll="loadMore"
+          infinite-scroll-disabled="busy"
+          infinite-scroll-distance="10"
+        >
+          <md-icon
+            v-if="!isloading && busy"
+            name="spinner"
+            size="lg"
+            style="-webkit-filter:invert(1)"
+          ></md-icon>
+          <div class="nomore" v-if="doctorParams.pageNumber == doctorPages">
+            没有更多了
+          </div>
+        </div>
       </div>
-      <Loading v-else></Loading>
     </div>
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
@@ -114,8 +134,8 @@ export default {
   height: 500,
   data() {
     return {
-      isloading:true, // 是否正在请求
-      busy:false,// 用于请求添加页面
+      isloading: true, // 是否正在请求
+      busy: false, // 用于请求添加页面
       isChecked: 0,
       show: false,
       isSelectorShow: false,
@@ -124,24 +144,16 @@ export default {
       selectorValue: "排序",
       sortData: [
         {
-          value: "1",
-          text: "综合排序"
-        },
-        {
-          value: "2",
+          value: 1,
           text: "问诊量"
         },
         {
+          value: "2",
+          text: "价格"
+        },
+        {
           value: "3",
-          text: "回复速度快"
-        },
-        {
-          value: "4",
-          text: "价格从高到低"
-        },
-        {
-          value: "5",
-          text: "价格从低到高"
+          text: "好评度"
         }
       ],
 
@@ -194,23 +206,22 @@ export default {
         num: 1,
         pages: 1
       },
-      doctorPages:  null, // 医生总页数
-      doctorParams:{
-        type:null,
-        level:null,
-        status:null,
-        price:null,
-        deptId:null,
-        pageNumber:1,
-        pageSize:2
+      doctorPages: null, // 医生总页数
+      doctorParams: {
+        type: null,
+        level: null,
+        status: null,
+        price: null,
+        deptId: null,
+        pageNumber: 1
       },
-      doctorList:[]
+      doctorList: []
     };
   },
   async mounted() {
     await this.getDepartment();
     await this.getRecommendDoctor();
-    this.isloading = false
+    this.isloading = false;
   },
   methods: {
     // 得到某院区下的所有科室
@@ -232,35 +243,37 @@ export default {
     },
     // 得到推荐医生
     async getRecommendDoctor() {
-     try {
-        let res = await this.$axios.put(recommendUrl,this.doctorParams)
+      try {
+        let res = await this.$axios.put(recommendUrl, this.doctorParams);
         if (res.data.code != 200) {
           throw Error(res.data.msg);
         }
-        if(res.data.rows) {
-          this.doctorList = this.doctorParams.pageNumber == 1 ? res.data.rows:this.doctorList.concat(res.data.rows)
+        if (res.data.rows) {
+          this.doctorList =
+            this.doctorParams.pageNumber == 1
+              ? res.data.rows
+              : this.doctorList.concat(res.data.rows);
         }
-        this.doctorPages = res.data.pages
-        this.doctorParams.pageNumber = res.data.current
-     } catch (error) {
-        console.log(error.message);         
-     }
+        this.doctorPages = res.data.pages;
+        this.doctorParams.pageNumber = res.data.current;
+      } catch (error) {
+        console.log(error.message);
+      }
     },
-    loadMore() {
+    loadMoredepartment() {
       // 加载更多
       this.departmenParams.num++;
       this.getDepartment();
     },
-    loadMoreDoctor() {
-      console.log(123,3213)
-      if(this.isloading)return false; 
-      if(this.doctorParams.pageNumber==this.doctorPages)return false
-        this.busy = true;
-        setTimeout(() => {
-          this.doctorParams.pageNumber++
-          this.getRecommendDoctor()
-          this.busy = false;
-        }, 1000);
+    loadMore() {
+      if (this.isloading) return false;
+      if (this.doctorParams.pageNumber == this.doctorPages) return false;
+      this.busy = true;
+      setTimeout(() => {
+        this.doctorParams.pageNumber++;
+        this.getRecommendDoctor();
+        this.busy = false;
+      }, 1000);
     },
     expertpage() {
       this.$router.push({
@@ -270,6 +283,7 @@ export default {
     },
     chooseSort(data) {
       this.selectorValue = data.text.substring(0, 5);
+      // this.doctorParams.
     },
     choose() {
       this.show = !this.show;

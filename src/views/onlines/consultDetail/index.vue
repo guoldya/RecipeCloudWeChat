@@ -431,11 +431,12 @@ export default {
     height:80px;
     align-items: center;
     justify-content: center;
-  }
-  .nomore {
+      .nomore {
     color:#999;
     font-size:24px;
   }
+  }
+
 }
 .md-dialog {
   /deep/ .md-dialog-body {

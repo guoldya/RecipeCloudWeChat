@@ -19,3 +19,25 @@
     text-overflow:ellipsis;
     white-space: nowrap;
 }
+.expertpage {
+  overflow: auto;
+  padding-top:100px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.doctorlist-warp {
+  box-sizing: border-box;
+  height:calc(100vh - 270px);
+  overflow-y: auto;
+}
+.doctorlist-warp::-webkit-scrollbar {
+  display: none;
+}
+.nodata {
+  margin-top:170px;
+  text-align: center;
+
+}
+.nodata  img {
+  width:350px;
+}

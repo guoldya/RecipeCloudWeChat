@@ -1,46 +1,64 @@
 <!-- 专家问诊 -->
 <template>
-  <div class="outCarint margin45">
+  <div class="outCarint expertpage">
+    <Header :post-title="$route.query.orgName"></Header>
+    <Search type="onlines"></Search>
     <!-- 搜索框 -->
-    <Search></Search>
-    <md-tab-picker
-      title="请选择科室"
-      :data="Fdata"
-      v-model="isDepartShow"
-      @change="chooseDepart"
-    />
-    <md-selector
-      v-model="isSortShow"
-      :data="sortData"
-      @choose="chooseSort"
-      title="选择排序"
-    ></md-selector>
-    <!-- 查询菜单栏 -->
-    <div class="selectTool">
-      <div :class="isChecked == 0 ? 'isActive' : ''" @click="department">
-        <span>{{ departmentText }}</span>
-        <span class="downImg">
-          <img v-if="isChecked == 0" src="@/assets/images/top11.png" />
-          <img v-else src="@/assets/images/icon_down.png" />
-        </span>
+    <Loading v-if="isloading"></Loading>
+        <!-- 弹窗 -->
+        <md-tab-picker
+        title="请选择科室"
+        :data="Fdata"
+        v-model="isDepartShow"
+        @change="chooseDepart"
+      />
+      <md-selector
+        v-model="isSortShow"
+        :data="sortData"
+        @choose="chooseSort"
+        title="选择排序"
+      ></md-selector>
+      <!-- 查询菜单栏 -->
+      <div class="selectTool" v-if="doctorList.length&&!isloading">
+        <div :class="isChecked == 0 ? 'isActive' : ''" @click="department">
+          <span>{{ departmentText }}</span>
+          <span class="downImg">
+            <img v-if="isChecked == 0" src="@/assets/images/top11.png" />
+            <img v-else src="@/assets/images/icon_down.png" />
+          </span>
+        </div>
+        <div :class="isChecked == 1 ? 'isActive' : ''" @click="sort">
+          <span>{{ sortText }}</span>
+          <span class="downImg">
+            <img v-if="isChecked == 1" src="@/assets/images/top11.png" />
+            <img v-else src="@/assets/images/icon_down.png" />
+          </span>
+        </div>
+        <div :class="isChecked == 2 ? 'isActive' : ''" @click="filterCotent">
+          <span>筛选</span>
+          <span class="downImg">
+            <img v-if="isChecked == 2" src="@/assets/images/top11.png" />
+            <img v-else src="@/assets/images/icon_down.png" />
+          </span>
+        </div>
       </div>
-      <div :class="isChecked == 1 ? 'isActive' : ''" @click="sort">
-        <span>{{ sortText }}</span>
-        <span class="downImg">
-          <img v-if="isChecked == 1" src="@/assets/images/top11.png" />
-          <img v-else src="@/assets/images/icon_down.png" />
-        </span>
+      <div class="doctorlist-warp">
+          <!-- 医生列表 -->
+          <doctorList
+            v-for="(item, index) in doctorList"
+            :key="index"
+            :datas="item"
+          ></doctorList>
+                <div class="nodata" v-if="!doctorList.length&&!isloading">
+       <img src="@/assets/images/null1.png" alt="">
       </div>
-      <div :class="isChecked == 2 ? 'isActive' : ''" @click="filterCotent">
-        <span>筛选</span>
-        <span class="downImg">
-          <img v-if="isChecked == 2" src="@/assets/images/top11.png" />
-          <img v-else src="@/assets/images/icon_down.png" />
-        </span>
+          <div class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+            <md-icon v-if="!isloading && busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+            <div class="nomore" v-if="this.doctorPages==this.doctorParams.pageNumber">没有更多了</div>
+          </div>
       </div>
-    </div>
-    <!-- 医生列表 -->
-    <doctorList></doctorList>
+
+
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
   </div>
@@ -49,38 +67,40 @@
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
 import doctorList from "../../../components/doctorList";
-
+const recommendUrl = "/app/bdOnlineDoctor/read/page";
 
 export default {
   data() {
     return {
-      
-      isChecked: 0,
+      isloading: true, // 是否正在请求
+      busy: false,
+      isChecked: 0, // 科室选择
       departmentText: "科室",
       sortText: "排序",
       isDepartShow: false, // 控制选择科室弹窗是否显示
       isSortShow: false, // 控制选择排序弹窗是否显示
+      doctorPages: null, // 医生总页数
+      doctorParams: {
+        type: null,
+        level: null,
+        status: null,
+        price: null,
+        deptId: Number(this.$route.query.id),
+        pageNumber: 1
+      },
+      doctorList: [],
       sortData: [
-        // 排序数据
         {
-          value: "1",
-          text: "综合排序"
-        },
-        {
-          value: "2",
+          value: 1,
           text: "问诊量"
         },
         {
+          value: "2",
+          text: "价格"
+        },
+        {
           value: "3",
-          text: "回复速度快"
-        },
-        {
-          value: "4",
-          text: "价格从高到低"
-        },
-        {
-          value: "5",
-          text: "价格从低到高"
+          text: "好评度"
         }
       ],
       Fdata: {
@@ -134,11 +154,41 @@ export default {
     filterPop,
     doctorList
   },
-  mounted() {
-    document.title = "专家问诊";
-    
+  async mounted() {
+    document.title = this.$route.query.orgName;
+    await this.getRecommendDoctor();
+    this.isloading = false;
   },
   methods: {
+    // 得到推荐医生
+    async getRecommendDoctor() {
+      try {
+        let res = await this.$axios.put(recommendUrl, this.doctorParams);
+        if (res.data.code != 200) {
+          throw Error(res.data.msg);
+        }
+        if (res.data.rows) {
+          this.doctorList =
+            this.doctorParams.pageNumber == 1
+              ? res.data.rows
+              : this.doctorList.concat(res.data.rows);
+        }
+        this.doctorPages = res.data.pages;
+        this.doctorParams.pageNumber = res.data.current;
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    loadMore() {
+       if(this.isloading)return false; 
+      if(this.doctorPages==this.doctorParams.pageNumber)return false
+      this.busy = true;
+      setTimeout(() => {
+        this.doctorParams.pageNumber++
+        this.getRecommendDoctor()
+        this.busy = false;
+      }, 1000);
+    },
     // 科室选择
     department() {
       this.isChecked = 0;
@@ -169,6 +219,16 @@ export default {
   computed: {}
 };
 </script>
- <style scoped>
+ <style scoped lang="scss">
 @import url("./expertpage.css");
+.loadmore {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  .nomore {
+    color: #999;
+    font-size: 24px;
+  }
+}
 </style>
