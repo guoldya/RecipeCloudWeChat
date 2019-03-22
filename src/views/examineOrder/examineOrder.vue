@@ -47,6 +47,7 @@
             }
         },
         mounted() {
+            this.classId=this.$route.query.classId;
             this.getTime();
             document.title = '检验检查';
             this.getData();
@@ -95,14 +96,15 @@
               return data;
             },
             makeOrder(val){
-                let argu = {id:this.classId,scheduleId:val};
+                console.log(this.$route.query.id);
+                console.log(this.$route.query.classId);
+                let argu = {id:this.$route.query.id,scheduleId:val};
                 this.$router.push({
                     name: 'examineDetail',
                     query: argu
                 });
             },
             getTime(){
-                this.classId=this.$route.query.classId;
                 if (!this.isTime) {
                     var today = new Date();
                     var m=today.getMonth()+1;

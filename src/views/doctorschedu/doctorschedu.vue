@@ -149,29 +149,29 @@
         background-color: transparent !important;
     }
     /deep/.wh_item_date, /deep/.wh_top_tag,/deep/.wh_top_changge li{
-        color: #333333;
-        width: 64px;
-        height: 64px;
+        color: #333333 !important;
+        width: 64px !important;
+        height: 64px !important;
     }
     /deep/.wh_jiantou1{
-        border-top: 4px solid #333333;
-        border-left: 4px solid #333333;
+        border-top: 4px solid #333333 !important;
+        border-left: 4px solid #333333 !important;
     }
     /deep/.wh_jiantou2{
-        border-top: 4px solid #333;
-        border-right: 4px solid #333;
+        border-top: 4px solid #333 !important;
+        border-right: 4px solid #333 !important;
     }
     /deep/.wh_content{
-        margin-left: 22px;
+        margin-left: 22px !important;
     }
     /deep/.wh_content_item{
-        height: 90px;
+        height: 90px !important;
     }
     /deep/.wh_content_item .wh_isToday{
-        background-color: #e5e5e5;
+        background-color: #e5e5e5 !important;
     }
     /deep/.wh_content_item .wh_chose_day{
-        background-color: #e5e5e5;
+        background-color: #e5e5e5 !important;
     }
     .nomore{
         overflow: hidden;

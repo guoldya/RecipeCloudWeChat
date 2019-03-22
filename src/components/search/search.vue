@@ -27,6 +27,7 @@ export default {
           path: "/resultDoctor"
         });
       } else {
+        this.$store.commit("searchTypeFun",this.type);
         this.$router.push({
           path: "/result"
           // query: argu,

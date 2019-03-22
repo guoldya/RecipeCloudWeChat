@@ -207,7 +207,7 @@ export default {
             });
         },
         switchCard(data1, data) {
-            console.log(data1.id);
+            console.log(this._cardlist);
             if (data < this.maxindex) {
                 this.showindex = data;
             } else {

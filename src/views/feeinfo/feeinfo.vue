@@ -1,7 +1,7 @@
 <template>
 
   <div class="feeinfo">
-    <Header :post-title="postTitle"  ></Header>
+    <Header post-title="缴费详情"  ></Header>
     <div class="outCarint margin45">
       <div class="card margin16" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
         <div class="cardText">
@@ -49,12 +49,12 @@
             <span>{{item.code}}</span>
           </p>
           <p class="cardTextPP" v-if="feeActiveId==1">
-            <span>处方金额</span>
-            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}</span>
+            <span>应付金额</span>
+            <span class="mu-secondary-text-color">￥{{item.total | keepTwoNum}}</span>
           </p>
           <p class="cardTextPP" v-if="feeActiveId==2">
             <span>实付金额</span>
-            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}</span>
+            <span class="mu-secondary-text-color">￥{{item.total | keepTwoNum}}</span>
           </p>
 
         </div>
@@ -150,13 +150,14 @@ export default {
   methods: {
     feeDetail() {
       this.feeId = this.$route.query.id;
-      if (this.feeActiveId == 1) {
-        this.postTitle = "我的缴费-待缴费";
-        document.title = "我的缴费-待缴费";
-      } else {
-        this.postTitle = "我的缴费-已缴费";
-        document.title = "我的缴费-已缴费";
-      }
+      // if (this.feeActiveId == 1) {
+      //   this.postTitle = "我的缴费-待缴费";
+      //   document.title = "我的缴费-待缴费";
+      // } else {
+      //   this.postTitle = "我的缴费-已缴费";
+      //   document.title = "我的缴费-已缴费";
+      // }
+        document.title = "缴费详情";
       this.$axios.put(fee_detail_url, { id: this.$route.query.id ,code:this.$route.query.code}).then((res) => {
         if (res.data.code == '200') {
             this.loadingtrue = false;
@@ -301,7 +302,6 @@ export default {
     //             to.meta.keepAlive = false;
     //             //this.$destroy();
     //         }
-    //         next();
     //     }
     // },
     beforeRouteLeave(to, from, next) {

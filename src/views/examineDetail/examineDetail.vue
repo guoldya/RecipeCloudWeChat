@@ -71,8 +71,8 @@
             },
             readyOrderFun(){
                 let orderPar={};
-                orderPar.scheduleId=parseInt(this.$route.query.id);
-                orderPar.id=parseInt(this.$route.query.scheduleId);
+                orderPar.scheduleId=parseInt(this.$route.query.scheduleId);
+                orderPar.id=parseInt(this.$route.query.id);
                 this.$axios.post(ready_order_url,orderPar).then((res) => {
                     if(res.data.code=='200'){
                         this.loadingtrue = false;
