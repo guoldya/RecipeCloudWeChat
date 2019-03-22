@@ -38,26 +38,6 @@ export default {
      
   },
   methods: {
-    intodoctordetail() {
-      let argu = {}
-      this.$router.push({
-        name: 'doctordetail',
-        query: argu
-      });
-    },
-    intodoctorList(data) {
-      this.$router.push({
-        name: 'doctorList',
-        query: { deptId: data.id, yuanId: data.parentId, departName: data.orgName }
-      });
-    },
-
-    intodoctorinfo(data) {
-      this.$router.push({
-        name: 'doctordetail',
-        query: { doctorId: data.id, islist: 1 }
-      });
-    },
     loadMorelist(value) {
       let _self = this
       value = value.trim() // 清除空格
@@ -77,8 +57,6 @@ export default {
         });
       }, 300);
     },
-
-
   }
 }
 </script>

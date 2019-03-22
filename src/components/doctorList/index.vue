@@ -11,14 +11,14 @@
           <span class="picture" :class="datas.type<1||!datas.type ?'noOpen' :''">图文</span>&nbsp;
           <span class="picture" :class="datas.type<2||!datas.type ?'noOpen' :''">电话</span>&nbsp;
           <span class="picture" :class="datas.type<3||!datas.type ?'noOpen' :''">视频</span>&nbsp;
-          <span class="reputation">好评率 {{datas.diagnosisNum||'--'}}%</span>&nbsp;
+          <span class="reputation">好评率 {{datas.praiseRate||'--'}}%</span>&nbsp;
         </p>
         <p class="content">擅长：儿科常见病、多发病 #先天性心脏病</p>
         <p class="colo13">
-          <span>咨询数：66 </span>&nbsp; <span>平均回复时长：{{datas.replyTime||'0'}}分</span>&nbsp;
+          <span>咨询数：{{datas.diagnosisNum||'0'}}</span>&nbsp; <span>平均回复时长：{{datas.replyTime||'0'}}分</span>&nbsp;
         </p>
         <p class="price">￥{{datas.price||'0.00'}} 起
-          <router-link to="/consultDetail" class="consult">立即咨询</router-link>
+          <router-link :to="{ path: '/consultDetail', query: { id: datas.id }}" class="consult">立即咨询</router-link>
           <router-link v-show="false" to="/pictureConsult">免费咨询</router-link>
         </p>
         <em>已满</em>
