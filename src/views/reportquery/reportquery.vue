@@ -33,10 +33,22 @@
                                 <span>{{item.name}}</span>
                             </div>
                             <p class="partLine"></p>
-                            <p>检查科室：{{item.execDept}}</p>
-                            <p>检查项目：{{item.itemName}}</p>
+                            <div class="listData">
+                                <span>检查科室：
+                                    <span class="">{{item.execDept}}（{{item.hospital}}）</span>
+                                </span>
+                            </div>
+                            <div class="listData">
+                                <span>检查项目：
+                                    <span class="">{{item.itemName}}</span>
+                                </span>
+                            </div>
+                            <div class="listData">
+                                <span>报告日期：
+                                    <span class="">{{item.reportTime}}</span>
+                                </span>
+                            </div>
                             <div>
-                                <p>报告日期：{{item.reportTime}}</p>
                                 <div class="cardTextRight" @click="checkReportDetail(item.id)">
                                     <span>详情</span>
                                     <img class="icon_more" src="@/assets/images/icon_more.png" alt="">

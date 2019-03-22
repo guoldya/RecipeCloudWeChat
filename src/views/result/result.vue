@@ -113,7 +113,13 @@
                     })
                 })
             }
-        }
+        },
+        watch:{
+            "$route":function(to,from){
+                from.meta.keepAlive=false;
+                to.meta.keepAlive=false;
+            }
+        },
     }
 </script>
 

@@ -1,5 +1,5 @@
 .reportquery .card {
-   padding: 0 12px;
+   /*padding: 0 12px;*/
    font-size: 28px;
 }
  
@@ -22,15 +22,11 @@
 
 .reportquery .cardTextLeft {
    width: 100%;
-   padding: 10px 0px;
-}
 
-.reportquery .cardText p {
-   line-height: 60px;
 }
-
 .reportquery .cardTextRight{
   text-align: right;
+   padding-bottom: 10px;
 }
 .reportquery .cardTextRight img{
    width: 12px;

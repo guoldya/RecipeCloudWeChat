@@ -230,7 +230,7 @@ export default {
 .reportinfo .cardText .cardTextPP {
   display: flex;
   justify-content: space-between;
-  padding: 32px 0;
+  padding: 24px 0;
   font-size: 28px;
   border-bottom: 1px solid #e9e9e9;
 }
