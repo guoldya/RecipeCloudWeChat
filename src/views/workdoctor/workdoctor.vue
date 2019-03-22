@@ -13,18 +13,21 @@
                 <div>
                   <p class="headname">{{item.name}}
                     <span class="levle">{{item.title}}</span>
-                    <!--<span v-if="item.valNum!=0" class="have">余{{item.valNum}}</span>-->
-                    <!--<span v-if="item.valNum==0" class="have no">余{{item.valNum}}</span>-->
                   </p>
                   <p class="headdesc" v-if="item.skill">擅长：{{item.skill}}</p>
-                  <!--<p class="headdesc">介绍：{{item.introduce}}</p>-->
                 </div>
               </div>
             </div>
           </li>
+          <p v-show="nomore" class="noMore">没有更多数据了</p>
         </ul>
         <div v-show="!loadingtrue" class="nullDiv" v-else>
           <img src="@/assets/images/null1.png">
+        </div>
+        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+                <span v-if="doctorData.length!=0&&!nomore">
+                    <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+                </span>
         </div>
         <Loading v-show="loadingtrue"></Loading>
       </div>
@@ -41,13 +44,16 @@
                 value: '',
                 isSeemore: false,
                 choosedate: '',
-                
+                busy: true,
+                nomore: false,
                 time: [],
                 dayWeek: ["日", "一", "二", "三", "四", "五", "六"],
                 postTitle:'',
                 deptId:'',
                 loadingtrue: true,
                 doctorData:[],
+                page: 1,
+                pageSize: 10,
             }
         },
         mounted() {
@@ -58,7 +64,7 @@
             this.choosedate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
             this.getData();
             this.addWeek();
-            this.workDoctorFun();
+            this.workDoctorFun(false);
 
         },
         methods: {
@@ -97,31 +103,53 @@
                 return data;
             },
             intodoctorschedu(val) {
-                let argu = {id:val};
+                let argu = {doctorId:val};
                 this.$router.push({
                     name: 'doctorschedu',
                     query: argu
                 });
             },
-            workDoctorFun(){
-                this.$axios.put(doctor_url, { orgId: this.deptId }).then((res) => {
-                    if (res.data.code == '200') {
-                        this.loadingtrue=false;
-                        this.doctorData=[];
-                        // for(let i=0;i<res.data.data.amList.length;i++){
-                        //     this.doctorData.push(res.data.data.amList[i])
-                        // }
-                        // for(let j=0;j<res.data.data.pmList.length;j++){
-                        //     this.doctorData.push(res.data.data.pmList[j]);
-                        // }
-                        // for(let k=0;k<res.data.data.otherList.length;k++){
-                        //     this.doctorData.push(res.data.data.otherList[k])
-                        // }
-                        this.doctorData=res.data.rows;
+            workDoctorFun(flag){
+                let doctorPar={};
+                doctorPar.pageNumber = this.page;
+                doctorPar.pageSize = this.pageSize;
+                doctorPar.orgId = this.deptId;
+                this.$axios.put(doctor_url, doctorPar).then((res) => {
+                    if (res.data.rows) {
+                        this.loadingtrue = false;
+                        if (flag) {
+                            this.doctorData = this.doctorData.concat(res.data.rows);  //concat数组串联进行合并
+                            if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                                this.busy = false;
+                                this.nomore = false;
+                            } else {
+                                this.busy = true;
+                                this.nomore = true;
+                            };
+                        } else {
+                            this.doctorData = res.data.rows;
+                            this.busy = true;
+                            if (res.data.total < 10) {
+                                this.busy = true;
+                                this.nomore = true;
+                            } else {
+                                this.busy = false;
+                                this.nomore = false;
+                            }
+                        }
+                    } else {
+                        this.doctorData = []
                     }
                 }).catch(function (err) {
                     console.log(err);
                 });
+            },
+            loadMore() {
+                this.busy = true;  //将无限滚动给禁用
+                setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+                    this.page++;  //滚动之后加载第二页
+                    this.getGoodslist(true);
+                }, 500);
             },
         }
     }

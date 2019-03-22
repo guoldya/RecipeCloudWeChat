@@ -55,7 +55,7 @@
         },
         mounted() {
             this.changeCalendar();
-            this.docId=this.$route.query.id;
+            this.docId=this.$route.query.doctorId;
             this.depart = this.$store.state.depart;
             document.title = '医生排班';
              
