@@ -9,10 +9,6 @@
     font-size: 34px;
     margin-bottom: 20px;
 }
-.recordDetail .partLine{
-    padding: 12px 0;
-    margin-top: 0px;
-}
 .recordDetail .useAmount span:not(:first-child){
     padding-right: 22px;
 }

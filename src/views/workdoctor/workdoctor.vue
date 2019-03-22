@@ -151,7 +151,17 @@
                     this.getGoodslist(true);
                 }, 500);
             },
-        }
+        },
+        beforeRouteLeave(to, from, next) {
+            if (to.path == "/result") {
+                to.meta.keepAlive = true;
+                //this.$destroy();
+            } else {
+                to.meta.keepAlive = false;
+                //this.$destroy();
+            }
+            next();
+        },
     }
 </script>
 

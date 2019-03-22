@@ -34,7 +34,7 @@
                             <span>处方日期：
                                 <span class="mu-secondary-text-color">{{item.date}}</span>
                             </span>
-                            <div  v-if="item.first==1">
+                            <div  v-if="item.first==1" style="line-height: 35px">
                                 <span  class="first">首诊</span>
                             </div>
                         </div>

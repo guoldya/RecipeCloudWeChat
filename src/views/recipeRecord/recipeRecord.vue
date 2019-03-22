@@ -67,13 +67,13 @@
                 <div class="card margin16" v-for="(item,i) in efficacyData" >
                     <div class="cardText">
                         <div @click="recordDetail(i,item.id)">
-                            <div class="md-check-group">
+                            <div class="listData"><!--class="md-check-group"-->
                                 <span style="margin-left: 0px">{{item.recipeDate | time}}</span>
                                 <span>{{item.code}}</span>
                                 <!--<span class="mu-secondary-text-color">{{item.isChecked}}</span>-->
                             </div>
                             <p class="partLine"></p>
-                            <div class="userInfo">
+                            <div class="listData blod">
                                 <span>{{item.orgName}}</span>
                                 <span>{{item.patientName}}</span>
                                 <span>{{item.dept}}</span>
@@ -93,7 +93,7 @@
                                 <div class="listData">
                                     <span>{{list.name}}</span>
                                 </div>
-                                <div class="listData userNum">
+                                <div class="listData userNum mu-light-text-color" >
                                     <span>{{list.spec}}</span>
                                     <span>{{list.total}}盒</span>
                                 </div>

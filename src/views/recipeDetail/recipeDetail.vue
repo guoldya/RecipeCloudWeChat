@@ -7,33 +7,33 @@
                     <div class="cardText ">
                         <div class="listData">
                             <span>处方号：
-                                <span class="mu-secondary-text-color">{{item.no}}</span>
+                                <span class="mu-light-text-color">{{item.no}}</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>处方日期：
-                                <span class="mu-secondary-text-color">{{item.date}}</span>
+                                <span class="mu-light-text-color">{{item.date}}</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>姓名：
-                                <span class="mu-secondary-text-color">{{item.name}}</span>
+                                <span class="mu-light-text-color">{{item.name}}</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>年龄：
-                                <span class="mu-secondary-text-color">{{item.age}}</span>
+                                <span class="mu-light-text-color">{{item.age}}</span>
                             </span>
                             <span style="width: 50%">性别：
-                                <span class="mu-secondary-text-color">{{item.sex}}</span>
+                                <span class="mu-light-text-color">{{item.sex}}</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>科室：
-                                <span class="mu-secondary-text-color">{{item.dept}}</span>
+                                <span class="mu-light-text-color">{{item.dept}}</span>
                             </span>
                             <span style="width: 50%">开方医生：
-                                <span class="mu-secondary-text-color">{{item.doc}}</span>
+                                <span class="mu-light-text-color">{{item.doc}}</span>
                             </span>
                         </div>
                         <div class="listData">
