@@ -1,115 +1,159 @@
 <!-- 医生咨询详情-->
 <template>
   <div class="doctor-detail">
-    <!-- 医生信息 -->
-    <div class="doctor-info  ">
-      <div class="doctor-info-top">
-        <div class="doctor-info-header">
-          <img src="@/assets/images/3.jpg" alt="" />
+    <Loading v-if="isloading"></Loading>
+    <div v-else>
+      <!-- 医生信息 -->
+      <div class="doctor-info  ">
+        <div class="doctor-info-top">
+          <div class="doctor-info-header">
+            <img src="@/assets/images/3.jpg" alt="" />
+          </div>
+          <div class="doctor-info-content">
+            <p>{{ doctorInfo.name }}</p>
+            <p class="gray">
+              <span>{{ doctorInfo.title }}</span
+              ><span>{{ doctorInfo.orgName }}</span>
+            </p>
+          </div>
+          <div class="doctor-info-follow">
+            <img
+              v-if="!doctorInfo.followStatus"
+              src="../images/icon_follow.png"
+              alt=""
+            />
+            <img v-else src="../images/icon_follow_pre.png" alt="" />
+          </div>
         </div>
-        <div class="doctor-info-content">
-          <p>{{doctorInfo.name}}</p>
-          <p class="gray"><span>{{doctorInfo.title}}</span><span>{{doctorInfo.orgName}}</span></p>
-        </div>
-        <div class="doctor-info-follow">
-          <img v-if="!doctorInfo.followStatus" src="../images/icon_follow.png" alt="">
-          <img v-else src="../images/icon_follow_pre.png" alt="">
+        <div class="doctor-info-bottom">
+          <div>
+            <p>问诊量</p>
+            <p>{{ doctorInfo.diagnosisNum }}</p>
+          </div>
+          <div>
+            <p>评论率</p>
+            <p>{{ doctorInfo.praiseRate }}%</p>
+          </div>
+          <div>
+            <p>关注</p>
+            <p>{{ doctorInfo.followNum }}</p>
+          </div>
         </div>
       </div>
-      <div class="doctor-info-bottom">
-        <div>
-          <p>问诊量</p>
-          <p>{{doctorInfo.diagnosisNum}}</p>
-        </div>
-        <div>
-          <p >评论率</p>
-          <p>{{doctorInfo.praiseRate}}%</p>
-        </div>
-        <div>
-          <p>关注</p>
-          <p>{{doctorInfo.followNum}}</p>
-        </div>
-      </div>
-    </div>
-    <!-- 沟通方式 -->
-    <div class="doctor-way">
-      <!-- <div class="doctor-way-item" @click="consult('img')">
-        <div class="doctor-way-item-img"><img src="../images/icon_teletext.png" alt="" /></div>
-        <div class="doctor-way-item-money doctor-way-item-image">￥20/次</div>
-      </div>
-      <div class="doctor-way-item" @click="consult('phone')">
-        <div class="doctor-way-item-img"><img src="../images/icon_telephone.png" alt="" /></div>
-        <div class="doctor-way-item-money doctor-way-item-phone">￥20/次</div>
-      </div> -->
-      <div class="doctor-way-item" v-for="(item,index) in doctorInfo.mapTypeList" :key="index">
-        <div class="doctor-way-item-img">
-          <img src="../images/icon_teletext.png" v-if="item.type==1" alt="" />
-          <img src="../images/icon_telephone.png" v-else-if="item.type==2" alt="" />
-        </div>
-        <div class="doctor-way-item-money doctor-way-item-image" v-if="item.type==1">￥{{item.info.price}}/次</div>
-        <div class="doctor-way-item-money doctor-way-item-phone"  v-else-if="item.type==2">￥{{item.info.price}}/次</div>
-      </div>
-      <div class="doctor-way-item video">
-        <div class="doctor-way-item-img"><img src="../images/icon_video.png" alt="" /></div>
+      <!-- 沟通方式 -->
+      <div class="doctor-way">
         <div
-          class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled"
+          class="doctor-way-item"
+          v-for="(item, index) in doctorInfo.mapTypeList"
+          :key="index"
         >
-          暂未开通
+          <div class="doctor-way-item-img">
+            <img
+              src="../images/icon_teletext.png"
+              v-if="item.type == 1"
+              alt=""
+            />
+            <img
+              src="../images/icon_telephone.png"
+              v-else-if="item.type == 2"
+              alt=""
+            />
+          </div>
+          <div
+            class="doctor-way-item-money doctor-way-item-image"
+            v-if="item.type == 1"
+          >
+            ￥{{ item.info.price }}/次
+          </div>
+          <div
+            class="doctor-way-item-money doctor-way-item-phone"
+            v-else-if="item.type == 2"
+          >
+            ￥{{ item.info.price }}/次
+          </div>
+        </div>
+        <div class="doctor-way-item video">
+          <div class="doctor-way-item-img">
+            <img src="../images/icon_video.png" alt="" />
+          </div>
+          <div
+            class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled"
+          >
+            暂未开通
+          </div>
         </div>
       </div>
-    </div>
-    <!--擅长-->
-    <div class="doctor-speciality doctor-item">
-      <div class="title">擅长</div>
-      <div>儿科常见病、多发病 #先天性心脏病</div>
-    </div>
-    <!--简介  -->
-    <div class="doctor-abstract doctor-item">
-      <div class="title">简介</div>
-      <div>
-        周扬，儿科主治医师，多年来专注于儿科临床工作，具有丰富的临床经验，擅长儿科常见病、多发病诊治，尤其在先天性心脏病诊疗方面经验丰富
+      <!--擅长-->
+      <div class="doctor-speciality doctor-item">
+        <div class="title">擅长</div>
+        <div>{{ doctorInfo.skill }}</div>
       </div>
-    </div>
-    <!-- 评论 -->
-    <div class="doctor-comment doctor-item ">
-      <div class="title">评论</div>
-    </div>
-    <!-- 评论详情 -->
-    <div class="doctor-comment-item  ">
-      <div class="  doctor-comment-item-header">
-        <span>李**</span>
-        <span class="assess">满意</span>
-        <span>8月14日</span>
-      </div>
-      <div class="doctor-comment-item-content">
-        <div class="ellipsis">
-          非常感谢周大夫，从宝宝出生到现在有任何问题都是咨询她，z每次都z每次都z每次都z每次都很及时心的回复，谢谢！
+      <!--简介  -->
+      <div class="doctor-abstract doctor-item">
+        <div class="title">简介</div>
+        <div>
+          {{ doctorInfo.introduce }}
         </div>
       </div>
+
+      <!-- 评论 -->
+      <div class="doctor-comment doctor-item ">
+        <div class="title">评论</div>
+      </div>
+      <!-- 评论详情 -->
+      <div
+        class="doctor-comment-item"
+        infinite-scroll-distance="30"
+        v-for="(item, index) in commonList"
+        :key="index"
+      >
+        <div class="doctor-comment-item-header">
+          <span>{{ item.accountEncrypt }}</span>
+          <span class="assess">满意</span>
+          <span>{{ item.createTime.substring(0, 10) }}</span>
+        </div>
+        <div class="doctor-comment-item-content">
+          <div class="ellipsis">
+            {{ item.comment }}
+          </div>
+        </div>
+      </div>
+      <div v-if="!commonList.length">暂无消息</div>
+
+      <!-- 咨询弹窗 -->
+      <md-dialog
+        :title="basicDialog.title"
+        :closable="true"
+        v-model="basicDialog.open"
+        :btns="basicDialog.btns"
+      >
+        <p class="money">$20.0/次</p>
+        <p>咨询师-周扬</p>
+        <p class="ways">通过文字,图片进行咨询</p>
+        <md-agree v-model="basicDialog.checked" :disabled="false" size="sm">
+          同意<a>《重庆市妇幼保健院在线问诊用户协议》</a>
+        </md-agree>
+      </md-dialog>
+
+      <div
+        v-infinite-scroll="loadMore"
+        infinite-scroll-disabled="busy"
+        infinite-scroll-distance="10"
+      >
+        ...
+      </div>
     </div>
-    <!-- 咨询弹窗 -->
-    <md-dialog
-      :title="basicDialog.title"
-      :closable="true"
-      v-model="basicDialog.open"
-      :btns="basicDialog.btns"
-    >
-      <p class="money">$20.0/次</p>
-      <p>咨询师-周扬</p>
-      <p class="ways">通过文字,图片进行咨询</p>
-      <md-agree v-model="basicDialog.checked" :disabled="false" size="sm">
-        同意<a>《重庆市妇幼保健院在线问诊用户协议》</a>
-      </md-agree>
-    </md-dialog>
   </div>
 </template>
 <script>
 import { Dialog, Agree, Toast } from "mand-mobile";
-const  onlineDoctorDetailUrl = '/app/bdOnlineDoctor/read/detail'
+const onlineDoctorDetailUrl = "/app/bdOnlineDoctor/read/detail";
+const commentUrl = "/app/bizOnlineServiceRecord/read/doctorRecordPage";
 export default {
   data() {
     return {
-      doctorInfo:{},// 医生信息
+      isloading: true, // 是否显示loading
+      doctorInfo: {}, // 医生信息
       // 咨询弹窗
       basicDialog: {
         open: false,
@@ -126,26 +170,62 @@ export default {
             handler: this.onConfirm
           }
         ]
-      }
+      },
+      pagingParams: {
+        // 科室分页信息
+        num: 1,
+        pages: 1
+      },
+      commonList: [],
+      busy: false
     };
   },
   mounted() {
-    this.init()
+    this.init();
   },
   methods: {
     // 初始化
-  async  init() {
+    async init() {
       try {
-        let res =await this.$axios.put(onlineDoctorDetailUrl,{
-          id:Number(this.$route.query.id)
-        })
-        if(res.data.code != 200) {
-          throw Error(res.data.msg)
+        let id = Number(this.$route.query.id);
+        let res = await this.$axios.put(onlineDoctorDetailUrl, { id });
+        await this.queryCommon();
+        if (res.data.code != 200) {
+          throw Error(res.data.msg);
         }
-        this.doctorInfo = res.data.data
+        this.doctorInfo = res.data.data;
+        this.isloading = false;
       } catch (error) {
-        console.log(error.message)
+        this.isloading = false;
+        console.log(error.message);
       }
+    },
+    async queryCommon() {
+      // 查询评论
+      try {
+        let res = await this.$axios.put(commentUrl, {
+          id: Number(this.$route.query.id),
+          pageNumber: this.pagingParams.num
+        });
+        if (res.data.code != 200) {
+          throw Error(res.data.msg);
+        }
+        this.commonList = res.data.rows;
+      } catch (error) {
+        this.isloading = false;
+        console.log(error.message);
+      }
+    },
+    loadMore: function() {
+      console.log(2);
+      this.busy = true;
+
+      //官方示例中延迟了1秒，防止滚动条滚动时的频繁请求数据
+      setTimeout(() => {
+        //这里请求接口去拿数据，实际应该是调用一个请求数据的方法
+        console.log(334);
+        this.busy = false;
+      }, 1000);
     },
     // 取消按钮
     onCancel() {
@@ -166,7 +246,7 @@ export default {
         <div class="info">3、为保证医疗安全，特殊药品如精神类药物，强心类药物等需要门诊就诊后开具。</div>`,
         confirmText: "确定",
         onConfirm: () => {
-          this.$router.push({path:'/buyService'})
+          this.$router.push({ path: "/buyService" });
         }
       });
     },
@@ -187,24 +267,26 @@ export default {
 </script>
 <style lang="scss" scoped>
 .doctor-detail {
-  padding:0 30px;
-  overflow: hidden;
+  padding: 0 30px;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
   .gray {
     color: #999;
   }
- 
+
   .doctor-item {
-    margin-bottom:20px;
+    margin-bottom: 20px;
     .title {
-      color:#000;
+      color: #000;
       font-weight: bold;
-      font-size:30px;
+      font-size: 30px;
     }
     // padding: 24px 40px;
   }
   .doctor-info {
-    margin-top:40px;
-    padding:40px 30px;
+    margin-top: 40px;
+    padding: 40px 30px;
     box-shadow: 0 0 0.18rem rgba(131, 179, 208, 0.3);
     border-radius: 16px;
   }
@@ -291,7 +373,7 @@ export default {
   .doctor-comment,
   .doctor-comment-item {
     > div {
-      padding: 14px 0;
+      padding: 54px 0;
     }
   }
   .doctor-comment-item-header {
@@ -304,8 +386,8 @@ export default {
     }
     .assess {
       color: #1da1f3;
-      border:1px solid #1da1f3;
-      padding:0px 10px;
+      border: 1px solid #1da1f3;
+      padding: 0px 10px;
       border-radius: 6px;
     }
   }
@@ -315,7 +397,7 @@ export default {
     .ellipsis {
       overflow: hidden;
       display: -webkit-box;
-     /* autoprefixer: ignore next */
+      /* autoprefixer: ignore next */
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
       -webkit-line-clamp: 2;
@@ -323,8 +405,8 @@ export default {
   }
   .doctor-info-follow {
     img {
-      width:40px;
-      height:40px;
+      width: 40px;
+      height: 40px;
     }
   }
 }
@@ -348,19 +430,17 @@ export default {
         font-size: 24px;
       }
     }
-    
   }
 }
-
 </style>
 <style lang="scss">
 .md-dialog {
-    .md-dialog-text {
-      flex-wrap:wrap;
-      .info{
-        width:100%;
-      }
+  .md-dialog-text {
+    flex-wrap: wrap;
+    .info {
+      width: 100%;
     }
+  }
 }
 </style>
 
