@@ -74,18 +74,12 @@ export default {
     }).then(res => {
       if (res.data.code == '200') {
         this.cardlist = res.data.rows;
-        this.cardHomelist = res.data.rows;
         if (res.data.rows.length > 5) {
           this.isFive = true
         } else {
           this.isFive = false
         }
-        if (this.$store.state.cardIndex) {
-          var dayWeeka = this.cardHomelist.slice(0, this.$store.state.cardIndex);
-          var dayWeekb = this.cardHomelist.slice(this.$store.state.cardIndex, this.cardHomelist.length);
-          this.cardHomelist = dayWeekb.concat(dayWeeka);
-        }
-        this.$store.commit('cardListFun', this.cardHomelist);
+        this.$store.commit('cardListFun', this.cardlist);
         this.loadingtrue = false;
       } else if (res.data.code == '800') {
         console.log(res.data.msg)

@@ -11,9 +11,11 @@
    height: 77px;
    margin-top: 77px;
 }
-.cardPositon{
-   height: 140px;
+
+.cardPositon {
+   height: 170px;
 }
+
 .font-12 {
    font-size: 12px;
 }
@@ -61,6 +63,22 @@
 .home-cz li {
    text-align: center;
    /* color: #fff; */
+   position: relative;
+}
+
+.home-cz li .signNumber {
+   position: absolute;
+   top: -10px;
+   left: 77px;
+   display: inline-block;
+   width: 32px;
+   height: 32px;
+   border-radius: 16px;
+   background: #f34949;
+   text-align: center;
+   line-height: 32px;
+   font-size: 24px;
+   color: #fff;
 }
 
 .home-cz .image {
@@ -128,6 +146,7 @@
    width: 33%;
    text-align: center;
    padding: 10px;
+   position: relative;
 }
 
 .home-menu li:nth-child(6),
@@ -237,18 +256,20 @@
 /* .home-menu,
 .home-zy,
 .homeCard {
-  
+
 } */
 
 .homePage {
    position: relative;
    /* top: -100px; */
 }
-.home .homeCard{
+
+.home .homeCard {
    position: absolute;
    width: 93.7%;
-   top: -100px;
+   top: -70px;
 }
+
 .marginbott16 {
    margin-bottom: 32px
 }
@@ -268,12 +289,28 @@
    transform: rotate(180deg);
    margin-top: 20px;
 }
- 
+
 .home .introduce {
    height: 120px;
    display: block;
    overflow: hidden;
 }
-.isDownIntel .introduce{
+
+.isDownIntel .introduce {
    height: auto;
+}
+
+.examineNumber {
+   position: absolute;
+   top: 20px;
+   left: 140px;
+   display: inline-block;
+   width: 32px;
+   height: 32px;
+   border-radius: 16px;
+   background: #f34949;
+   text-align: center;
+   line-height: 32px;
+   font-size: 24px;
+   color: #fff;
 }

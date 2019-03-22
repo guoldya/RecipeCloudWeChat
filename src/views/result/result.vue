@@ -75,7 +75,6 @@
                     query: { deptId: data.id, yuanId: data.parentId, departName: data.orgName }
                 });
             },
-
             intodoctorinfo(data) {
                 let argu={};
                 if(this.searchType=="workdepart"){
@@ -111,12 +110,9 @@
                         } else {
                         }
                     }).catch(function (err) {
-
-                    });
-                }, 300);
-            },
-
-
+                    })
+                })
+            }
         }
     }
 </script>

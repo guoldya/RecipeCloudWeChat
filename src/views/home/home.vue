@@ -1,5 +1,5 @@
 <style scoped>
-@import "index.css";
+    @import "index.css";
 </style>
 <template>
     <div class="home">
@@ -10,13 +10,13 @@
         <div class="homePage">
             <!-- 就诊卡片  -->
             <div v-if=" _cardlist.length!=0">
-                <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in  _cardlist" v-if="showindex==index" :key="'cardlist' + index">
+                <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in  _cardlist" v-if="item.id==chooseId" :key="'cardlist' + index">
                     <div class="homeCardText">
                         <div class="homeCardTextLeft">
                             <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                             <p>{{item.cardNo}}</p>
                             <p>
-                                <span class="icon_switch" @click="switchCard( _cardlist[index+1],index+1)">
+                                <span class="icon_switch" @click="switchCard(index)">
                                     <img src="@/assets/images/icon_switch.png" alt="">切换就诊人</span>
                             </p>
                         </div>
@@ -48,10 +48,12 @@
                     <li @click="feerecord">
                         <img src="@/assets/images/icon_self.png" alt="" class="image">
                         <p>门诊缴费</p>
+                        <span class="signNumber">99</span>
                     </li>
                     <li @click="sign">
                         <img src="@/assets/images/icon_signin.png" alt="" class="image">
                         <p>就诊签到</p>
+                        <span class="signNumber">1</span>
                     </li>
                 </ul>
             </div>
@@ -60,17 +62,15 @@
             </div>
 
             <ul class="home-menu">
-                <!-- <li>
-                    <img src="@/assets/images/1.png" alt="" class="image">
-                    <p>智能导诊</p>
-                </li> -->
-                <li @click="examine">
+                <li @click="examine" class="examineLi">
                     <img src="@/assets/images/2.png" alt="" class="image">
                     <p>检验检查</p>
+                    <span class="examineNumber">1</span>
                 </li>
                 <li @click="reportquery">
                     <img src="@/assets/images/3.png" alt="" class="image">
                     <p>报告查询</p>
+                    <span class="examineNumber">1</span>
                 </li>
                 <li @click="lineupnow">
                     <img src="@/assets/images/4.png" alt="" class="image">
@@ -118,210 +118,214 @@
     </div>
 </template>
 <script>
-let appLoginlogin = '/appLogin/login';
-let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
-export default {
-    data() {
-        return {
-            code: 'ss',
-            showPic: false,
-            cardlist: [],
-            showindex: 0,
-            maxindex: 0,
-            cardLoading: true,
-            aliveValue: '2',
-            isDown: false,
-        }
-    },
-    created() {
-        this.$store.commit('feeActiveFun', 1);
-
-
-
-    },
-    mounted() {
-        // 用于测试
-        document.title = '互联网医院';
-        let _this = this;
-        function UrlSearch() {
-            let name, value;
-            // let str = location.href;
-            let str = "http://192.168.0.26:8080/?code=081qs5ZX03iwTU1YH5YX0Kv6ZX0qs5Zn"; //取得整个地址栏
-            let num = str.indexOf("?");
-            str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
-            _this.code = str.match(/code=[^&]+/)[0].split("=")[1];
-        };
-        let Request = new UrlSearch(); //实例化
-        this.$axios.get(appLoginlogin + '?wechatCode=' + _this.code + '&verifyType=' + 1, {
-        }).then(res => {
-            if (res.data.code == '200') {
-                // res.data.data.value = JSON.parse(res.data.data.value);
-                // var storage = window.localStorage;
-                // storage.setItem("token1", res.data.data.value.token);
-                // storage.setItem("id", res.data.data.value.id);
-            } else if (res.data.code == '800') {
-                // this.$router.push({
-                //     name: 'register',
-                // });
-                var storage = window.localStorage;
-                // storage.setItem("token7", "");
-                // storage.setItem("UUID7", "");
-
-                localStorage.removeItem('token7');
-                localStorage.removeItem('UUID7');
-                storage.setItem("token1", "2136a544595a4c638e8969bfafc2a1a1");
-                storage.setItem("hospitalId", "49");
+    let appLoginlogin = '/appLogin/login';
+    let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
+    export default {
+        data() {
+            return {
+                code: 'ss',
+                showPic: false,
+                cardlist: [],
+                showindex: 0,
+                maxindex: 0,
+                cardLoading: true,
+                aliveValue: '2',
+                isDown: false,
+                chooseId: '',
+                test: '',
             }
-        });
-
-        if (!this.$store.state.cardList) {
-            this.$axios.put(wechatbizPatientCardreadpage, {
+        },
+        created() {
+            this.$store.commit('feeActiveFun', 1);
+        },
+        mounted() {
+            // 用于测试
+            document.title = '互联网医院';
+            let _this = this;
+            function UrlSearch() {
+                let name, value;
+                // let str = location.href;
+                let str = "http://192.168.0.26:8080/?code=081qs5ZX03iwTU1YH5YX0Kv6ZX0qs5Zn"; //取得整个地址栏
+                let num = str.indexOf("?");
+                str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+                _this.code = str.match(/code=[^&]+/)[0].split("=")[1];
+            };
+            let Request = new UrlSearch(); //实例化
+            this.$axios.get(appLoginlogin + '?wechatCode=' + _this.code + '&verifyType=' + 1, {
             }).then(res => {
                 if (res.data.code == '200') {
-                    this.cardlist = res.data.rows;
-                    this.maxindex = res.data.total;
-                    this.cardLoading = false;
-                    this.$store.commit('cardIndexFun', 0);
-                    this.$store.commit('cardListFun', res.data.rows);
-                    this.$store.commit('patientIdFun', res.data.rows[0].patientId);
-                    this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
-                    this.$store.commit('cardNnameFun', res.data.rows[0].patientName);
-                    this.$store.commit('cardIdFun', res.data.rows[0].id);
+                    // res.data.data.value = JSON.parse(res.data.data.value);
+                    // var storage = window.localStorage;
+                    // storage.setItem("token1", res.data.data.value.token);
+                    // storage.setItem("id", res.data.data.value.id);
                 } else if (res.data.code == '800') {
-                    console.log(res.data.msg)
+                    // this.$router.push({
+                    //     name: 'register',
+                    // });
+                    var storage = window.localStorage;
+                    // storage.setItem("token7", "");
+                    // storage.setItem("UUID7", "");
+
+                    localStorage.removeItem('token7');
+                    localStorage.removeItem('UUID7');
+                    storage.setItem("token1", "2136a544595a4c638e8969bfafc2a1a1");
+                    storage.setItem("hospitalId", "49");
                 }
-            }).catch(function (err) {
-                console.log(err)
-            })
-        } else {
-            this.maxindex = this.$store.state.cardList.length;
-        }
-
-    },
-    methods: {
-        choosedepart() {
-            let argu = {};
-            this.$router.push({
-                name: 'choosedepart',
-                query: argu
             });
-        },
-        switchCard(data1, data) {
-            console.log(this._cardlist);
-            if (data < this.maxindex) {
-                this.showindex = data;
+
+            if (!this.$store.state.cardList) {
+                this.$axios.put(wechatbizPatientCardreadpage, {
+                }).then(res => {
+                    if (res.data.code == '200') {
+                        this.cardlist = res.data.rows;
+                        this.maxindex = res.data.total;
+                        this.cardLoading = false;
+                        if (this.$store.state.cardId) {
+                            this.chooseId = this.$store.state.cardId;
+                        } else {
+                            this.chooseId = res.data.rows[0].id;
+                        }
+                        this.test = res.data.rows[0].id;
+                        this.$store.commit('cardIndexFun', 0);
+                        this.$store.commit('cardListFun', res.data.rows);
+                        this.$store.commit('patientIdFun', res.data.rows[0].patientId);
+                        this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
+                        this.$store.commit('cardNnameFun', res.data.rows[0].patientName);
+                        this.$store.commit('cardIdFun', res.data.rows[0].id);
+                    } else if (res.data.code == '800') {
+                        console.log(res.data.msg)
+                    }
+                }).catch(function (err) {
+                    console.log(err)
+                })
             } else {
-                this.showindex = 0;
+                if (this.$store.state.cardId) {
+                    this.chooseId = this.$store.state.cardId;
+                } else {
+                    this.chooseId = this.$store.state.cardList.id;
+                }
+                this.maxindex = this.$store.state.cardList.length;
             }
-            console.log(data1.patientName,"选择的")
-            this.$store.commit('cardIndexFun', data);
-            this.$store.commit('patientIdFun', data1.patientId);
-            this.$store.commit('cardNoFun', data1.cardNo);
-            this.$store.commit('cardIdFun', data1.id);
-            this.$store.commit('cardNnameFun', data1.patientName);
-        },
-        feerecord() {
-            let argu = {}
-            this.$router.push({
-                name: 'feerecord',
-                query: argu
-            });
-        },
-        sign() {
-            let argu = {}
-            this.$router.push({
-                name: 'sign',
-                query: argu
-            });
-        },
-        blidcard() {
-            let argu = {}
-            this.$router.push({
-                name: 'cardmy',
-                query: argu
-            });
-        },
-        // 报告查询
-        reportquery() {
-            let argu = {}
-            this.$router.push({
-                name: 'reportquery',
-                query: argu
-            });
-        },
-        // 我的排队
-        lineupnow() {
-            let argu = {}
-            this.$router.push({
-                name: 'lineupnow',
-                query: argu
-            });
-        },
-        // 我的住院
-        inpatient() {
-            let argu = {}
-            this.$router.push({
-                name: 'inpatient',
-                query: argu
-            });
-        },
-        // 慢病徐方
-        inspectionCheck() {
-            let argu = {}
-            this.$router.push({
-                name: 'inspectionCheck',
-                query: argu
-            });
-        },
-        //  
-        examine() {
-            let argu = {}
-            this.$router.push({
-                name: 'examine',
-                query: argu
-            });
-        },
-        // 医生排班
-        workdepart() {
-            let argu = {}
-            this.$router.push({
-                name: 'workdepart',
-                query: argu
-            });
-        },
-        // 医生排班
-        business() {
-            let argu = {}
-            this.$router.push({
-                name: 'business',
-                query: argu
-            });
-        },
-        // 我的处方
-        myinspectionCheck() {
-            let argu = {}
-            this.$router.push({
-                name: 'recipeRecord',
-                query: argu
-            });
-        },
-    },
-    // beforeRouteLeave(to, from, next) {
-    //       from.meta.keepAlive = true;
-    //       next();
-    // },
-    computed: {
-        _cardlist() {
-            this.cardLoading = false;
-            if (this.$store.state.cardIndex) {
-                var dayWeeka = this.$store.state.cardList.slice(0, this.$store.state.cardIndex);
-                var dayWeekb = this.$store.state.cardList.slice(this.$store.state.cardIndex, this.$store.state.cardList.length);
-                this.$store.state.cardList = dayWeekb.concat(dayWeeka);
-            }
-            // console.log(this.$store.state.cardList)
-            return this.$store.state.cardList;
-        },
-    },
 
-}
+        },
+        methods: {
+            choosedepart() {
+                let argu = {};
+                this.$router.push({
+                    name: 'choosedepart',
+                    query: argu
+                });
+            },
+            switchCard(index) {
+                let current = this._cardlist[index + 1];
+                if (!current) {
+                    current = this._cardlist[0]
+                }
+                this.chooseId = current.id;
+                this.$store.commit('patientIdFun', current.patientId);
+                this.$store.commit('cardNoFun', current.cardNo);
+                this.$store.commit('cardIdFun', current.id);
+                this.$store.commit('cardNnameFun', current.patientName);
+            },
+            feerecord() {
+                let argu = {}
+                this.$router.push({
+                    name: 'feerecord',
+                    query: argu
+                });
+            },
+            sign() {
+                let argu = {}
+                this.$router.push({
+                    name: 'sign',
+                    query: argu
+                });
+            },
+            blidcard() {
+                let argu = {}
+                this.$router.push({
+                    name: 'cardmy',
+                    query: argu
+                });
+            },
+            // 报告查询
+            reportquery() {
+                let argu = {}
+                this.$router.push({
+                    name: 'reportquery',
+                    query: argu
+                });
+            },
+            // 我的排队
+            lineupnow() {
+                let argu = {}
+                this.$router.push({
+                    name: 'lineupnow',
+                    query: argu
+                });
+            },
+            // 我的住院
+            inpatient() {
+                let argu = {}
+                this.$router.push({
+                    name: 'inpatient',
+                    query: argu
+                });
+            },
+            // 慢病徐方
+            inspectionCheck() {
+                let argu = {}
+                this.$router.push({
+                    name: 'inspectionCheck',
+                    query: argu
+                });
+            },
+            //
+            examine() {
+                let argu = {}
+                this.$router.push({
+                    name: 'examine',
+                    query: argu
+                });
+            },
+
+            // 医生排班
+            workdepart() {
+                let argu = {}
+                this.$router.push({
+                    name: 'workdepart',
+                    query: argu
+                });
+            },
+
+            // 医生排班
+            business() {
+                let argu = {}
+                this.$router.push({
+                    name: 'business',
+                    query: argu
+                });
+            },
+            // 我的处方
+            myinspectionCheck() {
+                let argu = {}
+                this.$router.push({
+                    name: 'recipeRecord',
+                    query: argu
+                });
+            },
+
+        },
+        // beforeRouteLeave(to, from, next) {
+        //       from.meta.keepAlive = true;
+        //       next();
+        // },
+        computed: {
+            _cardlist() {
+                this.cardLoading = false;
+                return this.$store.state.cardList;
+            },
+        },
+
+    }
 </script>
