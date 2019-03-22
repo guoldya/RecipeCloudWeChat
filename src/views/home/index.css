@@ -71,9 +71,9 @@
    top: -10px;
    left: 77px;
    display: inline-block;
-   width: 32px;
-   height: 32px;
-   border-radius: 16px;
+   padding: 0 10px;
+   min-width: 32px;
+   border-radius: 20px;
    background: #f34949;
    text-align: center;
    line-height: 32px;
@@ -256,7 +256,7 @@
 /* .home-menu,
 .home-zy,
 .homeCard {
-
+  
 } */
 
 .homePage {
@@ -313,4 +313,21 @@
    line-height: 32px;
    font-size: 24px;
    color: #fff;
+}
+
+.home .codema {
+   background: #ffffff;
+   /* height: 750px; */
+   border-radius: 20px;
+   padding:40px 20px;
+}
+.home .codema img{
+   background: #ffffff;
+   padding: 20px;
+}
+.home .codema .namecodema{
+   text-align: center;
+   line-height: 50px;
+   font-size: 32px;
+   color: #696868;
 }

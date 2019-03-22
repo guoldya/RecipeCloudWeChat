@@ -46,7 +46,7 @@ let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     return {
-      
+
       active1: 0,
       yuanId: "",
       departs: [],
@@ -75,10 +75,10 @@ export default {
   },
   mounted() {
     document.title = '选择科室';
-    
-    
-      
-   
+
+
+
+
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
       orgId: localStorage.getItem("hospitalId") * 1
@@ -302,30 +302,7 @@ export default {
 }
 
 /**tab样式*/
-
-.choosedepart .appTitle {
-  padding: 32px;
-  border-bottom: 1px solid #e2e4ea;
-  display: flex;
-  justify-content: space-between;
-}
-.choosedepart .choosedepart .appTab {
-  display: flex;
-  justify-content: space-between;
-  padding: 32px 100px;
-}
-.choosedepart .choosedepart .appTab span {
-  font-size: 36px;
-}
-.choosedepart .appTab span {
-  padding: 0 8px 8px;
-}
-
-.choosedepart .appTabAcitive {
-  color: #1da1f3;
-  border-bottom: 4px solid #1da1f3;
-  font-size: 31px;
-}
+ 
 #app .choosedepart .md-cell-item-title {
   font-size: 15px;
 }
