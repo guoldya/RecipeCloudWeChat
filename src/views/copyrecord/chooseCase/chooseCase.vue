@@ -101,7 +101,7 @@ export default {
 .chooseCase .tabAdiv {
   display: flex;
   justify-content: space-around;
-  box-shadow: 0 0 0.17rem rgba(131, 179, 208, 0.3);
+  box-shadow: 0 0 0.17rem rgba(20,19,51,.1);
   border-radius: 20px;
   font-size: 28px;
   margin-bottom: 32px;

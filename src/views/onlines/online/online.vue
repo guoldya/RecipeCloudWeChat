@@ -1,8 +1,15 @@
 <!-- 在线问诊首页-->
 <template>
   <div class="online">
-    <div :class="{ outCarint: true }">
-      <div class="onlineheader">在线问诊</div>
+    <header class="aui-navBar aui-navBar-fixed">
+      <a href="javascript:;" class="aui-navBar-item"></a>
+      <div class="aui-center">
+        <span class="aui-center-title">在线问诊</span>
+      </div>
+      <a href="javascript:;" class="aui-navBar-item"></a>
+    </header>
+    <div class="margin45 outCarint">
+
       <Search type="onlines"></Search>
       <div class="tools">
         <div class="nav2">

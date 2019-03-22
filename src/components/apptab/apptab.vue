@@ -4,7 +4,7 @@
       <span v-for="(item, index) in tabTitle" v-if="item.orgName" :key="'time' + index" @click="switchTo(item)" :class="active1 === item.id ? 'appTabAcitive' : '' ">
         {{item.title}}
       </span>
-      <span v-for="(item, index) in tabTitle" v-if="item.type" :key="'time' + index" @click="switchTo(item)" :class="active1 === (index+1) ? 'appTabAcitive' : '' ">
+      <span v-for="(item, index) in tabTitle" v-if="item.type" :key="'time' + index" @click="switchTo(item)" :class="active1 === item.type ? 'appTabAcitive' : '' ">
         {{item.title}}
       </span>
     </div>
@@ -28,6 +28,8 @@ export default {
   },
   methods: {
     switchTo(item) {
+      if (this.active1 === item.type || this.active1 === item.id) return
+
       if (item.orgName) {
         this.active1 = item.id;
       } else {

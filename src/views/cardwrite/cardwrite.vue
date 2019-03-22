@@ -23,7 +23,7 @@
           <div class="login-box">
             <div class="hq login-box-div">
               <span class="flexF">手机号</span>
-              <input class="flexF" type="text" name="username" v-model="phonenumber" placeholder="请输入手机号" maxlength="11">
+              <input class="flexF" autofocus="autofocus" type="text" name="username" v-model="phonenumber" placeholder="请输入手机号" maxlength="11">
               <p class="flexR">
                 <span v-show="show" class="send1" @click="getCode">获取验证码</span>
                 <span v-show="!show" class="send1">发送 {{count}} 秒</span>
@@ -60,10 +60,6 @@ export default {
   },
   mounted() {
     document.title = '手机验证';
-    
-    
-      
-     
   },
   methods: {
     getCode() {
@@ -85,7 +81,6 @@ export default {
             }
           }, 1000);
           this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.phonenumber + '&verifyType=' + 1, {
-            
           }).then(res => {
             if (res.data.code == '200') {
               _this.$toast.info('请查看验证码')
@@ -97,7 +92,6 @@ export default {
           });
         }
       }
-
     },
 
     tijiao() {

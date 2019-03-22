@@ -7,10 +7,10 @@
           <div class="homeCard">
             <div class="homeCardText">
               <div class="homeCardTextLeft" @click="unblind(item)">
-                <p>{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
                 <p>{{item.cardNo}}</p>
               </div>
-              <div class="towma" @click="showPic=true">
+              <div class="towma" @click="showPicFun(item)">
                 <p><img src="@/assets/images/lili.jpg" alt=""></p>
               </div>
             </div>
@@ -19,7 +19,9 @@
         <Loading v-show="loadingtrue"></Loading>
       </ul>
       <div v-show="!loadingtrue">
-        <md-button @click="blidcard" type="primary" round :inactive="isFive">注册电子就诊卡</md-button>
+        <!-- <md-button @click="blidcard" type="primary">注册电子就诊卡</md-button> -->
+
+        <!-- <md-button @click="blidcard" type="primary" round :inactive="isFive">注册电子就诊卡</md-button> -->
         <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
           是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
         </md-dialog>
@@ -31,22 +33,31 @@
           电子就诊卡需知</p>
       </div>
     </div>
+    <p @click="blidcard" class="add" v-show="!isFive">注册电子就诊卡</p>
+    <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
     <md-landscape v-model="showPic" :mask-closable="true">
-      <img src="@/assets/images/lili.jpg" alt="">
+      <div class="codema">
+        <p class="namecodema">{{picName}}</p>
+        <img src="@/assets/images/lili.jpg" alt="">
+        <p class="namecodema">就诊卡二维码</p>
+      </div>
     </md-landscape>
   </div>
 </template>
 <script type="text/babel">
-let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
+// let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
 import { Dialog, Button, Toast } from 'mand-mobile'
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
       loadingtrue: true,
-      isFive: false,
+      // isFive: false,
       showPic: false,
       num: 2,
-      cardlist: '',
+      // cardlist: '',
+      picName: '',
       actDialog: {
         open: false,
         btns: [
@@ -69,24 +80,41 @@ export default {
       },
     };
   },
-  created() {
-    this.$axios.put(wechatbizPatientCardreadpage, {
-    }).then(res => {
-      if (res.data.code == '200') {
-        this.cardlist = res.data.rows;
-        if (res.data.rows.length > 5) {
-          this.isFive = true
-        } else {
-          this.isFive = false
-        }
-        this.$store.commit('cardListFun', this.cardlist);
-        this.loadingtrue = false;
-      } else if (res.data.code == '800') {
-        console.log(res.data.msg)
-      }
-    }).catch(function (err) {
-      console.log(err)
-    });;
+  computed: {
+    ...mapState({
+      cardlist: state => state.home.cardList,
+
+    }),
+    isFive() {
+      return this.cardlist.length > 5
+    },
+  },
+  async created() {
+    await this.$store.dispatch('getCards'/* , { update: true } */);
+
+    this.loadingtrue = false;
+    // this.$store.dispatch('getCards').then(res => {
+    //   this.loadingtrue = false;
+
+    // })
+
+    // this.$axios.put(wechatbizPatientCardreadpage, {
+    // }).then(res => {
+    //   if (res.data.code == '200') {
+    //     this.cardlist = res.data.rows;
+    //     if (res.data.rows.length > 5) {
+    //       this.isFive = true
+    //     } else {
+    //       this.isFive = false
+    //     }
+    //     this.$store.commit('cardListFun', this.cardlist);
+    //     this.loadingtrue = false;
+    //   } else if (res.data.code == '800') {
+    //     console.log(res.data.msg)
+    //   }
+    // }).catch(function (err) {
+    //   console.log(err)
+    // });;
   },
   watch: {
     selected3: function (newselectedStatus, oldselectedStatus) {
@@ -107,6 +135,10 @@ export default {
       this.$router.push({
         name: 'cardneed',
       });
+    },
+    showPicFun(data) {
+      this.picName = data.patientName;
+      this.showPic = true;
     },
     onActConfirm() {
       // Toast({
@@ -131,8 +163,7 @@ export default {
     },
 
   },
-  computed: {
-  },
+
 };
 </script>
  <style   scoped>
@@ -141,7 +172,12 @@ export default {
 .idcardlist .homeCard {
   height: 200px;
   border-radius: 20px;
-  box-shadow: 0 0 18px rgba(131, 179, 208, 0.3);
+  box-shadow: 0 0 18px rgba(20,19,51,.1);
   background: #ffffff;
+}
+
+ 
+.addisFive {
+  background-color: #979797;
 }
 </style>

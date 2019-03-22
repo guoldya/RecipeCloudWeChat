@@ -70,12 +70,10 @@ export default {
             nomore: false,
             loadingtrue: true,
             goodsList: '',
-            pageNumber: 1,
             page: 1,
             pageSize: 10,
             type: 1,
             date: undefined,
-            
             active1: 0,
             reportactive1: 0,
             departs: [

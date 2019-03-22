@@ -71,11 +71,7 @@
     height: 108px;
     border-radius: 10px
  }
-
- .cainter h1 {
-    font-size: 34px;
-    letter-spacing: 1px;
- }
+ 
 
  .cainter p {}
 
@@ -225,7 +221,7 @@
 
  #product-info .activebtn {
     color: #1da1f3;
-    box-shadow: 0 0 17px rgba(131, 179, 208, 0.3)
+    box-shadow: 0 0 17px rgba(20,19,51,.1)
  }
 
  #product-info .abtninfo:last-child {
@@ -368,7 +364,7 @@
  }
 
  .cainter h1 {
-    font-size: 36px;
+    font-size: 34px;
     letter-spacing: 1px;
  }
 

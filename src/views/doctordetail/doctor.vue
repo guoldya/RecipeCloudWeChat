@@ -37,14 +37,13 @@
                             <div v-show="orderinfo.valNum==0" class="available-tag no">无号</div>
                         </li>
                     </ul>
-
                     <div v-show="!islook" class="lookmore" @click="islook=!islook">查看全部排班</div>
                     <p v-show="islook" class="home-article-combo--slogan">全部排班</p>
                     <ul v-show="islook" class="available-info">
                         <li v-for="(item,i) in dateList" :key="i">
                             <div> {{item.regDate}} 星期一 {{item.regStageVO}} <br/>
                                 <span class="colo13">
-                                    {{item.dept}} {{depart}} <br/> 余
+                                    {{item.dept}} {{depart}}{{item.regDate}} <br/> 余
                                     <span class="mu-secondary-text-color">{{item.valNum}}</span>&nbsp;
                                     <span class="mu-secondary-text-color">￥{{item.money | keepTwoNum}}</span>
                                 </span>
@@ -65,9 +64,9 @@
 <script>
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
-
 let appbdHospitalDoctorreaddetail = "/app/bdHospitalDoctor/read/detail";
-let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/rankWorld";
+// let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/rankWorld";
+let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/selectDoctorByTime";
 let appbizRegisterSourcereadsourceDetail = "/app/bizRegisterSource/read/sourceDetail";
 export default {
     data() {
@@ -178,7 +177,7 @@ export default {
                     if (res.data.rows.length != 0) {
                         this.isHave = true;
                         for (let i = 0; i < res.data.rows.length; i++) {
-                            res.data.rows[i].regDate = res.data.rows[i].regDate.split(' ')[0];
+                            res.data.rows[i].regDate = res.data.rows[i].regDate.split(' ')[1];
                         }
                         this.dateList = res.data.rows;
                     } else {

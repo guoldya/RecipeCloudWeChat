@@ -122,6 +122,8 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex';
+
 let appLoginlogin = '/appLogin/login';
 let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
 export default {
@@ -140,10 +142,28 @@ export default {
             picName: '',
         }
     },
+    computed: {
+        ...mapState({
+            // _cardlist: state => state.cardList,
+
+            _cardlist: state => state.home.cardList,
+        }),
+
+        // _cardlist() {
+        //     this.cardLoading = false;
+        //     return this.$store.state.cardList;
+        // },
+        // _cardlist2() {
+        //     return this.$store.state.home.cards
+        // },
+
+
+    },
     created() {
         this.$store.commit('feeActiveFun', 1);
     },
     mounted() {
+        console.log(this.$store.state.home.cardList)
         // 用于测试
         document.title = '互联网医院';
         let _this = this;
@@ -329,12 +349,7 @@ export default {
     //       from.meta.keepAlive = true;
     //       next();
     // },
-    computed: {
-        _cardlist() {
-            this.cardLoading = false;
-            return this.$store.state.cardList;
-        },
-    },
+
 
 }
 </script>

@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import home from './home';
+
+console.log(home)
 
 
 Vue.use(Vuex);
@@ -29,8 +32,12 @@ export default new Vuex.Store({
         keepAlive: '',
         cardList: '',
         cardIndex: '',
+        searchType:'',
     },
     mutations: {
+        searchTypeFun: (state, n) => {
+            state.searchType = n;
+        },
         cardIndexFun: (state, n) => {
             state.cardIndex = n;
         },
@@ -105,6 +112,9 @@ export default new Vuex.Store({
     },
     actions: {
 
+    },
+    modules: {
+        home,
     }
 })
 

@@ -3,11 +3,11 @@
     <Header :post-title="post"></Header>
     <div class="outCarint margin45">
       <md-field>
-        <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名" is-highlight></md-input-item>
-        <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
-        <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码" is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名"></md-input-item>
+        <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
+        <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码"></md-input-item>
         <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
-        <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址" is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
         <div class="md-agree margin7" @click="isDefault=!isDefault">
           <div :class="{ 'md-agree-icon':true,'checked':isDefault}">
             <div class="md-agree-icon-container">
@@ -88,6 +88,10 @@ export default {
       this.areaId = childValue
     },
     tijiao() {
+      if (!(/^1[34578]\d{9}$/.test(this.mobile))) {
+        this.$toast.info("手机号码有误，请重填");
+        return false;
+      }
       if (!this.receiver || !this.mobile || !this.address || !this.areaId || !this.zipCode) {
         this.$toast.info("请完善信息")
       } else {

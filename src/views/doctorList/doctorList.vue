@@ -1,5 +1,6 @@
 <template>
   <div class="doctorList">
+    <Header post-title="医生列表"></Header>
     <div class="titleTag">
       <div class="tag1">
         <div class="tagdiv">
@@ -47,11 +48,40 @@
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
         <ul v-if="amList.length!=0" v-show="!loadingtrue">
-          <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info)">
-          </li>
+          <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info)"> </li>
         </ul>
         <ul v-if="amList.length!=0">
           <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info,1 )">
+            <div class="card">
+              <div class="cardText">
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+                <div>
+                  <p class="headname">{{info.name}}
+                    <span class="levle">{{info.title}}</span>
+                    <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
+                    <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
+                  </p>
+                  <p class="headdesc">擅长:{{info.skill}}</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li v-for="(info,index2) in amList" :key="index2+'aa2'" @click="intodoctordetail(info,1 )">
+            <div class="card">
+              <div class="cardText">
+                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+                <div>
+                  <p class="headname">{{info.name}}
+                    <span class="levle">{{info.title}}</span>
+                    <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
+                    <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
+                  </p>
+                  <p class="headdesc">擅长:{{info.skill}}{{info.skill}}</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li v-for="(info,index2) in amList" :key="index2+'aa4'" @click="intodoctordetail(info,1 )">
             <div class="card">
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
@@ -251,9 +281,11 @@ export default {
       let dayArr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
       d.setDate(d.getDate() + days);
       var y = d.getFullYear();
-      var m = d.getMonth() + 1;
+      var m = (d.getMonth() + 1) <= 9 ? "0" + (d.getMonth() + 1) : (d.getMonth() + 1);
       var newDay = dayArr[d.getDay()];
-      data.newData = m + '-' + d.getDate();
+      var aa = d.getDate();
+      aa = aa <= 9 ? "0" + aa : aa;
+      data.newData = m + '-' + aa;
       data.newYear = y;
       data.newDay = newDay;
       return data;

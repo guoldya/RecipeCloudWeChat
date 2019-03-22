@@ -72,9 +72,9 @@
                     <div v-if="payType==2">
                         <md-button type="default" round>已退号</md-button>
                     </div>
-                    <div v-if="payType==5">
-                        <md-button type="default" round>已取消</md-button>
-                    </div>
+                    <!--<div v-if="payType==5">-->
+                        <!--<md-button type="default" round>已取消</md-button>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>

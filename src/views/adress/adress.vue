@@ -7,7 +7,7 @@
                <div class="card">
                   <div class="cardText">
                      <p class="order-number">
-                        <span>{{item.receiver}}</span>
+                        <span class="patientName">{{item.receiver}}</span>
                         <span>{{item.mobile}}</span>
                      </p>
                      <p class="headdesc">{{item.address}}</p>

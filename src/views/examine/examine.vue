@@ -25,7 +25,7 @@
                                 <span class="mu-secondary-text-color">{{item.examDept}}（{{item.hospital}}）</span>
                             </span>
                         </div>
-                        <div class="nowOrder" @click="rightNowOrder(item.classId)">
+                        <div class="nowOrder" @click="rightNowOrder(item.classId,item.id)">
                             <span>立即预约</span>
                         </div>
                         <div style="clear: both"></div>
@@ -117,8 +117,10 @@
                 this.loadingtrue = true;
                 this.examineFun();
             },
-            rightNowOrder(val){
-                let argu = {classId:val};
+            rightNowOrder(val,id){
+                console.log(id);
+                console.log(val);
+                let argu = {id:id,classId:val};
                 this.$router.push({
                     name: 'examineOrder',
                     query: argu
