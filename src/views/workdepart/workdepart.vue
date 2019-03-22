@@ -2,8 +2,8 @@
    <div class="choosedepart">
       <Header post-title="医生排班"  ></Header>
       <div class="outCarint margin45">
-         <!--<Search type="workdepart"></Search>-->
-         <input class="oc_val" type="text" id="inputVal" name="names" placeholder="搜索医生、科室"  v-model="value" @input="search(value)"/>
+         <Search type="workdepart"></Search>
+         <!--<input class="oc_val" type="text" id="inputVal" name="names" placeholder="搜索医生、科室"  v-model="value" @input="search(value)"/>-->
           <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
          <div>
             <p class="xuanze">选择科室</p>
@@ -74,65 +74,6 @@
 
         },
         methods: {
-            search() {
-                if(this.debounces==null)
-                {
-                    this.debounces=this.debounceex(this.log, 500)
-                }
-                this.debounces();
-            },
-            debounceex:function(func, wait = 0 ){
-                let timer;
-                function debounced( ...args ) {
-                    const self = this;
-                    if ( timer == null ) {
-                        addTimer();
-                        return;
-                    }
-                    if ( timer != null ) {
-                        clearTimer();
-                        addTimer();
-                        return;
-                    }
-                    function addTimer() {
-                        timer = setTimeout( () => {
-                            invokeFunc();
-                            clearTimer();
-                        }, wait )
-                    }
-                    function invokeFunc() {
-                        func.apply( self, args );
-                    }
-                }
-                return debounced;
-                function clearTimer() {
-                    clearTimeout( timer );
-                    timer = null
-                }
-            },
-            log:function(){
-                let _this=this;
-                _this.departData=[];
-                let value=document.getElementById("inputVal").value;
-                console.log(value,"value")
-                if(value){
-                    _this.$axios.put(input_search_url, {
-                        name: value
-                    }).then(function (res) {
-                        console.log("状态", res.data.code, res.data.data);
-                        if (res.data.code == '200') {
-                            //_this.doctorList = res.data.data.doctorList;
-                            _this.departData = res.data.data.orgList;
-                        } else {
-                        }
-                    }).catch(function (err) {
-
-                    });
-                }else{
-                    this.orgFun();
-                }
-
-            },
             childByValue: function (childValue) {
                 //this.active1 = index;
                 this.yuanId = childValue.id;
