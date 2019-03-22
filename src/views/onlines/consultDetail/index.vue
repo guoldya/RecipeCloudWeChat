@@ -8,39 +8,46 @@
           <img src="@/assets/images/3.jpg" alt="" />
         </div>
         <div class="doctor-info-content">
-          <p>周洋</p>
-          <p class="gray"><span>主治医生</span><span>儿科</span></p>
+          <p>{{doctorInfo.name}}</p>
+          <p class="gray"><span>{{doctorInfo.title}}</span><span>{{doctorInfo.orgName}}</span></p>
         </div>
         <div class="doctor-info-follow">
-          <img v-if="false" src="../images/icon_follow.png" alt="">
-          <img  src="../images/icon_follow_pre.png" alt="">
-
+          <img v-if="!doctorInfo.followStatus" src="../images/icon_follow.png" alt="">
+          <img v-else src="../images/icon_follow_pre.png" alt="">
         </div>
       </div>
       <div class="doctor-info-bottom">
         <div>
           <p>问诊量</p>
-          <p>6555</p>
+          <p>{{doctorInfo.diagnosisNum}}</p>
         </div>
         <div>
           <p >评论率</p>
-          <p>80%</p>
+          <p>{{doctorInfo.praiseRate}}%</p>
         </div>
         <div>
           <p>关注</p>
-          <p>3625</p>
+          <p>{{doctorInfo.followNum}}</p>
         </div>
       </div>
     </div>
     <!-- 沟通方式 -->
-    <div class="doctor-way   ">
-      <div class="doctor-way-item" @click="consult('img')">
+    <div class="doctor-way">
+      <!-- <div class="doctor-way-item" @click="consult('img')">
         <div class="doctor-way-item-img"><img src="../images/icon_teletext.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-image">￥20/次</div>
       </div>
       <div class="doctor-way-item" @click="consult('phone')">
         <div class="doctor-way-item-img"><img src="../images/icon_telephone.png" alt="" /></div>
         <div class="doctor-way-item-money doctor-way-item-phone">￥20/次</div>
+      </div> -->
+      <div class="doctor-way-item" v-for="(item,index) in doctorInfo.mapTypeList" :key="index">
+        <div class="doctor-way-item-img">
+          <img src="../images/icon_teletext.png" v-if="item.type==1" alt="" />
+          <img src="../images/icon_telephone.png" v-else-if="item.type==2" alt="" />
+        </div>
+        <div class="doctor-way-item-money doctor-way-item-image" v-if="item.type==1">￥{{item.info.price}}/次</div>
+        <div class="doctor-way-item-money doctor-way-item-phone"  v-else-if="item.type==2">￥{{item.info.price}}/次</div>
       </div>
       <div class="doctor-way-item video">
         <div class="doctor-way-item-img"><img src="../images/icon_video.png" alt="" /></div>
@@ -98,10 +105,11 @@
 </template>
 <script>
 import { Dialog, Agree, Toast } from "mand-mobile";
-
+const  onlineDoctorDetailUrl = '/app/bdOnlineDoctor/read/detail'
 export default {
   data() {
     return {
+      doctorInfo:{},// 医生信息
       // 咨询弹窗
       basicDialog: {
         open: false,
@@ -121,7 +129,24 @@ export default {
       }
     };
   },
+  mounted() {
+    this.init()
+  },
   methods: {
+    // 初始化
+  async  init() {
+      try {
+        let res =await this.$axios.put(onlineDoctorDetailUrl,{
+          id:Number(this.$route.query.id)
+        })
+        if(res.data.code != 200) {
+          throw Error(res.data.msg)
+        }
+        this.doctorInfo = res.data.data
+      } catch (error) {
+        console.log(error.message)
+      }
+    },
     // 取消按钮
     onCancel() {
       this.basicDialog.open = false;
