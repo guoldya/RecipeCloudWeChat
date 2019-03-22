@@ -135,3 +135,17 @@
   z-index: 1;
   background-color: rgba(37, 38, 45, .7);
 }
+.online-content {
+  position: relative;
+  height: calc(100vh - 290px);
+   overflow-y: auto;
+}
+.online-content::-webkit-scrollbar {
+  display: none;
+}
+.loadmore {
+  display: flex;
+  height:80px;
+  align-items: center;
+  justify-content: center;
+}
