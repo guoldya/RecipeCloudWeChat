@@ -4,7 +4,7 @@
     <Loading v-if="isloading"></Loading>
     <div v-else>
       <!-- 医生信息 -->
-      <div class="doctor-info  ">
+      <div class="doctor-info">
         <div class="doctor-info-top">
           <div class="doctor-info-header">
             <img src="@/assets/images/3.jpg" alt="" />
@@ -16,7 +16,7 @@
               ><span>{{ doctorInfo.orgName }}</span>
             </p>
           </div>
-          <div class="doctor-info-follow">
+          <div class="doctor-info-follow" @click="followDoctor">
             <img
               v-if="!doctorInfo.followStatus"
               src="../images/icon_follow.png"
@@ -146,6 +146,7 @@
 import { Dialog, Agree, Toast } from "mand-mobile";
 const onlineDoctorDetailUrl = "/app/bdOnlineDoctor/read/detail";
 const commentUrl = "/app/bizOnlineServiceRecord/read/doctorRecordPage";
+const followDoctorUrl    = "/app/bizDoctorFollow/followDoctor"
 export default {
   data() {
     return {
@@ -257,6 +258,23 @@ export default {
       } else if (val === "phone") {
         this.basicDialog.title = "电话咨询";
       }
+    },
+    async followDoctor() {
+       try {
+         let status = this.doctorInfo.followStatus
+          this.doctorInfo.followStatus = this.doctorInfo.followStatus ? 0 : 1;
+          let res = await this.$axios.post(followDoctorUrl, {
+            doctorId:Number(this.$route.query.id),
+            status: this.doctorInfo.followStatus
+          })
+          if (res.data.code!=200) {
+            this.doctorInfo.followStatus = status
+            throw Error(res.data.msg);
+          }
+          Toast.info(status?'取消收藏成功':'收藏成功')
+       } catch (error) {
+          
+       }
     }
   },
   components: {
