@@ -62,7 +62,7 @@
                 });
             },
             intodoctorList(data) {
-                let argu={};
+                let argu={deptName: data.orgName,deptId: data.id,yuanId: data.parentId};
                 if(this.searchType=="workdepart"){
                     this.$router.push({
                         name: 'workdoctor',
@@ -72,11 +72,11 @@
                 }
                 this.$router.push({
                     name: 'doctorList',
-                    query: { deptId: data.id, yuanId: data.parentId, departName: data.orgName }
+                    query: argu
                 });
             },
             intodoctorinfo(data) {
-                let argu={};
+                let argu={doctorId: data.id};
                 if(this.searchType=="workdepart"){
                     this.$router.push({
                         name: 'doctorschedu',
