@@ -135,14 +135,11 @@
         </md-agree>
       </md-dialog>
 
-      <div
-        v-infinite-scroll="loadMore"
-        infinite-scroll-disabled="busy"
-        infinite-scroll-distance="10"
-      >
-        ...
-      </div>
     </div>
+      <div  class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+          <md-icon v-if="!isloading&&busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+          <div class="nomore" v-if="pagingParams.num == pagingParams.pages">没有更多了</div>
+      </div> 
   </div>
 </template>
 <script>
@@ -174,7 +171,7 @@ export default {
       pagingParams: {
         // 科室分页信息
         num: 1,
-        pages: 1
+        pages: null
       },
       commonList: [],
       busy: false
@@ -200,7 +197,7 @@ export default {
         console.log(error.message);
       }
     },
-    async queryCommon() {
+    async queryCommon(val) {
       // 查询评论
       try {
         let res = await this.$axios.put(commentUrl, {
@@ -210,20 +207,22 @@ export default {
         if (res.data.code != 200) {
           throw Error(res.data.msg);
         }
-        this.commonList = res.data.rows;
+        if(res.data.rows) {
+          this.commonList = val ? this.commonList.concat(res.data.rows) : res.data.rows
+        }
+        this.pagingParams.num = res.data.current
+        this.pagingParams.pages = res.data.pages
       } catch (error) {
-        this.isloading = false;
         console.log(error.message);
       }
     },
     loadMore: function() {
-      console.log(2);
+      if(this.isloading)return false; 
+      if(this.pagingParams.num==this.pagingParams.pages)return false
       this.busy = true;
-
-      //官方示例中延迟了1秒，防止滚动条滚动时的频繁请求数据
       setTimeout(() => {
-        //这里请求接口去拿数据，实际应该是调用一个请求数据的方法
-        console.log(334);
+        this.pagingParams.num++
+        this.queryCommon(true)
         this.busy = false;
       }, 1000);
     },
@@ -373,7 +372,7 @@ export default {
   .doctor-comment,
   .doctor-comment-item {
     > div {
-      padding: 54px 0;
+      padding: 24px 0;
     }
   }
   .doctor-comment-item-header {
@@ -408,6 +407,16 @@ export default {
       width: 40px;
       height: 40px;
     }
+  }
+  .loadmore {
+    display: flex;
+    height:80px;
+    align-items: center;
+    justify-content: center;
+  }
+  .nomore {
+    color:#999;
+    font-size:24px;
   }
 }
 .md-dialog {
