@@ -97,7 +97,7 @@ export default {
     reportrecord() {
       let argu = {}
       this.$router.push({
-        name: 'reportrecord',
+        name: 'reportquery',
         query: argu
       });
     },

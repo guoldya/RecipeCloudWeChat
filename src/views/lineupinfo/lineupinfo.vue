@@ -66,7 +66,7 @@ export default {
   mounted() {
     this.getData()
     document.title = '排队详情';
-    
+
 
   },
   methods: {
@@ -91,7 +91,7 @@ export default {
         console.log(err);
       });
     },
-   
+
     setStyle(rowIndex, row) {
       if (row.id === this.currentRow.id) {
         return 'background-color:#ddd'
@@ -128,5 +128,8 @@ export default {
 
 .size18 {
   font-size: 43px;
+}
+.lineupnow .md-button.block{
+  height: 90px;
 }
 </style>

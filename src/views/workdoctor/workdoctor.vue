@@ -1,7 +1,7 @@
 <template>
   <div class="workdoctor">
     <Header :post-title="postTitle"  ></Header>
-    <div class="outCarint margin45">
+    <div class=" margin45">
       <div class="doctorList">
         <ul v-show="!loadingtrue" v-if="doctorData.length!=0">
           <li v-for="(item,i) in doctorData" :key="i" class="outCarint">
@@ -11,7 +11,8 @@
                   <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
                 </div>
                 <div>
-                  <p class="headname">{{item.name}}
+                  <p class="headname">
+                    <span>{{item.name}}</span>
                     <span class="levle">{{item.title}}</span>
                   </p>
                   <p class="headdesc" v-if="item.skill">擅长：{{item.skill}}</p>

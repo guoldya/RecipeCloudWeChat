@@ -54,17 +54,6 @@
    margin-top: inherit;
    margin-bottom: inherit;
 }
-
-.adress .add {
-   background-color: #1da1f3;
-   width: 100%;
-   text-align: center;
-   color: #ffffff;
-   position: fixed;
-   line-height: 100px;
-   bottom: 0;
-}
-
 .adress .md-radio.is-checked .md-radio-icon {
    color: #1da1f3;
 }
