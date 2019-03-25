@@ -35,6 +35,40 @@ export default {
 body {
   background: #ffffff;
 }
+.md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-btn{
+  padding: 0 24px 24px;
+}
+.md-activity-indicator-rolling .content{
+  background-color: #ffffff;
+  width: 80px;
+  margin: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 17px #ffffff;
+}
+.md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-text{
+  margin-bottom: 102px !important;
+  font-size: 28px !important;
+}
+.md-activity-indicator-rolling-success .right{
+  background-color: #FFFFFF;
+  border: 4px solid #1da1f3;
+  width: 110%;
+  border-radius: 50%;
+}
+.md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-text,
+.md-popup-title-bar .title-bar-title p.title{
+  color: #333333 !important;
+}
+.add {
+  background-color: #1da1f3;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  position: fixed;
+  left: 0;
+  line-height: 100px;
+  bottom: 0;
+}
 .headimg {
   width: 92px;
   height: 92px;
@@ -59,7 +93,7 @@ body {
 }
 .noMore {
   text-align: center;
-  color: #c5cad5;
+  color: #979797;
   font-size: 26px;
   line-height: 70px;
 }
@@ -89,22 +123,23 @@ p {
   word-break: break-all;
 }
 input::-webkit-input-placeholder {
-  color: #c5cad5;
+  color: #979797;
 }
 input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #c5cad5;
+  color: #979797;
 }
 input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #c5cad5;
+  color: #979797;
 }
 input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #c5cad5;
+  color: #979797;
 }
 .aligncenter {
   text-align: center;
+  color: dimgray;
 }
 .colo13 {
   font-size: 26px;
@@ -129,10 +164,13 @@ input:-ms-input-placeholder {
   padding: 0 24px;
 }
 .appTitle {
-  padding: 28px 0px;
+  padding: 24px 0px;
   border-bottom: 2px solid #ededed;
   display: flex;
   justify-content: space-between;
+}
+.appTitle span:first-child{
+  font-size: 30px;
 }
 /* 轮播图样式 */ /* 全局样式 */
 .swiper-container {
@@ -320,7 +358,7 @@ textarea::-webkit-input-placeholder {
   text-align: center;
 }
 .md-check-box {
-  border: 2px solid #c5cad5;
+  border: 2px solid #979797;
 }
 .md-agree-icon .md-agree-icon-container .md-icon.md-icon-check {
   color: #1da1f3 !important;
@@ -329,5 +367,11 @@ textarea::-webkit-input-placeholder {
   -webkit-transform: scale(1);
   transform: scale(1);
   color: #1da1f3 !important;
+}
+.bigFont {
+  color: #1da1f3;
+  font-size: 44px;
+  margin: 0 6px;
+  vertical-align: bottom;
 }
 </style>

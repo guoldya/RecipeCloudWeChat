@@ -193,7 +193,6 @@ export default {
     mounted() {
         this.recipeFun(false);
         document.title = '处方记录';
-         
     },
     methods: {
         recipeFun(flag) {

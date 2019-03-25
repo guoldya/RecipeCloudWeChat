@@ -38,7 +38,7 @@
                 <div class="card margin16">
                     <div class="cardText">
                         <div class="cardTextPP">
-                            <span>检查参数：{{item.params}}</span>
+                            <span>检查参数：{{item.param}}</span>
                         </div>
                         <div class="cardTextPP ">
                             <span> 检查所见：</span>
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <p style="margin-top:15px;font-weight:700">报告结果</p>
+                <p style="margin:15px 0px;font-weight:700">报告结果</p>
                 <div class="card margin16">
                     <div class="cardText">
                         <div class="cardTextKind spanWid">
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="textCenter">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
+                <p class="noMore">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
             </div>
         </div>
         <Loading v-show="loadingtrue"></Loading>

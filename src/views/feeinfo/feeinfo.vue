@@ -34,7 +34,7 @@
           </p>
           <p class="cardTextPP">
             <span>患者ID</span>
-            <span class="mu-secondary-text-color">{{item.patientId}}</span>
+            <span>{{item.patientId}}</span>
           </p>
           <p class="cardTextPP">
             <span>患者姓名</span>
@@ -77,11 +77,9 @@
       </div>
       <Loading v-show="loadingtrue"></Loading>
       <div v-show="!loadingtrue" class="md-example-child md-example-child-cashier" v-if="feeActiveId==1">
-        <md-button class="margin16" type="primary" @click="rightPay" round>立即缴费</md-button>
+        <!--<md-button class="add" type="primary" @click="rightPay" round>立即缴费</md-button>-->
+        <p class="add" @click="rightPay">立即缴费</p>
         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
-      </div>
-      <div>
-
       </div>
     </div>
   </div>
@@ -232,7 +230,7 @@ export default {
               });
             },
           })
-        })
+         })
       }
     },
     // Create a pay request & check pay result

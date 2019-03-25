@@ -27,13 +27,12 @@
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="goodsList.length!=0" v-show="!loadingtrue">
                 <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
-                    <div class="cardText" @click="checkReportDetail(item.id)">
+                    <div @click="checkReportDetail(item.id)">
                         <div class="cardTextLeft">
-                            <div class="listData">
+                            <div class="appTitle">
                                 <span>{{item.name}}</span>
                             </div>
-                            <p class="partLine"></p>
-                            <div class="listData">
+                            <div class="listData" style="padding-top: 6px">
                                 <span>检查科室：
                                     <span class="">{{item.execDept}}（{{item.hospital}}）</span>
                                 </span>
@@ -48,11 +47,13 @@
                                     <span class="">{{item.reportTime}}</span>
                                 </span>
                             </div>
-                            <div>
-                                <div class="cardTextRight" @click="checkReportDetail(item.id)">
-                                    <span>详情</span>
-                                    <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
-                                </div>
+                            <!--<div class="cardTextRight mu-secondary-text-color" @click="checkReportDetail(item.id)">-->
+                                <!--<span>详情</span>-->
+                                <!--<img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">-->
+                            <!--</div>-->
+                            <div class="learnMore mu-secondary-text-color" @click="checkReportDetail(item.id)">
+                                <span>详情</span>
+                                <img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="examineOrder">
         <Header post-title="检验检查"  ></Header>
-        <div class="outCarint margin45">
+        <div class=" margin45">
             <div class="time">
                 <ul>
                     <li @click="switchTo(index,item)" v-for="(item,index) in time" :class="activetime === index ? 'timeAcitve' : '' " :key="index+'aa'">
@@ -16,7 +16,11 @@
                         <span class="orderTime">{{item.stage}}</span>
                     </div>
                     <div class="nowOrder">
-                        <span>还剩余名额{{item.remaindNum}}人</span>
+                        <div>
+                            <span>还剩余名额</span>
+                            <span class="bigFont">{{item.remaindNum}}</span>
+                            <span>人</span>
+                        </div>
                         <span class="num noNum" v-if="item.remaindNum==0">无号</span>
                         <span class="num" v-else @click="makeOrder(item.id)">预约</span>
                     </div>
@@ -25,7 +29,7 @@
                 </div>
 
             </div>
-            <div style="padding: 10px" v-else>暂无号源</div>
+            <div style="margin:186px 0" class="aligncenter" v-else>暂无号源</div>
             <Loading v-show="loadingtrue"></Loading>
         </div>
     </div>

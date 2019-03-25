@@ -1,7 +1,7 @@
 <template>
     <div class="doctorschedu">
         <Header post-title="医生排班"  ></Header>
-        <div class="outCarint margin45">
+        <div class="margin45">
             <div class="doctor-head" v-show="!loadingtrue">
                 <div class="outCarint">
                     <div class="doctor-info">
@@ -9,23 +9,23 @@
                             <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
                         </div>
                         <div class="doctor-right">
-                            <p class="introduce">
+                            <p>
                                 <span class="doctor-name">{{doctorData.name}} </span>
                                 <span class="doctor-tag">{{doctorData.title}} </span>
                             </p>
                             <p class="hospital"> {{depart}} </p>
-                            <p v-if="doctorData.skill" class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
-                                擅长：{{doctorData.skill}}
-                            </p>
-                            <p class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
-                                介绍：{{doctorData.introduce}}
-                            </p>
-                            <p class="open" @click="isSeemore=!isSeemore" v-show="moreButton"> 更多</p>
                         </div>
+                    </div>
+                    <div class="content">
+                        <p v-if="doctorData.skill" >擅长：{{doctorData.skill}}</p>
+                        <p :class="{'ismore':!isSeemore,'yy_dateAA':isSeemore}">
+                            介绍：{{doctorData.introduce}}
+                        </p>
+                        <p class="open" @click="isSeemore=!isSeemore" v-show="moreButton"> 更多</p>
                     </div>
                 </div>
             </div>
-            <Calendar v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
+            <Calendar style="margin-top: 8px" v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
             <Loading v-show="loadingtrue"></Loading>
 
         </div>
@@ -69,13 +69,13 @@
                     let para=document.createElement("div");
                     let paraPm=document.createElement("div");
                     let paraAll=document.createElement("div");
-                    para.style.color="#b5b5b5";
+                    para.style.color="#1da1f3";
                     para.style.height="20px";
                     para.style.marginTop="-5px";
-                    paraPm.style.color="#b5b5b5";
+                    paraPm.style.color="#1da1f3";
                     paraPm.style.height="20px";
                     paraPm.style.marginTop="-5px";
-                    paraAll.style.color="#b5b5b5";
+                    paraAll.style.color="#1da1f3";
                     paraAll.style.height="20px";
                     paraAll.style.marginTop="-5px";
                     var am=document.createTextNode("上午");
@@ -84,15 +84,15 @@
                     para.appendChild(am);
                     paraPm.appendChild(pm);
                     paraAll.appendChild(all);
-                    // for(let i=0;i<element.length;i++){
-                    //     if(element[i].children[0].className!="wh_item_date wh_other_dayhide"){
-                    //         if(element[i].children[0].innerText==this.nowDate && this.spliceM==this.nowMonth){
-                    //             element[i].appendChild(paraPm)
-                    //         }else if(element[i].children[1]){
-                    //             element[i].children[1].parentNode.removeChild(element[i].children[1]);
-                    //         }
-                    //     }
-                    // }
+                    //for(let i=0;i<element.length;i++){
+                        // if(element[i].children[0].className!="wh_item_date wh_other_dayhide"){
+                        //     if(element[i].children[0].innerText==this.nowDate && this.spliceM==this.nowMonth){
+                        //         element[i].appendChild(paraPm)
+                        //     }else if(element[i].children[1]){
+                        //         element[i].children[1].parentNode.removeChild(element[i].children[1]);
+                        //     }
+                        // }
+                    //}
                     if(this.spliceM==this.nowMonth){
                         element[12].appendChild(paraPm);
                         element[16].appendChild(paraAll);
@@ -109,8 +109,7 @@
                     if (res.data.code == '200') {
                         this.loadingtrue=false;
                          this.doctorData=res.data.data;
-                         console.log(this.doctorData.introduce)
-                        if(this.doctorData.introduce.length>14){
+                        if(this.doctorData.introduce.length>22){
                             this.moreButton=true;
                         }
                     }
@@ -159,7 +158,7 @@
         background-color: transparent !important;
     }
     /deep/.wh_item_date, /deep/.wh_top_tag,/deep/.wh_top_changge li{
-        color: #333333 !important;
+        color: #333333;
         width: 64px !important;
         height: 64px !important;
     }
@@ -175,18 +174,20 @@
         margin-left: 22px !important;
     }
     /deep/.wh_content_item{
-        height: 90px !important;
+        height: 100px !important;
     }
     /deep/.wh_content_item .wh_isToday{
-        background-color: #e5e5e5 !important;
+        background-color: #1da1f3 !important;
+        color: #ffffff !important;
     }
     /deep/.wh_content_item .wh_chose_day{
         background-color: #e5e5e5 !important;
     }
-    .nomore{
+    .ismore{
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
+        padding-bottom: 6px;
     }
 
     .yy_dateAA {
@@ -194,12 +195,13 @@
     }
     .doctorschedu .open{
         padding: 10px 14px 0;
+        text-align: right;
     }
     .doctorschedu .content{
-        margin: 4px 0;
+        padding: 14px 0;
     }
-    .doctorschedu .introduce {
-        height: 72px;
+    .doctorschedu .content p:first-child{
+        padding-bottom: 6px;
     }
 </style>
 

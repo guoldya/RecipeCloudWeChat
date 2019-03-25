@@ -229,11 +229,7 @@ export default {
   font-size: 28px;
   color: #5c5c5c;
 }
-.feerecord .cardcc .appTitle {
-  padding: 32px 0px;
-}
 .feerecord .appTitle {
-  padding: 32px;
   border-bottom: 1px solid #ededed;
   display: flex;
   justify-content: space-between;

@@ -53,13 +53,17 @@
 .md-example-child-cashier .md-field{
     margin-bottom :30px
 }
+.md-cashier-channel-item .item-icon, .md-cashier-channel-item .item-image{
+    width: 50px !important;
+    height: 50px !important;
+}
 .md-cashier-channel-item .cashier-icon-2{
     background :url(../../assets/images/icon_alipay.png) center no-repeat;
-    background-size: 32px
+    background-size: 50px
 }
 .md-cashier-channel-item .cashier-icon-3{
     background :url(../../assets/images/icon_wechatpay.png) center no-repeat;
-    background-size: 32px
+    background-size: 50px
 }
  .md-cashier-channel-item{
     background-color: transparent !important;
@@ -71,14 +75,27 @@
 .md-popup-title-bar .title-bar-title p.title{
     font-size: 32px !important;
 }
+.md-cashier-channel .choose-text{
+    padding: 46px 0px 10px!important;
+}
+.md-cashier-channel .choose-channel{
+    padding: 16px 60px 36px 60px !important;
+}
 .md-button-content{
     font-size: 28px;
 }
 .primary:after{
     border : transparent !important;
 }
+.md-cashier-channel-item .item-label{
+    margin-left: 20px !important;
+}
+.md-cashier-channel-item .item-check-icon{
+    line-height: 68px !important;
+}
 .md-cashier-channel-item .item-label .title{
     font-size: 28px !important;
+    line-height: 48px !important;
 }
 .submitOrder .smallTotal{
     text-align: right;
