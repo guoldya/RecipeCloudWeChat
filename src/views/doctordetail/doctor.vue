@@ -76,7 +76,7 @@
                             <span class="keyy">{{order.money | keepTwoNum}}元</span>
                             <i class="time_btn"></i>
                         </div>
-                        <div class="wx_residue_num" v-else @click="reservation(item)">
+                        <div class="wx_residue_num" v-else @click="todayreservation(order)">
                             <span class="keyy">{{order.money | keepTwoNum}}元</span>
                             <i class="time_btn"></i>
                         </div>
@@ -95,6 +95,7 @@
                 <span v-for="(item,i) in dateList" :key="i">
                     <span>
                         <p> {{item.regStageVO}} {{item.regStage}} {{item.dept}} {{depart}} </p>
+                        <p> {{item.regDate}}  <span class="mu-secondary-text-color">{{item.money | keepTwoNum}}元</span> </p>
                     </span>
                     <div class="wx_list_num" v-show="item.valNum==0">
                         <span style="color:#b6b6b6;background-color:#ededed;">约满</span>
@@ -212,7 +213,6 @@ export default {
     },
     methods: {
 
-
         todayreservation(data) {
             this.$router.push({
                 name: 'reservation',
@@ -263,7 +263,7 @@ export default {
                     if (res.data.rows.length != 0) {
                         this.isHave = true;
                         for (let i = 0; i < res.data.rows.length; i++) {
-                            res.data.rows[i].regDate = res.data.rows[i].regDate.split(' ')[1];
+                            res.data.rows[i].regDate = res.data.rows[i].regDate.split(' ')[0];
                         }
                         this.dateList = res.data.rows;
                     } else {
