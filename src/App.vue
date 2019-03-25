@@ -35,6 +35,16 @@ export default {
 body {
   background: #ffffff;
 }
+.warnText {
+  font-size: 26px;
+  color: #979797;
+}
+.warnText p{
+  padding: 4px 0;
+}
+.md-activity-indicator-rolling .rolling circle.stroke{
+  fill: #ffffff;
+}
 .md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-btn{
   padding: 0 24px 24px;
 }

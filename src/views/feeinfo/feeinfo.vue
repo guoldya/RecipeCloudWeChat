@@ -372,4 +372,4 @@ export default {
 .feeinfo .cardText .cardTextPP:last-child {
   border: none;
 }
-</style>
+ </style>

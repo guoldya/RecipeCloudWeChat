@@ -84,10 +84,6 @@ export default {
 .card p {
   line-height: 50px;
 }
-.warnText {
-  font-size: 24px;
-  color: #afafaf;
-}
 .appointinfo .card {
   margin-bottom: 32px;
 }

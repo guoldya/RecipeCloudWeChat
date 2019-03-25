@@ -14,18 +14,17 @@
                 <div class="orderDetail" v-for="(item,i) in timeData" :key="i">
                     <div>
                         <span class="orderTime">{{item.stage}}</span>
-                    </div>
-                    <div class="nowOrder">
-                        <div>
+                        <p>
                             <span>还剩余名额</span>
                             <span class="bigFont">{{item.remaindNum}}</span>
                             <span>人</span>
-                        </div>
+                        </p>
+                    </div>
+                    <div class="nowOrder">
                         <span class="num noNum" v-if="item.remaindNum==0">无号</span>
                         <span class="num" v-else @click="makeOrder(item.id)">预约</span>
                     </div>
-                    <div style="clear: both"></div>
-                    <p class="partLine"></p>
+                    <p class="partLine" v-if="i!=timeData.length-1"></p>
                 </div>
 
             </div>
@@ -137,11 +136,9 @@
 <style scoped>
 @import "../workdoctor/workdoctor.css";
 .examineOrder .nowOrder{
-    font-size: 28px;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-    line-height: 60px;
+    align-items: center;
 }
 .examineOrder .nowOrder .num{
     width: 100px;
@@ -159,14 +156,15 @@
     color: #fff;
 }
 .examineOrder .order .orderDetail:first-child{
-    /*margin-top: ;*/
     padding-top: 20px;
 }
 .examineOrder .order .orderDetail{
     padding: 0px 24px;
+    display: flex;
+    justify-content: space-between;
 }
 .examineOrder .order .orderTime{
-    font-size: 30px;
+    font-size: 32px;
 }
 .examineOrder .timeAcitve {
     color: #ffffff !important;
