@@ -21,6 +21,12 @@ Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
 })
 
+// 开发环境
+const isDev = process.env.NODE_ENV === 'development'
+
+// 开启chrome devtools
+Vue.config.devtools = isDev;
+
 
 import './assets/responsive'
 import './assets/global.css'

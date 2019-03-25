@@ -3,14 +3,14 @@
     <Header post-title="绑定就诊卡"></Header>
     <div class="outCarint margin45">
       <md-field>
-        <md-input-item ref="input13" v-model="name" title="姓名" placeholder="姓名" is-highlight></md-input-item>
-        <md-field-item title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector ">
+        <md-input-item ref="input13" v-model="name" title="姓名" placeholder="姓名"></md-input-item>
+        <md-field-item title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector">
         </md-field-item>
-        <md-input-item ref="input13" v-model="cardNo" :title="selectorValue+'号'" placeholder="请输入卡号" is-highlight></md-input-item>
-        <md-input-item type="phone" v-model="phonenumber" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="cardNo" :title="selectorValue+'号'" maxlength="11" placeholder="请输入卡号"></md-input-item>
+        <md-input-item type="phone" v-model="phonenumber" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <div class="hq login-box-div">
           <span class="flexF">验证码</span>
-          <input class="flexF" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="11">
+          <input class="flexF" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="6">
           <p class="flexR">
             <span v-show="show" class="send1" @click="getCode">获取验证码</span>
             <span v-show="!show" class="send1">发送 {{count}} 秒</span>
@@ -19,7 +19,6 @@
         <md-button @click="tijiao" type="primary" round style="margin-top:16px">提交</md-button>
       </md-field>
       <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
-
       <p class="warnbottom">温馨提示：就诊卡绑定成功后，三个月可解绑一次！</p>
     </div>
   </div>
@@ -45,7 +44,7 @@ export default {
       isSelectorShow: false,
       pickerData1: [],
       pickerValue1: '',
-      
+
       selectorValue: '就诊卡',
       test: [
         {
@@ -66,7 +65,7 @@ export default {
   },
   mounted() {
     document.title = '绑定就诊卡';
- 
+
   },
   methods: {
     showSelector() {
@@ -109,12 +108,10 @@ export default {
 
     },
     tijiao() {
-
       if (this.phonenumber.length < 11 || this.name.length == 0 || this.verifyCode.length < 6 || this.cardNo.length === 0) {
         this.$toast.info('请完善信息')
       } else {
-        this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1, {
-
+        this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.phonenumber, {
         }).then(res => {
           if (res.data.code == '200') {
             this.$axios.post(wechatbizPatientCardbinding, {
@@ -127,6 +124,9 @@ export default {
               orgCode: localStorage.getItem("hospitalId") * 1,
             }).then(res => {
               if (res.data.code == '200') {
+                
+                this.$store.dispatch('getCards', { update: true });
+
                 this.$dialog.alert({
                   title: '提示',
                   content: '该卡绑定成功!',

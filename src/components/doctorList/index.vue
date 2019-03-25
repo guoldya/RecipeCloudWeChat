@@ -128,7 +128,7 @@ export default {
 }
 
 .noOpen {
-  border: 1px solid #979797;
+  border: 2px solid #979797;
   padding: 1px 10px;
   border-radius: 7px;
   color: #979797;
@@ -141,14 +141,14 @@ export default {
   overflow: hidden;
   margin-top:10px;
   a {
-    font-size:24px;
+    font-size:26px;
     float:right;
     display:inline-block;
-    height:50px;
-    line-height:50px;
-    padding:0 20px;
+    height:55px;
+    line-height:55px;
+    padding:0 30px;
     border:1px solid #1da1f3;
-    border-radius:25px;
+    border-radius:30px;
     margin-left:30px;
     color: #1da1f3;
   }

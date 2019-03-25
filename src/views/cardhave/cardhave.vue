@@ -79,7 +79,7 @@ let bizPatientCard = "/app/bizPatientCard/insert"
 export default {
   data() {
     return {
-      
+
       name: '',
       idCard: '',
       national: '',
@@ -105,10 +105,10 @@ export default {
     // var aa = date1 + "-" + date2 + "-" + date3;
     //  alert(aa.replace(/\b(0+)/gi, ""));
     document.title = '资料确认';
-    
-    
-      
-    
+
+
+
+
 
     if (this.$store.state.photo0Data) {
       console.log(this.$store.state.photo0Data.sex)
@@ -160,6 +160,7 @@ export default {
         mobile: this.$store.state.mobile,
       }).then((res) => {
         if (res.data.code == '200') {
+          this.$store.dispatch('getCards', { update: true });
           this.$toast.info("绑定成功");
           this.$router.go(-4);
           // this.$router.options.routes[0].meta.keepAlive = false;

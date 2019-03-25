@@ -105,7 +105,7 @@ body {
   text-align: center;
   color: #979797;
   font-size: 26px;
-  margin: 28px 0px;
+  line-height: 70px;
 }
 #app {
   font-family: "PingFang-SC-Medium";
@@ -210,7 +210,7 @@ input:-ms-input-placeholder {
 .wannianli-info {
   height: 340px;
   background: #ffffff;
-  box-shadow: 0 0 20px rgba(131, 179, 208, 0.3);
+  box-shadow: 0 0 20px rgba(20, 19, 51, 0.1);
   text-align: center;
   overflow: hidden;
   border-radius: 20px;
@@ -264,7 +264,7 @@ input:-ms-input-placeholder {
 }
 
 .card {
-  box-shadow: 0 0 17px rgba(131, 179, 208, 0.3);
+  box-shadow: 0 0 17px rgba(20, 19, 51, 0.1);
   background-color: #fff;
   position: relative;
   border-radius: 20px;
@@ -279,8 +279,16 @@ input:-ms-input-placeholder {
 .mu-light-text-color {
   color: #979797;
 }
-/**tab样式*/
-
+/**add*/
+.add {
+  background-color: #1da1f3;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  position: fixed;
+  line-height: 100px;
+  bottom: 0;
+}
 /**大大大大的**/
 .methodTabAcitive {
   color: #1da1f3;
@@ -312,9 +320,9 @@ textarea::-webkit-input-placeholder {
 .md-switch {
   margin-left: 6px;
 }
-.md-icon.icon-font.md {
+/* .md-icon.icon-font.md {
   font-size: 46px !important;
-}
+} */
 .primary,
 .default {
   background-color: #1da1f3;

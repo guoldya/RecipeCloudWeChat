@@ -40,9 +40,9 @@ module.exports = {
   devServer: {
     proxy: {
       '/api/biz': {
-        target: 'http://192.168.0.145:8090',//吴
-        //target: 'http://192.168.0.110:8090',//安未
-        //target: 'http://192.168.0.150:40080/',
+      target: 'http://192.168.0.145:8090',//吴
+       // target: 'http://192.168.0.110:8090',//安未
+         // target: 'http://192.168.0.150:40080/',
         changeOrigin: true, // 允许跨域
         pathRewrite: {
           '^/api/biz': ''

@@ -319,7 +319,7 @@ export default {
   text-align: left;
 }
 .cainter h1 {
-  font-size: 36px;
+  font-size: 34px;
   letter-spacing: 1px;
 }
 .cainter {
@@ -327,5 +327,8 @@ export default {
 }
 .articlecontent p {
   line-height: 50px;
+}
+.comment-right h3{
+  text-align: left
 }
 </style>

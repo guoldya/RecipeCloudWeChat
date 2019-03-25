@@ -1,33 +1,33 @@
 .online {
-  color: #323232;
+   color: #323232;
 }
 
 .online h2 {
-  font-size: 32px;
-  line-height: 50px;
+   font-size: 32px;
+   line-height: 50px;
 }
 
 .online .tools {
-  background-color: #fff;
-  margin: 30px 0;
-  border-radius: 20px;
-  position: relative;
+   background-color: #fff;
+   margin: 30px 0;
+   border-radius: 20px;
+   position: relative;
 }
 
 .online .nav2 {
-  display: -webkit-box;
-  display: flex;
-  display: -webkit-flex;
-  text-align: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
+   display: -webkit-box;
+   display: flex;
+   display: -webkit-flex;
+   text-align: center;
+   -webkit-box-align: center;
+   -webkit-align-items: center;
 }
-.online .more {
-  width:100%;
-  text-align: center;
-  padding:10px 0;
-  color:#1da1f3;
 
+.online .more {
+   width: 100%;
+   text-align: center;
+   padding: 10px 0;
+   color: #1da1f3;
 }
 .nomore {
   color:#999;
@@ -39,82 +39,84 @@
     vertical-align: middle;
     margin-left: 10px;
 }
+
 .online .tools .nav2>span {
-  width: 25%;
-  display: block;
-  font-size: 28px;
-  color: #323232;
-  /* font-weight: 600; */
+   width: 25%;
+   display: block;
+   font-size: 28px;
+   color: #323232;
+   /* font-weight: 600; */
 }
 
 .online .nav2>span {
-  padding: 20px 0 20px;
+   padding: 20px 0 20px;
 }
 
 .online .nav2>span img {
-  width: 60px;
-  height: 60px;
-  display: block;
-  margin: 0 auto 12px;
+   width: 60px;
+   height: 60px;
+   display: block;
+   margin: 0 auto 12px;
 }
 
 .tabA {
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
+   background: #ffffff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   letter-spacing: 1px;
+   margin-bottom: 20px;
 }
 
 .tabA .tabAdiv {
-  box-shadow: 0 10px 30px rgb(228, 227, 227);
-  flex: 1;
-  height: 120px;
-  background: #ffffff;
-  margin: 20px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+   box-shadow: 0 5px 10px rgba(20,19,51,.1);
+   flex: 1;
+   height: 120px;
+   background: #ffffff;
+   margin: 20px;
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
-
+ 
 .tabAdiv div:first-child {
-  width: 60%;
-  line-height: 120px;
-  text-align: center;
-  font-size: 28px;
-  display: inline-block;
+   width: 60%;
+   line-height: 120px;
+   text-align: left;
+   font-size: 28px;
+   display: inline-block;
+   margin-left: 30px
 }
 
 .tabAdivright {
-  width: 40%;
-  text-align: right;
-  margin-right: 20px
+   width: 40%;
+   text-align: right;
+   margin-right: 30px
 }
 
 .tabAdivright img {
-  width: 70%;
-  line-height: 120px;
+   width: 70%;
+   line-height: 120px;
 }
 
 .yaobutton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  letter-spacing: 1px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   letter-spacing: 1px;
 }
 
 .yaobutton div {
-  flex: 1;
-  height: 50px;
-  margin: 20px;
-  border-radius: 10px;
-  text-align: center;
+   flex: 1;
+   height: 50px;
+   margin: 20px;
+   border-radius: 10px;
+   text-align: center;
 }
 
 .yaoActive {
-  color: #24a5f1;
+   color: #24a5f1;
 }
 
 .onlineheader {
@@ -125,8 +127,8 @@
 }
 
 .components-mask {
-  z-index: 1103;
-  /* position: fixed; */
+   z-index: 1103;
+   /* position: fixed; */
 }
 
 .online-mask {

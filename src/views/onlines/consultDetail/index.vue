@@ -304,7 +304,7 @@ export default {
   .doctor-info {
     margin-top: 40px;
     padding: 40px 30px;
-    box-shadow: 0 0 0.18rem rgba(131, 179, 208, 0.3);
+    box-shadow: 0 0 0.18rem rgba(20,19,51,.1);
     border-radius: 16px;
   }
   .doctor-info-top {

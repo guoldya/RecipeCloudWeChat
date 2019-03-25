@@ -1,6 +1,6 @@
 <template>
   <div class="sign">
-    <Header post-title="资料确认"  ></Header>
+    <Header post-title="就诊签到"></Header>
     <div  class="margin45">
       <md-notice-bar icon="location"  v-show="isHaveOrder" >
         {{titlename}}

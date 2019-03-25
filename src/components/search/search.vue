@@ -1,12 +1,6 @@
 <template>
   <div class="search" style=" text-align: center;">
-    <input
-      class="oc_val"
-      placeholder="搜索医生、科室"
-      value=""
-      type="text"
-      @click="searchT()"
-    />
+    <input class="oc_val" placeholder="搜索医生、科室" value="" type="text" @click="searchT()" />
   </div>
 </template>
 <script>
@@ -21,13 +15,13 @@ export default {
   props: ["type"],
   methods: {
 
-    searchT: function() {
+    searchT: function () {
       if (this.type == "onlines") {
         this.$router.push({
           path: "/resultDoctor"
         });
       } else {
-        this.$store.commit("searchTypeFun",this.type);
+        this.$store.commit("searchTypeFun", this.type);
         this.$router.push({
           path: "/result"
           // query: argu,
@@ -49,7 +43,7 @@ input {
 .search .oc_val {
   /* position: fixed; */
   width: 100%;
-  height: 80px;
+  height: 75px;
   border-radius: 10px;
   left: 0;
   right: 0;
@@ -59,7 +53,7 @@ input {
   background-size: auto 40% !important;
   opacity: 1;
   outline: none;
-  font-size: 30px !important;
+  font-size: 28px !important;
   color: #000;
   z-index: 999;
 }

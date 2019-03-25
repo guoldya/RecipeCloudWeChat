@@ -11,7 +11,7 @@
               <span>我的排队号</span>
             </div>
             <p>我的号码：
-              <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}}</span>
+              <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span>
             </p>
             <p>排队类目：{{lineupinfo.deptName}}</p>
           </div>
@@ -34,7 +34,7 @@
               <span>进度</span>
             </div>
             <p>当前正在受理的号是
-              <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span> 号</p>
+              <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}}</span> 号</p>
             <p>您前面还有
               <span class="mu-secondary-text-color size18">{{lineupinfo.waitingNo}}</span> 位在等候，预计等待
               <span class="mu-secondary-text-color size18">{{lineupinfo.waitingTime}}</span> 分钟</p>
