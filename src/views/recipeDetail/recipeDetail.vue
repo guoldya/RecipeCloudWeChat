@@ -4,7 +4,7 @@
         <div class="outCarint margin45">
             <div>
                 <div class="card margin16" v-for="(item,i) in recipeData">
-                    <div class="cardText ">
+                    <div class="cardText">
                         <div class="listData">
                             <span>处方号：
                                 <span class="mu-light-text-color">{{item.no}}</span>
@@ -58,7 +58,7 @@
                     <div class="cardText ">
                         <div class="inputWord">
                             <span style="width: 28%">续方事由</span>
-                            <textarea name="textareaWord" maxlength="36" class="textareaWord" id="" cols="30" rows="2" placeholder="选填（录入与续方申请相关的申请原因、现状情况，便于医生判断，限制在36个字符）"></textarea>
+                            <textarea name="textareaWord" maxlength="36" class="textareaWord" id="" cols="40" rows="2" placeholder="选填（录入与续方申请相关的申请原因、现状情况，便于医生判断，限制在36个字符）"></textarea>
                         </div>
                     </div>
                 </div>

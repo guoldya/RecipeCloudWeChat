@@ -113,10 +113,6 @@ export default {
 .card p {
   line-height: 25px;
 }
-.warnText {
-  font-size: 12px;
-  color: #afafaf;
-}
 .mu-raised-button {
   height: 45px;
 }
