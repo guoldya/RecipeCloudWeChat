@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card margin16" v-for="(item,i) in cardData" :key="i+'i'">
-                    <div class="cardText ">
+                    <div>
                         <div class="listData">
                             <span>处方日期：
                                 <span class="mu-secondary-text-color">{{item.date}}</span>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="card margin16" v-for="(item,i) in applyData" :key="i">
-                    <div class="cardText ">
+                    <div>
                         <div class="listData">
                             <span>申请日期：
                                 <span class="mu-secondary-text-color">{{item.applyDate}}</span>

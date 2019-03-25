@@ -1,34 +1,34 @@
- .small-icon {
+.medicalEva .small-icon {
     width: 60% !important;
     height: 60% !important;
     vertical-align: baseline !important;
 }
-.diy-box {
+ .medicalEva .diy-box {
     display: inline-block;
     margin-left: 20px;
     height: 56px;
     line-height: 78px;
 }
-.star{
+ .medicalEva .star{
     display: flex;
 }
-.star span{
+ .medicalEva .star span{
     height: 80px;
     line-height: 80px;
     white-space: nowrap;
 }
-.star-box{
+.medicalEva .star-box{
     width: 58px !important;
     height: 58px !important;
 }
- .rater-item{
+ .medicalEva .rater-item{
      margin: -4px;
  }
-.md-example-child-reader .image-reader-list {
+ .medicalEva .md-example-child-reader .image-reader-list {
     float: left;
     width: 100%;
 }
-.image-reader-item{
+ .medicalEva .image-reader-item{
     position: relative;
     float :left;
     width: 23.5%;
@@ -43,16 +43,16 @@
     background-size: cover;
     overflow :hidden;
 }
-.add .md-icon {
+ .medicalEva .add .md-icon {
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: .5;
 }
-.p {
+ .medicalEva .p {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 0;
     width: 100%;
     margin-top: 15px;
@@ -60,19 +60,18 @@
     color: #CCC;
     text-align: center;
 }
-
-.image-reader-item-del{
+ .medicalEva .image-reader-item-del{
     position :absolute;
     top: 0;
     right: 0;
     z-index :3;
     opacity :.8;
 }
-.evaFooter{
+.medicalEva .evaFooter{
     display: flex;
     justify-content: space-between;
 }
-.evaFooter span{
+.medicalEva .evaFooter span{
     padding-top: 14px;
     color: #979797;
 }
@@ -82,6 +81,11 @@
      font-size: 28px;
      margin: 86px 0px 46px 0px;
  }
- .image-reader-item{
-     width: 30.5%;
+.medicalEva .image-reader-item{
+     /*width: 30.5%;*/
+    width: 200px;
+    height: 200px;
  }
+.medicalEva .image-reader-item:last-child{
+    margin: 0 !important;
+}
