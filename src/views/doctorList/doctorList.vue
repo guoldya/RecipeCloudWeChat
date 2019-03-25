@@ -67,36 +67,6 @@
               </div>
             </div>
           </li>
-          <li v-for="(info,index2) in amList" :key="index2+'aa2'" @click="intodoctordetail(info,1 )">
-            <div class="card">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">{{info.name}}
-                    <span class="levle">{{info.title}}</span>
-                    <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
-                    <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
-                  </p>
-                  <p class="headdesc">擅长:{{info.skill}}{{info.skill}}</p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li v-for="(info,index2) in amList" :key="index2+'aa4'" @click="intodoctordetail(info,1 )">
-            <div class="card">
-              <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-                <div>
-                  <p class="headname">{{info.name}}
-                    <span class="levle">{{info.title}}</span>
-                    <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
-                    <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
-                  </p>
-                  <p class="headdesc">擅长:{{info.skill}}</p>
-                </div>
-              </div>
-            </div>
-          </li>
         </ul>
         <div v-else v-show="!loadingtrue">
           <p>暂无号源</p>

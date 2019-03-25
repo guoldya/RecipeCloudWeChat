@@ -201,8 +201,8 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   height: 84px;
-   line-height: 84px;
+   height: 140px;
+   line-height: 50px;
    padding: 0 24px;
    font-size: 28px;
    background-color: #fff;
@@ -212,8 +212,6 @@
 .wx_residue_num {
    position: relative;
 }
-
- 
 
 .wx_residue_num span {
    padding: 6px 16px;

@@ -52,7 +52,6 @@
       <div class="outCarint" v-show="!isSucceed">
          <md-button type="primary" round @click="rightPay">提交</md-button>
       </div>
-
       <div v-show="isSucceed" class="bottomback">
          <span class="payatnow" @click="backindex()">返回主页</span>
          <span class="cancle" @click="registrecord()">预约记录</span>
@@ -62,7 +61,7 @@
 
 </template>
 <script type="text/babel">
-let doctorInfo = "/app/bdHospitalDoctor/read/detail";
+let doctorInfo = "/app/bdHospitalDoctor/read/selectOne";
 let fee_detail_url = "/app/bizCostBill/detail";
 // 生成预约
 let fconfirm_pay_url = "/app/bizPatientRegister/subscribe";

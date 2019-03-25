@@ -92,7 +92,7 @@ export default {
         this.$toast.info("手机号码有误，请重填");
         return false;
       }
-      if (!this.receiver || !this.mobile || !this.address || !this.areaId || !this.zipCode) {
+      if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
         this.$toast.info("请完善信息")
       } else {
         this.$axios.post(addOrUpdate, {
