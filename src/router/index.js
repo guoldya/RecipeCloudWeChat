@@ -269,7 +269,8 @@ export default new Router({
     name: 'online',
     component: online,
     meta: {
-      title: '在线问诊'
+      title: '在线问诊',
+      keepAlive: true
     }
   },
   {

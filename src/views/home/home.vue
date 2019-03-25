@@ -48,12 +48,12 @@
                     <li @click="feerecord">
                         <img src="@/assets/images/icon_self.png" alt="" class="image">
                         <p>门诊缴费</p>
-                        <a class="signNumber">99</a>
+                        <a class="signNumber" v-show="homeList.notPayCount!=0">{{homeList.notPayCount}}</a>
                     </li>
                     <li @click="sign">
                         <img src="@/assets/images/icon_signin.png" alt="" class="image">
                         <p>就诊签到</p>
-                        <span class="signNumber">1</span>
+                        <span class="signNumber" v-show="homeList.notSignCount!=0">{{homeList.notSignCount}}</span>
                     </li>
                 </ul>
             </div>
@@ -64,17 +64,17 @@
                 <li @click="examine" class="examineLi">
                     <img src="@/assets/images/2.png" alt="" class="image">
                     <p>检验检查</p>
-                    <span class="examineNumber">1</span>
+                    <span class="examineNumber" v-show="homeList.notApplyCount!=0">{{homeList.notApplyCount}}</span>
                 </li>
                 <li @click="reportquery" class="examineLi">
                     <img src="@/assets/images/3.png" alt="" class="image">
                     <p>报告查询</p>
-                    <span class="examineNumber">1</span>
+                    <!-- <span class="examineNumber">1</span> -->
                 </li>
                 <li @click="lineupnow" class="examineLi">
                     <img src="@/assets/images/4.png" alt="" class="image">
                     <p>我的排队</p>
-                    <span class="examineNumber">1</span>
+                    <!-- <span class="examineNumber">1</span> -->
                 </li>
                 <li @click="workdepart">
                     <img src="@/assets/images/5.png" alt="" class="image">
@@ -126,6 +126,7 @@ import { mapState } from 'vuex';
 
 let appLoginlogin = '/appLogin/login';
 let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
+let bizPatientRegisterselectCount = "/app/bizPatientRegister/selectCount";
 export default {
     data() {
         return {
@@ -133,22 +134,21 @@ export default {
             showPic: false,
             cardlist: [],
             showindex: 0,
-            maxindex: 0,
+            // maxindex: 0,
             cardLoading: true,
             aliveValue: '2',
             isDown: false,
             chooseId: '',
-            test: '',
             picName: '',
+            homeList: '',
         }
     },
     computed: {
         ...mapState({
             // _cardlist: state => state.cardList,
-
             _cardlist: state => state.home.cardList,
+            maxindex: state => state.home.cardTotal,
         }),
-
         // _cardlist() {
         //     this.cardLoading = false;
         //     return this.$store.state.cardList;
@@ -157,13 +157,12 @@ export default {
         //     return this.$store.state.home.cards
         // },
 
-
     },
     created() {
         this.$store.commit('feeActiveFun', 1);
     },
-    mounted() {
-        console.log(this.$store.state.home.cardList)
+    async mounted() {
+        // console.log(this.$store.state.home.cardList)
         // 用于测试
         document.title = '互联网医院';
         let _this = this;
@@ -190,50 +189,41 @@ export default {
                 var storage = window.localStorage;
                 // storage.setItem("token7", "");
                 // storage.setItem("UUID7", "");
-
                 localStorage.removeItem('token7');
                 localStorage.removeItem('UUID7');
                 storage.setItem("token1", "2136a544595a4c638e8969bfafc2a1a1");
                 storage.setItem("hospitalId", "49");
             }
         });
-
-        if (!this.$store.state.cardList) {
-            this.$axios.put(wechatbizPatientCardreadpage, {
+        await this.$store.dispatch('getCards'/* , { update: true } */);
+        this.cardLoading = false;
+        if (this.$store.state.cardId) {
+            this.chooseId = this.$store.state.cardId;
+        } else {
+            this.chooseId = this._cardlist[0].id;
+        }
+        this.homeNumber(this.chooseId);
+        this.$store.commit('cardListFun', this._cardlist);
+        this.$store.commit('patientIdFun', this._cardlist[0].patientId);
+        this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
+        this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
+        this.$store.commit('cardIdFun', this._cardlist[0].id);
+    },
+    methods: {
+        homeNumber(data) {
+            this.$axios.put(bizPatientRegisterselectCount, {
+                cardId: data ? data : this.$store.state.cardId
+                // cardId:data? this.$store.state.cardId
             }).then(res => {
                 if (res.data.code == '200') {
-                    this.cardlist = res.data.rows;
-                    this.maxindex = res.data.total;
-                    this.cardLoading = false;
-                    if (this.$store.state.cardId) {
-                        this.chooseId = this.$store.state.cardId;
-                    } else {
-                        this.chooseId = res.data.rows[0].id;
-                    }
-                    this.test = res.data.rows[0].id;
-                    this.$store.commit('cardIndexFun', 0);
-                    this.$store.commit('cardListFun', res.data.rows);
-                    this.$store.commit('patientIdFun', res.data.rows[0].patientId);
-                    this.$store.commit('cardNoFun', res.data.rows[0].cardNo);
-                    this.$store.commit('cardNnameFun', res.data.rows[0].patientName);
-                    this.$store.commit('cardIdFun', res.data.rows[0].id);
-                } else if (res.data.code == '800') {
+                    this.homeList = res.data.data
+                } else {
                     console.log(res.data.msg)
                 }
             }).catch(function (err) {
                 console.log(err)
             })
-        } else {
-            if (this.$store.state.cardId) {
-                this.chooseId = this.$store.state.cardId;
-            } else {
-                this.chooseId = this.$store.state.cardList.id;
-            }
-            this.maxindex = this.$store.state.cardList.length;
-        }
-
-    },
-    methods: {
+        },
         choosedepart() {
             let argu = {};
             this.$router.push({
@@ -250,6 +240,7 @@ export default {
             if (!current) {
                 current = this._cardlist[0]
             }
+            this.homeNumber(this.chooseId)
             this.chooseId = current.id;
             this.$store.commit('patientIdFun', current.patientId);
             this.$store.commit('cardNoFun', current.cardNo);

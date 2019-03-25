@@ -43,7 +43,7 @@
    text-align: center;
    line-height: 240px;
    border-radius: 20px;
-   box-shadow: 0 0 17px rgba(20,19,51,.1);
+   box-shadow: 0 0 17px rgba(20, 19, 51, .1);
 }
 
 .bindCard .bindCardBtn {
@@ -181,7 +181,7 @@
 .home .homeCard {
    height: 240px;
    border-radius: 20px;
-   box-shadow: 0 0 18px rgba(20,19,51,.1);
+   box-shadow: 0 0 18px rgba(20, 19, 51, .1);
    background: #ffffff;
 }
 
@@ -302,12 +302,12 @@
 
 .examineNumber {
    position: absolute;
-   top: 20px;
+   top: 15px;
    left: 140px;
    display: inline-block;
-   width: 32px;
-   height: 32px;
-   border-radius: 16px;
+   padding: 0 10px;
+   min-width: 32px;
+   border-radius: 20px;
    background: #f34949;
    text-align: center;
    line-height: 32px;
@@ -315,17 +315,19 @@
    color: #fff;
 }
 
-  .codema {
+.codema {
    background: #ffffff;
    /* height: 750px; */
    border-radius: 20px;
-   padding:40px 20px;
+   padding: 40px 20px;
 }
-  .codema img{
+
+.codema img {
    background: #ffffff;
    padding: 20px;
 }
-  .codema .namecodema{
+
+.codema .namecodema {
    text-align: center;
    line-height: 50px;
    font-size: 32px;

@@ -248,7 +248,7 @@ input:-ms-input-placeholder {
 .partLine {
   border-bottom: 2px solid #e9e9e9;
   width: 100%;
-  margin: 20px 0px;
+  margin: 12px 0px;
 }
 .payfee .md-field-item-content {
   -webkit-box-align: inherit !important;

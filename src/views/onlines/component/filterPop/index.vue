@@ -52,10 +52,13 @@
                     </h3>
                     <div class="components-screenbox--other">
                       <div>
-                        <span class="tag chosen-condition">25</span>
+                        <span class="tag" v-for="(item,index) in priceList" :key="index">
+                          {{item.text}}
+                        </span>
+                        <!-- <span class="tag chosen-condition">0~25</span>
                         <span class="tag">20~50</span>
                         <span class="tag">20~50</span>
-                        <span class="tag">50~100</span>
+                        <span class="tag">50~100</span> -->
                       </div>
                     </div>
                   </li>
@@ -80,11 +83,6 @@ export default {
       testshow: false,
       consultList: [
         {
-          value: 0,
-          text: '免费咨询',
-          checked: false,
-        },
-        {
           value: 1,
           text: '图文咨询',
           checked: false,
@@ -103,20 +101,62 @@ export default {
       selectList: [
         {
           value: 1,
-          text: '副主任医师',
-          checked: false,
+          text: '普通',
+          checked: false
         },
         {
           value: 2,
-          text: '主任医师',
-          checked: false,
+          text: '主治医师',
+          checked: false
         },
         {
           value: 3,
-          text: '医师',
-          checked: false,
+          text: '副教授',
+          checked: false
+        },{
+            value: 4,
+          text: '五级专家',
+          checked: false
+        },{
+          value:5,
+          text:'四级专家',
+          checked: false
+        },{
+          value:6,
+          text:'三级专家',
+          checked: false
+        },{
+          value:7,
+          text:'二级专家',
+          checked: false
+        },{
+          value:8,
+          text:'一级专家',
+          checked:false
+        },{
+          value:9,
+          text:'特需',
+          checked:false
+        }
+      ],
+      priceList: [
+          {
+          value: '0-20',
+          text: '0~20',
+          checked: false
         },
+          {
+          value: '20-50',
+          text: '20~50',
+          checked: false
+        },
+          {
+          value: '50-100',
+          text: '50~100',
+          checked: false
+        }
       ]
+
     }
   },
   methods: {

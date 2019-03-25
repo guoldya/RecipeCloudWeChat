@@ -65,3 +65,6 @@ input {
    overflow: hidden;
    border: 1px solid #bdbdbd;
  }
+.md-cell-item-body.multilines:hover{
+    background-color: gray;
+}

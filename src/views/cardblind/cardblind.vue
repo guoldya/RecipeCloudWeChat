@@ -4,7 +4,7 @@
     <div class="outCarint margin45">
       <md-field>
         <md-input-item ref="input13" v-model="name" title="姓名" placeholder="姓名"></md-input-item>
-        <md-field-item title="卡类型" arrow="arrow-right" :addon="selectorValue"  @click="showSelector">
+        <md-field-item title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector">
         </md-field-item>
         <md-input-item ref="input13" v-model="cardNo" :title="selectorValue+'号'" maxlength="11" placeholder="请输入卡号"></md-input-item>
         <md-input-item type="phone" v-model="phonenumber" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
@@ -108,7 +108,6 @@ export default {
 
     },
     tijiao() {
-
       if (this.phonenumber.length < 11 || this.name.length == 0 || this.verifyCode.length < 6 || this.cardNo.length === 0) {
         this.$toast.info('请完善信息')
       } else {
@@ -125,6 +124,9 @@ export default {
               orgCode: localStorage.getItem("hospitalId") * 1,
             }).then(res => {
               if (res.data.code == '200') {
+                
+                this.$store.dispatch('getCards', { update: true });
+
                 this.$dialog.alert({
                   title: '提示',
                   content: '该卡绑定成功!',

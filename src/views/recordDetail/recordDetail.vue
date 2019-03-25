@@ -36,13 +36,18 @@
                         <div>
                             <span>临床诊断：{{item.diag}}</span>
                         </div>
+                        <!--<div class="listData">-->
+                            <!--<span>临床诊断：-->
+                                <!--<span class=" ">{{item.diag}}</span>-->
+                            <!--</span>-->
+                        <!--</div>-->
                     </div>
                 </div>
-                <div class="card margin16" >
+                <div class="card margin16" v-if="detailData.length!=0">
                     <div class="cardText">
                         <div v-for="(item,i) in detailData">
                             <div class="listData medName">
-                                <span>{{item.name}}</span>
+                                <span style="font-size: 16px">{{item.name}}</span>
                                 <span>{{item.spec}}</span>
                             </div>
                             <div class="listData userNum">
@@ -52,7 +57,7 @@
                                     <span>{{item.usage}}</span>
                                     <span>{{item.freq}}</span>
                                 </div>
-                                <span>{{item.total}}盒</span>
+                                <span class="mu-light-text-color">{{item.total}}盒</span>
                             </div>
                             <div class="listData userNum docTip" v-if="item.remark!=null">
                                 <span>医生嘱托：{{item.remark}}</span>

@@ -26,14 +26,14 @@
               <span>等待时间：
                 <span class="mu-secondary-text-color">{{item.waitingTime}}分钟</span>
               </span>
-              <span>排队号码：
+              <span>当前号码：
                 <span class="mu-secondary-text-color">{{item.currentNo}}号</span>
               </span>
             </p>
             <p class="cardTextPP">
               <span>排队科室：{{item.deptName}}
               </span>
-              <span>当前号码：
+              <span>排队号码：
                 <span class="mu-secondary-text-color">{{item.queueNo}}号</span>
               </span>
             </p>

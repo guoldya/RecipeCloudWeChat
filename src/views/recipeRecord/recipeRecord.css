@@ -7,17 +7,28 @@
     line-height: 66px;
     margin-left: 12px;
 }
-.recipeRecord .userInfo span{
+.recipeRecord .list span{
     font-size: 28px;
     font-weight: bold;
+}
+.recipeRecord .blod{
+    font-weight: bold;
+}
+.recipeRecord .blod span{
+    width: 30%;
+}
+.recipeRecord .blod span:nth-child(2){
+    width: 19%;
+}
+.recipeRecord .blod span:last-child{
+    text-align: right;
 }
 .recipeRecord .fold span{
     font-size: 28px;
     color: #979797;
-    padding: 20px 0px;
 }
 .foldImg img{
-    width: 36px;
+    width: 28px;
     float: right;
 }
 .block{

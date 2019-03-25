@@ -1,10 +1,10 @@
 
 <template>
-    <div class="margin45">
+    <div class="margin45 doc_scheduling">
         <Header post-title="医生详情"></Header>
         <div class="doctor-head">
-            <div class="outCarint">
-                <div class="doctor-info doctor-infoFATHER">
+
+            <!-- <div class="doctor-info doctor-infoFATHER">
                     <div class="header"><img src="@/assets/images/user.png"></div>
                     <div class="doctor-right">
                         <p class="introduce">
@@ -18,10 +18,96 @@
                         </p>
                         <p class="open" @click="isSeemore=!isSeemore" v-show="moreButton"> 更多</p>
                     </div>
+                </div> -->
+
+            <div class="doc_info">
+
+                <div class="pic fl">
+                    <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorInfo.name">
+                </div>
+                <div class="detail">
+                    <p class="name">
+                        <span class="name">{{doctorInfo.name}}</span>
+                        <span> {{doctorInfo.title}}</span>
+                    </p>
+                    <p class="hos_name">{{depart}} 擅长:{{doctorInfo.skill}}</p>
+                </div>
+                <div class="doc_code">
+                    <!-- <img  alt="{{doctorInfo.name}}">
+                        <p>收藏</p> -->
                 </div>
             </div>
+
+            <div class="doc_introduce">
+                <div class="title">
+                    <i class="icon i_info"></i>
+                    <span class="doc_info_txt">医生介绍</span>
+                    <div class="doc_open_btn">
+                        <span id="open" @click="isSeemore=!isSeemore">展开
+                            <i class="icon i_open" :class="{'nomore':isSeemore,}"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="doc_detail" v-show="isSeemore">
+                <div id="doc_detail">{{doctorInfo.introduce}}</div>
+            </div>
+            <div class="line"></div>
+            <div class="yy_date_today" v-show="!islist">
+                <span class="date_today">{{time}}</span>
+                <span class="date_today">{{week}} {{afternoon}}</span>
+            </div>
+            <div class="date_yy" v-show="!islist">
+                <div class="wx_yy_date_time">
+                    <a class="wx_yy_date_time_item" v-for="(order,index) in orderinfo" :key="index">
+                        <span v-if="order.valNum==0">
+                            <a name="a_date" class="current wx_residue_null">
+                                <span>余{{order.valNum}}</span>
+                            </a>
+                            <label> {{depart}} {{order.regStage}}</label>
+                        </span>
+                        <span v-else>
+                            <a name="a_date" class="current">
+                                <span>余{{order.valNum}}</span>
+                            </a>
+                            <label> {{depart}} {{order.regStage}}</label>
+                        </span>
+                        <div class="wx_residue_num" v-if="order.valNum==0">
+                            <span class="keyy">{{order.money | keepTwoNum}}元</span>
+                            <i class="time_btn"></i>
+                        </div>
+                        <div class="wx_residue_num" v-else @click="reservation(item)">
+                            <span class="keyy">{{order.money | keepTwoNum}}元</span>
+                            <i class="time_btn"></i>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="yy_date_today" @click="islook=!islook">
+                <span class="date_today">查看全部排班</span>
+                <span class="date_today">
+                    <i class="time_btn"></i>
+                </span>
+            </div>
+            <div class="wx_dropdown_date_time" v-show="islook">
+                <span v-for="(item,i) in dateList" :key="i">
+                    <span>
+                        <p> {{item.regStageVO}} {{item.regStage}} {{item.dept}} {{depart}} </p>
+                    </span>
+                    <div class="wx_list_num" v-show="item.valNum==0">
+                        <span style="color:#b6b6b6;background-color:#ededed;">约满</span>
+                    </div>
+                    <div class="wx_list_num" v-show="item.valNum!=0" @click="reservation(item)">
+                        <span class="keyy">剩 {{item.valNum}}</span>
+                    </div>
+                </span>
+
+            </div>
         </div>
-        <div class="outCarint">
+
+        <!-- <div class="outCarint">
             <div class="doctordetal" v-if="isHave">
                 <div class="outCarint">
                     <ul class="available-info" v-show="!islist">
@@ -58,16 +144,16 @@
             <div class="nullDiv" v-else>
                 <img src="@/assets/images/null1.png">
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
 let appbdHospitalDoctorreaddetail = "/app/bdHospitalDoctor/read/detail";
-// let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/rankWorld";
+let appbizRegisterSourcereadsourceDetail = "/app/bdHospitalDoctor/read/rankWorld";
 let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/selectDoctorByTime";
-let appbizRegisterSourcereadsourceDetail = "/app/bizRegisterSource/read/sourceDetail";
+//let appbizRegisterSourcereadsourceDetail = "/app/bizRegisterSource/read/sourceDetail";
 export default {
     data() {
         return {
@@ -99,15 +185,15 @@ export default {
         }
         if (this.$route.query.islist) {
             this.islist = true;
-
-        }
-        else {
+        } else {
             this.$axios.put(appbizRegisterSourcereadsourceDetail, {
-                id: this.$route.query.sourceId * 1,
+                id: this.$route.query.doctorId * 1,
+                stageType: this.$route.query.afternoon * 1,
+                time: this.$route.query.time,
             }).then((res) => {
                 console.log(res)
                 if (res.data.code == '200') {
-                    this.orderinfo = res.data.data;
+                    this.orderinfo = res.data.rows;
                 } else {
                     console.log(res.msg);
                 }

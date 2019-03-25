@@ -4,16 +4,16 @@
       <div class="header"><img src="@/assets/images/3.jpg" /></div>
       <div class="comment-right">
         <p class="introduce">
-          <span class="name">{{datas.name||'--'}}</span>&nbsp; <span>主任医师</span>&nbsp;
-          <span>{{datas.orgName||'--'}}</span>&nbsp;
+          <span class="name">{{datas.name}}</span>&nbsp; <span>{{datas.level|level}}</span>&nbsp;
+          <span>{{datas.orgName}}</span>&nbsp;
         </p>
         <p class="colo13">
           <span class="picture" :class="datas.type<1||!datas.type ?'noOpen' :''">图文</span>&nbsp;
           <span class="picture" :class="datas.type<2||!datas.type ?'noOpen' :''">电话</span>&nbsp;
           <span class="picture" :class="datas.type<3||!datas.type ?'noOpen' :''">视频</span>&nbsp;
-          <span class="reputation">好评率 {{datas.praiseRate||'--'}}%</span>&nbsp;
+          <span class="reputation">好评率 {{datas.praiseRate||0}}%</span>&nbsp;
         </p>
-        <p class="content">擅长：儿科常见病、多发病 #先天性心脏病</p>
+        <p class="content">擅长：{{datas.skill}}</p>
         <p class="colo13">
           <span>咨询数：{{datas.diagnosisNum||'0'}}</span>&nbsp; <span>平均回复时长：{{datas.replyTime||'0'}}分</span>&nbsp;
         </p>
@@ -29,6 +29,41 @@
 export default {
   data() {
     return {};
+  },
+  filters:{
+    level(val) {
+      let msg = ''
+      switch(val) {
+        case 1:
+        msg = '普通';
+        break;
+        case 2:
+        msg = '主治医生';
+        break;
+         case 3:
+        msg = '副教授';
+        break;
+        case 4:
+        msg = '五级专家';
+        break;
+           case 5:
+        msg = '四级专家';
+        break;
+           case 6:
+        msg = '三级专家';
+        break;
+           case 7:
+        msg = '二级专家';
+        break;
+          case 8:
+        msg = '一级专家';
+        break;
+          case 9:
+        msg = '特需';
+        break;
+      }
+      return msg;
+    }
   },
   props:['datas']
 };

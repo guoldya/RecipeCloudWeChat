@@ -305,7 +305,7 @@ export default {
                                     query: {}
                                 });
                             }, 3000)
-                        }else if(res.data.code == '800'){
+                        }else if(res.data.code == '500'){
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
                                 this.$router.push({

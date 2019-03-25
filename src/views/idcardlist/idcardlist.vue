@@ -83,7 +83,6 @@ export default {
   computed: {
     ...mapState({
       cardlist: state => state.home.cardList,
-
     }),
     isFive() {
       return this.cardlist.length > 5
@@ -95,9 +94,8 @@ export default {
     this.loadingtrue = false;
     // this.$store.dispatch('getCards').then(res => {
     //   this.loadingtrue = false;
-
     // })
-
+    //  created() {
     // this.$axios.put(wechatbizPatientCardreadpage, {
     // }).then(res => {
     //   if (res.data.code == '200') {
@@ -172,11 +170,10 @@ export default {
 .idcardlist .homeCard {
   height: 200px;
   border-radius: 20px;
-  box-shadow: 0 0 18px rgba(20,19,51,.1);
+  box-shadow: 0 0 18px rgba(20, 19, 51, 0.1);
   background: #ffffff;
 }
 
- 
 .addisFive {
   background-color: #979797;
 }

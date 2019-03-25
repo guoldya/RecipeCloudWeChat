@@ -4,7 +4,7 @@
     <Loading v-if="isloading"></Loading>
     <div v-else>
       <!-- 医生信息 -->
-      <div class="doctor-info  ">
+      <div class="doctor-info">
         <div class="doctor-info-top">
           <div class="doctor-info-header">
             <img src="@/assets/images/3.jpg" alt="" />
@@ -16,7 +16,7 @@
               ><span>{{ doctorInfo.orgName }}</span>
             </p>
           </div>
-          <div class="doctor-info-follow">
+          <div class="doctor-info-follow" @click="followDoctor">
             <img
               v-if="!doctorInfo.followStatus"
               src="../images/icon_follow.png"
@@ -135,20 +135,18 @@
         </md-agree>
       </md-dialog>
 
-      <div
-        v-infinite-scroll="loadMore"
-        infinite-scroll-disabled="busy"
-        infinite-scroll-distance="10"
-      >
-        ...
-      </div>
     </div>
+      <div  class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+          <md-icon v-if="!isloading&&busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+          <div class="nomore" v-if="pagingParams.num == pagingParams.pages">没有更多了</div>
+      </div> 
   </div>
 </template>
 <script>
 import { Dialog, Agree, Toast } from "mand-mobile";
 const onlineDoctorDetailUrl = "/app/bdOnlineDoctor/read/detail";
 const commentUrl = "/app/bizOnlineServiceRecord/read/doctorRecordPage";
+const followDoctorUrl    = "/app/bizDoctorFollow/followDoctor"
 export default {
   data() {
     return {
@@ -174,7 +172,7 @@ export default {
       pagingParams: {
         // 科室分页信息
         num: 1,
-        pages: 1
+        pages: null
       },
       commonList: [],
       busy: false
@@ -200,7 +198,7 @@ export default {
         console.log(error.message);
       }
     },
-    async queryCommon() {
+    async queryCommon(val) {
       // 查询评论
       try {
         let res = await this.$axios.put(commentUrl, {
@@ -210,20 +208,22 @@ export default {
         if (res.data.code != 200) {
           throw Error(res.data.msg);
         }
-        this.commonList = res.data.rows;
+        if(res.data.rows) {
+          this.commonList = val ? this.commonList.concat(res.data.rows) : res.data.rows
+        }
+        this.pagingParams.num = res.data.current
+        this.pagingParams.pages = res.data.pages
       } catch (error) {
-        this.isloading = false;
         console.log(error.message);
       }
     },
     loadMore: function() {
-      console.log(2);
+      if(this.isloading)return false; 
+      if(this.pagingParams.num==this.pagingParams.pages)return false
       this.busy = true;
-
-      //官方示例中延迟了1秒，防止滚动条滚动时的频繁请求数据
       setTimeout(() => {
-        //这里请求接口去拿数据，实际应该是调用一个请求数据的方法
-        console.log(334);
+        this.pagingParams.num++
+        this.queryCommon(true)
         this.busy = false;
       }, 1000);
     },
@@ -258,6 +258,23 @@ export default {
       } else if (val === "phone") {
         this.basicDialog.title = "电话咨询";
       }
+    },
+    async followDoctor() {
+       try {
+         let status = this.doctorInfo.followStatus
+          this.doctorInfo.followStatus = this.doctorInfo.followStatus ? 0 : 1;
+          let res = await this.$axios.post(followDoctorUrl, {
+            doctorId:Number(this.$route.query.id),
+            status: this.doctorInfo.followStatus
+          })
+          if (res.data.code!=200) {
+            this.doctorInfo.followStatus = status
+            throw Error(res.data.msg);
+          }
+          Toast.info(status?'取消收藏成功':'收藏成功')
+       } catch (error) {
+          
+       }
     }
   },
   components: {
@@ -373,7 +390,7 @@ export default {
   .doctor-comment,
   .doctor-comment-item {
     > div {
-      padding: 54px 0;
+      padding: 24px 0;
     }
   }
   .doctor-comment-item-header {
@@ -409,6 +426,17 @@ export default {
       height: 40px;
     }
   }
+  .loadmore {
+    display: flex;
+    height:80px;
+    align-items: center;
+    justify-content: center;
+      .nomore {
+    color:#999;
+    font-size:24px;
+  }
+  }
+
 }
 .md-dialog {
   /deep/ .md-dialog-body {
