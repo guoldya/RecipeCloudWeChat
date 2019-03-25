@@ -9,20 +9,19 @@
             <!--</div>-->
             <div v-if="examineData.length!=0" v-show="!loadingtrue">
                 <div class="card margin16" v-for="(item,i) in examineData" :key="i">
-                    <div class="cardText">
-                        <div class="listData">
+                    <div>
+                        <div class="appTitle">
                             <span>{{item.patientName}}（{{item.className}}）</span>
                             <span>{{nowDate}}</span>
                         </div>
-                        <p style="border-bottom: 1px solid #e9e9e9;margin: 6px 0px"></p>
-                        <div class="listData">
+                        <div class="listData" style="padding-top: 7px">
                             <span>开单时间：
                                 <span class="mu-secondary-text-color">{{item.createTime}}</span>
                             </span>
                         </div>
                         <div class="listData">
                             <span>科室：
-                                <span class="mu-secondary-text-color">{{item.examDept}}（{{item.hospital}}）</span>
+                                <span>{{item.examDept}}（{{item.hospital}}）</span>
                             </span>
                         </div>
                         <div class="nowOrder" @click="rightNowOrder(item.classId,item.id)">
@@ -86,6 +85,13 @@
                     this.$axios.put(bizExamApplyreadpage, params).then((res) => {
                         if (res.data.rows) {
                             this.loadingtrue = false;
+                            let myDate = new Date();
+                            let year = myDate.getFullYear();
+                            let month = myDate.getMonth() + 1;
+                            let day = myDate.getDate();
+                            month = month <= 9 ? "0" + month : month;
+                            day = day <= 9 ? "0" + day : day;
+                            this.nowDate=year+"-"+month+"-"+day;
                             if (flag) {
                                 this.examineData = this.examineData.concat(res.data.rows);  //concat数组串联进行合并
                                 if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true

@@ -191,7 +191,7 @@ export default {
 }
 .nojiuzhen img {
   margin-top: 150px;
-  width: 50%;
+  width: 35%;
 }
 .nojiuzhen p {
   line-height: 150px;

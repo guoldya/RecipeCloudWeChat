@@ -111,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="textCenter">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
+                <p class="noMore">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
             </div>
         </div>
         <Loading v-show="loadingtrue"></Loading>

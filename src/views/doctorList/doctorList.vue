@@ -56,8 +56,9 @@
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">{{info.name}}
-                    <span class="levle">{{info.title}}</span>
+                  <p class="headname">
+                    <span>{{info.name}}</span>
+                    <span class="levle" style="padding-bottom: 4px;">{{info.title}}</span>
                     <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
                     <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
                   </p>
@@ -82,8 +83,9 @@
                   <img src="@/assets/images/user.png" alt="医生头像">
                 </div>
                 <div>
-                  <p class="headname">{{pmItem.name}}
-                    <span class="levle">{{pmItem.title}}</span>
+                  <p class="headname">
+                    <span>{{pmItem.name}}</span>
+                    <span class="levle" style="padding-bottom: 4px;">{{pmItem.title}}</span>
                     <span v-if="pmItem.valNum!=0" class="have">余{{pmItem.valNum}}</span>
                     <span v-if="pmItem.valNum==0" class="have no">余{{pmItem.valNum}}</span>
                   </p>

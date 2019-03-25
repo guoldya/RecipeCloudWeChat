@@ -139,6 +139,7 @@ input:-ms-input-placeholder {
 }
 .aligncenter {
   text-align: center;
+  color: dimgray;
 }
 .colo13 {
   font-size: 26px;
@@ -163,7 +164,7 @@ input:-ms-input-placeholder {
   padding: 0 24px;
 }
 .appTitle {
-  padding: 28px 0px;
+  padding: 24px 0px;
   border-bottom: 2px solid #ededed;
   display: flex;
   justify-content: space-between;
@@ -358,5 +359,11 @@ textarea::-webkit-input-placeholder {
   -webkit-transform: scale(1);
   transform: scale(1);
   color: #1da1f3 !important;
+}
+.bigFont {
+  color: #1da1f3;
+  font-size: 44px;
+  margin: 0 6px;
+  vertical-align: bottom;
 }
 </style>
