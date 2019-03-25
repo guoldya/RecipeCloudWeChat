@@ -14,7 +14,7 @@
                                 <span class="doctor-tag">{{doctorData.title}} </span>
                             </p>
                             <p class="hospital"> {{depart}} </p>
-                            <p v-if="doctorData.skill" class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
+                            <p v-if="doctorData.skill" class="con tent">
                                 擅长：{{doctorData.skill}}
                             </p>
                             <p class="content" :class="{'nomore':!isSeemore,'yy_dateAA':isSeemore}">
