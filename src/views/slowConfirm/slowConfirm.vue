@@ -9,7 +9,7 @@
             <div class="successWord">
                 <p>您已提交续方申请，现在请与在线医师完成病情评估，以便医生能够尽快审核通过您的续方申请。</p>
             </div>
-            <div class="successButton">
+            <div>
                 <md-button type="primary" round @click="onlineEvaluate">点击在线评估</md-button>
             </div>
         </div>
@@ -54,18 +54,16 @@
         height: 120px;
     }
     .slowConfirm .successImg p{
-        font-size: 30px;
-        margin-top: 18px;
+        font-size: 36px;
+        margin-top: 8px;
     }
     .slowConfirm .successWord p{
-        padding: 80px 28px;
+        margin: 44px 0;
         text-indent: 7%;
         font-size: 26px;
         word-break : normal;
-
-    }
-    .slowConfirm .successButton{
-        padding: 0px 28px;
+        color: #979797;
+        line-height: 40px;
     }
     .slowConfirm .primary{
         background-color: #1da1f3 !important;

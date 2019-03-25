@@ -18,6 +18,7 @@ export default {
     }
   },
   created() {
+    
     //在页面加载时读取sessionStorage里的状态信息
     if (sessionStorage.getItem("store")) {
       //this.$store.replaceState()替换 store 的根状态
@@ -34,6 +35,16 @@ export default {
 <style  >
 body {
   background: #ffffff;
+}
+.warnText {
+  font-size: 26px;
+  color: #979797;
+}
+.warnText p{
+  padding: 4px 0;
+}
+.md-activity-indicator-rolling .rolling circle.stroke{
+  fill: #ffffff;
 }
 .md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-btn{
   padding: 0 24px 24px;

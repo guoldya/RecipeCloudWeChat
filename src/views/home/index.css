@@ -249,6 +249,39 @@
    position: absolute;
 }
 
+.club-new-spread {
+   position: relative;
+   float: right;
+   font-size: 28px;
+   margin-top: -40px;
+   padding-left: 48px;
+   color: #666;
+   background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff 17%);
+}
+.club-new-suo {
+   position: relative;
+   float: right;
+   font-size: 28px;
+   margin-top: -40px;
+   padding-left: 48px;
+   color: #666;
+}
+ .club-new-spread:after {
+   content: '';
+   display: inline-block;
+   width:16px;
+   height: 16px;
+   border-right: 1px solid #666;
+   border-bottom: 1px solid #666;
+   -webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   transform: rotate(45deg);
+   margin-left: 16px;
+   margin-right: 16px;
+   margin-bottom: 6px;
+}
+
 .homeheader p {
    text-align: center;
 }

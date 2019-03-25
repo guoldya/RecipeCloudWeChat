@@ -10,7 +10,7 @@
     </header>
     <div class="margin45 outCarint">
       <Search type="onlines"></Search>
-      <Loading v-if="isloading"></Loading>
+      <Skeleton v-if="isloading"></Skeleton>
       <div class="online-content" v-else>
         <div class="tools">
           <div class="nav2">

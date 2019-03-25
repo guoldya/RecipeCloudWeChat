@@ -85,8 +85,8 @@
 
                         <div class="foldImg" @click="foldFun(i)">
                             <div>
-                                <img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">
-                                <img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">
+                                <img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">
+                                <img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">
                                 <div style="clear:both;"></div>
                             </div>
                             <div :class="imgIndex === i ? 'block' : 'none'" v-for="list in item.bizRecipeDetails">

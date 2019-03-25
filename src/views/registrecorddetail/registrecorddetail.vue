@@ -36,7 +36,7 @@
                     <p class="partLine"></p>
                     <div class="listData">
                         <span>金额</span>
-                        <span>{{item.money}}</span>
+                        <span>￥{{item.money}}</span>
                     </div>
                     <p class="partLine"></p>
                     <div class="listData">
@@ -46,13 +46,10 @@
                 </div>
             </div>
             <Loading v-show="loadingtrue"></Loading>
-            <div class="cardText warnText">
-                注意事项：
+            <div class="warnText">
+                <p>注意事项：</p>
                 <p>1、请在半个小时内完成支付，逾期记录作废</p>
-                <div class="listData">
-                    <span>2、</span>
-                    <span>支付成功后无需取号，请持就诊卡到护士站报道看诊</span>
-                </div>
+                <p>2、支付成功后无需取号，请持就诊卡到护士站报道看诊</p>
                 <p>3、如需退号，请提前两天进行操作</p>
                 <p>4、一个自然月内只能退三次号</p>
             </div>
@@ -331,10 +328,6 @@ export default {
 <style   scoped>
 .card p {
   line-height: 60px;
-}
-.warnText {
-  font-size: 24px;
-  color: #afafaf;
 }
 .registrecorddetail .card {
   margin-bottom: 32px;

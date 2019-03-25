@@ -5,13 +5,12 @@
     <div class="outCarint margin45">
       <div v-show="!loadingtrue" v-if="appointData.length!=0">
         <div class="card margin16" v-for="(item,i) in appointData" :key="i">
-          <div class="cardText">
-            <div class="listData">
+          <div>
+            <div class="appTitle">
               <span>{{item.patientName}}（{{item.className}}）</span>
-              <span>{{item.status | examStatus}}</span>
+              <span class="mu-secondary-text-color">{{item.status | examStatus}}</span>
             </div>
-            <p style="border-bottom: 1px solid #e9e9e9;margin: 6px 0px"></p>
-            <div class="listData">
+            <div class="listData" style="padding-top: 6px">
               <span>预约科室：
                 <span>{{item.examDept}}（{{item.hospital}}）</span>
               </span>

@@ -35,10 +35,10 @@
 
       <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
       <md-field v-show="mail==1">
-        <md-input-item ref="input13" v-model="receiver" title="收件人" placeholder="收件人" is-highlight></md-input-item>
-        <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="receiver" title="收件人" placeholder="收件人"  ></md-input-item>
+        <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable  ></md-input-item>
         <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
-        <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址" is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址"  ></md-input-item>
       </md-field>
       <md-agree v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
         我已阅读并了解
@@ -78,7 +78,7 @@ export default {
   },
   mounted() {
     document.title = '病案复印';
-    this.$refs.Pgmodal.showPgwModal = true
+    this.$refs.Pgmodal.showPgwModal = false
   },
   watch: {
     mail(newValue) {

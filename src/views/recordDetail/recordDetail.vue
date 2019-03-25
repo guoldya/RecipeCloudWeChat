@@ -53,14 +53,14 @@
                             <div class="listData userNum">
                                 <div class="useAmount">
                                     <span>用法用量：</span>
-                                    <span>{{item.eachDose}}</span>
-                                    <span>{{item.usage}}</span>
-                                    <span>{{item.freq}}</span>
+                                    <span class="mu-secondary-text-color">{{item.eachDose}}</span>
+                                    <span class="mu-secondary-text-color">{{item.usage}}</span>
+                                    <span class="mu-secondary-text-color">{{item.freq}}</span>
                                 </div>
-                                <span class="mu-light-text-color">{{item.total}}盒</span>
+                                <span class="mu-secondary-text-color">{{item.total}}盒</span>
                             </div>
                             <div class="listData userNum docTip" v-if="item.remark!=null">
-                                <span>医生嘱托：{{item.remark}}</span>
+                                <span>医生嘱托：<span class="mu-secondary-text-color">{{item.remark}}</span></span>
                             </div>
                             <p class="partLine" v-if="i!=detailData.length-1"></p>
                         </div>

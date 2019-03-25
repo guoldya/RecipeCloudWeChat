@@ -1,6 +1,6 @@
 <template>
   <div class="result-doctor">
-    <Header post-title="搜索"  ></Header>
+    <Header post-title="搜索"></Header>
     <div class="outCarint margin45">
       <div style="text-align:center;">
         <input v-model="value" placeholder="搜索医生、科室" class="oc_val" @input="loadMorelist(value)">
@@ -28,14 +28,14 @@ export default {
       value: '',
       // departData: [],
       doctorList: [],
-      timer:null
+      timer: null
     }
   },
-  components:{
+  components: {
     doctorItem
   },
   mounted() {
-     
+    document.getElementsByClassName("oc_val")[0].focus();
   },
   methods: {
     loadMorelist(value) {
@@ -46,14 +46,14 @@ export default {
       _self.timer = setTimeout(() => {
         _self.$axios.put(searchClinicListByClinicOrDoctor, {
           name: value,
-          orgType:3
+          orgType: 3
         }).then(function (res) {
           if (res.data.code == 200) {
             _self.doctorList = res.data.data.doctorList;
             // this.departData = res.data.data.orgList;
-          } 
+          }
         }).catch(function (err) {
-           console.error(err)
+          console.error(err)
         });
       }, 300);
     },
