@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="footer">
     <div style="height:50px"></div>
     <div class="aui-footer">
       <a href="javascript:;" class="aui-tabBar-item" @click="switchTo('/')">
@@ -124,7 +124,7 @@ export default {
   display: block;
   background-repeat: no-repeat;
 }
-.aui-tabBar-item-icon img {
+.footer .aui-tabBar-item-icon img {
   width: 46px;
   height: 46px;
   background-size: 46px;

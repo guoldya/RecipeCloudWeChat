@@ -290,11 +290,14 @@ export default {
         },
         foldFun: function (val) {
              if (this.downImg == true) {
-                 if(val==0 &&this.firImgIndex==0){
+                 if(val==0 && this.firImgIndex==0){
                      this.firImgIndex = -1;
                  }else{
                      this.imgIndex = val;
                      this.firImgIndex = -1;
+                 }
+                 if(this.imgIndex!=0){
+                     this.imgIndex=-1
                  }
                  this.downImg = false;
             } else if (this.downImg == false) {
@@ -302,8 +305,8 @@ export default {
                      this.firImgIndex = 0;
                  }else{
                      this.firImgIndex = -1;
-                     this.imgIndex = -1;
                  }
+                 this.imgIndex = val;
                  this.downImg = true;
             }
         },

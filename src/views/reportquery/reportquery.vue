@@ -60,7 +60,7 @@
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
-            <div v-show="!loadingtrue" class="nullDiv" v-else>
+            <div v-show="!loadingtrue" class="aligncenter" style="margin:186px 0" v-else>
                 <!--<img src="@/assets/images/null1.png">-->
                 <p>您近三个月没有{{noDataTitle}}记录</p>
             </div>
