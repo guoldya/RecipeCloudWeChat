@@ -1,63 +1,48 @@
 <!-- 专家问诊 -->
 <template>
-  <div class="outCarint expertpage">
+  <div class="outCarint expertpage margin45">
     <Header :post-title="$route.query.orgName"></Header>
     <Search type="onlines"></Search>
     <!-- 搜索框 -->
     <Loading v-if="isloading"></Loading>
-        <!-- 弹窗 -->
-        <md-tab-picker
-        title="请选择科室"
-        :data="Fdata"
-        v-model="isDepartShow"
-        @change="chooseDepart"
-      />
-      <md-selector
-        v-model="isSortShow"
-        :data="sortData"
-        @choose="chooseSort"
-        title="选择排序"
-      ></md-selector>
-      <!-- 查询菜单栏 -->
-      <div class="selectTool" v-if="doctorList.length&&!isloading">
-        <div :class="isChecked == 0 ? 'isActive' : ''" @click="department">
-          <span>{{ departmentText }}</span>
-          <span class="downImg">
-            <img v-if="isChecked == 0" src="@/assets/images/top11.png" />
-            <img v-else src="@/assets/images/icon_down.png" />
-          </span>
-        </div>
-        <div :class="isChecked == 1 ? 'isActive' : ''" @click="sort">
-          <span>{{ sortText }}</span>
-          <span class="downImg">
-            <img v-if="isChecked == 1" src="@/assets/images/top11.png" />
-            <img v-else src="@/assets/images/icon_down.png" />
-          </span>
-        </div>
-        <div :class="isChecked == 2 ? 'isActive' : ''" @click="filterCotent">
-          <span>筛选</span>
-          <span class="downImg">
-            <img v-if="isChecked == 2" src="@/assets/images/top11.png" />
-            <img v-else src="@/assets/images/icon_down.png" />
-          </span>
-        </div>
+    <!-- 弹窗 -->
+    <md-tab-picker title="请选择科室" :data="Fdata" v-model="isDepartShow" @change="chooseDepart" />
+    <md-selector v-model="isSortShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
+    <!-- 查询菜单栏 -->
+    <div class="selectTool" v-if="doctorList.length&&!isloading">
+      <div :class="isChecked == 0 ? 'isActive' : ''" @click="department">
+        <span>{{ departmentText }}</span>
+        <span class="downImg">
+          <img v-if="isChecked == 0" src="@/assets/images/top11.png" />
+          <img v-else src="@/assets/images/icon_down.png" />
+        </span>
       </div>
-      <div class="doctorlist-warp">
-          <!-- 医生列表 -->
-          <doctorList
-            v-for="(item, index) in doctorList"
-            :key="index"
-            :datas="item"
-          ></doctorList>
-                <div class="nodata" v-if="!doctorList.length&&!isloading">
-       <img src="@/assets/images/null1.png" alt="">
+      <div :class="isChecked == 1 ? 'isActive' : ''" @click="sort">
+        <span>{{ sortText }}</span>
+        <span class="downImg">
+          <img v-if="isChecked == 1" src="@/assets/images/top11.png" />
+          <img v-else src="@/assets/images/icon_down.png" />
+        </span>
       </div>
-          <div class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-            <md-icon v-if="!isloading && busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
-            <div class="nomore" v-if="this.doctorPages==this.doctorParams.pageNumber">没有更多了</div>
-          </div>
+      <div :class="isChecked == 2 ? 'isActive' : ''" @click="filterCotent">
+        <span>筛选</span>
+        <span class="downImg">
+          <img v-if="isChecked == 2" src="@/assets/images/top11.png" />
+          <img v-else src="@/assets/images/icon_down.png" />
+        </span>
       </div>
-
+    </div>
+    <div class="doctorlist-warp">
+      <!-- 医生列表 -->
+      <doctorList v-for="(item, index) in doctorList" :key="index" :datas="item"></doctorList>
+      <div class="nodata" v-if="!doctorList.length&&!isloading">
+        <img src="@/assets/images/null1.png" alt="">
+      </div>
+      <div class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+        <md-icon v-if="!isloading && busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+        <div class="nomore" v-if="this.doctorPages==this.doctorParams.pageNumber">没有更多了</div>
+      </div>
+    </div>
 
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop"></filterPop>
@@ -180,8 +165,8 @@ export default {
       }
     },
     loadMore() {
-       if(this.isloading)return false; 
-      if(this.doctorPages==this.doctorParams.pageNumber)return false
+      if (this.isloading) return false;
+      if (this.doctorPages == this.doctorParams.pageNumber) return false
       this.busy = true;
       setTimeout(() => {
         this.doctorParams.pageNumber++

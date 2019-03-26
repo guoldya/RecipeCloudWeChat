@@ -1,65 +1,37 @@
 <template>
   <div class="skeleton page">
     <div class="skeleton-nav"></div>
-    <div class="skeleton-swiper"></div>
-    <ul class="skeleton-tabs">
-      <li v-for="i in 8" class="skeleton-tabs-item">
-        <span></span>
-      </li>
-    </ul>
-    <div class="skeleton-banner"></div>
-    <div v-for="i in 6" class="skeleton-productions"></div>
+    <div v-for="i in 6" class="skeleton-banner" :key="i">
+      <div class="header"> </div>
+      <div class="comment-right">
+        <p class="skeleton-content"> </p>
+        <p class="skeleton-content"> </p>
+        <p class="skeleton-content"> </p>
+        <p class="skeleton-content"> </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
-.skeleton {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  padding: 30px;
-  box-sizing: border-box;
-  background: #fff;
+.skeleton .skeleton-banner {
+  /* height: 300px; */
+  margin-bottom: 100px;
+  background: #ffffff;
 }
-.skeleton-nav {
-  height: 90px;
-  background: #eee;
-  margin-bottom: 30px;
+.skeleton-banner .header {
+  width: 98px;
+  height: 98px;
+  position: absolute;
+  background: #f0f3fa;
+  border-radius: 98px;
 }
-.skeleton-swiper {
-  height: 320px;
-  background: #eee;
-  margin-bottom: 30px;
+.skeleton-banner .comment-right {
+  padding: 10px 0px 30px 108px;
 }
-.skeleton-tabs {
-  list-style: none;
-  padding: 0;
-  margin: 0 -30px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.skeleton-tabs-item {
-  width: 25%;
-  height: 110px;
-  box-sizing: border-box;
-  text-align: center;
-  margin-bottom: 30px;
-}
-.skeleton-tabs-item span {
-  display: inline-block;
-  width: 110px;
-  height: 110px;
-  border-radius: 110px;
-  background: #eee;
-}
-.skeleton-banner {
-  height: 120px;
-  background: #eee;
-  margin-bottom: 30px;
-}
-.skeleton-productions {
-  height: 40px;
-  margin-bottom: 30px;
-  background: #eee;
+.skeleton-content {
+  height: 42px;
+  background: #f0f3fa;
+  margin-top: 5px;
 }
 </style>

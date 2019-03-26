@@ -1,5 +1,5 @@
 <template>
-  <div class=" outCarint margin45 ">
+  <div class="putinfo outCarint margin45 ">
     <Header post-title="信息确认"></Header>
     <div class="rebinding-box card margin16">
       <div class="box-timeline  cardText">
@@ -18,8 +18,8 @@
       </div>
     </div>
     <div class="card margin16">
-      <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名" is-highlight></md-input-item>
-      <md-input-item ref="input13" v-model="idcard" title="身份证号" placeholder="身份证号" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名"></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="身份证号" placeholder="身份证号"></md-input-item>
     </div>
     <p class="chooseBtn" @click="chooseCase">
       <img src="@/assets/images/jia.png">
@@ -31,11 +31,11 @@
       病案信息
     </p>
     <div class="card margin16">
-      <md-input-item ref="input13" v-model="name" title="住院科室" placeholder="住院科室" is-highlight></md-input-item>
-      <md-input-item ref="input13" v-model="idcard" title="住院诊断" placeholder="住院诊断" is-highlight></md-input-item>
-      <md-input-item ref="input13" v-model="idcard" title="住院次数" placeholder="住院次数" is-highlight></md-input-item>
-      <md-input-item ref="input13" v-model="name" title="入院时间" placeholder="入院时间" is-highlight></md-input-item>
-      <md-input-item ref="input13" v-model="idcard" title="出院时间" placeholder="出院时间" is-highlight></md-input-item>
+      <md-input-item ref="input13" v-model="name" title="住院科室" placeholder="住院科室"></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="住院诊断" placeholder="住院诊断"></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="住院次数" placeholder="住院次数"></md-input-item>
+      <md-input-item ref="input13" v-model="name" title="入院时间" placeholder="入院时间"></md-input-item>
+      <md-input-item ref="input13" v-model="idcard" title="出院时间" placeholder="出院时间"></md-input-item>
     </div>
     <p class="smallTitle">
       复印用途
@@ -44,22 +44,24 @@
       <div class="content">
         <div class="login-box">
           <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
-          <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明" is-highlight></md-input-item>
+          <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明"></md-input-item>
           <div class="login-box-div">
             <span class="flexF">复印份数</span>
             <div class="flexR calculate">
-              <span class="addValue ">
+              <!-- <span class="addValue ">
                 <img src="@/assets/images/icon_reduce@2x(1).png" @click="num--">
                 <span> {{num}}</span>
                 <img src="@/assets/images/icon_add@2x.png" @click="num++">
-              </span>
+              </span> -->
+
+              <md-stepper slot="right" v-model="value" min="0" />
             </div>
           </div>
-          <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注" is-highlight></md-input-item>
-          <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable is-highlight></md-input-item>
+          <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注"></md-input-item>
+          <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
           <div class="hq login-box-div">
             <span class="flexF">验证码</span>
-            <input class="flexF" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="11">
+            <input class="flexF flexS" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="11">
             <p class="flexR">
               <span v-show="show" class="send1" @click="getCode">获取验证码</span>
               <span v-show="!show" class="send1">发送 {{count}} 秒</span>
@@ -68,13 +70,16 @@
         </div>
       </div>
     </div>
-    <md-selector v-model="isSelectorShow" default-value="2" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
+    <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
     <md-agree v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
       我已阅读并了解
       <a @click="openPgmodel" style="color:#1da1f3">《病历复印规定》</a>
     </md-agree>
     <Pgmodal ref="Pgmodal"></Pgmodal>
-    <md-button type="primary" round class="margin16" @click="copyresult">确认提交</md-button>
+
+    <div style="height:55px"></div>
+    <p @click="copyresult" class="add">下一步</p>
+    <!-- <md-button type="primary" round class="margin16" @click="copyresult">确认提交</md-button> -->
   </div>
 </template>
 <script type="text/babel">
@@ -83,7 +88,6 @@ let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
 export default {
   data() {
     return {
-
       name: '张三丰',
       copyUse: '',
       idcard: '454444444',
@@ -98,6 +102,7 @@ export default {
         checked: true,
       },
       num: 1,
+      value: 0,
       selectorValue: '全套复印',
       isSelectorShow: false,
       test: [
@@ -110,15 +115,15 @@ export default {
           text: '交通事故',
         },
         {
-          value: '2',
+          value: '3',
           text: '保险',
         },
         {
-          value: '2',
+          value: '4',
           text: '商业保险',
         },
         {
-          value: '2',
+          value: '5',
           text: '报销',
         },
       ],
@@ -160,7 +165,7 @@ export default {
     },
     onSelectorChoose(data) {
       this.selectorValue = data.text;
-      this.type = data.value * 1;
+      // this.type = data.value * 1;
     },
     showSelector() {
       this.isSelectorShow = true
@@ -208,6 +213,7 @@ export default {
 .calculate {
   margin-left: 100px;
 }
+
 .chooseBtn {
   background: #1da1f3;
   line-height: 100px;
@@ -217,11 +223,19 @@ export default {
   margin: 30px;
 }
 .chooseBtn img {
-  width: 40px;
+  width: 27px;
   position: relative;
-  top: 10px;
+  top: 3px;
 }
 .smallTitle {
   line-height: 70px;
+}
+
+.putinfo .content .login-box div .flexS {
+  padding-left: 70px;
+}
+.content .login-box div input::-webkit-input-placeholder {
+  color: #c5cad5;
+  font-size: 28px;
 }
 </style>

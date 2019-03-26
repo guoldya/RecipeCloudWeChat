@@ -233,6 +233,16 @@
    line-height: 45px;
 }
 
+.wx_list_null {
+   width: 100px;
+   text-align: center;
+   height: 44px;
+   border-radius: 10px;
+   color: #b6b6b6;
+   background-color: #ededed;
+   line-height: 45px;
+}
+
 .wx_residue_null {
    background-color: #969696
 }

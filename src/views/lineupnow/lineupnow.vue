@@ -21,10 +21,10 @@
       </div>
       <div v-if="goodsList.length!=0 " v-show="!loadingtrue">
         <div class="card margin16" v-for="(item,index) in goodsList" :key="index">
-          <div class="cardText">
+          <div class="cardText" v-show="queryType==1">
             <p class="cardTextPP">
               <span>等待时间：
-                <span class="mu-secondary-text-color">{{item.waitingTime}}分钟</span>
+                <span class="mu-secondary-text-color">{{item.waitingDate |time}}</span>
               </span>
               <span>当前号码：
                 <span class="mu-secondary-text-color">{{item.currentNo}}号</span>
@@ -37,7 +37,25 @@
                 <span class="mu-secondary-text-color">{{item.queueNo}}号</span>
               </span>
             </p>
-            <p>您前面还有：{{item.waitingNo}}位</p>
+            <p v-if="item.waitingNo<0">您已经过号，请重新排队</p>
+            <p v-else>您前面还有：{{item.waitingNo}}位</p>
+            <p class="learnMore" @click="intolineupinfo(item)">
+              详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
+            </p>
+          </div>
+          <div class="cardText" v-show="queryType==2">
+            <p class="cardTextPP">
+              <span>报告时间：
+                <span class="mu-secondary-text-color">{{item.reportTime|lasttime}} </span>
+              </span>
+              <span v-if="item.reportId">报告已出</span>
+              <span v-else>报告未出</span>
+            </p>
+            <p class="cardTextPP">
+              <span>检查科室：{{item.examDept}}
+              </span>
+            </p>
+            <p>检查项目：{{item.className}}</p>
             <p class="learnMore" @click="intolineupinfo(item)">
               详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
             </p>
@@ -133,11 +151,11 @@ export default {
   mounted() {
 
     document.title = '就诊队列';
-    console.log(this.$store.state.feeActiveId,"this.$store.state.feeActiveId")
+    console.log(this.$store.state.feeActiveId, "this.$store.state.feeActiveId")
     if (this.$store.state.feeActiveId) {
       this.queryType = this.$store.state.feeActiveId
     }
-   
+
     var today = new Date();
     var m = today.getMonth() + 1;
     m = m <= 9 ? "0" + m : m;
@@ -164,7 +182,7 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
-      params.onlyWaiting = this.isActive ? 'Y' : undefined;
+      params.isUsable = this.isActive ? 1 : undefined;
       params.queryType = this.queryType;
       // params.waitingDate = "2019-02-22";
       this.$axios.put(appbizWaitingQueuereadlist, params).then((res) => {

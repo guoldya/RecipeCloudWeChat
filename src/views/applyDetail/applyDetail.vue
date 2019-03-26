@@ -4,103 +4,103 @@
         <div class="outCarint margin45">
             <div v-for="(item,i) in recipeData">
                 <div class="card margin16" >
-                    <div class="cardText ">
+                    <div>
                         <div class="listData">
-                                <span>处方号：
-                                    <span class="mu-light-text-color">{{item.no}}</span>
-                                </span>
+                            <span>处方号：
+                                <span class="mu-light-text-color">{{item.no}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>处方日期：
-                                    <span class="mu-light-text-color">{{item.date}}</span>
-                                </span>
+                            <span>处方日期：
+                                <span class="mu-light-text-color">{{item.date}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>姓名：
-                                    <span class="mu-light-text-color">{{item.name}}</span>
-                                </span>
+                            <span>姓名：
+                                <span class="mu-light-text-color">{{item.name}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>年龄：
-                                    <span class="mu-light-text-color">{{item.age}}</span>
-                                </span>
+                            <span>年龄：
+                                <span class="mu-light-text-color">{{item.age}}</span>
+                            </span>
                             <span style="width: 50%">性别：
-                                    <span class="mu-light-text-color">{{item.sex}}</span>
-                                </span>
+                                <span class="mu-light-text-color">{{item.sex}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>科室：
-                                    <span class="mu-light-text-color">{{item.dept}}</span>
-                                </span>
+                            <span>科室：
+                                <span class="mu-light-text-color">{{item.dept}}</span>
+                            </span>
                             <span style="width: 50%;">开方医生：
-                                    <span class="mu-light-text-color">{{item.doc}}</span>
-                                </span>
+                                <span class="mu-light-text-color">{{item.doc}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>续方类型：
-                                    <span class="mu-secondary-text-color">{{item.type}}</span>
-                                </span>
+                            <span>续方类型：
+                                <span class="mu-secondary-text-color">{{item.type}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>慢病诊断：
-                                    <span class="mu-secondary-text-color">{{item.result}}</span>
-                                </span>
+                            <span>慢病诊断：
+                                <span class="mu-secondary-text-color">{{item.result}}</span>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="card margin16" >
-                    <div class="cardText ">
+                    <div>
                         <div class="listData">
-                                <span>申请日期：
-                                    <span class="mu-light-text-color">{{item.applyDate}}</span>
-                                </span>
+                            <span>申请日期：
+                                <span class="mu-light-text-color">{{item.applyDate}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>处理状态：
-                                    <span class="mu-secondary-text-color">{{item.auditState}}</span>
-                                </span>
+                            <span>处理状态：
+                                <span class="mu-secondary-text-color">{{item.auditState}}</span>
+                            </span>
                         </div>
                         <div class="listData">
                             <span>续方事由：</span>
                             <span class="mu-light-text-color longWord">{{item.recipeReason}}</span>
                         </div>
                         <div class="listData">
-                                <span>续方日期：
-                                    <span class="mu-light-text-color">{{item.recipeDate}}</span>
-                                </span>
+                            <span>续方日期：
+                                <span class="mu-light-text-color">{{item.recipeDate}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>续方处方号：
-                                    <span class="mu-light-text-color">{{item.recipeNo}}</span>
-                                </span>
+                            <span>续方处方号：
+                                <span class="mu-light-text-color">{{item.recipeNo}}</span>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="card margin16" >
-                    <div class="cardText ">
+                    <div>
                         <div class="listData">
-                                <span>审方医生：
-                                    <span class="mu-light-text-color">{{item.auditDoc}}</span>
-                                </span>
+                            <span>审方医生：
+                                <span class="mu-light-text-color">{{item.auditDoc}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>审方日期：
-                                    <span class="mu-light-text-color">{{item.auditDate}}</span>
-                                </span>
+                            <span>审方日期：
+                                <span class="mu-light-text-color">{{item.auditDate}}</span>
+                            </span>
                         </div>
                         <div class="listData">
                             <span>医生备注：</span>
                             <span class="mu-light-text-color longWord">{{item.docRemark}}</span>
                         </div>
                         <div class="listData">
-                                <span>审方药师：
-                                    <span class="mu-light-text-color">{{item.teacherDoc}}</span>
-                                </span>
+                            <span>审方药师：
+                                <span class="mu-light-text-color">{{item.teacherDoc}}</span>
+                            </span>
                         </div>
                         <div class="listData">
-                                <span>审方日期：
-                                    <span class="mu-light-text-color">{{item.teacherDate}}</span>
-                                </span>
+                            <span>审方日期：
+                                <span class="mu-light-text-color">{{item.teacherDate}}</span>
+                            </span>
                         </div>
                         <div class="listData">
                             <span>药师备注：</span>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="card margin16" >
-                    <div class="cardText ">
+                    <div>
                         <div class="listBottom mu-light-text-color" v-for="item in listBottom">
                             <span>{{item.name}}</span>
                             <span v-if="isContinue==true">{{item.num}} 盒</span>

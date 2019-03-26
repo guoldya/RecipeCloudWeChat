@@ -1,0 +1,79 @@
+.doctorschedu .doctor-head {
+    width: 100%;
+    background: url(./bg.png) no-repeat;
+    color: #fff;
+    font-size: 28px;
+}
+.doctorschedu .doctor-info{
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 32px;
+}
+.doctorschedu .doctor-info .header {
+    width: 140px;
+}
+.doctorschedu .doctor-info .doctor-right {
+    margin: 28px 0 0 18px;
+}
+.doctorschedu .doctor-info .doctor-name {
+    font-weight: 600;
+    font-size: 45px;
+}
+.doctorschedu .doctor-info .header img {
+    width: 100%;
+    border-radius: 50%;
+}
+.doctorschedu  .doctor-head{
+    height:auto;
+}
+.doctorschedu .wh_content_all{
+    background-color: transparent;
+}
+.doctorschedu .wh_item_date,
+.doctorschedu .wh_top_tag,
+.doctorschedu .wh_top_changge li{
+    color: #333333;
+    width: 64px;
+    height: 64px;
+}
+.doctorschedu .wh_jiantou1{
+    border-top: 4px solid #333333;
+    border-left: 4px solid #333333;
+}
+.doctorschedu .wh_jiantou2{
+    border-top: 4px solid #333 ;
+    border-right: 4px solid #333;
+}
+.doctorschedu .wh_content{
+    margin-left: 22px;
+}
+.doctorschedu .wh_content_item{
+    height: 100px;
+}
+.doctorschedu .wh_content_item .wh_isToday{
+    background-color: #1da1f3;
+    color: #ffffff;
+}
+.doctorschedu .wh_content_item .wh_chose_day{
+    background-color: #e5e5e5;
+}
+.doctorschedu .ismore{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding-bottom: 6px;
+}
+
+.yy_dateAA {
+    height: auto;
+}
+.doctorschedu .open{
+    padding: 10px 14px 0;
+    text-align: right;
+}
+.doctorschedu .content{
+    padding: 14px 0;
+}
+.doctorschedu .content p:first-child{
+    padding-bottom: 6px;
+}

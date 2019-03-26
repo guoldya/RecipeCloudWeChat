@@ -10,31 +10,19 @@
     </header>
     <div class="margin45 outCarint">
       <Search type="onlines"></Search>
-      <Skeleton v-if="isloading"></Skeleton>
-      <div class="online-content" v-else>
+      <!-- <Skeleton v-if="isloading"></Skeleton> -->
+      <div class="online-content">
         <div class="tools">
           <div class="nav2">
-            <router-link
-              tag="span"
-              :to="{ path: 'expertpage', query: { id: item.id ,orgName:item.orgName} }"
-              v-for="(item, index) in departmentList"
-              :key="index"
-            >
-              <img
-                :src="$conf.constant.img_base_url + item.orgPicFileName"
-                alt=""
-              />{{ item.orgName }}
+            <router-link tag="span" :to="{ path: 'expertpage', query: { id: item.id ,orgName:item.orgName} }" v-for="(item, index) in departmentList" :key="index">
+              <img :src="$conf.constant.img_base_url + item.orgPicFileName" alt="" />{{ item.orgName }}
             </router-link>
           </div>
         </div>
-        <div
-          class="more"
-          @click="loadMoredepartment"
-          v-if="
+        <div class="more" @click="loadMoredepartment" v-if="
             departmenParams.pages > 1 &&
               departmenParams.num < departmenParams.pages
-          "
-        >
+          ">
           展开<img src="./xiangxia.png" alt="" />
         </div>
         <div class="tabA">
@@ -51,71 +39,37 @@
             </div>
           </router-link>
         </div>
-
-        <md-tab-picker
-          title="请选择科室"
-          :data="Fdata"
-          v-model="show"
-          @change="chooseDepart"
-        />
-        <md-selector
-          v-model="isSelectorShow"
-          :data="sortData"
-          @choose="chooseSort"
-          title="选择排序"
-        ></md-selector>
-
+        <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" />
+        <md-selector v-model="isSelectorShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
         <h2>推荐医生</h2>
         <div class="yaobutton">
           <div :class="{ yaoActive: isChecked == 0 }" @click="choose">
             {{ addressStr }}
             <span class="downImg">
               <img v-show="isChecked == 0" src="@/assets/images/top11.png" />
-              <img
-                v-show="isChecked != 0"
-                src="@/assets/images/icon_down.png"
-              />
+              <img v-show="isChecked != 0" src="@/assets/images/icon_down.png" />
             </span>
           </div>
           <div :class="{ yaoActive: isChecked == 1 }" @click="sort()">
             {{ selectorValue }}
             <span class="downImg">
               <img v-show="isChecked == 1" src="@/assets/images/top11.png" />
-              <img
-                v-show="isChecked != 1"
-                src="@/assets/images/icon_down.png"
-              />
+              <img v-show="isChecked != 1" src="@/assets/images/icon_down.png" />
             </span>
           </div>
           <div :class="{ yaoActive: isChecked == 2 }" @click="filter">
             筛选
             <span class="downImg">
               <img v-show="isChecked == 2" src="@/assets/images/top11.png" />
-              <img
-                v-show="isChecked != 2"
-                src="@/assets/images/icon_down.png"
-              />
+              <img v-show="isChecked != 2" src="@/assets/images/icon_down.png" />
             </span>
           </div>
         </div>
         <!-- 医生列表 -->
-        <doctorList
-          v-for="(item, index) in doctorList"
-          :datas="item"
-          :key="index"
-        ></doctorList>
-        <div
-          class="loadmore"
-          v-infinite-scroll="loadMore"
-          infinite-scroll-disabled="busy"
-          infinite-scroll-distance="10"
-        >
-          <md-icon
-            v-if="!isloading && busy"
-            name="spinner"
-            size="lg"
-            style="-webkit-filter:invert(1)"
-          ></md-icon>
+        <Skeleton v-if="isloading"></Skeleton>
+        <doctorList v-else v-for="(item, index) in doctorList" :datas="item" :key="index"></doctorList>
+        <div class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+          <md-icon v-if="!isloading && busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
           <div class="nomore" v-if="doctorParams.pageNumber == doctorPages">
             没有更多了
           </div>
@@ -255,10 +209,7 @@ export default {
           throw Error(res.data.msg);
         }
         if (res.data.rows) {
-          this.doctorList =
-            this.doctorParams.pageNumber == 1
-              ? res.data.rows
-              : this.doctorList.concat(res.data.rows);
+          this.doctorList = this.doctorParams.pageNumber == 1 ? res.data.rows : this.doctorList.concat(res.data.rows);
         }
         this.doctorPages = res.data.pages;
         this.doctorParams.pageNumber = res.data.current;

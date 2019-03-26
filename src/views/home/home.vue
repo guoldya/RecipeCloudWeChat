@@ -8,7 +8,7 @@
         </div>
         <div><img src="@/assets/images/bg.png" alt="" style="width:100%"></div>
         <div class="homePage">
-            <!-- 就诊卡片  -->
+            <!-- 就诊卡片 -->
             <div v-if=" _cardlist.length!=0">
                 <div v-show="!cardLoading" class="homeCard marginbott16" v-for="(item, index) in  _cardlist" v-if="item.id==chooseId" :key="'cardlist' + index">
                     <div class="homeCardText">
@@ -37,7 +37,6 @@
                 <span v-show="!cardLoading" class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
             <div class="cardPositon">
-
             </div>
             <div>
                 <ul class="home-cz home-flex">
@@ -88,10 +87,6 @@
                     <img src="@/assets/images/7.png" alt="" class="image">
                     <p>我的处方</p>
                 </li>
-                <!-- <li>
-                    <img src="@/assets/images/8.png" alt="" class="image">
-                    <p>就诊导航</p>
-                </li> -->
             </ul>
             <!-- 测试的code：{{code}} -->
             <div class="home-zy home-flex">
@@ -108,7 +103,8 @@
                 </div>
             </div>
             <div class="club-new-spread" v-show="!isDown" @click="isDown=!isDown">...展开</div>
-            <div class="club-new-suo"  v-show="isDown"   @click="isDown=!isDown">收起</div>
+            <div class="club-new-suo" v-show="isDown" @click="isDown=!isDown">收起</div>
+            <div style="height:10px"></div>
             <!-- <div class="lookupmore" :class="{'down':isDown}" @click="isDown=!isDown">
                 <img src="@/assets/images/icon_up.png" alt="">
             </div> -->
@@ -196,7 +192,7 @@ export default {
         } else {
             this.chooseId = this._cardlist[0].id;
         }
-        this.homeNumber(this.chooseId);
+        await this.homeNumber(this.chooseId);
         this.$store.commit('cardListFun', this._cardlist);
         this.$store.commit('patientIdFun', this._cardlist[0].patientId);
         this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
@@ -204,19 +200,33 @@ export default {
         this.$store.commit('cardIdFun', this._cardlist[0].id);
     },
     methods: {
-        homeNumber(data) {
-            this.$axios.put(bizPatientRegisterselectCount, {
-                cardId: data ? data : this.$store.state.cardId
-                // cardId:data? this.$store.state.cardId
-            }).then(res => {
-                if (res.data.code == '200') {
-                    this.homeList = res.data.data
-                } else {
-                    console.log(res.data.msg)
+        // async homeNumber(data) {
+        //     this.$axios.put(bizPatientRegisterselectCount, {
+        //         cardId: data ? data : this.$store.state.cardId
+        //         // cardId:data? this.$store.state.cardId
+        //     }).then(res => {
+        //         if (res.data.code == '200') {
+        //             this.homeList = res.data.data
+        //         } else {
+        //             console.log(res.data.msg)
+        //         }
+        //     }).catch(function (err) {
+        //         console.log(err)
+        //     })
+        // },
+
+        async homeNumber(data) {
+            try {
+                let res = await this.$axios.put(bizPatientRegisterselectCount, {
+                    cardId: data ? data : this.$store.state.cardId
+                });
+                if (res.data.code != 200) {
+                    throw Error(res.data.msg);
                 }
-            }).catch(function (err) {
-                console.log(err)
-            })
+                this.homeList = res.data.data
+            } catch (error) {
+                console.log(error);
+            }
         },
         choosedepart() {
             let argu = {};
@@ -234,7 +244,7 @@ export default {
             if (!current) {
                 current = this._cardlist[0]
             }
-            this.homeNumber(this.chooseId)
+            this.homeNumber(this.chooseId);
             this.chooseId = current.id;
             this.$store.commit('patientIdFun', current.patientId);
             this.$store.commit('cardNoFun', current.cardNo);
@@ -242,7 +252,7 @@ export default {
             this.$store.commit('cardNnameFun', current.patientName);
         },
         feerecord() {
-            let argu = {}
+            let argu = {};
             this.$router.push({
                 name: 'feerecord',
                 query: argu
