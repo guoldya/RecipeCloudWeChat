@@ -366,3 +366,15 @@
    font-size: 32px;
    color: #696868;
 }
+.home .md-button.small.round{
+   width: 100%;
+   margin-top: 28px;
+   height: 80px;
+}
+
+.home .md-landscape .md-icon.md-landscape-close{
+   position: absolute;
+   top: -30px;
+   right: 16px;
+   color: #333333;
+}

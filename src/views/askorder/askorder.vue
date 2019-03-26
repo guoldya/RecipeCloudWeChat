@@ -2,12 +2,13 @@
    <div class="askorder">
       <Header post-title="问诊订单"  ></Header>
       <div class="outCarint margin45">
-         <div class="appTab">
-            <span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-               {{item.title}}
-            </span>
-         </div>
-         <div class="demo-text" v-if="active1 === 0" @click="appointinfo">
+         <!--<div class="appTab">-->
+            <!--<span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">-->
+               <!--{{item.title}}-->
+            <!--</span>-->
+         <!--</div>-->
+         <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
+         <div class="demo-text" v-if="active1 === 1" @click="appointinfo">
             <div class="card cardcc">
                <p class="appTitle">
                   <span>2019-12-05 12:30</span>
@@ -30,7 +31,7 @@
                </div>
             </div>
          </div>
-         <div class="demo-text" v-if="active1 === 1">
+         <div class="demo-text" v-if="active1 === 2">
             <div class="card cardcc">
                <p class="appTitle">
                   <span>2019-12-05 12:30</span>
@@ -57,11 +58,11 @@
 export default {
    data() {
       return {
-         active1: 0,
+         active1: 1,
          
          time: [
-            { title: '待支付' },
-            { title: '已支付' },
+            { title: '待支付',type:1},
+            { title: '已支付',type:2},
          ],
       };
    },
@@ -82,7 +83,9 @@ export default {
       switchTo(num) {
          this.active1 = num;
       },
-
+       childByValue: function (childValue) {
+           this.active1 = childValue.type;
+       },
 
    },
    computed: {
