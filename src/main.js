@@ -15,6 +15,9 @@ import Address from './components/address/address.vue';
 import Footer from './components/footer/footer.vue';
 import Loading from './components/loading/loading.vue';
 import infiniteScroll from 'vue-infinite-scroll';
+import Skeleton from './Skeleton.vue';
+
+
 import filters from './filter/filter';
 
 
@@ -43,6 +46,7 @@ Vue.component('Header', Header);
 Vue.component('Search', Search);
 Vue.component('Apptab', Apptab)
 Vue.component('Loading', Loading);
+Vue.component('Skeleton', Skeleton);
 Vue.component('Footer', Footer);
 Vue.component('Address', Address);
 Vue.component('rater', rater);

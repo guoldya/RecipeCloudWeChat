@@ -26,6 +26,7 @@ export default {
    },
    mounted() {
       document.title = '搜索医生';
+       document.getElementsByClassName("oc_val")[0].focus();
    },
    methods: {
       intodoctordetail() {

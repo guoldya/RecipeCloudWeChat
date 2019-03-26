@@ -7,6 +7,7 @@
           <img :src=" '/' === $route.path ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="首页">
         </span>
         <span :class="{on: '/' === $route.path}">诊疗服务</span>
+        <span v-if="footNumber!=0" class="footNumber"></span>
       </a>
       <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/online')">
         <span class="aui-tabBar-item-icon">
@@ -22,7 +23,6 @@
       </a>
     </div>
   </div>
-
 </template>
 <script>
 export default {
@@ -36,8 +36,9 @@ export default {
       ]
     }
   },
+  props: ['footNumber'],
   mounted() {
-
+   
   },
   methods: {
     switchTo(path) {
@@ -129,5 +130,19 @@ export default {
   background-size: 46px;
   display: block;
   background-repeat: no-repeat;
+}
+.aui-tabBar-item .footNumber {
+  position: absolute;
+  top: 14px;
+  left: 147px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  background: #f34949;
+  text-align: center;
+  line-height: 32px;
+  font-size: 24px;
+  color: #fff;
 }
 </style>

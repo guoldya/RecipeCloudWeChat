@@ -1,54 +1,54 @@
 <template>
-   <div class="chooseCase">
-      <Header post-title="选择复印病案"></Header>
-      <div class="margin45 outCarint" style="margin-bottom:70px">
-         <div class="tabAdiv">
-            <div class="chooseCaseBtn">
-               <div class="md-agree" @click="onChange()">
-                  <div :class="{ 'md-agree-icon':true,'checked':true}">
-                     <div class="md-agree-icon-container">
-                        <i class="md-icon icon-font md-icon-checked md"></i>
-                        <i class="md-icon icon-font md-icon-check md"></i>
-                     </div>
-                  </div>
-               </div>
+  <div class="chooseCase">
+    <Header post-title="选择复印病案"></Header>
+    <div class="margin45 outCarint" style="margin-bottom:70px">
+      <div class="tabAdiv">
+        <div class="chooseCaseBtn">
+          <div class="md-agree" @click="onChange()">
+            <div :class="{ 'md-agree-icon':true,'checked':true}">
+              <div class="md-agree-icon-container">
+                <i class="md-icon icon-font md-icon-checked md"></i>
+                <i class="md-icon icon-font md-icon-check md"></i>
+              </div>
             </div>
-            <div class="chooseCaseText">
-               <p>住院科室：</p>
-               <p>出院诊断： </p>
-               <p>如愿日期：217-12-12 12:22</p>
-               <p>出院日期：217-12-12 12:22</p>
-            </div>
-            <div class="chooseCaseTime"> 第
-               <div class="number">1</div>
-               次</div>
-         </div>
-         <div class="tabAdiv">
-            <div class="chooseCaseBtn">
-               <div class="md-agree" @click="onChange()">
-                  <div :class="{ 'md-agree-icon':true,'checked':true}">
-                     <div class="md-agree-icon-container">
-                        <i class="md-icon icon-font md-icon-checked md"></i>
-                        <i class="md-icon icon-font md-icon-check md"></i>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="chooseCaseText">
-               <p>住院科室：</p>
-               <p>出院诊断： </p>
-               <p>如愿日期：217-12-12 12:22</p>
-               <p>出院日期：217-12-12 12:22</p>
-            </div>
-            <div class="chooseCaseTime"> 第
-               <div class="number">12</div>
-               次
-            </div>
-         </div>
-         <md-button type="primary" round class="margin16">确认提交</md-button>
+          </div>
+        </div>
+        <div class="chooseCaseText">
+          <p>住院科室：</p>
+          <p>出院诊断： </p>
+          <p>如愿日期：217-12-12 12:22</p>
+          <p>出院日期：217-12-12 12:22</p>
+        </div>
+        <div class="chooseCaseTime"> 第
+          <div class="number">1</div>
+          次</div>
       </div>
+      <div class="tabAdiv">
+        <div class="chooseCaseBtn">
+          <div class="md-agree" @click="onChange()">
+            <div :class="{ 'md-agree-icon':true,'checked':true}">
+              <div class="md-agree-icon-container">
+                <i class="md-icon icon-font md-icon-checked md"></i>
+                <i class="md-icon icon-font md-icon-check md"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chooseCaseText">
+          <p>住院科室：</p>
+          <p>出院诊断： </p>
+          <p>如愿日期：217-12-12 12:22</p>
+          <p>出院日期：217-12-12 12:22</p>
+        </div>
+        <div class="chooseCaseTime"> 第
+          <div class="number">12</div>
+          次
+        </div>
+      </div>
+      <md-button type="primary" round class="margin16">确认提交</md-button>
+    </div>
 
-   </div>
+  </div>
 </template>
 <script type="text/babel">
 import { Toast } from 'mand-mobile';
@@ -56,44 +56,44 @@ import { Dialog, Button } from 'mand-mobile'
 
 
 export default {
-   data() {
-      return {
+  data() {
+    return {
 
 
-         agreeConf: {
-            checked: true,
-            name: 'agree0',
-            size: 'md',
-            disabled: false,
-            introduction: '选中状态',
-         },
-
-
-      };
-   },
-   created() {
-
-
-
-   },
-   watch: {
-
-   },
-   mounted() {
-
-   },
-   methods: {
-
-
-      addadress() {
-
+      agreeConf: {
+        checked: true,
+        name: 'agree0',
+        size: 'md',
+        disabled: false,
+        introduction: '选中状态',
       },
 
 
-   },
-   computed: {
+    };
+  },
+  created() {
 
-   },
+
+
+  },
+  watch: {
+
+  },
+  mounted() {
+
+  },
+  methods: {
+
+
+    addadress() {
+
+    },
+
+
+  },
+  computed: {
+
+  },
 
 };
 </script>
@@ -101,13 +101,14 @@ export default {
 .chooseCase .tabAdiv {
   display: flex;
   justify-content: space-around;
-  box-shadow: 0 0 0.17rem rgba(20,19,51,.1);
+  box-shadow: 0 0 0.17rem rgba(20, 19, 51, 0.1);
   border-radius: 20px;
   font-size: 28px;
   margin-bottom: 32px;
 }
 .chooseCase .tabAdiv div:first-child {
   line-height: 200px;
+  display: inline-block;
 }
 .chooseCase .chooseCaseBtn {
   width: 15%;

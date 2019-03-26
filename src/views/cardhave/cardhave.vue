@@ -94,7 +94,7 @@ export default {
     };
   },
   created() {
-
+ document.scrollingElement.scrollTop = 0
   },
   mounted() {
 

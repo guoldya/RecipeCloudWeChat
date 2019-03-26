@@ -107,9 +107,11 @@
                     <p>互联网医院是集医疗、教学、科研、预防、保健、康复为一体，具有较强救治能力、较高科研水平和国际交流能力的二级甲等医院，先后被评为全国文明单位、全国“百佳医院、全国卫生计生系统先进集体、全国医院信息化建没先进单位、全国县级医院帮扶示范基地、中国PTC突出贡献团队奖、全国优质护理服务优秀医院、全国医院后勤管理先进集体、全国医院文化建设先进单位等荣誉称号。</p>
                 </div>
             </div>
-            <div class="lookupmore" :class="{'down':isDown}" @click="isDown=!isDown">
+            <div class="club-new-spread" v-show="!isDown" @click="isDown=!isDown">...展开</div>
+            <div class="club-new-suo"  v-show="isDown"   @click="isDown=!isDown">收起</div>
+            <!-- <div class="lookupmore" :class="{'down':isDown}" @click="isDown=!isDown">
                 <img src="@/assets/images/icon_up.png" alt="">
-            </div>
+            </div> -->
         </div>
         <md-landscape v-model="showPic" :mask-closable="true">
             <div class="codema">
@@ -118,7 +120,7 @@
                 <p class="namecodema">就诊卡二维码</p>
             </div>
         </md-landscape>
-        <Footer></Footer>
+        <Footer :foot-number="homeList.notPayCount+homeList.notApplyCount+homeList.notSignCount"></Footer>
     </div>
 </template>
 <script>
@@ -149,14 +151,6 @@ export default {
             _cardlist: state => state.home.cardList,
             maxindex: state => state.home.cardTotal,
         }),
-        // _cardlist() {
-        //     this.cardLoading = false;
-        //     return this.$store.state.cardList;
-        // },
-        // _cardlist2() {
-        //     return this.$store.state.home.cards
-        // },
-
     },
     created() {
         this.$store.commit('feeActiveFun', 1);

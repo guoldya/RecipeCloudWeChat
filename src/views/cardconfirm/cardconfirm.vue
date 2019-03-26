@@ -1,6 +1,6 @@
 <template>
    <div class="outCarint margin45">
-      <Header post-title="资料确认"  ></Header>
+      <Header post-title="资料确认"></Header>
       <div class="rebinding-box card margin16">
          <div class="box-timeline  cardText">
             <div class="alltimeball">
@@ -71,11 +71,11 @@ export default {
       };
    },
    created() {
-
+      document.scrollingElement.scrollTop = 0
    },
    mounted() {
       document.title = '资料确认';
-     
+
    },
    methods: {
 
