@@ -151,57 +151,6 @@
 </script>
 
 <style scoped>
-    .doctorschedu  .doctor-head{
-        height:auto;
-    }
-    /deep/.wh_content_all{
-        background-color: transparent !important;
-    }
-    /deep/.wh_item_date, /deep/.wh_top_tag,/deep/.wh_top_changge li{
-        color: #333333;
-        width: 64px !important;
-        height: 64px !important;
-    }
-    /deep/.wh_jiantou1{
-        border-top: 4px solid #333333 !important;
-        border-left: 4px solid #333333 !important;
-    }
-    /deep/.wh_jiantou2{
-        border-top: 4px solid #333 !important;
-        border-right: 4px solid #333 !important;
-    }
-    /deep/.wh_content{
-        margin-left: 22px !important;
-    }
-    /deep/.wh_content_item{
-        height: 100px !important;
-    }
-    /deep/.wh_content_item .wh_isToday{
-        background-color: #1da1f3 !important;
-        color: #ffffff !important;
-    }
-    /deep/.wh_content_item .wh_chose_day{
-        background-color: #e5e5e5 !important;
-    }
-    .ismore{
-        overflow: hidden;
-        text-overflow:ellipsis;
-        white-space: nowrap;
-        padding-bottom: 6px;
-    }
-
-    .yy_dateAA {
-        height: auto;
-    }
-    .doctorschedu .open{
-        padding: 10px 14px 0;
-        text-align: right;
-    }
-    .doctorschedu .content{
-        padding: 14px 0;
-    }
-    .doctorschedu .content p:first-child{
-        padding-bottom: 6px;
-    }
+    @import "doctorschedu.css";
 </style>
 

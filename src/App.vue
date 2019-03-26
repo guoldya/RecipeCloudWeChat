@@ -309,6 +309,7 @@ textarea {
   font-size: 28px;
   outline: none;
   font-family: "PingFang-SC-Medium";
+  text-align: justify;
 }
 textarea::-webkit-input-placeholder {
   /*WebKit browsers*/

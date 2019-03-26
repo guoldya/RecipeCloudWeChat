@@ -72,7 +72,6 @@
 
         },
         mounted() {
-            let _this = this;
             this.examineFun(false);
             document.title = '检验检查';
         },
@@ -160,6 +159,7 @@
         letter-spacing: 1px;
         padding: 15px 40px;
         text-align: center;
+        margin-bottom: 10px;
     }
     .examine .listData span{
         padding: 8px 0px;

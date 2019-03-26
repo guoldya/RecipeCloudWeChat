@@ -4,7 +4,7 @@
         <div class="outCarint margin45">
             <div>
                 <div class="card margin16">
-                    <div class="cardText">
+                    <div>
                         <div class="star">
                             <img src="@/assets/images/1.jpg" alt="" style="width: 14%;height: 14%">
                             <rater class="diy-box" :score="0" :stars=this.starArray></rater>
@@ -12,7 +12,7 @@
                         </div>
                         <p class="partLine"></p>
                         <div>
-                            <textarea name="" id="" cols="30" rows="5" placeholder="服务满足你的期待吗？请大胆说出它的优点与美中不足的地方吧！"></textarea>
+                            <textarea name="" id="" cols="45" rows="5" placeholder="服务满足你的期待吗？请大胆说出它的优点与美中不足的地方吧！"></textarea>
                             <ul class="image-reader-list">
                                 <li class="image-reader-item" v-for="(img, index) in imageList['reader0']" :key="index" :style="{
                                               'backgroundImage': `url(${img})`,

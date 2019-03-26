@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
+import * as mandMobile from 'mand-mobile'
+
+import 'mand-mobile/lib/mand-mobile.css'
 import router from './router'
 import axios from 'axios';
 import Config from './config/config.js';
@@ -16,8 +19,9 @@ import Skeleton from './Skeleton.vue';
 
 
 import filters from './filter/filter';
-import * as mandMobile from 'mand-mobile'
-import 'mand-mobile/lib/mand-mobile.css'
+
+
+
 Vue.prototype.$conf = Config;
 Vue.use(mandMobile)
 Object.keys(filters).forEach(key => {

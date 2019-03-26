@@ -234,7 +234,7 @@ export default {
             if (!current) {
                 current = this._cardlist[0]
             }
-            this.homeNumber(this.chooseId)
+            this.homeNumber(this.chooseId);
             this.chooseId = current.id;
             this.$store.commit('patientIdFun', current.patientId);
             this.$store.commit('cardNoFun', current.cardNo);
@@ -242,7 +242,7 @@ export default {
             this.$store.commit('cardNnameFun', current.patientName);
         },
         feerecord() {
-            let argu = {}
+            let argu = {};
             this.$router.push({
                 name: 'feerecord',
                 query: argu
