@@ -33,8 +33,7 @@
     float :left;
     width: 23.5%;
     padding-bottom :23.5%;
-    margin-bottom: 2%;
-    margin-right :2%;
+    margin: 0 2% 2% 0;
     background :#FFF;
     box-shadow: 0 5px 20px rgba(197, 202, 213, .25);
     box-sizing: border-box;
@@ -86,6 +85,6 @@
     width: 200px;
     height: 200px;
  }
-.medicalEva .image-reader-item:last-child{
-    margin: 0 !important;
+.medicalEva .image-reader-item:nth-child(3n){
+    margin-right: 0 !important;
 }

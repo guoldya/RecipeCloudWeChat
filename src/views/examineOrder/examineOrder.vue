@@ -26,9 +26,8 @@
                     </div>
                     <p class="partLine" v-if="i!=timeData.length-1"></p>
                 </div>
-
             </div>
-            <div style="margin:186px 0" class="aligncenter" v-else>暂无号源</div>
+            <div style="margin:186px 0" class="aligncenter" v-show="!loadingtrue" v-else>暂无号源</div>
             <Loading v-show="loadingtrue"></Loading>
         </div>
     </div>

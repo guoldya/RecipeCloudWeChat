@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
+import * as mandMobile from 'mand-mobile'
+
+import 'mand-mobile/lib/mand-mobile.css'
 import router from './router'
 import axios from 'axios';
 import Config from './config/config.js';
@@ -13,8 +16,9 @@ import Footer from './components/footer/footer.vue';
 import Loading from './components/loading/loading.vue';
 import infiniteScroll from 'vue-infinite-scroll';
 import filters from './filter/filter';
-import * as mandMobile from 'mand-mobile'
-import 'mand-mobile/lib/mand-mobile.css'
+
+
+
 Vue.prototype.$conf = Config;
 Vue.use(mandMobile)
 Object.keys(filters).forEach(key => {
