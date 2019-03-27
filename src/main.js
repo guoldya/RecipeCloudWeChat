@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import * as mandMobile from 'mand-mobile'
-
 import 'mand-mobile/lib/mand-mobile.css'
-
 import axios from 'axios';
 import Config from './config/config.js';
 import store from './store/store';

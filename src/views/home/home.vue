@@ -113,12 +113,12 @@
                 <img src="@/assets/images/icon_up.png" alt="">
             </div> -->
         </div>
-        <md-landscape v-model="showPic" :mask-closable="true">
+        <md-landscape v-model="showPic" >
             <div class="codema">
                 <p class="namecodema">{{picName}}</p>
                 <img src="@/assets/images/lili.jpg" alt="">
                 <p class="namecodema">就诊卡二维码</p>
-                <md-button type="primary" size="small" inline round @click="closePicFun">关闭</md-button>
+                <md-button type="primary" size="small" inline round @click="showPic=false">关闭</md-button>
             </div>
         </md-landscape>
         <Footer :foot-number="homeList.notPayCount+homeList.notApplyCount+homeList.notSignCount"></Footer>
@@ -229,9 +229,6 @@ export default {
         showPicFun(data) {
             this.picName = data.patientName;
             this.showPic = true;
-        },
-        closePicFun(data){
-            this.showPic=false
         },
         switchCard(index) {
             let current = this._cardlist[index + 1];
