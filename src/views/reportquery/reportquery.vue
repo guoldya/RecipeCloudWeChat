@@ -56,12 +56,13 @@
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
-            <div v-show="!loadingtrue" class="nullDiv" v-else>
+            <div v-show="!loadingtrue" class="aligncenter" style="margin:186px 0" v-else>
                 <!--<img src="@/assets/images/null1.png">-->
                 <p>您近三个月没有{{noDataTitle}}记录</p>
             </div>
-            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
                 <span v-if="goodsList.length!=0&&!nomore">
+                    <span class="mu-light-text-color">加载中</span>
                     <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                 </span>
             </div>

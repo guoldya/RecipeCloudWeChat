@@ -36,8 +36,9 @@
             <div v-show="!loadingtrue" class="nullDiv" v-else>
                 <img src="@/assets/images/null1.png">
             </div>
-            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
                 <span v-if="examineData.length!=0&&!nomore">
+                    <span class="mu-light-text-color">加载中</span>
                     <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                 </span>
             </div>

@@ -19,6 +19,7 @@
 }
 .recipeRecord .blod span:nth-child(2){
     width: 19%;
+    text-align: center;
 }
 .recipeRecord .blod span:last-child{
     text-align: right;
@@ -29,7 +30,7 @@
 }
 .foldImg img{
     width: 28px;
-    float: right;
+    margin: 0 auto;
 }
 .block{
     display: block;

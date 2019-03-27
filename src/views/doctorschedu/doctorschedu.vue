@@ -38,7 +38,7 @@
     export default {
         components: {
             Calendar
-        },//修改
+        },
         data() {
             return {
                 isSeemore: false,
@@ -150,7 +150,7 @@
     }
 </script>
 
-<style scoped>
+<style  >
     @import "doctorschedu.css";
 </style>
 

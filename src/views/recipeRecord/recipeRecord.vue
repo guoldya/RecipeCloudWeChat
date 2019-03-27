@@ -64,10 +64,43 @@
             <!--</div>-->
 
             <div v-if="efficacyData.length!=0" v-show="!loadingtrue">
-                <div class="card margin16" v-for="(item,i) in efficacyData" >
-                    <div class="cardText">
+                <div class="card margin16" v-for="(item,i) in efficacyData" :key="i">
+                    <div class="cardText" v-if="i==0">
                         <div @click="recordDetail(i,item.id)">
-                            <div class="listData"><!--class="md-check-group"-->
+                            <div class="listData mu-secondary-text-color"><!--class="md-check-group"-->
+                                <span style="margin-left: 0px">{{item.recipeDate | time}}</span>
+                                <span>{{item.code}}</span>
+                            </div>
+                            <p class="partLine"></p>
+                            <div class="listData blod">
+                                <span>{{item.orgName}}</span>
+                                <span>{{item.patientName}}</span>
+                                <span>{{item.dept}}</span>
+                            </div>
+                            <div class="fold listData">
+                                <span>{{item.diag}}</span>
+                            </div>
+                        </div>
+                        <div class="foldImg" @click="foldFun(i)">
+                            <p :class="firImgIndex === i ? 'block' : 'none'" v-if="item.bizRecipeDetails.length!=0" class="partLine"></p>
+                            <div :class="firImgIndex === i ? 'block' : 'none'" v-for="list in item.bizRecipeDetails">
+                                <div class="listData">
+                                    <span>{{list.name}}</span>
+                                </div>
+                                <div class="listData userNum mu-light-text-color" >
+                                    <span>{{list.spec}}</span>
+                                    <span>{{list.total}}盒</span>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="@/assets/images/icon_up@2x.png" alt="" :class="firImgIndex === i ? 'block' : 'none' ">
+                                <img src="@/assets/images/icon_down@2x.png" alt="" :class="firImgIndex === i ? 'none' : 'block' ">
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else class="cardText">
+                        <div @click="recordDetail(i,item.id)">
+                            <div class="listData mu-secondary-text-color"><!--class="md-check-group"-->
                                 <span style="margin-left: 0px">{{item.recipeDate | time}}</span>
                                 <span>{{item.code}}</span>
                                 <!--<span class="mu-secondary-text-color">{{item.isChecked}}</span>-->
@@ -82,13 +115,8 @@
                                 <span>{{item.diag}}</span>
                             </div>
                         </div>
-
                         <div class="foldImg" @click="foldFun(i)">
-                            <div>
-                                <img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">
-                                <img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">
-                                <div style="clear:both;"></div>
-                            </div>
+                            <p :class="imgIndex === i ? 'block' : 'none'" v-if="item.bizRecipeDetails.length!=0" class="partLine"></p>
                             <div :class="imgIndex === i ? 'block' : 'none'" v-for="list in item.bizRecipeDetails">
                                 <div class="listData">
                                     <span>{{list.name}}</span>
@@ -98,6 +126,10 @@
                                     <span>{{list.total}}盒</span>
                                 </div>
                             </div>
+                            <div>
+                                <img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">
+                                <img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,8 +138,9 @@
             <div v-show="!loadingtrue" class="nullDiv" v-else>
                 <img src="@/assets/images/null1.png">
             </div>
-            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
                 <span v-if="efficacyData.length!=0&&!nomore">
+                    <span class="mu-light-text-color">加载中</span>
                     <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                 </span>
             </div>
@@ -175,6 +208,7 @@ export default {
             favorites: [],
             downImg: true,
             imgIndex: null,
+            firImgIndex: 0,
             selectStatus: false,
             notfound: false,
             selectAll: "",
@@ -256,15 +290,26 @@ export default {
             }
         },
         foldFun: function (val) {
-            this.imgIndex = val;
-            if (this.downImg == true) {
-                this.downImg = false;
-                this.imgIndex = val;
-            } else
-                if (this.downImg == false) {
-                    this.downImg = true;
-                    this.imgIndex = -1;
-                }
+             if (this.downImg == true) {
+                 if(val==0 && this.firImgIndex==0){
+                     this.firImgIndex = -1;
+                 }else{
+                     this.imgIndex = val;
+                     this.firImgIndex = -1;
+                 }
+                 if(this.imgIndex!=0){
+                     this.imgIndex=-1
+                 }
+                 this.downImg = false;
+            } else if (this.downImg == false) {
+                 if(val==0 && this.firImgIndex==-1){
+                     this.firImgIndex = 0;
+                 }else{
+                     this.firImgIndex = -1;
+                 }
+                 this.imgIndex = val;
+                 this.downImg = true;
+            }
         },
         recordDetail(val, par) {
             let argu = {id:par};
