@@ -109,6 +109,7 @@ body {
   font-size: 26px;
   line-height: 70px;
 }
+.card + .noMore {line-height: 40px}
 #app {
   font-family: "PingFang-SC-Medium";
   -webkit-font-smoothing: antialiased;
@@ -387,6 +388,7 @@ textarea::-webkit-input-placeholder {
   margin: 0 6px;
   vertical-align: bottom;
 }
+ 
 
 .md-field-item-title {
   font-size: 28px !important;
@@ -402,5 +404,9 @@ textarea::-webkit-input-placeholder {
 }
 .md-check-box{
   font-size: 28px !important;
+}
+.textCenter .md-icon.icon-svg.lg{
+  margin: -8px 0;
+ 
 }
 </style>

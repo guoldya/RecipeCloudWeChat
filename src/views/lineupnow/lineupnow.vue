@@ -48,8 +48,8 @@
               <span>报告时间：
                 <span class="mu-secondary-text-color">{{item.reportTime|lasttime}} </span>
               </span>
-              <span v-if="item.reportId">报告已出</span>
-              <span v-else>报告未出</span>
+              <span class="mu-secondary-text-color" v-if="item.reportId">报告已出</span>
+              <span class="mu-secondary-text-color" v-else>报告未出</span>
             </p>
             <p class="cardTextPP">
               <span>检查科室：{{item.examDept}}
@@ -66,8 +66,9 @@
       <div v-show="!loadingtrue" class="nullDiv" v-else>
         <img src="@/assets/images/null1.png">
       </div>
-      <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="clearfix">
+      <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
         <span v-if="goodsList.length!=0&&!nomore">
+          <span class="mu-light-text-color">加载中</span>
           <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
         </span>
       </div>
@@ -149,9 +150,7 @@ export default {
 
   },
   mounted() {
-
     document.title = '就诊队列';
-    console.log(this.$store.state.feeActiveId, "this.$store.state.feeActiveId")
     if (this.$store.state.feeActiveId) {
       this.queryType = this.$store.state.feeActiveId
     }
