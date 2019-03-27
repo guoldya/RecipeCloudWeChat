@@ -234,6 +234,7 @@ export default {
 .pg_positive div img {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 }
 /* .ivu-upload-input{
   display: none;

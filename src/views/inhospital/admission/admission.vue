@@ -69,7 +69,7 @@
               <span style="width: 18%;text-align:right">100</span>
             </div>
           </div>
-          <div >
+          <div>
             <div class="cardTextPP" style="border-bottom:none">
               <span style="width: 20%;">检查费</span>
               <span style="width: 44%;">双肺纹理增多</span>
@@ -191,14 +191,27 @@ export default {
       var back = document.getElementById('back');
       var aa = document.getElementsByClassName('aui-center-title');
       if (t >= 20) {
-        aa[0].style.color = "#333333";
-        back.setAttribute("src", require("@/assets/images/icon_back.png"));
-        scrollup.style.background = "#ffffff";
+        if (aa[0]) {
+          aa[0].style.color = "#333333";
+        }
+        if (back) {
+          back.setAttribute("src", require("@/assets/images/icon_back.png"));
+        }
+        if (scrollup) {
+          scrollup.style.background = "#ffffff";
+        }
       } else {
         //恢复正常
-        scrollup.style.background = "transparent";
-        aa[0].style.color = "#ffffff";
-        back.setAttribute("src", require("@/assets/images/icon_back_white.png"));
+        if (scrollup) {
+          scrollup.style.background = "transparent";
+        }
+        if (back) {
+          back.setAttribute("src", require("@/assets/images/icon_back_white.png"));
+        }
+        if (aa[0]) {
+          aa[0].style.color = "#ffffff";
+        }
+
       }
     }
     this.getData()

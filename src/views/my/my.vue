@@ -50,27 +50,24 @@ export default {
   },
   created() {
     this.$store.commit('feeActiveFun', 1);
+
   },
-  mounted() {
-    document.title = '个人中心';
-    let _this = this;
-    this.$axios.put(sysUserselectUserByAccount, {
-    }).then(function (res) {
-      if (res.data.code == '200') {
-        console.log(res.data.data.name, "ss");
-        _this.name = res.data.data.name;
-        if (res.data.data.headUrl) {
-          _this.headURL = _this.$conf.constant.img_base_url + res.data.data.headUrl;
-        }
-
-      }
-    }).catch(function (err) {
-      console.log(err);
-    });
-
-
+  async mounted() {
+    await this.getDepartment();
   },
   methods: {
+    async getDepartment() {
+      try {
+        let res = await this.$axios.put(sysUserselectUserByAccount, {
+        });
+        if (res.data.code != 200) {
+          throw Error(res.data.msg);
+        }
+        this.name = res.data.data.name;
+      } catch (error) {
+        console.log(error);
+      }
+    },
     registrecord() {
       let argu = {}
       this.$router.push({

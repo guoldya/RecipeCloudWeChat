@@ -1,43 +1,73 @@
 <template>
 
   <div class="lineupnow">
-    <Header post-title="排队详情"  ></Header>
+    <Header :post-title="title"></Header>
     <div class="outCarint margin45" v-show="!loadingtrue">
-      <div  v-if="lineupinfo!=null">
-        <div class="card margin16">
-          <div class="cardHEADER">
-            <div class="fleft lineupcard">
-              <img src="@/assets/images/icon_line_up.png" alt="">
-              <span>我的排队号</span>
+      <div v-if="lineupinfo!=null">
+        <div v-show="queryType==1">
+          <div class="card margin16">
+            <div class="cardHEADER">
+              <div class="fleft lineupcard">
+                <img src="@/assets/images/icon_line_up.png" alt="">
+                <span>我的排队号</span>
+              </div>
+              <p>我的号码：
+                <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span>
+              </p>
+              <p>排队类目：{{lineupinfo.deptName}}</p>
             </div>
-            <p>我的号码：
-              <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span>
-            </p>
-            <p>排队类目：{{lineupinfo.deptName}}</p>
           </div>
-         
+          <div class="card margin16" v-if="lineupinfo.waitingNo<0">
+            <div class="cardHEADER">
+              <div class="fleft lineupcard">
+                <img src="@/assets/images/icon_sad.png" alt="">
+                <span>您已过号！请重新排队！</span>
+              </div>
+              <p>当前正在受理的号是
+                <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span> 号</p>
+            </div>
+          </div>
+          <div class="card margin16" v-else>
+            <div class="cardHEADER">
+              <div class="fleft lineupcard">
+                <img src="@/assets/images/icon_schedule.png" alt="">
+                <span>进度</span>
+              </div>
+              <p>当前正在受理的号是
+                <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}}</span> 号</p>
+              <p>您前面还有
+                <span class="mu-secondary-text-color size18">{{lineupinfo.waitingNo}}</span> 位在等候，预计等待
+                <span class="mu-secondary-text-color size18">{{lineupinfo.waitingTime}}</span> 分钟</p>
+            </div>
+          </div>
         </div>
-        <!-- <div class="card margin16">
-          <div class="cardHEADER">
-            <div class="fleft lineupcard">
-              <img src="@/assets/images/icon_sad.png" alt="">
-              <span>您已过号！请重新排队！</span>
+        <div v-show="queryType==2">
+          <div class="card margin16">
+            <div class="cardHEADER">
+              <div class="fleft lineupcard">
+                <img src="@/assets/images/icon_line_up.png" alt="">
+                <span>我的报告</span>
+              </div>
+              <p>检查科室：
+                <span class="mu-secondary-text-color size18">{{lineupinfo.examDept}}</span>
+              </p>
+              <p>检查项目：{{lineupinfo.className}}</p>
             </div>
-            <p>当前正在受理的号是
-              <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span> 号</p>
           </div>
-        </div> -->
-        <div class="card margin16">
-          <div class="cardHEADER">
-            <div class="fleft lineupcard">
-              <img src="@/assets/images/icon_schedule.png" alt="">
-              <span>进度</span>
+          <div class="card margin16">
+            <div class="cardHEADER">
+              <div class="fleft lineupcard">
+                <img src="@/assets/images/icon_schedule.png" alt="">
+                <span>进度</span>
+              </div>
+              <p> 报告
+                <span v-if="lineupinfo.reportId" class="mu-secondary-text-color size18">已出</span>
+                <span v-else class="mu-secondary-text-color size18">未出</span>
+              </p>
+              <p>报告时间：
+                <span class="mu-secondary-text-color">{{lineupinfo.reportTime|lasttime}}</span>
+              </p>
             </div>
-            <p>当前正在受理的号是
-              <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}}</span> 号</p>
-            <p>您前面还有
-              <span class="mu-secondary-text-color size18">{{lineupinfo.waitingNo}}</span> 位在等候，预计等待
-              <span class="mu-secondary-text-color size18">{{lineupinfo.waitingTime}}</span> 分钟</p>
           </div>
         </div>
         <md-button class="margin16" type="primary" @click="getData" round>刷新</md-button>
@@ -55,9 +85,10 @@ let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
 export default {
   data() {
     return {
-      
+      queryType: 1,
       lineupinfo: '',
       loadingtrue: true,
+      title: '排队详情'
     };
   },
   created() {
@@ -66,8 +97,9 @@ export default {
   mounted() {
     this.getData()
     document.title = '排队详情';
-
-
+    this.queryType = this.$route.query.queryType * 1
+    if (this.queryType == 2)
+      this.title = '报告详情'
   },
   methods: {
     getData() {
@@ -79,11 +111,11 @@ export default {
         if (res.data.code == '200') {
           this.loadingtrue = false;
           this.lineupinfo = res.data.rows[0];
-          let currentNo=res.data.rows[0].currentNo;
-          let queueNo=res.data.rows[0].queueNo;
-          if(currentNo && queueNo){
-              this.lineupinfo. waitingNo= res.data.rows[0].currentNo-res.data.rows[0].queueNo;
-          }
+          let currentNo = res.data.rows[0].currentNo;
+          let queueNo = res.data.rows[0].queueNo;
+          // if(currentNo && queueNo){
+          //     this.lineupinfo.waitingNo= res.data.rows[0].currentNo-res.data.rows[0].queueNo;
+          // }
         } else if (res.data.code == '800') {
 
         }
@@ -129,7 +161,7 @@ export default {
 .size18 {
   font-size: 43px;
 }
-.lineupnow .md-button.block{
+.lineupnow .md-button.block {
   height: 90px;
 }
 </style>

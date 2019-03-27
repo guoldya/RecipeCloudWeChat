@@ -1,7 +1,7 @@
 <template>
    <div class="gp-order">
       <div class="outCarint margin45">
-         <Header post-title="预约信息"  ></Header>
+         <Header post-title="预约信息"></Header>
          <div class="order-info">
             <div class="doctor-info g-clear">
                <img src="@/assets/images/user.png" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
@@ -19,12 +19,12 @@
                </li>
                <li>
                   <label>看诊时间：</label>
-                  <p class="mu-secondary-text-color">{{time}}&nbsp;周五 {{afternoon}}</p>
+                  <p>{{time}}&nbsp;周五 <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span> </p>
                </li>
                <li>
                   <label>挂号费用：</label>
                   <p class="mu-secondary-text-color">￥ {{money | keepTwoNum}}</p>
-               </li>
+               </li> 
             </ul>
          </div>
       </div>
@@ -58,7 +58,6 @@
       </div>
       <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="money" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
    </div>
-
 </template>
 <script type="text/babel">
 let doctorInfo = "/app/bdHospitalDoctor/read/selectOne";
@@ -72,7 +71,7 @@ let now_pay_url = "/app/bizPatientRegister/nowPay";
 export default {
    data() {
       return {
-         
+
          depart: '',
          major: '',
          time: '',
@@ -85,6 +84,7 @@ export default {
          money: '',
          cashierResult: 'success',
          backId: '',
+         regStage: '',
          cashierChannels: [
             {
                icon: 'cashier-icon-2',
@@ -120,9 +120,9 @@ export default {
 
    },
    mounted() {
-      console.log(this.$store.state.cardId)
+
       document.title = '预约信息';
-     
+
       this.depart = this.$store.state.depart;
       this.major = this.$store.state.major;
       if (this.$route.query.afternoon * 1 == 1) {
@@ -137,6 +137,7 @@ export default {
 
 
       this.cardName = this.$store.state.patientName;
+      this.regStage = this.$route.query.regStage;
       this.cardNo = this.$store.state.cardNo;
       this.money = String(this.$route.query.money);
    },

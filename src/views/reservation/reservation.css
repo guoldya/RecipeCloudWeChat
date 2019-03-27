@@ -1,7 +1,7 @@
  .gp-order .order-info {
     margin-bottom: 20px;
     background: #fff;
-    color: #83889a;
+    color: #979797;
     line-height: 20px;
     font-size: 24px;
  }
@@ -37,6 +37,7 @@
  .gp-order .order-info .doctor-info .doctor-name {
     font-size: 32px;
     margin: 24px 10px 0 20px;
+    color: #333333;
  }
 
  .gp-order .order-info ul {
@@ -50,7 +51,7 @@
  }
 
  .gp-order .order-info li label {
-    color: #a6a8b6;
+    color: #333333;
     float: left;
     /* width: 160px; */
  }
@@ -66,7 +67,7 @@
 
  .g-items li {
     line-height: 30px;
-    color: #a6a8b6;
+    color: #979797;
  }
 
  .g-arrow-r {

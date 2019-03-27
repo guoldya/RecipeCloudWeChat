@@ -18,7 +18,7 @@ export default {
     }
   },
   created() {
-    
+
     //在页面加载时读取sessionStorage里的状态信息
     if (sessionStorage.getItem("store")) {
       //this.$store.replaceState()替换 store 的根状态
@@ -40,34 +40,34 @@ body {
   font-size: 26px;
   color: #979797;
 }
-.warnText p{
+.warnText p {
   padding: 4px 0;
 }
-.md-activity-indicator-rolling .rolling circle.stroke{
+.md-activity-indicator-rolling .rolling circle.stroke {
   fill: #ffffff;
 }
-.md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-btn{
+.md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-btn {
   padding: 0 24px 24px;
 }
-.md-activity-indicator-rolling .content{
+.md-activity-indicator-rolling .content {
   background-color: #ffffff;
   width: 80px;
   margin: 10px;
   border-radius: 50%;
   box-shadow: 0 0 17px #ffffff;
 }
-.md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-text{
+.md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-text {
   margin-bottom: 102px !important;
   font-size: 28px !important;
 }
-.md-activity-indicator-rolling-success .right{
-  background-color: #FFFFFF;
+.md-activity-indicator-rolling-success .right {
+  background-color: #ffffff;
   border: 4px solid #1da1f3;
   width: 110%;
   border-radius: 50%;
 }
 .md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-text,
-.md-popup-title-bar .title-bar-title p.title{
+.md-popup-title-bar .title-bar-title p.title {
   color: #333333 !important;
 }
 .add {
@@ -79,6 +79,7 @@ body {
   left: 0;
   line-height: 100px;
   bottom: 0;
+  z-index: 999;
 }
 .headimg {
   width: 92px;
@@ -181,7 +182,7 @@ input:-ms-input-placeholder {
   display: flex;
   justify-content: space-between;
 }
-.appTitle span:first-child{
+.appTitle span:first-child {
   font-size: 30px;
 }
 /* 轮播图样式 */ /* 全局样式 */
@@ -387,7 +388,25 @@ textarea::-webkit-input-placeholder {
   margin: 0 6px;
   vertical-align: bottom;
 }
+ 
+
+.md-field-item-title {
+  font-size: 28px !important;
+}
+
+/* .md-field-item-control::-webkit-input-placeholder {
+  color: #aab2bd;
+  font-size: 12px;
+  text-align: right;
+} */
+.md-input-item-input {
+  font-size: 28px !important;
+}
+.md-check-box{
+  font-size: 28px !important;
+}
 .textCenter .md-icon.icon-svg.lg{
   margin: -8px 0;
+ 
 }
 </style>

@@ -48,10 +48,6 @@
                                     <span class="">{{item.reportTime}}</span>
                                 </span>
                             </div>
-                            <!--<div class="cardTextRight mu-secondary-text-color" @click="checkReportDetail(item.id)">-->
-                                <!--<span>详情</span>-->
-                                <!--<img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">-->
-                            <!--</div>-->
                             <div class="learnMore mu-secondary-text-color" @click="checkReportDetail(item.id)">
                                 <span>详情</span>
                                 <img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">
@@ -153,7 +149,7 @@ export default {
             const params = {};
             params.pageNumber = this.page;
             params.pageSize = this.pageSize;
-            params.patientId = parseInt(this.choseValue);
+            // params.patientId = parseInt(this.choseValue);
             params.queryType = this.type;
             this.$axios.put(bizLisReportreadpage, params).then((res) => {
                 if (res.data.rows) {

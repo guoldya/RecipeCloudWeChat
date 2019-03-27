@@ -92,7 +92,9 @@
         <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="申请人身份证号" clearable is-highlight></md-input-item>
       </div>
     </div>
-    <md-button @click="cardconfirm" type="primary" round style="margin:20px 0">下一步</md-button>
+    <div style="height:55px"></div>
+    <p @click="cardconfirm" class="add">下一步</p>
+    <!-- <md-button @click="cardconfirm" type="primary" round style="margin:20px 0">下一步</md-button> -->
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
     <md-landscape v-model="showPic" :mask-closable="true">
       <img src="@/assets/images/u152.png" alt="">
@@ -350,6 +352,7 @@ export default {
 }
 .pg_positive div img {
   width: 100%;
+  border-radius: 10px;
   height: 100%;
 }
 /* .ivu-upload-input{

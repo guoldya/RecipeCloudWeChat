@@ -210,13 +210,17 @@ export default new Router({
     name: 'my',
     component: my,
     meta: {
+      title: '个人中心',
       keepAlive: true
     }
   },
   {
     path: '/sign',
     name: 'sign',
-    component: sign
+    component: sign,
+    meta: {
+      title: '就诊签到'
+    }
   },
   {
     path: '/signagin',
@@ -673,11 +677,11 @@ export default new Router({
     }
   }
   ],
-    scrollBehavior (to, from, savedPosition) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve({x: 0, y: 0})
-            }, 10)
-        })
-    }
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({ x: 0, y: 0 })
+      }, 10)
+    })
+  }
 })

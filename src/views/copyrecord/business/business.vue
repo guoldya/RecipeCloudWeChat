@@ -21,24 +21,24 @@
       <p style="color:#979797">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
       </p>
       <p class="kinds">病历类型</p>
-      <md-check-box name="month" v-model="pay" label="月付" />
-      <md-check-box name="season" v-model="pay" label="季度费" />
+      <md-check-box name="month" v-model="pay" label="住院病历" />
+      <md-check-box name="season" v-model="pay" label="急诊病历" />
       <p class="kinds">领取方式</p>
       <md-check-box name="1" v-model="mail" label="邮寄" />
       <md-check-box name="2" v-model="mail" label="自提" />
-      <p v-show="mail==1" style="color:#979797">
+      <p v-show="mail==1" style="color:#979797;margin-top:0.2rem">
         为保正您能及时收到病历，请确保收件地址准确无误!
       </p>
-      <p v-show="mail==2" style="color:#979797">
+      <p v-show="mail==2" style="color:#979797; margin-top:0.2rem">
         医院病案室审核通过后，会将预约时间推送给您，请按通知约定日期工作时间内携带所申请惠者有效证件前往医院领取复印病历。如无法前往请代理人携带双方身份证原件、复印件及委托书前往代办或选择邮寄服务
       </p>
 
       <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
       <md-field v-show="mail==1">
-        <md-input-item ref="input13" v-model="receiver" title="收件人" placeholder="收件人"  ></md-input-item>
-        <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable  ></md-input-item>
+        <md-input-item ref="input13" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
+        <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
-        <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址"  ></md-input-item>
+        <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
       </md-field>
       <md-agree v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
         我已阅读并了解
@@ -49,7 +49,11 @@
     <!-- <md-button type="primary" @click="tijiao" round style="margin-top:16px">下一步</md-button> -->
     <Pgmodal ref="Pgmodal"></Pgmodal>
     <md-landscape v-model="showPic" :mask-closable="true">
-      <img src="@/assets/images/u152.png" alt="">
+
+      <div class="codema">
+        <img src="@/assets/images/u152.png" alt="">
+        <p class="namecodema">委托书样例</p>
+      </div>
     </md-landscape>
     <p @click="tijiao" class="add">下一步</p>
   </div>

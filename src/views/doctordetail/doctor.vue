@@ -89,8 +89,8 @@
                             {{item.money | keepTwoNum}}元
                         </p>
                     </span>
-                    <div class="wx_list_num" v-show="item.valNum==0">
-                        <span style="color:#b6b6b6;background-color:#ededed;">约满</span>
+                    <div class="wx_list_null" v-show="item.valNum==0">
+                        <span>约满</span>
                     </div>
                     <div class="wx_list_num" v-show="item.valNum!=0" @click="reservation(item)">
                         <span class="keyy">剩 {{item.valNum}}</span>
@@ -169,9 +169,9 @@ export default {
             afternoon: '下午',
             depart: '',
             major: '',
-            islist: false,
+            islist: true,
             orderinfo: '',
-            islook: false,
+            islook: true,
             isSeemore: false,
             moreButton: false,
         }
@@ -183,6 +183,11 @@ export default {
             this.afternoon = '上午';
         }
 
+        if (this.$route.query.islist) {
+            this.islist = false;
+        } else {
+            this.islist = true;
+        }
         this.$axios.put(appbizRegisterSourcereadsourceDetail, {
             id: this.$route.query.doctorId * 1,
             stageType: this.islist ? this.$route.query.afternoon * 1 : undefined,
@@ -202,8 +207,8 @@ export default {
         this.week = this.$route.query.week;
         this.time = this.$route.query.time;
         this.depart = this.$store.state.depart;
-
         this.major = this.$store.state.major;
+
         this.doctordataFun();
         this.dateListFun();
     },
@@ -212,14 +217,14 @@ export default {
         todayreservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: { money: data.money, sourceId: this.$route.query.sourceId, doctorId: this.$route.query.doctorId, time: this.$route.query.time, week: this.$route.query.week, afternoon: this.$route.query.afternoon }
+                query: { regStage: data.regStage, money: data.money, sourceId: data.regId, doctorId: this.$route.query.doctorId, time: this.$route.query.time, week: this.$route.query.week, afternoon: this.$route.query.afternoon }
             });
         },
 
         reservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: { sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.dept, money: data.money }
+                query: { regStage: data.regStage, sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.dept, money: data.money }
             });
         },
 
