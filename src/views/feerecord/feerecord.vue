@@ -1,22 +1,23 @@
 <template>
     <div class="feerecord">
-        <header class="aui-navBar aui-navBar-fixed">
-            <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
-                <img src="@/assets/images/icon_back.png">
-            </span>
-            <div class="aui-center">
-                <span class="aui-center-title">缴费记录</span>
-            </div>
-            <span class="aui-navBar-item">
-                <!-- <div>
-                    <md-field>
-                        <md-field-item :content="selectorValue" @click="showSelector" solid/>
-                    </md-field>
-                    <md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>
-                </div>
-                <span class="downImg"><img src="@/assets/images/icon_down.png"></span> -->
-            </span>
-        </header>
+        <!--<header class="aui-navBar aui-navBar-fixed"  >-->
+            <!--<span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">-->
+                <!--<img src="@/assets/images/icon_back.png">-->
+            <!--</span>-->
+            <!--<div class="aui-center">-->
+                <!--<span class="aui-center-title">缴费记录</span>-->
+            <!--</div>-->
+            <!--<span class="aui-navBar-item">-->
+                 <!--<div>-->
+                    <!--<md-field>-->
+                        <!--<md-field-item :content="selectorValue" @click="showSelector" solid/>-->
+                    <!--</md-field>-->
+                    <!--<md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>-->
+                <!--</div>-->
+                <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
+            <!--</span>-->
+        <!--</header>-->
+        <Header post-title="缴费记录"></Header>
         <div class="outCarint margin45">
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
@@ -26,18 +27,14 @@
                         <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
                     </p>
                     <div class="cardText">
-                        <p>患者：
-                            <span>{{item.patientName}}</span>
-                        </p>
-                        <p>医院：
-                            <span>{{item.hospital}}</span>
-                        </p>
-                        <p v-if="disType == 1">开单时间：
-                            <span>{{item.createTime}}</span>
-                        </p>
-                        <p v-if="disType == 2">支付时间：
-                            <span>{{item.payTime}}</span>
-                        </p>
+                        <!--<div class="listData">-->
+                            <!--<span>订单单号</span>-->
+                            <!--<span>{{jumpPar.orderCode}}</span>-->
+                        <!--</div>-->
+                        <p>患者：{{item.patientName}}</p>
+                        <p>医院：{{item.hospital}}</p>
+                        <p v-if="disType == 1">开单时间：{{item.createTime}}</p>
+                        <p v-if="disType == 2">支付时间：{{item.payTime}}</p>
                         <div style="height:30px;  text-align: right;" v-if="disType == 1">
                             <span class="payatnow">立即支付</span>
                         </div>

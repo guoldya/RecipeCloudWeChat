@@ -19,7 +19,7 @@
                </li>
                <li>
                   <label>看诊时间：</label>
-                  <p>{{time}}&nbsp;周五 <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span> </p>
+                  <p>{{time}}&nbsp;  <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span> </p>
                </li>
                <li>
                   <label>挂号费用：</label>
