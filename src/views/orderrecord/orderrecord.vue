@@ -132,7 +132,6 @@ export default {
 .payatnow {
   font-size: 28px;
   color: #ffffff;
-  float: right;
   background: #1da1f3;
   border-radius: 40px;
   letter-spacing: 1px;

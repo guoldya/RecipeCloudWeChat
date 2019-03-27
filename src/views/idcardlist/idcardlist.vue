@@ -20,7 +20,6 @@
       </ul>
       <div v-show="!loadingtrue">
         <!-- <md-button @click="blidcard" type="primary">注册电子就诊卡</md-button> -->
-
         <!-- <md-button @click="blidcard" type="primary" round :inactive="isFive">注册电子就诊卡</md-button> -->
         <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
           是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。

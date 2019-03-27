@@ -61,8 +61,12 @@ const lasttime = function (value) {
     if (value == undefined) {
         return ""
     }
+
     let val = value.split(' ')[1];
-    let aa = value.split(' ')[0] + " "+ val.split(':')[0] +":"+ val.split(':')[1];
+    if (val == undefined) {
+        return ""
+    }
+    let aa = value.split(' ')[0] + " " + val.split(':')[0] + ":" + val.split(':')[1];
     return aa
     // if(!ms){return;};
     // let curTime = new Date(ms);
