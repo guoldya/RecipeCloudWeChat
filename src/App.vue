@@ -360,15 +360,15 @@ textarea::-webkit-input-placeholder {
 .md-button-content {
   font-size: 28px !important;
 }
-.md-dialog-actions.is-column {
-  display: flex;
-  justify-content: space-between !important;
-  flex-direction: row !important;
+.md-dialog .md-dialog-text{
+  font-size: 30px;
 }
-.md-dialog-btn {
-  border-right: 1px solid #ededed;
-  width: 33%;
-  text-align: center;
+.md-dialog-btn:first-child{
+  font-size: 34px;
+}
+.md-dialog-btn:last-child{
+  color: #1da1f3 !important;
+  font-size: 34px;
 }
 .md-check-box {
   border: 2px solid #979797;

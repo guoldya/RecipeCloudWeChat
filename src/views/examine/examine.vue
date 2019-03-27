@@ -1,6 +1,6 @@
 <template>
     <div class="examine">
-        <Header post-title="检验检查"  ></Header>
+        <Header post-title="检验检查"></Header>
         <div class="outCarint margin45">
             <!--<div class="pageContent">-->
                 <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(item.type,index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
