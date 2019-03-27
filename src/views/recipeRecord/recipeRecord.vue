@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="listData userNum mu-light-text-color" >
                                     <span>{{list.spec}}</span>
-                                    <span>{{list.total}}盒</span>
+                                    <span>{{list.total}} {{item.pickUnit}}</span>
                                 </div>
                             </div>
                             <div>
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="listData userNum mu-light-text-color" >
                                     <span>{{list.spec}}</span>
-                                    <span>{{list.total}}盒</span>
+                                    <span>{{list.total}} {{item.pickUnit}}</span>
                                 </div>
                             </div>
                             <div>
