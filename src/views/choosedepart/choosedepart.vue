@@ -76,10 +76,6 @@ export default {
   },
   mounted() {
     document.title = '选择科室';
-
-
-
-
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
       orgId: localStorage.getItem("hospitalId") * 1

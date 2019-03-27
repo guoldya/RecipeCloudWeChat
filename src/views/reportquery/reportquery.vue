@@ -27,7 +27,7 @@
 
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="goodsList.length!=0" v-show="!loadingtrue">
-                <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
+                <div class="card margin15" v-for="(item,i) in goodsList" :key="i">
                     <div @click="checkReportDetail(item.id)">
                         <div class="cardTextLeft">
                             <div class="appTitle">
@@ -236,10 +236,10 @@ export default {
         },
 
     },
-    watch:{
-        "$route":function(to,from,next){
-            from.meta.keepAlive=false;
-            to.meta.keepAlive=false;
+    watch: {
+        "$route": function (to, from, next) {
+            from.meta.keepAlive = false;
+            to.meta.keepAlive = false;
             //next();
         }
     },

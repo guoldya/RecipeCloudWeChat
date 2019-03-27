@@ -78,7 +78,7 @@ let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {
-            
+
             time: [
                 { title: '待支付', type: 1 },
                 { title: '已支付', type: 2 },
@@ -95,7 +95,7 @@ export default {
             busy: true,
             nomore: false,
             loadingtrue: true,
-            disType:'',
+            disType: '',
         };
     },
 
@@ -105,14 +105,14 @@ export default {
     mounted() {
         if (this.$store.state.feeActiveId) {
             this.disType = this.$store.state.feeActiveId;
-            if(this.$store.state.feeActiveId==1){this.type=0;}else{this.type=1;}
+            if (this.$store.state.feeActiveId == 1) { this.type = 0; } else { this.type = 1; }
         }
         this.WaitPay(false);
         // this.personFun();
         document.title = '缴费记录';
-        
+
         // this.selectorValue = this.optionsData[0][0].text;
-       
+
     },
     methods: {
         personFun() {
@@ -145,12 +145,12 @@ export default {
         showSelector() {
             this.isSelectorShow = true
         },
-        appointinfo: function (val,code) {
+        appointinfo: function (val, code) {
             console.log(val);//8
             console.log(code);//x0003
             this.$router.push({
                 name: 'feeinfo',
-                query: {id:val,code:code}
+                query: { id: val, code: code }
             });
         },
 
@@ -158,7 +158,7 @@ export default {
             console.log(childValue);
             //this.type = childValue.type;
             this.disType = childValue.type;
-            if(childValue.type==1){this.type=0;}else{this.type=1;}
+            if (childValue.type == 1) { this.type = 0; } else { this.type = 1; }
             this.$store.commit('feeActiveFun', childValue.type);
             this.waitPayData = [];
             this.loadingtrue = true;
@@ -208,10 +208,10 @@ export default {
             }, 500);
         },
     },
-    watch:{
-        "$route":function(to,from){
-            from.meta.keepAlive=false;
-            to.meta.keepAlive=false;
+    watch: {
+        "$route": function (to, from) {
+            from.meta.keepAlive = false;
+            to.meta.keepAlive = false;
         }
     },
     // beforeRouteLeave(to, from, next) {

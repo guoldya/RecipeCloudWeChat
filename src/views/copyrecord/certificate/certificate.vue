@@ -10,7 +10,7 @@
         </div>
         <div class="alltimeball">
           <span class="acitivestep">业务选择</span>
-          <span class="acitivestep">证件上传</span>
+          <span class="acitivestep">上传证件</span>
           <span>信息确认</span>
         </div>
         <div class="timeballline"></div>
@@ -44,7 +44,7 @@
       <div class="pg_positive_img">
         <label class="ivu-upload-input_label" for="hanside" style="display:block; height: 120px;">
           <input class="ivu-upload-input" @change="uploadHan($event)" type="file" name="hanside" id="hanside" accept="image/gif,image/jpeg,image/x-png" />
-          <img src="@/assets/images/icon_handheld.png" alt="">
+          <img :src="hanUrl" alt="">
         </label>
         <p>手持身份证</p>
       </div>
@@ -76,7 +76,7 @@
         <div class="pg_positive_img">
           <label class="ivu-upload-input_label" for="hanAppside" style="display:block; height: 120px;">
             <input class="ivu-upload-input" @change="uploadHanApp($event)" type="file" name="hanAppside" id="hanAppside" accept="image/gif,image/jpeg,image/x-png" />
-            <img src="@/assets/images/icon_handheld.png" alt="">
+            <img :src="hanAppUrl" alt="">
           </label>
           <p>手持身份证</p>
         </div>
@@ -127,10 +127,10 @@ export default {
       imgFiles: [],
       posUrl: pg_negative,
       othUrl: pg_positive,
-      hanUrl: pg_positive,
+      hanUrl: pg_handheld,
       posAppUrl: pg_negative,
       othAppUrl: pg_positive,
-      hanAppUrl: pg_positive,
+      hanAppUrl: pg_handheld,
       showPic: false,
       test: [
         {
@@ -193,9 +193,8 @@ export default {
       this.files.othFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
-        that.CCC = this.result;
+        that.hanUrl = this.result;
       };
-
     },
     // 申请人
     uploadPosApp(e) {
@@ -205,10 +204,9 @@ export default {
       this.files.posFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
-        that.othUrl = this.result;
+        that.othAppUrl = this.result;
       };
       this.DDD = e.target.files[0];
-
     },
     uploadOthApp(e) {
       let that = this,
@@ -217,7 +215,7 @@ export default {
       this.files.othFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
-        that.posUrl = this.result;
+        that.posAppUrl = this.result;
       };
       this.EEE = e.target.files[0];
     },
@@ -228,7 +226,7 @@ export default {
       this.files.othFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
-        that.FFF = this.result;
+        that.hanAppUrl = this.result;
       };
     },
     // 选着人

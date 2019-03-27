@@ -34,7 +34,7 @@ export default {
 
 <style  >
 body {
-  background: #ffffff;
+  background: #e8e8e8;
 }
 .warnText {
   font-size: 26px;
@@ -100,16 +100,16 @@ select,
 textarea {
   outline: none;
 }
-body {
-  background: #ffffff;
-}
+ 
 .noMore {
   text-align: center;
   color: #979797;
   font-size: 26px;
   line-height: 70px;
 }
-.card + .noMore {line-height: 40px}
+.card + .noMore {
+  line-height: 40px;
+}
 #app {
   font-family: "PingFang-SC-Medium";
   -webkit-font-smoothing: antialiased;
@@ -388,7 +388,6 @@ textarea::-webkit-input-placeholder {
   margin: 0 6px;
   vertical-align: bottom;
 }
- 
 
 .md-field-item-title {
   font-size: 28px !important;
@@ -402,11 +401,13 @@ textarea::-webkit-input-placeholder {
 .md-input-item-input {
   font-size: 28px !important;
 }
-.md-check-box{
+.md-check-box {
   font-size: 28px !important;
 }
-.textCenter .md-icon.icon-svg.lg{
+.textCenter .md-icon.icon-svg.lg {
   margin: -8px 0;
- 
+}
+ .home .md-icon.icon-font:before {
+  display: none;
 }
 </style>
