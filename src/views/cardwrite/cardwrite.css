@@ -113,11 +113,13 @@
    overflow: hidden;
    margin-bottom: 0;
    background: transparent;
-   /* padding-left: 50px; */
+   padding-left: 50px;
 }
 
-.content .login-box div input input::-webkit-input-placeholder {}
-
+.content .login-box div input::-webkit-input-placeholder {
+   color: #c5cad5;
+   font-size: 28px;
+ }
 .md-stepper-number input {
    padding-left: 0 !important
 }
