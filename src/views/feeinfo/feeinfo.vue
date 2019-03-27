@@ -1,7 +1,7 @@
 <template>
 
   <div class="feeinfo">
-    <Header post-title="缴费详情"  ></Header>
+    <Header post-title="缴费详情"></Header>
     <div class="outCarint margin45">
       <div class="card margin16" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
         <div class="cardText">
@@ -92,7 +92,7 @@ import { Toast, Button } from 'mand-mobile'
 export default {
   data() {
     return {
-      
+
       active1: 0,
       normal: {
         checkbox: true,
@@ -131,9 +131,9 @@ export default {
       orderCode: '',
       feeActiveId: '',
       postTitle: '',
-        loadingtrue: true,
-        code:'',
-        routeLoad:'',
+      loadingtrue: true,
+      code: '',
+      routeLoad: '',
     };
   },
   created() {
@@ -141,7 +141,7 @@ export default {
   },
   mounted() {
     this.feeActiveId = this.$store.state.feeActiveId;
-    console.log(this.feeActiveId,"详情");
+    console.log(this.feeActiveId, "详情");
     this.feeDetail();
 
   },
@@ -155,10 +155,10 @@ export default {
       //   this.postTitle = "我的缴费-已缴费";
       //   document.title = "我的缴费-已缴费";
       // }
-        document.title = "缴费详情";
-      this.$axios.put(fee_detail_url, { id: this.$route.query.id ,code:this.$route.query.code}).then((res) => {
+      document.title = "缴费详情";
+      this.$axios.put(fee_detail_url, { id: this.$route.query.id, code: this.$route.query.code }).then((res) => {
         if (res.data.code == '200') {
-            this.loadingtrue = false;
+          this.loadingtrue = false;
           this.feeDetailData.push(res.data.data);
           for (let i = 0; i < this.feeDetailData.length; i++) {
             this.feeDetailData[i].createTime = this.feeDetailData[i].createTime.split(' ')[0];
@@ -230,7 +230,7 @@ export default {
               });
             },
           })
-         })
+        })
       }
     },
     // Create a pay request & check pay result
@@ -271,8 +271,8 @@ export default {
       this.$axios.post(now_pay_url, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.feeDetailData.push(res.data.data);
-          if(res.data.data.details){
-              this.feeButtomDetail = res.data.data.details;
+          if (res.data.data.details) {
+            this.feeButtomDetail = res.data.data.details;
           }
           if (res.data.data.total) {
             this.cashierAmount = res.data.data.total.toFixed(2);
@@ -280,7 +280,7 @@ export default {
           this.doPay();
         } else {
           this.$toast.info(res.data.msg);
-            this.isCashierhow = false;
+          this.isCashierhow = false;
         }
       }).catch(function (err) {
         console.log(err);
@@ -291,27 +291,27 @@ export default {
       this.timer && clearTimeout(this.timer)
     },
   },
-    // watch:{
-    //     "$route":function(to,from){
-    //         if (to.path == "/feerecord") {
-    //             to.meta.keepAlive = true;
-    //             //this.$destroy();
-    //         } else {
-    //             to.meta.keepAlive = false;
-    //             //this.$destroy();
-    //         }
-    //     }
-    // },
-    beforeRouteLeave(to, from, next) {
-        if (to.path == "/feerecord" &&this.routeLoad!=1) {
-            to.meta.keepAlive = true;
-            //this.$destroy();
-        } else {
-            to.meta.keepAlive = false;
-            //this.$destroy();
-        }
-        next();
-    },
+  // watch:{
+  //     "$route":function(to,from){
+  //         if (to.path == "/feerecord") {
+  //             to.meta.keepAlive = true;
+  //             //this.$destroy();
+  //         } else {
+  //             to.meta.keepAlive = false;
+  //             //this.$destroy();
+  //         }
+  //     }
+  // },
+  beforeRouteLeave(to, from, next) {
+    if (to.path == "/feerecord" && this.routeLoad != 1) {
+      to.meta.keepAlive = true;
+      //this.$destroy();
+    } else {
+      to.meta.keepAlive = false;
+      //this.$destroy();
+    }
+    next();
+  },
   computed: {
     cashier() {
       return this.$refs.cashier
@@ -330,6 +330,9 @@ export default {
   padding: 35px 0;
   font-size: 28px;
   border-bottom: 1px solid #e9e9e9;
+}
+.feeinfo .cardText .cardTextPP span:last-child {
+  color: #979797;
 }
 .feeinfo .cardText .cardTextKind {
   display: flex;
@@ -372,4 +375,4 @@ export default {
 .feeinfo .cardText .cardTextPP:last-child {
   border: none;
 }
- </style>
+</style>

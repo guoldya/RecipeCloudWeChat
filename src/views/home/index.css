@@ -58,6 +58,7 @@
 .home-cz {
    /* padding: 0 66px 77px; */
    padding: 0 79px 30px;
+  
 }
 
 .home-cz li {
@@ -295,6 +296,7 @@
 .homePage {
    position: relative;
    /* top: -100px; */
+   background: #ffffff
 }
 
 .home .homeCard {

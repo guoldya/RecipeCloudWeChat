@@ -1,6 +1,6 @@
 <template>
     <div class="feerecord">
-        <header class="aui-navBar aui-navBar-fixed"  >
+        <header class="aui-navBar aui-navBar-fixed">
             <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
                 <img src="@/assets/images/icon_back.png">
             </span>
@@ -26,10 +26,18 @@
                         <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
                     </p>
                     <div class="cardText">
-                        <p>患者：{{item.patientName}}</p>
-                        <p>医院：{{item.hospital}}</p>
-                        <p v-if="disType == 1">开单时间：{{item.createTime}}</p>
-                        <p v-if="disType == 2">支付时间：{{item.payTime}}</p>
+                        <p>患者：
+                            <span>{{item.patientName}}</span>
+                        </p>
+                        <p>医院：
+                            <span>{{item.hospital}}</span>
+                        </p>
+                        <p v-if="disType == 1">开单时间：
+                            <span>{{item.createTime}}</span>
+                        </p>
+                        <p v-if="disType == 2">支付时间：
+                            <span>{{item.payTime}}</span>
+                        </p>
                         <div style="height:30px;  text-align: right;" v-if="disType == 1">
                             <span class="payatnow">立即支付</span>
                         </div>
@@ -56,7 +64,7 @@ let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {
-            
+
             time: [
                 { title: '待支付', type: 1 },
                 { title: '已支付', type: 2 },
@@ -73,7 +81,7 @@ export default {
             busy: true,
             nomore: false,
             loadingtrue: true,
-            disType:'',
+            disType: '',
         };
     },
 
@@ -83,14 +91,14 @@ export default {
     mounted() {
         if (this.$store.state.feeActiveId) {
             this.disType = this.$store.state.feeActiveId;
-            if(this.$store.state.feeActiveId==1){this.type=0;}else{this.type=1;}
+            if (this.$store.state.feeActiveId == 1) { this.type = 0; } else { this.type = 1; }
         }
         this.WaitPay(false);
         // this.personFun();
         document.title = '缴费记录';
-        
+
         // this.selectorValue = this.optionsData[0][0].text;
-       
+
     },
     methods: {
         personFun() {
@@ -123,12 +131,12 @@ export default {
         showSelector() {
             this.isSelectorShow = true
         },
-        appointinfo: function (val,code) {
+        appointinfo: function (val, code) {
             console.log(val);//8
             console.log(code);//x0003
             this.$router.push({
                 name: 'feeinfo',
-                query: {id:val,code:code}
+                query: { id: val, code: code }
             });
         },
 
@@ -136,7 +144,7 @@ export default {
             console.log(childValue);
             //this.type = childValue.type;
             this.disType = childValue.type;
-            if(childValue.type==1){this.type=0;}else{this.type=1;}
+            if (childValue.type == 1) { this.type = 0; } else { this.type = 1; }
             this.$store.commit('feeActiveFun', childValue.type);
             this.waitPayData = [];
             this.loadingtrue = true;
@@ -186,10 +194,10 @@ export default {
             }, 500);
         },
     },
-    watch:{
-        "$route":function(to,from){
-            from.meta.keepAlive=false;
-            to.meta.keepAlive=false;
+    watch: {
+        "$route": function (to, from) {
+            from.meta.keepAlive = false;
+            to.meta.keepAlive = false;
         }
     },
     // beforeRouteLeave(to, from, next) {
