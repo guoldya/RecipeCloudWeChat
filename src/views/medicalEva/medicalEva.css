@@ -16,6 +16,7 @@
     height: 80px;
     line-height: 80px;
     white-space: nowrap;
+    padding-top: 2px;
 }
 .medicalEva .star-box{
     width: 58px !important;
@@ -30,7 +31,7 @@
 }
  .medicalEva .image-reader-item{
     position: relative;
-    float :left;
+    float:left;
     width: 23.5%;
     padding-bottom :23.5%;
     margin: 0 2% 2% 0;
@@ -87,4 +88,7 @@
  }
 .medicalEva .image-reader-item:nth-child(3n){
     margin-right: 0 !important;
+}
+.medicalEva .rater-box{
+    line-height: 100px;
 }

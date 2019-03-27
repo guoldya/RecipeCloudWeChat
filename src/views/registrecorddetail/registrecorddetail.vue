@@ -56,7 +56,7 @@
             <div style="margin-bottom:30px;">
                 <div class="myButton">
                     <div v-if="payType==0">
-                        <span class="cancle" @click="orderCancle">取消订单</span>
+                        <span class="cancle" @click="orderCancle">取消预约</span>
                         <span class="payatnow">
                             <md-button class=" " type="primary" @click="rightPay" round>立即支付</md-button>
                         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
@@ -159,7 +159,7 @@ export default {
         orderCancle(){
             Dialog.confirm({
                 title: '温馨提示',
-                content: '是否取消订单',
+                content: '是否取消预约',
                 confirmText: '确定',
                 onConfirm: () => {
                     this.$axios.post(order_cancle_url, { id: this.feeId}).then((res) => {
