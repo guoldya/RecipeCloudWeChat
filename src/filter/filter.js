@@ -1,3 +1,5 @@
+
+import moment from 'moment'
 /**
  * 给商品价格加补0
  * @param {*} value
@@ -59,25 +61,8 @@ const time = function (value) {
     // minutes = minutes <= 9 ? "0" + minutes : minutes;
     // return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
 };
-const lasttime = function (value) {
-    if (value == undefined) {
-        return ""
-    }
-    let val = value.split(' ')[1];
-    let aa = value.split(' ')[0] + " "+ val.split(':')[0] +":"+ val.split(':')[1];
-    return aa
-    // if(!ms){return;};
-    // let curTime = new Date(ms);
-    // let year = curTime.getFullYear();
-    // let month = curTime.getMonth() + 1;
-    // let day = curTime.getDate();
-    // let hours = curTime.getHours();
-    // let minutes = curTime.getMinutes();
-    // month = month <= 9 ? "0" + month : month;
-    // day = day <= 9 ? "0" + day : day;
-    // hours = hours <= 9 ? "0" + hours : hours;
-    // minutes = minutes <= 9 ? "0" + minutes : minutes;
-    // return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+const lasttime = function (dataStr, pattern = 'YYYY-MM-DD HH:mm') {
+    return moment(dataStr).format(pattern)
 };
 
 const drugCheck = function (value) {

@@ -1,7 +1,7 @@
 <template>
   <div class="choosedepart">
-    <Header post-title="选择科室"></Header>
-    <div class="margin50">
+    <Headerapp post-title="选择科室"></Headerapp>
+    <div class=" margin50">
       <Search></Search>
       <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
       <div>
@@ -103,6 +103,20 @@ export default {
 
   },
   methods: {
+
+    back() {
+      if (this.TOKEN && !this.isWin) {
+        WebViewJavascriptBridge.callHandler(
+          'back'
+          , {}
+          , function (responseData) {
+
+          }
+        );
+      }else{
+        this.$router.go(-1)
+      }
+    },
     // orgFun(data) {
     //   this.$axios.put(bdHospitalOrg, {
     //     id: data
@@ -201,4 +215,110 @@ export default {
 </script>
  <style scoped>
 @import "choosedepart.css";
+.choosedepart .xuanze {
+  font-size: 30px;
+  /* margin-top: 30px; */
+  border-bottom: 1px solid #ededed;
+  padding-bottom: 30px;
+}
+.choosedepart .margin20 {
+  margin-top: 20px;
+}
+.choosedepart .cardText p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.choosedepart .buttonDepart {
+  font-size: 14px;
+  padding: 0 16px;
+  line-height: 36px;
+  border-radius: 5px;
+  background: pink;
+}
+.choosedepart .cardText {
+  padding: 0 16px;
+}
+.choosedepart .departRow {
+  display: flex;
+}
+.choosedepart .departRow span {
+  width: 50%;
+  font-size: 13px;
+  color: #0b0b0b;
+}
+.choosedepart .grid-cell {
+  line-height: 50px;
+}
+.choosedepart .mubutton {
+  color: #8a8a8a;
+  border-radius: 5px;
+  font-size: 28px;
+  width: 180px;
+  text-align: center;
+  /* height: 60px; */
+  /* padding: 0 10px; */
+  line-height: 57px;
+  border: 2px solid #1da1f3;
+  color: #1da1f3;
+  display: inline-block;
+}
+.choosedepart .activebtn {
+  background: #1da1f3;
+  color: #ffffff;
+}
+.choosedepart .warn {
+  font-size: 24px;
+  color: #f44336;
+}
+.choosedepart .departLi {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #ededed;
+}
+.choosedepart .grid-cell p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 50px;
+}
+
+.choosedepart .aui-footer {
+  width: 120px;
+  z-index: 100;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 120px;
+  background-color: #1da1f3;
+  position: fixed;
+  bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50%;
+  right: 24px;
+  box-shadow: 2px 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.choosedepart .aui-footer:after {
+  border-top: none;
+}
+.choosedepart .aui-footer span {
+  font-size: 32px;
+  position: relative;
+  text-align: center;
+  left: 16px;
+  letter-spacing: 1px;
+}
+
+/**tab样式*/
+
+#app .choosedepart .md-cell-item-title {
+  font-size: 15px;
+}
 </style>

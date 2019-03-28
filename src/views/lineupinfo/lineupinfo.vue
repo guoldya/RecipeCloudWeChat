@@ -24,7 +24,7 @@
                 <span>您已过号！请重新排队！</span>
               </div>
               <p>当前正在受理的号是
-                <span class="mu-secondary-text-color size18">{{lineupinfo.queueNo}}</span> 号</p>
+                <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}}</span> 号</p>
             </div>
           </div>
           <div class="card margin16" v-else>

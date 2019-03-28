@@ -75,6 +75,9 @@ export default {
       titleCollection: '',
       TOKEN: '',
       UUID: '',
+      IOS: false,
+      isAndroid: false,
+      isWin: false,
       isout: false,
       test: [{ filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
       { filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
@@ -328,7 +331,7 @@ export default {
 .articlecontent p {
   line-height: 50px;
 }
-.comment-right h3{
-  text-align: left
+.comment-right h3 {
+  text-align: left;
 }
 </style>
