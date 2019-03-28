@@ -109,7 +109,7 @@
                 <img src="@/assets/images/icon_up.png" alt="">
             </div> -->
         </div>
-        <md-landscape v-model="showPic" >
+        <md-landscape v-model="showPic">
             <div class="codema">
                 <p class="namecodema">{{picName}}</p>
                 <img src="@/assets/images/lili.jpg" alt="">
@@ -151,6 +151,8 @@ export default {
     },
     created() {
         this.$store.commit('feeActiveFun', 1);
+
+        console.log(this.$store.state.userInfo.id, "我是缓存的id")
     },
     async mounted() {
         // console.log(this.$store.state.home.cardList)
@@ -247,7 +249,7 @@ export default {
             }
             this.homeNumber(this.chooseId);
             this.chooseId = current.id;
-          
+
             this.$store.commit('patientIdFun', current.patientId);
             this.$store.commit('cardNoFun', current.cardNo);
             this.$store.commit('cardIdFun', current.id);

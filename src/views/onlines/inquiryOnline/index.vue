@@ -1,8 +1,10 @@
 <!--在线问诊 -->
 <template>
   <div class="inquiry-online">
+    <Navigation type="onlineNav">
+    </Navigation>
     <!-- 用户信息 -->
-    <div class="user-describe">
+    <!-- <div class="user-describe">
       <div class="describe">
         <p>问题描述：从昨晚9点开始发烧（39度），头痛，咳嗽，咳痰</p>
         <p>既往病史：无</p>
@@ -16,11 +18,11 @@
         <span>查看张丽的所有记录</span>
         <i class="iconfont icon-iconfontjiantou5"></i>
       </router-link>
-    </div>
+    </div> -->
     <!-- 聊天内容区域 -->
     <div class="inquiry-online-content" ref="chatContent" @click="toolType=''">
       <ul class="online-content-warp">
-        <li v-for="(item, index) in chat.historyNews" :key="index" class="online-content-list" :class="item.to != userInfo.id ? 'right' : ''">
+        <li v-for="(item, index) in  chat.historyNews" :key="index" class="online-content-list" :class="item.to != userInfo.id ? 'right' : ''">
           <img class="online-content-list-head" src="@/assets/images/3.jpg" v-if="item.to != userInfo.id" alt="" />
           <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" />
           <div class="online-content-list-text" v-if="item.msgType == 0">
@@ -44,7 +46,8 @@
         <span class="send" @click="send" :class="inputValue ? 'active' : ''">发送</span>
       </div>
       <div class="inquiry-online-tool-detail">
-        <span @click="tool('img')"><input class="upload-img" ref="uploadImg" type="file" @change="upload" accept="image/*">
+        <span @click="tool('img')">
+          <input class="upload-img" ref="uploadImg" type="file" @change="upload" accept="image/*">
           <i class="iconfont icon-tupian"></i>
         </span>
         <span @click="tool('video')">
@@ -63,7 +66,7 @@
       <ul class="inquiry-online-tool-add" v-if="toolType == 'more'">
         <router-link tag="li" to="/quickReply">
           <span class="icon-span">
-            <i class="iconfont icon-xinxi"></i>
+            <md-icon name="authentication"></md-icon>
           </span>
           <span>快捷回复</span>
         </router-link>
@@ -84,7 +87,6 @@
         <li v-for="(item,index) in emojiList" :key="index" @click="emojiAdd(item)">{{item}}</li>
       </ul>
     </div>
-
     <!-- 编辑弹窗 -->
     <md-dialog :closable="true" layout="column" v-model="dialogOpen">
       <img src="@/assets/images/user.png" alt="">
@@ -109,7 +111,8 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
- 
+import websocketConfig from '../../../service/websocket.js'
+
 import { Dialog } from 'mand-mobile'
 export default {
   data() {
@@ -122,17 +125,22 @@ export default {
       dialogOpen: false,
       isViewerShow: false, // 是否大图显示
       clickViewer: false, // 是否点击的是图片，true点击，用于不让滚动条滚动到指定位置
-      emojiList: ['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😉', '😋', '😎', '😍', '😘', '😗', '😙', '😚', '😇', '😐', '😑', '😶', '😏', '😣', '😥', '😮', '😯',
-        '😪', '😫', '😴', '😌', '😛', '😜', '😝', '😒', '😓', '😔', '😕', '😲', '😷', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😬', '😰', '😱', '😳', '😵', '😡', '😠']
+      emojiList: ['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😉', '😋', '😎', '😍', '😘', '😗', '😙', '😚', '😇', '😐', '😑', '😶', '😏', '😣', '😥', '😮', '😯', '😪', '😫', '😴', '😌', '😛', '😜', '😝', '😒', '😓', '😔', '😕', '😲', '😷', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😬', '😰', '😱', '😳', '😵', '😡', '😠'],
+
     };
   },
+  // 
   computed: {
-    ...mapState(["chat", "userInfo"])
+    ...mapState({
+      chat: state => state.chat,
+      userInfo: state => state.userInfo
+    }),
   },
   async mounted() {
     // 让滚动条滚动到指定位置
-    this.scrollBottom();
+    // this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
+    websocketConfig();
   },
   updated: function () {
     if (this.isViewerShow) {
@@ -141,7 +149,7 @@ export default {
       this.clickViewer = false
       return false
     }
-    this.scrollBottom();
+    // this.scrollBottom();
   },
   methods: {
     ...mapActions(["chat/updateChatQueue", "chat/setHistoryNews", "chat/setChatQueue"]),
@@ -232,7 +240,7 @@ export default {
         content: this.inputValue
       };
       // 把当前发送的消息添加到历史消息去
-      // let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
+      let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
       arr.push(msg)
       this['chat/setHistoryNews'](arr)
       this.chat.websocket.send(JSON.stringify(msg));
@@ -266,12 +274,12 @@ export default {
   flex-wrap: wrap;
   overflow: hidden;
   .user-describe {
-    position: fixed;
-    z-index: 4;
+    // position: fixed;
+    // z-index: 4;
     width: 670px;
     background: #fff;
-    left: 40px;
-    top: 120px;
+    // left: 40px;
+    // top: 120px;
     border-radius: 10px;
     box-shadow: 0 0 18px rgba(131, 179, 208, 0.3);
     box-sizing: border-box;
@@ -401,7 +409,7 @@ export default {
     overflow: auto;
     background: #ededed;
     .online-content-warp {
-      padding: 400px 40px 40px;
+      padding: 30px 40px 40px;
     }
     .online-content-list {
       display: flex;
