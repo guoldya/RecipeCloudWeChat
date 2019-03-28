@@ -10,19 +10,18 @@ input {
 .result .oc_val {
    /* position: fixed; */
    width: 100%;
-   height: 75px;
-   border-radius: 10px;
-   left: 0;
-   right: 0;
-   margin: 0 auto;
-   padding-left: 70px;
-   background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
-   background-size: auto 40% !important;
-   opacity: 1;
-   outline: none;
-   font-size: 28px !important;
-   color: #000;
-   z-index: 999;
+  height: 75px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding-left: 70px;
+  background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
+  background-size: auto 40% !important;
+  opacity: 1;
+  outline: none;
+  font-size: 28px !important;
+  color: #000;
+  z-index: 999;
 }
 
 .result .mu-sub-header {

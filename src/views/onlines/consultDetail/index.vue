@@ -12,16 +12,12 @@
           <div class="doctor-info-content">
             <p>{{ doctorInfo.name }}</p>
             <p class="gray">
-              <span>{{ doctorInfo.title }}</span
-              ><span>{{ doctorInfo.orgName }}</span>
+              <span>{{ doctorInfo.title }}</span>
+              <span>{{ doctorInfo.orgName }}</span>
             </p>
           </div>
           <div class="doctor-info-follow" @click="followDoctor">
-            <img
-              v-if="!doctorInfo.followStatus"
-              src="../images/icon_follow.png"
-              alt=""
-            />
+            <img v-if="!doctorInfo.followStatus" src="../images/icon_follow.png" alt="" />
             <img v-else src="../images/icon_follow_pre.png" alt="" />
           </div>
         </div>
@@ -42,33 +38,15 @@
       </div>
       <!-- 沟通方式 -->
       <div class="doctor-way">
-        <div
-          class="doctor-way-item"
-          v-for="(item, index) in doctorInfo.mapTypeList"
-          :key="index"
-        >
+        <div class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
           <div class="doctor-way-item-img">
-            <img
-              src="../images/icon_teletext.png"
-              v-if="item.type == 1"
-              alt=""
-            />
-            <img
-              src="../images/icon_telephone.png"
-              v-else-if="item.type == 2"
-              alt=""
-            />
+            <img src="../images/icon_teletext.png" v-if="item.type == 1" alt="" />
+            <img src="../images/icon_telephone.png" v-else-if="item.type == 2" alt="" />
           </div>
-          <div
-            class="doctor-way-item-money doctor-way-item-image"
-            v-if="item.type == 1"
-          >
+          <div class="doctor-way-item-money doctor-way-item-image" v-if="item.type == 1">
             ￥{{ item.info.price }}/次
           </div>
-          <div
-            class="doctor-way-item-money doctor-way-item-phone"
-            v-else-if="item.type == 2"
-          >
+          <div class="doctor-way-item-money doctor-way-item-phone" v-else-if="item.type == 2">
             ￥{{ item.info.price }}/次
           </div>
         </div>
@@ -76,9 +54,7 @@
           <div class="doctor-way-item-img">
             <img src="../images/icon_video.png" alt="" />
           </div>
-          <div
-            class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled"
-          >
+          <div class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled">
             暂未开通
           </div>
         </div>
@@ -101,12 +77,7 @@
         <div class="title">评论</div>
       </div>
       <!-- 评论详情 -->
-      <div
-        class="doctor-comment-item"
-        infinite-scroll-distance="30"
-        v-for="(item, index) in commonList"
-        :key="index"
-      >
+      <div class="doctor-comment-item" infinite-scroll-distance="30" v-for="(item, index) in commonList" :key="index">
         <div class="doctor-comment-item-header">
           <span>{{ item.accountEncrypt }}</span>
           <span class="assess">满意</span>
@@ -121,32 +92,28 @@
       <div v-if="!commonList.length">暂无消息</div>
 
       <!-- 咨询弹窗 -->
-      <md-dialog
-        :title="basicDialog.title"
-        :closable="true"
-        v-model="basicDialog.open"
-        :btns="basicDialog.btns"
-      >
+      <md-dialog :title="basicDialog.title" :closable="true" v-model="basicDialog.open" :btns="basicDialog.btns">
         <p class="money">$20.0/次</p>
         <p>咨询师-周扬</p>
         <p class="ways">通过文字,图片进行咨询</p>
         <md-agree v-model="basicDialog.checked" :disabled="false" size="sm">
-          同意<a>《重庆市妇幼保健院在线问诊用户协议》</a>
+          同意
+          <a>《重庆市妇幼保健院在线问诊用户协议》</a>
         </md-agree>
       </md-dialog>
 
     </div>
-      <div  class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
-          <md-icon v-if="!isloading&&busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
-          <div class="nomore" v-if="pagingParams.num == pagingParams.pages">没有更多了</div>
-      </div> 
+    <div class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+      <md-icon v-if="!isloading&&busy" name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+      <div class="nomore" v-if="pagingParams.num == pagingParams.pages">没有更多了</div>
+    </div>
   </div>
 </template>
 <script>
 import { Dialog, Agree, Toast } from "mand-mobile";
 const onlineDoctorDetailUrl = "/app/bdOnlineDoctor/read/detail";
 const commentUrl = "/app/bizOnlineServiceRecord/read/doctorRecordPage";
-const followDoctorUrl    = "/app/bizDoctorFollow/followDoctor"
+const followDoctorUrl = "/app/bizDoctorFollow/followDoctor"
 export default {
   data() {
     return {
@@ -208,7 +175,7 @@ export default {
         if (res.data.code != 200) {
           throw Error(res.data.msg);
         }
-        if(res.data.rows) {
+        if (res.data.rows) {
           this.commonList = val ? this.commonList.concat(res.data.rows) : res.data.rows
         }
         this.pagingParams.num = res.data.current
@@ -217,9 +184,9 @@ export default {
         console.log(error.message);
       }
     },
-    loadMore: function() {
-      if(this.isloading)return false; 
-      if(this.pagingParams.num==this.pagingParams.pages)return false
+    loadMore: function () {
+      if (this.isloading) return false;
+      if (this.pagingParams.num == this.pagingParams.pages) return false
       this.busy = true;
       setTimeout(() => {
         this.pagingParams.num++
@@ -260,21 +227,21 @@ export default {
       }
     },
     async followDoctor() {
-       try {
-         let status = this.doctorInfo.followStatus
-          this.doctorInfo.followStatus = this.doctorInfo.followStatus ? 0 : 1;
-          let res = await this.$axios.post(followDoctorUrl, {
-            doctorId:Number(this.$route.query.id),
-            status: this.doctorInfo.followStatus
-          })
-          if (res.data.code!=200) {
-            this.doctorInfo.followStatus = status
-            throw Error(res.data.msg);
-          }
-          Toast.info(status?'取消收藏成功':'收藏成功')
-       } catch (error) {
-          
-       }
+      try {
+        let status = this.doctorInfo.followStatus
+        this.doctorInfo.followStatus = this.doctorInfo.followStatus ? 0 : 1;
+        let res = await this.$axios.post(followDoctorUrl, {
+          doctorId: Number(this.$route.query.id),
+          status: this.doctorInfo.followStatus
+        })
+        if (res.data.code != 200) {
+          this.doctorInfo.followStatus = status
+          throw Error(res.data.msg);
+        }
+        Toast.info(status ? '取消收藏成功' : '收藏成功')
+      } catch (error) {
+
+      }
     }
   },
   components: {
@@ -304,7 +271,7 @@ export default {
   .doctor-info {
     margin-top: 40px;
     padding: 40px 30px;
-    box-shadow: 0 0 0.18rem rgba(20,19,51,.1);
+    box-shadow: 0 0 0.18rem rgba(20, 19, 51, 0.1);
     border-radius: 16px;
   }
   .doctor-info-top {
@@ -428,15 +395,14 @@ export default {
   }
   .loadmore {
     display: flex;
-    height:80px;
+    height: 80px;
     align-items: center;
     justify-content: center;
-      .nomore {
-    color:#999;
-    font-size:24px;
+    .nomore {
+      color: #999;
+      font-size: 24px;
+    }
   }
-  }
-
 }
 .md-dialog {
   /deep/ .md-dialog-body {

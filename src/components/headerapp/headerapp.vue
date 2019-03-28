@@ -40,7 +40,7 @@ export default {
             callback(WebViewJavascriptBridge)
          }
          else {
-            if (_this.isAndroid) {
+            if (!_this.IOS) {
                window.document.addEventListener(
                   'WebViewJavascriptBridgeReady'
                   , function () {
@@ -62,7 +62,17 @@ export default {
          }
       }
       // 初始化注册方法
-
+      // 初始化注册方法
+      connectWebViewJavascriptBridge(function (bridge) {
+         if (!_this.IOS) {
+            bridge.init(function (message, responseCallback) {
+               responseCallback();
+            });
+         }
+         bridge.registerHandler("getNumber", function (data, responseCallback) {
+            responseCallback();
+         });
+      })
 
       function UrlSearch() {
          let name, value;

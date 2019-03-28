@@ -1,5 +1,5 @@
 <template>
-  <div class="appTabCarint">
+  <div class="appTabCarint margin45">
     <div class="appTab">
       <span v-for="(item, index) in tabTitle" v-if="item.orgName" :key="'time' + index" @click="switchTo(item)" :class="active1 === item.id ? 'appTabAcitive' : '' ">
         {{item.title}}
@@ -46,6 +46,7 @@ export default {
 .appTabCarint {
   text-align: center;
   width: 100%;
+  background-color: #ffffff;
 }
 .appTitle {
   padding: 28px 0px;
@@ -57,6 +58,8 @@ export default {
   display: flex;
   justify-content: space-around;
   padding: 20px 100px 20px;
+  height: 108px;
+  line-height: 68px;
 }
 .appTab span {
   padding: 0 8px 8px;
@@ -67,6 +70,7 @@ export default {
 .appTab .appTabAcitive {
   color: #1da1f3;
   border-bottom: 4px solid #1da1f3;
+  z-index: 2;
 }
 /* .appTab .appTabAcitive:after {
   content: " ";
