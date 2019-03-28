@@ -19,12 +19,14 @@
                </li>
                <li>
                   <label>看诊时间：</label>
-                  <p>{{time}}&nbsp;  <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span> </p>
+                  <p>{{time}}&nbsp;
+                     <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span>
+                  </p>
                </li>
                <li>
                   <label>挂号费用：</label>
                   <p class="mu-secondary-text-color">￥ {{money | keepTwoNum}}</p>
-               </li> 
+               </li>
             </ul>
          </div>
       </div>
@@ -124,7 +126,7 @@ export default {
       document.title = '预约信息';
 
       this.depart = this.$store.state.depart;
-      this.major = this.$store.state.major;
+      this.major = this.$route.query.dept;
       if (this.$route.query.afternoon * 1 == 1) {
          this.afternoon = '上午';
       } else if (this.$route.query.afternoon * 1 == 2) {
@@ -134,7 +136,6 @@ export default {
       }
 
       this.time = this.$route.query.time;
-
 
       this.cardName = this.$store.state.patientName;
       this.regStage = this.$route.query.regStage;

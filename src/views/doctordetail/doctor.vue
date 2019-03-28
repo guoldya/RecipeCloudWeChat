@@ -106,44 +106,6 @@
             </div>
         </div>
 
-        <!-- <div class="outCarint ">
-            <div class="doctordetal " v-if="isHave ">
-                <div class="outCarint ">
-                    <ul class="available-info " v-show="!islist ">
-                        <li style="border: none; ">
-                            <div> {{time}} {{week}} {{afternoon}} <br/>
-                                <span class="colo13 ">
-                                    {{major}} {{depart}} <br/> 余
-                                    <span class="mu-secondary-text-color ">{{orderinfo.valNum}}</span>&nbsp;
-                                    <span class="mu-secondary-text-color ">￥{{orderinfo.money | keepTwoNum}}</span>
-                                </span>
-                            </div>
-                            <div v-show="orderinfo.valNum!=0 " @click="todayreservation(orderinfo) " class="available-tag ">预约</div>
-                            <div v-show="orderinfo.valNum==0 " class="available-tag no ">无号</div>
-                        </li>
-                    </ul>
-                    <div v-show="!islook " class="lookmore " @click="islook=!islook ">查看全部排班</div>
-                    <p v-show="islook " class="home-article-combo--slogan ">全部排班</p>
-                    <ul v-show="islook " class="available-info ">
-                        <li v-for="(item,i) in dateList " :key="i ">
-                            <div> {{item.regDate}} 星期一 {{item.regStageVO}} <br/>
-                                <span class="colo13 ">
-                                    {{item.dept}} {{depart}}{{item.regDate}} <br/> 余
-                                    <span class="mu-secondary-text-color ">{{item.valNum}}</span>&nbsp;
-                                    <span class="mu-secondary-text-color ">￥{{item.money | keepTwoNum}}</span>
-                                </span>
-                            </div>
-                            <div v-show="item.valNum!=0 " @click="reservation(item) " class="available-tag ">预约</div>
-                            <div v-show="item.valNum==0 " class="available-tag no ">无号</div>
-                        </li>
-                    </ul>
-                    <div v-show="islook " class="lookmore " @click="islook=!islook ">收起全部排班</div>
-                </div>
-            </div>
-            <div class="nullDiv " v-else>
-                <img src="@/assets/images/null1.png ">
-            </div>
-        </div> -->
     </div>
 </template>
 <script>
@@ -168,7 +130,6 @@ export default {
             time: '',
             afternoon: '下午',
             depart: '',
-            major: '',
             islist: true,
             orderinfo: '',
             islook: true,
@@ -207,7 +168,7 @@ export default {
         this.week = this.$route.query.week;
         this.time = this.$route.query.time;
         this.depart = this.$store.state.depart;
-        this.major = this.$store.state.major;
+
 
         this.doctordataFun();
         this.dateListFun();
@@ -217,17 +178,16 @@ export default {
         todayreservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: { regStage: data.regStage, money: data.money, sourceId: data.regId, doctorId: this.$route.query.doctorId, time: this.$route.query.time, week: this.$route.query.week, afternoon: this.$route.query.afternoon }
+                query: {  regStage: data.regStage, money: data.money, sourceId: data.regId, doctorId: this.$route.query.doctorId, time: this.$route.query.time, dept: data.dept, week: this.$route.query.week, afternoon: this.$route.query.afternoon }
             });
         },
 
         reservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: { regStage: data.regStage, sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.dept, money: data.money }
+                query: {  regStage: data.regStage, sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.major, money: data.money }
             });
         },
-
         toggleClick() {
             this.collapsed = !this.collapsed
         },
