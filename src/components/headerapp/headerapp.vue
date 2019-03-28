@@ -83,8 +83,6 @@ export default {
       let Request = new UrlSearch(); //实例化
       this.TOKEN = Request.TOKEN;
       this.UUID = Request.UUID;
-      console.log(this.TOKEN)
-
       var storage = window.localStorage;
       if (this.TOKEN && !this.isWin) {
          storage.setItem("token7", this.TOKEN);
@@ -92,15 +90,13 @@ export default {
       }
    },
    methods: {
-
       back() {
-         this.$toast.info("返回", "this.isWin");
+         this.$toast.info(this.isWin);
          if (this.TOKEN && !this.isWin) {
             WebViewJavascriptBridge.callHandler(
                'back'
                , {}
                , function (responseData) {
-
                }
             );
          } else {
@@ -108,7 +104,7 @@ export default {
          }
       },
 
-      
+
    },
 }
 </script>
