@@ -18,43 +18,24 @@
             <!--</span>-->
         <!--</header>-->
         <Header post-title="缴费记录"></Header>
-        <div class="outCarint margin45">
+        <div class=" margin50"><!--outCarint-->
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
-                <div class="card cardcc margin16" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
-                    <p class="appTitle">
-                        <span>{{item.type}}费</span>
-                        <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
-                    </p>
-                    <!--<div class="cardText">-->
-                        <!--<span>患者</span>-->
-                        <!--<span>{{item.patientName}}</span>-->
-                        <!--<p>患者：{{item.patientName}}</p>-->
-                        <!--<p>医院：{{item.hospital}}</p>-->
-                        <!--<p v-if="disType == 1">开单时间：{{item.createTime}}</p>-->
-                        <!--<p v-if="disType == 2">支付时间：{{item.payTime}}</p>-->
-                        <!--<div style="height:30px;  text-align: right;" v-if="disType == 1">-->
-                            <!--<span class="payatnow">立即支付</span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <div class="listData">
-                        <span>患者</span>
-                        <span>{{item.patientName}}</span>
+                <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
+                    <div class="titleLine">
+                        <div class="listData">
+                            <span>{{item.type}}费</span>
+                            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
+                        </div>
                     </div>
-                    <div class="listData">
-                        <span>医院</span>
-                        <span>{{item.hospital}}</span>
-                    </div>
-                    <div class="listData" v-if="disType == 1">
-                        <span>开单时间</span>
-                        <span>{{item.createTime}}</span>
-                    </div>
-                    <div class="listData" v-if="disType == 2">
-                        <span>支付时间</span>
-                        <span>{{item.payTime}}</span>
-                    </div>
-                    <div class="payatnow" v-if="disType == 1">
-                        <span class="">立即支付</span>
+                    <div class="cardText">
+                        <p>患者：{{item.patientName}}</p>
+                        <p>医院：{{item.hospital}}</p>
+                        <p v-if="disType == 1">开单时间：{{item.createTime}}</p>
+                        <p v-if="disType == 2">支付时间：{{item.payTime}}</p>
+                        <div class="payatnow" v-if="disType == 1">
+                            <span>立即支付</span>
+                        </div>
                     </div>
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
@@ -146,8 +127,6 @@ export default {
             this.isSelectorShow = true
         },
         appointinfo: function (val, code) {
-            console.log(val);//8
-            console.log(code);//x0003
             this.$router.push({
                 name: 'feeinfo',
                 query: { id: val, code: code }
@@ -240,30 +219,15 @@ export default {
 .feerecord {
   font-size: 28px;
 }
-.feerecord .appTab {
-  width: 80%;
-  margin-left: 10%;
-}
-.feerecord .cardText {
-  padding: 10px 0 30px;
-}
 .feerecord .cardText p {
   line-height: 50px;
   font-size: 28px;
   color: #5c5c5c;
 }
-.feerecord .appTitle {
-  border-bottom: 1px solid #ededed;
-  display: flex;
-  justify-content: space-between;
-}
-.feerecord .listData span:nth-child(2){
-    color: #979797;
-}
 .payatnow {
     height:60px;
     text-align: right;
-    margin: 24px 0 10px 0;
+    margin-top: 14px;
 }
 .payatnow span{
     font-size: 28px;
@@ -274,7 +238,7 @@ export default {
     padding: 15px 40px;
     text-align: center;
 }
-.feerecord .demo-text .card:first-child {
-  margin-top: 0px;
+.feerecord .flatCard:first-child{
+    margin-top: -22px;
 }
 </style>

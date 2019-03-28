@@ -35,6 +35,8 @@ const payTypeFilter = function (value) {
         return "已就诊"
     } else if (value == 5) {
         return "已取消"
+    }else if (value == 6) {
+        return "已失效"
     }
 };
 //时间保留号数

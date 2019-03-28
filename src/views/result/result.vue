@@ -1,22 +1,25 @@
 <template>
     <div class="result">
         <Header post-title="搜索"></Header>
-        <div class="outCarint margin45">
+        <div class="margin50" style="background-color: #ffffff">
             <div style="text-align:center;">
                 <input v-model="value" placeholder="搜索医生、科室" autofocus="autofocus" class="oc_val" @input="loadMorelist(value)">
             </div>
-            <div class="mu-sub-header margin14">科室</div>
-            <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
-            <div v-if="departData.length==0" class="margin7">
-                <p>暂无科室信息</p>
+            <div class="outCarint">
+                <div class="mu-sub-header margin14">科室</div>
+                <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
+                <div v-if="departData.length==0" class="margin7">
+                    <p>暂无科室信息</p>
+                </div>
+                <div class="mu-sub-header  margin14">医生</div>
+                <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
+                    <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+                </md-cell-item>
+                <div v-if="doctorList.length==0" class="margin7">
+                    <p>暂无医生信息</p>
+                </div>
             </div>
-            <div class="mu-sub-header  margin14">医生</div>
-            <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
-                <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
-            </md-cell-item>
-            <div v-if="doctorList.length==0" class="margin7">
-                <p>暂无医生信息</p>
-            </div>
+
         </div>
     </div>
 </template>

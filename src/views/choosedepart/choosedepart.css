@@ -2,9 +2,11 @@
    font-size: 30px;
    /* margin-top: 30px; */
    border-bottom: 1px solid #ededed;
-   padding-bottom: 30px;
+   padding: 32px 24px;
 }
-
+.choosedepart .flatCard{
+   padding:0;
+}
 .choosedepart .margin20 {
    margin-top: 20px;
 }
@@ -120,10 +122,9 @@
 #app .choosedepart .md-cell-item-title {
    font-size: 28px;
 }
-
-/* .md-cell-item-title {
-    font-size: 24px !important;
-} */
+/*.md-cell-item:last-child .md-cell-item-body:before{*/
+   /*background-color: transparent;*/
+/*}*/
 
 input {
    margin: 0;
@@ -138,7 +139,6 @@ input {
    /* position: fixed; */
    width: 100%;
    height: 80px;
-   border-radius: 10px;
    left: 0;
    right: 0;
    margin: 0 auto;
