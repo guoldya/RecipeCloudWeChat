@@ -1,6 +1,6 @@
 <template>
    <div class="gp-order">
-      <div class="outCarint margin45">
+      <div class="cardText flatCard margin55">
          <Header post-title="预约信息"></Header>
          <div class="order-info">
             <div class="doctor-info g-clear">
@@ -28,10 +28,9 @@
             </ul>
          </div>
       </div>
-      <div style="height:15px; background: #f8f8f8"></div>
-      <div class="order-info ">
+      <div class="order-info margin5 cardText">
          <ul class="g-items">
-            <li class="input-line g-arrow-r J_PatientsDropDown J_AdjustWidth">
+            <li class="input-line J_PatientsDropDown J_AdjustWidth">
                <div>
                   <label class="nowidth">就诊人：</label>
                   <span class="input-box">

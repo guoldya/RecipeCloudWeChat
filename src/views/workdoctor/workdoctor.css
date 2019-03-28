@@ -159,6 +159,9 @@ nput {
    background-size: 100% auto;
    vertical-align: text-bottom;
 }
+.yy_date_today .time_btn_up{
+   transform: rotate(180deg);
+}
 
 .tinmup {
    transform: rotate(180deg);

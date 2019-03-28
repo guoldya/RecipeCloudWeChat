@@ -11,11 +11,29 @@
                                 <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
                             </div>
                         </div>
-                        <div class="cardText">
-                            <p>患者：{{item.patientName}}</p>
-                            <p>医院：{{item.hospital}}</p>
-                            <p v-if="disType == 1">开单时间：{{item.createTime}}</p>
-                            <p v-if="disType == 2">支付时间：{{item.payTime}}</p>
+                        <div class="cardText" style="">
+                            <!--<div class="aaaa" style="width: 80px; text-align: justify;">-->
+                                <!--<span>患者：<i style="display:inline-block; padding-left: 100%;"></i></span>-->
+                            <!--</div>-->
+                            <!--<span>{{item.patientName}}</span>-->
+                            <!--<div class="aaaa" style="width: 80px; text-align: justify;">-->
+                                <!--<span>开单时间<span>：{{item.createTime}}</span></span>-->
+                            <!--</div>-->
+                            <p>
+                                <span>患者：</span>
+                                <span>{{item.patientName}}</span></p>
+                            <p>
+                                <span>医院：</span>
+                                <span>{{item.hospital}}</span>
+                            </p>
+                            <p v-if="disType == 1">
+                                <span>开单时间：</span>
+                                <span>{{item.createTime}}</span>
+                            </p>
+                            <p v-if="disType == 2">
+                                <span>支付时间：</span>
+                                <span>{{item.payTime}}</span>
+                            </p>
                             <div class="payatnow" v-if="disType == 1">
                                 <span>立即支付</span>
                             </div>
@@ -207,6 +225,16 @@ export default {
   font-size: 28px;
   color: #5c5c5c;
 }
+/*.feerecord .cardText p span:first-child{*/
+    /*display: inline-block;*/
+    /*width: 21%;*/
+/*}*/
+.aaaa span:first-child{
+    /*width: 20%;*/
+}
+/*.aaaa span:first-child:after {*/
+    /*content: " "; display: inline-block; width: 100%;*/
+/*}*/
 .payatnow {
     height: 60px;
     text-align: right;
@@ -228,8 +256,5 @@ export default {
   letter-spacing: 1px;
   padding: 15px 40px;
   text-align: center;
-}
-.feerecord .flatCard:first-child{
-    margin-top: -22px;
 }
 </style>
