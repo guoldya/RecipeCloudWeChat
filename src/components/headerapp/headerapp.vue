@@ -103,7 +103,7 @@ export default {
       back() {
 
          if (this.TOKEN && !this.isWin) {
-            this.$toast.info("返回");
+            this.$toast.info("第二次");
             WebViewJavascriptBridge.callHandler(
                'back'
                , {}
