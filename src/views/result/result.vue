@@ -93,20 +93,7 @@ export default {
             this.HistoryList = [],
                 localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
         },
-        intodoctordetail() {
-            let argu = {};
-            if (this.searchType == "workdepart") {
-                this.$router.push({
-                    name: 'workdoctor',
-                    query: argu
-                });
-                return;
-            }
-            this.$router.push({
-                name: 'doctordetail',
-                query: argu
-            });
-        },
+  
         intodoctorList(data) {
             let argu = { deptName: data.orgName, deptId: data.id, yuanId: data.parentId };
             if (this.searchType == "workdepart") {
@@ -120,6 +107,23 @@ export default {
                 name: 'doctorList',
                 query: argu
             });
+
+            if (this.HistoryList.length > 0) { // 有数据的话 判断
+                if (this.HistoryList.indexOf(data.orgName) !== -1) { // 有相同的，先删除 再添加 
+                    this.HistoryList.splice(this.HistoryList.indexOf(data.orgName), 1)
+                    this.HistoryList.unshift(data.orgName);
+                } else { // 没有相同的 添加
+                    this.HistoryList.unshift(data.orgName);
+                }
+            } else { // 没有数据 添加
+                this.HistoryList.unshift(data.orgName);
+            }
+            if (this.HistoryList.length > 6) { // 保留六个值
+                this.HistoryList.pop();
+            }
+
+            localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
+
         },
         intodoctorinfo(data) {
             let argu = { doctorId: data.id };
@@ -134,6 +138,22 @@ export default {
                 name: 'doctordetail',
                 query: { doctorId: data.id, islist: 1 }
             });
+
+            if (this.HistoryList.length > 0) { // 有数据的话 判断
+                if (this.HistoryList.indexOf(data.name) !== -1) { // 有相同的，先删除 再添加 
+                    this.HistoryList.splice(this.HistoryList.indexOf(data.name), 1)
+                    this.HistoryList.unshift(data.name);
+                } else { // 没有相同的 添加
+                    this.HistoryList.unshift(data.name);
+                }
+            } else { // 没有数据 添加
+                this.HistoryList.unshift(data.name);
+            }
+            if (this.HistoryList.length > 6) { // 保留六个值
+                this.HistoryList.pop();
+            }
+
+            localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
         },
         loadMorelist(value) {
             this.isResult = false;
@@ -163,23 +183,6 @@ export default {
                     if (res.data.code == '200') {
                         _this.doctorList = res.data.data.doctorList;
                         _this.departData = res.data.data.orgList;
-
-
-                        if (_this.HistoryList.length > 0) { // 有数据的话 判断
-                            if (_this.HistoryList.indexOf(value) !== -1) { // 有相同的，先删除 再添加 
-                                _this.HistoryList.splice(_this.HistoryList.indexOf(value), 1)
-                                _this.HistoryList.unshift(value);
-                            } else { // 没有相同的 添加
-                                _this.HistoryList.unshift(value);
-                            }
-                        } else { // 没有数据 添加
-                            _this.HistoryList.unshift(value);
-                        }
-                        if (_this.HistoryList.length > 6) { // 保留六个值
-                            _this.HistoryList.pop();
-                        }
-
-                        localStorage.setItem('HistoryList', JSON.stringify(_this.HistoryList));
 
 
 
