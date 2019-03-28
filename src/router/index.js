@@ -4,6 +4,7 @@ import index from '@/views/home/home.vue'
 import druginfo from '@/views/druginfo/druginfo.vue'
 import online from '@/views/onlines/online/online.vue'
 import article from '@/views/article/article.vue'
+import inquiryOnline from '@/views/onlines/inquiryOnline'
 import my from '@/views/my/my.vue'
 import appoint from '@/views/appoint/appoint.vue'
 import appointinfo from '@/views/appointinfo/appointinfo.vue'
@@ -569,6 +570,14 @@ export default new Router({
     component: consultDetail,
     meta: {
       title: '医生详情'
+    }
+  },
+  {
+    path: '/inquiryOnline',
+    component: inquiryOnline,
+    meta: {
+      title: '问诊详情',
+      auth: true
     }
   },
   {

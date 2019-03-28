@@ -9,6 +9,9 @@ input {
 .doctorList .cardText{
    padding: 24px 18px;
 }
+.doctorList .flatCard{
+   margin-top: 12px;
+}
 .doctorList .tagdiv .oc_val {
    /* position: fixed; */
    width: 95%;

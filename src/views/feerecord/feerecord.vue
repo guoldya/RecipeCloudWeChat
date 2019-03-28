@@ -39,10 +39,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <p v-show="nomore" class="noMore">没有更多数据了</p>
+                    <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
-            <div v-show="!loadingtrue" class="nullDiv"  >
+            <div v-show="!loadingtrue" class="nullDiv"  v-else>
                 <img src="@/assets/images/null1.png">
             </div>
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
@@ -52,6 +51,8 @@
                 </span>
             </div>
             <Loading v-show="loadingtrue"></Loading>
+            </div>
+
         </div>
 </template>
 <script >
@@ -224,6 +225,9 @@ export default {
   line-height: 50px;
   font-size: 28px;
   color: #5c5c5c;
+}
+.feerecord .flatCard:first-child{
+    margin-top: 0;
 }
 /*.feerecord .cardText p span:first-child{*/
     /*display: inline-block;*/

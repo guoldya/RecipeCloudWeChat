@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="line"></div>
-            <div class="yy_date_today" @click="islook=!islook">
+            <div class="yy_date_today" @click="islook=!isl.doc_scheduling .lineook">
                 <span class="date_today">查看全部排班</span>
                 <span class="date_today">
                     <i class="time_btn" :class="{'time_btn_up':!islook}"></i>

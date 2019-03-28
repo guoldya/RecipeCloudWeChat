@@ -43,7 +43,9 @@ body {
   /*padding: 6px 30px;*/
   margin-top: 12px;
 }
-
+.flatCard:first-child{
+  border-top: 2px solid #e9e9e9;
+}
 .titleLine{
   border-bottom: 2px solid #e9e9e9;
   padding: 16px 30px;
