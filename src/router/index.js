@@ -564,7 +564,8 @@ export default new Router({
     meta: {
       title: '问诊记录'
     }
-  }, {
+  }, 
+  {
     path: '/consultDetail',
     name: 'consultDetail',
     component: consultDetail,

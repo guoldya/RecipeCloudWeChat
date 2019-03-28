@@ -81,7 +81,7 @@
           </li>
         </ul>
         <div v-else v-show="!loadingtrue">
-          <p>暂无号源</p>
+          <p style="margin-left: 9px">暂无号源</p>
         </div>
         <Loading v-show="loadingtrue"></Loading>
       </div>
@@ -109,7 +109,7 @@
           </li>
         </ul>
         <div v-else v-show="!loadingtrue">
-          <p>暂无号源</p>
+          <p style="margin-left: 9px">暂无号源</p>
         </div>
         <Loading v-show="loadingtrue"></Loading>
       </div>

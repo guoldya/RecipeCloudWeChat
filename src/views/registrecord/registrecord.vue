@@ -1,6 +1,6 @@
 <template>
     <div class="registrecord">
-        <Header post-title="挂号记录"  ></Header>
+        <Headerapp post-title="挂号记录"  ></Headerapp>
         <div class="outCarint margin45">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
                 <div class="card margin16" v-for="(item,i) in cordData" :key="i">

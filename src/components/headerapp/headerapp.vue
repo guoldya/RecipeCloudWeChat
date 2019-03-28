@@ -29,7 +29,7 @@ export default {
    },
    mounted() {
 
-      this.$store.commit('cardIdFun', 39);
+
       var u = navigator.userAgent;
       this.isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
       this.isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
@@ -97,11 +97,12 @@ export default {
       if (this.TOKEN && !this.isWin) {
          storage.setItem("token7", this.TOKEN);
          storage.setItem("UUID7", this.UUID);
+         this.$store.commit('cardIdFun', 39);
+         this.$store.commit('cardNnameFun', "冉有钱");
       }
    },
    methods: {
       back() {
-         // this.$toast.info(this.isWin);
          if (this.TOKEN && !this.isWin) {
             this.$toast.info("第二次");
             WebViewJavascriptBridge.callHandler(
