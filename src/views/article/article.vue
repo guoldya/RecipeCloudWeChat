@@ -77,6 +77,7 @@ export default {
       UUID: '',
       IOS: false,
       isAndroid: false,
+      isWin: false,
       isout: false,
       test: [{ filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },
       { filename: "http://09imgmini.eastday.com/mobile/20190121/2019012117_3cbaf127901d43c98bc1365f1895025c_6506_mwpm_03200403.jpg" },

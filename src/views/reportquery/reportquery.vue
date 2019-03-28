@@ -1,23 +1,23 @@
 <template>
     <div class="reportquery">
         <!--<header class="aui-navBar aui-navBar-fixed">-->
-            <!--<span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">-->
-                <!--<img src="@/assets/images/icon_back.png">-->
-            <!--</span>-->
-            <!--<div class="aui-center">-->
-                <!--<span class="aui-center-title">报告查询</span>-->
-            <!--</div>-->
-            <!--<span class="aui-navBar-item">-->
-                <!--<div>-->
-                    <!--<md-field>-->
-                        <!--<md-field-item :content="selectorValue" @click="showSelector" solid/>-->
-                    <!--</md-field>-->
-                    <!--<md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>-->
-                <!--</div>-->
-                <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
-            <!--</span>-->
+        <!--<span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">-->
+        <!--<img src="@/assets/images/icon_back.png">-->
+        <!--</span>-->
+        <!--<div class="aui-center">-->
+        <!--<span class="aui-center-title">报告查询</span>-->
+        <!--</div>-->
+        <!--<span class="aui-navBar-item">-->
+        <!--<div>-->
+        <!--<md-field>-->
+        <!--<md-field-item :content="selectorValue" @click="showSelector" solid/>-->
+        <!--</md-field>-->
+        <!--<md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>-->
+        <!--</div>-->
+        <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
+        <!--</span>-->
         <!--</header>-->
-        <Header post-title="报告查询"></Header>
+        <Headerapp post-title="报告查询"></Headerapp>
         <div class="outCarint margin45">
             <!-- <div class="appTab">
                 <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">

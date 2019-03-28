@@ -247,6 +247,7 @@ export default {
             }
             this.homeNumber(this.chooseId);
             this.chooseId = current.id;
+          
             this.$store.commit('patientIdFun', current.patientId);
             this.$store.commit('cardNoFun', current.cardNo);
             this.$store.commit('cardIdFun', current.id);
