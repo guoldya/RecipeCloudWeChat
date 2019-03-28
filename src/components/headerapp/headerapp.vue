@@ -91,8 +91,9 @@ export default {
    },
    methods: {
       back() {
-         this.$toast.info(this.isWin);
+
          if (this.TOKEN && !this.isWin) {
+            this.$toast.info("返回");
             WebViewJavascriptBridge.callHandler(
                'back'
                , {}

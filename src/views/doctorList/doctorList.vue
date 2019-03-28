@@ -13,8 +13,8 @@
       <div class="line"></div>
       <div class="tag2">
         <div class="tagdiv">
-          <span v-if="valNum" @click="handler" class="activeAA">只看有号</span>
-          <span v-else @click="handler">查看所有</span>
+          <span v-if="valNum" @click="handler">查看所有</span>
+          <span v-else @click="handler" class="activeAA">只看有号</span>
         </div>
       </div>
       <div class="line"></div>
