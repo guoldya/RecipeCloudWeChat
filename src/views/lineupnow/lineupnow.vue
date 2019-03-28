@@ -24,7 +24,7 @@
           <div class="cardText" v-show="queryType==1">
             <p class="cardTextPP">
               <span>等待时间：
-                <span class="mu-secondary-text-color" v-if="item.waitingTime>=0">{{item.waitingTime}}</span>
+                <span class="mu-secondary-text-color" v-if="item.waitingTime>=0">{{item.waitingTime}}分钟</span>
                 <span class="mu-secondary-text-color" v-else>过时</span>
               </span>
               <span>当前号码：

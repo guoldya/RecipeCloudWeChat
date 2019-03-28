@@ -32,7 +32,7 @@
           电子就诊卡需知</p>
       </div>
     </div>
-    <p @click="blidcard" class="add" v-show="!isFive">注册电子就诊卡</p>
+    <p @click="blidcard" class="add" v-show="cardlist.length<6">注册电子就诊卡</p>
     <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
     <md-landscape v-model="showPic" :mask-closable="true">
       <div class="codema">
@@ -91,27 +91,7 @@ export default {
     await this.$store.dispatch('getCards'/* , { update: true } */);
 
     this.loadingtrue = false;
-    // this.$store.dispatch('getCards').then(res => {
-    //   this.loadingtrue = false;
-    // })
-    //  created() {
-    // this.$axios.put(wechatbizPatientCardreadpage, {
-    // }).then(res => {
-    //   if (res.data.code == '200') {
-    //     this.cardlist = res.data.rows;
-    //     if (res.data.rows.length > 5) {
-    //       this.isFive = true
-    //     } else {
-    //       this.isFive = false
-    //     }
-    //     this.$store.commit('cardListFun', this.cardlist);
-    //     this.loadingtrue = false;
-    //   } else if (res.data.code == '800') {
-    //     console.log(res.data.msg)
-    //   }
-    // }).catch(function (err) {
-    //   console.log(err)
-    // });;
+
   },
   watch: {
     selected3: function (newselectedStatus, oldselectedStatus) {
