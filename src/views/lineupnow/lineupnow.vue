@@ -141,7 +141,6 @@ export default {
       this.getGoodslist();
     },
     handler2(name, active) {
-
       this.goodsList = [];
       this.loadingtrue = true;
       this.page = 1;

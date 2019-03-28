@@ -10,19 +10,19 @@ input {
 .result .oc_val {
    /* position: fixed; */
    width: 100%;
-  height: 75px;
-  border-radius: 10px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  padding-left: 70px;
-  background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
-  background-size: auto 40% !important;
-  opacity: 1;
-  outline: none;
-  font-size: 28px !important;
-  color: #000;
-  z-index: 999;
+   height: 75px;
+   border-radius: 10px;
+   left: 0;
+   right: 0;
+   margin: 0 auto;
+   padding-left: 70px;
+   background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
+   background-size: auto 40% !important;
+   opacity: 1;
+   outline: none;
+   font-size: 28px !important;
+   color: #000;
+   z-index: 999;
 }
 
 .result .mu-sub-header {
@@ -35,16 +35,19 @@ input {
    width: 92px;
    border-radius: 50%;
 }
+
 .result .departLi2 {
    width: 100%;
    float: left;
    border-bottom: 1px solid #ededed;
- }
- .result .grid-cell2 {
+}
+
+.result .grid-cell2 {
    line-height: 50px;
    margin: 0 12px;
- }
- .result .mubadge {
+}
+
+.result .mubadge {
    font-size: 10px;
    display: -webkit-box;
    display: -ms-flexbox;
@@ -64,5 +67,53 @@ input {
    border-radius: 3px;
    overflow: hidden;
    border: 1px solid #bdbdbd;
- }
- 
+}
+
+.resulthistory .history {
+   width: 100%;
+   height: 74px;
+   border-bottom: 1px solid #eee;
+   line-height: 74px;
+}
+
+.resulthistory .fl {
+   display: flex;
+   color: #777;
+}
+
+.resulthistory .fl span {
+   height: 100%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.resulthistory .fl .lf {
+   flex: 6.7;
+   font-size: 28px;
+}
+
+.resulthistory .fl .rt {
+   flex: 1;
+   justify-content: center;
+   font-size: 28px;
+   cursor: pointer;
+}
+
+.delete {
+   float: right;
+   margin-right: 2%;
+}
+
+.hj {
+   width: 85%;
+   display: inline-block;
+}
+
+.delete {
+   width: 5%;
+   display: inline-block;
+}
+.clear{
+  margin-top: 20px;
+}

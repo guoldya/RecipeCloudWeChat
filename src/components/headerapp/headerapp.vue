@@ -90,10 +90,9 @@ export default {
          storage.setItem("token7", this.TOKEN);
          storage.setItem("UUID7", this.UUID);
       }
-
-
    },
    methods: {
+
       back() {
          this.$toast.info("返回", "this.isWin");
          if (this.TOKEN && !this.isWin) {
@@ -108,6 +107,8 @@ export default {
             this.$router.go(-1)
          }
       },
+
+      
    },
 }
 </script>
