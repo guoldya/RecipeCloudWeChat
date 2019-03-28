@@ -1,5 +1,5 @@
 <template>
-   <div class="   margin45 ">
+   <div class="   margin55 ">
       <Header post-title="确认支付"></Header>
       <md-field>
          <div class="outCarint">

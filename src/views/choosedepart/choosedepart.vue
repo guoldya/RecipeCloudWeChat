@@ -1,8 +1,7 @@
 <template>
   <div class="choosedepart">
     <Headerapp post-title="选择科室"></Headerapp>
-    
-    <div class="outCarint margin45">
+    <div class=" margin50">
       <Search></Search>
       <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
       <div>
@@ -18,11 +17,14 @@
         <div v-if="this.active1==1">
           <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.orgName" />
         </div> -->
-        <p class="xuanze">选择科室
-          <span class="warn">(周末及节假日不可预约)</span>
-        </p>
-        <div v-if="departData.length!=0" v-show="!loadingtrue">
-          <md-cell-item v-for="(item,index) in departData" arrow @click="intodoctorList(item)" :key="index" :title="item.orgName" />
+
+        <div v-if="departData.length!=0" v-show="!loadingtrue" >
+          <div class="flatCard margin11">
+            <p class="xuanze">选择科室
+              <span class="warn">(周末及节假日不可预约)</span>
+            </p>
+            <md-cell-item v-for="(item,index) in departData" arrow @click="intodoctorList(item)" :key="index" :title="item.orgName" />
+          </div>
           <p v-show="nomore" class="noMore">没有更多数据了</p>
         </div>
         <div v-show="!loadingtrue" class="nullDiv" v-else>
@@ -212,6 +214,7 @@ export default {
 };
 </script>
  <style scoped>
+@import "choosedepart.css";
 .choosedepart .xuanze {
   font-size: 30px;
   /* margin-top: 30px; */

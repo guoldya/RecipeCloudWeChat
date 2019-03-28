@@ -1,50 +1,50 @@
 <template>
     <div class="result">
         <Header post-title="搜索"></Header>
-        <div class="outCarint margin45">
+        <div class="margin50" style="background-color: #ffffff">
             <div style="text-align:center;">
                 <input v-model="value" placeholder="搜索医生、科室" autofocus="autofocus" class="oc_val" @input="loadMorelist(value)">
             </div>
-
-            <div class="line"></div>
-            <div class="resulthistory" v-show="isResult">
-                <div class="history">
-                    <div class="container fl">
-                        <span class="lf">搜索历史</span>
-                        <span class="clear rt" @click="clear()">
-                            <md-icon name="delete" @click="clearT(index)"></md-icon>
-                        </span>
+            <div class="outCarint">
+                <div class="line"></div>
+                <div class="resulthistory" v-show="isResult">
+                    <div class="history">
+                        <div class="container fl">
+                            <span class="lf">搜索历史</span>
+                            <span class="clear rt" @click="clear()">
+                                <md-icon name="delete" @click="clearT(index)"></md-icon>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="emp" v-if="HistoryList.length!=0">
+                            <li class="history" v-for="(item,index) in HistoryList" :key="index">
+                                <span class="hj" @click="resultT(item)">{{item}}</span>
+                                <span class="delete">
+                                    <md-icon name="close" @click="clearT(index)"></md-icon>
+                                </span>
+                            </li>
+                        </ul>
+                        <p v-else>
+                            暂无
+                        </p>
                     </div>
                 </div>
-                <div>
-                    <ul class="emp" v-if="HistoryList.length!=0">
-                        <li class="history" v-for="(item,index) in HistoryList" :key="index">
-                            <span class="hj" @click="resultT(item)">{{item}}</span>
-                            <span class="delete">
-                                <md-icon name="close" @click="clearT(index)"></md-icon>
-                            </span>
-                        </li>
-                    </ul>
-                    <p v-else>
-                        暂无
-                    </p>
+                <div v-show="!isResult">
+                    <div class="mu-sub-header margin14">科室</div>
+                    <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
+                    <div v-if="departData.length==0" class="margin7">
+                        <p>暂无科室信息</p>
+                    </div>
+                    <div class="mu-sub-header  margin14">医生</div>
+                    <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
+                        <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+                    </md-cell-item>
+                    <div v-if="doctorList.length==0" class="margin7">
+                        <p>暂无医生信息</p>
+                    </div>
                 </div>
             </div>
-            <div v-show="!isResult">
-                <div class="mu-sub-header margin14">科室</div>
-                <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
-                <div v-if="departData.length==0" class="margin7">
-                    <p>暂无科室信息</p>
-                </div>
-                <div class="mu-sub-header  margin14">医生</div>
-                <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
-                    <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
-                </md-cell-item>
-                <div v-if="doctorList.length==0" class="margin7">
-                    <p>暂无医生信息</p>
-                </div>
-            </div>
-
         </div>
     </div>
 </template>

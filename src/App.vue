@@ -36,6 +36,106 @@ export default {
 body {
   background: #e8e8e8;
 }
+.flatCard {
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  /*padding: 6px 30px;*/
+  margin-top: 12px;
+}
+.flatCard:first-child{
+  border-top: 2px solid #e9e9e9;
+}
+.titleLine{
+  border-bottom: 2px solid #e9e9e9;
+  padding: 16px 30px;
+}
+.cardText {
+  font-size: 28px;
+  color: #333333;
+  padding: 14px 30px;
+}
+.margin11 {
+  margin-top: -22px;
+}
+.margin50 {
+  margin-top: 100px;
+}
+.margin55{
+  margin-top: 110px;
+}
+.md-detail-title{
+  color: #333333 !important;
+}
+.md-detail-content{
+  color: #979797 !important;
+}
+
+
+/*收银台*/
+.md-example-child-cashier .md-field{
+  margin-bottom :30px
+}
+.md-cashier-channel-item .item-icon, .md-cashier-channel-item .item-image{
+  width: 50px !important;
+  height: 50px !important;
+}
+.md-cashier-channel-item .cashier-icon-2{
+  background :url(./assets/images/icon_alipay.png) center no-repeat;
+  background-size: 50px
+}
+.md-cashier-channel-item .cashier-icon-3{
+  background :url(./assets/images/icon_wechatpay.png) center no-repeat;
+  background-size: 50px
+}
+.md-cashier-channel-item{
+  background-color: transparent !important;
+}
+.md-cashier-block-btn .md-button{
+  border-radius: 60px !important;
+  font-size: 30px !important;
+}
+.md-popup-title-bar .title-bar-title p.title{
+  font-size: 32px !important;
+}
+.md-cashier-channel .choose-text{
+  padding: 46px 0px 10px!important;
+}
+.md-cashier-channel .choose-channel{
+  padding: 16px 60px 36px 60px !important;
+}
+.md-button-content{
+  font-size: 28px;
+}
+.primary:after{
+  border : transparent !important;
+}
+.md-cashier-channel-item .item-label{
+  margin-left: 20px !important;
+}
+.md-cashier-channel-item .item-check-icon{
+  line-height: 68px !important;
+}
+.md-cashier-channel-item .item-label .title{
+  font-size: 28px !important;
+  line-height: 48px !important;
+}
+/*cellitem列表*/
+.md-cell-item-body{
+  padding: 32px 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .warnText {
   font-size: 26px;
   color: #979797;
@@ -161,9 +261,7 @@ input:-ms-input-placeholder {
 .margin16 {
   margin: 0 0 32px 0;
 }
-.margin45 {
-  margin-top: 110px;
-}
+
 .margin7 {
   margin-top: 14px;
 }
@@ -275,10 +373,6 @@ input:-ms-input-placeholder {
   margin: 0px auto;
   padding: 6px 30px;
 }
-.cardText {
-  font-size: 28px;
-  color: #333333;
-}
 .mu-light-text-color {
   color: #979797;
 }
@@ -333,9 +427,9 @@ textarea::-webkit-input-placeholder {
   color: #fff;
   font-size: 28px;
 }
-.primary:after {
-  border: 1px solid #1da1f3 !important;
-}
+/*.primary:after {*/
+  /*border: 1px solid #1da1f3 !important;*/
+/*}*/
 .default {
   background-color: #43484b;
 }
