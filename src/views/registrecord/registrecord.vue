@@ -1,6 +1,6 @@
 <template>
     <div class="registrecord">
-        <Header post-title="挂号记录"  ></Header>
+        <Headerapp post-title="挂号记录"></Headerapp>
         <div class="outCarint margin45">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
                 <div class="card margin16" v-for="(item,i) in cordData" :key="i">
@@ -40,7 +40,7 @@ let read_page_url = "/app/bizPatientRegister/read/selectPage";
 export default {
     data() {
         return {
-            
+
             page: 1,
             pageSize: 10,
             loadingtrue: true,
@@ -54,7 +54,7 @@ export default {
     },
     mounted() {
         document.title = '挂号记录';
-       
+
         this.cordFun(false);
     },
     methods: {
@@ -129,8 +129,8 @@ export default {
   top: 2px;
   margin-left: 10px;
 }
-.registrecord .appTitle{
-    display: flex;
-    justify-content: space-between;
+.registrecord .appTitle {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

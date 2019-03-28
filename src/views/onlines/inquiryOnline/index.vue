@@ -109,7 +109,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
-// import httpService from '@/assets/service/httpService.js'
+ 
 import { Dialog } from 'mand-mobile'
 export default {
   data() {
@@ -219,6 +219,7 @@ export default {
     },
     // 发送消息
     send() {
+
       let createTime = new Date().getTime();
       let msg = {
         // 发送消息传的数据
@@ -231,7 +232,7 @@ export default {
         content: this.inputValue
       };
       // 把当前发送的消息添加到历史消息去
-      let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
+      // let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
       arr.push(msg)
       this['chat/setHistoryNews'](arr)
       this.chat.websocket.send(JSON.stringify(msg));
