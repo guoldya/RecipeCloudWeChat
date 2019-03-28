@@ -15,7 +15,7 @@
           </div>
           <div class="fright" v-show="queryType==2">
             <span class="pingbi">仅看报告已出</span>
-            <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
+            <md-switch v-model="isActive2" @change="handler2('switch0', isActive2, $event)"></md-switch>
           </div>
         </div>
       </div>
@@ -75,51 +75,7 @@
       </div>
       <Loading v-show="loadingtrue"></Loading>
     </div>
-
-    <!-- <div class="outCarint" v-if="type === 2">
-        <div class="card">
-          <div class="cardHEADER" style="display:flex;">
-            <div class="fleft">
-              <img src="@/assets/images/icon_calendar.png" alt="">
-              <span class="mu-secondary-text-color">12月14日</span>
-            </div>
-            <div class="fright">
-              <span class="pingbi">仅看报告已出</span>
-              <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
-            </div>
-          </div>
-        </div>
-        <div class="card margin16">
-          <p class="appTitle">
-            <span>等待时间：
-              <span class="mu-secondary-text-color">20分钟</span>
-            </span>
-            <span class="mu-secondary-text-color">报告已出</span>
-          </p>
-          <div class="cardText">
-            <p>检查科室：演示医院</p>
-            <p>检查项目：演示医院</p>
-            <p class="learnMore" @click="intoreportinfo">
-              查看报告 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
-            </p>
-          </div>
-        </div>
-        <div class="card margin16">
-          <p class="appTitle">
-            <span>等待时间：
-              <span class="mu-secondary-text-color">20分钟</span>
-            </span>
-            <span class="mu-secondary-text-color">报告待出</span>
-          </p>
-          <div class="cardText">
-            <p>检查科室：演示医院</p>
-            <p>检查项目：演示医院</p>
-          </div>
-        </div>
-      </div> -->
-
   </div>
-
 </template>
 <script type="text/babel">
 let appbizWaitingQueuereadlist = "/app/bizWaitingQueue/read/list";
@@ -134,6 +90,7 @@ export default {
       pageSize: 10,
       queryType: 1,
       isActive: false,
+      isActive2: false,
       nowTime: '',
       onlyWaiting: '',
       time: [
@@ -141,6 +98,7 @@ export default {
         { title: '报告提醒', type: 2 }
       ],
       waitingDate: '',
+
       // test: [{ filename: "https://kano.guahao.cn/IvZ2706441_image140.jpg?timestamp=1469427168922" },
       // { filename: "https://kano.guahao.cn/REk2640164_image140.jpg" },
       // { filename: "https://kano.guahao.cn/elarge_E2w2711261.jpg?timestamp=1538979619031" },
@@ -176,13 +134,30 @@ export default {
       this.getGoodslist();
     },
     handler(name, active) {
+
+      this.goodsList = [];
+      this.loadingtrue = true;
+      this.page = 1;
+      this.getGoodslist();
+    },
+    handler2(name, active) {
+
+      this.goodsList = [];
+      this.loadingtrue = true;
+      this.page = 1;
       this.getGoodslist();
     },
     getGoodslist(flag) {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
-      params.isUsable = this.isActive ? 1 : undefined;
+
+      if (this.queryType * 1 == 2) {
+        params.isUsable = this.isActive2 ? 1 : undefined;
+      } else {
+        params.isShield = this.isActive ? 1 : undefined;
+      }
+
       params.queryType = this.queryType;
       // params.waitingDate = "2019-02-22";
       this.$axios.put(appbizWaitingQueuereadlist, params).then((res) => {

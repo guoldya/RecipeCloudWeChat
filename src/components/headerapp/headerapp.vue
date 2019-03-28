@@ -40,7 +40,7 @@ export default {
             callback(WebViewJavascriptBridge)
          }
          else {
-            if (!_this.IOS) {
+            if (_this.isAndroid) {
                window.document.addEventListener(
                   'WebViewJavascriptBridgeReady'
                   , function () {
@@ -95,7 +95,7 @@ export default {
    },
    methods: {
       back() {
-         this.$toast.info("返回");
+         this.$toast.info("返回", "this.isWin");
          if (this.TOKEN && !this.isWin) {
             WebViewJavascriptBridge.callHandler(
                'back'
