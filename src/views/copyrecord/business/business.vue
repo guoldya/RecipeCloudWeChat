@@ -55,7 +55,7 @@
         <p class="namecodema">委托书样例</p>
       </div>
     </md-landscape>
-    <p @click="tijiao" class="add">下一步</p>
+    <p @click="tijiao" class="addbTN">下一步</p>
   </div>
 </template>
 <script type="text/babel">

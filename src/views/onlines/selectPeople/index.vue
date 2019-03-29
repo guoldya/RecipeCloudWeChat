@@ -17,7 +17,7 @@
        </li>
        <router-link tag="li" to="addPeople">
          <img src="../images/w.png" alt="">
-          <p class="add">添加家人</p>
+          <p class="addbTN">添加家人</p>
        </router-link>
      </ul>
   </div>

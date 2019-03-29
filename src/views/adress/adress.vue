@@ -44,7 +44,7 @@
             </div>
         </div>
         <Loading v-show="loadingtrue"></Loading>
-        <p class="add" @click="addadress()">添加地址</p>
+        <p class="addbTN" @click="addadress()">添加地址</p>
 
     </div>
 </template>

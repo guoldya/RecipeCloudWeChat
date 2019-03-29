@@ -39,7 +39,7 @@
       <!-- 沟通方式 -->
       <div class="doctor-way">
         <div class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
-          <div class="doctor-way-item-img">
+          <div class="doctor-way-item-img" @click="consult()">
             <img src="../images/icon_teletext.png" v-if="item.type == 1" alt="" />
             <img src="../images/icon_telephone.png" v-else-if="item.type == 2" alt="" />
           </div>
@@ -117,6 +117,7 @@ const followDoctorUrl = "/app/bizDoctorFollow/followDoctor"
 export default {
   data() {
     return {
+      
       isloading: true, // 是否显示loading
       doctorInfo: {}, // 医生信息
       // 咨询弹窗
@@ -147,6 +148,9 @@ export default {
   },
   mounted() {
     this.init();
+
+    
+
   },
   methods: {
     // 初始化
@@ -273,6 +277,7 @@ export default {
     padding: 40px 30px;
     box-shadow: 0 0 0.18rem rgba(20, 19, 51, 0.1);
     border-radius: 16px;
+    background: #ffffff;
   }
   .doctor-info-top {
     display: flex;
@@ -309,6 +314,7 @@ export default {
     }
   }
   .doctor-way {
+    background: #ffffff;
     display: flex;
     justify-content: space-between;
     padding: 40px 40px;

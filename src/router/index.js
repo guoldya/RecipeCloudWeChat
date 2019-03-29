@@ -575,6 +575,7 @@ export default new Router({
   },
   {
     path: '/inquiryOnline',
+    name: 'inquiryOnline',
     component: inquiryOnline,
     meta: {
       title: '问诊详情',

@@ -9,7 +9,10 @@
         </div>
         <div class="doctor-info-content">
           <p>周洋</p>
-          <p class="gray"><span>主治医生</span><span>儿科</span></p>
+          <p class="gray">
+            <span>主治医生</span>
+            <span>儿科</span>
+          </p>
         </div>
       </div>
       <div class="doctor-info-bottom">
@@ -27,55 +30,36 @@
         </div>
       </div>
     </div>
-    <md-cell-item title="为谁咨询" addon="点击选择就诊人" arrow @click="routerTo(1)"/>
+    <md-cell-item title="为谁咨询" addon="点击选择就诊人" arrow @click="routerTo(1)" />
     <!-- 问题描述 -->
     <div class="picture-consult-problem">
       <p>
-        问题描述&nbsp;&nbsp;<span>(症状表现、检查/用药和希望获得的帮助)</span>
+        问题描述&nbsp;&nbsp;
+        <span>(症状表现、检查/用药和希望获得的帮助)</span>
       </p>
       <textarea maxlength="500"></textarea>
       <!-- 上传图片 -->
       <ul class="image-reader-list">
-        <li
-          class="image-reader-item"
-          v-for="(img, index) in imageList"
-          :key="index"
-          :style="{
+        <li class="image-reader-item" v-for="(img, index) in imageList" :key="index" :style="{
             backgroundImage: `url(${img})`,
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover'
-          }"
-        >
-          <md-tag
-            class="image-reader-item-del"
-            size="small"
-            shape="quarter"
-            fill-color="#111A34"
-            type="fill"
-            font-color="#fff"
-            @click.native="onDeleteImage(index)"
-          >
+          }">
+          <md-tag class="image-reader-item-del" size="small" shape="quarter" fill-color="#111A34" type="fill" font-color="#fff" @click.native="onDeleteImage(index)">
             <md-icon name="close"></md-icon>
           </md-tag>
         </li>
         <li class="image-reader-item add" v-if="imageList.length<3">
-          <md-image-reader
-            name="reader0"
-            @select="onReaderSelect"
-            @complete="onReaderComplete"
-            @error="onReaderError"
-            is-multiple
-          ></md-image-reader>
+          <md-image-reader name="reader0" @select="onReaderSelect" @complete="onReaderComplete" @error="onReaderError" is-multiple></md-image-reader>
           <md-icon name="camera" size="md" color="#CCC"></md-icon>
           <p>添加图片</p>
         </li>
-        <li class="tips"  v-if="imageList.length<3">(最多上传3张)</li>
+        <li class="tips" v-if="imageList.length<3">(最多上传3张)</li>
       </ul>
     </div>
-
-    <md-cell-item title="选择报告" arrow @click="routerTo(2)"/>
-    <md-cell-item title="选择病例" arrow @click="routerTo(3)"/>
+    <md-cell-item title="选择报告" arrow @click="routerTo(2)" />
+    <md-cell-item title="选择病例" arrow @click="routerTo(3)" />
     <div class="btn">
       <md-button type="primary" round>发送给医生</md-button>
     </div>
@@ -87,21 +71,21 @@ import { Icon, ImageReader, Tag, Toast } from "mand-mobile";
 export default {
   data() {
     return {
-      imageList:[],
+      imageList: [],
     };
   },
   methods: {
     // 路由跳转 type 1 为谁咨询 2  选择报告 3选择病例
-    routerTo(type) { 
+    routerTo(type) {
       let url = ''
-      if(type === 1) {
+      if (type === 1) {
         url = '/selectPeople'
-      } else if(type === 2) {
-        
-      } else if(type === 3) {
+      } else if (type === 2) {
+
+      } else if (type === 3) {
 
       }
-      this.$router.push({path:url})
+      this.$router.push({ path: url })
     },
     onReaderSelect(name, { files }) {
       files.forEach(file => {
@@ -115,14 +99,14 @@ export default {
     onReaderComplete(name, { dataUrl, file }) {
       Toast.hide();
       setTimeout(() => {
-         this.imageList.push(dataUrl)
+        this.imageList.push(dataUrl)
       }, 100);
     },
     onReaderError(name, { msg }) {
       Toast.failed(msg);
     },
     onDeleteImage(index) {
-       this.imageList.splice(index, 1);
+      this.imageList.splice(index, 1);
     }
   }
 };
@@ -226,9 +210,9 @@ $border: 1px solid #e0e0e0;
     .tips {
       font-size: 24px;
       vertical-align: bottom;
-      color:#999;
+      color: #999;
       float: left;
-      margin-top:120px;
+      margin-top: 120px;
     }
   }
 }
