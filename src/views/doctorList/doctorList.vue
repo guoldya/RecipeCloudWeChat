@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div :class="{ pt50: !isTop  ,'outCarint':true}" style="margin-bottom:20px; ">
+    <div :class="{ pt50: !isTop}" style="margin-bottom:20px; ">
       <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
         <ul v-if="amList.length!=0" v-show="!loadingtrue">
@@ -52,16 +52,28 @@
         </ul>
         <ul v-if="amList.length!=0">
           <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info,1 )">
-            <div class="card">
+            <div class="flatCard">
+              <!--<div class="cardText">-->
+                <!--<div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>-->
+                <!--<div>-->
+                  <!--<p class="headname">-->
+                    <!--<span>{{info.name}}</span>-->
+                    <!--<span class="levle" style="padding-bottom: 4px;">{{info.title}}</span>-->
+                    <!--<span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>-->
+                    <!--<span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>-->
+                  <!--</p>-->
+                  <!--<p class="headdesc">擅长:{{info.skill}}</p>-->
+                <!--</div>-->
+              <!--</div>-->
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
-                  <p class="headname">
+                  <div class="headname">
                     <span>{{info.name}}</span>
                     <span class="levle" style="padding-bottom: 4px;">{{info.title}}</span>
                     <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
                     <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
-                  </p>
+                  </div>
                   <p class="headdesc">擅长:{{info.skill}}</p>
                 </div>
               </div>
@@ -69,7 +81,7 @@
           </li>
         </ul>
         <div v-else v-show="!loadingtrue">
-          <p>暂无号源</p>
+          <p style="margin-left: 9px">暂无号源</p>
         </div>
         <Loading v-show="loadingtrue"></Loading>
       </div>
@@ -77,7 +89,7 @@
       <div class="doctorList" id="afternoon">
         <ul v-if="pmList.length!=0" v-show="!loadingtrue">
           <li v-for="(pmItem,index) in pmList" :key="index">
-            <div class="card" @click="intodoctordetail(pmItem,2)">
+            <div class="flatCard" @click="intodoctordetail(pmItem,2)">
               <div class="cardText">
                 <div class="headimg">
                   <img src="@/assets/images/user.png" alt="医生头像">
@@ -97,7 +109,7 @@
           </li>
         </ul>
         <div v-else v-show="!loadingtrue">
-          <p>暂无号源</p>
+          <p style="margin-left: 9px">暂无号源</p>
         </div>
         <Loading v-show="loadingtrue"></Loading>
       </div>

@@ -102,7 +102,6 @@ export default {
       }
    },
    methods: {
-
       back() {
          if (this.TOKEN && !this.isWin) {
             this.$toast.info("第二次");

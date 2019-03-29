@@ -1,39 +1,38 @@
 <template>
    <div class="gp-order">
-      <div class="outCarint margin45">
+      <div class="cardText flatCard margin55">
          <Header post-title="预约信息"></Header>
          <div class="order-info">
             <div class="doctor-info g-clear">
                <img src="@/assets/images/user.png" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
                <span class="doctor-name">{{doctorInfo.name}}</span>
-               <span>{{doctorInfo.title}}</span>
+               <span class="docLevel">{{doctorInfo.title}}</span>
             </div>
-            <ul>
-               <li>
-                  <label>就诊院区：</label>
-                  <p>{{depart}}</p>
+            <ul  class="cardText alignJ">
+               <li class="parElem">
+                  <label class="sonElem">就诊院区</label>
+                  <p>：{{depart}}</p>
                </li>
-               <li>
-                  <label>科室：</label>
-                  <p>{{major}} </p>
+               <li class="parElem">
+                  <label class="sonElem">科室</label>
+                  <p>：{{major}} </p>
                </li>
-               <li>
-                  <label>看诊时间：</label>
-                  <p>{{time}}&nbsp;
+               <li class="parElem">
+                  <label class="sonElem">看诊时间</label>
+                  <p>：{{time}}&nbsp;
                      <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span>
                   </p>
                </li>
-               <li>
-                  <label>挂号费用：</label>
-                  <p class="mu-secondary-text-color">￥ {{money | keepTwoNum}}</p>
+               <li class="parElem">
+                  <label class="sonElem">挂号费用</label>
+                  <p class="mu-secondary-text-color">：￥ {{money | keepTwoNum}}</p>
                </li>
             </ul>
          </div>
       </div>
-      <div style="height:15px; background: #f8f8f8"></div>
-      <div class="order-info ">
+      <div class="order-info margin5 cardText">
          <ul class="g-items">
-            <li class="input-line g-arrow-r J_PatientsDropDown J_AdjustWidth">
+            <li class="input-line J_PatientsDropDown J_AdjustWidth">
                <div>
                   <label class="nowidth">就诊人：</label>
                   <span class="input-box">

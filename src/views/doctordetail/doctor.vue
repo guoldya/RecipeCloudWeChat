@@ -1,6 +1,6 @@
 
 <template>
-    <div class="margin45 doc_scheduling  ">
+    <div class="margin55 doc_scheduling  ">
         <Header post-title="医生详情"></Header>
         <div class="doctor-head  ">
             <div class="doc_info  ">
@@ -8,11 +8,12 @@
                     <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorInfo.name">
                 </div>
                 <div class="detail">
-                    <p class="name">
+                    <div class="headname">
                         <span class="name">{{doctorInfo.name}}</span>
-                        <span> {{doctorInfo.title}}</span>
-                    </p>
-                    <p class="hos_name">{{depart}} 擅长:{{doctorInfo.skill}}</p>
+                        <span class="levle"> {{doctorInfo.title}}</span>
+                        <p style="font-size: 14px">{{depart}} 擅长:{{doctorInfo.skill}}</p>
+                    </div>
+
                 </div>
                 <div class="doc_code">
                     <!-- <img  alt="{{doctorInfo.name}}">
@@ -45,15 +46,11 @@
                 <div class="wx_yy_date_time" v-show="orderinfo.length!=0">
                     <a class="wx_yy_date_time_item" v-for="(order,index) in orderinfo" :key="index">
                         <span v-if="order.valNum==0">
-                            <a name="a_date" class="current wx_residue_null">
-                                <span>余{{order.valNum}}</span>
-                            </a>
+                            <span class="current wx_residue_null">余{{order.valNum}}</span>
                             <label> {{depart}} {{order.regStage}}</label>
                         </span>
                         <span v-else>
-                            <a name="a_date" class="current">
-                                <span>余{{order.valNum}}</span>
-                            </a>
+                            <span class="current ">余{{order.valNum}}</span>
                             <label> {{depart}} {{order.regStage}}</label>
                         </span>
                         <div class="wx_residue_num" v-if="order.valNum==0">
@@ -68,7 +65,7 @@
                 </div>
                 <div class="wx_yy_date_time" v-show="orderinfo.length==0">
                     <a class="wx_yy_date_time_item">
-                        <p>暂无号源</p>
+                        <p class="aligncenter">暂无号源</p>
                     </a>
                 </div>
             </div>
@@ -76,13 +73,13 @@
             <div class="yy_date_today" @click="islook=!islook">
                 <span class="date_today">查看全部排班</span>
                 <span class="date_today">
-                    <i class="time_btn"></i>
+                    <i class="time_btn" :class="{'time_btn_up':!islook}"></i>
                 </span>
             </div>
             <div class="wx_dropdown_date_time" v-show="islook &&dateList.length!=0">
                 <span v-for="(item,i) in dateList" :key="i">
                     <span>
-                        <p> {{item.regStageVO}}
+                        <p style="font-size: 15px"> {{item.regStageVO}}
                             <span class="mu-secondary-text-color"> {{item.regStage}}</span> {{item.dept}} {{depart}} </p>
                         <p> {{item.regDate}}
                             <!-- <span class="mu-secondary-text-color">{{item.money | keepTwoNum}}元</span> -->
@@ -101,7 +98,7 @@
 
             <div class="wx_yy_date_time" v-show="islook && dateList.length==0 ">
                 <a class="wx_yy_date_time_item ">
-                    <p>暂无号源</p>
+                    <p class="aligncenter">暂无号源</p>
                 </a>
             </div>
         </div>

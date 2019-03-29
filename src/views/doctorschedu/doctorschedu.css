@@ -50,7 +50,9 @@
 #app .doctorschedu .wh_content_all{
     background-color: transparent;
 }
-#app .doctorschedu .wh_item_date, /deep/.wh_top_tag, /deep/.wh_top_changge li{
+#app .doctorschedu .wh_item_date,
+#app .doctorschedu .wh_top_tag,
+#app .doctorschedu .wh_top_changge li{
     color: #333333;
     width: 64px;
     height: 64px;

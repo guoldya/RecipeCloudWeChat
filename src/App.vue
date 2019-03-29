@@ -34,7 +34,7 @@ export default {
 
 <style  >
 body {
-  background: #e8e8e8;
+  background: #f8f8f8;
 }
 .flatCard {
   background-color: #fff;
@@ -46,10 +46,7 @@ body {
 .flatCard:first-child{
   border-top: 2px solid #e9e9e9;
 }
-.titleLine{
-  border-bottom: 2px solid #e9e9e9;
-  padding: 16px 30px;
-}
+
 .cardText {
   font-size: 28px;
   color: #333333;
@@ -57,12 +54,16 @@ body {
 }
 .margin11 {
   margin-top: -22px;
+  border-top: 2px solid #e9e9e9;
 }
 .margin50 {
   margin-top: 100px;
 }
 .margin55{
   margin-top: 110px;
+}
+.margin5 {
+  margin-top: 10px;
 }
 .md-detail-title{
   color: #333333 !important;
@@ -125,6 +126,46 @@ body {
   padding: 32px 24px;
 }
 
+/*文字两端对齐*/
+.alignJ .parElem,.md-detail-item{
+  line-height: 24px;
+  text-align: justify;
+}
+.md-detail-item{
+  line-height: 18px!important;
+}
+.alignJ .parElem:first-child{
+  padding-top: 10px;
+}
+.alignJ .parElem .sonElem:first-child,
+.md-detail-item div:first-child{
+  width: 17%;
+  display: inline-table;
+  color: #333333;
+}
+.alignJ .parElem .sonElem:first-child:after,
+.md-detail-item div:first-child:after
+{
+  content: " "; display: inline-block; width: 100%;
+}
+/*医生职称边框*/
+.headname .levle {
+  padding: 4px 10px;
+  font-size: 22px;
+  color: #1da1f3;
+  border: 1px solid #1da1f3;
+  border-radius: 8px;
+  position: relative;
+  top: 6px;
+  margin-left: 10px;
+  vertical-align: text-top;
+}
+.docLevel{
+  border: 2px solid #1da1f3;
+  color: #1da1f3;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
 
 
 
@@ -187,6 +228,8 @@ body {
   border-radius: 50%;
   float: left;
   text-align: center;
+  margin-right: 20px;
+  /*margin: 20px 20px 0 0;*/
 }
 .headimg img {
   width: 100%;
@@ -275,7 +318,7 @@ input:-ms-input-placeholder {
   padding: 0 24px;
 }
 .appTitle {
-  padding: 24px 0px;
+  padding: 24px 30px;
   border-bottom: 2px solid #ededed;
   display: flex;
   justify-content: space-between;
