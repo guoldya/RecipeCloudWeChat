@@ -197,7 +197,7 @@ input {
 }
 
  
-.doctorList .headname {
+.headname {
    /*line-height: 58px;*/
    font-size: 34px;
 }
@@ -228,18 +228,6 @@ input {
    margin-right: 20px;
    top: 12px;
    position: relative;
-}
-
-.doctorList .headname .levle {
-   padding: 4px 10px;
-   font-size: 22px;
-   color: #1da1f3;
-   border: 1px solid #1da1f3;
-   border-radius: 8px;
-   position: relative;
-   top: 6px;
-   margin-left: 10px;
-   vertical-align: text-top;
 }
 
 .doctorList .card {

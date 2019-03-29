@@ -6,26 +6,26 @@
             <div class="doctor-info g-clear">
                <img src="@/assets/images/user.png" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
                <span class="doctor-name">{{doctorInfo.name}}</span>
-               <span>{{doctorInfo.title}}</span>
+               <span class="docLevel">{{doctorInfo.title}}</span>
             </div>
-            <ul>
-               <li>
-                  <label>就诊院区：</label>
-                  <p>{{depart}}</p>
+            <ul  class="cardText alignJ">
+               <li class="parElem">
+                  <label class="sonElem">就诊院区</label>
+                  <p>：{{depart}}</p>
                </li>
-               <li>
-                  <label>科室：</label>
-                  <p>{{major}} </p>
+               <li class="parElem">
+                  <label class="sonElem">科室</label>
+                  <p>：{{major}} </p>
                </li>
-               <li>
-                  <label>看诊时间：</label>
-                  <p>{{time}}&nbsp;
+               <li class="parElem">
+                  <label class="sonElem">看诊时间</label>
+                  <p>：{{time}}&nbsp;
                      <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span>
                   </p>
                </li>
-               <li>
-                  <label>挂号费用：</label>
-                  <p class="mu-secondary-text-color">￥ {{money | keepTwoNum}}</p>
+               <li class="parElem">
+                  <label class="sonElem">挂号费用</label>
+                  <p class="mu-secondary-text-color">：￥ {{money | keepTwoNum}}</p>
                </li>
             </ul>
          </div>

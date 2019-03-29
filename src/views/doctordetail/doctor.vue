@@ -1,6 +1,6 @@
 
 <template>
-    <div class="margin50 doc_scheduling  ">
+    <div class="margin55 doc_scheduling  ">
         <Header post-title="医生详情"></Header>
         <div class="doctor-head  ">
             <div class="doc_info  ">
@@ -8,11 +8,12 @@
                     <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorInfo.name">
                 </div>
                 <div class="detail">
-                    <p class="name">
+                    <div class="headname">
                         <span class="name">{{doctorInfo.name}}</span>
-                        <span> {{doctorInfo.title}}</span>
-                    </p>
-                    <p class="hos_name">{{depart}} 擅长:{{doctorInfo.skill}}</p>
+                        <span class="levle"> {{doctorInfo.title}}</span>
+                        <p style="font-size: 14px">{{depart}} 擅长:{{doctorInfo.skill}}</p>
+                    </div>
+
                 </div>
                 <div class="doc_code">
                     <!-- <img  alt="{{doctorInfo.name}}">
@@ -69,7 +70,7 @@
                 </div>
             </div>
             <div class="line"></div>
-            <div class="yy_date_today" @click="islook=!isl.doc_scheduling .lineook">
+            <div class="yy_date_today" @click="islook=!islook">
                 <span class="date_today">查看全部排班</span>
                 <span class="date_today">
                     <i class="time_btn" :class="{'time_btn_up':!islook}"></i>

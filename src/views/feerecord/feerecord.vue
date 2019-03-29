@@ -5,34 +5,26 @@
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
                     <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
-                        <div class="titleLine">
-                            <div class="listData">
-                                <span>{{item.type}}费</span>
-                                <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
-                            </div>
+                        <div class="appTitle">
+                            <span>{{item.type}}费</span>
+                            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
                         </div>
-                        <div class="cardText" style="">
-                            <!--<div class="aaaa" style="width: 80px; text-align: justify;">-->
-                                <!--<span>患者：<i style="display:inline-block; padding-left: 100%;"></i></span>-->
-                            <!--</div>-->
-                            <!--<span>{{item.patientName}}</span>-->
-                            <!--<div class="aaaa" style="width: 80px; text-align: justify;">-->
-                                <!--<span>开单时间<span>：{{item.createTime}}</span></span>-->
-                            <!--</div>-->
-                            <p>
-                                <span>患者：</span>
-                                <span>{{item.patientName}}</span></p>
-                            <p>
-                                <span>医院：</span>
-                                <span>{{item.hospital}}</span>
+                        <div class="cardText alignJ">
+                            <p class="parElem">
+                                <span class="sonElem">患者</span>
+                                <span>：{{item.patientName}}</span>
                             </p>
-                            <p v-if="disType == 1">
-                                <span>开单时间：</span>
-                                <span>{{item.createTime}}</span>
+                            <p class="parElem">
+                                <span class="sonElem">医院</span>
+                                <span>：{{item.hospital}}</span>
                             </p>
-                            <p v-if="disType == 2">
-                                <span>支付时间：</span>
-                                <span>{{item.payTime}}</span>
+                            <p v-if="disType == 1" class="parElem">
+                                <span class="sonElem">开单时间</span>
+                                <span>：{{item.createTime}}</span>
+                            </p>
+                            <p v-if="disType == 2" class="parElem">
+                                <span class="sonElem">支付时间</span>
+                                <span>：{{item.payTime}}</span>
                             </p>
                             <div class="payatnow" v-if="disType == 1">
                                 <span>立即支付</span>
@@ -222,23 +214,12 @@ export default {
   font-size: 28px;
 }
 .feerecord .cardText p {
-  line-height: 50px;
   font-size: 28px;
   color: #5c5c5c;
 }
 .feerecord .flatCard:first-child{
     margin-top: 0;
 }
-/*.feerecord .cardText p span:first-child{*/
-    /*display: inline-block;*/
-    /*width: 21%;*/
-/*}*/
-.aaaa span:first-child{
-    /*width: 20%;*/
-}
-/*.aaaa span:first-child:after {*/
-    /*content: " "; display: inline-block; width: 100%;*/
-/*}*/
 .payatnow {
     height: 60px;
     text-align: right;

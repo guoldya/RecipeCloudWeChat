@@ -2,26 +2,14 @@
     margin-bottom: 20px;
     background: #fff;
     color: #979797;
-    line-height: 20px;
+    line-height: 72px;
     font-size: 24px;
  }
 
  .gp-order .order-info .doctor-info {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+     padding-bottom: 24px;
+     border-bottom: 2px solid #e9e9e9;
  }
-
- .g-clear:after {
-    clear: both;
- }
-
- .g-clear:after,
- .g-clear:before {
-    display: table;
-    content: "";
-    line-height: 0;
- }
-
  .gp-order .order-info .doctor-info img {
     width: 80px;
     height: 80px;
@@ -31,7 +19,7 @@
 
  .gp-order .order-info .doctor-info span {
     margin-top: 24px;
-    float: left;
+     vertical-align: middle;
  }
 
  .gp-order .order-info .doctor-info .doctor-name {
@@ -40,38 +28,33 @@
     color: #333333;
  }
 
+ .gp-order .flatCard:first-child{
+     border-top: none;
+ }
  .gp-order .order-info ul {
-    padding: 10px 0;
+     padding: 16px 0 0 0;
  }
 
  .gp-order .order-info li {
     overflow: hidden;
-    padding: 20px 0;
+    padding: 8px 0;
     font-size: 28px;
  }
 
  .gp-order .order-info li label {
     color: #333333;
     float: left;
-    /* width: 160px; */
  }
-
- .gp-order .order-info li p {
-    margin-left: 160px;
- }
-
  .g-arrow-d:after {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
  }
-
  .g-items li {
     line-height: 30px;
     color: #979797;
  }
 
  .g-arrow-r {
-    border-bottom: 1px solid #ededed;
     line-height: 80px;
  }
 
@@ -103,22 +86,3 @@
     background: #ffffff;
     color: #1da1f3;
  }
-
- /* 
- .g-arrow-b:after,
- .g-arrow-d:after,
- .g-arrow-f:after,
- .g-arrow-r:after,
- .g-arrow-s:after,
- .g-arrow-t:after,
- .g-arrow-u:after {
-    content: "";
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    background: url(../img/arrow-right-new.png?_=c9ffe9c) no-repeat;
-    background-size: 8px 14px;
-    right: 2px;
-    top: 50%;
-    margin-top: -7px;
- } */
