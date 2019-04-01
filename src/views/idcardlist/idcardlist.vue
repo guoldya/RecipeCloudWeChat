@@ -32,7 +32,7 @@
           电子就诊卡需知</p>
       </div>
     </div>
-    <p @click="blidcard" class="add" v-show="cardlist.length<6">注册电子就诊卡</p>
+    <p @click="blidcard" class="addbTN" v-show="cardlist.length<6">注册电子就诊卡</p>
     <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
     <md-landscape v-model="showPic" :mask-closable="true">
       <div class="codema">

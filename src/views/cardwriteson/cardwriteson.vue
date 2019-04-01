@@ -94,7 +94,7 @@ export default {
     if (this.$route.query.isSon * 1 == 2) {
       this.isSon = true;
     }
-  
+
   },
   methods: {
     uploadPos(e) {
@@ -176,7 +176,9 @@ export default {
           } else {
             this.$toast.info(res.data.msg)
           }
-        });
+        }).catch(function (err) {
+          console.log(err);
+        });;
 
     },
 

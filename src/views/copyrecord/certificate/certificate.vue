@@ -96,7 +96,7 @@
 
     </div>
     <div style="height:55px"></div>
-    <p @click="cardconfirm" class="add">下一步</p>
+    <p @click="cardconfirm" class="addbTN">下一步</p>
     <!-- <md-button @click="cardconfirm" type="primary" round style="margin:20px 0">下一步</md-button> -->
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
     <md-landscape v-model="showPic" :mask-closable="true">

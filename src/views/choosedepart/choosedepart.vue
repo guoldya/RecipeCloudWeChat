@@ -18,8 +18,8 @@
           <md-cell-item v-for="(item2,index2) in departData" arrow @click="intodoctorList(item2)" :key="index2" :title="item2.orgName" />
         </div> -->
 
-        <div v-if="departData.length!=0" v-show="!loadingtrue" >
-          <div class="flatCard margin0">
+        <div v-if="departData.length!=0" v-show="!loadingtrue">
+          <div class="flatCard margin11">
             <p class="xuanze">选择科室
               <span class="warn">(周末及节假日不可预约)</span>
             </p>
@@ -113,7 +113,7 @@ export default {
 
           }
         );
-      }else{
+      } else {
         this.$router.go(-1)
       }
     },
@@ -135,12 +135,14 @@ export default {
       console.log(childValue);
       //this.active1 = index;
       this.yuanId = childValue.id;
+      this.page = 1;
       this.$store.commit('departFun', childValue.orgName);
-      this.orgFun(this.yuanId);
+      this.orgFun();
       // this.type = childValue.type;
+
       this.$store.commit('feeActiveFun', childValue.id);
       this.loadingtrue = true;
-      this.page = 1;
+
     },
     switchTo(num, index) {
       this.active1 = index;

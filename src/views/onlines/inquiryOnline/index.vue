@@ -2,6 +2,7 @@
 <template>
   <div class="inquiry-online">
     <Navigation type="onlineNav">
+      <span class="mu-secondary-text-color" @click="overQuesiton">结束问诊</span>
     </Navigation>
     <!-- 用户信息 -->
     <!-- <div class="user-describe">
@@ -59,33 +60,66 @@
         <span @click="tool('emoji')" :class="toolType == 'emoji' ? 'active' :''">
           <i class="iconfont icon-biaoqing1"></i>
         </span>
-        <span @click="tool('more')" :class="toolType == 'more' ? 'active' :''">
+        <!-- <span @click="tool('more')" :class="toolType == 'more' ? 'active' :''">
           <i class="iconfont icon-jiahao"></i>
-        </span>
+        </span> -->
       </div>
       <ul class="inquiry-online-tool-add" v-if="toolType == 'more'">
-        <router-link tag="li" to="/quickReply">
+        <!-- <router-link tag="li" to="/quickReply">
           <span class="icon-span">
             <md-icon name="authentication"></md-icon>
           </span>
           <span>快捷回复</span>
-        </router-link>
+        </router-link> -->
         <li @click="endInquiry">
           <span class="icon-span">
             <i class="iconfont icon-icon-test"></i>
           </span>
           <span>结束问诊</span>
         </li>
-        <router-link tag="li" to="/diagnosticRecord">
+        <!-- <router-link tag="li" to="/diagnosticRecord">
           <span class="icon-span">
             <i class="iconfont icon-xinxi"></i>
           </span>
           <span>诊疗记录</span>
-        </router-link>
+        </router-link> -->
       </ul>
+
       <ul class="emoji-list" v-if="toolType == 'emoji'">
         <li v-for="(item,index) in emojiList" :key="index" @click="emojiAdd(item)">{{item}}</li>
       </ul>
+    </div>
+    <div v-show="isQeustion" @click="closeMask" class="md-popup-mask"></div>
+    <div v-show="isQeustion" class="inquiry-online-tool-aa">
+      <p class="inquiry-online-tool-ab">
+        <span style="color:#FF9900"> 是否结束问诊?</span>
+        <span class="mu-secondary-text-color">00:{{timeH}}</span>
+      </p>
+      <p class="inquiry-online-tool-cotent">感谢您的信任与支持，如结束咨询，请对我的服务进行评价</p>
+      <p class="inquiry-online-tool-ab">
+        <span class="questionBtn" @click="isQeustion=false">继续问诊</span>
+        <span class="questionBtn" @click="isQeustionOver=true">结束问诊</span>
+      </p>
+    </div>
+    <div v-show="isQeustionOver" class="inquiry-online-tool-aa">
+      <p class="inquiry-online-tool-ab">
+        <span style="color:#FF9900">问诊已结束</span>
+      </p>
+      <p class="inquiry-online-tool-cotent">感谢您的信任与支持，本次问诊已结束，请对我的服务进行评价。</p>
+      <p class="inquiry-online-tool-ab">
+        <span class="questionBtn">立即评价</span>
+        <span class="questionBtn">再次问诊</span>
+      </p>
+    </div>
+    <div v-show="isQeustionOver" class="inquiry-online-tool-aa">
+      <p class="inquiry-online-tool-ab">
+        <span style="color:#FF9900">问诊已结束</span>
+      </p>
+      <p class="inquiry-online-tool-cotent">感谢您的信任与支持，本次问诊已结束，请对我的服务进行评价。</p>
+      <p class="inquiry-online-tool-ab">
+        <span class="questionBtn">立即评价</span>
+        <span class="questionBtn">再次问诊</span>
+      </p>
     </div>
     <!-- 编辑弹窗 -->
     <md-dialog :closable="true" layout="column" v-model="dialogOpen">
@@ -117,16 +151,18 @@ import { Dialog } from 'mand-mobile'
 export default {
   data() {
     return {
+      timeH: '',
       toolType: '', // 底部工具栏类型 img 图片 video 视频 drug 开药 emoji 表情 more 更多
       inputValue: "",
       socket: "",
+      isQeustion: false,
+      isQeustionOver: false,
       height: null,
       currentImg: [], // 当前图片
       dialogOpen: false,
       isViewerShow: false, // 是否大图显示
       clickViewer: false, // 是否点击的是图片，true点击，用于不让滚动条滚动到指定位置
       emojiList: ['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😉', '😋', '😎', '😍', '😘', '😗', '😙', '😚', '😇', '😐', '😑', '😶', '😏', '😣', '😥', '😮', '😯', '😪', '😫', '😴', '😌', '😛', '😜', '😝', '😒', '😓', '😔', '😕', '😲', '😷', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😬', '😰', '😱', '😳', '😵', '😡', '😠'],
-
     };
   },
   // 
@@ -138,9 +174,11 @@ export default {
   },
   async mounted() {
     // 让滚动条滚动到指定位置
-    // this.scrollBottom();
+    this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
     websocketConfig();
+
+
   },
   updated: function () {
     if (this.isViewerShow) {
@@ -149,9 +187,30 @@ export default {
       this.clickViewer = false
       return false
     }
-    // this.scrollBottom();
+    this.scrollBottom();
   },
   methods: {
+    closeMask() {
+      this.isQeustion = false;
+      this.isQeustionOver = false
+    },
+    overQuesiton() {
+      this.isQeustion = true;
+      const TIME_COUNT = 15;
+      if (!this.timer) {
+        this.timeH = TIME_COUNT;
+
+        this.timer = setInterval(() => {
+          if (this.timeH > 0 && this.timeH <= TIME_COUNT) {
+            this.timeH--;
+          } else {
+            this.isQeustion = false;
+            clearInterval(this.timer);
+            this.timer = null;
+          }
+        }, 1000);
+      }
+    },
     ...mapActions(["chat/updateChatQueue", "chat/setHistoryNews", "chat/setChatQueue"]),
     scrollBottom() { // 内容区在底部
       this.$nextTick(function () {
@@ -189,45 +248,49 @@ export default {
       }
     },
     async upload() {
-      try {
-        var formData = new FormData();
-        var file = this.$refs.uploadImg.files[0];
-        formData.append("file", file);
-        let res = await httpService({
-          method: 'post',
-          url: '/api/upload',
-          headers: {
-            Authorization: '',
-            'X-Requested-With': 'XMLHttpRequest'
-          },
-          body: formData
-        })
-        if (res.code != 200) {
-          throw Error(res.msg)
+
+      var formData = new FormData();
+      var file = this.$refs.uploadImg.files[0];
+      formData.append("file", file);
+
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         }
-        let createTime = new Date().getTime();
-        let msg = {
-          // 发送消息传的数据
-          from: this.userInfo.id,
-          to: Number(this.$route.params.fromId),
-          cmd: 11,
-          createTime: createTime,
-          msgType: 1,
-          chatType: 2,
-          content: '/api/file?img=' + res.data[file.name]
-        };
-        // 把当前发送的消息添加到历史消息去
-        let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
-        arr.push(msg)
-        this['chat/setHistoryNews'](arr)
-        this.chat.websocket.send(JSON.stringify(msg));
-      } catch (error) {
-        console.log(error)
-      }
+      };
+      this.$axios.post('/upload', formData).then(res => {
+        if (res.data.code == '200') {
+          let createTime = new Date().getTime();
+          let msg = {
+            // 发送消息传的数据
+            from: this.userInfo.id,
+            to: Number(this.$route.params.fromId),
+            cmd: 11,
+            createTime: createTime,
+            msgType: 1,
+            chatType: 2,
+            content: '/api/file?img=' + res.data[file.name]
+          };
+          // 把当前发送的消息添加到历史消息去
+          let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
+          arr.push(msg)
+          this['chat/setHistoryNews'](arr)
+          this.chat.websocket.send(JSON.stringify(msg));
+        } else {
+
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });;
+
     },
     // 发送消息
     send() {
-
+      console.log(this.inputValue.length, "this.inputValue")
+      if (this.inputValue == 0) {
+        this.$toast.info("请输入消息");
+        return
+      }
       let createTime = new Date().getTime();
       let msg = {
         // 发送消息传的数据
@@ -245,9 +308,12 @@ export default {
       this['chat/setHistoryNews'](arr)
       this.chat.websocket.send(JSON.stringify(msg));
       this.inputValue = "";
+      // 清空输入框的数据
+      this.$refs.inputModel.innerHTML = "";
     },
     // 添加消息
     emojiAdd(val) {
+      console.log(val, "我是白哦")
       this.$refs.inputModel.innerHTML = this.inputValue + val
       this.inputValue = this.inputValue + val
     },
@@ -534,5 +600,41 @@ export default {
       }
     }
   }
+}
+
+.inquiry-online-tool-aa {
+  padding: 27px 24px;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+.inquiry-online-tool-ab {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.inquiry-online-tool-ab .questionBtn {
+  font-size: 28px;
+  color: #ffffff;
+  background: #1da1f3;
+  border-radius: 40px;
+  letter-spacing: 1px;
+  padding: 7px 70px;
+  text-align: center;
+}
+.inquiry-online-tool-ab .questionBtn:first-child {
+  color: #1da1f3;
+  background: #ffffff;
+  border: 1px solid #1da1f3;
+  box-sizing: border-box;
+}
+.inquiry-online-tool-aa p {
+  line-height: 40px;
+}
+.inquiry-online-tool-cotent {
+  font-size: 26px;
 }
 </style>

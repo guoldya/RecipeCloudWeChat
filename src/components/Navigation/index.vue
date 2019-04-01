@@ -11,7 +11,7 @@
     <div class="navigation-content" v-if="type === 'onlineNav'">
       <p>张医生</p>
       <p class="time">问诊中
-        <span>10:20:10</span>
+        <span>{{timeH}}</span>
       </p>
     </div>
     <div class="navigation-content" v-else>
@@ -24,8 +24,39 @@
 </template>
 <script>
 export default {
-
+  data() {
+    return {
+      timeH: ''
+    };
+  },
   props: ['type', 'title'],
+
+
+  async mounted() {
+    // 让滚动条滚动到指定位置
+
+
+    let _this = this;
+    var m = 9;  //分
+    var s = 59;  //秒
+    getCountdown();
+    setInterval(function () { getCountdown() }, 1000);
+    function getCountdown() {
+      _this.timeH = "0" + m + ":" + s;
+      if (m == 0 && s == 0) {
+        m = 9;
+        s = 59;
+      } else if (m >= 0) {
+        if (s > 0) {
+          s--;
+        } else if (s == 0) {
+          m--;
+          s = 59;
+        }
+      }
+    }
+
+  },
   methods: {
     goBack() {
       this.$router.go(-1)

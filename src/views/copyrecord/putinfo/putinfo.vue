@@ -81,9 +81,8 @@
       <a @click="openPgmodel" style="color:#1da1f3">《病历复印规定》</a>
     </md-agree>
     <Pgmodal ref="Pgmodal"></Pgmodal>
-
     <div style="height:55px"></div>
-    <p @click="copyresult" class="add">下一步</p>
+    <p @click="copyresult" class="addbTN">下一步</p>
     <!-- <md-button type="primary" round class="margin16" @click="copyresult">确认提交</md-button> -->
   </div>
 </template>

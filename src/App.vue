@@ -43,7 +43,7 @@ body {
   /*padding: 6px 30px;*/
   margin-top: 12px;
 }
-.flatCard:first-child{
+.flatCard:first-child {
   border-top: 2px solid #e9e9e9;
 }
 
@@ -59,73 +59,70 @@ body {
 .margin50 {
   margin-top: 100px;
 }
-.margin55{
+.margin55 {
   margin-top: 110px;
 }
 .margin5 {
   margin-top: 10px;
 }
-.margin0{
-  margin-top: 0;
-}
-.md-detail-title{
+.md-detail-title {
   color: #333333 !important;
 }
-.md-detail-content{
+.md-detail-content {
   color: #979797 !important;
 }
 
-
 /*收银台*/
-.md-example-child-cashier .md-field{
-  margin-bottom :30px
+.md-example-child-cashier .md-field {
+  margin-bottom: 30px;
 }
-.md-cashier-channel-item .item-icon, .md-cashier-channel-item .item-image{
+.md-cashier-channel-item .item-icon,
+.md-cashier-channel-item .item-image {
   width: 50px !important;
   height: 50px !important;
 }
-.md-cashier-channel-item .cashier-icon-2{
-  background :url(./assets/images/icon_alipay.png) center no-repeat;
-  background-size: 50px
+.md-cashier-channel-item .cashier-icon-2 {
+  background: url(./assets/images/icon_alipay.png) center no-repeat;
+  background-size: 50px;
 }
-.md-cashier-channel-item .cashier-icon-3{
-  background :url(./assets/images/icon_wechatpay.png) center no-repeat;
-  background-size: 50px
+.md-cashier-channel-item .cashier-icon-3 {
+  background: url(./assets/images/icon_wechatpay.png) center no-repeat;
+  background-size: 50px;
 }
-.md-cashier-channel-item{
+.md-cashier-channel-item {
   background-color: transparent !important;
 }
-.md-cashier-block-btn .md-button{
+.md-cashier-block-btn .md-button {
   border-radius: 60px !important;
   font-size: 30px !important;
 }
-.md-popup-title-bar .title-bar-title p.title{
+.md-popup-title-bar .title-bar-title p.title {
   font-size: 32px !important;
 }
-.md-cashier-channel .choose-text{
-  padding: 46px 0px 10px!important;
+.md-cashier-channel .choose-text {
+  padding: 46px 0px 10px !important;
 }
-.md-cashier-channel .choose-channel{
+.md-cashier-channel .choose-channel {
   padding: 16px 60px 36px 60px !important;
 }
-.md-button-content{
+.md-button-content {
   font-size: 28px;
 }
-.primary:after{
-  border : transparent !important;
+.primary:after {
+  border: transparent !important;
 }
-.md-cashier-channel-item .item-label{
+.md-cashier-channel-item .item-label {
   margin-left: 20px !important;
 }
-.md-cashier-channel-item .item-check-icon{
+.md-cashier-channel-item .item-check-icon {
   line-height: 68px !important;
 }
-.md-cashier-channel-item .item-label .title{
+.md-cashier-channel-item .item-label .title {
   font-size: 28px !important;
   line-height: 48px !important;
 }
 /*cellitem列表*/
-.md-cell-item-body{
+.md-cell-item-body {
   padding: 32px 24px;
 }
 
@@ -134,12 +131,13 @@ body {
  .parElem,.md-detail-item{
   text-align: justify;
 }
-.md-detail-item{
-  line-height: 18px!important;
+.md-detail-item {
+  line-height: 18px !important;
 }
-.parElem:first-child{
+ .parElem:first-child {
   padding-top: 10px;
-} .parElem .sonElem,/*:first-child,*/
+}
+.parElem .sonElem,/*:first-child,*/
 .md-detail-item div:first-child{
   width: 17%;
   display: inline-table;
@@ -164,7 +162,7 @@ body {
   margin-left: 10px;
   vertical-align: text-top;
 }
-.docLevel{
+.docLevel {
   border: 2px solid #1da1f3;
   color: #1da1f3;
   padding: 4px 10px;
@@ -206,16 +204,6 @@ input:-ms-input-placeholder {
 
 
 
-
-
-
-
-
-
-
-
-
-
 .warnText {
   font-size: 26px;
   color: #979797;
@@ -250,7 +238,7 @@ input:-ms-input-placeholder {
 .md-popup-title-bar .title-bar-title p.title {
   color: #333333 !important;
 }
-.add {
+.addbTN {
   background-color: #1da1f3;
   width: 100%;
   text-align: center;
@@ -261,6 +249,7 @@ input:-ms-input-placeholder {
   bottom: 0;
   z-index: 999;
 }
+ 
 .headimg {
   width: 92px;
   height: 92px;
@@ -282,7 +271,7 @@ select,
 textarea {
   outline: none;
 }
- 
+
 .noMore {
   text-align: center;
   color: #979797;
@@ -445,15 +434,7 @@ p {
 }
 
 /**add*/
-.add {
-  background-color: #1da1f3;
-  width: 100%;
-  text-align: center;
-  color: #ffffff;
-  position: fixed;
-  line-height: 100px;
-  bottom: 0;
-}
+
 /**大大大大的**/
 .methodTabAcitive {
   color: #1da1f3;
@@ -496,7 +477,7 @@ textarea::-webkit-input-placeholder {
   font-size: 28px;
 }
 /*.primary:after {*/
-  /*border: 1px solid #1da1f3 !important;*/
+/*border: 1px solid #1da1f3 !important;*/
 /*}*/
 .default {
   background-color: #43484b;
@@ -523,13 +504,13 @@ textarea::-webkit-input-placeholder {
 .md-button-content {
   font-size: 28px !important;
 }
-.md-dialog .md-dialog-text{
+.md-dialog .md-dialog-text {
   font-size: 30px;
 }
-.md-dialog-btn:first-child{
+.md-dialog-btn:first-child {
   font-size: 34px;
 }
-.md-dialog-btn:last-child{
+.md-dialog-btn:last-child {
   color: #1da1f3 !important;
   font-size: 34px;
 }
@@ -569,7 +550,7 @@ textarea::-webkit-input-placeholder {
 .textCenter .md-icon.icon-svg.lg {
   margin: -8px 0;
 }
- .home .md-icon.icon-font:before {
+.home .md-icon.icon-font:before {
   display: none;
 }
 </style>

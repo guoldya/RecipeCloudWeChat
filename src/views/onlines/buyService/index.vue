@@ -19,7 +19,7 @@
     <div class="buy-service-btn">
       <md-button type="primary" round @click="isCashierhow=true">立即支付</md-button>
     </div>
-    <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :default-index=0 :payment-amount="cashierAmount"></md-cashier>
+    <md-cashier ref="cashier" @pay="onCashierPay" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :default-index=0 :payment-amount="cashierAmount"></md-cashier>
   </div>
 </template>
 <script>
@@ -46,6 +46,36 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    onCashierPay(item) {
+      this.$router.push({
+        name: "pictureConsult"
+      });
+      // let nowPayParams = {};
+      // nowPayParams.id = this.feeId;
+      // nowPayParams.orderCode = this.orderCode;
+      // nowPayParams.orderType = "4";
+      // nowPayParams.payType = item.value;
+      // nowPayParams.code = this.$route.query.code;
+      // this.$axios.post(now_pay_url, nowPayParams).then((res) => {
+      //   if (res.data.code == '200') {
+      //     this.feeDetailData.push(res.data.data);
+      //     if (res.data.data.details) {
+      //       this.feeButtomDetail = res.data.data.details;
+      //     }
+      //     if (res.data.data.total) {
+      //       this.cashierAmount = res.data.data.total.toFixed(2);
+      //     }
+      //     this.doPay();
+      //   } else {
+      //     this.$toast.info(res.data.msg);
+      //     this.isCashierhow = false;
+      //   }
+      // }).catch(function (err) {
+      //   console.log(err);
+      // });
+    },
   }
 }
 </script>
