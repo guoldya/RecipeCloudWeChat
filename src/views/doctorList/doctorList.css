@@ -87,14 +87,6 @@ input {
    padding: 12px 0;
 }
 
-.doctorList li {
-   margin-top: 20px;
-}
-
-.doctorList li:first-child {
-   margin-top: 0;
-}
-
 .doctorList .no {
    background: #cccbcb;
 }
@@ -118,6 +110,7 @@ input {
 
 .doctorList .time ul {
    margin-top: -20px;
+   padding-top: 14px;
 }
 
 .doctorList .time ul li {

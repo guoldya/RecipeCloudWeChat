@@ -19,7 +19,7 @@
         </div> -->
 
         <div v-if="departData.length!=0" v-show="!loadingtrue">
-          <div class="flatCard margin11">
+          <div class="flatCard margin0">
             <p class="xuanze">选择科室
               <span class="warn">(周末及节假日不可预约)</span>
             </p>
@@ -158,7 +158,7 @@ export default {
       this.$axios.put(bdHospitalOrg, deptparams).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;
-          this.departData = [];
+          //this.departData = [];
           if (flag) {
             this.departData = this.departData.concat(res.data.rows);  //concat数组串联进行合并
             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true

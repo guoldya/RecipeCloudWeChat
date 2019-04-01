@@ -158,7 +158,7 @@ body {
   border: 1px solid #1da1f3;
   border-radius: 8px;
   position: relative;
-  top: 6px;
+  top: 8px;
   margin-left: 10px;
   vertical-align: text-top;
 }
@@ -275,7 +275,7 @@ textarea {
 .noMore {
   text-align: center;
   color: #979797;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 70px;
 }
 .card + .noMore {
@@ -317,7 +317,9 @@ p {
 .margin16 {
   margin: 0 0 32px 0;
 }
-
+.margin0 {
+  margin-top: 0;
+}
 .margin7 {
   margin-top: 14px;
 }
@@ -440,7 +442,7 @@ p {
   color: #1da1f3;
 }
 .partLine {
-  border-bottom: 2px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
   width: 100%;
   margin: 12px 0px;
 }
@@ -492,7 +494,8 @@ textarea::-webkit-input-placeholder {
 }
 .textCenter {
   text-align: center;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
+  padding: 20px 0;
 }
 .nullDiv {
   text-align: center;

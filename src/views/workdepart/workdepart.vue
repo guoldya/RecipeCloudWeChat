@@ -1,11 +1,11 @@
 <template>
-   <div class="choosedepart">
+   <div class="workdepart choosedepart">
       <Header post-title="医生排班"  ></Header>
-      <div class="outCarint margin45">
+      <div class=" margin50">
          <Search type="workdepart"></Search>
          <!--<input class="oc_val" type="text" id="inputVal" name="names" placeholder="搜索医生、科室"  v-model="value" @input="search(value)"/>-->
           <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
-         <div>
+         <div class="flatCard">
             <p class="xuanze">选择科室</p>
             <div v-if="departData.length!=0" v-show="!loadingtrue">
                <md-cell-item v-for="(item,index) in departData" arrow @click="intoworkdoctor(item)" :key="index" :title="item.orgName" />
@@ -79,21 +79,21 @@
                 //this.active1 = index;
                 this.yuanId = childValue.id;
                 this.$store.commit('departFun', childValue.orgName);
-                this.orgFun(this.yuanId);
                 this.$store.commit('feeActiveFun', childValue.id);
                 this.loadingtrue = true;
                 this.page = 1;
+                this.orgFun();
             },
             orgFun(flag) {
                 let deptparams = {};
                 deptparams.pageNumber = this.page;
                 deptparams.pageSize = this.pageSize;
                 deptparams.id = this.yuanId;
-                this.departData=[];
+                //this.departData=[];
                 this.$axios.put(bdHospitalOrg,deptparams).then((res) => {
                     if (res.data.rows) {
                         this.loadingtrue = false;
-                        this.departData=[];
+                        //this.departData=[];
                         if (flag) {
                             this.departData = this.departData.concat(res.data.rows);  //concat数组串联进行合并
                             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
@@ -150,4 +150,8 @@
 </script>
 <style scoped>
 @import "../choosedepart/choosedepart.css";
+   .workdepart .flatCard{
+      margin-top: 0px;
+      border-top: 1px solid #e9e9e9;
+   }
 </style>

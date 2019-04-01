@@ -1,11 +1,11 @@
 <template>
   <div class="workdoctor">
     <Header :post-title="postTitle"  ></Header>
-    <div class=" margin45">
+    <div class=" margin55">
       <div class="doctorList">
         <ul v-show="!loadingtrue" v-if="doctorData.length!=0">
-          <li v-for="(item,i) in doctorData" :key="i" class="outCarint">
-            <div class="card" @click="intodoctorschedu(item.id)">
+          <li v-for="(item,i) in doctorData" :key="i" class="margin5">
+            <div class="flatCard" @click="intodoctorschedu(item.id)">
               <div class="cardText">
                 <div class="headimg">
                   <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
@@ -150,7 +150,7 @@
                 this.busy = true;  //将无限滚动给禁用
                 setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
                     this.page++;  //滚动之后加载第二页
-                    this.getGoodslist(true);
+                    this.workDoctorFun(true);
                 }, 500);
             },
         },
@@ -168,6 +168,8 @@
 </script>
 
 <style scoped>
-
+  .workdoctor .flatCard:first-child{
+    border-top: none;
+  }
 </style>
 
