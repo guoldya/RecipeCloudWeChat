@@ -131,22 +131,21 @@ body {
 
 /*文字两端对齐*/
 
-.alignJ .parElem,.md-detail-item{
+ .parElem,.md-detail-item{
   text-align: justify;
 }
 .md-detail-item{
   line-height: 18px!important;
 }
-.alignJ .parElem:first-child{
+.parElem:first-child{
   padding-top: 10px;
-}
-.alignJ .parElem .sonElem,/*:first-child,*/
+} .parElem .sonElem,/*:first-child,*/
 .md-detail-item div:first-child{
   width: 17%;
   display: inline-table;
   color: #333333;
 }
-.alignJ .parElem .sonElem:after,/*:first-child*/
+.parElem .sonElem:after,/*:first-child*/
 .md-detail-item div:first-child:after {
   content: "";
   display: inline-block;
@@ -185,6 +184,27 @@ body {
   padding: 15px 40px;
   text-align: center;
 }
+/*input-placeholder颜色*/
+
+input::-webkit-input-placeholder {
+  color: #D0DAE1;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #D0DAE1;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #D0DAE1;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #D0DAE1;
+}
+
+
+
+
 
 
 
@@ -296,21 +316,6 @@ li {
 p {
   word-wrap: break-word;
   word-break: break-all;
-}
-input::-webkit-input-placeholder {
-  color: #979797;
-}
-input::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  color: #979797;
-}
-input:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  color: #979797;
-}
-input:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #979797;
 }
 .aligncenter {
   text-align: center;
@@ -438,6 +443,7 @@ input:-ms-input-placeholder {
 .mu-light-text-color {
   color: #979797;
 }
+
 /**add*/
 .add {
   background-color: #1da1f3;

@@ -1,8 +1,8 @@
 <template>
   <div class="chooseCase">
     <Header post-title="选择复印病案"></Header>
-    <div class="margin45 outCarint" style="margin-bottom:70px">
-      <div class="tabAdiv">
+    <div class="margin55" style="margin-bottom:70px">
+      <div class="tabAdiv flatCard">
         <div class="chooseCaseBtn">
           <div class="md-agree" @click="onChange()">
             <div :class="{ 'md-agree-icon':true,'checked':true}">
@@ -23,7 +23,7 @@
           <div class="number">1</div>
           次</div>
       </div>
-      <div class="tabAdiv">
+      <div class="tabAdiv flatCard">
         <div class="chooseCaseBtn">
           <div class="md-agree" @click="onChange()">
             <div :class="{ 'md-agree-icon':true,'checked':true}">
@@ -45,7 +45,7 @@
           次
         </div>
       </div>
-      <md-button type="primary" round class="margin16">确认提交</md-button>
+      <md-button type="primary" round class="margin14">确认提交</md-button>
     </div>
 
   </div>
@@ -101,10 +101,9 @@ export default {
 .chooseCase .tabAdiv {
   display: flex;
   justify-content: space-around;
-  box-shadow: 0 0 0.17rem rgba(20, 19, 51, 0.1);
-  border-radius: 20px;
+  background-color: #ffffff;
   font-size: 28px;
-  margin-bottom: 32px;
+  margin-bottom: 10px;
 }
 .chooseCase .tabAdiv div:first-child {
   line-height: 200px;
@@ -133,8 +132,6 @@ export default {
   text-align: center;
   background: #1da1f3;
   display: inline-block;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
   color: #ffffff;
 }
 .chooseCase .chooseCaseTime .number {
@@ -148,4 +145,7 @@ export default {
   text-align: center;
   line-height: 54px !important;
 }
+   .chooseCase .flatCard{
+     border-top: none;
+   }
 </style>

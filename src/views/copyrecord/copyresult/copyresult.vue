@@ -1,10 +1,11 @@
 <template>
-   <div class="   margin55 ">
+   <div class=" copyresult  margin55 ">
       <Header post-title="确认支付"></Header>
       <md-field>
-         <div class="outCarint">
-            <md-detail-item title="收件人：众安" content="1345648648" bold />
-            <md-detail-item title="重庆市渝北区大龙山202" />
+         <div class="outCarint addr">
+            <md-detail-item title="收件人：众但是安" content="1345648648" bold />
+            <!--<md-detail-item class="addr" title="重庆市渝北区大龙山202" />-->
+            <p style="padding-bottom: 6px">重庆市渝北区大龙山202</p>
          </div>
          <div style="height:10px;background:#f5f5f5">
          </div>
@@ -32,7 +33,7 @@
             <md-detail-item title="快递费">
                <span style="color:#1da1f3; ">22.00元</span>
             </md-detail-item>
-            <md-detail-item title="需支付费用">
+            <md-detail-item title="需支付费用" class="payFee">
                <span style="color:#1da1f3;font-size:17px; ">72.00元</span>
             </md-detail-item>
          </div>
@@ -53,3 +54,11 @@ export default {
 }
 
 </script>
+<style>
+   .copyresult .addr .md-detail-item div:first-child{
+      width: 32%;
+   }
+   .copyresult .payFee .md-detail-title{
+      width: 20%;
+   }
+</style>

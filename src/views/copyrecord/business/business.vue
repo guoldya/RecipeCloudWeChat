@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header post-title="病案复印"></Header>
-    <div class="outCarint margin45 business">
-      <div class="rebinding-box card margin16">
+    <div class="margin55 business" style="margin-bottom: 52px">
+      <div class="rebinding-box outCarint flatCard">
         <div class="box-timeline  cardText">
           <div class="alltimeball">
             <div class="timeball acitiveball">1</div>
@@ -18,29 +18,37 @@
           <div class="timeballline2"></div>
         </div>
       </div>
-      <p style="color:#979797">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
-      </p>
-      <p class="kinds">病历类型</p>
-      <md-check-box name="month" v-model="pay" label="住院病历" />
-      <md-check-box name="season" v-model="pay" label="急诊病历" />
-      <p class="kinds">领取方式</p>
-      <md-check-box name="1" v-model="mail" label="邮寄" />
-      <md-check-box name="2" v-model="mail" label="自提" />
-      <p v-show="mail==1" style="color:#979797;margin-top:0.2rem">
-        为保正您能及时收到病历，请确保收件地址准确无误!
-      </p>
-      <p v-show="mail==2" style="color:#979797; margin-top:0.2rem">
-        医院病案室审核通过后，会将预约时间推送给您，请按通知约定日期工作时间内携带所申请惠者有效证件前往医院领取复印病历。如无法前往请代理人携带双方身份证原件、复印件及委托书前往代办或选择邮寄服务
-      </p>
+      <div class="outCarint textTip">
+        <p class="mu-light-text-color">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
+        </p>
+        <p class="kinds">病历类型</p>
+        <md-check-box name="month" v-model="pay" label="住院病历" />
+        <md-check-box name="season" v-model="pay" label="急诊病历" />
+        <p class="kinds">领取方式</p>
+        <md-check-box name="1" v-model="mail" label="邮寄" />
+        <md-check-box name="2" v-model="mail" label="自提" />
+        <p v-show="mail==1" style="color:#979797;margin:6px 0">
+          为保正您能及时收到病历，请确保收件地址准确无误!
+        </p>
+        <p v-show="mail==2" style="color:#979797; margin-top:0.2rem">
+          医院病案室审核通过后，会将预约时间推送给您，请按通知约定日期工作时间内携带所申请惠者有效证件前往医院领取复印病历。如无法前往请代理人携带双方身份证原件、复印件及委托书前往代办或选择邮寄服务
+        </p>
 
-      <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
-      <md-field v-show="mail==1">
-        <md-input-item ref="input13" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
-        <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
-        <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
-        <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
+        <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
+      </div>
+      <md-field v-show="mail==1" >
+        <div class="parElem" style="display: flex;">
+          <span class="sonElem" style="width: 55px;margin:18px 16px 0 12px">收件人</span>
+          <span>
+            <md-input-item class="outCarint " v-model="receiver" ref="input13" is-highlight placeholder="收件人"></md-input-item>
+          </span>
+        </div>
+        <p class="partLine outCarint"></p>
+        <md-input-item class="outCarint" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
+        <Address class="outCarint" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
+        <md-input-item class="outCarint" ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
       </md-field>
-      <md-agree v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
+      <md-agree style="margin: 6px 0" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
         我已阅读并了解
         <a @click="openPgmodel" style="color:#1da1f3">《病历复印规定》</a>
       </md-agree>
@@ -68,7 +76,7 @@ export default {
         checked: true,
       },
       showPic: false,
-      pay: '',
+      pay: 'month',
       mail: '1',
       receiver: '',
       mobile: '',
@@ -87,7 +95,10 @@ export default {
   watch: {
     mail(newValue) {
       console.log(newValue)
-    }
+    },
+      pay(newValue) {
+          console.log(newValue)
+      }
   },
   methods: {
     onChange(checked) {
@@ -143,5 +154,29 @@ export default {
 }
 .kinds {
   line-height: 70px;
+  font-size: 30px;
 }
+   .business .flatCard{
+     border-top: none;
+   }
+   .business .textTip{
+     line-height: 36px;
+     margin: 12px 0;
+     font-size: 24px;
+   }
+   .business .md-check-box{
+     color: #979797;
+   }
+   .business .md-check-box.is-checked{
+     color: #2f86f6;
+   }
+   .business .partLine{
+     border-bottom: 1px solid #F2F3F5;
+     position: absolute;
+     z-index: 9999;
+      margin: 0 0 0 24px;
+     width: 698px;
+   }
+
+
 </style>

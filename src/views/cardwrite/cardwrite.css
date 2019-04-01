@@ -62,7 +62,6 @@
    display: flex;
    justify-content: flex-start;
    align-items: center;
-   font-size: 30px;
    color: #333333;
 }
 
@@ -80,8 +79,9 @@
    border-bottom: 2px solid rgba(227, 229, 234, 0.514);
 }
 
-.content .login-box div:last-child {
+.content .login-box .login-box-div:last-child {
    border-bottom: none;
+   line-height: 100px;
 }
 
 .content .login-box {
@@ -113,7 +113,6 @@
    overflow: hidden;
    margin-bottom: 0;
    background: transparent;
-   padding-left: 50px;
 }
 
 .content .login-box div input::-webkit-input-placeholder {
