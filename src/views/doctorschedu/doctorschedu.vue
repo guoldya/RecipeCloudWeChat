@@ -1,12 +1,12 @@
 <template>
     <div class="doctorschedu">
         <Header post-title="医生排班"  ></Header>
-        <div class="margin45">
+        <div class="margin50">
             <div class="doctor-head" v-show="!loadingtrue">
                 <div class="outCarint">
                     <div class="doctor-info">
                         <div class="header">
-                            <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
+                            <img src="@/assets/images/user.png" alt="医生头像">
                         </div>
                         <div class="doctor-right">
                             <p>
@@ -25,7 +25,10 @@
                     </div>
                 </div>
             </div>
-            <Calendar style="margin-top: 8px" v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
+            <div class="flatCard">
+                <Calendar style="margin-top: 8px" v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
+
+            </div>
             <Loading v-show="loadingtrue"></Loading>
 
         </div>

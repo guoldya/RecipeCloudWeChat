@@ -1,7 +1,7 @@
 <template>
-  <div class="putinfo outCarint margin45 ">
+  <div class="putinfo margin55 ">
     <Header post-title="信息确认"></Header>
-    <div class="rebinding-box card margin16">
+    <div class="rebinding-box flatCard margin5">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
           <div class="timeball acitiveball">1</div>
@@ -17,7 +17,7 @@
         <div class="timeballline2" style="background:#1da1f3"></div>
       </div>
     </div>
-    <div class="card margin16">
+    <div class="flatCard margin5 outCarint">
       <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名"></md-input-item>
       <md-input-item ref="input13" v-model="idcard" title="身份证号" placeholder="身份证号"></md-input-item>
     </div>
@@ -30,7 +30,7 @@
     <p class="smallTitle">
       病案信息
     </p>
-    <div class="card margin16">
+    <div class="flatCard margin16 outCarint">
       <md-input-item ref="input13" v-model="name" title="住院科室" placeholder="住院科室"></md-input-item>
       <md-input-item ref="input13" v-model="idcard" title="住院诊断" placeholder="住院诊断"></md-input-item>
       <md-input-item ref="input13" v-model="idcard" title="住院次数" placeholder="住院次数"></md-input-item>
@@ -40,7 +40,7 @@
     <p class="smallTitle">
       复印用途
     </p>
-    <div class="card margin16">
+    <div class="flatCard margin16 outCarint">
       <div class="content">
         <div class="login-box">
           <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
@@ -53,14 +53,19 @@
                 <span> {{num}}</span>
                 <img src="@/assets/images/icon_add@2x.png" @click="num++">
               </span> -->
-
               <md-stepper slot="right" v-model="value" min="0" />
             </div>
           </div>
-          <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注"></md-input-item>
+          <div class="parElem" style="display: flex;">
+            <span class="sonElem" style="width: 55px;margin:18px 16px 0 0">备注</span>
+            <span>
+              <md-input-item class="outCarint " v-model="remark" ref="input13" is-highlight placeholder="备注"></md-input-item>
+            </span>
+          </div>
+          <p class="partLine outCarint"></p>
           <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
-          <div class="hq login-box-div">
-            <span class="flexF">验证码</span>
+          <div class="hq login-box-div parElem">
+            <span class="flexF sonElem">验证码</span>
             <input class="flexF flexS" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="11">
             <p class="flexR">
               <span v-show="show" class="send1" @click="getCode">获取验证码</span>
@@ -210,16 +215,19 @@ export default {
  <style scoped>
 @import url("../../cardwrite/cardwrite.css");
 .calculate {
-  margin-left: 100px;
+  margin-left: 46px;
 }
 
 .chooseBtn {
   background: #1da1f3;
-  line-height: 100px;
+  line-height: 90px;
   color: #ffffff;
-  letter-spacing: 3px;
+  letter-spacing: 0.03rem;
   text-align: center;
-  margin: 30px;
+  border-radius: 64px;
+  width: 47%;
+  margin: 26px auto 0;
+  height: 90px;
 }
 .chooseBtn img {
   width: 27px;
@@ -228,13 +236,21 @@ export default {
 }
 .smallTitle {
   line-height: 70px;
+  padding: 0 24px;
 }
 
 .putinfo .content .login-box div .flexS {
-  padding-left: 70px;
+  padding-left: 46px;
 }
 .content .login-box div input::-webkit-input-placeholder {
   color: #c5cad5;
   font-size: 28px;
 }
+   .putinfo .partLine{
+     border-bottom: 1px solid #F2F3F5;
+     position: absolute;
+     margin: 0;
+     z-index: 9999;
+     width: 698px;
+   }
 </style>

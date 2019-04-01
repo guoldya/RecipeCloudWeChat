@@ -1,20 +1,20 @@
 <template>
    <div class="outCarint margin45 payfee">
-      <Header post-title="住院预交金"></Header>
+      <Navigation type="title" title="预缴款缴纳">
+         <span class="mu-secondary-text-color" @click="tijiao">预缴款记录</span>
+      </Navigation>
       <md-field>
-         <md-field-item solid title="入院日期" content="反复复" disabled />
-         <md-field-item solid title="床号" content="反复复" disabled />
-         <md-field-item solid title="姓名" content="飞洒发" disabled />
-         <md-field-item solid title="性别" content="反复复" disabled />
-         <md-field-item solid title="病区" content="反复复" disabled />
-         <md-field-item solid title="入院号" content="反复复" disabled />
-         <md-field-item solid title="入院诊断" content="反复复" disabled />
-         <md-field-item solid title="主治医生" content="反复复" disabled />
-         <md-field-item solid title="病情摘要" content="反复复反复复反复复反复复反复复反复复反复复反复复反复复反复复反复复反复复反复复反复复反复复反复复" disabled />
-         <md-field-item solid title="诊疗措施" content="反复复" disabled />
-         <md-field-item solid title="住址" content="反复复" disabled />
+         <md-field-item solid title="患者姓名" content="zhuy" disabled />
+         <md-field-item solid title="患者姓名" content="zhuy" disabled />
+         <md-field-item solid title="住院号" content="反复复" disabled />
+         <md-field-item solid title="住院科室" content="飞洒发" disabled />
+         <md-field-item solid title="本次预交款" content="反复复" disabled />
+         <md-field-item solid title="预交款余额" content="反复复" disabled />
       </md-field>
-      <md-button type="primary" @click="tijiao" round style="  margin:24px 0">保存</md-button>
+      <div>
+         <p>请选择预交款</p>
+      </div>
+      <md-button type="primary" @click="tijiao" round style="  margin:24px 0">立即缴纳</md-button>
    </div>
 </template>
 <script type="text/babel">

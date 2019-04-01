@@ -1,9 +1,9 @@
 <template>
     <div class="registrecord">
         <Headerapp post-title="挂号记录"></Headerapp>
-        <div class="outCarint margin45">
+        <div class="margin55">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
-                <div class="card margin16" v-for="(item,i) in cordData" :key="i">
+                <div class="flatCard outCarint margin16" v-for="(item,i) in cordData" :key="i">
                     <p class="appTitle">
                         <span>{{item.patientName}}</span>
                         <span class="mu-secondary-text-color">{{item.payType | payTypeFilter}}</span>
@@ -132,5 +132,9 @@ export default {
 .registrecord .appTitle {
   display: flex;
   justify-content: space-between;
+    padding: 24px 0;
 }
+     .registrecord .flatCard{
+         border-top: none;
+     }
 </style>

@@ -7,7 +7,9 @@
 -->
 <template>
   <div class="navigation">
-    <i class="iconfont icon-iconfontjiantou1" @click="goBack"></i>
+    <i class="  icon-iconfontjiantou" @click="goBack">
+      <img src="@/assets/images/icon_back.png">
+    </i>
     <div class="navigation-content" v-if="type === 'onlineNav'">
       <p>张医生</p>
       <p class="time">问诊中
@@ -78,9 +80,8 @@ export default {
   align-items: center;
   background: #fff;
   color: #333333;
-  .iconfont {
-    font-size: 40px;
-  }
+  z-index: 99;
+
   img {
     width: 20px;
     height: 35px;
@@ -92,11 +93,15 @@ export default {
       font-size: 28px;
     }
   }
-  .icon-iconfontjiantou1 {
+  .icon-iconfontjiantou {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 30px;
+    left: 24px;
+  }
+  .icon-iconfontjiantou img {
+    width: 20px;
+    height: 35px;
   }
   .right {
     position: absolute;
