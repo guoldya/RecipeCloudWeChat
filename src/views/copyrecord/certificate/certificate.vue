@@ -1,7 +1,7 @@
 <template>
-  <div class="outCarint margin45">
+  <div class="margin55 certificate">
     <Header post-title="上传证件"></Header>
-    <div class="rebinding-box card margin16">
+    <div class="rebinding-box flatCard">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
           <div class="timeball acitiveball">1</div>
@@ -17,80 +17,83 @@
         <div class="timeballline2"></div>
       </div>
     </div>
-    <div class="card margin16">
-      <div class="cardText changenet">
-        <span>关系</span>
+    <div class="flatCard margin5 outCarint">
+      <div class="cardText changenet parElem">
+        <span class="sonElem">关系</span>
         <span class="changenetright" @click="showSelector">{{selectorValue}}<img class="icon_right" src="@/assets/images/icon_right.png" alt=""></span>
       </div>
-    </div>
-    <p style="color:#000">拍摄/上传您的二代身份证</p>
-    <div class="pg_positive">
-      <div class="pg_positive_img">
-        <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
-        <label class="ivu-upload-input_label" for="positive" style="display:block; height: 120px;">
-          <img :src="othUrl" alt="">
-        </label>
-        <p>身份证正面</p>
+      <p class="partLine"></p>
+
+      <div>
+        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" is-highlight></md-input-item>
+        <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="患者身份证号" clearable is-highlight></md-input-item>
       </div>
-      <div class="pg_positive_img">
-        <label class="ivu-upload-input_label" for="outside" style="display:block; height: 120px;">
-          <input class="ivu-upload-input" @change="uploadOth($event)" type="file" name="outside" id="outside" accept="image/gif,image/jpeg,image/x-png" />
-          <img :src="posUrl" alt="">
-        </label>
-        <p>身份证反面</p>
-      </div>
-    </div>
-    <div class="pg_positive" style="padding-top:10px">
-      <div class="pg_positive_img">
-        <label class="ivu-upload-input_label" for="hanside" style="display:block; height: 120px;">
-          <input class="ivu-upload-input" @change="uploadHan($event)" type="file" name="hanside" id="hanside" accept="image/gif,image/jpeg,image/x-png" />
-          <img :src="hanUrl" alt="">
-        </label>
-        <p>手持身份证</p>
-      </div>
-    </div>
-    <div style="margin-top:20px">
-      <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" is-highlight></md-input-item>
-      <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="患者身份证号" clearable is-highlight></md-input-item>
-    </div>
-    <!-- 申请人 -->
-    <div v-show="isSelf">
-      <p style="color:#000;margin-top:20px">申请人证件照</p>
+      <p style="color:#333333;margin-top: 15px">拍摄/上传您的二代身份证</p>
       <div class="pg_positive">
         <div class="pg_positive_img">
-          <input class="ivu-upload-input" @change="uploadPosApp($event)" type="file" name="positiveApp" id="positiveApp" accept="image/gif,image/jpeg,image/x-png" />
-          <label class="ivu-upload-input_label" for="positiveApp" style="display:block; height: 120px;">
-            <img :src="othAppUrl" alt="">
+          <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
+          <label class="ivu-upload-input_label" for="positive" style="display:block; height: 120px;">
+            <img :src="othUrl" alt="">
           </label>
           <p>身份证正面</p>
         </div>
         <div class="pg_positive_img">
-          <label class="ivu-upload-input_label" for="outAppside" style="display:block; height: 120px;">
-            <input class="ivu-upload-input" @change="uploadOthApp($event)" type="file" name="outAppside" id="outAppside" accept="image/gif,image/jpeg,image/x-png" />
-            <img :src="posAppUrl" alt="">
+          <label class="ivu-upload-input_label" for="outside" style="display:block; height: 120px;">
+            <input class="ivu-upload-input" @change="uploadOth($event)" type="file" name="outside" id="outside" accept="image/gif,image/jpeg,image/x-png" />
+            <img :src="posUrl" alt="">
           </label>
           <p>身份证反面</p>
         </div>
       </div>
       <div class="pg_positive" style="padding-top:10px">
         <div class="pg_positive_img">
-          <label class="ivu-upload-input_label" for="hanAppside" style="display:block; height: 120px;">
-            <input class="ivu-upload-input" @change="uploadHanApp($event)" type="file" name="hanAppside" id="hanAppside" accept="image/gif,image/jpeg,image/x-png" />
-            <img :src="hanAppUrl" alt="">
+          <label class="ivu-upload-input_label" for="hanside" style="display:block; height: 120px;">
+            <input class="ivu-upload-input" @change="uploadHan($event)" type="file" name="hanside" id="hanside" accept="image/gif,image/jpeg,image/x-png" />
+            <img :src="hanUrl" alt="">
           </label>
           <p>手持身份证</p>
         </div>
-        <div class="pg_positive_img" @click="showPic=true">
-          <label class="ivu-upload-input_label" style="display:block; height: 120px;">
-            <img src="@/assets/images/u152.png" alt="">
-          </label>
-          <p class="mu-secondary-text-color">委托书样例</p>
+      </div>
+      <!-- 申请人 -->
+      <div v-show="isSelf">
+        <p style="color:#000;margin-top:20px">申请人证件照</p>
+        <div class="pg_positive">
+          <div class="pg_positive_img">
+            <input class="ivu-upload-input" @change="uploadPosApp($event)" type="file" name="positiveApp" id="positiveApp" accept="image/gif,image/jpeg,image/x-png" />
+            <label class="ivu-upload-input_label" for="positiveApp" style="display:block; height: 120px;">
+              <img :src="othAppUrl" alt="">
+            </label>
+            <p>身份证正面</p>
+          </div>
+          <div class="pg_positive_img">
+            <label class="ivu-upload-input_label" for="outAppside" style="display:block; height: 120px;">
+              <input class="ivu-upload-input" @change="uploadOthApp($event)" type="file" name="outAppside" id="outAppside" accept="image/gif,image/jpeg,image/x-png" />
+              <img :src="posAppUrl" alt="">
+            </label>
+            <p>身份证反面</p>
+          </div>
         </div>
-      </div>
-      <div style="margin-top:20px">
-        <md-input-item ref="input13" v-model="name" title="申请人姓名" placeholder="申请人姓名" is-highlight></md-input-item>
-        <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="申请人身份证号" clearable is-highlight></md-input-item>
-      </div>
+        <div class="pg_positive" style="padding-top:10px">
+          <div class="pg_positive_img">
+            <label class="ivu-upload-input_label" for="hanAppside" style="display:block; height: 120px;">
+              <input class="ivu-upload-input" @change="uploadHanApp($event)" type="file" name="hanAppside" id="hanAppside" accept="image/gif,image/jpeg,image/x-png" />
+              <img :src="hanAppUrl" alt="">
+            </label>
+            <p>手持身份证</p>
+          </div>
+          <div class="pg_positive_img" @click="showPic=true">
+            <label class="ivu-upload-input_label" style="display:block; height: 120px;">
+              <img src="@/assets/images/u152.png" alt="">
+            </label>
+            <p class="mu-secondary-text-color">委托书样例</p>
+          </div>
+        </div>
+        <div style="margin-top:20px">
+          <md-input-item ref="input13" v-model="name" title="申请人姓名" placeholder="申请人姓名" is-highlight></md-input-item>
+          <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="申请人身份证号" clearable is-highlight></md-input-item>
+        </div>
+    </div>
+
     </div>
     <div style="height:55px"></div>
     <p @click="cardconfirm" class="addbTN">下一步</p>
@@ -319,7 +322,8 @@ export default {
   color: #9e9e9e;
 }
 .changenet {
-  padding: 30px 0;
+  /*padding: 30px 0 16px 0;*/
+  padding: 30px 0 0 0;
   display: flex;
   justify-content: space-between;
   letter-spacing: 3px;
@@ -372,4 +376,10 @@ export default {
   top: 0;
   bottom: 0;
 }
+   .certificate .partLine{
+     border-bottom: 1px solid #F2F3F5;
+     margin: 0 0 -6px 0;
+   }
+
+
 </style>

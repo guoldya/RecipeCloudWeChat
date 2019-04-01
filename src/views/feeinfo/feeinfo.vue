@@ -12,7 +12,7 @@
                 <md-detail-item title="开单医院" :content=item.hospital></md-detail-item>
                 <md-detail-item title="开单科室" :content=item.dept></md-detail-item>
                 <md-detail-item title="开单医生" :content=item.doctor></md-detail-item>
-                <md-detail-item title="患者ID" :content=item.patientId></md-detail-item>
+                <md-detail-item title="患者ID" :content=item.patientCode></md-detail-item>
                 <md-detail-item title="患者姓名" :content=item.patientName></md-detail-item>
                 <md-detail-item title="开单时间" :content=item.createTime></md-detail-item>
                 <md-detail-item title="开单序号" :content=item.code></md-detail-item>

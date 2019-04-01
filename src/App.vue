@@ -128,23 +128,22 @@ body {
 
 /*文字两端对齐*/
 
-.alignJ .parElem,
-.md-detail-item {
+ .parElem,.md-detail-item{
   text-align: justify;
 }
 .md-detail-item {
   line-height: 18px !important;
 }
-.alignJ .parElem:first-child {
+ .parElem:first-child {
   padding-top: 10px;
 }
-.alignJ .parElem .sonElem,/*:first-child,*/
-.md-detail-item div:first-child {
+.parElem .sonElem,/*:first-child,*/
+.md-detail-item div:first-child{
   width: 17%;
   display: inline-table;
   color: #333333;
 }
-.alignJ .parElem .sonElem:after,/*:first-child*/
+.parElem .sonElem:after,/*:first-child*/
 .md-detail-item div:first-child:after {
   content: "";
   display: inline-block;
@@ -159,7 +158,7 @@ body {
   border: 1px solid #1da1f3;
   border-radius: 8px;
   position: relative;
-  top: 6px;
+  top: 8px;
   margin-left: 10px;
   vertical-align: text-top;
 }
@@ -183,6 +182,27 @@ body {
   padding: 15px 40px;
   text-align: center;
 }
+/*input-placeholder颜色*/
+
+input::-webkit-input-placeholder {
+  color: #D0DAE1;
+}
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #D0DAE1;
+}
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #D0DAE1;
+}
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #D0DAE1;
+}
+
+
+
+
 
 .warnText {
   font-size: 26px;
@@ -255,7 +275,7 @@ textarea {
 .noMore {
   text-align: center;
   color: #979797;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 70px;
 }
 .card + .noMore {
@@ -286,21 +306,6 @@ p {
   word-wrap: break-word;
   word-break: break-all;
 }
-input::-webkit-input-placeholder {
-  color: #979797;
-}
-input::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  color: #979797;
-}
-input:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  color: #979797;
-}
-input:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #979797;
-}
 .aligncenter {
   text-align: center;
   color: dimgray;
@@ -312,7 +317,9 @@ input:-ms-input-placeholder {
 .margin16 {
   margin: 0 0 32px 0;
 }
-
+.margin0 {
+  margin-top: 0;
+}
 .margin7 {
   margin-top: 14px;
 }
@@ -427,6 +434,7 @@ input:-ms-input-placeholder {
 .mu-light-text-color {
   color: #979797;
 }
+
 /**add*/
 
 /**大大大大的**/
@@ -434,7 +442,7 @@ input:-ms-input-placeholder {
   color: #1da1f3;
 }
 .partLine {
-  border-bottom: 2px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
   width: 100%;
   margin: 12px 0px;
 }
@@ -486,7 +494,8 @@ textarea::-webkit-input-placeholder {
 }
 .textCenter {
   text-align: center;
-  padding-bottom: 20px;
+  /*padding-bottom: 20px;*/
+  padding: 20px 0;
 }
 .nullDiv {
   text-align: center;

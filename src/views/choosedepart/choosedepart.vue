@@ -19,7 +19,7 @@
         </div> -->
 
         <div v-if="departData.length!=0" v-show="!loadingtrue">
-          <div class="flatCard margin11">
+          <div class="flatCard margin0">
             <p class="xuanze">选择科室
               <span class="warn">(周末及节假日不可预约)</span>
             </p>
