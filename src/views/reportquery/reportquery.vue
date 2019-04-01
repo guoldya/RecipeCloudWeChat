@@ -18,34 +18,28 @@
         <!--</span>-->
         <!--</header>-->
         <Headerapp post-title="报告查询"></Headerapp>
-        <div class="outCarint margin45">
-            <!-- <div class="appTab">
-                <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-                    {{item.title}}
-                </span>
-            </div> -->
-
+        <div class="margin50">
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="goodsList.length!=0" v-show="!loadingtrue">
-                <div class="card margin15" v-for="(item,i) in goodsList" :key="i">
+                <div class="flatCard" v-for="(item,i) in goodsList" :key="i">
                     <div @click="checkReportDetail(item.id)">
                         <div class="cardTextLeft">
                             <div class="appTitle">
                                 <span>{{item.name}}</span>
                             </div>
-                            <div class="listData" style="padding-top: 6px">
+                            <div class="cardText" style="padding-top: 6px">
                                 <span>检查科室：
-                                    <span class="">{{item.execDept}}（{{item.hospital}}）</span>
+                                    <span class="mu-light-text-color">{{item.execDept}}（{{item.hospital}}）</span>
                                 </span>
                             </div>
-                            <div class="listData">
+                            <div class="cardText">
                                 <span>检查项目：
-                                    <span class="">{{item.itemName}}</span>
+                                    <span class="mu-light-text-color">{{item.itemName}}</span>
                                 </span>
                             </div>
-                            <div class="listData">
+                            <div class="cardText">
                                 <span>报告日期：
-                                    <span class="">{{item.reportTime}}</span>
+                                    <span class="mu-light-text-color">{{item.reportTime}}</span>
                                 </span>
                             </div>
                             <div class="learnMore mu-secondary-text-color" @click="checkReportDetail(item.id)">

@@ -1,43 +1,41 @@
 <template>
     <div class="examineDetail">
         <Header post-title="预约详情"  ></Header>
-        <div class="outCarint margin45">
+        <div>
             <div v-if="orderData.length!=0" v-show="!loadingtrue" v-for="(item,i) in orderData" :key="i">
                 <div class="successImg">
                     <img src="@/assets/images/icon_success.png" alt="">
                     <p>预约成功</p>
                 </div>
-                <div class="outCarint">
+                <div class="cardText bacCenter">
                     <div class="margin16">
-                        <div class="cardText">
-                            <div class="listData">
-                            <span>预约科室：
-                                <span class="mu-secondary-text-color">{{item.serialDept}}</span>
-                            </span>
-                            </div>
-                            <div class="listData">
-                            <span>预约项目：
-                                <span class="mu-secondary-text-color">{{item.serialClass}}</span>
-                            </span>
-                            </div>
-                            <div class="listData">
-                            <span>预约日期：
-                                <span class="mu-secondary-text-color">{{item.serialTime}}</span>
-                            </span>
-                            </div>
-                            <div class="backH">
-                                <md-button type="primary" round @click="homeBack">返回首页</md-button>
-                            </div>
+                        <div>
+                            <span>预约科室： </span>
+                            <span class="mu-secondary-text-color">{{item.serialDept}}</span>
+
+                        </div>
+                        <div>
+                            <span>预约项目</span>：
+                            <span class="mu-secondary-text-color">{{item.serialClass}}</span>
+
+                        </div>
+                        <div>
+                            <span>预约日期：</span>
+                            <span class="mu-secondary-text-color">{{item.serialTime}}</span>
+
+                        </div>
+                        <div class="backH">
+                            <md-button type="primary" round @click="homeBack">返回首页</md-button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div v-show="!loadingtrue" v-if="orderData.length==0">
-                <div class="successImg">
-                    <img src="@/assets/images/fail.png" alt="">
-                    <p>预约失败</p>
-                </div>
-            </div>
+            <!--<div v-show="!loadingtrue" v-if="orderData.length==0">-->
+                <!--<div class="successImg">-->
+                    <!--<img src="@/assets/images/fail.png" alt="">-->
+                    <!--<p>预约失败</p>-->
+                <!--</div>-->
+            <!--</div>-->
             <Loading v-show="loadingtrue"></Loading>
         </div>
 
@@ -95,7 +93,9 @@
 <style   scoped>
     .examineDetail .successImg{
         text-align: center;
-        margin-top: 180px;
+        margin-top: 110px;
+        background-color: #fff;
+        padding: 80px 0;
     }
     .examineDetail .successImg img{
         width: 160px;
@@ -113,5 +113,13 @@
     }
     .examineDetail .backH{
         margin-top: 60px;
+    }
+    .examineDetail .bacCenter{
+        background-color: #ffffff;
+        padding-bottom: 10px;
+        line-height: 52px;
+    }
+    .examineDetail .bacCenter div div:not(:last-child){
+        padding: 0 74px;
     }
 </style>

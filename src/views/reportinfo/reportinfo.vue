@@ -1,99 +1,111 @@
 <template>
-
     <div class="reportinfo">
         <Header :post-title="postTitle"  ></Header>
-        <div v-if="reportInfoData.length!=0" class="outCarint margin45" v-for="(item,i) in reportInfoData" :key="i">
+        <div v-if="reportInfoData.length!=0" class="margin55" v-for="(item,i) in reportInfoData" :key="i">
             <div v-if="feeActiveId==1"  v-show="!loadingtrue">
-                <div class="card margin16">
-                    <div class="cardText">
-                        <div class="cardTextPP">
-                            <span>姓名：{{item.name}}</span>
-                            <span style="width: 50%">
-                                性别：
-                                <span>{{item.sex}}</span>
-                            </span>
+                <div class="flatCard">
+                    <div class="cardText alignJ">
+                        <div class=" parElem">
+                            <span class="sonElem">姓名</span>
+                            <span>{{item.name}}</span>
                         </div>
-                        <div class="cardTextNN">
-                            <span>检查科室：{{item.execDept}} </span>
-                            <div>
-                                <span>申请时间：{{item.applyTime}}</span>
-                            </div>
+                        <div class=" parElem">
+                            <span class="sonElem">性别</span>
+                            <span>{{item.sex}}</span>
                         </div>
-                        <div class="cardTextPP">
-                            <span>检查类别：{{item.type}} </span>
-                            <span style="width: 50%">
-                                检查子类：
-                                <span>{{item.subType}} </span>
-                            </span>
+                        <div class=" parElem">
+                            <span class="sonElem">检查科室</span>
+                            <span>{{item.execDept}} </span>
                         </div>
-                        <div class="cardTextNN cardTextBor">
-                            <span>检查项目：{{item.itemName}}</span>
-                            <div>
-                                <span>报告时间：{{item.reportTime}}</span>
-                            </div>
+                        <div class=" parElem">
+                            <span class="sonElem">申请时间</span>
+                            <span>{{item.applyTime}} </span>
+                        </div>
+                        <div class=" parElem">
+                            <span class="sonElem">检查类别</span>
+                            <span>{{item.type}} </span>
+                        </div>
+                        <div class=" parElem">
+                            <span class="sonElem">检查子类</span>
+                            <span>{{item.subType}} </span>
+                        </div>
+                        <div class=" cardTextBor parElem">
+                            <span class="sonElem">检查项目</span>
+                            <span>{{item.itemName}}</span>
+                        </div>
+                        <div class=" cardTextBor parElem">
+                            <span class="sonElem">报告时间</span>
+                            <span>{{item.reportTime}}</span>
                         </div>
                     </div>
                 </div>
-                <p style="margin:15px 0px;font-weight:700">检查结果</p>
-                <div class="card margin16">
-                    <div class="cardText">
-                        <div class="cardTextPP">
-                            <span>检查参数：{{item.param}}</span>
+                <div class="flatCard margin5 cardBottom">
+                    <div class="cardText alignJ">
+                        <div class="cardTextPP parElem">
+                            <span class="sonElem">检查参数</span>
+                            <span style="width: 78%">{{item.param}}</span>
                         </div>
-                        <div class="cardTextPP ">
-                            <span> 检查所见：</span>
+                        <div class="cardTextPP parElem">
+                            <span class="sonElem"> 检查所见</span>
                             <span style="width: 78%">{{item.findings}}</span>
                         </div>
-                        <div class="cardTextPP">
-                            <span> 印象：</span>
-                            <span style="width: 86%;">{{item.impression}}</span>
+                        <div class="cardTextPP parElem">
+                            <span class="sonElem"> 印象</span>
+                            <span style="width: 78%;">{{item.impression}}</span>
                         </div>
-                        <div class="cardTextPP">
-                            <span style="width: 14%;"> 建议：</span>
-                            <span style="width: 86%;">{{item.advise}}</span>
+                        <div class="cardTextPP parElem">
+                            <span class="sonElem"> 建议</span>
+                            <span style="width: 78%;">{{item.advise}}积三分hi师傅师傅和和fish粉丝发十分十分十分十分十分火山凤凰</span>
                         </div>
-                        <div class="listData cardTextPP">
-                            <span style="width: 14%;">备注：</span>
-                            <span style="width: 86%;">{{item.remark}}</span>
+                        <div class="cardTextPP parElem">
+                            <span class="sonElem">备注</span>
+                            <span style="width: 78%">{{item.remark}}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div v-if="feeActiveId==2"  v-show="!loadingtrue">
-                <div class="card margin16">
-                    <div class="cardText">
-                        <div class="cardTextPP">
-                            <span>姓名：{{item.name}}</span>
-                            <span style="width: 50%">性别：
-                                <span>{{item.sex}}</span>
-                            </span>
+                <div class="flatCard">
+                    <div class="cardText alignJ">
+                        <div class="parElem">
+                            <span class="sonElem">姓名</span>
+                            <span>{{item.name}}</span>
                         </div>
-                        <div class="cardTextPP">
-                            <span>年龄：{{item.age}}岁 </span>
-                            <span style="width: 50%">科别：
-                                <span>{{item.execDept}}</span>
-                            </span>
+                        <div class="parElem">
+                            <span class="sonElem">性别</span>
+                            <span>{{item.sex}}</span>
                         </div>
-                        <div class="cardTextNN">
-                            <span>收样日期：{{item.applyTime}} </span>
-                            <div>
-                                <span>标本类型：{{item.sampleType}} </span>
-                            </div>
+                        <div class=" parElem">
+                            <span class="sonElem">年龄</span>
+                            <span>{{item.age}}岁</span>
                         </div>
-                        <div class="cardTextNN">
-                            <span>送检项目：{{item.itemName}}</span>
-                            <div>
-                                <span>报告时间：{{item.reportTime}} </span>
-                            </div>
+                        <div class="parElem">
+                            <span class="sonElem">科别</span>
+                            <span>{{item.execDept}}</span>
                         </div>
-                        <div class="cardTextPP">
-                            <span>临床诊断：</span>
-                            <span style="width: 78%;">{{item.diag}}</span>
+                        <div class=" parElem">
+                            <span class="sonElem">收样日期</span>
+                            <span>{{item.applyTime}}</span>
+                        </div>
+                        <div class="parElem">
+                            <span class="sonElem">标本类型</span>
+                            <span>{{item.sampleType}}</span>
+                        </div>
+                        <div class="parElem">
+                            <span class="sonElem">送检项目</span>
+                            <span>{{item.itemName}}</span>
+                        </div>
+                        <div class="parElem">
+                            <span class="sonElem">报告时间</span>
+                            <span>{{item.reportTime}}</span>
+                        </div>
+                        <div class="cardTextPP parElem">
+                            <span class="sonElem">临床诊断</span>
+                            <span style="width: 78%">{{item.diag}}</span>
                         </div>
                     </div>
                 </div>
-                <p style="margin:15px 0px;font-weight:700">报告结果</p>
-                <div class="card margin16">
+                <div class="flatCard margin5">
                     <div class="cardText">
                         <div class="cardTextKind spanWid">
                             <span style="text-align: left">项目名称</span>
@@ -101,9 +113,10 @@
                             <span>单位</span>
                             <span style="text-align: right">参考值</span>
                         </div>
-                        <div class="cardTextPP spanWid arrow reportInfo" v-for="(item,i) in reportResult">
+                        <div class="cardTextPP spanWid arrow" v-for="(item,i) in reportResult">
                             <span>{{item.itemName}}</span>
                             <span>{{item.itemValue}}
+
                                 <span>{{item.contrast}}</span>
                             </span>
                             <span>{{item.unit}}</span>
@@ -115,7 +128,18 @@
             </div>
         </div>
         <Loading v-show="loadingtrue"></Loading>
+        <!--<div class="cardTextPP alignJ">-->
+            <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
+                <!--<span class="sonElem">检查参数</span>-->
+                <!--<span style="width:78%;">您牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
+            <!--</div>-->
+            <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
+                <!--<span class="sonElem">检数</span>-->
+                <!--<span style="width:78%;">牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
+
 </template>
 <script  >
 let bizbizPacsReportreaddetail = '/app/bizPacsReport/read/detail';
@@ -224,71 +248,70 @@ export default {
 };
 </script>
  <style   scoped>
-.reportinfo .cardText {
-  padding: 0;
-}
-.reportinfo .cardText .cardTextPP {
-  display: flex;
-  justify-content: space-between;
-  padding: 24px 0;
-  font-size: 28px;
-  border-bottom: 1px solid #e9e9e9;
-}
-.reportinfo .cardText .cardTextNN {
-  display: block;
-  padding: 40px 0;
-  font-size: 28px;
-  border-bottom: 1px solid #e9e9e9;
-}
-.reportinfo .cardText .cardTextNN div {
-  padding-top: 40px;
-}
-.reportinfo .cardText .cardTextPP:last-child,
-.reportinfo .cardText .cardTextBor {
-  border: none;
-}
-.reportinfo .cardText .cardTextKind {
-  display: flex;
-  justify-content: space-between;
-  padding: 35px 0;
-  font-size: 27px;
-  border-bottom: 1px solid #e9e9e9;
-  font-weight: 700;
-}
-.reportinfo .spanWid span {
-  display: inline-block;
-  word-break: normal;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow: hidden;
-  text-align: center;
-}
+    .reportinfo .cardText .cardTextPP {
+      display: flex;
+      justify-content: space-between;
+      font-size: 28px;
+        align-items: center;
+    }
+    .reportinfo .cardText .cardTextPP:last-child,
+    .reportinfo .cardText .cardTextBor {
+      border: none;
+    }
+    .reportinfo .cardText .cardTextKind {
+      display: flex;
+      justify-content: space-between;
+      padding: 28px 0;
+      font-size: 27px;
+      border-bottom: 1px solid #e9e9e9;
+      font-weight: 700;
+        margin-bottom: 28px;
+    }
+    .reportinfo .spanWid span {
+      display: inline-block;
+      word-break: normal;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow: hidden;
+      text-align: center;
+    }
 
-.reportinfo .reportInfo span {
-  font-size: 25px;
-}
-.reportinfo .spanWid span:first-child {
-  width: 28%;
-  text-align: left;
-}
-.reportinfo .spanWid span:nth-child(2) {
-  width: 28%;
-}
-.reportinfo .arrow span:nth-child(2) span{
-   color: red;
-    display: flex;
-    position: relative;
-    left: 140px;
-    top: -62px;
-}
-.reportinfo .spanWid span:nth-child(3) {
-  width: 20%;
-}
-.reportinfo .spanWid span:last-child {
-  width: 20%;
-  text-align: right;
-}
-.reportinfo .imgTag {
-  height: 36px;
-}
-</style>
+    .reportinfo .spanWid span:first-child {
+      width: 28%;
+      text-align: left;
+    }
+    .reportinfo .spanWid span:nth-child(2) {
+      width: 28%;
+    }
+    .reportinfo .arrow span:nth-child(2) span{
+       color: red;
+        display: flex;
+        position: relative;
+        left: 140px;
+        top: -122px;
+    }
+    .reportinfo .spanWid span:nth-child(3) {
+      width: 20%;
+    }
+    .reportinfo .spanWid span:last-child {
+      width: 20%;
+      text-align: right;
+    }
+     .reportinfo .flatCard{
+         border-top: none;
+     }
+    /*.cardBottom div{*/
+        /*padding-top: 0;*/
+    /*}*/
+    .cardBottom .alignJ .parElem span:first-child{
+        position: relative;
+        /*top: 20px;*/
+    }
+     .reportinfo .alignJ .parElem span:nth-child(2){
+        margin-left: 40px;
+         color: #979797;
+     }
+    .reportinfo .alignJ .parElem:first-child{
+        padding-top: 0;
+    }
+ </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="lineupnow margin45">
+  <div class="lineupnow margin55">
     <Header post-title="就诊队列"></Header>
     <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
-    <div class="outCarint">
-      <div class="card margin16">
-        <div class="cardHEADER" style="display:flex;">
+    <div class="">
+      <div class="flatCard ">
+        <div class="cardHEADER cardText" style="display:flex;">
           <div class="fleft">
             <img src="@/assets/images/icon_calendar.png" alt="">
             <span class="mu-secondary-text-color">{{ nowTime}}</span>
