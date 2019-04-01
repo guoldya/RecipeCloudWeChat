@@ -1,35 +1,31 @@
 <template>
     <div class="examine">
         <Header post-title="检验检查"></Header>
-        <div class="outCarint margin45">
+        <div class="margin55">
             <!--<div class="pageContent">-->
                 <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(item.type,index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
                     <!--{{item.title}}-->
                 <!--</span>-->
             <!--</div>-->
             <div v-if="examineData.length!=0" v-show="!loadingtrue">
-                <div class="card margin16" v-for="(item,i) in examineData" :key="i">
-                    <div>
-                        <div class="appTitle">
-                            <span>{{item.patientName}}（{{item.className}}）</span>
-                            <span>{{nowDate}}</span>
+                <div class="flatCard margin16" v-for="(item,i) in examineData" :key="i">
+                    <div class="appTitle">
+                        <span>{{item.patientName}}（{{item.className}}）</span>
+                        <span>{{nowDate}}</span>
+                    </div>
+                    <div class="cardText alignJ">
+                        <div class="parElem">
+                            <span class="sonElem">开单时间</span>
+                            <span class="mu-secondary-text-color">：{{item.createTime}}</span>
                         </div>
-                        <div class="listData" style="padding-top: 7px">
-                            <span>开单时间：
-                                <span class="mu-secondary-text-color">{{item.createTime}}</span>
-                            </span>
+                        <div class="parElem">
+                            <span class="sonElem">科室</span>
+                            <span>：{{item.examDept}}（{{item.hospital}}） </span>
                         </div>
-                        <div class="listData">
-                            <span>科室：
-                                <span>{{item.examDept}}（{{item.hospital}}）</span>
-                            </span>
-                        </div>
-                        <div class="nowOrder" @click="rightNowOrder(item.classId,item.id)">
+                        <div class="payatnow" style="margin-top: 0" @click="rightNowOrder(item.classId,item.id)">
                             <span>立即预约</span>
                         </div>
-                        <div style="clear: both"></div>
                     </div>
-
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
@@ -147,22 +143,7 @@
     };
 </script>
 <style   scoped>
-    .examine .nowOrder{
-        float: right;
-        font-size: 28px;
-        display: flex;
-    }
-    .examine .nowOrder span{
-        font-size: 24px;
-        color: #ffffff;
-        background: #1da1f3;
-        border-radius: 40px;
-        letter-spacing: 1px;
-        padding: 15px 40px;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-    .examine .listData span{
-        padding: 8px 0px;
+    .examine .flatCard{
+        border-top: none;
     }
 </style>

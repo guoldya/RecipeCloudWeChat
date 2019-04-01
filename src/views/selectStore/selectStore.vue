@@ -103,7 +103,7 @@
 export default {
     data() {
         return {
-            
+
             imgIndex: null,
             downImg: true,
             acceptJumpData: [],

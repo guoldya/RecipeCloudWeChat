@@ -29,7 +29,7 @@
  .learnMore {
     height: 60px;
     text-align: right;
-    margin-top: -30px;
+    padding: 0 24px
  }
 .icon_more {
    width: 12px;
@@ -83,6 +83,9 @@
 }
 .reportquery .nomore{
    text-align: center;
+}
+.reportquery .flatCard:first-child{
+   margin-top: 0;
 }
 
  

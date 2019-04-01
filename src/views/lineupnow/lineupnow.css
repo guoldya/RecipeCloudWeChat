@@ -1,11 +1,12 @@
+.lineupnow .flatCard{
+   margin-top: 0;
+}
 .lineupnow .titleh1 {
    font-size: 34px;
 }
-
-.lineupnow .cardText {
-   padding: 16px 0px;
+.lineupnow .cardText{
+   padding: 14px 30px;
 }
-
 .lineupnow .cardText p {
    line-height: 60px;
    letter-spacing: 1px;
@@ -15,12 +16,6 @@
 .lineupnow .cardText .cardTextPP {
    display: flex;
    justify-content: space-between;
-}
-
-.lineupnow .cardHEADER {
-   padding: 16px 0px;
-   font-size: 14px;
-   color: #333333;
 }
 
 .lineupnow .cardHEADER .lookonly {

@@ -1,7 +1,7 @@
 <template>
     <div class="examineOrder">
         <Header post-title="检验检查"  ></Header>
-        <div class=" margin45">
+        <div class=" margin55">
             <div class="time">
                 <ul>
                     <li @click="switchTo(index,item)" v-for="(item,index) in time" :class="activetime === index ? 'timeAcitve' : '' " :key="index+'aa'">
@@ -24,7 +24,7 @@
                         <span class="num noNum" v-if="item.remaindNum==0">无号</span>
                         <span class="num" v-else @click="makeOrder(item.id)">预约</span>
                     </div>
-                    <p class="partLine" v-if="i!=timeData.length-1"></p>
+                    <!--<p class="partLine" v-if="i!=timeData.length-1"></p>-->
                 </div>
             </div>
             <div style="margin:186px 0" class="aligncenter" v-show="!loadingtrue" v-else>暂无号源</div>
@@ -35,6 +35,7 @@
 
 <script>
     let bizExamSchedulereadlist="/app/bizExamSchedule/daySchedule";
+    let ready_order_url="/app/bizExamApply/updateExamApply";
     export default {
         data() {
             return {
@@ -98,12 +99,18 @@
               return data;
             },
             makeOrder(val){
-                console.log(this.$route.query.id);
-                console.log(this.$route.query.classId);
                 let argu = {id:this.$route.query.id,scheduleId:val};
-                this.$router.push({
-                    name: 'examineDetail',
-                    query: argu
+                this.$axios.post(ready_order_url,argu).then((res) => {
+                    if(res.data.code=='800'){
+                       this.$toast.info("预约失败")
+                    }else{
+                        this.$router.push({
+                            name: 'examineDetail',
+                            query: argu
+                        });
+                    }
+                }).catch(function (err) {
+                    console.log(err);
                 });
             },
             getTime(){
@@ -140,9 +147,9 @@
     align-items: center;
 }
 .examineOrder .nowOrder .num{
-    width: 100px;
-    height: 50px;
-    line-height: 50px;
+    width: 134px;
+    height: 62px;
+    line-height: 62px;
     font-size: 24px;
     color: #ffffff;
     background: #1da1f3;
@@ -158,9 +165,11 @@
     padding-top: 20px;
 }
 .examineOrder .order .orderDetail{
-    padding: 0px 24px;
+    padding: 20px 24px;
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid #e9e9e9;
+    background-color: #ffffff;
 }
 .examineOrder .order .orderTime{
     font-size: 32px;
