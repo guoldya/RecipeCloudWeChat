@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import home from './home';
+import chat from './modules/chat'
 
 console.log(home)
 
@@ -8,6 +9,9 @@ console.log(home)
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
+        userInfo: {
+            id: 1
+        },
         jumpArr: [],
         payWay: [],
         posUrl: '',
@@ -31,7 +35,7 @@ export default new Vuex.Store({
         cardId: '',
         keepAlive: '',
         cardList: '',
-        searchType:'',
+        searchType: '',
     },
     mutations: {
         searchTypeFun: (state, n) => {
@@ -111,6 +115,7 @@ export default new Vuex.Store({
     },
     modules: {
         home,
+        chat
     }
 })
 

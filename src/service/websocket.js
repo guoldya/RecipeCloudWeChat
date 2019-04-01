@@ -1,4 +1,4 @@
-import store from '../store/index'
+import store from '../store/store'
 import router from '../router'
 
 const websocketConfig = () => {
@@ -7,12 +7,12 @@ const websocketConfig = () => {
   }).get((uuid) => {
     connectWebsoket(uuid)
   })
-
-
 }
+
 const connectWebsoket = (uuid) => {
-  let id = store.state.userInfo.id
-  let chatQueue = store.state.chat.chatQueue
+  console.log(store.state.userInfo.id,"我是缓存的id")
+  let id = 12;
+  let chatQueue = store.state.chat.chatQueue;
   let websocket = new WebSocket("ws://192.168.0.22:8888/?userid=" + id + "&uuid=" + uuid);
   store.commit('chat/setWebsocket', websocket)
   websocket.onmessage = evt => {
