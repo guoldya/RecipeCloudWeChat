@@ -215,31 +215,17 @@ export default {
 }
 .feerecord .cardText p {
   font-size: 28px;
-  color: #5c5c5c;
+  color: #979797;
 }
 .feerecord .flatCard:first-child{
     margin-top: 0;
 }
-.payatnow {
-    height: 60px;
-    text-align: right;
-    margin-top: 14px;
-}
-.feerecord .appTitle {
-  border-bottom: 1px solid #ededed;
-  display: flex;
-  justify-content: space-between;
-}
+
 .feerecord .listData span:nth-child(2) {
   color: #979797;
 }
-.payatnow span {
-  font-size: 28px;
-  color: #ffffff;
-  background: #1da1f3;
-  border-radius: 40px;
-  letter-spacing: 1px;
-  padding: 15px 40px;
-  text-align: center;
+.feerecord .alignJ{
+    line-height: 26px;
 }
+
 </style>

@@ -23,6 +23,7 @@ export default new Vuex.Store({
         photo1Data: '',
         photo0Data: '',
         feeActiveId: '',
+        orgId: '',
         payType: '',
         patientId: '',
         cardNo: '',

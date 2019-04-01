@@ -42,20 +42,10 @@
    margin-bottom: 10px;
    width: 100%;
    margin-top: 5px;
-   white-space: nowrap;
+   /* white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
-   overflow: hidden;
-}
-
-.doc_scheduling .doc_info p {
-   margin-bottom: 10px;
-   width: 100%;
-   margin-top: 5px;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   overflow: hidden;
+   overflow: hidden; */
 }
 
 /* /介绍 */

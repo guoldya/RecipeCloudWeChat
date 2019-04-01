@@ -11,7 +11,7 @@
                     <div class="headname">
                         <span class="name">{{doctorInfo.name}}</span>
                         <span class="levle"> {{doctorInfo.title}}</span>
-                        <p style="font-size: 14px">{{depart}} 擅长:{{doctorInfo.skill}}</p>
+                        <p style="font-size: 14px">{{doctorInfo.orgName}} 擅长:{{doctorInfo.skill}}</p>
                     </div>
 
                 </div>
@@ -47,11 +47,11 @@
                     <a class="wx_yy_date_time_item" v-for="(order,index) in orderinfo" :key="index">
                         <span v-if="order.valNum==0">
                             <span class="current wx_residue_null">余{{order.valNum}}</span>
-                            <label> {{depart}} {{order.regStage}}</label>
+                            <label> {{order.orgName}} {{order.regStage}}</label>
                         </span>
                         <span v-else>
                             <span class="current ">余{{order.valNum}}</span>
-                            <label> {{depart}} {{order.regStage}}</label>
+                            <label> {{order.orgName}} {{order.regStage}}</label>
                         </span>
                         <div class="wx_residue_num" v-if="order.valNum==0">
                             <span class="keyy">{{order.money | keepTwoNum}}元</span>
@@ -80,7 +80,7 @@
                 <span v-for="(item,i) in dateList" :key="i">
                     <span>
                         <p style="font-size: 15px"> {{item.regStageVO}}
-                            <span class="mu-secondary-text-color"> {{item.regStage}}</span> {{item.dept}} {{depart}} </p>
+                            <span class="mu-secondary-text-color"> {{item.regStage}}</span> {{item.dept}} {{item.orgName}} </p>
                         <p> {{item.regDate}}
                             <!-- <span class="mu-secondary-text-color">{{item.money | keepTwoNum}}元</span> -->
                             {{item.money | keepTwoNum}}元
@@ -129,7 +129,7 @@ export default {
             depart: '',
             islist: true,
             orderinfo: '',
-            islook: true,
+            islook: false,
             isSeemore: false,
             moreButton: false,
         }
@@ -175,14 +175,14 @@ export default {
         todayreservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: {  regStage: data.regStage, money: data.money, sourceId: data.regId, doctorId: this.$route.query.doctorId, time: this.$route.query.time, dept: data.dept, week: this.$route.query.week, afternoon: this.$route.query.afternoon }
+                query: { regStage: data.regStage, money: data.money, sourceId: data.regId, doctorId: this.$route.query.doctorId, time: this.$route.query.time, dept: data.dept, week: this.$route.query.week, afternoon: this.$route.query.afternoon }
             });
         },
 
         reservation(data) {
             this.$router.push({
                 name: 'reservation',
-                query: {  regStage: data.regStage, sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.major, money: data.money }
+                query: { regStage: data.regStage, sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.major, money: data.money }
             });
         },
         toggleClick() {

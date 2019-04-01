@@ -127,9 +127,9 @@ body {
 }
 
 /*文字两端对齐*/
+
 .alignJ .parElem,
 .md-detail-item {
-  line-height: 24px;
   text-align: justify;
 }
 .md-detail-item {
@@ -138,17 +138,18 @@ body {
 .alignJ .parElem:first-child {
   padding-top: 10px;
 }
-.alignJ .parElem .sonElem:first-child,
+.alignJ .parElem .sonElem,/*:first-child,*/
 .md-detail-item div:first-child {
   width: 17%;
   display: inline-table;
   color: #333333;
 }
-.alignJ .parElem .sonElem:first-child:after,
+.alignJ .parElem .sonElem:after,/*:first-child*/
 .md-detail-item div:first-child:after {
-  content: " ";
+  content: "";
   display: inline-block;
   width: 100%;
+  /*position: absolute;*/
 }
 /*医生职称边框*/
 .headname .levle {
@@ -167,6 +168,20 @@ body {
   color: #1da1f3;
   padding: 4px 10px;
   border-radius: 8px;
+}
+.payatnow {
+  height: 60px;
+  text-align: right;
+  margin-top: 14px;
+}
+.payatnow span {
+  font-size: 28px;
+  color: #ffffff;
+  background: #1da1f3;
+  border-radius: 40px;
+  letter-spacing: 1px;
+  padding: 15px 40px;
+  text-align: center;
 }
 
 .warnText {
@@ -214,7 +229,7 @@ body {
   bottom: 0;
   z-index: 999;
 }
- 
+
 .headimg {
   width: 92px;
   height: 92px;
@@ -508,7 +523,7 @@ textarea::-webkit-input-placeholder {
   color: #1da1f3;
   font-size: 44px;
   margin: 0 6px;
-  vertical-align: bottom;
+  vertical-align: sub;
 }
 
 .md-field-item-title {
@@ -531,5 +546,14 @@ textarea::-webkit-input-placeholder {
 }
 .home .md-icon.icon-font:before {
   display: none;
+}
+.md-cell-item-content .md-cell-item-brief {
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
 }
 </style>

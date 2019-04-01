@@ -139,7 +139,7 @@ export default {
   width: 16px;
   height: 16px;
   border-radius: 16px;
-  background: #f34949;
+  background: #FF513A;
   text-align: center;
   line-height: 32px;
   font-size: 24px;
