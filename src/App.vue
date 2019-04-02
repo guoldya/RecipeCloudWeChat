@@ -200,16 +200,14 @@ input:-ms-input-placeholder {
   color: #D0DAE1;
 }
 
-
-
-
-
 .warnText {
   font-size: 26px;
   color: #979797;
+  padding: 24px;
 }
 .warnText p {
   padding: 4px 0;
+  line-height: 36px;
 }
 .md-activity-indicator-rolling .rolling circle.stroke {
   fill: #ffffff;
@@ -251,8 +249,8 @@ input:-ms-input-placeholder {
 }
  
 .headimg {
-  width: 92px;
-  height: 92px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
   float: left;
   text-align: center;

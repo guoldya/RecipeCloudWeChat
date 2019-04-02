@@ -1,6 +1,6 @@
 <template>
     <div class="doctorschedu">
-        <Header post-title="医生排班"  ></Header>
+        <Header post-title="医生排班" ></Header>
         <div class="margin50">
             <div class="doctor-head" v-show="!loadingtrue">
                 <div class="outCarint">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="flatCard">
-                <Calendar style="margin-top: 8px" v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
+                <Calendar style="margin-top: 8px;padding-top: 5px" v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
 
             </div>
             <Loading v-show="loadingtrue"></Loading>

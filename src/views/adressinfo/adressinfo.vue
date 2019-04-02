@@ -1,7 +1,7 @@
 <template>
   <div class="adressinfo">
     <Header :post-title="post"></Header>
-    <div class="outCarint margin45">
+    <div class="margin55 ">
       <md-field>
         <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名"></md-input-item>
         <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
@@ -15,7 +15,7 @@
               <i class="md-icon icon-font md-icon-check md"></i>
             </div>
           </div>
-          <div class="md-agree-content">
+          <div class="md-agree-content ">
             默认地址
           </div>
         </div>
@@ -122,4 +122,10 @@ export default {
 .adressinfo .md-field-item-title {
   margin-right: 40px;
 }
+  .adressinfo /deep/.md-field-item-content{
+    padding:0 24px;
+  }
+  .adressinfo .md-agree{
+    padding: 0 16px;
+  }
 </style>

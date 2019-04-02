@@ -52,7 +52,7 @@
 }
  .medicalEva .p {
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 0;
     width: 100%;
     margin-top: 15px;
@@ -70,6 +70,7 @@
 .medicalEva .evaFooter{
     display: flex;
     justify-content: space-between;
+    padding: 24px 0;
 }
 .medicalEva .evaFooter span{
     padding-top: 14px;
@@ -82,13 +83,18 @@
      margin: 86px 0px 46px 0px;
  }
 .medicalEva .image-reader-item{
-     /*width: 30.5%;*/
-    width: 200px;
-    height: 200px;
+    width: 224px;
+    height: 224px;
  }
 .medicalEva .image-reader-item:nth-child(3n){
     margin-right: 0 !important;
 }
 .medicalEva .rater-box{
     line-height: 100px;
+}
+.medicalEva .flatCard{
+    border-top: none;
+}
+.medicalEva .partLine{
+    margin:0 0 12px 0 ;
 }

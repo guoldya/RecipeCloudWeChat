@@ -2,9 +2,9 @@
 
   <div class="appoint">
     <Header post-title="预约记录"></Header>
-    <div class="outCarint margin45">
+    <div class=" margin55">
       <div v-show="!loadingtrue" v-if="appointData.length!=0">
-        <div class="card margin16" v-for="(item,i) in appointData" :key="i">
+        <div class="flatCard margin5 outCarint" v-for="(item,i) in appointData" :key="i">
           <div>
             <div class="appTitle">
               <span>{{item.patientName}}（{{item.className}}）</span>
@@ -12,17 +12,17 @@
             </div>
             <div class="listData" style="padding-top: 6px">
               <span>预约科室：
-                <span>{{item.examDept}}（{{item.hospital}}）</span>
+                <span class="mu-light-text-color">{{item.examDept}}（{{item.hospital}}）</span>
               </span>
             </div>
             <div class="listData">
               <span>预约项目：
-                <span>{{item.className}}</span>
+                <span class="mu-light-text-color">{{item.className}}</span>
               </span>
             </div>
             <div class="listData">
               <span>预约日期：
-                <span>{{item.serialTime}}</span>
+                <span class="mu-light-text-color">{{item.serialTime}}</span>
               </span>
             </div>
           </div>
@@ -114,13 +114,25 @@ export default {
 };
 </script>
  <style   scoped>
-.appoint .card {
-  margin-bottom: 32px;
-}
-.appoint .appointText {
-  padding-top: 10px;
-}
-.appoint .appointText p {
-  line-height: 60px;
-}
+    .appoint .card {
+      margin-bottom: 32px;
+    }
+    .appoint .appointText {
+      padding-top: 10px;
+    }
+    .appoint .appointText p {
+      line-height: 60px;
+    }
+    .appoint .flatCard{
+      border-top: none;
+    }
+   .appoint .listData:last-child{
+     padding-bottom: 12px;
+   }
+   .appoint .appTitle{
+     padding: 24px 0;
+   }
+   .appoint .listData span{
+     padding: 14px 0;
+   }
 </style>
