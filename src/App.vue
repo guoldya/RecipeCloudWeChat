@@ -36,10 +36,10 @@ export default {
 :root {
   /* 主题色 */
   --primary: #1da1f3;
-  /* 内容字体颜色 */
-  --primary--content: #979797;
+  /* 内容字体颜色 5A5A5A*/
+  --primary--content: #5A5A5A;
   /* 题目字体颜色 */
-  --primary--title: rgb(0, 0, 0, 0.85);
+  --primary--title: #272727;
   /* 线颜色 */
   --primary--line: #ededed;
   /* 背景色 */
