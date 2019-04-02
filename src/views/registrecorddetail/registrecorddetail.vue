@@ -1,49 +1,17 @@
 <template>
     <div class="registrecorddetail">
         <Header post-title="挂号记录详情"  ></Header>
-        <div class="outCarint margin45">
-            <div class="card" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
-                <div class="cardText">
-                    <div class="listData">
-                        <span>科室</span>
-                        <span>{{item.orgName}}</span>
-                    </div>
-                    <p class="partLine"></p>
-                    <div class="listData">
-                        <span>医生</span>
-                        <span>{{item.doctorName}}</span>
-                    </div>
-                    <p class="partLine"></p>
-                    <div class="listData">
-                        <span>患者姓名</span>
-                        <span>{{item.patientName}}</span>
-                    </div>
-                    <p class="partLine"></p>
-                    <div class="listData">
-                        <span>日期</span>
-                        <span>{{item.regDate}}</span>
-                    </div>
-                    <p class="partLine"></p>
-                    <div class="listData">
-                        <span>时段</span>
-                        <span>{{item.regStage}}</span>
-                    </div>
-                    <p class="partLine"></p>
-                    <div class="listData">
-                        <span>诊号</span>
-                        <span>{{item.sourceId}}</span>
-                    </div>
-                    <p class="partLine"></p>
-                    <div class="listData">
-                        <span>金额</span>
-                        <span>￥{{item.money}}</span>
-                    </div>
-                    <p class="partLine"></p>
-                    <div class="listData">
-                        <span>地点</span>
-                        <span>{{item.address}}</span>
-                    </div>
-                </div>
+        <div class="margin55">
+            <div class="flatCard outCarint " v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
+                <md-field>
+                    <md-detail-item title="科室" :content=item.orgName></md-detail-item>
+                    <md-detail-item title="医生" :content=item.doctorName></md-detail-item>
+                    <md-detail-item title="患者姓名" :content=item.patientName></md-detail-item>
+                    <md-detail-item title="日期" :content=item.regDate></md-detail-item>
+                    <md-detail-item title="时段" :content=item.regStage></md-detail-item>
+                    <md-detail-item title="金额" :content=item.money></md-detail-item>
+                    <md-detail-item title="地点" :content=item.address></md-detail-item>
+                </md-field>
             </div>
             <Loading v-show="loadingtrue"></Loading>
             <div class="warnText">
@@ -54,14 +22,13 @@
                 <p>4、一个自然月内只能退三次号</p>
             </div>
             <div style="margin-bottom:30px;">
-                <div class="myButton">
+                <div class="myButton outCarint">
                     <div v-if="payType==0">
                         <span class="cancle" @click="orderCancle">取消预约</span>
                         <span class="payatnow">
                             <md-button class=" " type="primary" @click="rightPay" round>立即支付</md-button>
                         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
                         </span>
-
                     </div>
                     <div v-if="payType==1">
                         <md-button type="primary" round @click="applyBack">申请退号</md-button>
@@ -171,7 +138,7 @@ export default {
                                     query: {}
                                 });
                             }, 3000)
-                        }else if(res.data.code == '800'){
+                        }else if(res.data.code == '500'){
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
                                 this.$router.push({
@@ -335,7 +302,7 @@ export default {
 .registrecorddetail .myButton div {
   display: flex;
   justify-content: space-between;
-  margin-top: 26px;
+  margin-top: 8px;
 }
 .registrecorddetail .myButton div span{
   border-radius: 60px;
@@ -367,4 +334,10 @@ export default {
 .registrecorddetail .partLine{
     margin: 16px 0px;
 }
+    .registrecorddetail .flatCard{
+        border-top: none;
+    }
+    .registrecorddetail .payatnow{
+        margin-top: 0;
+    }
 </style>

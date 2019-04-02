@@ -1,9 +1,9 @@
 <template>
     <div class="medicalEva">
         <Header post-title="就医评价" selectOption=""  ></Header>
-        <div class="outCarint margin45">
+        <div class="margin55">
             <div>
-                <div class="card margin16">
+                <div class="flatCard outCarint">
                     <div>
                         <div class="star">
                             <img src="@/assets/images/1.jpg" alt="" style="width: 14%;height: 14%">
@@ -12,7 +12,7 @@
                         </div>
                         <p class="partLine"></p>
                         <div>
-                            <textarea name="" id="" cols="45" rows="5" placeholder="服务满足你的期待吗？请大胆说出它的优点与美中不足的地方吧！"></textarea>
+                            <textarea name="" id="" cols="49" rows="5" placeholder="服务满足你的期待吗？请大胆说出它的优点与美中不足的地方吧！"></textarea>
                             <ul class="image-reader-list">
                                 <li class="image-reader-item" v-for="(img, index) in imageList['reader0']" :key="index" :style="{
                                               'backgroundImage': `url(${img})`,
@@ -26,7 +26,7 @@
                                 </li>
                                 <li class="image-reader-item add">
                                     <md-image-reader name="reader0" @select="onReaderSelect" @complete="onReaderComplete" @error="onReaderError" is-multiple></md-image-reader>
-                                    <md-icon name="camera" size="md" color="#CCC"></md-icon>
+                                    <md-icon name="camera" size="lg" color="#CCC"></md-icon>
                                     <p class="p">添加图片</p>
                                 </li>
                             </ul>
@@ -38,13 +38,10 @@
                             </div>
                             <span>你的评价可以帮助其他小伙伴呦</span>
                         </div>
-                        <div>
-                            <md-button type="primary" round @click="sendFun">发布</md-button>
-                        </div>
                     </div>
                 </div>
             </div>
-
+            <p class="addbTN" @click="sendFun()">发布</p>
         </div>
     </div>
 </template>

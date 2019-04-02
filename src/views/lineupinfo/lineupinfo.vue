@@ -2,10 +2,10 @@
 
   <div class="lineupnow">
     <Header :post-title="title"></Header>
-    <div class="outCarint margin45" v-show="!loadingtrue">
+    <div class="margin55" v-show="!loadingtrue">
       <div v-if="lineupinfo!=null">
         <div v-show="queryType==1">
-          <div class="card margin16">
+          <div class="flatCard">
             <div class="cardHEADER">
               <div class="fleft lineupcard">
                 <img src="@/assets/images/icon_line_up.png" alt="">
@@ -17,7 +17,7 @@
               <p>排队类目：{{lineupinfo.deptName}}</p>
             </div>
           </div>
-          <div class="card margin16" v-if="lineupinfo.waitingNo<0">
+          <div class="flatCard margin5" v-if="lineupinfo.waitingNo<0">
             <div class="cardHEADER">
               <div class="fleft lineupcard">
                 <img src="@/assets/images/icon_sad.png" alt="">
@@ -70,7 +70,7 @@
             </div>
           </div>
         </div>
-        <md-button class="margin16" type="primary" @click="getData" round>刷新</md-button>
+        <md-button class="margin14" type="primary" @click="getData" round>刷新</md-button>
       </div>
       <div v-show="!loadingtrue" class="nullDiv" v-else>
         <img src="@/assets/images/null1.png">
@@ -163,5 +163,8 @@ export default {
 }
 .lineupnow .md-button.block {
   height: 90px;
+  width: 94%;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 </style>

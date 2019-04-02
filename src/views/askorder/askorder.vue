@@ -1,7 +1,7 @@
 <template>
    <div class="askorder">
       <Header post-title="问诊订单"  ></Header>
-      <div class="outCarint margin45">
+      <div class="margin50">
          <!--<div class="appTab">-->
             <!--<span v-for="(item, index) in time" :key="'time' + index" @click="switchTo(index)" :class="active1 === index ? 'appTabAcitive' : '' ">-->
                <!--{{item.title}}-->
@@ -9,7 +9,7 @@
          <!--</div>-->
          <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
          <div class="demo-text" v-if="active1 === 1" @click="appointinfo">
-            <div class="card cardcc">
+            <div class="flatCard outCarint  cardcc">
                <p class="appTitle">
                   <span>2019-12-05 12:30</span>
                   <span>等待付款
@@ -17,7 +17,7 @@
                   </span>
                </p>
                <div class="cardText">
-                  <div style="width:100%;height:50px;">
+                  <div style="width:100%;height:50px;padding-top: 6px">
                      <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                      <p>李华
                         <span class="levle">主任医师</span>
@@ -126,7 +126,7 @@ export default {
   background: #1da1f3;
   border-radius: 40px;
   letter-spacing: 1px;
-  padding: 10px 30px;
+   padding: 14px 30px;
   text-align: center;
   margin-left: 20px;
   margin-top: 20px;
@@ -138,10 +138,10 @@ export default {
   background: #ffffff;
   border-radius: 40px;
   letter-spacing: 1px;
-  padding: 8px 28px;
   text-align: center;
   margin-left: 20px;
   margin-top: 20px;
+   padding: 14px 30px;
   border: 2px solid #474747;
   box-sizing: border-box;
 }
@@ -159,6 +159,9 @@ export default {
   border: 2px solid #1da1f3;
   border-radius: 8px;
   position: relative;
-  top: 0px;
+  top: -1px;
 }
+    .askorder .flatCard{
+       margin-top: 0;
+    }
 </style>

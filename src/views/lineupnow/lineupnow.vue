@@ -1,9 +1,9 @@
 <template>
-  <div class="lineupnow margin55">
+  <div class="lineupnow">
     <Header post-title="就诊队列"></Header>
-    <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
-    <div class="">
-      <div class="flatCard ">
+    <div class=" margin50">
+      <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
+      <div class="upnowHead">
         <div class="cardHEADER cardText" style="display:flex;">
           <div class="fleft">
             <img src="@/assets/images/icon_calendar.png" alt="">
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div v-if="goodsList.length!=0 " v-show="!loadingtrue">
-        <div class="card margin16" v-for="(item,index) in goodsList" :key="index">
+        <div class="flatCard margin5" v-for="(item,index) in goodsList" :key="index">
           <div class="cardText" v-show="queryType==1">
             <p class="cardTextPP">
               <span>等待时间：

@@ -243,7 +243,22 @@
 }
 
 
-.doc_scheduling .headname .levle{
+.doc_scheduling .headname .levle {
    padding-left: 4px;
    top: 8px;
+}
+
+.doc_scheduling .yy_date_today .time_btn {
+   display: inline-block;
+   width: 28px;
+   height: 28px;
+   margin-left: 0.05rem;
+   background: url(../../assets/images/icon5.png) no-repeat;
+   background-size: 100% auto;
+   vertical-align: text-bottom;
+   transform: rotate(180deg);
+}
+.doc_scheduling .yy_date_today  .time_btn_up {
+   /* transform: rotate(180deg); */
+   transform: rotate(0deg);
 }

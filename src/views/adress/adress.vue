@@ -1,10 +1,10 @@
 <template>
     <div class="adress">
         <Header post-title="地址管理"></Header>
-        <div class="outCarint margin45" style="margin-bottom:70px">
+        <div class=" margin55" style="margin-bottom:70px">
             <ul v-if="addressInfo.length!=0" v-show="!loadingtrue">
                 <li v-for="(item,index) in addressInfo" :key="index">
-                    <div class="card">
+                    <div class="flatCard">
                         <div class="cardText">
                             <p class="order-number">
                                 <span class="patientName">{{item.receiver}}</span>

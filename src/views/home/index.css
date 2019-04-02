@@ -187,7 +187,7 @@
 }
 
 .homeCardText {
-  padding: 40px;
+   padding: 28px 24px;
   display: flex;
   justify-content: space-between;
 }

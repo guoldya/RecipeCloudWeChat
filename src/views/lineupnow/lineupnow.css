@@ -1,5 +1,11 @@
-.lineupnow .flatCard{
+.lineupnow .flatCard:first-child{
+   /*margin-top: 0;*/
+   border-top: none;
+}
+.lineupnow .upnowHead{
    margin-top: 0;
+   background-color: #ffffff;
+   border-top: 1px solid #e9e9e9;
 }
 .lineupnow .titleh1 {
    font-size: 34px;
@@ -24,7 +30,7 @@
 }
 
 .lineupnow .cardHEADER img {
-   width: 44px;
+   width: 52px;
 }
 
 .lineupnow .fleft {
@@ -33,7 +39,7 @@
 }
 
 .lineupnow .fleft span {
-   top: -10px;
+   top: -14px;
    position: relative;
    left: 14px;
 }

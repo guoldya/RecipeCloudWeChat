@@ -8,7 +8,7 @@
             <div class="flatCard" @click="intodoctorschedu(item.id)">
               <div class="cardText">
                 <div class="headimg">
-                  <img src=" https://kano.guahao.cn/iqw2633790_image140.jpg" alt="医生头像">
+                  <img src="@/assets/images/user.png" alt="医生头像">
                 </div>
                 <div>
                   <p class="headname">

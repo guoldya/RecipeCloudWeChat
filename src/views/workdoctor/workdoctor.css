@@ -138,7 +138,7 @@ nput {
 
 /*没号 、已满*/
 
- 
+
 
 .yy_date .state_full span {
    display: block;
@@ -148,7 +148,7 @@ nput {
    font-size: 28px;
 }
 
- 
+
 
 .yy_date_today .time_btn {
    display: inline-block;
@@ -159,8 +159,10 @@ nput {
    background-size: 100% auto;
    vertical-align: text-bottom;
 }
-.yy_date_today .time_btn_up{
-   transform: rotate(180deg);
+
+.yy_date_today .time_btn_up {
+   /* transform: rotate(180deg); */
+   transform: rotate(0deg);
 }
 
 .tinmup {
@@ -260,9 +262,11 @@ nput {
    color: #fff;
    background-color: #24a5f1;
 }
+
 .yy_date .have {
    color: #24a5f1;
 }
-.workdoctor .card:last-child{
+
+.workdoctor .card:last-child {
    margin-bottom: 20px;
 }
