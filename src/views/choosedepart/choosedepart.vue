@@ -50,9 +50,8 @@ let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     return {
-
       active1: 0,
-      yuanId: "",
+      orgId: "",
       departs: [],
       num: 10,
       active2: 0,
@@ -71,7 +70,7 @@ export default {
   },
   created() {
     if (this.$store.state.feeActiveId) {
-      this.yuanId = this.$store.state.feeActiveId;
+      this.orgId = this.$store.state.feeActiveId;
     }
   },
   watch: {
@@ -88,11 +87,12 @@ export default {
         for (let i = 0; i < res.data.rows.length; i++) {
           this.departs[i].title = res.data.rows[i].orgName;
         }
-        if (!this.yuanId) {
-          this.yuanId = res.data.rows[0].id;
+        if (!this.orgId) {
+          this.orgId = res.data.rows[0].id;
         }
         this.$store.commit('departFun', res.data.rows[0].orgName);
-        this.orgFun(this.yuanId);
+
+        this.orgFun(false);
       } else {
         console.log(res.msg);
       }
@@ -117,50 +117,39 @@ export default {
         this.$router.go(-1)
       }
     },
-    // orgFun(data) {
-    //   this.$axios.put(bdHospitalOrg, {
-    //     id: data
-    //   }).then((res) => {
-    //     if (res.data.code == '200') {
-    //       this.departData = res.data.rows;
 
-    //     } else {
-    //       console.log(res.msg);
-    //     }
-    //   }).catch(function (err) {
-    //     console.log(err);
-    //   });
-    // },
     childByValue: function (childValue) {
       console.log(childValue);
       //this.active1 = index;
-      this.yuanId = childValue.id;
+      this.orgId = childValue.id;
       this.page = 1;
       this.$store.commit('departFun', childValue.orgName);
-      this.orgFun();
-      // this.type = childValue.type;
 
+      // this.type = childValue.type;
+      console.log(childValue.id)
       this.$store.commit('feeActiveFun', childValue.id);
       this.loadingtrue = true;
+      this.orgFun();
 
     },
     switchTo(num, index) {
       this.active1 = index;
       this.$store.commit('departFun', num.orgName);
-      this.yuanId = num.id;
+      this.orgId = num.id;
       this.orgFun()
     },
     orgFun(flag) {
+      console.log("ddd")
       let deptparams = {};
       deptparams.pageNumber = this.page;
       deptparams.pageSize = this.pageSize;
-      deptparams.id = this.yuanId;
+      deptparams.id = this.orgId;
       this.$axios.put(bdHospitalOrg, deptparams).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;
-          //this.departData = [];
           if (flag) {
-            this.departData = this.departData.concat(res.data.rows);  //concat数组串联进行合并
+            this.departData = this.departData.concat(res.data.rows);
+            //concat数组串联进行合并
             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
               this.busy = false;
               this.nomore = false;
@@ -205,7 +194,7 @@ export default {
       console.log(data)
       this.$router.push({
         name: 'doctorList',
-        query: { deptId: data.id, yuanId: this.yuanId, departName: data.orgName }
+        query: { deptId: data.id, orgId: this.orgId, deptName: data.orgName }
       });
     },
   },

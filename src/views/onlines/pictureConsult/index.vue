@@ -52,7 +52,7 @@
         </li>
         <li class="image-reader-item add" v-if="imageList.length<3">
           <md-image-reader name="reader0" @select="onReaderSelect" @complete="onReaderComplete" @error="onReaderError" is-multiple></md-image-reader>
-          <md-icon name="camera" size="md" color="#CCC"></md-icon>
+          <md-icon name="camera" size="lg" color="#CCC"></md-icon>
           <p>添加图片</p>
         </li>
         <li class="tips" v-if="imageList.length<3">(最多上传3张)</li>
@@ -183,10 +183,12 @@ $border: 1px solid #e0e0e0;
     }
   }
   .image-reader-list {
+    display: flex;
     overflow: hidden;
     margin-top: 10px;
     .md-tag .md-icon.icon-font {
       transform: scale(0.7);
+      line-height: 2;
     }
     .image-reader-item {
       width: 156px;
@@ -196,8 +198,11 @@ $border: 1px solid #e0e0e0;
       border: $border;
     }
     .add {
+      border: 1px solid #ededed;
+      line-height: 2;
+      text-align: center;
       p {
-        position: absolute;
+        // position: absolute;
         top: 50%;
         left: 0;
         width: 100%;
@@ -205,6 +210,10 @@ $border: 1px solid #e0e0e0;
         font-size: 22px;
         color: #ccc;
         text-align: center;
+      }
+      .md-icon {
+        // position: absolute;
+        margin-top: 50px;
       }
     }
     .tips {

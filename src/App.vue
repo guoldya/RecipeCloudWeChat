@@ -247,7 +247,7 @@ input:-ms-input-placeholder {
   bottom: 0;
   z-index: 999;
 }
- 
+
 .headimg {
   width: 108px;
   height: 108px;
@@ -553,5 +553,14 @@ textarea::-webkit-input-placeholder {
 }
 .home .md-icon.icon-font:before {
   display: none;
+}
+.md-cell-item-content .md-cell-item-brief {
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
 }
 </style>

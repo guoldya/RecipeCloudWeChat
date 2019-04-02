@@ -1,7 +1,7 @@
 <template>
    <div class="result">
       <Header post-title="搜索医生"></Header>
-      <div class="outCarint margin45">
+      <div class="outCarint" style="margin-top:1.2rem">
          <div style="text-align:center;">
             <input v-model="value" placeholder="搜索医生" class="oc_val" @input="loadMorelist(value)">
          </div>

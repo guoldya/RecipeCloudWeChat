@@ -1,379 +1,379 @@
 .homePage {
-   padding: 24px;
+  padding: 24px;
 }
 
 .home .spinner {
-   text-align: center
+  text-align: center
 }
 
 .home .spinner .md-icon.icon-svg.lg {
-   width: 77px;
-   height: 77px;
-   margin-top: 77px;
+  width: 77px;
+  height: 77px;
+  margin-top: 77px;
 }
 
 .cardPositon {
-   height: 170px;
+  height: 170px;
 }
 
 .font-12 {
-   font-size: 12px;
+  font-size: 12px;
 }
 
 .font-16 {
-   font-size: 16px;
+  font-size: 16px;
 }
 
 .home-flex {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .float-left {
-   float: left;
+  float: left;
 }
 
 .float-right {
-   float: right;
+  float: right;
 }
 
 .bindCard {
-   height: 240px;
-   text-align: center;
-   line-height: 240px;
-   border-radius: 20px;
-   box-shadow: 0 0 17px rgba(20, 19, 51, .1);
+  height: 240px;
+  text-align: center;
+  line-height: 240px;
+  border-radius: 20px;
+  box-shadow: 0 0 17px rgba(20, 19, 51, .1);
 }
 
 .bindCard .bindCardBtn {
-   padding: 17px 35px;
-   background: #24A5F1;
-   border-radius: 40px;
-   color: #fff;
-   letter-spacing: 1px;
-   font-size: 30px;
+  padding: 17px 35px;
+  background: #24A5F1;
+  border-radius: 40px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 30px;
 }
 
 .home-cz {
-   /* padding: 0 66px 77px; */
-   padding: 0 79px 30px;
-  
+  /* padding: 0 66px 77px; */
+  padding: 0 79px 30px;
+ 
 }
 
 .home-cz li {
-   text-align: center;
-   /* color: #fff; */
-   position: relative;
+  text-align: center;
+  /* color: #fff; */
+  position: relative;
 }
 
 .home-cz li .signNumber {
-   position: absolute;
-   top: -10px;
-   left: 77px;
-   display: inline-block;
-   padding: 0 10px;
-   min-width: 32px;
-   border-radius: 20px;
-   background: #f34949;
-   text-align: center;
-   line-height: 32px;
-   font-size: 24px;
-   color: #fff;
+  position: absolute;
+  top: -10px;
+  left: 77px;
+  display: inline-block;
+  padding: 0 10px;
+  min-width: 32px;
+  border-radius: 20px;
+  background: #f34949;
+  text-align: center;
+  line-height: 32px;
+  font-size: 24px;
+  color: #fff;
 }
 
 .home-cz .image {
-   width: 60px;
-   height: 60px
+  width: 60px;
+  height: 60px
 }
 
 .image {
-   width: 120px;
-   height: 120px
+  width: 120px;
+  height: 120px
 }
 
 .home-zy {
-   max-width: 100%;
-   max-height: 100%;
-   /* height: 190px; */
-   /* width: 100%; */
+  max-width: 100%;
+  max-height: 100%;
+  /* height: 190px; */
+  /* width: 100%; */
 }
 
 .home-zy img {
-   width: 100%;
-   height: 100%;
-   border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
 
 .home-Intel {
-   margin-top: 35px;
+  margin-top: 35px;
 }
 
 .home-Intel img {
-   width: 48%;
-   height: 48%;
-   border-radius: 20px;
+  width: 48%;
+  height: 48%;
+  border-radius: 20px;
 }
 
 .home-Intel h2 {
-   font-size: 34px;
-   font-weight: 600;
-   margin-bottom: 20px;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .home-Intel p {
-   text-indent: 2em;
-   letter-spacing: 2px;
-   line-height: 40px;
-   font-size: 27px;
+  text-indent: 2em;
+  letter-spacing: 2px;
+  line-height: 40px;
+  font-size: 27px;
 }
 
 .zy-text {
-   margin-left: 10px;
+  margin-left: 10px;
 }
 
 .home-menu {
-   padding: 20px 0;
+  padding: 20px 0;
 }
 
 .home-menu:after {
-   display: block;
-   content: '';
-   clear: both;
+  display: block;
+  content: '';
+  clear: both;
 }
 
 .home-menu li {
-   float: left;
-   width: 33%;
-   text-align: center;
-   padding: 10px;
-   position: relative;
+  float: left;
+  width: 33%;
+  text-align: center;
+  padding: 10px;
+  position: relative;
 }
 
 .home-menu li:nth-child(6),
 .home-menu li:nth-child(4),
 .home-menu li:nth-child(5) {
-   padding: 30px 10px;
+  padding: 30px 10px;
 }
 
 .home-menu li p {
-   line-height: 20px;
-   font-family: "PingFang-SC-Medium"
+  line-height: 20px;
+  font-family: "PingFang-SC-Medium"
 }
 
 .home-footer {
-   height: 60px;
-   padding: 0 10px;
-   width: calc(100% - 20px);
-   border-top: 1px solid #f5f5f5;
-   position: absolute;
-   bottom: 0
+  height: 60px;
+  padding: 0 10px;
+  width: calc(100% - 20px);
+  border-top: 1px solid #f5f5f5;
+  position: absolute;
+  bottom: 0
 }
 
 .home-footer li {
-   text-align: center;
+  text-align: center;
 }
 
 .more {
-   width: 10px;
-   /* background: #f5f5f5 */
+  width: 10px;
+  /* background: #f5f5f5 */
 }
 
 .home .homeCard {
-   height: 240px;
-   border-radius: 20px;
-   box-shadow: 0 0 18px rgba(20, 19, 51, .1);
-   background: #ffffff;
+  height: 240px;
+  border-radius: 20px;
+  box-shadow: 0 0 18px rgba(20, 19, 51, .1);
+  background: #ffffff;
 }
 
 .homeCardText {
    padding: 28px 24px;
-   display: flex;
-   justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .homeCardTextLeft {
-   flex-flow: column;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+  flex-flow: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .homeCardTextLeft p {}
 
 .towma {
-   flex-flow: column;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+  flex-flow: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .towma img {
-   width: 120px;
+  width: 120px;
 }
 
 .towma {
-   text-align: center;
-   font-size: 26px;
+  text-align: center;
+  font-size: 26px;
 }
 
 .icon_switch {
-   background: #24A5F1;
-   padding: 5px 17px;
-   border-radius: 40px;
-   color: #fff;
-   font-size: 26px;
+  background: #24A5F1;
+  padding: 5px 17px;
+  border-radius: 40px;
+  color: #fff;
+  font-size: 26px;
 }
 
 .icon_switch img {
-   width: 25px;
-   position: relative;
-   top: 4px;
-   right: 5px;
+  width: 25px;
+  position: relative;
+  top: 4px;
+  right: 5px;
 }
 
 .renzhen {
-   width: 85px;
-   position: relative;
-   top: 5px;
-   left: 10px;
+  width: 85px;
+  position: relative;
+  top: 5px;
+  left: 10px;
 }
 
 .homeheader {
-   width: 100%;
-   height: 100px;
-   background: transparent;
-   text-align: center;
-   color: #fff;
-   font-size: 32px;
-   line-height: 100px;
-   position: absolute;
+  width: 100%;
+  height: 100px;
+  background: transparent;
+  text-align: center;
+  color: #fff;
+  font-size: 32px;
+  line-height: 100px;
+  position: absolute;
 }
 
 .club-new-spread {
-   position: relative;
-   float: right;
-   font-size: 28px;
-   margin-top: -40px;
-   padding-left: 48px;
-   color: #666;
-   background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff 17%);
+  position: relative;
+  float: right;
+  font-size: 28px;
+  margin-top: -40px;
+  padding-left: 48px;
+  color: #666;
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff 17%);
 }
 .club-new-suo {
-   position: relative;
-   float: right;
-   font-size: 28px;
-   margin-top: -40px;
-   padding-left: 48px;
-   color: #666;
+  position: relative;
+  float: right;
+  font-size: 28px;
+  margin-top: -40px;
+  padding-left: 48px;
+  color: #666;
 }
- .club-new-spread:after {
-   content: '';
-   display: inline-block;
-   width:16px;
-   height: 16px;
-   border-right: 1px solid #666;
-   border-bottom: 1px solid #666;
-   -webkit-transform: rotate(45deg);
-   -moz-transform: rotate(45deg);
-   -ms-transform: rotate(45deg);
-   transform: rotate(45deg);
-   margin-left: 16px;
-   margin-right: 16px;
-   margin-bottom: 6px;
+.club-new-spread:after {
+  content: '';
+  display: inline-block;
+  width:16px;
+  height: 16px;
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #666;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 6px;
 }
 
 .homeheader p {
-   text-align: center;
+  text-align: center;
 }
 
 /* .home-menu,
 .home-zy,
 .homeCard {
-  
+ 
 } */
 
 .homePage {
-   position: relative;
-   /* top: -100px; */
-   background: #ffffff
+  position: relative;
+  /* top: -100px; */
+  background: #ffffff
 }
 
 .home .homeCard {
-   position: absolute;
-   width: 93.7%;
-   top: -70px;
+  position: absolute;
+  width: 93.7%;
+  top: -70px;
 }
 
 .marginbott16 {
-   margin-bottom: 32px
+  margin-bottom: 32px
 }
 
 .lookupmore {
-   width: 100%;
-   text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .lookupmore img {
-   width: 35px;
-   transform: rotate(0);
-   margin-top: 20px;
+  width: 35px;
+  transform: rotate(0);
+  margin-top: 20px;
 }
 
 .down {
-   transform: rotate(180deg);
-   margin-top: 20px;
+  transform: rotate(180deg);
+  margin-top: 20px;
 }
 
 .home .introduce {
-   height: 120px;
-   display: block;
-   overflow: hidden;
+  height: 120px;
+  display: block;
+  overflow: hidden;
 }
 
 .isDownIntel .introduce {
-   height: auto;
+  height: auto;
 }
 
 .examineNumber {
-   position: absolute;
-   top: 15px;
-   left: 140px;
-   display: inline-block;
-   padding: 0 10px;
-   min-width: 32px;
-   border-radius: 20px;
-   background: #f34949;
-   text-align: center;
-   line-height: 32px;
-   font-size: 24px;
-   color: #fff;
+  position: absolute;
+  top: 15px;
+  left: 140px;
+  display: inline-block;
+  padding: 0 10px;
+  min-width: 32px;
+  border-radius: 20px;
+  background: #f34949;
+  text-align: center;
+  line-height: 32px;
+  font-size: 24px;
+  color: #fff;
 }
 
 .codema {
-   background: #ffffff;
-   /* height: 750px; */
-   border-radius: 20px;
-   padding: 40px 20px;
+  background: #ffffff;
+  /* height: 750px; */
+  border-radius: 20px;
+  padding: 40px 20px;
 }
 
 .codema img {
-   background: #ffffff;
-   padding: 20px;
+  background: #ffffff;
+  padding: 20px;
 }
 
 .codema .namecodema {
-   text-align: center;
-   line-height: 50px;
-   font-size: 32px;
-   color: #696868;
+  text-align: center;
+  line-height: 50px;
+  font-size: 32px;
+  color: #696868;
 }
 .home .md-button.small.round{
-   width: 100%;
-   margin-top: 28px;
-   height: 80px;
+  width: 100%;
+  margin-top: 28px;
+  height: 80px;
 }
 
 .home .md-landscape .md-icon.md-landscape-close{
-   position: absolute;
+  position: absolute;
 }

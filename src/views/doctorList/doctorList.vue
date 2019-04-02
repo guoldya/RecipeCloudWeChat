@@ -7,7 +7,7 @@
           <div class="showSelecA">
             <span @click="showSelector">{{selectorValue}}</span>
           </div>
-          <md-selector v-model="isSelectorShow" :data="departData" max-height="320px" title="选择科室" @choose="onSelectorChoose"></md-selector>
+          <md-selector v-model="isSelectorShow" :default-value="deptId" :data="departData" max-height="320px" title="选择科室" @choose="onSelectorChoose"></md-selector>
         </div>
       </div>
       <div class="line"></div>
@@ -54,16 +54,16 @@
           <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info,1 )">
             <div class="flatCard">
               <!--<div class="cardText">-->
-                <!--<div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>-->
-                <!--<div>-->
-                  <!--<p class="headname">-->
-                    <!--<span>{{info.name}}</span>-->
-                    <!--<span class="levle" style="padding-bottom: 4px;">{{info.title}}</span>-->
-                    <!--<span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>-->
-                    <!--<span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>-->
-                  <!--</p>-->
-                  <!--<p class="headdesc">擅长:{{info.skill}}</p>-->
-                <!--</div>-->
+              <!--<div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>-->
+              <!--<div>-->
+              <!--<p class="headname">-->
+              <!--<span>{{info.name}}</span>-->
+              <!--<span class="levle" style="padding-bottom: 4px;">{{info.title}}</span>-->
+              <!--<span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>-->
+              <!--<span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>-->
+              <!--</p>-->
+              <!--<p class="headdesc">擅长:{{info.skill}}</p>-->
+              <!--</div>-->
               <!--</div>-->
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
@@ -122,15 +122,17 @@ let selectDoctorList = "/app/bdHospitalDoctor/read/selectDoctorList";
 let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
+    console.log(String(this.$route.query.deptId), "wp")
     return {
+
       isSelectorShow: false,
       selectorValue: '',
-      orgId: '',
       num: 5,
       isTop: true,
       isActive: 1,
       valNum: false,
-      yuanId: '',
+      orgId: '',
+      deptId: '',
       activetime: 0,
       normal: {
         checkbox: true,
@@ -149,19 +151,16 @@ export default {
   },
   created() {
   },
-  watch: {
-    deptId: function (newselectedStatus, oldselectedStatus) {
-      console.log(newselectedStatus)
-    },
-  },
+
+
   mounted() {
     document.title = '医生列表';
     if (!this.deptId) {
       this.deptId = this.$route.query.deptId;
-      this.selectorValue = this.$route.query.departName;
+      this.selectorValue = this.$route.query.deptName;
     }
-    if (!this.yuanId) {
-      this.yuanId = this.$route.query.yuanId * 1;
+    if (!this.orgId) {
+      this.orgId = this.$route.query.orgId * 1;
     }
     var box = document.getElementById('mornign');
     var w = box.style.width;
@@ -199,7 +198,7 @@ export default {
   methods: {
     orgFun() {
       this.$axios.put(bdHospitalOrg, {
-        id: this.yuanId,
+        id: this.orgId,
       }).then((res) => {
         if (res.data.code == '200') {
           for (let i = 0; i < res.data.rows.length; i++) {
@@ -293,7 +292,9 @@ export default {
     },
     doctorListFun() {
       this.$axios.put(selectDoctorList, {
+        // 后台原因 orgId现在是科室id  parentId 是院区id
         orgId: this.deptId * 1,
+        parentId: this.$store.state.feeActiveId * 1,
         valNum: this.valNum ? 1 : undefined,
         time: this.isTime,
       }).then((res) => {
@@ -311,8 +312,7 @@ export default {
 
 
   },
-  computed: {
-  },
+
 };
 </script>
  <style   scoped>
