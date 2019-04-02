@@ -130,12 +130,12 @@ export default {
   height: 200px;
   line-height: 200px;
   text-align: center;
-  background: #1da1f3;
+  background: var(--primary);
   display: inline-block;
   color: #ffffff;
 }
 .chooseCase .chooseCaseTime .number {
-  color: #1da1f3;
+  color: var(--primary);
   width: 54px;
   height: 54px;
   background: #ffffff;

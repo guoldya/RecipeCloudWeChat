@@ -198,7 +198,7 @@ $border: 1px solid #e0e0e0;
       border: $border;
     }
     .add {
-      border: 1px solid #ededed;
+      border: 1px solid  var(--primary--line);
       line-height: 2;
       text-align: center;
       p {

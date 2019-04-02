@@ -26,7 +26,7 @@
 }
 .recipeRecord .fold span{
     font-size: 28px;
-    color: #979797;
+    color:  var(--primary--content);
 }
 .foldImg img{
     width: 28px;
@@ -52,7 +52,7 @@
     padding-top: 160px;
 }
 .recipeRecord .notFound p{
-    color: #979797;
+    color:  var(--primary--content);
     font-size: 32px;
     padding: 40px;
 }
@@ -74,7 +74,7 @@
 }
 .blueButton{
     display: inline-block;
-    background-color: #1da1f3;
+    background-color: var(--primary);
     width: 462px;
     height: 100px;
     border-top-right-radius: 64px;
@@ -101,7 +101,7 @@
 .selfButton {
     width: 654px;
     height: 100px;
-    background-color: #1da1f3;
+    background-color: var(--primary);
     border-radius: 60px;
 }
 .selfButton span {

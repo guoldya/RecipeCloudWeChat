@@ -466,7 +466,7 @@ h3 {
   font-size: 13px;
   text-align: center;
   padding: 10px 18px;
-  border: 1px solid #ededed;
+  border: 1px solid  var(--primary--line);
   border-collapse: collapse;
 }
 .table3_10 th,
@@ -496,7 +496,7 @@ h3 {
   font-size: 13px;
   text-align: center;
   padding: 10px 28px;
-  border: 1px solid #ededed;
+  border: 1px solid  var(--primary--line);
   border-collapse: collapse;
 }
 

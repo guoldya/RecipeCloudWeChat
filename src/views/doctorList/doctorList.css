@@ -36,9 +36,9 @@ input {
    flex-direction: row;
    justify-content: space-between;
    margin-top: 100px;
-   border-top: 1px solid #ededed;
+   border-top: 1px solid  var(--primary--line);
    background: #ffffff;
-   /* border-bottom: 1px solid #ededed */
+   /* border-bottom: 1px solid  var(--primary--line) */
 }
 
 .patientName {
@@ -69,7 +69,7 @@ input {
 }
 
 .doctorList .tagdiv .activeAA {
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .doctorList .tag3 .tagdiv {
@@ -80,7 +80,7 @@ input {
    font-size: 28px;
    color: #ffffff;
    float: right;
-   background: #1da1f3;
+   background: var(--primary);
    border-radius: 40px;
    letter-spacing: 1px;
    width: 134px;
@@ -119,7 +119,7 @@ input {
    padding: 14px 0;
    width: 20%;
    text-align: center;
-   color: #979797;
+   color:  var(--primary--content);
 }
 
 .doctorList .pt50 {
@@ -132,7 +132,7 @@ input {
 
 .doctorList .timeAcitve {
    color: #ffffff !important;
-   background: #1da1f3;
+   background: var(--primary);
 }
 
 .doctorList .butTime {
@@ -160,10 +160,10 @@ input {
 
 .afternoon {
    font-size: 28px;
-   color: #979797;
+   color:  var(--primary--content);
    float: right;
    background: #ffffff;
-   border: 2px solid #979797;
+   border: 2px solid  var(--primary--content);
    border-radius: 60px;
    letter-spacing: 1px;
    width: 134px;
@@ -174,12 +174,12 @@ input {
 }
 
 .afternoonActive {
-   color: #1da1f3;
-   border: 2px solid #1da1f3;
+   color: var(--primary);
+   border: 2px solid var(--primary);
 }
 
 .forenoon {
-   color: #1da1f3;
+   color: var(--primary);
    font-size: 32px;
    line-height: 40px;
    padding: 30px 0 0 18px
@@ -199,7 +199,7 @@ input {
 .doctorList .headdesc {
    line-height: 58px;
    font-size: 28px;
-   color: #979797;
+   color:  var(--primary--content);
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;

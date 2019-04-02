@@ -62,15 +62,15 @@
         text-indent: 7%;
         font-size: 26px;
         word-break : normal;
-        color: #979797;
+        color:  var(--primary--content);
         line-height: 40px;
     }
     .slowConfirm .primary{
-        background-color: #1da1f3 !important;
+        background-color: var(--primary) !important;
         color:#fff !important;
         font-size: 28px;
     }
     .slowConfirm .primary:after{
-        border : 1px solid #1da1f3 !important;
+        border : 1px solid var(--primary) !important;
     }
 </style>

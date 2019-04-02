@@ -49,7 +49,7 @@ ul{
     float:right;
 }
 .price-color{
-    color: #1da1f3;
+    color: var(--primary);
 }
 .text-right{
     text-align: right;
@@ -77,9 +77,9 @@ ul{
 }
 .payment-button{
     background-color: #fff;
-    border:1px solid #1da1f3;
+    border:1px solid var(--primary);
     padding: 5px;
-    color: #1da1f3;
+    color: var(--primary);
     border-radius: 5px;
 }
 .text-pay{

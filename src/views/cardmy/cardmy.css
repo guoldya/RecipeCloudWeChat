@@ -11,7 +11,7 @@
 .cardmy .nocard {
    line-height: 370px;
    text-align: center;
-   color: #979797
+   color:  var(--primary--content)
 }
 
 .tiptopwarnbtn {
@@ -25,7 +25,7 @@
 
 .tiptopwarn2 {
    padding: 20px;
-   border-bottom: 1px solid #ededed;
+   border-bottom: 1px solid  var(--primary--line);
 }
 
 .tiptop3 {
@@ -35,12 +35,12 @@
    color: !#2f86f6
 }
 .warnbottitle {
-   color: #979797;
+   color:  var(--primary--content);
    font-size: 26px;
 }
 
 .warnbot {
-   color: #979797;
+   color:  var(--primary--content);
    font-size: 26px;
    text-indent: 2em;
    line-height: 40px;

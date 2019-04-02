@@ -35,7 +35,7 @@
 }
 
 .doc_scheduling .doc_info .name {
-   color: #333333;
+   color:  var(--primary--title);
 }
 
 .doc_scheduling .doc_info p {
@@ -87,8 +87,8 @@
    width: 18px;
    height: 18px;
    margin-left: 10px;
-   border-top: 1px solid #1da1f3;
-   border-left: 1px solid #1da1f3;
+   border-top: 1px solid var(--primary);
+   border-left: 1px solid var(--primary);
    -webkit-transform: rotate(-135deg);
    transform: rotate(-135deg);
    vertical-align: middle;
@@ -141,10 +141,10 @@
    /*text-align: center;*/
    /*font-size: 24px;*/
    /*color: #fff;*/
-   /*background-color: #1da1f3;*/
+   /*background-color: var(--primary);*/
    /*border-radius: 100%;*/
    /*box-sizing: border-box;*/
-   background-color: #1da1f3;
+   background-color: var(--primary);
    color: #ffffff;
    display: inline-block;
    width: 84px;
@@ -169,11 +169,11 @@
 }
 
 .doc_scheduling .wx_yy_date_time_item>span {
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .doc_scheduling .wx_yy_date_time_item>span label {
-   color: #333333;
+   color:  var(--primary--title);
 }
 
 .yy_date a span {
@@ -183,7 +183,7 @@
 .yy_date a.current,
 .yy_date a.state_kyy {
    color: #fff;
-   background-color: #1da1f3;
+   background-color: var(--primary);
 }
 
 .yy_date a span.date {
@@ -213,7 +213,7 @@
    font-size: 26px;
    color: #fff;
    border-radius: 10px;
-   background-color: #1da1f3;
+   background-color: var(--primary);
    margin-top: 20px;
    width: 120px;
 }
@@ -224,7 +224,7 @@
    color: #fff;
    height: 44px;
    border-radius: 10px;
-   background-color: #1da1f3;
+   background-color: var(--primary);
    line-height: 45px;
 }
 
@@ -234,7 +234,7 @@
    height: 44px;
    border-radius: 10px;
    color: #b6b6b6;
-   background-color: #ededed;
+   background-color:  var(--primary--line);
    line-height: 45px;
 }
 

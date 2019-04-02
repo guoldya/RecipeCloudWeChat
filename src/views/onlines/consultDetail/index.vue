@@ -375,8 +375,8 @@ export default {
       }
     }
     .assess {
-      color: #1da1f3;
-      border: 1px solid #1da1f3;
+      color: var(--primary);
+      border: 1px solid var(--primary);
       padding: 0px 10px;
       border-radius: 6px;
     }

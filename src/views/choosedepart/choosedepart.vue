@@ -209,7 +209,7 @@ export default {
 .choosedepart .xuanze {
   font-size: 30px;
   /* margin-top: 30px; */
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid  var(--primary--line);
   padding-bottom: 30px;
 }
 .choosedepart .margin20 {
@@ -251,12 +251,12 @@ export default {
   /* height: 60px; */
   /* padding: 0 10px; */
   line-height: 57px;
-  border: 2px solid #1da1f3;
-  color: #1da1f3;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   display: inline-block;
 }
 .choosedepart .activebtn {
-  background: #1da1f3;
+  background: var(--primary);
   color: #ffffff;
 }
 .choosedepart .warn {
@@ -266,7 +266,7 @@ export default {
 .choosedepart .departLi {
   width: 100%;
   float: left;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid  var(--primary--line);
 }
 .choosedepart .grid-cell p {
   overflow: hidden;
@@ -287,7 +287,7 @@ export default {
   -ms-flex-align: center;
   align-items: center;
   height: 120px;
-  background-color: #1da1f3;
+  background-color: var(--primary);
   position: fixed;
   bottom: 30px;
   text-align: center;

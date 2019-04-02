@@ -27,10 +27,10 @@
         <p class="kinds">领取方式</p>
         <md-check-box name="1" v-model="mail" label="邮寄" />
         <md-check-box name="2" v-model="mail" label="自提" />
-        <p v-show="mail==1" style="color:#979797;margin:6px 0">
+        <p v-show="mail==1" style="color: var(--primary--content);margin:6px 0">
           为保正您能及时收到病历，请确保收件地址准确无误!
         </p>
-        <p v-show="mail==2" style="color:#979797; margin-top:0.2rem">
+        <p v-show="mail==2" style="color: var(--primary--content); margin-top:0.2rem">
           医院病案室审核通过后，会将预约时间推送给您，请按通知约定日期工作时间内携带所申请惠者有效证件前往医院领取复印病历。如无法前往请代理人携带双方身份证原件、复印件及委托书前往代办或选择邮寄服务
         </p>
 
@@ -50,7 +50,7 @@
       </md-field>
       <md-agree style="margin: 6px 0" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
         我已阅读并了解
-        <a @click="openPgmodel" style="color:#1da1f3">《病历复印规定》</a>
+        <a @click="openPgmodel" style="color:var(--primary)">《病历复印规定》</a>
       </md-agree>
     </div>
 
@@ -150,7 +150,7 @@ export default {
 .letter {
   font-size: 30px;
   line-height: 75px;
-  color: #1da1f3;
+  color: var(--primary);
 }
 .kinds {
   line-height: 70px;
@@ -165,7 +165,7 @@ export default {
      font-size: 24px;
    }
    .business .md-check-box{
-     color: #979797;
+     color:  var(--primary--content);
    }
    .business .md-check-box.is-checked{
      color: #2f86f6;

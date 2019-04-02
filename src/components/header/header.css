@@ -17,7 +17,7 @@
   font-size: 32px;
   white-space: nowrap;
   overflow: hidden;
-  color: #333333;
+  color:  var(--primary--title);
 }
 
 .aui-navBar-item:first-child {
@@ -83,7 +83,7 @@ header {
 
 .addValue {
   font-size: 30px;
-  color: #333333;
+  color:  var(--primary--title);
   font-family: "PingFang-SC-Medium";
 }
 
@@ -124,7 +124,7 @@ header {
   font-size: 32px;
   white-space: nowrap;
   overflow: hidden;
-  color: #333333;
+  color:  var(--primary--title);
 }
 
 .aui-navBar-item:first-child {
@@ -176,7 +176,7 @@ header {
   display: block;
   text-overflow: ellipsis;
   font-size: 34px;
-  color: #333333;
+  color:  var(--primary--title);
 }
 
 header {
@@ -196,7 +196,7 @@ header {
 
 .addValue {
   font-size: 30px;
-  color: #333333;
+  color:  var(--primary--title);
   font-family: "PingFang-SC-Medium";
 }
 

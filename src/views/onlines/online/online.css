@@ -27,7 +27,7 @@
    width: 100%;
    text-align: center;
    padding: 10px 0;
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .nomore {

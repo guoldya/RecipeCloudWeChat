@@ -14,7 +14,7 @@
           <span class="acitivestep">信息确认</span>
         </div>
         <div class="timeballline"></div>
-        <div class="timeballline2" style="background:#1da1f3"></div>
+        <div class="timeballline2" style="background:var(--primary)"></div>
       </div>
     </div>
     <div class="flatCard margin5 outCarint">
@@ -78,7 +78,7 @@
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
     <md-agree v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
       我已阅读并了解
-      <a @click="openPgmodel" style="color:#1da1f3">《病历复印规定》</a>
+      <a @click="openPgmodel" style="color:var(--primary)">《病历复印规定》</a>
     </md-agree>
     <Pgmodal ref="Pgmodal"></Pgmodal>
     <div style="height:55px"></div>
@@ -219,7 +219,7 @@ export default {
 }
 
 .chooseBtn {
-  background: #1da1f3;
+  background: var(--primary);
   line-height: 90px;
   color: #ffffff;
   letter-spacing: 0.03rem;

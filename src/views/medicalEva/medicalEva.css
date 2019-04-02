@@ -74,10 +74,10 @@
 }
 .medicalEva .evaFooter span{
     padding-top: 14px;
-    color: #979797;
+    color:  var(--primary--content);
 }
  .medicalEva .primary{
-     background-color: #1da1f3 !important;
+     background-color: var(--primary) !important;
      color:#fff !important;
      font-size: 28px;
      margin: 86px 0px 46px 0px;

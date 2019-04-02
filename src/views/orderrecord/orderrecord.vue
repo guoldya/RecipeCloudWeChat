@@ -118,21 +118,21 @@ export default {
 .orderrecord .cardText p {
   line-height: 50px;
   font-size: 28px;
-  color: #5c5c5c;
+  color:  var(--primary--line);
 }
 .orderrecord .cardcc .appTitle {
   padding: 32px 0px;
 }
 .orderrecord .appTitle {
   padding: 32px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid  var(--primary--line);
   display: flex;
   justify-content: space-between;
 }
 .payatnow {
   font-size: 28px;
   color: #ffffff;
-  background: #1da1f3;
+  background: var(--primary);
   border-radius: 40px;
   letter-spacing: 1px;
   padding: 15px 40px;

@@ -1,5 +1,5 @@
 .adress .card {
-   box-shadow: 0 0 17px #ededed;
+   box-shadow: 0 0 17px  var(--primary--line);
    margin-top: 20px;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .adress .headdesc {
-   border-bottom: 1px solid #ededed;
+   border-bottom: 1px solid  var(--primary--line);
    padding-bottom: 20px;
    font-size: 28px;
    padding-top: 5px;
@@ -39,7 +39,7 @@
 
 .adress .bianji {
    font-size: 26px;
-   color: #1da1f3
+   color: var(--primary)
 }
 
 .lajitong {
@@ -55,7 +55,7 @@
    margin-bottom: inherit;
 }
 .adress .md-radio.is-checked .md-radio-icon {
-   color: #1da1f3;
+   color: var(--primary);
 }
 .adress .flatCard{
    border-top: none;

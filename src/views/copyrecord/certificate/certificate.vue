@@ -28,7 +28,7 @@
         <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" is-highlight></md-input-item>
         <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="患者身份证号" clearable is-highlight></md-input-item>
       </div>
-      <p style="color:#333333;margin-top: 15px">拍摄/上传您的二代身份证</p>
+      <p style="color: var(--primary--title);margin-top: 15px">拍摄/上传您的二代身份证</p>
       <div class="pg_positive">
         <div class="pg_positive_img">
           <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />

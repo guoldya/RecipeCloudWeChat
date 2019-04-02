@@ -14,12 +14,12 @@
           <span class="acitivestep">资料确认</span>
         </div>
         <div class="timeballline"></div>
-        <div class="timeballline2" style="background:#1da1f3"></div>
+        <div class="timeballline2" style="background:var(--primary)"></div>
       </div>
     </div>
     <p>
       <md-icon name="success-color" size="lg" svg style="position:relative;top:5px  "></md-icon>
-      <span style="margin-left:10px;color:#1da1f3">验证成功！请确认个人信息是否正确</span>
+      <span style="margin-left:10px;color:var(--primary)">验证成功！请确认个人信息是否正确</span>
     </p>
     <div class="card margin16" style="margin-top:20px">
       <div class="cardText login-box">

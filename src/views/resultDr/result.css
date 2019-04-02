@@ -27,7 +27,7 @@ input {
 
 .result-doctor .mu-sub-header {
    font-size: 32px;
-   color: #1da1f3;
+   color: var(--primary);
    margin-top: 20px;
 }
 
@@ -39,7 +39,7 @@ input {
 .result-doctor .departLi2 {
    width: 100%;
    float: left;
-   border-bottom: 1px solid #ededed;
+   border-bottom: 1px solid  var(--primary--line);
  }
  .result-doctor .grid-cell2 {
    line-height: 50px;

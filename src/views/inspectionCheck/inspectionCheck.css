@@ -1,6 +1,6 @@
  /*.appTabAcitive {*/
-   /*color: #1da1f3;*/
-   /*border-bottom: 4px solid #1da1f3;*/
+   /*color: var(--primary);*/
+   /*border-bottom: 4px solid var(--primary);*/
 /*} */
 
 .margin16 {
@@ -28,7 +28,7 @@
 .cardHEADER {
    padding: 8px 25px;
    font-size: 28px;
-   color: #333333;
+   color:  var(--primary--title);
 }
 
 .cardHEADER span {
@@ -50,12 +50,12 @@
 }
 
 .mu-secondary-text-color {
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .inspectionCheck .footer {
    font-size: 28px;
-   border-top: 1px solid #ededed;
+   border-top: 1px solid  var(--primary--line);
    padding: 20px 0px;
 }
 
@@ -68,7 +68,7 @@
 .cardHEADER {
     padding: 8px 25px;
     font-size: 14px;
-    color: #333333;
+    color:  var(--primary--title);
 }
 .md-field{
     padding: 0px !important;
@@ -87,9 +87,9 @@
     margin: 20px 0px;
 }
 .inspectionCheck .first,.submitOrder .first,.acceptAdd .first{
-    border: 2px solid #1da1f3;
+    border: 2px solid var(--primary);
     border-radius: 10px;
-    color: #1da1f3;
+    color: var(--primary);
     padding: 2px 6px;
     height: 52px;
     line-height: 52px;
@@ -104,7 +104,7 @@
 /*=======*/
    /*padding: 8px 25px;*/
    /*font-size: 14px;*/
-   /*color: #333333;*/
+   /*color:  var(--primary--title);*/
 }
 
 .md-field {
@@ -123,13 +123,13 @@
 
 .inspectionCheck .primary,
 .inspectionCheck .default {
-   background-color: #1da1f3 !important;
+   background-color: var(--primary) !important;
    color: #fff !important;
    font-size: 28px;
 }
 
 .inspectionCheck .primary:after {
-   border: 1px solid #1da1f3 !important;
+   border: 1px solid var(--primary) !important;
 }
 
 .inspectionCheck .default {

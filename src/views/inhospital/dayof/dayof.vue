@@ -192,7 +192,7 @@ export default {
       var aa = document.getElementsByClassName('aui-center-title');
       if (t >= 20) {
         if (aa[0]) {
-          aa[0].style.color = "#333333";
+          aa[0].style.color = " var(--primary--title)";
         }
         if (back) {
           back.setAttribute("src", require("@/assets/images/icon_back.png"));

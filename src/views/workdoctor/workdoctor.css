@@ -27,7 +27,7 @@ nput {
 
 .workdoctor .mu-sub-header {
    font-size: 28px;
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .workdoctor .holder img {
@@ -39,7 +39,7 @@ nput {
 .workdoctor .departLi2 {
    width: 100%;
    float: left;
-   border-bottom: 1px solid #ededed;
+   border-bottom: 1px solid  var(--primary--line);
 }
 
 .workdoctor .grid-cell2 {

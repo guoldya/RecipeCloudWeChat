@@ -181,7 +181,7 @@ export default {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: #1da1f3;
+  background: var(--primary);
   text-align: center;
   margin: 0 auto;
   margin-top: 25%;
@@ -214,13 +214,13 @@ export default {
   text-align: center;
 }
 .signUpAgin {
-  color: #1da1f3;
+  color: var(--primary);
   text-align: center;
   line-height: 100px;
   font-size: 30px;
 }
 .sign .md-notice-bar {
-  color: #1da1f3 !important;
+  color: var(--primary) !important;
 }
 
 .sign .md-notice-bar {

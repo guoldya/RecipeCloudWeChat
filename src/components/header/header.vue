@@ -44,7 +44,7 @@ export default {
   box-sizing: border-box;
   align-items: center;
   background: #fff;
-  color: #333333;
+  color:  var(--primary--title);
   z-index: 99;
 
   img {

@@ -215,14 +215,14 @@ export default {
 }
 .feerecord .cardText p {
   font-size: 28px;
-  color: #979797;
+  color:  var(--primary--content);
 }
 .feerecord .flatCard:first-child{
     margin-top: 0;
 }
 
 .feerecord .listData span:nth-child(2) {
-  color: #979797;
+  color:  var(--primary--content);
 }
 .feerecord .alignJ{
     line-height: 26px;

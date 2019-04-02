@@ -153,6 +153,6 @@ export default {
 }
 
 .addisFive {
-  background-color: #979797;
+  background-color:  var(--primary--content);
 }
 </style>
