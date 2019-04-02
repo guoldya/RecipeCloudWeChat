@@ -3,16 +3,26 @@
         <Headerapp post-title="挂号记录"></Headerapp>
         <div class="margin55">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
-                <div class="flatCard outCarint margin16" v-for="(item,i) in cordData" :key="i">
+                <div class="flatCard outCarint" v-for="(item,i) in cordData" :key="i">
                     <p class="appTitle">
                         <span>{{item.patientName}}</span>
                         <span class="mu-secondary-text-color">{{item.payType | payTypeFilter}}</span>
                     </p>
-                    <div class="cordText">
-                        <p>科室：{{item.deptName}}</p>
-                        <p>医生：{{item.doctorName}}</p>
-                        <p>预约时间：{{item.regDate |time}} {{item.regStage}}</p>
-                        <!--<p>就诊时间：2019-12-05 12:30:00</p>-->
+                    <div class=" parElem">
+                        <span class="sonElem">医院</span>
+                        <span>：{{item.hospital}}</span>
+                    </div>
+                    <div class=" parElem">
+                        <span class="sonElem">科室</span>
+                        <span>：{{item.deptName}}</span>
+                    </div>
+                    <div class=" parElem">
+                        <span class="sonElem">医生</span>
+                        <span>：{{item.doctorName}}</span>
+                    </div>
+                    <div class=" parElem">
+                        <span class="sonElem">预约时间</span>
+                        <span>：{{item.regDate |time}} {{item.regStage}}</span>
                     </div>
                     <div class="cardTextRight" @click="cordInfo(item.id,item.payType,item.sourceId)">
                         <span>详情</span>
@@ -136,5 +146,9 @@ export default {
 }
      .registrecord .flatCard{
          border-top: none;
+     }
+     .registrecord .parElem{
+         height: 56px;
+         padding-top: 22px;
      }
 </style>

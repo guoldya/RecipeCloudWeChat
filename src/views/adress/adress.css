@@ -57,3 +57,6 @@
 .adress .md-radio.is-checked .md-radio-icon {
    color: #1da1f3;
 }
+.adress .flatCard{
+   border-top: none;
+}

@@ -2,7 +2,6 @@
     <div class="feeinfo">
         <Header post-title="缴费详情"></Header>
         <div class="flatCard margin55 cardText" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
-
             <md-field v-if="feeActiveId==2">
                 <md-detail-item title="订单编号" :content=item.orderCode></md-detail-item>
                 <md-detail-item title="交易编号" :content=item.payCode></md-detail-item>

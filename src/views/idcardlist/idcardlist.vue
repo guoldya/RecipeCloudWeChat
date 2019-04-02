@@ -3,7 +3,7 @@
     <Header post-title="管理就诊卡"></Header>
     <div class="outCarint" style="margin:57px 0 0">
       <ul v-show="!loadingtrue">
-        <li v-for="(item,index) in cardlist" :key="index" class="margin16">
+        <li v-for="(item,index) in cardlist" :key="index" class="margin14">
           <div class="homeCard">
             <div class="homeCardText">
               <div class="homeCardTextLeft" @click="unblind(item)">
@@ -24,8 +24,8 @@
         <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
           是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
         </md-dialog>
-        <p class="warnbottitle margin7">温馨提示：</p>
-        <p class="warnbot">
+        <p class="warnbottitle margin14">温馨提示：</p>
+        <p class="warnbot margin5">
           您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
         </p>
         <p class="warnbottom" @click="cardneed">
@@ -149,7 +149,6 @@ export default {
 .idcardlist .homeCard {
   height: 200px;
   border-radius: 20px;
-  box-shadow: 0 0 18px rgba(20, 19, 51, 0.1);
   background: #ffffff;
 }
 

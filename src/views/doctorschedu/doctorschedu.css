@@ -17,7 +17,7 @@
 }
 .doctorschedu .doctor-info .doctor-name {
     font-weight: 600;
-    font-size: 45px;
+    font-size: 36px;
 }
 .doctorschedu .doctor-info .header img {
     width: 100%;
@@ -45,7 +45,7 @@
     padding: 14px 0;
 }
 .doctorschedu .content p:first-child{
-    padding-bottom: 6px;
+    padding-bottom: 16px;
 }
 #app .doctorschedu .wh_content_all{
     background-color: transparent;
@@ -60,10 +60,14 @@
 #app .doctorschedu .wh_jiantou1{
     border-top: 4px solid #333333;
     border-left: 4px solid #333333;
+    position: relative;
+    left: 116px;
 }
 #app .doctorschedu .wh_jiantou2{
     border-top: 4px solid #333 ;
     border-right: 4px solid #333;
+    position: relative;
+    right: 116px;
 }
 #app .doctorschedu .wh_content{
     margin-left: 22px;
