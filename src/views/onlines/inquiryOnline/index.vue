@@ -368,7 +368,7 @@ export default {
       padding: 0 30px 20px;
       i {
         float: right;
-        color: #1da1f3;
+        color: var(--primary);
       }
     }
   }
@@ -396,7 +396,7 @@ export default {
       background: #ccc;
       color: #fff;
       &.active {
-        background: #1da1f3;
+        background: var(--primary);
       }
     }
     .input {
@@ -419,10 +419,10 @@ export default {
       padding: 10px 0;
       position: relative;
       &:active i {
-        color: #1da1f3;
+        color: var(--primary);
       }
       &.active i {
-        color: #1da1f3;
+        color: var(--primary);
       }
     }
     .iconfont {
@@ -473,7 +473,7 @@ export default {
     // box-sizing: border-box;
     flex: 1;
     overflow: auto;
-    background: #ededed;
+    background:  var(--primary--line);
     .online-content-warp {
       padding: 30px 40px 40px;
     }
@@ -532,7 +532,7 @@ export default {
       //    border-bottom:1px solid #f4f4f4;
       //   }
       //   i{
-      //     color:#1da1f3;
+      //     color:var(--primary);
       //   }
       // }
     }
@@ -619,16 +619,16 @@ export default {
 .inquiry-online-tool-ab .questionBtn {
   font-size: 28px;
   color: #ffffff;
-  background: #1da1f3;
+  background: var(--primary);
   border-radius: 40px;
   letter-spacing: 1px;
   padding: 7px 70px;
   text-align: center;
 }
 .inquiry-online-tool-ab .questionBtn:first-child {
-  color: #1da1f3;
+  color: var(--primary);
   background: #ffffff;
-  border: 1px solid #1da1f3;
+  border: 1px solid var(--primary);
   box-sizing: border-box;
 }
 .inquiry-online-tool-aa p {

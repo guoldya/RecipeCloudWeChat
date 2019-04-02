@@ -108,14 +108,14 @@ export default {
 .askorder .cardText p {
   line-height: 50px;
   font-size: 30px;
-  color: #5c5c5c;
+  color:  var(--primary--line);
 }
 .askorder .cardcc .appTitle {
   padding: 32px 0px;
 }
 .askorder .appTitle {
   padding: 32px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid  var(--primary--line);
   display: flex;
   justify-content: space-between;
 }
@@ -123,7 +123,7 @@ export default {
   font-size: 26px;
   color: #ffffff;
   float: right;
-  background: #1da1f3;
+  background: var(--primary);
   border-radius: 40px;
   letter-spacing: 1px;
    padding: 14px 30px;
@@ -155,8 +155,8 @@ export default {
 .askorder .levle {
   padding: 2px 10px;
   font-size: 20px;
-  color: #1da1f3;
-  border: 2px solid #1da1f3;
+  color: var(--primary);
+  border: 2px solid var(--primary);
   border-radius: 8px;
   position: relative;
   top: -1px;

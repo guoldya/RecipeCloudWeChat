@@ -12,11 +12,11 @@
    line-height: 70px;
    letter-spacing: 2px;
    text-align: center;
-   color: #979797;
+   color:  var(--primary--content);
 }
 
 .alltimeball .acitivestep {
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .box-timeline .timeball {
@@ -32,13 +32,13 @@
 }
 
 .box-timeline .acitiveball {
-   background: #1da1f3;
+   background: var(--primary);
    color: #ffffff;
 }
 
 .timeballline {
-   background: #1da1f3;
-   width: 30%;
+   background: var(--primary);
+   width: 27%;
    height: 3px;
    position: relative;
    top: -120px;
@@ -55,7 +55,7 @@
 }
 
 .acitiveline {
-   background: #1da1f3;
+   background: var(--primary);
 }
 
 .flexF {
@@ -64,6 +64,7 @@
    align-items: center;
    color: #333333;
    margin-right: 34px;
+   color:  var(--primary--title);
 }
 
 .flexR {

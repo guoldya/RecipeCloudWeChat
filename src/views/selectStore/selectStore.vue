@@ -364,7 +364,7 @@ export default {
 }
 .selectStore .default {
   background-color: #f7f7f8 !important;
-  color: #979797 !important;
+  color:  var(--primary--content) !important;
   font-size: 28px;
 }
 .selectStore .default:after {

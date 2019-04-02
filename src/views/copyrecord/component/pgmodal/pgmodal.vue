@@ -110,7 +110,7 @@ export default {
   text-align: center;
   line-height: 100px;
   font-size: 32px;
-  color: #1da1f3;
+  color: var(--primary);
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -147,7 +147,7 @@ export default {
   text-align: justify;
   white-space: pre-wrap;
   font-size: 28px;
-  color: #979797;
+  color:  var(--primary--content);
   font-family: "PingFang-SC-Medium";
 }
 
@@ -174,8 +174,8 @@ export default {
   width: 100%;
   text-align: center;
   font-size: 32px;
-  color: #333333;
-  border-bottom: 1px solid #ededed;
+  color:  var(--primary--title);
+  border-bottom: 1px solid  var(--primary--line);
 }
 /* .g-msg-title:before {
   left: 50%;

@@ -10,7 +10,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         userInfo: {
-            id: 1
+            id: 125
         },
         jumpArr: [],
         payWay: [],

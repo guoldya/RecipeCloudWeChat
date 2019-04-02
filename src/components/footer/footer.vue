@@ -105,7 +105,7 @@ export default {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #979797;
+  color:  var(--primary--content);
 }
 
 .aui-tabBar-item span {

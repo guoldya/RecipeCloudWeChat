@@ -33,8 +33,20 @@ export default {
 </script>
 
 <style  >
+:root {
+  /* 主题色 */
+  --primary: #1da1f3;
+  /* 内容字体颜色 5A5A5A*/
+  --primary--content: #5A5A5A;
+  /* 题目字体颜色 */
+  --primary--title: #272727;
+  /* 线颜色 */
+  --primary--line: #ededed;
+  /* 背景色 */
+  --primary--body: #f8f8f8;
+}
 body {
-  background: #f5f5f5;
+  background: var(--primary--body);
 }
 .flatCard {
   background-color: #fff;
@@ -49,7 +61,7 @@ body {
 
 .cardText {
   font-size: 28px;
-  color: #333333;
+  color: var(--primary--title);
   padding: 14px 30px;
 }
 .margin11 {
@@ -66,10 +78,10 @@ body {
   margin-top: 10px;
 }
 .md-detail-title {
-  color: #333333 !important;
+  color: var(--primary--title) !important;
 }
 .md-detail-content {
-  color: #979797 !important;
+  color: var(--primary--content) !important;
 }
 
 /*收银台*/
@@ -128,20 +140,21 @@ body {
 
 /*文字两端对齐*/
 
- .parElem,.md-detail-item{
+.parElem,
+.md-detail-item {
   text-align: justify;
 }
 .md-detail-item {
   line-height: 18px !important;
 }
- .parElem:first-child {
+.parElem:first-child {
   padding-top: 10px;
 }
 .parElem .sonElem,/*:first-child,*/
-.md-detail-item div:first-child{
+.md-detail-item div:first-child {
   width: 17%;
   display: inline-table;
-  color: #333333;
+  color: var(--primary--title);
 }
 .parElem .sonElem:after,/*:first-child*/
 .md-detail-item div:first-child:after {
@@ -153,8 +166,8 @@ body {
 .headname .levle {
   padding: 4px 10px;
   font-size: 22px;
-  color: #1da1f3;
-  border: 1px solid #1da1f3;
+  color: var(--primary);
+  border: 1px solid var(--primary);
   border-radius: 8px;
   position: relative;
   top: 8px;
@@ -162,8 +175,8 @@ body {
   vertical-align: text-top;
 }
 .docLevel {
-  border: 2px solid #1da1f3;
-  color: #1da1f3;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   padding: 4px 10px;
   border-radius: 8px;
 }
@@ -175,7 +188,7 @@ body {
 .payatnow span {
   font-size: 28px;
   color: #ffffff;
-  background: #1da1f3;
+  background: var(--primary);
   border-radius: 40px;
   letter-spacing: 1px;
   padding: 15px 40px;
@@ -184,25 +197,25 @@ body {
 /*input-placeholder颜色*/
 
 input::-webkit-input-placeholder {
-  color: #D0DAE1;
+  color: #d0dae1;
 }
 input::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #D0DAE1;
+  color: #d0dae1;
 }
 input:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #D0DAE1;
+  color: #d0dae1;
 }
 input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #D0DAE1;
+  color: #d0dae1;
 }
 
 
 .warnText {
   font-size: 26px;
-  color: #979797;
+  color: var(--primary--content);
   padding: 24px;
 }
 .warnText p {
@@ -228,16 +241,16 @@ input:-ms-input-placeholder {
 }
 .md-activity-indicator-rolling-success .right {
   background-color: #ffffff;
-  border: 4px solid #1da1f3;
+  border: 4px solid var(--primary);
   width: 110%;
   border-radius: 50%;
 }
 .md-cashier .md-cashier-container .md-cashier-block .md-cashier-block-text,
 .md-popup-title-bar .title-bar-title p.title {
-  color: #333333 !important;
+  color: var(--primary--title) !important;
 }
 .addbTN {
-  background-color: #1da1f3;
+  background-color: var(--primary);
   width: 100%;
   text-align: center;
   color: #ffffff;
@@ -272,7 +285,7 @@ textarea {
 
 .noMore {
   text-align: center;
-  color: #979797;
+  color: var(--primary--content);
   font-size: 24px;
   line-height: 70px;
 }
@@ -283,16 +296,16 @@ textarea {
   font-family: "PingFang-SC-Medium";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #333333;
+  color: var(--primary--title);
   font-size: 28px;
   max-width: 777px;
   margin: 0 auto;
 }
 .md-button.primary {
-  background: #1da1f3 !important;
+  background: var(--primary) !important;
 }
 .md-radio.is-checked .md-radio-icon {
-  color: #1da1f3 !important;
+  color: var(--primary) !important;
 }
 a {
   text-decoration: none;
@@ -310,7 +323,7 @@ p {
 }
 .colo13 {
   font-size: 26px;
-  color: #979797;
+  color: var(--primary--content);
 }
 .margin16 {
   margin: 0 0 32px 0;
@@ -332,7 +345,7 @@ p {
 }
 .appTitle {
   padding: 24px 30px;
-  border-bottom: 2px solid #ededed;
+  border-bottom: 2px solid var(--primary--line);
   display: flex;
   justify-content: space-between;
 }
@@ -430,14 +443,14 @@ p {
   padding: 6px 30px;
 }
 .mu-light-text-color {
-  color: #979797;
+  color: var(--primary--content);
 }
 
 /**add*/
 
 /**大大大大的**/
 .methodTabAcitive {
-  color: #1da1f3;
+  color: var(--primary);
 }
 .partLine {
   border-bottom: 1px solid #e9e9e9;
@@ -458,10 +471,10 @@ textarea {
 }
 textarea::-webkit-input-placeholder {
   /*WebKit browsers*/
-  color: #979797;
+  color: var(--primary--content);
 }
 .md-switch.active {
-  background-color: #1da1f3 !important;
+  background-color: var(--primary) !important;
   margin-left: 6px;
 }
 .md-switch {
@@ -472,12 +485,12 @@ textarea::-webkit-input-placeholder {
 } */
 .primary,
 .default {
-  background-color: #1da1f3;
+  background-color: var(--primary);
   color: #fff;
   font-size: 28px;
 }
 /*.primary:after {*/
-/*border: 1px solid #1da1f3 !important;*/
+/*border: 1px solid var(--primary) !important;*/
 /*}*/
 .default {
   background-color: #43484b;
@@ -512,22 +525,22 @@ textarea::-webkit-input-placeholder {
   font-size: 34px;
 }
 .md-dialog-btn:last-child {
-  color: #1da1f3 !important;
+  color: var(--primary) !important;
   font-size: 34px;
 }
 .md-check-box {
-  border: 2px solid #979797;
+  border: 2px solid var(--primary--content);
 }
 .md-agree-icon .md-agree-icon-container .md-icon.md-icon-check {
-  color: #1da1f3 !important;
+  color: var(--primary) !important;
 }
 .md-agree-icon.checked .md-agree-icon-container .md-icon-checked {
   -webkit-transform: scale(1);
   transform: scale(1);
-  color: #1da1f3 !important;
+  color: var(--primary) !important;
 }
 .bigFont {
-  color: #1da1f3;
+  color: var(--primary);
   font-size: 44px;
   margin: 0 6px;
   vertical-align: sub;

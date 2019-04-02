@@ -106,7 +106,7 @@ export default {
 .cardText {
   padding: 0 16px;
   font-size: 14px;
-  color: #333333;
+  color:  var(--primary--title);
 }
 .card p {
   line-height: 25px;

@@ -101,7 +101,7 @@ export default {
   font-size: 28px;
   font-style: normal;
   color: #fff;
-  background: #979797;
+  background:  var(--primary--content);
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
@@ -121,21 +121,21 @@ export default {
 }
 
 .picture {
-  border: 1px solid #1da1f3;
+  border: 1px solid var(--primary);
   padding: 1px 10px;
   border-radius: 7px;
-  color: #1da1f3;
+  color: var(--primary);
 }
 
 .noOpen {
-  border: 2px solid #979797;
+  border: 2px solid  var(--primary--content);
   padding: 1px 10px;
   border-radius: 7px;
-  color: #979797;
+  color:  var(--primary--content);
 }
 
 .doctor-list .price {
-  color: #1da1f3;
+  color: var(--primary);
   font-weight: 500;
   letter-spacing: 1px;
   overflow: hidden;
@@ -147,14 +147,14 @@ export default {
     height:55px;
     line-height:55px;
     padding:0 30px;
-    border:1px solid #1da1f3;
+    border:1px solid var(--primary);
     border-radius:30px;
     margin-left:30px;
-    color: #1da1f3;
+    color: var(--primary);
   }
   .consult{
     color:#fff;
-    background: #1da1f3;
+    background: var(--primary);
   }
 }
 

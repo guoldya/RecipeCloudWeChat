@@ -1,6 +1,6 @@
  /*.appTabAcitive {*/
-   /*color: #1da1f3;*/
-   /*border-bottom: 4px solid #1da1f3;*/
+   /*color: var(--primary);*/
+   /*border-bottom: 4px solid var(--primary);*/
 /*} */
 
 .margin16 {
@@ -28,7 +28,7 @@
 .cardHEADER {
    padding:24px;
    font-size: 28px;
-   color: #333333;
+   color:  var(--primary--title);
 }
 
 .cardHEADER span {
@@ -50,12 +50,12 @@
 }
 
 .mu-secondary-text-color {
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .inspectionCheck .footer {
    font-size: 28px;
-   border-top: 1px solid #ededed;
+   border-top: 1px solid  var(--primary--line);
    padding: 20px 0px;
 }
 
@@ -63,6 +63,11 @@
    line-height: 30px;
    letter-spacing: 1px;
    text-align: center;
+}
+.cardHEADER {
+    padding: 8px 25px;
+    font-size: 14px;
+    color:  var(--primary--title);
 }
 .md-field{
     padding: 0px !important;
@@ -82,9 +87,9 @@
     margin: 0;
 }
 .inspectionCheck .first,.submitOrder .first,.acceptAdd .first{
-    border: 2px solid #1da1f3;
+    border: 2px solid var(--primary);
     border-radius: 10px;
-    color: #1da1f3;
+    color: var(--primary);
     padding: 2px 6px;
     height: 52px;
     line-height: 52px;
@@ -94,6 +99,9 @@
     display:flex;
     justify-content: flex-end;
     line-height: 46px;
+   /*padding: 8px 25px;*/
+   /*font-size: 14px;*/
+   /*color:  var(--primary--title);*/
 }
 
 .md-field {
@@ -109,6 +117,25 @@
    height: 14px !important;
    margin-left: 10px;
 }
+.inspectionCheck .primary,
+.inspectionCheck .default {
+   background-color: var(--primary) !important;
+   color: #fff !important;
+   font-size: 28px;
+}
+
+.inspectionCheck .primary:after {
+   border: 1px solid var(--primary) !important;
+}
+
+.inspectionCheck .default {
+   background-color: #43484b !important;
+}
+
+.inspectionCheck .default:after {
+   border: 1px solid #43484b !important;
+}
+
 .md-popup-title-bar .title-bar-title p.title {
    font-size: 36px !important;
 }

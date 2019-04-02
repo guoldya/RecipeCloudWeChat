@@ -50,7 +50,7 @@ export default {
 }
 .appTitle {
   padding: 28px 0px;
-  border-bottom: 2px solid #ededed;
+  border-bottom: 2px solid  var(--primary--line);
   display: flex;
   justify-content: space-between;
 }
@@ -68,13 +68,13 @@ export default {
 }
 
 .appTab .appTabAcitive {
-  color: #1da1f3;
-  border-bottom: 4px solid #1da1f3;
+  color: var(--primary);
+  border-bottom: 4px solid var(--primary);
   z-index: 2;
 }
 /* .appTab .appTabAcitive:after {
   content: " ";
-  background-color: #1da1f3;
+  background-color: var(--primary);
   width: 64px;
   height: 4px;
   display: block;

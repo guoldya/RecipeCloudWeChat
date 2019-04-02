@@ -31,13 +31,13 @@
             <md-detail-item title="费用信息" bold/>
             <p class="partLine" style="margin-top: 0"></p>
             <md-detail-item title="复印费">
-               <span style="color:#1da1f3; ">50.00元</span>
+               <span style="color:var(--primary); ">50.00元</span>
             </md-detail-item>
             <md-detail-item title="快递费">
-               <span style="color:#1da1f3; ">22.00元</span>
+               <span style="color:var(--primary); ">22.00元</span>
             </md-detail-item>
             <md-detail-item title="需支付费用" class="payFee">
-               <span style="color:#1da1f3;font-size:17px; ">72.00元</span>
+               <span style="color:var(--primary);font-size:17px; ">72.00元</span>
             </md-detail-item>
          </div>
       </md-field>

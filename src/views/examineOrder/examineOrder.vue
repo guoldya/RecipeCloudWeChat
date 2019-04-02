@@ -153,7 +153,7 @@
     line-height: 62px;
     font-size: 24px;
     color: #ffffff;
-    background: #1da1f3;
+    background: var(--primary);
     border-radius: 40px;
     letter-spacing: 1px;
     text-align: center;
@@ -177,7 +177,7 @@
 }
 .examineOrder .timeAcitve {
     color: #ffffff !important;
-    background: #1da1f3;
+    background: var(--primary);
 }
     .examineOrder .time{
         width: 100%;
@@ -199,7 +199,7 @@
     padding: 14px 0;
     width: 20%;
     text-align: center;
-    color: #979797;
+    color:  var(--primary--content);
 }
 .examineOrder .time ul li p:first-child {
     font-size: 24px;

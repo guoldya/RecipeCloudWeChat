@@ -118,7 +118,7 @@
 }
 
 .lineupnow .md-switch.active {
-   background-color: #1da1f3;
+   background-color: var(--primary);
 }
 
 .lineupnow .md-switch {

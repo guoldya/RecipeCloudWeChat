@@ -147,7 +147,7 @@ export default {
 .lineupcard {
   line-height: 70px;
   width: 100%;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid  var(--primary--line);
 }
 .cardHEADER p {
   font-size: 28px;

@@ -4,6 +4,7 @@ module.exports = {
     'postcss-pxtorem': {
       'rootValue': 100,
       'propWhiteList': []
-    }
+    },
+    'postcss-preset-env': {}
   }
 }

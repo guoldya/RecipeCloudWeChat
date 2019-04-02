@@ -72,13 +72,13 @@
                     let para=document.createElement("div");
                     let paraPm=document.createElement("div");
                     let paraAll=document.createElement("div");
-                    para.style.color="#1da1f3";
+                    para.style.color="var(--primary)";
                     para.style.height="20px";
                     para.style.marginTop="-5px";
-                    paraPm.style.color="#1da1f3";
+                    paraPm.style.color="var(--primary)";
                     paraPm.style.height="20px";
                     paraPm.style.marginTop="-5px";
-                    paraAll.style.color="#1da1f3";
+                    paraAll.style.color="var(--primary)";
                     paraAll.style.height="20px";
                     paraAll.style.marginTop="-5px";
                     var am=document.createTextNode("上午");

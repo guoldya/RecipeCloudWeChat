@@ -309,7 +309,7 @@ export default {
     }
      .reportinfo .alignJ .parElem span:nth-child(2){
         margin-left: 40px;
-         color: #979797;
+         color:  var(--primary--content);
      }
     .reportinfo .alignJ .parElem:first-child{
         padding-top: 0;

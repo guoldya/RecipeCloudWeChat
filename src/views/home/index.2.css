@@ -118,7 +118,7 @@
 }
 
 .swiperWarnContent span:last-child {
-   color: #979797;
+   color:  var(--primary--content);
    font-size: 26px;
 }
 

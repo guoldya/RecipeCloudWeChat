@@ -133,20 +133,22 @@ export default {
   height: 200px;
   line-height: 200px;
   text-align: center;
-  background: #1da1f3;
+  background: var(--primary);
   display: inline-block;
   color: #ffffff;
 }
 .chooseCase .chooseCaseTime .number {
-  color: #1da1f3;
+  color: var(--primary);
+  width: 54px;
+  height: 54px;
   background: #ffffff;
   border-radius: 50%;
   font-size: 28px;
   font-weight: 700;
   text-align: center;
   line-height: 44px !important;
-  height: 44px;
-  width: 44px;
+  /*height: 44px;*/
+  /*width: 44px;*/
 }
    .chooseCase .flatCard{
      border-top: none;

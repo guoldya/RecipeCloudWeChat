@@ -26,7 +26,7 @@ input {
 
 .result .mu-sub-header {
    font-size: 28px;
-   color: #1da1f3;
+   color: var(--primary);
 }
 
 .result .holder img {
@@ -38,7 +38,7 @@ input {
 .result .departLi2 {
    width: 100%;
    float: left;
-   border-bottom: 1px solid #ededed;
+   border-bottom: 1px solid  var(--primary--line);
 }
 
 .result .grid-cell2 {

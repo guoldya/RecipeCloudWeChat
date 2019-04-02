@@ -89,6 +89,7 @@ import payfee from '@/views/inhospital/payfee/payfee.vue'
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 import admission from '@/views/inhospital/admission/admission.vue'
+import dayof from '@/views/inhospital/dayof/dayof.vue'
 
 
 
@@ -163,6 +164,14 @@ export default new Router({
     component: admission,
     meta: {
       title: '入院办理'
+    }
+  },
+  {
+    path: '/dayof',
+    name: 'dayof',
+    component: dayof,
+    meta: {
+      title: '一日清单'
     }
   },
   {
@@ -564,7 +573,7 @@ export default new Router({
     meta: {
       title: '问诊记录'
     }
-  }, 
+  },
   {
     path: '/consultDetail',
     name: 'consultDetail',

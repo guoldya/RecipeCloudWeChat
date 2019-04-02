@@ -29,7 +29,7 @@ header {
    font-size: 36px;
    white-space: nowrap;
    overflow: hidden;
-   color: #333333;
+   color:  var(--primary--title);
 }
 
 .aui-navBar-item:first-child {
@@ -90,7 +90,7 @@ header {
    display: block;
    text-overflow: ellipsis;
    font-size: 36px;
-   color: #333333;
+   color:  var(--primary--title);
 }
 
 header {
@@ -110,7 +110,7 @@ header {
 
 .addValue {
    font-size: 30px;
-   color: #333333;
+   color:  var(--primary--title);
    font-family: "PingFang-SC-Medium";
 }
 

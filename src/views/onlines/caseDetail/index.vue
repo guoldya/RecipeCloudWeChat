@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color: #1da1f3;
+$color: var(--primary);
 $border: 1px solid #f1f3f1;
 .case-detail {
   padding-top: 1rem;

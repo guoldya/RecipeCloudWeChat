@@ -53,13 +53,13 @@
 #app .doctorschedu .wh_item_date,
 #app .doctorschedu .wh_top_tag,
 #app .doctorschedu .wh_top_changge li{
-    color: #333333;
+    color:  var(--primary--title);
     width: 64px;
     height: 64px;
 }
 #app .doctorschedu .wh_jiantou1{
-    border-top: 4px solid #333333;
-    border-left: 4px solid #333333;
+    border-top: 4px solid  var(--primary--title);
+    border-left: 4px solid  var(--primary--title);
     position: relative;
     left: 116px;
 }
@@ -76,7 +76,7 @@
     height: 100px;
 }
 #app .doctorschedu .wh_content_item .wh_isToday{
-    background-color: #1da1f3;
+    background-color: var(--primary);
     color: #ffffff;
 }
 #app .doctorschedu .wh_content_item .wh_chose_day{
