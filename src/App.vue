@@ -34,7 +34,7 @@ export default {
 
 <style  >
 body {
-  background: #f8f8f8;
+  background: #f5f5f5;
 }
 .flatCard {
   background-color: #fff;
@@ -148,7 +148,6 @@ body {
   content: "";
   display: inline-block;
   width: 100%;
-  /*position: absolute;*/
 }
 /*医生职称边框*/
 .headname .levle {
@@ -199,6 +198,7 @@ input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #D0DAE1;
 }
+
 
 .warnText {
   font-size: 26px;

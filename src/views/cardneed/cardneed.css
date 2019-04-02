@@ -1,0 +1,21 @@
+.cardneed .content{
+    text-align: justify;
+    line-height: 40px;
+    padding: 30px 24px;
+}
+.cardneed .content .hosNeed{
+    text-indent: 58px;
+}
+.cardneed .content .hosRule{
+    margin: 16px 0;
+    line-height: 44px;
+}
+.cardneed .hosPhone{
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    line-height: 100px;
+    bottom: 0;
+    z-index: 999;
+}

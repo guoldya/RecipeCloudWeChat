@@ -1,6 +1,16 @@
 <template>
     <div class="feerecord">
-        <Headerapp post-title="缴费记录"></Headerapp>
+        <header class="aui-navBar aui-navBar-fixed">
+            <a href="javascript:;" class="aui-navBar-item" @click="routeBack">
+                <img src="@/assets/images/icon_back.png">
+            </a>
+            <div class="aui-center">
+                <span class="aui-center-title">缴费记录</span>
+            </div>
+            <a href="javascript:;" class="aui-navBar-item" >
+                <!--{{selectOption}} -->
+            </a>
+        </header>
         <div class="margin50">
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
@@ -90,6 +100,11 @@ export default {
 
     },
     methods: {
+        routeBack(){
+            this.$router.push({
+                name: 'home',
+            });
+        },
         personFun() {
             this.$axios.put(bizPatientCard, {
             }).then(res => {

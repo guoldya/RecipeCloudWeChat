@@ -2,7 +2,7 @@
 <template>
   <div class="signsucceed">
     <Header post-title="签到成功"></Header>
-    <div class=" margin45 signsucceedtop ">
+    <div class="flatCard margin55 signsucceedtop ">
       <div style="text-align: center;margin-bottom: 20px">
         <div>
           <img src="@/assets/images/icon_success.png" width="60px">
@@ -12,18 +12,25 @@
       </div>
     </div>
     <div class="linesign"></div>
-    <div class="outCarint">
+    <div>
       <p class="signsucceedtitle">就诊预约情况</p>
-      <div class="card" v-for="(item,i) in waitList" :key="i">
-        <div class="cardText">
-          <p class="cardTextPPTilt">就诊项目：
+      <div class="flatCard outCarint" v-for="(item,i) in waitList" :key="i" style="padding: 15px 12px 3px;">
+        <!--<div class="cardText">-->
+          <!--<p class="cardTextPPTilt">就诊项目：-->
+            <!--<span class="mu-secondary-text-color">{{item.orgName}}</span>-->
+          <!--</p>-->
+          <!--<p class="cardTextPP">-->
+            <!--<span>就诊科室：{{item.orgName}}</span>-->
+            <!--<span>预约时间：{{item.regStage}}</span>-->
+          <!--</p>-->
+        <!--</div>-->
+        <md-field>
+          <md-detail-item title="就诊项目">
             <span class="mu-secondary-text-color">{{item.orgName}}</span>
-          </p>
-          <p class="cardTextPP">
-            <span>就诊科室：{{item.orgName}}</span>
-            <span>预约时间：{{item.regStage}}</span>
-          </p>
-        </div>
+          </md-detail-item>
+          <md-detail-item title="就诊科室" :content=item.orgName></md-detail-item>
+          <md-detail-item title="预约时间" :content=item.regStage></md-detail-item>
+        </md-field>
       </div>
     </div>
   </div>
@@ -130,6 +137,9 @@ export default {
 }
 </script>
 <style scoped>
+  .signsucceedtop{
+    padding: 60px 0;
+  }
 .signsucceedtop p {
   line-height: 70px;
   color: #5a5a5a;
@@ -164,4 +174,8 @@ export default {
 .signsucceed .cardText .cardTextPP:last-child {
   border: none;
 }
+  .signsucceed /deep/.md-detail-item .md-detail-content{
+    position: relative;
+    top: -10px;
+  }
 </style>

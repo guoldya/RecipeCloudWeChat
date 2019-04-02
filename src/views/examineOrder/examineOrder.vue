@@ -99,11 +99,12 @@
               return data;
             },
             makeOrder(val){
-                let argu = {id:this.$route.query.id,scheduleId:val};
+                 let argu = {id:this.$route.query.id,scheduleId:val};
                 this.$axios.post(ready_order_url,argu).then((res) => {
                     if(res.data.code=='800'){
                        this.$toast.info("预约失败")
-                    }else{
+                    }else if(res.data.code=='200'){
+                        this.$store.commit('orderFun', res.data.data);
                         this.$router.push({
                             name: 'examineDetail',
                             query: argu

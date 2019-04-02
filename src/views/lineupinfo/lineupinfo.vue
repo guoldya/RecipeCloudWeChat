@@ -27,7 +27,7 @@
                 <span class="mu-secondary-text-color size18">{{lineupinfo.currentNo}}</span> 号</p>
             </div>
           </div>
-          <div class="card margin16" v-else>
+          <div class="flatCard" v-else>
             <div class="cardHEADER">
               <div class="fleft lineupcard">
                 <img src="@/assets/images/icon_schedule.png" alt="">
@@ -42,19 +42,21 @@
           </div>
         </div>
         <div v-show="queryType==2">
-          <div class="card margin16">
+          <div class="flatCard">
             <div class="cardHEADER">
               <div class="fleft lineupcard">
                 <img src="@/assets/images/icon_line_up.png" alt="">
                 <span>我的报告</span>
               </div>
               <p>检查科室：
-                <span class="mu-secondary-text-color size18">{{lineupinfo.examDept}}</span>
+                <span class="mu-secondary-text-color">{{lineupinfo.examDept}}</span>
               </p>
-              <p>检查项目：{{lineupinfo.className}}</p>
+              <p>检查项目：
+                <span class="">{{lineupinfo.className}}</span>
+              </p>
             </div>
           </div>
-          <div class="card margin16">
+          <div class="flatCard margin5">
             <div class="cardHEADER">
               <div class="fleft lineupcard">
                 <img src="@/assets/images/icon_schedule.png" alt="">
@@ -156,10 +158,6 @@ export default {
 }
 .lineupnow .md-button-content {
   color: #ffffff !important;
-}
-
-.size18 {
-  font-size: 43px;
 }
 .lineupnow .md-button.block {
   height: 90px;

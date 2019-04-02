@@ -11,7 +11,8 @@
                     <div class="headname">
                         <span class="name">{{doctorInfo.name}}</span>
                         <span class="levle"> {{doctorInfo.title}}</span>
-                        <p style="font-size: 14px">{{doctorInfo.orgName}} 擅长:{{doctorInfo.skill}}</p>
+                        <p style="font-size: 14px">{{doctorInfo.orgName}} </p>
+                        <p style="font-size: 14px">擅长：{{doctorInfo.skill}}</p>
                     </div>
 
                 </div>
@@ -214,9 +215,10 @@ export default {
             });
         },
         dateListFun() {
-            this.$axios.put(appbdHospitalDoctorreadrankWorld, {
-                doctorId: this.$route.query.doctorId * 1,
-            }).then((res) => {
+            let dateListPar={};
+            dateListPar.doctorId=this.$route.query.doctorId * 1;
+
+            this.$axios.put(appbdHospitalDoctorreadrankWorld,dateListPar).then((res) => {
                 if (res.data.code == '200') {
                     if (res.data.rows.length != 0) {
                         this.isHave = true;

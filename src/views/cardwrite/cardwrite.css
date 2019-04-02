@@ -24,7 +24,7 @@
    height: 100px;
    background: #e1e1e1;
    border-radius: 50%;
-   color: #acacac;
+   color: #979797;
    font-size: 38px;
    font-weight: 700;
    text-align: center;
@@ -38,7 +38,7 @@
 
 .timeballline {
    background: #1da1f3;
-   width: 27%;
+   width: 30%;
    height: 3px;
    position: relative;
    top: -120px;
@@ -47,11 +47,11 @@
 
 .timeballline2 {
    background: #e1e1e1;
-   width: 27%;
-   height: 3px;
+   width: 30%;
+   height: 4px;
    position: relative;
    top: -122px;
-   left: 58.4%;
+   left: 57.4%;
 }
 
 .acitiveline {
@@ -63,6 +63,7 @@
    justify-content: flex-start;
    align-items: center;
    color: #333333;
+   margin-right: 34px;
 }
 
 .flexR {
@@ -121,4 +122,8 @@
  }
 .md-stepper-number input {
    padding-left: 0 !important
+}
+.md-button.block {
+   width: 94%;
+   margin: 20px 24px;
 }

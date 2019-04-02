@@ -60,3 +60,10 @@ textarea[name="textareaWord"] {
 .inputWord{
     display: inline-flex;
 }
+.applyDetail .detail-content div,.recipeDetail .detail-content div{
+    line-height: 40px;
+    padding: 4px 12px;
+}
+.applyDetail .flatCard,.recipeDetail .flatCard{
+    border-top: none;
+}

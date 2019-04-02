@@ -30,10 +30,12 @@
         </p>
         <p class="warnbottom" @click="cardneed">
           电子就诊卡需知</p>
+        <div style="height: 50px"></div>
       </div>
     </div>
+
     <p @click="blidcard" class="addbTN" v-show="cardlist.length<6">注册电子就诊卡</p>
-    <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
+    <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p>  -->
     <md-landscape v-model="showPic" :mask-closable="true">
       <div class="codema">
         <p class="namecodema">{{picName}}</p>
@@ -147,7 +149,7 @@ export default {
 @import "../doctorList/doctorList.css";
 
 .idcardlist .homeCard {
-  height: 200px;
+  /*height: 200px;*/
   border-radius: 20px;
   background: #ffffff;
 }

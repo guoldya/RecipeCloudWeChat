@@ -55,7 +55,7 @@
                         </div>
                         <div class="cardTextPP parElem">
                             <span class="sonElem"> 建议</span>
-                            <span style="width: 78%;">{{item.advise}}积三分hi师傅师傅和和fish粉丝发十分十分十分十分十分火山凤凰</span>
+                            <span style="width: 78%;">{{item.advise}}飒飒飒飒飒飒飒飒啊啊啊啊啊啊啊啊啊啊啊积三分hi师傅师傅和和fish粉丝发十分十分十分十分十分火山凤凰</span>
                         </div>
                         <div class="cardTextPP parElem">
                             <span class="sonElem">备注</span>
@@ -305,7 +305,7 @@ export default {
     /*}*/
     .cardBottom .alignJ .parElem span:first-child{
         position: relative;
-        /*top: 20px;*/
+        /*top: 16px;*/
     }
      .reportinfo .alignJ .parElem span:nth-child(2){
         margin-left: 40px;

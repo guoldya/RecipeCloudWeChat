@@ -41,6 +41,8 @@
                     </div>
                 </div>
             </div>
+            <div style="height: 50px"></div>
+
             <p class="addbTN" @click="sendFun()">发布</p>
         </div>
     </div>
