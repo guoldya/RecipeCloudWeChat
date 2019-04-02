@@ -271,6 +271,7 @@ export default {
             chatType: 2,
             content: '/api/file?img=' + res.data[file.name]
           };
+          console.log(msg)
           // 把当前发送的消息添加到历史消息去
           let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
           arr.push(msg)
@@ -302,6 +303,7 @@ export default {
         chatType: 2,
         content: this.inputValue
       };
+          console.log(msg)
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
       arr.push(msg)

@@ -50,7 +50,6 @@ let read_page_url = "/app/bizPatientRegister/read/selectPage";
 export default {
     data() {
         return {
-
             page: 1,
             pageSize: 10,
             loadingtrue: true,
@@ -72,7 +71,7 @@ export default {
             const params = {};
             params.pageNumber = this.page;
             params.pageSize = this.pageSize;
-            params.cardId = this.$store.state.cardId;
+             params.cardId ="";
             this.$axios.put(read_page_url, params).then((res) => {
                 if (res.data.rows) {
                     this.loadingtrue = false;

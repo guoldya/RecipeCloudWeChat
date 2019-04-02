@@ -1,8 +1,8 @@
 <template>
       <div class="cardmy">
             <Header post-title="管理就诊卡"></Header>
-            <div  class="margin45">
-                  <div class="tiptop">
+            <div class="margin45 outCarint">
+                  <!-- <div class="tiptop">
                         <div class="tiptopwarn">
                               <md-notice-bar>
                                     <md-icon slot="left" class="md-notice-demo-icon md-notice-demo-icon-left" name="security"></md-icon>
@@ -12,7 +12,8 @@
                                     开通医保支付
                               </span>
                         </div>
-                  </div>
+                  </div> -->
+                
                   <p class="nocard">暂无电子就诊卡</p>
                   <p class="tiptop3">
                         <md-button type="primary" size="small" inline round @click="blidcard">注册电子就诊卡</md-button>
@@ -64,8 +65,8 @@ export default {
       },
       mounted() {
             document.title = '管理就诊卡';
-            
-            
+
+
       },
       methods: {
             cardneed() {

@@ -2,7 +2,7 @@
   <div class="choosedepart">
     <Headerapp post-title="选择科室"></Headerapp>
     <div class=" margin50">
-      <Search></Search>
+      <Search post-placeholder="请输入医生，科室名称"></Search>
       <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
       <div>
         <!-- <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">
@@ -80,19 +80,23 @@ export default {
     document.title = '选择科室';
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
-      orgId: localStorage.getItem("hospitalId") * 1
+      orgId: _this.$route.query.hospitalId ? _this.$route.query.hospitalId * 1 : localStorage.getItem("hospitalId") * 1,
     }).then((res) => {
       if (res.data.code == '200') {
-        this.departs = res.data.rows;
-        for (let i = 0; i < res.data.rows.length; i++) {
-          this.departs[i].title = res.data.rows[i].orgName;
+        if (res.data.total != 0) {
+          this.departs = res.data.rows;
+          for (let i = 0; i < res.data.rows.length; i++) {
+            this.departs[i].title = res.data.rows[i].orgName;
+          }
+          if (!this.orgId) {
+            this.orgId = res.data.rows[0].id;
+          }
+          this.$store.commit('departFun', res.data.rows[0].orgName);
+          this.orgFun(false);
+        } else {
+          this.loadingtrue = false;
         }
-        if (!this.orgId) {
-          this.orgId = res.data.rows[0].id;
-        }
-        this.$store.commit('departFun', res.data.rows[0].orgName);
 
-        this.orgFun(false);
       } else {
         console.log(res.msg);
       }
@@ -139,7 +143,6 @@ export default {
       this.orgFun()
     },
     orgFun(flag) {
-      console.log("ddd")
       let deptparams = {};
       deptparams.pageNumber = this.page;
       deptparams.pageSize = this.pageSize;
@@ -209,7 +212,7 @@ export default {
 .choosedepart .xuanze {
   font-size: 30px;
   /* margin-top: 30px; */
-  border-bottom: 1px solid  var(--primary--line);
+  border-bottom: 1px solid var(--primary--line);
   padding-bottom: 30px;
 }
 .choosedepart .margin20 {
@@ -266,7 +269,7 @@ export default {
 .choosedepart .departLi {
   width: 100%;
   float: left;
-  border-bottom: 1px solid  var(--primary--line);
+  border-bottom: 1px solid var(--primary--line);
 }
 .choosedepart .grid-cell p {
   overflow: hidden;

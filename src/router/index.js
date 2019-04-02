@@ -9,6 +9,12 @@ import my from '@/views/my/my.vue'
 import appoint from '@/views/appoint/appoint.vue'
 import appointinfo from '@/views/appointinfo/appointinfo.vue'
 import choosedepart from '@/views/choosedepart/choosedepart.vue'
+import choosehospital from '@/views/choosehospital/choosehospital.vue'
+import hospitalsearch from '@/views/choosehospital/hospitalsearch/hospitalsearch.vue'
+import hospitalresult from '@/views/choosehospital/hospitalresult/hospitalresult.vue'
+import lostpage from '@/views/resultpage/lostpage/lostpage.vue'
+
+
 import result from '@/views/result/result.vue'
 import feeinfo from '@/views/feeinfo/feeinfo.vue'
 import feerecord from '@/views/feerecord/feerecord.vue'
@@ -42,6 +48,7 @@ import cardhave from '@/views/cardhave/cardhave.vue'
 import resultdocotor from '@/views/resultdocotor/resultdocotor.vue'
 import registrecorddetail from '@/views/registrecorddetail/registrecorddetail.vue'
 import doctorschedu from '@/views/doctorschedu/doctorschedu.vue'
+
 
 
 import cardmy from '@/views/cardmy/cardmy.vue'
@@ -583,7 +590,7 @@ export default new Router({
     }
   },
   {
-    path: '/inquiryOnline',
+    path: '/inquiryOnline/:fromId',
     name: 'inquiryOnline',
     component: inquiryOnline,
     meta: {
@@ -689,13 +696,52 @@ export default new Router({
       title: '病例详情'
     }
   }, {
+    path: '/caseDetail',
+    name: 'caseDetail',
+    component: caseDetail,
+    meta: {
+      title: '病例详情'
+    }
+  }, {
     path: '/inspectionDetail',
     name: 'inspectionDetail',
     component: inspectionDetail,
     meta: {
       title: '报告详情'
     }
-  }
+  },
+  {
+    path: '/choosehospital',
+    name: 'choosehospital',
+    component: choosehospital,
+    meta: {
+      title: '选择医院'
+    }
+  }, {
+    path: '/hospitalresult',
+    name: 'hospitalresult',
+    component: hospitalresult,
+    meta: {
+      title: '医院结果'
+    }
+  },
+  {
+    path: '/hospitalsearch',
+    name: 'hospitalsearch',
+    component: hospitalsearch,
+    meta: {
+      title: '搜索医院'
+    }
+  },
+  {
+    path: '/lostpage',
+    name: 'lostpage',
+    component: lostpage,
+    meta: {
+      title: '页面丢失'
+    }
+  },
+
   ],
   scrollBehavior(to, from, savedPosition) {
     return new Promise((resolve, reject) => {

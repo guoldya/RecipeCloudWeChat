@@ -1,6 +1,6 @@
 <template>
-  <div class="search" style=" text-align: center;">
-    <input class="oc_val" placeholder="搜索医生、科室" value="" type="text" @click="searchT()" />
+  <div class="search">
+    <input class="oc_val" :placeholder="postPlaceholder" value="" type="text" @click="searchT()" />
   </div>
 </template>
 <script>
@@ -12,14 +12,22 @@ export default {
       num: 0
     };
   },
-  props: ["type"],
-  methods: {
+  props: ['postPlaceholder', 'type'],
+  mounted() {
 
+  },
+  methods: {
     searchT: function () {
       if (this.type == "onlines") {
         this.$router.push({
           path: "/resultDoctor"
         });
+      } else if (this.type == "choosehospital") {
+        this.$store.commit("searchTypeFun", this.type);
+        this.$router.push({
+          path: "/hospitalsearch"
+        });
+
       } else {
         this.$store.commit("searchTypeFun", this.type);
         this.$router.push({
@@ -40,10 +48,15 @@ input {
   font-weight: normal;
   vertical-align: baseline;
 }
+.search {
+  padding: 0 24px 16px;
+  background: #ffffff;
+  text-align: center;
+}
 .search .oc_val {
   /* position: fixed; */
   width: 100%;
-  height: 75px;
+  /* height: 75px; */
   border-radius: 10px;
   left: 0;
   right: 0;
@@ -56,5 +69,6 @@ input {
   font-size: 28px !important;
   color: #000;
   z-index: 999;
+  border-radius: 5px;
 }
 </style>

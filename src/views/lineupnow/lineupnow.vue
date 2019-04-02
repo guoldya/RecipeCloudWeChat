@@ -1,7 +1,7 @@
 <template>
   <div class="lineupnow">
-    <Header post-title="就诊队列"></Header>
-    <div class=" margin50">
+    <Headerapp post-title="就诊队列"></Headerapp>
+    <div class="margin50">
       <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
       <div class="upnowHead">
         <div class="cardHEADER cardText" style="display:flex;">
@@ -53,8 +53,7 @@
               <span class="mu-secondary-text-color" v-else>报告未出</span>
             </p>
             <p class="cardTextPP">
-              <span>检查科室：{{item.examDept}}
-              </span>
+              <span>检查科室：{{item.examDept}}</span>
             </p>
             <p>检查项目：{{item.className}}</p>
             <p v-show="item.status==2" class="learnMore" @click="intolineupinfo(item)">
