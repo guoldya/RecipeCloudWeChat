@@ -33,7 +33,7 @@
         <div style="height: 50px"></div>
       </div>
     </div>
-    <p @click="blidcard" class="addbTN" v-show="cardlist.length<6">注册电子就诊卡</p>
+    <p @click="blidcard" class="addbTN" v-show="cardlist.length<5">注册电子就诊卡</p>
     <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
     <!-- <md-landscape v-model="showPic" :mask-closable="true">
       <div class="codema">
