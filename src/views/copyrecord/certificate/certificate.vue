@@ -2,7 +2,7 @@
   <div class="margin55 certificate">
     <Header post-title="上传证件"></Header>
     <div class="rebinding-box flatCard">
-      <div class="box-timeline  cardText">
+      <div class="box-timeline">
         <div class="alltimeball">
           <div class="timeball acitiveball">1</div>
           <div class="timeball acitiveball">2</div>
@@ -18,12 +18,10 @@
       </div>
     </div>
     <div class="flatCard margin5 outCarint">
-      <div class="cardText changenet parElem">
-        <span class="sonElem">关系</span>
+      <div class=" changenet">
+        <span>关系</span>
         <span class="changenetright" @click="showSelector">{{selectorValue}}<img class="icon_right" src="@/assets/images/icon_right.png" alt=""></span>
       </div>
-      <p class="partLine"></p>
-
       <div>
         <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" is-highlight></md-input-item>
         <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="患者身份证号" clearable is-highlight></md-input-item>
@@ -93,9 +91,8 @@
           <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="申请人身份证号" clearable is-highlight></md-input-item>
         </div>
     </div>
-
     </div>
-    <div style="height:55px"></div>
+    <div style="height:78px;background-color: #ffffff"></div>
     <p @click="cardconfirm" class="addbTN">下一步</p>
     <!-- <md-button @click="cardconfirm" type="primary" round style="margin:20px 0">下一步</md-button> -->
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
@@ -323,11 +320,13 @@ export default {
 }
 .changenet {
   /*padding: 30px 0 16px 0;*/
-  padding: 30px 0 0 0;
+  /*padding: 30px 0 0 0;*/
   display: flex;
   justify-content: space-between;
   letter-spacing: 3px;
   color: #3a3a3a;
+  border-bottom: 1px solid #f2f3f5;
+  padding:30px 0 44px 0 ;
 }
 .changenet .icon_right {
   width: 14px;
@@ -337,7 +336,7 @@ export default {
   left: 20px;
 }
 .changenetright {
-  color: #acacac;
+  color: var(--primary--light);
   margin-right: 20px;
 }
 .pg_positive {

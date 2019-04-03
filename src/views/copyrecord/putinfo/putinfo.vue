@@ -2,7 +2,7 @@
   <div class="putinfo margin55 ">
     <Header post-title="信息确认"></Header>
     <div class="rebinding-box flatCard margin5">
-      <div class="box-timeline  cardText">
+      <div class="box-timeline ">
         <div class="alltimeball">
           <div class="timeball acitiveball">1</div>
           <div class="timeball acitiveball">2</div>
@@ -56,16 +56,11 @@
               <md-stepper slot="right" v-model="value" min="0" />
             </div>
           </div>
-          <div class="parElem" style="display: flex;">
-            <span class="sonElem" style="width: 55px;margin:18px 16px 0 0">备注</span>
-            <span>
-              <md-input-item class="outCarint " v-model="remark" ref="input13" is-highlight placeholder="备注"></md-input-item>
-            </span>
-          </div>
+          <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注"></md-input-item>
           <p class="partLine outCarint"></p>
           <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
-          <div class="hq login-box-div parElem">
-            <span class="flexF sonElem">验证码</span>
+          <div class="hq login-box-div">
+            <span class="flexF">验证码</span>
             <input class="flexF flexS" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="11">
             <p class="flexR">
               <span v-show="show" class="send1" @click="getCode">获取验证码</span>
@@ -76,7 +71,7 @@
       </div>
     </div>
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
-    <md-agree v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
+    <md-agree class="outCarint" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
       我已阅读并了解
       <a @click="openPgmodel" style="color:var(--primary)">《病历复印规定》</a>
     </md-agree>
@@ -215,7 +210,7 @@ export default {
  <style scoped>
 @import url("../../cardwrite/cardwrite.css");
 .calculate {
-  margin-left: 46px;
+  margin-left: 370px;
 }
 
 .chooseBtn {
@@ -240,7 +235,8 @@ export default {
 }
 
 .putinfo .content .login-box div .flexS {
-  padding-left: 46px;
+  padding-left: 228px;
+  text-align: right;
 }
 .content .login-box div input::-webkit-input-placeholder {
   color: #c5cad5;

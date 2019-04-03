@@ -1,7 +1,7 @@
 <template>
     <div class="recipeRecord">
         <Header post-title="处方记录"  ></Header>
-        <div class="outCarint margin45">
+        <div class="margin55">
             <!--<div class="pageContent">-->
                 <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
                     <!--{{item.title}}-->
@@ -64,7 +64,7 @@
             <!--</div>-->
 
             <div v-if="efficacyData.length!=0" v-show="!loadingtrue">
-                <div class="card margin16" v-for="(item,i) in efficacyData" :key="i">
+                <div class="flatCard outCarint margin5" v-for="(item,i) in efficacyData" :key="i">
                     <div class="cardText" v-if="i==0">
                         <div @click="recordDetail(i,item.id)">
                             <div class="listData mu-secondary-text-color"><!--class="md-check-group"-->

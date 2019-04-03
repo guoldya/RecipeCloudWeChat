@@ -9,23 +9,23 @@
                <span class="docLevel">{{doctorInfo.title}}</span>
             </div>
             <ul  class="cardText">
-               <li>
+               <li class="dis-flex">
                   <label>就诊院区</label>
-                  <p>：{{depart}}</p>
+                  <p class="colon-right">{{depart}}</p>
                </li>
-               <li>
+               <li class="dis-flex">
                   <label>科室</label>
-                  <p>：{{major}} </p>
+                  <p class="colon-right">{{major}} </p>
                </li>
-               <li>
+               <li class="dis-flex">
                   <label>看诊时间</label>
-                  <p>：{{time}}&nbsp;
-                     <span class="mu-secondary-text-color">{{afternoon}}{{regStage}}</span>
+                  <p class="mu-secondary-text-color">{{time}}&nbsp;
+                     <span>{{afternoon}}{{regStage}}</span>
                   </p>
                </li>
-               <li>
+               <li class="dis-flex">
                   <label>挂号费用</label>
-                  <p class="mu-secondary-text-color">：￥ {{money | keepTwoNum}}</p>
+                  <p class="mu-secondary-text-color">￥ {{money | keepTwoNum}}</p>
                </li>
             </ul>
          </div>
@@ -33,8 +33,8 @@
       <div class="order-info margin5 cardText">
          <ul class="g-items">
             <li class="input-line J_PatientsDropDown J_AdjustWidth">
-               <div>
-                  <label class="nowidth">就诊人：</label>
+               <div class="dis-flex">
+                  <label class="nowidth">就诊人</label>
                   <span class="input-box">
                      {{cardName}}
                   </span>
@@ -42,20 +42,20 @@
             </li>
             <input type="hidden" class="patient_type" value="0">
             <li class="input-line g-arrow-r" id="J_SelectDis" data-init="[{&quot;name&quot;:&quot;尚未确诊&quot;,&quot;uuid&quot;:&quot;0&quot;}]">
-               <div>
-                  <label class="nowidth">就诊卡：</label>
+               <div class="dis-flex">
+                  <label class="nowidth">就诊卡</label>
                   <span class="input-box">{{cardNo}}
                   </span>
                </div>
             </li>
          </ul>
       </div>
-      <div class="outCarint" v-show="!isSucceed">
+      <div v-show="!isSucceed">
          <md-button type="primary" round @click="rightPay">提交</md-button>
       </div>
       <div v-show="isSucceed" class="bottomback">
-         <span class="payatnow" @click="backindex()">返回主页</span>
-         <span class="cancle" @click="registrecord()">预约记录</span>
+         <span @click="backindex()" class="cancle">返回主页</span>
+         <span @click="registrecord()" class="mainBtn">预约记录</span>
       </div>
       <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="money" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
    </div>
@@ -121,9 +121,10 @@ export default {
 
    },
    mounted() {
-
       document.title = '预约信息';
-
+      if(this.$store.state.isCashierhowData){
+          this.isSucceed=this.$store.state.isCashierhowData;
+      }
       this.depart = this.$store.state.depart;
       this.major = this.$route.query.dept;
       if (this.$route.query.afternoon * 1 == 1) {
@@ -142,6 +143,44 @@ export default {
       this.money = String(this.$route.query.money);
    },
    methods: {
+       doPay() {
+           if (this.isCashierCaptcha) {
+               this.cashier.next('captcha', {
+                   text: 'Verification code sent to 156 **** 8965',
+                   brief: 'The latest verification code is still valid',
+                   autoCountdown: false,
+                   countNormalText: 'Send Verification code',
+                   countActiveText: 'Retransmission after {$1}s',
+                   onSend: countdown => {
+                       console.log('[Mand Mobile] Send Captcha')
+                       this.sendCaptcha().then(() => {
+                           countdown()
+                       })
+                   },
+                   onSubmit: code => {
+                       console.log(`[Mand Mobile] Send Submit ${code}`)
+                       this.checkCaptcha(code).then(res => {
+                           if (res) {
+                               this.createPay().then(() => {
+                                   this.cashier.next(this.cashierResult)
+                               })
+                           }
+                       })
+                   },
+               })
+           } else {
+               this.createPay().then(() => {
+                   this.cashier.next(this.cashierResult, {
+                       buttonText: '好的',
+                       handler: () => {
+                           this.isCashierhow = false;
+                           this.isSucceed = true;
+                           this.$store.commit('isCashierhowFun', this.isSucceed);
+                       },
+                   })
+               })
+           }
+       },
       onCashierPay() {
          let nowPayParams = {};
          nowPayParams.sourceId = this.$route.query.sourceId * 1;
@@ -149,9 +188,7 @@ export default {
          nowPayParams.payType = 1;
          this.$axios.post(now_pay_url, nowPayParams).then((res) => {
             if (res.data.code == '200') {
-               this.isCashierhow = false;
-               this.isSucceed = true;
-               // this.doPay()
+                this.doPay()
             } else {
                this.$toast.info(res.data.msg);
                this.isCashierhow = false;
@@ -167,44 +204,7 @@ export default {
          // Abort pay request or checking request
          this.timer && clearTimeout(this.timer)
       },
-      doPay() {
-         if (this.isCashierCaptcha) {
-            this.cashier.next('captcha', {
-               text: 'Verification code sent to 156 **** 8965',
-               brief: 'The latest verification code is still valid',
-               autoCountdown: false,
-               countNormalText: 'Send Verification code',
-               countActiveText: 'Retransmission after {$1}s',
-               onSend: countdown => {
-                  console.log('[Mand Mobile] Send Captcha')
-                  this.sendCaptcha().then(() => {
-                     countdown()
-                  })
-               },
-               onSubmit: code => {
-                  console.log(`[Mand Mobile] Send Submit ${code}`)
-                  this.checkCaptcha(code).then(res => {
-                     if (res) {
-                        this.createPay().then(() => {
-                           this.cashier.next(this.cashierResult)
-                        })
-                     }
-                  })
-               },
-            })
-         } else {
-            console.log()
-            this.createPay().then(() => {
-               this.cashier.next(this.cashierResult, {
-                  buttonText: '好的',
-                  handler: () => {
-                     this.isCashierhow = false;
-                     this.isSucceed = true;
-                  },
-               })
-            })
-         }
-      },
+
       rightPay() {
          this.$axios.post(fconfirm_pay_url, {
             sourceId: this.$route.query.sourceId,
@@ -242,9 +242,11 @@ export default {
       },
 
    },
-   computed: {
-
-   },
+    computed: {
+        cashier() {
+            return this.$refs.cashier
+        },
+    },
 
 };
 </script>

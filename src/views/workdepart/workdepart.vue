@@ -80,7 +80,7 @@
         methods: {
             childByValue: function (childValue) {
                 //this.active1 = index;
-                this.busy=false;
+                this.nomore=true;
                 this.yuanId = childValue.id;
                 this.$store.commit('departFun', childValue.orgName);
                 this.$store.commit('feeActiveFun', childValue.id);

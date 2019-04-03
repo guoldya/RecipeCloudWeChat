@@ -120,8 +120,8 @@ export default {
 
     childByValue: function (childValue) {
       //this.active1 = index;
-        this.busy=false;
-      this.orgId = childValue.id;
+        this.nomore=true;
+        this.orgId = childValue.id;
       this.page = 1;
       this.$store.commit('departFun', childValue.orgName);
 

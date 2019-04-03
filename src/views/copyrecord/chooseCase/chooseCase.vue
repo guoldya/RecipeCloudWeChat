@@ -7,8 +7,8 @@
           <div class="md-agree" @click="onChange()">
             <div :class="{ 'md-agree-icon':true,'checked':true}">
               <div class="md-agree-icon-container">
-                <i class="md-icon icon-font md-icon-checked md"></i>
-                <i class="md-icon icon-font md-icon-check md"></i>
+                <i class="md-icon icon-font md-icon-checked lg"></i>
+                <i class="md-icon icon-font md-icon-check lg"></i>
               </div>
             </div>
           </div>
@@ -28,8 +28,8 @@
           <div class="md-agree" @click="onChange()">
             <div :class="{ 'md-agree-icon':true,'checked':true}">
               <div class="md-agree-icon-container">
-                <i class="md-icon icon-font md-icon-checked md"></i>
-                <i class="md-icon icon-font md-icon-check md"></i>
+                <i class="md-icon icon-font md-icon-checked lg"></i>
+                <i class="md-icon icon-font md-icon-check lg"></i>
               </div>
             </div>
           </div>
@@ -139,16 +139,14 @@ export default {
 }
 .chooseCase .chooseCaseTime .number {
   color: var(--primary);
-  width: 54px;
-  height: 54px;
   background: #ffffff;
   border-radius: 50%;
   font-size: 28px;
   font-weight: 700;
   text-align: center;
   line-height: 44px !important;
-  /*height: 44px;*/
-  /*width: 44px;*/
+  height: 44px;
+  width: 44px;
 }
    .chooseCase .flatCard{
      border-top: none;
