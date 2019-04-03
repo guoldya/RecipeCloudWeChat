@@ -45,7 +45,10 @@
           次
         </div>
       </div>
-      <md-button type="primary" round class="margin14">确认提交</md-button>
+      <div style="height: 50px"></div>
+
+      <!--<md-button type="primary" round class="margin14 outCarint">确认提交</md-button>-->
+      <p class="addbTN">确认提交</p>
     </div>
 
   </div>
@@ -143,7 +146,9 @@ export default {
   font-size: 28px;
   font-weight: 700;
   text-align: center;
-  line-height: 54px !important;
+  line-height: 44px !important;
+  /*height: 44px;*/
+  /*width: 44px;*/
 }
    .chooseCase .flatCard{
      border-top: none;

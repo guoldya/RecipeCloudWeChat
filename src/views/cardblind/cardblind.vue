@@ -1,14 +1,14 @@
 <template>
   <div class="cardblind">
     <Header post-title="绑定就诊卡"></Header>
-    <div class="outCarint margin45">
-      <md-field>
-        <md-input-item ref="input13" v-model="name" title="姓名" placeholder="姓名"></md-input-item>
-        <md-field-item title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector">
+    <div class="margin55">
+      <md-field >
+        <md-input-item class="outCarint" ref="input13" v-model="name" title="姓名" placeholder="姓名"></md-input-item>
+        <md-field-item class="outCarint" title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector">
         </md-field-item>
-        <md-input-item ref="input13" v-model="cardNo" :title="selectorValue+'号'" maxlength="11" placeholder="请输入卡号"></md-input-item>
-        <md-input-item type="phone" v-model="phonenumber" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
-        <div class="hq login-box-div">
+        <md-input-item class="outCarint" ref="input13" v-model="cardNo" :title="selectorValue+'号'" maxlength="11" placeholder="请输入卡号"></md-input-item>
+        <md-input-item class="outCarint" type="phone" v-model="phonenumber" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
+        <div class="hq login-box-div outCarint">
           <span class="flexF">验证码</span>
           <input class="flexF" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="6">
           <p class="flexR">
@@ -19,7 +19,7 @@
         <md-button @click="tijiao" type="primary" round style="margin-top:16px">提交</md-button>
       </md-field>
       <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
-      <p class="warnbottom">温馨提示：就诊卡绑定成功后，三个月可解绑一次！</p>
+      <p class="warnTip">温馨提示：就诊卡绑定成功后，三个月可解绑一次！</p>
     </div>
   </div>
 </template>
@@ -157,6 +157,10 @@ export default {
 
 </script>
  <style scoped>
+   .cardblind .md-button.block {
+     width: 94%;
+     margin: 20px 24px;
+   }
 .cardblind .login-box-div {
   display: flex;
   width: 100%;
@@ -191,4 +195,9 @@ export default {
   background: transparent;
   padding-left: 50px;
 }
+   .cardblind .warnTip{
+     text-align: left;
+     color:red ;
+     padding: 24px;
+   }
 </style>

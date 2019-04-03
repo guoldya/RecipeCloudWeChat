@@ -1,9 +1,9 @@
 <template>
     <div class="recipeDetail">
         <Header post-title="处方详情"  ></Header>
-        <div class="outCarint margin45">
-            <div>
-                <div class="card margin16" v-for="(item,i) in recipeData">
+        <div class="margin55">
+            <div class="detail-content">
+                <div class="flatCard margin16" v-for="(item,i) in recipeData">
                     <div class="cardText">
                         <div class="listData">
                             <span>处方号：
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card margin16" v-for="(item,i) in recipeData" v-if="isContinue==true">
+                <div class="flatCard margin16" v-for="(item,i) in recipeData" v-if="isContinue==true">
                     <div class="cardText ">
                         <div class="inputWord">
                             <span style="width: 28%">续方事由</span>

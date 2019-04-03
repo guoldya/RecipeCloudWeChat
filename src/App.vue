@@ -161,7 +161,6 @@ body {
   content: "";
   display: inline-block;
   width: 100%;
-  /*position: absolute;*/
 }
 /*医生职称边框*/
 .headname .levle {
@@ -212,6 +211,7 @@ input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #d0dae1;
 }
+
 
 .warnText {
   font-size: 26px;

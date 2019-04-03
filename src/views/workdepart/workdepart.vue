@@ -5,23 +5,26 @@
          <Search type="workdepart"></Search>
          <!--<input class="oc_val" type="text" id="inputVal" name="names" placeholder="搜索医生、科室"  v-model="value" @input="search(value)"/>-->
           <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
-         <div class="flatCard">
-            <p class="xuanze">选择科室</p>
-            <div v-if="departData.length!=0" v-show="!loadingtrue">
-               <md-cell-item v-for="(item,index) in departData" arrow @click="intoworkdoctor(item)" :key="index" :title="item.orgName" />
-               <p v-show="nomore" class="noMore">没有更多数据了</p>
+         <div v-if="departData.length!=0" v-show="!loadingtrue">
+            <div class="flatCard" >
+               <p class="xuanze">选择科室</p>
+               <div>
+                  <md-cell-item v-for="(item,index) in departData" arrow @click="intoworkdoctor(item)" :key="index" :title="item.orgName" />
+               </div>
             </div>
-            <div v-show="!loadingtrue" class="nullDiv" v-else>
-               <img src="@/assets/images/null1.png">
-            </div>
-            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
+            <p v-show="nomore" class="noMore">没有更多数据了</p>
+         </div>
+
+         <div v-show="!loadingtrue" class="nullDiv" v-else>
+            <img src="@/assets/images/null1.png">
+         </div>
+         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
                 <span v-if="departData.length!=0&&!nomore">
                    <span class="mu-light-text-color">加载中</span>
                     <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                 </span>
-            </div>
-            <Loading v-show="loadingtrue"></Loading>
          </div>
+         <Loading v-show="loadingtrue"></Loading>
       </div>
    </div>
 </template>
@@ -77,6 +80,7 @@
         methods: {
             childByValue: function (childValue) {
                 //this.active1 = index;
+                this.busy=false;
                 this.yuanId = childValue.id;
                 this.$store.commit('departFun', childValue.orgName);
                 this.$store.commit('feeActiveFun', childValue.id);

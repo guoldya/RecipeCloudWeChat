@@ -1,7 +1,7 @@
 <template>
-  <div class="outCarint margin45">
+  <div class="writeSon margin55">
     <Header post-title="身份验证"></Header>
-    <div class="rebinding-box card margin16">
+    <div class="rebinding-box flatCard">
       <div class="box-timeline  cardText">
         <div class="alltimeball">
           <div class="timeball acitiveball">1</div>
@@ -17,30 +17,33 @@
         <div class="timeballline2"></div>
       </div>
     </div>
-    <div v-show="isSon" class="card margin16">
-      <div class="cardText changenet">
-        <span>关系</span>
-        <span class="changenetright" @click="showSelector">{{selectorValue}}<img class="icon_right" src="@/assets/images/icon_right.png" alt=""></span>
+    <div class="cardText flatCard">
+      <div v-show="isSon" class=" margin5">
+        <div class="changenet" >
+          <span>关系</span>
+          <span class="changenetright" @click="showSelector">{{selectorValue}}<img class="icon_right" src="@/assets/images/icon_right.png" alt=""></span>
+        </div>
+      </div>
+      <p style="color:#000;padding-top: 16px">拍摄/上传您的二代身份证</p>
+      <div class="pg_positive">
+        <div class="pg_positive_img">
+          <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
+          <label class="ivu-upload-input_label" for="positive" style="display:block; height: 120px;">
+            <img :src="othUrl" alt="">
+          </label>
+          <p>身份证正面</p>
+        </div>
+        <div class="pg_positive_img">
+          <label class="ivu-upload-input_label" for="outside" style="display:block; height: 120px;">
+            <input class="ivu-upload-input" @change="uploadOth($event)" type="file" name="outside" id="outside" accept="image/gif,image/jpeg,image/x-png" />
+            <img :src="posUrl" alt="">
+          </label>
+          <p>身份证反面</p>
+        </div>
       </div>
     </div>
-    <p style="color:#000">拍摄/上传您的二代身份证</p>
-    <div class="pg_positive">
-      <div class="pg_positive_img">
-        <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
-        <label class="ivu-upload-input_label" for="positive" style="display:block; height: 120px;">
-          <img :src="othUrl" alt="">
-        </label>
-        <p>身份证正面</p>
-      </div>
-      <div class="pg_positive_img">
-        <label class="ivu-upload-input_label" for="outside" style="display:block; height: 120px;">
-          <input class="ivu-upload-input" @change="uploadOth($event)" type="file" name="outside" id="outside" accept="image/gif,image/jpeg,image/x-png" />
-          <img :src="posUrl" alt="">
-        </label>
-        <p>身份证反面</p>
-      </div>
-    </div>
-    <md-button @click="cardconfirm" type="primary" round style="margin-top:150px">下一步</md-button>
+    <p class="addbTN" @click="sendFun()">下一步</p>
+    <!--<md-button @click="cardconfirm" type="primary" round style="margin-top:60px">下一步</md-button>-->
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
   </div>
 </template>
@@ -204,11 +207,13 @@ export default {
   color: #9e9e9e;
 }
 .changenet {
-  padding: 30px 0;
+  /*padding: 30px 0;*/
   display: flex;
   justify-content: space-between;
   letter-spacing: 3px;
   color: #3a3a3a;
+  border-bottom: 1px solid #e9e9e9;
+  padding-bottom: 24px;
 }
 .changenet .icon_right {
   width: 14px;
@@ -231,7 +236,7 @@ export default {
 }
 .pg_positive div {
   width: 49%;
-  height: 240px;
+  /*height: 240px;*/
 }
 .pg_positive div img {
   width: 100%;

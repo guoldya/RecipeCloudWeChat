@@ -37,6 +37,7 @@
             </div>
         </div>
         <Loading v-show="loadingtrue"></Loading>
+        <div style="height: 50px"></div>
         <div v-show="!loadingtrue" class="md-example-child md-example-child-cashier" v-if="feeActiveId==1">
             <p class="addbTN" @click="rightPay">立即缴费</p>
             <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
@@ -94,6 +95,7 @@ export default {
             loadingtrue: true,
             code: '',
             routeLoad: '',
+            payStatus:'',
         };
     },
     created() {
@@ -233,13 +235,14 @@ export default {
             nowPayParams.code = this.$route.query.code;
             this.$axios.post(now_pay_url, nowPayParams).then((res) => {
                 if (res.data.code == '200') {
-                    this.feeDetailData.push(res.data.data);
-                    if (res.data.data.details) {
-                        this.feeButtomDetail = res.data.data.details;
-                    }
-                    if (res.data.data.total) {
-                        this.cashierAmount = res.data.data.total.toFixed(2);
-                    }
+                    // this.feeDetailData.push(res.data.data);
+                    // if (res.data.data.details) {
+                    //     this.feeButtomDetail = res.data.data.details;
+                    // }
+                    // if (res.data.data.total) {
+                    //     this.cashierAmount = res.data.data.total.toFixed(2);
+                    // }
+                    this.payStatus="1";
                     this.doPay();
                 } else {
                     this.$toast.info(res.data.msg);
@@ -251,7 +254,10 @@ export default {
         },
         onCashierCancel() {
             // Abort pay request or checking request
-            this.timer && clearTimeout(this.timer)
+            this.timer && clearTimeout(this.timer);
+            if(this.payStatus=="1"){
+                this.$router.go(-1);
+            }
         },
     },
     // watch:{

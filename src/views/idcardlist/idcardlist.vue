@@ -30,6 +30,7 @@
         </p>
         <p class="warnbottom" @click="cardneed">
           电子就诊卡需知</p>
+        <div style="height: 50px"></div>
       </div>
     </div>
     <p @click="blidcard" class="addbTN" v-show="cardlist.length<5">注册电子就诊卡</p>
@@ -147,7 +148,7 @@ export default {
 @import "../doctorList/doctorList.css";
 
 .idcardlist .homeCard {
-  height: 200px;
+  /*height: 200px;*/
   border-radius: 20px;
   background: #ffffff;
 }

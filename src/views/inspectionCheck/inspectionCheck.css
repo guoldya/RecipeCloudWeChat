@@ -26,13 +26,13 @@
 }
 
 .cardHEADER {
-   padding: 8px 25px;
+   padding:24px;
    font-size: 28px;
    color:  var(--primary--title);
 }
 
 .cardHEADER span {
-   font-size: 28px;
+   font-size: 30px;
 }
 
 .listData {
@@ -64,7 +64,6 @@
    letter-spacing: 1px;
    text-align: center;
 }
-
 .cardHEADER {
     padding: 8px 25px;
     font-size: 14px;
@@ -84,7 +83,8 @@
 }
 .inspectionCheck .md-button.block{
     height: 80px;
-    margin: 20px 0px;
+    width: 100%;
+    margin: 0;
 }
 .inspectionCheck .first,.submitOrder .first,.acceptAdd .first{
     border: 2px solid var(--primary);
@@ -98,10 +98,7 @@
 .headCard{
     display:flex;
     justify-content: flex-end;
-    height: 64px;
     line-height: 46px;
-/*}*/
-/*=======*/
    /*padding: 8px 25px;*/
    /*font-size: 14px;*/
    /*color:  var(--primary--title);*/
@@ -120,7 +117,6 @@
    height: 14px !important;
    margin-left: 10px;
 }
-
 .inspectionCheck .primary,
 .inspectionCheck .default {
    background-color: var(--primary) !important;
@@ -147,3 +143,10 @@
 .md-cell-item-content {
    font-size: 28px !important;
 }
+ .inspectionCheck .parElem .sonElem {
+     width: 25%;
+ }
+
+ .inspectionCheck .insCheck-cotent div{
+     line-height: 60px;
+ }

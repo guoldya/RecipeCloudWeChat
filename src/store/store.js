@@ -37,8 +37,12 @@ export default new Vuex.Store({
         keepAlive: '',
         cardList: '',
         searchType: '',
+        orderData:''
     },
     mutations: {
+        orderFun: (state, n) => {
+            state.orderData = n;
+        },
         searchTypeFun: (state, n) => {
             state.searchType = n;
         },

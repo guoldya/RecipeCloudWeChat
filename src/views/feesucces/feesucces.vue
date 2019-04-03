@@ -1,28 +1,26 @@
 <template>
 
-  <div class="page-loadmore">
+  <div class=" feesucces examineDetail page-loadmore">
     <Header post-title="预约记录"></Header>
-    <div class="outCarint margin45">
-      <div style="text-align: center;margin:80px  0 40px">
-        <div>
-          <img src="@/assets/images/icon_success.png" width="60px">
-        </div>
+    <div class="flatCard margin55">
+      <div class="successImg">
+        <img src="@/assets/images/icon_success.png" alt="">
         <p>支付成功</p>
       </div>
+      <div class="bacCenter">
+        <div class="margin16">
+          <div>
+            <span>付款总额： </span>
+            <span class="mu-secondary-text-color">￥{{jumpPar.money |keepTwoNum}}</span>
+          </div>
+          <div>
+            <span>支付时间</span>：
+            <span class="mu-secondary-text-color">{{jumpPar.payTime}}</span>
 
-      <div class="card">
-        <div class="cardText">
-          <div class="listData">
-            <span>付款总额</span>
-            <span>￥{{jumpPar.money |keepTwoNum}}</span>
           </div>
-          <div class="listData">
-            <span>支付时间</span>
-            <span>{{jumpPar.payTime}}</span>
-          </div>
-          <div class="listData">
-            <span>订单单号</span>
-            <span>{{jumpPar.orderCode}}</span>
+          <div>
+            <span>订单单号：</span>
+            <span class="mu-secondary-text-color">{{jumpPar.orderCode}}</span>
           </div>
         </div>
       </div>
@@ -115,5 +113,38 @@ export default {
 }
 .mu-raised-button {
   height: 45px;
+}
+
+.examineDetail .successImg{
+  text-align: center;
+  margin-top: 110px;
+  background-color: #fff;
+  padding: 80px 0;
+}
+.examineDetail .successImg img{
+  width: 160px;
+  height: 160px;
+}
+.examineDetail .successImg p{
+  font-size: 30px;
+  margin-top: 18px;
+}
+.examineDetail .successWord p{
+  padding: 80px 28px;
+  text-indent: 7%;
+  font-size: 26px;
+  word-break : normal;
+}
+.examineDetail .backH{
+  margin-top: 60px;
+}
+.examineDetail .bacCenter{
+  background-color: #ffffff;
+  padding-bottom: 10px;
+  line-height: 52px;
+}
+.feesucces .bacCenter div div{
+  width: 60%;
+  margin: 0 auto;
 }
 </style>
