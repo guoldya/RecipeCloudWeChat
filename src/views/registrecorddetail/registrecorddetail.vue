@@ -26,7 +26,7 @@
                     <div v-if="payType==0" class="outCarint">
                         <span class="cancle" @click="orderCancle">取消预约</span>
                         <span>
-                            <md-button class=" " type="primary" @click="rightPay" round>立即支付</md-button>
+                            <md-button type="primary" @click="rightPay" round>立即支付</md-button>
                         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
                         </span>
                     </div>
@@ -321,7 +321,7 @@ export default {
 }
 .registrecorddetail .cancle {
   font-size: 26px;
-  color: #474747;
+  color: #5a5a5a;
   background: #ffffff;
   border: 2px solid #474747;
   box-sizing: border-box;

@@ -3,15 +3,18 @@
       <Header post-title="确认支付"></Header>
       <md-field>
          <div class="outCarint addr">
-            <md-detail-item title="收件人：众但是安" content="1345648648" bold />
-            <!--<md-detail-item class="addr" title="重庆市渝北区大龙山202" />-->
-            <p style="padding-bottom: 6px">重庆市渝北区大龙山202</p>
+            <!--<md-detail-item title="收件人：众但是安" content="1345648648" bold />-->
+            <!--&lt;!&ndash;<md-detail-item class="addr" title="重庆市渝北区大龙山202" />&ndash;&gt;-->
+            <!--<p style="padding-bottom: 6px">重庆市渝北区大龙山202</p>-->
+            <md-detail-item title="收件人" content="众但是安" />
+            <md-detail-item title="手机号码" content="1345648648" />
+            <md-detail-item title="联系地址" content="重庆市渝北区大龙山202" />
          </div>
          <div style="height:5px;background:#f8f8f8">
          </div>
          <div class="outCarint">
             <md-detail-item title="申请信息" bold/>
-            <p class="partLine" style="margin-top: 0"></p>
+            <p class="partLine" style="margin-top: 9px"></p>
             <md-detail-item title="申请编号" content="可用8000.34" />
             <md-detail-item title="住院号" content="00022010010002201001 " />
             <md-detail-item title="患者姓名" content="众安" />
@@ -22,14 +25,14 @@
          </div>
          <div class="outCarint">
             <md-detail-item title="复印用途" bold/>
-            <p class="partLine" style="margin-top: 0"></p>
+            <p class="partLine" style="margin-top: 9px"></p>
             <md-detail-item title="保险报销" content="1份" />
          </div>
          <div style="height:5px;background:#f8f8f8">
          </div>
          <div class="outCarint">
             <md-detail-item title="费用信息" bold/>
-            <p class="partLine" style="margin-top: 0"></p>
+            <p class="partLine" style="margin-top: 9px"></p>
             <md-detail-item title="复印费">
                <span style="color:var(--primary); ">50.00元</span>
             </md-detail-item>
@@ -41,7 +44,7 @@
             </md-detail-item>
          </div>
       </md-field>
-      <div class="outCarint">
+      <div>
          <md-button type="primary" round style="margin-top:16px;">支付</md-button>
       </div>
    </div>
@@ -58,10 +61,6 @@ export default {
 
 </script>
 <style>
-   .copyresult .md-detail-item div:first-child{
-      position: relative;
-      top: 10px;
-   }
    .copyresult .addr .md-detail-item div:first-child{
       width: 32%;
    }

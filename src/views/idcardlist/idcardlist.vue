@@ -2,7 +2,7 @@
   <div class="idcardlist">
     <Header post-title="管理就诊卡"></Header>
     <div class="outCarint" style="margin:57px 0 0">
-      <ul v-show="!loadingtrue">
+      <ul v-show="!loadingtrue&&cardlist.length!=0">
         <li v-for="(item,index) in cardlist" :key="index" class="margin14">
           <div class="homeCard">
             <div class="homeCardText">
@@ -18,9 +18,11 @@
         </li>
         <Loading v-show="loadingtrue"></Loading>
       </ul>
-      <div v-show="!loadingtrue">
-        <!-- <md-button @click="blidcard" type="primary">注册电子就诊卡</md-button> -->
-        <!-- <md-button @click="blidcard" type="primary" round :inactive="isFive">注册电子就诊卡</md-button> -->
+      <div v-show="!loadingtrue&&cardlist.length==0" class="blindcardBtn">
+        <md-button @click="blidcard" type="primary" round>注册电子就诊卡</md-button>
+      </div>
+     
+      <div :class="cardlist.length==0 ? 'bindcardwarn' : ''" v-show="!loadingtrue">
         <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
           是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
         </md-dialog>
@@ -30,7 +32,6 @@
         </p>
         <p class="warnbottom" @click="cardneed">
           电子就诊卡需知</p>
-        <div style="height: 50px"></div>
       </div>
     </div>
     <p @click="blidcard" class="addbTN" v-show="cardlist.length<5">注册电子就诊卡</p>
@@ -42,7 +43,6 @@
         <p class="namecodema">就诊卡二维码</p>
       </div>
     </md-landscape> -->
-
     <md-landscape v-model="showPic">
       <div class="codema">
         <p class="namecodema">{{picName}}</p>
@@ -161,11 +161,25 @@ export default {
   border-radius: 20px;
   background: #ffffff;
 }
+.bindcardwarn {
+  /* background-color: var(--primary); */
 
+  position: absolute;
+  bottom: 0;
+}
 .addisFive {
   background-color: var(--primary--content);
 }
-
+.blindcardBtn {
+  width: 50%;
+  height: 100px;
+  position: absolute;
+  top: -200px;
+  bottom: 0;
+  left: 0;
+  right: 0; /*css溢出法*/
+  margin: auto;
+}
 .idcardlist .md-button.small.round {
   width: 100%;
 }

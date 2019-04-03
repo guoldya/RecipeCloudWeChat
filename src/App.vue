@@ -37,13 +37,29 @@ export default {
   /* 主题色 */
   --primary: #1da1f3;
   /* 内容字体颜色 5A5A5A*/
-  --primary--content: #979797;
+  --primary--content: #5A5A5A;
+  --primary--right: #979797;
   /* 题目字体颜色 */
   --primary--title: #272727;
   /* 线颜色 */
   --primary--line: #ededed;
   /* 背景色 */
   --primary--body: #f8f8f8;
+  /*灰色背景*/
+  --primary--light:#CCCBCB;
+}
+/*冒号左边文字*/
+.colon-left{
+  width: 17%;
+  text-align: right;
+}
+/*冒号右边文字颜色*/
+.colon-right{
+  color:var(--primary--content)
+}
+.dis-flex{
+  display: flex;
+  justify-content: space-between;
 }
 body {
   background: var(--primary--body);
@@ -58,7 +74,28 @@ body {
 .flatCard:first-child {
   border-top: 2px solid #e9e9e9;
 }
- 
+.bottomback{
+  display: flex;
+  justify-content: space-between;
+  margin:24px;
+}
+.bottomback span{
+  border-radius: 60px;
+  height: 86px;
+  line-height: 86px;
+  width: 46%;
+  text-align: center;
+}
+.bottomback .cancle {
+  background-color: #ffffff;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.bottomback .mainBtn {
+  background:var(--primary);
+  color: #ffffff;
+}
 .cardText {
   font-size: 28px;
   color: var(--primary--title);
@@ -81,7 +118,7 @@ body {
   color: var(--primary--title) !important;
 }
 .md-detail-content {
-  color: var(--primary--content) !important;
+  color: var(--primary--right) !important;
 }
 
 /*收银台*/
@@ -145,34 +182,36 @@ body {
   text-align: justify;
 }
 .md-detail-item {
-  line-height: 18px !important;
+  line-height: 40px !important;
 }
 .parElem:first-child {
   padding-top: 10px;
 }
-.parElem .sonElem,/*:first-child,*/
-.md-detail-item div:first-child {
+.parElem .sonElem/*,
+.md-detail-item div:first-child */{
   width: 17%;
   display: inline-table;
   color: var(--primary--title);
 }
-.parElem .sonElem:after,/*:first-child*/
-.md-detail-item div:first-child:after {
+.parElem .sonElem:after/*,
+.md-detail-item div:first-child:after*/ {
   content: "";
   display: inline-block;
   width: 100%;
 }
 /*医生职称边框*/
 .headname .levle {
-  padding: 4px 10px;
   font-size: 22px;
-  color: var(--primary);
-  border: 1px solid var(--primary);
+  border: 2px solid rgb(29, 161, 243);
   border-radius: 8px;
-  position: relative;
-  top: 8px;
+  color: rgb(29, 161, 243);
   margin-left: 10px;
-  vertical-align: text-top;
+  display: inline-block;
+  height: 44px;
+  padding: 2px 12px 4px;
+  line-height: 36px;
+  position: relative;
+  top: -2px;
 }
 .docLevel {
   border: 2px solid var(--primary);
@@ -212,7 +251,7 @@ input:-ms-input-placeholder {
   color: #d0dae1;
 }
 
-
+/*提示文字*/
 .warnText {
   font-size: 26px;
   color: var(--primary--content);
@@ -222,6 +261,19 @@ input:-ms-input-placeholder {
   padding: 4px 0;
   line-height: 36px;
 }
+#app .md-field-item-right{
+
+  color:var(--primary--right)
+}
+#app .md-input-item-input{
+  text-align: right !important;
+}
+
+
+
+
+
+
 .md-activity-indicator-rolling .rolling circle.stroke {
   fill: #ffffff;
 }
@@ -443,7 +495,7 @@ p {
   padding: 6px 30px;
 }
 .mu-light-text-color {
-  color: var(--primary--content);
+  color: var(--primary--right);
 }
 
 /**add*/
@@ -489,9 +541,6 @@ textarea::-webkit-input-placeholder {
   color: #fff;
   font-size: 28px;
 }
-/*.primary:after {*/
-/*border: 1px solid var(--primary) !important;*/
-/*}*/
 .default {
   background-color: #43484b;
 }
@@ -545,19 +594,8 @@ textarea::-webkit-input-placeholder {
   margin: 0 6px;
   vertical-align: sub;
 }
-
-.md-field-item-title {
-  font-size: 28px !important;
-}
-
-/* .md-field-item-control::-webkit-input-placeholder {
-  color: #aab2bd;
-  font-size: 12px;
-  text-align: right;
-} */
-.md-input-item-input {
-  font-size: 28px !important;
-}
+.md-input-item-input ,
+.md-field-item-title,
 .md-check-box {
   font-size: 28px !important;
 }

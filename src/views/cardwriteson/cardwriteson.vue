@@ -223,7 +223,7 @@ export default {
   left: 20px;
 }
 .changenetright {
-  color: #acacac;
+  color: var(--primary--light);
   margin-right: 20px;
 }
 .pg_positive {

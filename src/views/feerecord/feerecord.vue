@@ -1,16 +1,28 @@
 <template>
     <div class="feerecord">
-        <header class="aui-navBar aui-navBar-fixed">
-            <a href="javascript:;" class="aui-navBar-item" @click="routeBack">
+        <!--<header class="aui-navBar aui-navBar-fixed">-->
+            <!--<a href="javascript:;" class="aui-navBar-item" @click="routeBack">-->
+                <!--<img src="@/assets/images/icon_back.png">-->
+            <!--</a>-->
+            <!--<div class="aui-center">-->
+                <!--<span class="aui-center-title">缴费记录</span>-->
+            <!--</div>-->
+            <!--<a href="javascript:;" class="aui-navBar-item" >-->
+                <!--&lt;!&ndash;{{selectOption}} &ndash;&gt;-->
+            <!--</a>-->
+        <!--</header>-->
+        <div class="navigation">
+            <i class="icon-iconfontjiantou" @click="routeBack">
                 <img src="@/assets/images/icon_back.png">
-            </a>
-            <div class="aui-center">
-                <span class="aui-center-title">缴费记录</span>
+            </i>
+            <div class="navigation-content">
+                缴费记录
             </div>
-            <a href="javascript:;" class="aui-navBar-item" >
-                <!--{{selectOption}} -->
-            </a>
-        </header>
+            <div class="right">
+                <slot></slot>
+            </div>
+        </div>
+        <!--<Header post-title="缴费记录"></Header>-->
         <div class="margin50">
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">

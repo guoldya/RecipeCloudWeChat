@@ -89,7 +89,7 @@ input {
 }
 
 .doctorList .no {
-   background: #cccbcb;
+   background-color: var(--primary--light);
 }
 
 .doctorList .line {
@@ -192,8 +192,9 @@ input {
 
  
 .headname {
-   /*line-height: 58px;*/
    font-size: 34px;
+   position: relative;
+   top: 6px;
 }
 
 .doctorList .headdesc {
