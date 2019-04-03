@@ -261,9 +261,12 @@ input:-ms-input-placeholder {
   padding: 4px 0;
   line-height: 36px;
 }
-#app .md-input-item-input,#app .md-field-item-right{
-  text-align: right !important;
+#app .md-field-item-right{
+
   color:var(--primary--right)
+}
+#app .md-input-item-input{
+  text-align: right !important;
 }
 
 

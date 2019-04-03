@@ -232,7 +232,7 @@ export default {
             }
         },
         choosedepart() {
-            if (this.$store.state.cardId) {
+            if (!this.$store.state.cardId) {
                 this.$toast.info("请添加或者绑定就诊卡")
                 return
             }

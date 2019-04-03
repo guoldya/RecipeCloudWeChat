@@ -232,7 +232,7 @@ export default {
 .smallTitle {
   line-height: 70px;
   padding: 0 24px;
-  font-weight: 700;
+  color: var(--primary--right);
 }
 
 .putinfo .content .login-box div .flexS {

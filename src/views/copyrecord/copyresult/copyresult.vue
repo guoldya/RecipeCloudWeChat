@@ -14,7 +14,7 @@
          </div>
          <div class="outCarint">
             <md-detail-item title="申请信息" bold/>
-            <p class="partLine" style="margin-top: 0"></p>
+            <p class="partLine" style="margin-top: 9px"></p>
             <md-detail-item title="申请编号" content="可用8000.34" />
             <md-detail-item title="住院号" content="00022010010002201001 " />
             <md-detail-item title="患者姓名" content="众安" />
@@ -25,14 +25,14 @@
          </div>
          <div class="outCarint">
             <md-detail-item title="复印用途" bold/>
-            <p class="partLine" style="margin-top: 0"></p>
+            <p class="partLine" style="margin-top: 9px"></p>
             <md-detail-item title="保险报销" content="1份" />
          </div>
          <div style="height:5px;background:#f8f8f8">
          </div>
          <div class="outCarint">
             <md-detail-item title="费用信息" bold/>
-            <p class="partLine" style="margin-top: 0"></p>
+            <p class="partLine" style="margin-top: 9px"></p>
             <md-detail-item title="复印费">
                <span style="color:var(--primary); ">50.00元</span>
             </md-detail-item>
