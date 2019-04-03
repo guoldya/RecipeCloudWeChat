@@ -1,5 +1,5 @@
 <template>
-  <div class="sign">
+  <div class="sign margin55">
     <Header post-title="就诊签到"></Header>
     <div  class="margin45">
       <md-notice-bar icon="location"  v-show="isHaveOrder" >

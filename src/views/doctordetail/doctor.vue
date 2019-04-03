@@ -2,32 +2,39 @@
 <template>
     <div class="margin55 doc_scheduling  ">
         <Header post-title="医生详情"></Header>
-        <div class="doctor-head  ">
-            <div class="doc_info  ">
+        <div class="doctor-head  " v-show="!loadingtrue" v-if="doctorInfo.length!=0">
+            <div class="doc_info ">
                 <div class="pic fl">
                     <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorInfo.name">
                 </div>
                 <div class="detail">
                     <div class="headname">
-                        <span class="name">{{doctorInfo.name}}</span>
-                        <span class="levle"> {{doctorInfo.title}}</span>
-                        <p style="font-size: 14px">{{doctorInfo.orgName}} </p>
-                        <p style="font-size: 14px">擅长：{{doctorInfo.skill}}</p>
-                    </div>
+                        <div style="height: 25px">
+                            <span class="name">{{doctorInfo.name}}</span>
+                            <span class="levle"> {{doctorInfo.title}}</span>
+                        </div>
 
+                        <p style="font-size: 14px">{{doctorInfo.orgName}} </p>
+                        <!--<p style="font-size: 14px">擅长：{{doctorInfo.skill}}</p>-->
+                    </div>
                 </div>
+
                 <div class="doc_code">
                     <!-- <img  alt="{{doctorInfo.name}}">
                         <p>收藏</p> -->
                 </div>
+            </div>
+            <div class="doc_info">
+                <p class="mu-light-text-color">擅长：{{doctorInfo.skill}}</p>
             </div>
             <div class="doc_introduce">
                 <div class="title">
                     <i class="icon i_info"></i>
                     <span class="doc_info_txt">医生介绍</span>
                     <div class="doc_open_btn">
-                        <span id="open" @click="isSeemore=!isSeemore">展开
-                            <i class="icon i_open" :class="{'nomore':isSeemore,}"></i>
+                        <span id="open" @click="isSeemore=!isSeemore" class="openUp">展开
+                            <!--<i class="icon i_open" :class="{'nomore':isSeemore,}"></i>-->
+                            <img :class="{'nomore':isSeemore,}" src="@/assets/images/icon_up.png" alt="">
                         </span>
                     </div>
                 </div>
@@ -55,7 +62,7 @@
                             <label> {{order.orgName}} {{order.regStage}}</label>
                         </span>
                         <div class="wx_residue_num" v-if="order.valNum==0">
-                            <span class="keyy">{{order.money | keepTwoNum}}元</span>
+                            <span class="keyy" style="background-color: #cccbcb">{{order.money | keepTwoNum}}元</span>
                             <i class="time_btn"></i>
                         </div>
                         <div class="wx_residue_num" v-else @click="todayreservation(order)">
@@ -71,11 +78,16 @@
                 </div>
             </div>
             <div class="line"></div>
-            <div class="yy_date_today" @click="islook=!islook">
-                <span class="date_today">查看全部排班</span>
-                <span class="date_today">
-                    <i class="time_btn" :class="{'time_btn_up':!islook}"></i>
-                </span>
+            <div class="doc_introduce">
+                <div class="title">
+                    <span class="doc_info_txt">查看全部排班</span>
+                    <div class="doc_open_btn">
+                        <span @click="islook=!islook" class="openUp">展开
+                            <!--<i class="icon i_open" :class="{'nomore':islook,}"></i>-->
+                            <img :class="{'nomore':islook,}" src="@/assets/images/icon_up.png" alt="">
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="wx_dropdown_date_time" v-show="islook &&dateList.length!=0">
                 <span v-for="(item,i) in dateList" :key="i">
@@ -97,13 +109,13 @@
 
             </div>
 
-            <div class="wx_yy_date_time" v-show="islook && dateList.length==0 ">
+            <div class="wx_yy_date_time" v-show="islook && dateList.length==0 " >
                 <a class="wx_yy_date_time_item ">
                     <p class="aligncenter">暂无号源</p>
                 </a>
             </div>
         </div>
-
+        <Loading v-show="loadingtrue"></Loading>
     </div>
 </template>
 <script>
@@ -116,6 +128,7 @@ let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/selectDoctorB
 export default {
     data() {
         return {
+            loadingtrue:true,
             showMaskClosable: false,
             img,
             start,
@@ -154,6 +167,7 @@ export default {
         }).then((res) => {
             console.log(res)
             if (res.data.code == '200') {
+
                 this.orderinfo = res.data.rows;
             } else {
                 console.log(res.msg);
@@ -181,6 +195,7 @@ export default {
         },
 
         reservation(data) {
+            this.$store.commit('isCashierhowFun', false);
             this.$router.push({
                 name: 'reservation',
                 query: { regStage: data.regStage, sourceId: data.regId, doctorId: data.id, time: data.regDate, afternoon: data.regStageVO, dept: data.major, money: data.money }
@@ -203,6 +218,7 @@ export default {
                 time: this.$route.query.time ? this.$route.query.time : undefined,
             }).then((res) => {
                 if (res.data.code == '200') {
+                    this.loadingtrue=false;
                     this.doctorInfo = res.data.data;
                     if (this.doctorInfo.introduce.length > 16) {
                         this.moreButton = true;

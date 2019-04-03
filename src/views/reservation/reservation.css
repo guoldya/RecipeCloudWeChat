@@ -37,7 +37,7 @@
 
  .gp-order .order-info li {
     overflow: hidden;
-    padding: 8px 0;
+    padding: 4px 0;
     font-size: 28px;
  }
 
@@ -62,27 +62,3 @@
     padding: 30px 0;
  }
 
- .bottomback {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto
- }
-
- .bottomback span {
-    font-size: 28px;
-    color: #ffffff;
-    float: right;
-    background: var(--primary);
-    border-radius: 40px;
-    letter-spacing: 1px;
-    padding: 17px 40px;
-    text-align: center;
-    margin-top: 40px;
-    border: 2px solid var(--primary);
- }
-
- .bottomback .payatnow {
-    background: #ffffff;
-    color: var(--primary);
- }

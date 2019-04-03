@@ -70,7 +70,7 @@
                 <div>
                   <div class="headname">
                     <span>{{info.name}}</span>
-                    <span class="levle" style="padding-bottom: 4px;">{{info.title}}</span>
+                    <span class="levle">{{info.title}}</span>
                     <span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>
                     <span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>
                   </div>

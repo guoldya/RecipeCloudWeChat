@@ -3,19 +3,17 @@
    justify-content: space-between;
    align-items: center;
    width: 100%;
-   padding: 10px 24px;
+   padding: 24px;
    font-size: 28px;
    color: #858585;
    background-color: #fff;
    border-bottom: 1px solid #e5e5e5;
 }
-
-.doc_scheduling .pic,
-.doc_scheduling .pic img {
-   display: inline-block;
-   width: 102px;
-   height: 102px;
-   border-radius: 50%;
+.doc_scheduling .doc_info:first-child{
+   border-bottom: none;
+}
+.doc_scheduling .doc_info:nth-child(2){
+   margin-top: -36px;
 }
 
 .doc_scheduling .pic,
@@ -37,11 +35,13 @@
 .doc_scheduling .doc_info .name {
    color:  var(--primary--title);
 }
-
 .doc_scheduling .doc_info p {
    margin-bottom: 10px;
    width: 100%;
-   margin-top: 5px;
+   margin-top: 10px;
+   line-height: 40px;
+   text-align: justify;
+   color:var(--primary--right) ;
    /* white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
@@ -65,12 +65,12 @@
 }
 
 .doc_introduce .i_info {
-   width: 28px;
-   height: 30px;
-   margin-right: 9px;
+   width: 32px;
+   height: 32px;
    vertical-align: middle;
    background: url(./info.png) no-repeat;
    background-size: 100% auto;
+   margin-right: 10px;
 }
 
 .doc_introduce .title .doc_info_txt {
@@ -80,24 +80,26 @@
 }
 
 .doc_introduce .doc_open_btn {
-   color: #969696;
+   color: var(--primary--title);
 }
 
 .doc_introduce .doc_open_btn .i_open {
    width: 18px;
    height: 18px;
    margin-left: 10px;
-   border-top: 1px solid var(--primary);
-   border-left: 1px solid var(--primary);
+   border-top: 2px solid var(--primary--title);
+   border-left: 2px solid var(--primary--title);
    -webkit-transform: rotate(-135deg);
    transform: rotate(-135deg);
    vertical-align: middle;
    margin-top: -18px;
    display: inline-block;
+   position: relative;
+   top: 4px;
 }
 
 .doc_introduce .doc_open_btn .nomore {
-   transform: rotate(45deg);
+   transform: rotate(180deg);
    margin-top: 0px;
 }
 
@@ -106,7 +108,7 @@
    padding: 20px 24px;
    height: auto;
    line-height: 44px;
-   color: #666666;
+   color: var(--primary--right);
    font-size: 28px;
    overflow: hidden;
    background-color: #fff;
@@ -233,20 +235,29 @@
    text-align: center;
    height: 44px;
    border-radius: 10px;
-   color: #b6b6b6;
-   background-color:  var(--primary--line);
+   color:#ffffff;
+   background-color:  var(--primary--light);
    line-height: 45px;
 }
 
 .wx_residue_null {
-   background-color: #969696
+   background-color: var(--primary--light)
 }
 
 
-.doc_scheduling .headname .levle {
-   padding-left: 4px;
-   top: 8px;
-}
+/*.doc_scheduling .headname .levle {*/
+   /*font-size: 22px;*/
+   /*border: 2px solid rgb(29, 161, 243);*/
+   /*border-radius: 8px;*/
+   /*color: rgb(29, 161, 243);*/
+   /*margin-left: 10px;*/
+   /*display: inline-block;*/
+   /*height: 44px;*/
+   /*padding: 2px 12px;*/
+   /*line-height: 44px;*/
+   /*position: relative;*/
+   /*top: -3px;*/
+/*}*/
 
 .doc_scheduling .yy_date_today .time_btn {
    display: inline-block;
@@ -261,4 +272,9 @@
 .doc_scheduling .yy_date_today  .time_btn_up {
    /* transform: rotate(180deg); */
    transform: rotate(0deg);
+}
+.openUp img{
+   width: 24px;
+   position: relative;
+   top: -2px;
 }

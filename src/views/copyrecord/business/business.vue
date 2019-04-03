@@ -2,8 +2,8 @@
   <div>
     <Header post-title="病案复印"></Header>
     <div class="margin55 business" style="margin-bottom: 52px">
-      <div class="rebinding-box outCarint flatCard">
-        <div class="box-timeline  cardText">
+      <div class="rebinding-box cardText flatCard">
+        <div class="box-timeline  ">
           <div class="alltimeball">
             <div class="timeball acitiveball">1</div>
             <div class="timeball">2</div>
@@ -18,8 +18,8 @@
           <div class="timeballline2"></div>
         </div>
       </div>
-      <div class="outCarint textTip">
-        <p class="mu-light-text-color">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
+      <div class="cardText textTip">
+        <p class="mu-light-text-color" style="text-align: justify">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
         </p>
         <p class="kinds">病历类型</p>
         <md-check-box name="month" v-model="pay" label="住院病历" />
@@ -37,18 +37,19 @@
         <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
       </div>
       <md-field v-show="mail==1" >
-        <div class="parElem" style="display: flex;">
-          <span class="sonElem" style="width: 55px;margin:18px 16px 0 12px">收件人</span>
-          <span>
-            <md-input-item class="outCarint " v-model="receiver" ref="input13" is-highlight placeholder="收件人"></md-input-item>
-          </span>
-        </div>
-        <p class="partLine outCarint"></p>
-        <md-input-item class="outCarint" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
-        <Address class="outCarint" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
-        <md-input-item class="outCarint" ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
+        <!--<div class="parElem" style="display: flex;">-->
+          <!--<span class="sonElem" style="width: 55px;margin:18px 16px 0 12px">收件人</span>-->
+          <!--<span>-->
+            <!--<md-input-item class="outCarint " v-model="receiver" ref="input13" is-highlight placeholder="收件人"></md-input-item>-->
+          <!--</span>-->
+        <!--</div>-->
+        <!--<p class="partLine outCarint"></p>-->
+        <md-input-item style="padding: 0 12px" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
+        <md-input-item style="padding: 0 12px" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
+        <Address style="padding: 0 12px" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
+        <md-input-item style="padding: 0 12px" ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
       </md-field>
-      <md-agree style="margin: 6px 0" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
+      <md-agree class="outCarint" style="margin: 6px 0" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
         我已阅读并了解
         <a @click="openPgmodel" style="color:var(--primary)">《病历复印规定》</a>
       </md-agree>
@@ -163,6 +164,7 @@ export default {
      line-height: 36px;
      margin: 12px 0;
      font-size: 24px;
+     /*padding: 0 24px;*/
    }
    .business .md-check-box{
      color:  var(--primary--content);
@@ -177,6 +179,7 @@ export default {
       margin: 0 0 0 24px;
      width: 698px;
    }
+
 
 
 </style>
