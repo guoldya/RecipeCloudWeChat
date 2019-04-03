@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <p class="addbTN" @click="sendFun()">下一步</p>
+    <p class="addbTN" @click="cardconfirm()">下一步</p>
     <!--<md-button @click="cardconfirm" type="primary" round style="margin-top:60px">下一步</md-button>-->
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
   </div>

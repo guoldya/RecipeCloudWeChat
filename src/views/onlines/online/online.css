@@ -1,5 +1,6 @@
 .online {
-   color: #323232;
+   color: var(--primary--title);
+   background: #ffffff;
 }
 
 .online h2 {
@@ -62,7 +63,7 @@
 }
 
 .tabA {
-   background: #ffffff;
+   /* background: #ffffff; */
    display: flex;
    justify-content: center;
    align-items: center;

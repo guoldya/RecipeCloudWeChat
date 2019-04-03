@@ -1,6 +1,6 @@
 <template>
     <div class="registrecord">
-        <header class="aui-navBar aui-navBar-fixed">
+        <!-- <header class="aui-navBar aui-navBar-fixed">
             <a href="javascript:;" class="aui-navBar-item" @click="routeBack">
                 <img src="@/assets/images/icon_back.png">
             </a>
@@ -8,7 +8,9 @@
                 <span class="aui-center-title">挂号记录</span>
             </div>
             <a href="javascript:;" class="aui-navBar-item" ></a>
-        </header>
+        </header> -->
+
+        <Header post-title="挂号记录"></Header>
         <div class="margin55">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
                 <div class="flatCard outCarint" v-for="(item,i) in cordData" :key="i">
@@ -75,7 +77,7 @@ export default {
         this.cordFun(false);
     },
     methods: {
-        routeBack(){
+        routeBack() {
             this.$router.push({
                 name: 'home',
             });
@@ -84,7 +86,7 @@ export default {
             const params = {};
             params.pageNumber = this.page;
             params.pageSize = this.pageSize;
-             params.cardId ="";
+            params.cardId = "";
             this.$axios.put(read_page_url, params).then((res) => {
                 if (res.data.rows) {
                     this.loadingtrue = false;
@@ -154,13 +156,13 @@ export default {
 .registrecord .appTitle {
   display: flex;
   justify-content: space-between;
-    padding: 24px 0;
+  padding: 24px 0;
 }
-     .registrecord .flatCard{
-         border-top: none;
-     }
-     .registrecord .parElem{
-         height: 56px;
-         padding-top: 22px;
-     }
+.registrecord .flatCard {
+  border-top: none;
+}
+.registrecord .parElem {
+  height: 56px;
+  padding-top: 22px;
+}
 </style>
