@@ -9,7 +9,7 @@
                     <md-detail-item title="患者姓名" :content=item.patientName></md-detail-item>
                     <md-detail-item title="日期" :content=item.regDate></md-detail-item>
                     <md-detail-item title="时段" :content=item.regStage></md-detail-item>
-                    <md-detail-item title="金额" :content=item.money></md-detail-item>
+                    <md-detail-item title="金额"><span>￥{{item.money}}</span></md-detail-item>
                     <md-detail-item title="地点" :content=item.address></md-detail-item>
                 </md-field>
             </div>
@@ -22,21 +22,21 @@
                 <p>4、一个自然月内只能退三次号</p>
             </div>
             <div style="margin-bottom:30px;">
-                <div class="myButton outCarint">
-                    <div v-if="payType==0">
+                <div class="myButton ">
+                    <div v-if="payType==0" class="outCarint">
                         <span class="cancle" @click="orderCancle">取消预约</span>
-                        <span class="payatnow">
+                        <span>
                             <md-button class=" " type="primary" @click="rightPay" round>立即支付</md-button>
                         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
                         </span>
                     </div>
-                    <div v-if="payType==1">
+                    <div v-if="payType==1" class="outCarint">
                         <md-button type="primary" round @click="applyBack">申请退号</md-button>
                     </div>
-                    <div v-if="payType==2">
+                    <div v-if="payType==2" class="outCarint">
                         <md-button type="default" round>已退号</md-button>
                     </div>
-                    <div v-if="payType==6">
+                    <div v-if="payType==6" class="outCarint">
                         <md-button type="default" round>已失效</md-button>
                     </div>
                 </div>
@@ -104,7 +104,6 @@ export default {
                 if (res.data.code == '200') {
                     this.loadingtrue = false;
                     this.cordInfoData.push(res.data.data);
-                    console.log(this.cordInfoData)
                 }
             }).catch(function (err) {
                 console.log(err);
@@ -112,16 +111,18 @@ export default {
         },
         rightPay(){
             this.isCashierhow = !this.isCashierhow;
-            this.$axios.put(fconfirm_pay_url, { id: this.feeId }).then((res) => {
-                if (res.data.code == '200') {
-                    //this.orderCode = res.data.data.orderCode;
-                    if (res.data.data.total) {
-                        this.cashierAmount = res.data.data.total.toFixed(2);
-                    }
-                }
-            }).catch(function (err) {
-                console.log(err);
-            });
+            console.log(this.cordInfoData)
+            this.cashierAmount = this.cordInfoData[0].money.toFixed(2);
+            // this.$axios.put(fconfirm_pay_url, { id: this.feeId }).then((res) => {
+            //     if (res.data.code == '200') {
+            //         //this.orderCode = res.data.data.orderCode;
+            //         if (res.data.data.total) {
+            //             this.cashierAmount = res.data.data.total.toFixed(2);
+            //         }
+            //     }
+            // }).catch(function (err) {
+            //     console.log(err);
+            // });
         },
         orderCancle(){
             Dialog.confirm({
@@ -220,10 +221,10 @@ export default {
         },
         onCashierPay(item) {
             let nowPayParams = {};
-            nowPayParams.id = this.feeId;
-            nowPayParams.sourceId = this.sourceId;
-            nowPayParams.payType = item.value;
-            if(this.cashierAmount){
+             nowPayParams.id = this.feeId;
+             nowPayParams.sourceId = this.sourceId;
+             nowPayParams.payType = item.value;
+            if(this.cashierAmount){}
                 this.$axios.post(now_pay_url, nowPayParams).then((res) => {
                     if (res.data.code == '200') {
                         this.okParams=res.data.data;
@@ -241,7 +242,7 @@ export default {
                 }).catch(function (err) {
                     console.log(err);
                 });
-            }
+
         },
         onCashierCancel() {
             // Abort pay request or checking request
@@ -268,7 +269,7 @@ export default {
                                     name: 'registrecord',
                                     query: {}
                                 });
-                            }, 3000)
+                            }, 1500)
                         }else if(res.data.code == '500'){
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
@@ -276,7 +277,7 @@ export default {
                                     name: 'registrecord',
                                     query: {}
                                 });
-                            }, 3000)
+                            }, 1500)
                         }
                     }).catch(function (err) {
                         console.log(err);
@@ -316,6 +317,7 @@ export default {
 }
 .registrecorddetail .md-button.block {
     height: 86px;
+    width: 100%;
 }
 .registrecorddetail .cancle {
   font-size: 26px;
@@ -339,5 +341,8 @@ export default {
     }
     .registrecorddetail .payatnow{
         margin-top: 0;
+    }
+    .registrecorddetail .md-button.block{
+        margin: 0;
     }
 </style>

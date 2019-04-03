@@ -1,8 +1,8 @@
 <template>
-  <div class="outCarint margin45">
+  <div class="margin55">
     <Header post-title="手机验证"></Header>
-    <div class="rebinding-box card margin16">
-      <div class="box-timeline  cardText">
+    <div class="rebinding-box flatCard outCarint">
+      <div class="box-timeline " style="padding-top:12px">
         <div class="alltimeball">
           <div class="timeball acitiveball">1</div>
           <div class="timeball">2</div>
@@ -17,8 +17,8 @@
         <div class="timeballline2"></div>
       </div>
     </div>
-    <div class="card margin16">
-      <div class="cardText login-box">
+    <div class="flatCard margin5 outCarint">
+      <div class="login-box">
         <div class="content">
           <div class="login-box">
             <div class="hq login-box-div">

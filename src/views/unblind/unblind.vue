@@ -1,11 +1,11 @@
 <template>
-  <div class="outCarint margin45">
+  <div class="unblind margin55">
     <Header post-title="就诊卡详情"></Header>
     <p>
       <md-icon name="warn-color" size="lg" color="orange" svg style="position:relative;top:5px; "></md-icon>
       <span style="margin-left:10px;color:red">绑定3个月以上才可以解绑一次</span>
     </p>
-    <div class="card margin16"  style="margin-top:10px">
+    <div class="flatCard"  style="margin-top:10px">
       <div class="cardText login-box">
         <div class="content">
           <div class="login-box">
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="card margin16">
+    <div class="flatCard">
       <div class="cardText login-box">
         <div class="content">
           <div class="login-box">

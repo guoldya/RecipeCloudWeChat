@@ -1,6 +1,14 @@
 <template>
     <div class="registrecord">
-        <Headerapp post-title="挂号记录"></Headerapp>
+        <header class="aui-navBar aui-navBar-fixed">
+            <a href="javascript:;" class="aui-navBar-item" @click="routeBack">
+                <img src="@/assets/images/icon_back.png">
+            </a>
+            <div class="aui-center">
+                <span class="aui-center-title">挂号记录</span>
+            </div>
+            <a href="javascript:;" class="aui-navBar-item" ></a>
+        </header>
         <div class="margin55">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
                 <div class="flatCard outCarint" v-for="(item,i) in cordData" :key="i">
@@ -67,6 +75,11 @@ export default {
         this.cordFun(false);
     },
     methods: {
+        routeBack(){
+            this.$router.push({
+                name: 'home',
+            });
+        },
         cordFun(flag) {
             const params = {};
             params.pageNumber = this.page;

@@ -30,15 +30,25 @@
         </p>
         <p class="warnbottom" @click="cardneed">
           电子就诊卡需知</p>
+        <div style="height: 50px"></div>
       </div>
     </div>
     <p @click="blidcard" class="addbTN" v-show="cardlist.length<5">注册电子就诊卡</p>
     <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
-    <md-landscape v-model="showPic" :mask-closable="true">
+    <!-- <md-landscape v-model="showPic" :mask-closable="true">
       <div class="codema">
         <p class="namecodema">{{picName}}</p>
         <img src="@/assets/images/lili.jpg" alt="">
         <p class="namecodema">就诊卡二维码</p>
+      </div>
+    </md-landscape> -->
+
+    <md-landscape v-model="showPic">
+      <div class="codema">
+        <p class="namecodema">{{picName}}</p>
+        <img src="@/assets/images/lili.jpg" alt="">
+        <p class="namecodema">就诊卡二维码</p>
+        <md-button type="primary" size="small" inline round @click="showPic=false">关闭</md-button>
       </div>
     </md-landscape>
   </div>
@@ -147,12 +157,16 @@ export default {
 @import "../doctorList/doctorList.css";
 
 .idcardlist .homeCard {
-  height: 200px;
+  /*height: 200px;*/
   border-radius: 20px;
   background: #ffffff;
 }
 
 .addisFive {
   background-color: var(--primary--content);
+}
+
+.idcardlist .md-button.small.round {
+  width: 100%;
 }
 </style>

@@ -8,7 +8,7 @@
                 <!--</span>-->
             <!--</div>-->
             <div v-if="examineData.length!=0" v-show="!loadingtrue">
-                <div class="flatCard margin16" v-for="(item,i) in examineData" :key="i">
+                <div class="flatCard" v-for="(item,i) in examineData" :key="i">
                     <div class="appTitle">
                         <span>{{item.patientName}}（{{item.className}}）</span>
                         <span>{{nowDate}}</span>
@@ -16,7 +16,7 @@
                     <div class="cardText alignJ">
                         <div class="parElem">
                             <span class="sonElem">开单时间</span>
-                            <span class="mu-secondary-text-color">：{{item.createTime}}</span>
+                            <span>：<span class="mu-secondary-text-color">{{item.createTime}}</span></span>
                         </div>
                         <div class="parElem">
                             <span class="sonElem">科室</span>

@@ -1,9 +1,9 @@
 <template>
     <div class="applyDetail">
         <Header post-title="申请详情"  ></Header>
-        <div class="outCarint margin45">
-            <div v-for="(item,i) in recipeData">
-                <div class="card margin16" >
+        <div class="margin55">
+            <div v-for="(item,i) in recipeData" class="detail-content">
+                <div class="flatCard ">
                     <div>
                         <div class="listData">
                             <span>处方号：
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card margin16" >
+                <div class="flatCard margin5" >
                     <div>
                         <div class="listData">
                             <span>申请日期：
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card margin16" >
+                <div class="flatCard outCarint margin5" >
                     <div>
                         <div class="listData">
                             <span>审方医生：
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card margin16" >
+                <div class="flatCard outCarint margin16" >
                     <div>
                         <div class="listBottom mu-light-text-color" v-for="item in listBottom">
                             <span>{{item.name}}</span>

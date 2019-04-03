@@ -1,8 +1,8 @@
 <template>
-  <div class="outCarint margin45 cardhave">
+  <div class="margin55 cardhave">
     <Header post-title="资料确认"></Header>
-    <div class="rebinding-box card margin16">
-      <div class="box-timeline  cardText">
+    <div class="rebinding-box flatCard outCarint" style="padding-top: 10px">
+      <div class="box-timeline">
         <div class="alltimeball">
           <div class="timeball acitiveball">1</div>
           <div class="timeball acitiveball">2</div>
@@ -17,11 +17,11 @@
         <div class="timeballline2" style="background:var(--primary)"></div>
       </div>
     </div>
-    <p>
+    <p class="havePadd">
       <md-icon name="success-color" size="lg" svg style="position:relative;top:5px  "></md-icon>
       <span style="margin-left:10px;color:var(--primary)">验证成功！请确认个人信息是否正确</span>
     </p>
-    <div class="card margin16" style="margin-top:20px">
+    <div class="flatCard margin16" style="margin-top:20px">
       <div class="cardText login-box">
         <!-- <div class="content">
           <div class="login-box">
@@ -71,6 +71,7 @@
       </div>
     </div>
     <md-button type="primary" round class="margin16" @click="tijiao">正确</md-button>
+
     <md-button @click="$router.go(-1)" type="default" round style="margin-bottom:20px;">错误，重新上传</md-button>
   </div>
 </template>
@@ -184,4 +185,18 @@ export default {
   line-height: 1.7;
   font-size: 30px;
 }
-</style>
+   .cardhave .havePadd{
+     padding: 18px 24px 0;
+   }
+
+   .cardhave /deep/.md-detail-item div {
+     width: 30%;
+     line-height: 36px;
+   }
+.cardhave /deep/.md-detail-item div:first-child:after{
+  display: block;
+}
+.cardhave .default:after {
+  border: transparent !important;
+}
+ </style>
