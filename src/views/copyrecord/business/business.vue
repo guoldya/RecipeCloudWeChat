@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="cardText textTip">
-        <p class="mu-light-text-color" style="text-align: justifye">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
+        <p class="mu-light-text-color" style="text-align: justify">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
         </p>
         <p class="kinds">病历类型</p>
         <md-check-box name="month" v-model="pay" label="住院病历" />
@@ -44,10 +44,10 @@
           <!--</span>-->
         <!--</div>-->
         <!--<p class="partLine outCarint"></p>-->
-        <md-input-item class="cardText" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
-        <md-input-item class="cardText" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
-        <Address class="cardText" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
-        <md-input-item class="cardText" ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
+        <md-input-item style="padding: 0 12px" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
+        <md-input-item style="padding: 0 12px" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
+        <Address style="padding: 0 12px" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
+        <md-input-item style="padding: 0 12px" ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
       </md-field>
       <md-agree class="outCarint" style="margin: 6px 0" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
         我已阅读并了解
@@ -164,6 +164,7 @@ export default {
      line-height: 36px;
      margin: 12px 0;
      font-size: 24px;
+     /*padding: 0 24px;*/
    }
    .business .md-check-box{
      color:  var(--primary--content);

@@ -74,7 +74,6 @@ body {
 .flatCard:first-child {
   border-top: 2px solid #e9e9e9;
 }
-<<<<<<< HEAD
 .bottomback{
   display: flex;
   justify-content: space-between;
@@ -97,9 +96,6 @@ body {
   background:var(--primary);
   color: #ffffff;
 }
-=======
- 
->>>>>>> 34128d6a09e338f9ba48f86d090c8ab37a99a9e4
 .cardText {
   font-size: 28px;
   color: var(--primary--title);
