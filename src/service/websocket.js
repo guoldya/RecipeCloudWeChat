@@ -30,7 +30,9 @@ const connectWebsoket = (uuid) => {
         store.commit('chat/setHistoryNews', newsArr)
       }
 
-    } else if (friend.command == 20 && friend.code == 10018) { // 处理历史记录
+    } else if (friend.command == 20 && friend.code == 10018) {
+      console.log( friend.data.friends,"这里是历史小i下")
+      // 处理历史记录
       store.commit('chat/setHistoryNews', friend.data.friends[store.state.chat.friendId])
       router.push({
         path: `/inquiryOnline/${store.state.chat.friendId}`

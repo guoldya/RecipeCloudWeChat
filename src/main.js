@@ -123,7 +123,7 @@ axios.interceptors.response.use(function (res) {
         // console.log(res)
         // router.replace('/control');
     } else if (res.data.code == 500) {
-        router.replace('/lostpage');
+        // router.replace('/lostpage');
     }
     return res;
 });
