@@ -5,21 +5,7 @@
       <span class="mu-secondary-text-color" @click="overQuesiton">结束问诊</span>
     </Navigation>
     <!-- 用户信息 -->
-    <!-- <div class="user-describe">
-      <div class="describe">
-        <p>问题描述：从昨晚9点开始发烧（39度），头痛，咳嗽，咳痰</p>
-        <p>既往病史：无</p>
-      </div>
-      <div class="content">
-        <img src="@/assets/images/3.jpg" alt="">
-        <img src="@/assets/images/3.jpg" alt="">
-        <img src="@/assets/images/3.jpg" alt="">
-      </div>
-      <router-link tag="p" to="/allRecord" class="item">
-        <span>查看张丽的所有记录</span>
-        <i class="iconfont icon-iconfontjiantou5"></i>
-      </router-link>
-    </div> -->
+
     <!-- 聊天内容区域 -->
     <div class="inquiry-online-content" ref="chatContent" @click="toolType=''">
       <ul class="online-content-warp">
@@ -224,6 +210,7 @@ export default {
       this.currentImg = [index]
     },
     changeVal(val) {
+      console.log("Aaa")
       this.inputValue = this.$refs.inputModel.innerHTML
     },
     endInquiry() { // 结束问诊
@@ -271,6 +258,7 @@ export default {
             chatType: 2,
             content: '/api/file?img=' + res.data[file.name]
           };
+          console.log(msg)
           // 把当前发送的消息添加到历史消息去
           let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
           arr.push(msg)
@@ -302,6 +290,7 @@ export default {
         chatType: 2,
         content: this.inputValue
       };
+      console.log(msg)
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
       arr.push(msg)
@@ -473,7 +462,7 @@ export default {
     // box-sizing: border-box;
     flex: 1;
     overflow: auto;
-    background:  var(--primary--line);
+    background: var(--primary--line);
     .online-content-warp {
       padding: 30px 40px 40px;
     }

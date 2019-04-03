@@ -44,8 +44,8 @@ Vue.component('Header', Header);
 Vue.component('Headerapp', Headerapp);
 Vue.component('Navigation', Navigation);
 
- 
- 
+
+
 Vue.component('Search', Search);
 Vue.component('Apptab', Apptab)
 Vue.component('Loading', Loading);
@@ -122,6 +122,8 @@ axios.interceptors.response.use(function (res) {
         // router.replace('/login?back=1');
         // console.log(res)
         // router.replace('/control');
+    } else if (res.data.code == 500) {
+        // router.replace('/lostpage');
     }
     return res;
 });

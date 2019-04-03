@@ -2,12 +2,12 @@
     <div class="result">
         <Header post-title="搜索"></Header>
         <div class="margin50" style="background-color: #ffffff">
-            <div style="text-align:center;">
-                <input v-model="value" placeholder="搜索医生、科室" autofocus="autofocus" class="oc_val" @input="loadMorelist(value)">
+            <div class="search">
+                <input v-model="value" :placeholder="placeholder" autofocus="autofocus" class="oc_val" @input="loadMorelist(value)">
             </div>
             <div class="outCarint">
                 <div class="line"></div>
-                <div class="resulthistory" v-show="isResult">
+                <div class="resulthistory" v-show="isResult&&HistoryList.length!=0">
                     <div class="history">
                         <div class="container fl">
                             <span class="lf">搜索历史</span>
@@ -17,17 +17,15 @@
                         </div>
                     </div>
                     <div>
-                        <ul class="emp" v-if="HistoryList.length!=0">
+                        <ul class="emp">
                             <li class="history" v-for="(item,index) in HistoryList" :key="index">
                                 <span class="hj" @click="resultT(item)">{{item}}</span>
                                 <span class="delete">
                                     <md-icon name="close" @click="clearT(index)"></md-icon>
                                 </span>
                             </li>
+                            <p class="noMore">没有更多记录了</p>
                         </ul>
-                        <p v-else>
-                            暂无
-                        </p>
                     </div>
                 </div>
                 <div v-show="!isResult">
@@ -44,6 +42,7 @@
                         <p>暂无医生信息</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -55,20 +54,11 @@ export default {
         return {
             value: '',
             HistoryList: [],
-            departData: [
-                // { name: "妇科门诊" },
-                // { name: "生殖内分泌门诊生殖内分泌" },
-                // { name: "儿科" },
-                // { name: "放射科" },
-            ],
-            doctorList: [
-                // { name: "冉有钱", good: "擅长：急性呼吸窘迫综合征、 呼吸衰竭的救治" },
-                // { name: "唐浩瀚", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
-                // { name: "安未", good: "擅长：急性呼吸窘迫综合征、重症感染及呼吸衰竭的救治" },
-                // { name: "吴政阳", good: "擅长：急性呼吸窘迫综合征、重症感染 " },
-            ],
+            departData: [],
+            doctorList: [],
             searchType: '',
             isResult: true,
+            placeholder: "搜索医生、科室",
         }
     },
     mounted() {
@@ -79,6 +69,10 @@ export default {
             this.HistoryList = JSON.parse(json);
         };
         this.searchType = this.$store.state.searchType;
+        if (this.searchType == "choosehospital") {
+            this.placeholder = "搜索医院"
+        }
+
         document.getElementsByClassName("oc_val")[0].focus();
     },
     methods: {
@@ -93,7 +87,7 @@ export default {
             this.HistoryList = [],
                 localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
         },
-  
+
         intodoctorList(data) {
             let argu = { deptName: data.orgName, deptId: data.id, yuanId: data.parentId };
             if (this.searchType == "workdepart") {
@@ -157,8 +151,6 @@ export default {
         },
         loadMorelist(value) {
             this.isResult = false;
-
-
             this.doctorList = [];
             this.departData = [];
             if (!value) {
@@ -183,9 +175,6 @@ export default {
                     if (res.data.code == '200') {
                         _this.doctorList = res.data.data.doctorList;
                         _this.departData = res.data.data.orgList;
-
-
-
                     } else {
                     }
                 }).catch(function (err) {
@@ -206,5 +195,20 @@ export default {
 
 <style scoped>
 @import url("./result.css");
+@import "../choosehospital/choosehospital.css";
+.booking-index--hospitals-item div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: start;
+  -ms-flex-align: start;
+  align-items: start;
+  padding: 32px 0;
+  color: var(--primary--content);
+  font-size: 24px;
+  border-bottom: 1px solid var(--primary--line);
+}
 </style>
 

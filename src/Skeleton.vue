@@ -17,7 +17,7 @@
 .skeleton .skeleton-banner {
   /* height: 300px; */
   margin-bottom: 100px;
-  background: #ffffff;
+  /* background: #ffffff; */
 }
 .skeleton-banner .header {
   width: 98px;

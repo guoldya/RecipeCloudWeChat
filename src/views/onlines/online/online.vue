@@ -1,13 +1,17 @@
 <!-- 在线问诊首页-->
 <template>
   <div class="online">
-    <header class="aui-navBar aui-navBar-fixed">
+    <!-- <header class="aui-navBar aui-navBar-fixed">
       <a href="javascript:;" class="aui-navBar-item"></a>
       <div class="aui-center">
         <span class="aui-center-title">在线问诊</span>
       </div>
       <a href="javascript:;" class="aui-navBar-item"></a>
-    </header>
+    </header> -->
+    <div class="onlineheader">
+      <p>在线问诊</p>
+    </div>
+ 
     <div class="margin45 outCarint">
       <Search type="onlines"></Search>
       <!-- <Skeleton v-if="isloading"></Skeleton> -->

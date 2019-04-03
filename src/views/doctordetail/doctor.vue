@@ -150,7 +150,7 @@ export default {
     },
     mounted() {
         document.title = '医生详情';
-
+ 
         if (this.$route.query.afternoon * 1 == 1) {
             this.afternoon = '上午';
         }

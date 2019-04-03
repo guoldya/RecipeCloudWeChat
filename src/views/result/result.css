@@ -7,22 +7,6 @@ input {
    vertical-align: baseline;
 }
 
-.result .oc_val {
-   /* position: fixed; */
-   width: 100%;
-  height: 75px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  padding-left: 70px;
-  background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
-  background-size: auto 40% !important;
-  opacity: 1;
-  outline: none;
-  font-size: 28px !important;
-  color: #000;
-  z-index: 999;
-}
 
 .result .mu-sub-header {
    font-size: 28px;
@@ -38,7 +22,7 @@ input {
 .result .departLi2 {
    width: 100%;
    float: left;
-   border-bottom: 1px solid  var(--primary--line);
+   border-bottom: 1px solid var(--primary--line);
 }
 
 .result .grid-cell2 {
@@ -75,6 +59,7 @@ input {
    line-height: 74px;
 }
 
+ 
 .resulthistory .fl {
    display: flex;
    color: #777;
@@ -113,6 +98,7 @@ input {
    width: 5%;
    display: inline-block;
 }
-.clear{
-  margin-top: 20px;
+
+.clear {
+   margin-top: 20px;
 }

@@ -10,12 +10,13 @@ const websocketConfig = () => {
 }
 
 const connectWebsoket = (uuid) => {
-  console.log(store.state.userInfo.id,"我是缓存的id")
-  let id = 12;
+  console.log(store.state.userInfo.id, "我是缓存的id")
+  let id = store.state.userInfo.id;
   let chatQueue = store.state.chat.chatQueue;
   let websocket = new WebSocket("ws://192.168.0.22:8888/?userid=" + id + "&uuid=" + uuid);
   store.commit('chat/setWebsocket', websocket)
   websocket.onmessage = evt => {
+  
     let friend = JSON.parse(evt.data)
     if (friend.command == 11) { // 获取好友传过来的消息
       store.commit('chat/updateChatQueue', friend.data)
@@ -25,11 +26,13 @@ const connectWebsoket = (uuid) => {
         console.log('获取好友传过来的消息2')
         let newsArr = JSON.parse(JSON.stringify(store.state.chat.historyNews))
         newsArr.push(friend.data)
-        console.log(newsArr,222)
-        store.commit('chat/setHistoryNews',newsArr)
+        console.log(newsArr, 222)
+        store.commit('chat/setHistoryNews', newsArr)
       }
 
-    } else if (friend.command == 20 && friend.code == 10018) { // 处理历史记录
+    } else if (friend.command == 20 && friend.code == 10018) {
+      console.log( friend.data.friends,"这里是历史小i下")
+      // 处理历史记录
       store.commit('chat/setHistoryNews', friend.data.friends[store.state.chat.friendId])
       router.push({
         path: `/inquiryOnline/${store.state.chat.friendId}`
