@@ -31,7 +31,7 @@
         <span class="yuyiin">
           <i class="iconfont icon-yuyin"></i>
         </span>
-        <div contentEditable="true" class="input" @input="changeVal" ref="inputModel">
+        <div contentEditable="true" class="input" @click="e => e.target.focus()" @input="changeVal" ref="inputModel">
         </div>
         <span class="send" @click="send" :class="inputValue ? 'active' : ''">发送</span>
       </div>
@@ -165,7 +165,7 @@ export default {
     // 让滚动条滚动到指定位置
     this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
-    websocketConfig();
+    // websocketConfig();
     //  用于演示临时加得
     let obj = {}
     obj.id = 125;

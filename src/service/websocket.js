@@ -10,7 +10,7 @@ const websocketConfig = () => {
 }
 
 const connectWebsoket = (uuid) => {
-  // console.log(store.state.userInfo.id, "我是缓存的id")
+  console.log(store.state.userInfo.id, "我是缓存的id")
   let id = store.state.userInfo.id;
   let chatQueue = store.state.chat.chatQueue;
   let websocket = new WebSocket("ws://192.168.0.22:8888/?userid=" + 12 + "&uuid=" + uuid);
@@ -22,8 +22,8 @@ const connectWebsoket = (uuid) => {
       store.commit('chat/updateChatQueue', friend.data)
       console.log('获取好友传过来的消息')
       console.log(friend.data.from, store.state.chat.friendId, "我是两个id")
-      // if (friend.data.from == store.state.chat.friendId) {
-      if (friend.data.from == 12) {
+      if (friend.data.from == store.state.chat.friendId) {
+      // if (friend.data.from == 12) {
         // 把当前消息放在当前好友的历史消息（现在的消息）
         console.log('获取好友传过来的消息2')
         let newsArr = []

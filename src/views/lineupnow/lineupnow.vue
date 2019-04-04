@@ -56,8 +56,8 @@
               <span>检查科室：{{item.examDept}}</span>
             </p>
             <p>检查项目：{{item.className}}</p>
-            <p v-if="item.reportId" class="learnMore" @click="intolineupinfo(item)">
-              详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
+            <p v-if="item.reportId" class="learnMore" @click="intoreportinfo(item)">
+              查看报告 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
             </p>
           </div>
         </div>
@@ -198,8 +198,9 @@ export default {
         query: { id: data.id, queryType: this.queryType }
       });
     },
-    intoreportinfo() {
-      let argu = {};
+    intoreportinfo(data) {
+
+      let argu = { id: data.reportId, lineupnow: 1 };
       this.$router.push({
         name: 'reportinfo',
         query: argu

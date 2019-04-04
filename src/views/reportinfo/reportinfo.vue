@@ -175,8 +175,9 @@ export default {
 
     },
     mounted() {
+
         this.feeActiveId = this.$store.state.feeActiveId;
-        if (this.$store.state.feeActiveId == 1) {
+        if (this.$store.state.feeActiveId == 1|| this.$route.query.lineupnow==1) {
             this.checkReportDetail();
             this.postTitle = "检查报告详情";
             document.title = '检查报告详情';
