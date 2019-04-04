@@ -27,24 +27,23 @@
                             <div class="appTitle">
                                 <span>{{item.name}}</span>
                             </div>
-                            <div class="cardText" style="padding-top: 14px">
-                                <span>检查科室：
+                            <div class="cardText">
+                                <div class="listData parElem">
+                                    <span class="sonElem">检查科室</span>
                                     <span class="mu-light-text-color">{{item.execDept}}（{{item.hospital}}）</span>
-                                </span>
-                            </div>
-                            <div class="cardText">
-                                <span>检查项目：
+                                </div>
+                                <div class=" listData parElem">
+                                    <span class="sonElem">检查项目</span>
                                     <span class="mu-light-text-color">{{item.itemName}}</span>
-                                </span>
-                            </div>
-                            <div class="cardText">
-                                <span>报告日期：
+                                </div>
+                                <div class=" listData parElem">
+                                    <span class="sonElem">报告日期</span>
                                     <span class="mu-light-text-color">{{item.reportTime}}</span>
-                                </span>
-                            </div>
-                            <div class="learnMore mu-secondary-text-color" @click="checkReportDetail(item.id)">
-                                <span>详情</span>
-                                <img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">
+                                </div>
+                                <div class="learnMore mu-secondary-text-color" @click="checkReportDetail(item.id)">
+                                    <span>详情</span>
+                                    <img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">
+                                </div>
                             </div>
                         </div>
                     </div>

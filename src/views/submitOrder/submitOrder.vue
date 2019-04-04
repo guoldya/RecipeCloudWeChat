@@ -1,137 +1,122 @@
 <template>
     <div class="submitOrder">
         <Header post-title="提交订单"  ></Header>
-        <div class="outCarint margin45">
-            <div class="outCarint">
-                <div class="pageContent">
-                    <span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
-                        {{item.title}}
-                    </span>
-                </div>
-                <div class="card margin16" v-if="titleIndex===0">
-                    <div class="cardText submitUser" @click="acceptAdd">
-                        <div class="iconInfo">
-                            <div class="iconImg">
-                                <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
-                            </div>
-                            <div class="userInfo" v-for="(item,i) in addJumpInfo">
-                                <div>
-                                    <span>{{item.name}}</span>
-                                    <span>{{item.tel}}</span>
-                                    <span class="first" v-if="item.addDefault==1">默认</span>
-                                </div>
-                                <div>
-                                    <span>{{item.add}}</span>
-                                </div>
-                            </div>
+        <div class="margin50">
+            <Apptab :tab-title="changeTitle" v-on:childByValue="childByValue"></Apptab>
+            <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0" v-if="titleIndex===1">
+                <div class="submitUser" @click="acceptAdd">
+                    <div class="iconInfo">
+                        <div class="iconImg">
+                            <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
                         </div>
-                        <div  class="addImg nextImg">
-                            <img style="height: 18px" src="@/assets/images/icon_more2@2x.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="card margin16" v-if="titleIndex===1">
-                    <div class="cardText submitUser">
-                        <div class="iconInfo">
-                            <div class="iconImg">
-                                <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
-                            </div>
-                            <div class="storeInfo" v-for="(item,i) in storeAdd" :key="i">
-                                <div>
-                                    <div class="myStore">
-                                        <span >药店地址：</span>
-                                        <span style="width: 73%">{{item.add}}</span>
-                                    </div>
-                                    <div>
-                                        <span >电话：</span>
-                                        <span>{{item.tel}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card margin16">
-                    <div class="cardText">
-                        <span class="storeName">和平大药房</span>
-                        <p class="partLine"></p>
-                        <div v-for="(item,i) in medData">
-                            <div class="med">
-                                <div class="addImg">
-                                    <img  class="medImg" :src=item.img alt="" >
-                                </div>
-                                <div class="medRight">
-                                    <div class="medInfo">
-                                        <div>
-                                            <span  style="padding-right: 10px">{{item.medBrand}}</span>
-                                            <span>{{item.medName}}</span>
-                                        </div>
-                                        <span>x{{item.num}}</span>
-                                    </div>
-                                    <div class="listData">
-                                        <span>{{item.weight}}</span>
-                                        <span class="mu-secondary-text-color">￥{{item.price}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="partLine"></p>
-                        </div>
-                        <div class="smallTotal">
-                            <span>共{{medData.length}}件药品</span>
-                            <span>小计：</span>
-                            <span class="mu-secondary-text-color">￥198.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card margin16">
-                    <div class="cardText">
-                        <div class="onlinePay">
+                        <div class="userInfo" v-for="(item,i) in addJumpInfo">
                             <div>
-                                <span>绑定社保卡可在线医保支付</span>
-                                <span class="mu-secondary-text-color">开通医保支付</span>
+                                <span>{{item.name}}</span>
+                                <span>{{item.tel}}</span>
+                                <span class="first" v-if="item.addDefault==1">默认</span>
                             </div>
-                            <p class="partLine"></p>
-                        </div>
-                        <div v-for="(item,i) in priceData" class="subButtom onlinePay">
-                            <div v-if="titleIndex==0">
-                                <span>{{item.pei}}</span>
-                                <span>￥{{item.peiPri}}</span>
+                            <div>
+                                <span>{{item.add}}</span>
                             </div>
-                            <p class="partLine" v-if="i!=priceData.length-1 && titleIndex==0"></p>
-                            <div v-if="titleIndex==1 && i!==0">
-                                <span>{{item.pei}}</span>
-                                <span>￥{{item.peiPri}}</span>
-                            </div>
-
-                            <p class="partLine" v-if="i!=priceData.length-1 && i!==0 &&titleIndex==1"></p>
-
                         </div>
                     </div>
-                </div>
-
-                <div class="md-example-child md-example-child-cashier">
-                    <div class="bButton">
-                        <div class="grayButton">
-                            <span>应付金额￥198.00</span>
-                        </div>
-                        <div class="blueButton" @click="isCashierhow = !isCashierhow">
-                            <span >{{ isCashierhow ? '' : '提交订单' }}</span>
-                        </div>
+                    <div  class="addImg nextImg">
+                        <img style="height: 18px" src="@/assets/images/icon_more2@2x.png" alt="">
                     </div>
-                    <md-cashier
-                            ref="cashier"
-                            v-model="isCashierhow"
-                            :channels="cashierChannels"
-                            :channel-limit="2"
-                            :payment-amount="cashierAmount"
-                            @select="onCashierSelect"
-                            @pay="onCashierPay"
-                            @cancel="onCashierCancel"
-                            :default-index=0
-                    ></md-cashier>
                 </div>
             </div>
+            <div class="flatCard outCarint" style="border-top: 1px solid #ededed;margin-top: 0" v-if="titleIndex===2">
+                <div class="submitUser">
+                    <div class="iconInfo">
+                        <div class="iconImg">
+                            <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
+                        </div>
+                        <div class="storeInfo" v-for="(item,i) in storeAdd" :key="i">
+                            <div>
+                                <div class="listData">
+                                    <span>药店地址：</span>
+                                    <span>{{item.add}}</span>
+                                </div>
+                                <div>
+                                    <span >电话：</span>
+                                    <span>{{item.tel}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flatCard outCarint margin5">
+                <div>
+                    <span class="storeName">和平大药房</span>
+                    <p class="partLine"></p>
+                    <div v-for="(item,i) in medData">
+                        <div class="med">
+                            <div class="addImg">
+                                <img  class="medImg" :src=item.img alt="" >
+                            </div>
+                            <div class="medRight">
+                                <div class="medInfo">
+                                    <div>
+                                        <span  style="padding-right: 10px">{{item.medBrand}}</span>
+                                        <span>{{item.medName}}</span>
+                                    </div>
+                                    <span>x{{item.num}}</span>
+                                </div>
+                                <div class="listData">
+                                    <span>{{item.weight}}</span>
+                                    <span class="mu-secondary-text-color">￥{{item.price}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="partLine"></p>
+                    </div>
+                    <div class="smallTotal">
+                        <span>共{{medData.length}}件药品</span>
+                        <span>小计：</span>
+                        <span class="mu-secondary-text-color payMoney">￥198.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flatCard outCarint margin5">
+                <div class="onlinePay">
+                    <div>
+                        <span>绑定社保卡可在线医保支付</span>
+                        <span class="mu-secondary-text-color">开通医保支付</span>
+                    </div>
+                    <p class="partLine"></p>
+                </div>
+                <div v-for="(item,i) in priceData" class="onlinePay">
+                    <div v-if="titleIndex==1">
+                        <span>{{item.pei}}</span>
+                        <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
+                    </div>
+                    <p class="partLine" v-if="i!=priceData.length-1 && titleIndex==1"></p>
+                    <div v-if="titleIndex==2 && i!==0">
+                        <span>{{item.pei}}</span>
+                        <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
+                    </div>
+                    <p class="partLine" v-if="i!=priceData.length-1 && i!==0 &&titleIndex==2"></p>
+                </div>
+            </div>
+            <!--<div class="bButton addbTN">-->
+                <!--<div class="grayButton">-->
+                    <!--<span>应付金额￥198.00</span>-->
+                <!--</div>-->
+                <!--<div class="blueButton" @click="isCashierhow = !isCashierhow">-->
+                    <!--<span >{{ isCashierhow ? '' : '提交订单' }}</span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div style="height: 50px;"></div>
+            <div class="addbTN">
+                    <span class="gButton">应付金额￥198.00</span>
+                    <span class="bButton"  @click="isCashierhow = !isCashierhow">{{ isCashierhow ? '' : '提交订单' }}</span>
+            </div>
+            <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect"
+                        @pay="onCashierPay"
+                        @cancel="onCashierCancel"
+                        :default-index=0
+            ></md-cashier>
         </div>
     </div>
 </template>
@@ -141,10 +126,10 @@
             return {
                 
                 changeTitle: [
-                    { title: '配送到家' },
-                    { title: '门店自提' },
+                    { title: '配送到家',type:1 },
+                    { title: '门店自提',type:2},
                 ],
-                titleIndex:0,
+                titleIndex:1,
                 medData:[
                     {img:require("@/assets/images/pic.png"),medBrand:"万爽力",medName:"盐酸曲美他嗪片",weight:"20mgx30片",num:"1",price:"66.00"},
                     {img:require("@/assets/images/pic.png"),medBrand:"万爽力",medName:"999感冒灵",weight:"20mgx30片",num:"1",price:"66.00"},
@@ -181,6 +166,7 @@
         },
         mounted() {
             if(this.$route.query.name){
+                console.log(this.$route.query)
                 this.addIndex=this.$route.query.params;
                 this.addJumpInfo.splice(0,1);
                 this.addJumpInfo.push(this.$route.query);
@@ -188,8 +174,8 @@
             document.title = '提交订单';
         },
         methods: {
-            switchTo(num) {
-                this.titleIndex = num;
+            childByValue: function (childValue) {
+                this.titleIndex = childValue.type;
             },
             doPay() {
                 if (this.isCashierCaptcha) {

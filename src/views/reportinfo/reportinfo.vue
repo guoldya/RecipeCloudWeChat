@@ -43,23 +43,23 @@
                     <div class="cardText">
                         <div class=" listData parElem">
                             <span class="sonElem">检查参数</span>
-                            <span style="width: 78%;text-align: right">{{item.param}}</span>
+                            <span>{{item.param}}</span>
                         </div>
                         <div class="listData parElem">
-                            <span class="sonElem" style="width: 48%"> 检查所见</span>
-                            <span style="text-align: justify">{{item.findings}}</span>
+                            <span class="sonElem"> 检查所见</span>
+                            <span>{{item.findings}}</span>
                         </div>
                         <div class="listData parElem">
                             <span class="sonElem"> 印象</span>
-                            <span style="width: 78%;text-align: right">{{item.impression}}</span>
+                            <span>{{item.impression}}</span>
                         </div>
                         <div class="listData parElem">
                             <span class="sonElem"> 建议</span>
-                            <span style="width: 78%;text-align: right">{{item.advise}}</span>
+                            <span>{{item.advise}}</span>
                         </div>
                         <div class="listData parElem">
                             <span class="sonElem">备注</span>
-                            <span style="width: 78%;text-align: right">{{item.remark}}</span>
+                            <span>{{item.remark}}</span>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                             <span>{{item.reportTime}}</span>
                         </div>
                         <div class=" listData parElem">
-                            <span class="sonElem" style="width: 48%">临床诊断</span>
+                            <span class="sonElem">临床诊断</span>
                             <span>{{item.diag}}</span>
                         </div>
                     </div>
@@ -116,7 +116,6 @@
                         <div class="cardTextPP spanWid arrow" v-for="(item,i) in reportResult">
                             <span>{{item.itemName}}</span>
                             <span>{{item.itemValue}}
-
                                 <span>{{item.contrast}}</span>
                             </span>
                             <span>{{item.unit}}</span>
@@ -252,7 +251,8 @@ export default {
       display: flex;
       justify-content: space-between;
       font-size: 28px;
-        align-items: center;
+        /*align-items: center;*/
+        padding: 18px 0;
     }
     .reportinfo .cardText .cardTextPP:last-child,
     .reportinfo .cardText .cardTextBor {
@@ -268,11 +268,11 @@ export default {
         margin-bottom: 28px;
     }
     .reportinfo .spanWid span {
-      display: inline-block;
-      word-break: normal;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      overflow: hidden;
+      /*display: inline-block;*/
+      /*word-break: normal;*/
+      /*white-space: pre-wrap;*/
+      /*word-wrap: break-word;*/
+      /*overflow: hidden;*/
       text-align: center;
     }
 
@@ -288,7 +288,7 @@ export default {
         display: flex;
         position: relative;
         left: 140px;
-        top: -122px;
+        top: -32px;
     }
     .reportinfo .spanWid span:nth-child(3) {
       width: 20%;
