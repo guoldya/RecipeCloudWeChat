@@ -96,7 +96,7 @@
       <!-- 咨询弹窗 -->
       <md-dialog :title="basicDialog.title" :closable="true" v-model="basicDialog.open" :btns="basicDialog.btns">
         <p class="money">$20.0/次</p>
-        <p>咨询师-周扬</p>
+        <p>咨询师-{{ doctorInfo.name}}</p>
         <p class="ways">通过文字,图片进行咨询</p>
         <md-agree v-model="basicDialog.checked" :disabled="false" size="sm">
           同意
@@ -219,7 +219,10 @@ export default {
         <div class="info">3、为保证医疗安全，特殊药品如精神类药物，强心类药物等需要门诊就诊后开具。</div>`,
         confirmText: "确定",
         onConfirm: () => {
-          this.$router.push({ path: "/buyService" });
+          this.$router.push({
+            path: "/buyService",
+            query: { name: this.doctorInfo.name, id: this.doctorInfo.id }
+          });
         }
       });
     },

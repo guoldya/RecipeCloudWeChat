@@ -178,11 +178,11 @@ export default {
     mounted() {
 
         this.feeActiveId = this.$store.state.feeActiveId;
-        if (this.$store.state.feeActiveId == 1|| this.$route.query.lineupnow==1) {
+        if (this.$store.state.feeActiveId == 1|| this.$route.query.reportType==1) {
             this.checkReportDetail();
             this.postTitle = "检查报告详情";
             document.title = '检查报告详情';
-        } else if (this.$store.state.feeActiveId == 2) {
+        } else if (this.$store.state.feeActiveId == 2|| this.$route.query.reportType==2) {
             this.collectReportDetail();
             this.postTitle = "检验报告详情";
             document.title = '检验报告详情';

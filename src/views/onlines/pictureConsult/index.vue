@@ -9,7 +9,7 @@
           <img src="@/assets/images/3.jpg" alt="" />
         </div>
         <div class="doctor-info-content">
-          <p class="name">周洋</p>
+          <p class="name">{{$route.query.name}}</p>
           <p class="gray">
             <span>主治医生</span>
             <span>儿科</span>

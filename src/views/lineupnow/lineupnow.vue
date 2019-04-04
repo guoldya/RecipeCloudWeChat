@@ -200,7 +200,7 @@ export default {
     },
     intoreportinfo(data) {
 
-      let argu = { id: data.reportId, lineupnow: 1 };
+      let argu = { id: data.reportId, reportType: data.reportType };
       this.$router.push({
         name: 'reportinfo',
         query: argu
