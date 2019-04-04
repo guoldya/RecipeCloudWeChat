@@ -12,7 +12,6 @@
       <div class="divHeight"></div>
       <div class="outCarint">
          <p class="choosepay">选择预交金额</p>
-        
             <md-check-box name="self" v-model="insurants">￥500</md-check-box>
             <md-check-box name="couple" v-model="insurants">￥1500</md-check-box>
             <md-check-box name="parent" v-model="insurants">￥1000</md-check-box>
