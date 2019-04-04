@@ -9,9 +9,12 @@
     <!-- 聊天内容区域 -->
     <div class="inquiry-online-content" ref="chatContent" @click="toolType=''">
       <ul class="online-content-warp">
-        <li v-for="(item, index) in  chat.historyNews" :key="index" class="online-content-list" :class="item.to != userInfo.id ? 'right' : ''">
-          <img class="online-content-list-head" src="@/assets/images/3.jpg" v-if="item.to != userInfo.id" alt="" />
-          <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" />
+        <li v-for="(item, index) in  chat.historyNews" :key="index" class="online-content-list" :class="item.from != userInfo.id ? '' : 'right'">
+          <!-- <img class="online-content-list-head" src="@/assets/images/3.jpg" v-if="item.from != userInfo.id" alt="" />
+          <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" /> -->
+
+          <img class="online-content-list-head" src="@/assets/images/head1.png" v-if="item.from != userInfo.id" alt="" />
+          <img class="online-content-list-head" src="@/assets/images/head.png" v-else alt="" />
           <div class="online-content-list-text" v-if="item.msgType == 0">
             <em></em>
             <div v-html="item.content"></div>
@@ -28,7 +31,7 @@
         <span class="yuyiin">
           <i class="iconfont icon-yuyin"></i>
         </span>
-        <div contentEditable="true" class="input" @input="changeVal" ref="inputModel">
+        <div contentEditable="true" class="input" @click="e => e.target.focus()" @input="changeVal" ref="inputModel">
         </div>
         <span class="send" @click="send" :class="inputValue ? 'active' : ''">发送</span>
       </div>
@@ -162,8 +165,12 @@ export default {
     // 让滚动条滚动到指定位置
     this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
-    websocketConfig();
-
+    // websocketConfig();
+    //  用于演示临时加得
+    let obj = {}
+    obj.id = 125;
+    this.updateUser(obj)
+    websocketConfig()
 
   },
   updated: function () {
@@ -176,6 +183,8 @@ export default {
     this.scrollBottom();
   },
   methods: {
+
+    ...mapActions(['chat/setFriendId', 'updateUser']),
     closeMask() {
       this.isQeustion = false;
       this.isQeustionOver = false
@@ -274,7 +283,7 @@ export default {
     },
     // 发送消息
     send() {
-      console.log(this.inputValue.length, "this.inputValue")
+      console.log("我是ya亚男")
       if (this.inputValue == 0) {
         this.$toast.info("请输入消息");
         return

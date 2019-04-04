@@ -1,6 +1,7 @@
 <!-- 医生咨询详情-->
 <template>
   <div class="doctor-detail">
+    <Header post-title="购买服务"></Header>
     <Loading v-if="isloading"></Loading>
     <div v-else>
       <!-- 医生信息 -->
@@ -38,8 +39,8 @@
       </div>
       <!-- 沟通方式 -->
       <div class="doctor-way">
-        <div class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
-          <div class="doctor-way-item-img" @click="consult()">
+        <div @click="consult()" class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
+          <div class="doctor-way-item-img">
             <img src="../images/icon_teletext.png" v-if="item.type == 1" alt="" />
             <img src="../images/icon_telephone.png" v-else-if="item.type == 2" alt="" />
           </div>
@@ -62,12 +63,12 @@
       <!--擅长-->
       <div class="doctor-speciality doctor-item">
         <div class="title">擅长</div>
-        <div>{{ doctorInfo.skill }}</div>
+        <div class="skill">{{ doctorInfo.skill }}</div>
       </div>
       <!--简介  -->
       <div class="doctor-abstract doctor-item">
         <div class="title">简介</div>
-        <div>
+        <div class="skill">
           {{ doctorInfo.introduce }}
         </div>
       </div>
@@ -87,9 +88,10 @@
           <div class="ellipsis">
             {{ item.comment }}
           </div>
+
         </div>
+        <div v-if="!item.comment">暂无消息</div>
       </div>
-      <div v-if="!commonList.length">暂无消息</div>
 
       <!-- 咨询弹窗 -->
       <md-dialog :title="basicDialog.title" :closable="true" v-model="basicDialog.open" :btns="basicDialog.btns">
@@ -117,7 +119,7 @@ const followDoctorUrl = "/app/bizDoctorFollow/followDoctor"
 export default {
   data() {
     return {
-      
+
       isloading: true, // 是否显示loading
       doctorInfo: {}, // 医生信息
       // 咨询弹窗
@@ -149,7 +151,7 @@ export default {
   mounted() {
     this.init();
 
-    
+
 
   },
   methods: {
@@ -255,15 +257,17 @@ export default {
 </script>
 <style lang="scss" scoped>
 .doctor-detail {
-  padding: 0 30px;
   overflow-y: auto;
   height: 100vh;
   box-sizing: border-box;
+  margin-top: 70px;
   .gray {
     color: #999;
   }
 
   .doctor-item {
+    padding: 0 24px;
+    background: #ffffff;
     margin-bottom: 20px;
     .title {
       color: #000;
@@ -273,11 +277,12 @@ export default {
     // padding: 24px 40px;
   }
   .doctor-info {
-    margin-top: 40px;
-    padding: 40px 30px;
-    box-shadow: 0 0 0.18rem rgba(20, 19, 51, 0.1);
-    border-radius: 16px;
+    padding: 34px 24px;
     background: #ffffff;
+    margin-top: 40px;
+    // padding: 40px 30px;
+    // box-shadow: 0 0 0.18rem rgba(20, 19, 51, 0.1);
+    // border-radius: 16px;
   }
   .doctor-info-top {
     display: flex;
@@ -318,6 +323,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 40px 40px;
+    margin-top: 20px;
     .doctor-way-item {
       display: inherit;
       flex-direction: column;
@@ -364,8 +370,14 @@ export default {
   .doctor-comment-item {
     > div {
       padding: 24px 0;
+      margin-top: 20px;
+    }
+    .skill {
+      margin-top: 0;
+      padding: 0 0 24px;
     }
   }
+
   .doctor-comment-item-header {
     span {
       margin-right: 20px;

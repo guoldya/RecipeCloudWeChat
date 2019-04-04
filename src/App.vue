@@ -37,7 +37,7 @@ export default {
   /* 主题色 */
   --primary: #1da1f3;
   /* 内容字体颜色 5A5A5A*/
-  --primary--content: #5A5A5A;
+  --primary--content: #979797;
   --primary--right: #979797;
   /* 题目字体颜色 */
   --primary--title: #272727;
@@ -230,7 +230,7 @@ body {
   background: var(--primary);
   border-radius: 40px;
   letter-spacing: 1px;
-  padding: 15px 40px;
+  padding: 10px 40px;
   text-align: center;
 }
 /*input-placeholder颜色*/

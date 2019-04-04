@@ -1,6 +1,7 @@
 <!--图文咨询 -->
 <template>
-  <div class="picture-consult">
+  <div class="picture-consult margin50">
+    <Header post-title="医生信息"></Header>
     <!-- 医生信息 -->
     <div class="doctor-info doctor-item b-m">
       <div class="doctor-info-top">
@@ -8,7 +9,7 @@
           <img src="@/assets/images/3.jpg" alt="" />
         </div>
         <div class="doctor-info-content">
-          <p>周洋</p>
+          <p class="name">周洋</p>
           <p class="gray">
             <span>主治医生</span>
             <span>儿科</span>
@@ -52,17 +53,20 @@
         </li>
         <li class="image-reader-item add" v-if="imageList.length<3">
           <md-image-reader name="reader0" @select="onReaderSelect" @complete="onReaderComplete" @error="onReaderError" is-multiple></md-image-reader>
-          <md-icon name="camera" size="lg" color="#CCC"></md-icon>
+          <md-icon name="camera" size="lg" color="var(--primary--content);"></md-icon>
           <p>添加图片</p>
         </li>
         <li class="tips" v-if="imageList.length<3">(最多上传3张)</li>
       </ul>
+      
     </div>
     <md-cell-item title="选择报告" arrow @click="routerTo(2)" />
     <md-cell-item title="选择病例" arrow @click="routerTo(3)" />
-    <div class="btn">
+
+    <p class="addbTN" @click="isCashierhow=true">发送给医生</p>
+    <!-- <div class="btn">
       <md-button type="primary" round>发送给医生</md-button>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -113,8 +117,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$border: 1px solid #e0e0e0;
+$border: 1px solid var(--primary--line);
 .picture-consult {
+  background: #ffffff;
   .b-m {
     border-bottom: 1px solid #f1f3f1;
   }
@@ -134,6 +139,9 @@ $border: 1px solid #e0e0e0;
       }
     }
     .doctor-info-content {
+      .name{
+        font-size: 32px;
+      }
       flex: 1;
       .gray span {
         margin-right: 20px;
@@ -142,6 +150,7 @@ $border: 1px solid #e0e0e0;
   }
   .doctor-info-bottom {
     display: flex;
+
     margin-top: 20px;
     > div {
       flex: 1;
@@ -168,8 +177,9 @@ $border: 1px solid #e0e0e0;
     padding: 40px;
     overflow: hidden;
     border-bottom: $border;
+    background: #ffffff;
     p span {
-      color: #999;
+      color: var(--primary--content);
       font-size: 24px;
     }
     textarea {
@@ -184,6 +194,7 @@ $border: 1px solid #e0e0e0;
   }
   .image-reader-list {
     display: flex;
+    position: relative;
     overflow: hidden;
     margin-top: 10px;
     .md-tag .md-icon.icon-font {
@@ -195,10 +206,10 @@ $border: 1px solid #e0e0e0;
       height: 156px;
     }
     .md-image-reader {
-      border: $border;
+      // border: $border;
     }
     .add {
-      border: 1px solid  var(--primary--line);
+      border: 1px solid var(--primary--line);
       line-height: 2;
       text-align: center;
       p {
@@ -208,7 +219,7 @@ $border: 1px solid #e0e0e0;
         width: 100%;
         margin-top: 15px;
         font-size: 22px;
-        color: #ccc;
+        color: var(--primary--content);;
         text-align: center;
       }
       .md-icon {

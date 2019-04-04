@@ -15,8 +15,13 @@
                 <md-detail-item title="患者姓名" :content=item.patientName></md-detail-item>
                 <md-detail-item title="开单时间" :content=item.createTime></md-detail-item>
                 <md-detail-item title="开单序号" :content=item.code></md-detail-item>
+            </md-field>
+
+        </div>
+        <div class="flatCard margin10 cardText" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
+            <md-field>
                 <md-detail-item :title=feeTitle>
-                    <span class="mu-light-text-color">￥{{item.total | keepTwoNum}}</span>
+                    <span class="mu-secondary-text-color" style="font-size:25px">￥{{item.total | keepTwoNum}}</span>
                 </md-detail-item>
             </md-field>
         </div>
@@ -95,7 +100,7 @@ export default {
             loadingtrue: true,
             code: '',
             routeLoad: '',
-            payStatus:'',
+            payStatus: '',
         };
     },
     created() {
@@ -242,7 +247,7 @@ export default {
                     // if (res.data.data.total) {
                     //     this.cashierAmount = res.data.data.total.toFixed(2);
                     // }
-                    this.payStatus="1";
+                    this.payStatus = "1";
                     this.doPay();
                 } else {
                     this.$toast.info(res.data.msg);
@@ -255,7 +260,7 @@ export default {
         onCashierCancel() {
             // Abort pay request or checking request
             this.timer && clearTimeout(this.timer);
-            if(this.payStatus=="1"){
+            if (this.payStatus == "1") {
                 this.$router.go(-1);
             }
         },

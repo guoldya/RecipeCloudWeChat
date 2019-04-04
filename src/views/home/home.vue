@@ -275,7 +275,7 @@ export default {
         blidcard() {
             let argu = {}
             this.$router.push({
-                name: 'cardmy',
+                name: 'idcardlist',
                 query: argu
             });
         },
