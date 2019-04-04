@@ -2,7 +2,7 @@
   <div class="choosedepart">
     <Headerapp post-title="选择科室"></Headerapp>
     <div class=" margin50">
-      <Search post-placeholder="请输入医生，科室名称"></Search>
+      <Search type="choosedepart" post-placeholder="请输入医生，科室名称"></Search>
       <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
       <div>
         <!-- <div v-for="(item, index) in spacia" :key="'departsname' + index" :class="active2 === index ? 'mubutton activebtn' : 'mubutton' " @click="switchDE(index)" style=" margin-right: 10px;">

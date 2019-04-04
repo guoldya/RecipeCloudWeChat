@@ -30,10 +30,14 @@
         </p>
         <p class="warnbottom" @click="cardneed">
           电子就诊卡需知</p>
-        <div style="height: 50px"></div>
+
       </div>
     </div>
-    <p @click="blidcard" class="addbTN" v-show="cardlist.length<6">注册电子就诊卡</p>
+    <div v-show="cardlist.length<6">
+      <div style="height: 50px"></div>
+      <p @click="blidcard" class="addbTN">注册电子就诊卡</p>
+    </div>
+
     <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
     <!-- <md-landscape v-model="showPic" :mask-closable="true">
       <div class="codema">

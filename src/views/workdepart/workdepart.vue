@@ -2,7 +2,7 @@
    <div class="workdepart choosedepart">
       <Header post-title="医生排班"  ></Header>
       <div class=" margin50">
-         <Search type="workdepart"></Search>
+         <Search type="workdepart" post-placeholder="请输入医生，科室名称"></Search>
          <!--<input class="oc_val" type="text" id="inputVal" name="names" placeholder="搜索医生、科室"  v-model="value" @input="search(value)"/>-->
           <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
          <div v-if="departData.length!=0" v-show="!loadingtrue">

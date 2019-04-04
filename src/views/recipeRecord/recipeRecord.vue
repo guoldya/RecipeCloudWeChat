@@ -45,7 +45,6 @@
                                 <!--</div>-->
                             <!--</div>-->
                         <!--</div>-->
-
                     <!--</div>-->
                 <!--</div>-->
                 <!--<div class="bButton">-->
@@ -68,7 +67,10 @@
                     <div class="cardText" v-if="i==0">
                         <div @click="recordDetail(i,item.id)">
                             <div class="listData mu-secondary-text-color"><!--class="md-check-group"-->
-                                <span style="margin-left: 0px">{{item.recipeDate | time}}</span>
+                                <md-check-group v-model="favorites" :check="checkedFun(favorites)">
+                                    <md-check :name=i.toString() />
+                                    <span>{{item.recipeDate | time}}</span>
+                                </md-check-group>
                                 <span>{{item.code}}</span>
                             </div>
                             <p class="partLine"></p>
@@ -101,7 +103,10 @@
                     <div v-else class="cardText">
                         <div @click="recordDetail(i,item.id)">
                             <div class="listData mu-secondary-text-color"><!--class="md-check-group"-->
-                                <span style="margin-left: 0px">{{item.recipeDate | time}}</span>
+                                <md-check-group v-model="favorites" :check="checkedFun(favorites)">
+                                    <md-check :name=i.toString() />
+                                    <span>{{item.recipeDate | time}}</span>
+                                </md-check-group>
                                 <span>{{item.code}}</span>
                                 <!--<span class="mu-secondary-text-color">{{item.isChecked}}</span>-->
                             </div>
@@ -134,6 +139,19 @@
                     </div>
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
+                <div class="bButton">
+                    <div class="grayButton" @click="allSelect()">
+                        <div>
+                            <md-check-group class="checkGroup" v-model="favorites" :check="checkedFun(favorites)">
+                                <md-check :name="selectAll" />
+                                <span>全选</span>
+                            </md-check-group>
+                        </div>
+                    </div>
+                    <div class="blueButton" @click="selectStore()">
+                        <span>选药店</span>
+                    </div>
+                </div>
             </div>
             <div v-show="!loadingtrue" class="nullDiv" v-else>
                 <img src="@/assets/images/null1.png">

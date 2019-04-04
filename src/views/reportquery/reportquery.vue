@@ -27,7 +27,7 @@
                             <div class="appTitle">
                                 <span>{{item.name}}</span>
                             </div>
-                            <div class="cardText" style="padding-top: 6px">
+                            <div class="cardText" style="padding-top: 14px">
                                 <span>检查科室：
                                     <span class="mu-light-text-color">{{item.execDept}}（{{item.hospital}}）</span>
                                 </span>

@@ -14,15 +14,15 @@
                         <span>{{nowDate}}</span>
                     </div>
                     <div class="cardText alignJ">
-                        <div class="parElem">
-                            <span class="sonElem">开单时间</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.createTime}}</span></span>
-                        </div>
-                        <div class="parElem">
+                        <div class="parElem listData">
                             <span class="sonElem">科室</span>
-                            <span>：{{item.examDept}}（{{item.hospital}}） </span>
+                            <span class="mu-light-text-color">{{item.examDept}}（{{item.hospital}}） </span>
                         </div>
-                        <div class="payatnow" style="margin-top: 0" @click="rightNowOrder(item.classId,item.id)">
+                        <div class="parElem listData">
+                            <span class="sonElem">开单时间</span>
+                            <span class="mu-secondary-text-color">{{item.createTime}}</span>
+                        </div>
+                        <div class="payatnow"  @click="rightNowOrder(item.classId,item.id)">
                             <span>立即预约</span>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ export default {
   },
   methods: {
     searchT: function () {
+        console.log(this.type);
       if (this.type == "onlines") {
         this.$router.push({
           path: "/resultDoctor"
@@ -27,7 +28,6 @@ export default {
         this.$router.push({
           path: "/hospitalsearch"
         });
-
       } else {
         this.$store.commit("searchTypeFun", this.type);
         this.$router.push({

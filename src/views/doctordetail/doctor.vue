@@ -31,8 +31,10 @@
                 <div class="title">
                     <i class="icon i_info"></i>
                     <span class="doc_info_txt">医生介绍</span>
-                    <div class="doc_open_btn">
-                        <span id="open" @click="isSeemore=!isSeemore" class="openUp">展开
+                    <div class="doc_open_btn" @click="isSeemore=!isSeemore">
+                        <span id="open"  class="openUp">
+                            <span :class="{'disNone':isSeemore,}">展开</span>
+                            <span :class="{'disNone':!isSeemore,}">收起</span>
                             <!--<i class="icon i_open" :class="{'nomore':isSeemore,}"></i>-->
                             <img :class="{'nomore':isSeemore,}" src="@/assets/images/icon_up.png" alt="">
                         </span>
@@ -82,8 +84,10 @@
                 <div class="title">
                     <span class="doc_info_txt">查看全部排班</span>
                     <div class="doc_open_btn">
-                        <span @click="islook=!islook" class="openUp">展开
+                        <span @click="islook=!islook" class="openUp">
                             <!--<i class="icon i_open" :class="{'nomore':islook,}"></i>-->
+                            <span :class="{'disNone':islook,}">展开</span>
+                            <span :class="{'disNone':!islook,}">收起</span>
                             <img :class="{'nomore':islook,}" src="@/assets/images/icon_up.png" alt="">
                         </span>
                     </div>

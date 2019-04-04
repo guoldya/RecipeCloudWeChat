@@ -63,6 +63,7 @@ export default {
             isCashierCaptcha: false,
             cashierAmount: '',
             cashierResult: 'success',
+            payStatus:'',
             cashierChannels: [
                 {
                     icon: 'cashier-icon-2',
@@ -111,7 +112,6 @@ export default {
         },
         rightPay(){
             this.isCashierhow = !this.isCashierhow;
-            console.log(this.cordInfoData)
             this.cashierAmount = this.cordInfoData[0].money.toFixed(2);
             // this.$axios.put(fconfirm_pay_url, { id: this.feeId }).then((res) => {
             //     if (res.data.code == '200') {
@@ -228,6 +228,7 @@ export default {
                 this.$axios.post(now_pay_url, nowPayParams).then((res) => {
                     if (res.data.code == '200') {
                         this.okParams=res.data.data;
+                        this.payStatus="1";
                         this.doPay();
                     } else {
                         this.$toast.info(res.data.msg);
@@ -247,6 +248,9 @@ export default {
         onCashierCancel() {
             // Abort pay request or checking request
             this.timer && clearTimeout(this.timer)
+            if(this.payStatus=="1"){
+                this.$router.go(-1);
+            }
         },
         setStyle(rowIndex, row) {
             if (row.id === this.currentRow.id) {

@@ -31,22 +31,22 @@
                             <span>{{item.type}}费</span>
                             <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
                         </div>
-                        <div class="cardText alignJ">
-                            <p class="parElem">
+                        <div class="cardText">
+                            <p class="parElem listData">
                                 <span class="sonElem">患者</span>
-                                <span>：{{item.patientName}}</span>
+                                <span>{{item.patientName}}</span>
                             </p>
-                            <p class="parElem">
+                            <p class="parElem listData">
                                 <span class="sonElem">医院</span>
-                                <span>：{{item.hospital}}</span>
+                                <span>{{item.hospital}}</span>
                             </p>
-                            <p v-if="disType == 1" class="parElem">
+                            <p v-if="disType == 1" class="parElem listData">
                                 <span class="sonElem">开单时间</span>
-                                <span>：{{item.createTime}}</span>
+                                <span>{{item.createTime}}</span>
                             </p>
-                            <p v-if="disType == 2" class="parElem">
+                            <p v-if="disType == 2" class="parElem listData">
                                 <span class="sonElem">支付时间</span>
-                                <span>：{{item.payTime}}</span>
+                                <span>{{item.payTime}}</span>
                             </p>
                             <div class="payatnow" v-if="disType == 1">
                                 <span>立即支付</span>
@@ -100,6 +100,7 @@ export default {
 
     },
     mounted() {
+        console.log(this.$route)
         if (this.$store.state.feeActiveId) {
             this.disType = this.$store.state.feeActiveId;
             if (this.$store.state.feeActiveId == 1) { this.type = 0; } else { this.type = 1; }
@@ -214,22 +215,22 @@ export default {
             to.meta.keepAlive = false;
         }
     },
-    // beforeRouteLeave(to, from, next) {
-    //     from.meta.keepAlive = false;
-    //     console.log(next);
-    //     next();
-    //     // if(to.name == "feeinfo"){
-    //     //     if(!from.meta.keepAlive){
-    //     //         from.meta.keepAlive=true;
-    //     //     }
-    //     //     next();
-    //     // }else{
-    //     //     from.meta.keepAlive=false;
-    //     //     to.meta.keepAlive=false;
-    //     //     this.$destroy();
-    //     //     next();
-    //     // }
-    // },
+    //beforeRouteLeave(to, from, next) {
+        // from.meta.keepAlive = false;
+        // console.log(next);
+        // next();
+        // if(to.name == "feeinfo"){
+        //     if(!from.meta.keepAlive){
+        //         from.meta.keepAlive=true;
+        //     }
+        //     next();
+        // }else{
+        //     from.meta.keepAlive=false;
+        //     to.meta.keepAlive=false;
+        //     this.$destroy();
+        //     next();
+        // }
+    //},
     computed: {
 
     },
@@ -249,7 +250,7 @@ export default {
 }
 
 .feerecord .listData span:nth-child(2) {
-  color:  var(--primary--content);
+  color:  var(--primary--right);
 }
 .feerecord .alignJ{
     line-height: 26px;

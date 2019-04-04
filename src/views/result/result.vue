@@ -68,7 +68,12 @@ export default {
             var json = aa.getItem("HistoryList");
             this.HistoryList = JSON.parse(json);
         };
+
         this.searchType = this.$store.state.searchType;
+        // if(this.searchType=="workdepart"){
+        //     aa.clear()
+        // }
+        console.log(this.searchType)
         if (this.searchType == "choosehospital") {
             this.placeholder = "搜索医院"
         }

@@ -176,30 +176,30 @@ body {
 }
 
 /*文字两端对齐*/
-
-.parElem,
 .md-detail-item {
   text-align: justify;
 }
 .md-detail-item {
   line-height: 40px !important;
 }
-.parElem:first-child {
-  padding-top: 10px;
+/*冒号左侧靠右*/
+.listData {
+  font-size: 28px;
+  display: flex;
+  justify-content: space-between;
 }
-.parElem .sonElem/*,
-.md-detail-item div:first-child */{
-  width: 17%;
-  display: inline-table;
+
+.listData span {
+  padding: 12px 0px;
+}
+
+.parElem .sonElem{
+  /*display: inline-block;*/
+  /*width: 21%;*/
+  /*text-align: right;*/
   color: var(--primary--title);
 }
-.parElem .sonElem:after/*,
-.md-detail-item div:first-child:after*/ {
-  content: "";
-  display: inline-block;
-  width: 100%;
-}
-/*医生职称边框*/
+  /*医生职称边框*/
 .headname .levle {
   font-size: 22px;
   border: 2px solid rgb(29, 161, 243);
@@ -208,7 +208,7 @@ body {
   margin-left: 10px;
   display: inline-block;
   height: 44px;
-  padding: 2px 12px 4px;
+  padding: 4px 12px;
   line-height: 36px;
   position: relative;
   top: -2px;
@@ -220,9 +220,9 @@ body {
   border-radius: 8px;
 }
 .payatnow {
-  height: 60px;
   text-align: right;
-  margin-top: 14px;
+  margin-top: 30px;
+  height: 60px;
 }
 .payatnow span {
   font-size: 28px;

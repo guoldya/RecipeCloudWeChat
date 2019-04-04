@@ -5,61 +5,61 @@
             <div v-if="feeActiveId==1"  v-show="!loadingtrue">
                 <div class="flatCard">
                     <div class="cardText alignJ">
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">姓名</span>
                             <span>{{item.name}}</span>
                         </div>
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">性别</span>
                             <span>{{item.sex}}</span>
                         </div>
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">检查科室</span>
                             <span>{{item.execDept}} </span>
                         </div>
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">申请时间</span>
                             <span>{{item.applyTime}} </span>
                         </div>
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">检查类别</span>
                             <span>{{item.type}} </span>
                         </div>
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">检查子类</span>
                             <span>{{item.subType}} </span>
                         </div>
-                        <div class=" cardTextBor parElem">
-                            <span class="sonElem">检查项目</span>
+                        <div class=" cardTextBor listData parElem">
+                            <span class="sonElem ">检查项目</span>
                             <span>{{item.itemName}}</span>
                         </div>
-                        <div class=" cardTextBor parElem">
-                            <span class="sonElem">报告时间</span>
+                        <div class=" cardTextBor listData parElem">
+                            <span class="sonElem ">报告时间</span>
                             <span>{{item.reportTime}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="flatCard margin5 cardBottom">
-                    <div class="cardText alignJ">
-                        <div class="cardTextPP parElem">
+                    <div class="cardText">
+                        <div class=" listData parElem">
                             <span class="sonElem">检查参数</span>
-                            <span style="width: 78%">{{item.param}}</span>
+                            <span style="width: 78%;text-align: right">{{item.param}}</span>
                         </div>
-                        <div class="cardTextPP parElem">
-                            <span class="sonElem"> 检查所见</span>
-                            <span style="width: 78%">{{item.findings}}</span>
+                        <div class="listData parElem">
+                            <span class="sonElem" style="width: 48%"> 检查所见</span>
+                            <span style="text-align: justify">{{item.findings}}</span>
                         </div>
-                        <div class="cardTextPP parElem">
+                        <div class="listData parElem">
                             <span class="sonElem"> 印象</span>
-                            <span style="width: 78%;">{{item.impression}}</span>
+                            <span style="width: 78%;text-align: right">{{item.impression}}</span>
                         </div>
-                        <div class="cardTextPP parElem">
+                        <div class="listData parElem">
                             <span class="sonElem"> 建议</span>
-                            <span style="width: 78%;">{{item.advise}}飒飒飒飒飒飒飒飒啊啊啊啊啊啊啊啊啊啊啊积三分hi师傅师傅和和fish粉丝发十分十分十分十分十分火山凤凰</span>
+                            <span style="width: 78%;text-align: right">{{item.advise}}</span>
                         </div>
-                        <div class="cardTextPP parElem">
+                        <div class="listData parElem">
                             <span class="sonElem">备注</span>
-                            <span style="width: 78%">{{item.remark}}</span>
+                            <span style="width: 78%;text-align: right">{{item.remark}}</span>
                         </div>
                     </div>
                 </div>
@@ -67,41 +67,41 @@
             <div v-if="feeActiveId==2"  v-show="!loadingtrue">
                 <div class="flatCard">
                     <div class="cardText alignJ">
-                        <div class="parElem">
+                        <div class="parElem listData">
                             <span class="sonElem">姓名</span>
                             <span>{{item.name}}</span>
                         </div>
-                        <div class="parElem">
+                        <div class="parElem listData">
                             <span class="sonElem">性别</span>
                             <span>{{item.sex}}</span>
                         </div>
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">年龄</span>
                             <span>{{item.age}}岁</span>
                         </div>
-                        <div class="parElem">
+                        <div class="parElem listData">
                             <span class="sonElem">科别</span>
                             <span>{{item.execDept}}</span>
                         </div>
-                        <div class=" parElem">
+                        <div class=" parElem listData">
                             <span class="sonElem">收样日期</span>
                             <span>{{item.applyTime}}</span>
                         </div>
-                        <div class="parElem">
+                        <div class="parElem listData">
                             <span class="sonElem">标本类型</span>
                             <span>{{item.sampleType}}</span>
                         </div>
-                        <div class="parElem">
+                        <div class="parElem listData">
                             <span class="sonElem">送检项目</span>
                             <span>{{item.itemName}}</span>
                         </div>
-                        <div class="parElem">
+                        <div class="parElem listData">
                             <span class="sonElem">报告时间</span>
                             <span>{{item.reportTime}}</span>
                         </div>
-                        <div class="cardTextPP parElem">
-                            <span class="sonElem">临床诊断</span>
-                            <span style="width: 78%">{{item.diag}}</span>
+                        <div class=" listData parElem">
+                            <span class="sonElem" style="width: 48%">临床诊断</span>
+                            <span>{{item.diag}}</span>
                         </div>
                     </div>
                 </div>
@@ -300,18 +300,22 @@ export default {
      .reportinfo .flatCard{
          border-top: none;
      }
+    .reportinfo .parElem{
+        line-height: 46px;
+    }
     /*.cardBottom div{*/
         /*padding-top: 0;*/
     /*}*/
-    .cardBottom .alignJ .parElem span:first-child{
-        position: relative;
-        /*top: 16px;*/
-    }
-     .reportinfo .alignJ .parElem span:nth-child(2){
-        margin-left: 40px;
-         color:  var(--primary--content);
-     }
-    .reportinfo .alignJ .parElem:first-child{
-        padding-top: 0;
-    }
+    /*.cardBottom .alignJ .parElem span:first-child{*/
+        /*position: relative;*/
+        /*!*top: 16px;*!*/
+    /*}*/
+     /*.reportinfo .alignJ .parElem span:nth-child(2){*/
+        /*margin-left: 40px;*/
+         /*color:  var(--primary--content);*/
+     /*}*/
+    /*.reportinfo .alignJ .parElem:first-child{*/
+        /*padding-top: 0;*/
+    /*}*/
+
  </style>

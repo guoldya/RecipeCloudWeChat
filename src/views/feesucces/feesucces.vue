@@ -1,7 +1,17 @@
 <template>
 
   <div class=" feesucces examineDetail page-loadmore">
-    <Header post-title="预约记录"></Header>
+    <div class="navigation">
+      <i class="icon-iconfontjiantou" @click="$router.go(-2)">
+        <img src="@/assets/images/icon_back.png">
+      </i>
+      <div class="navigation-content">
+        预约记录
+      </div>
+      <div class="right">
+        <slot></slot>
+      </div>
+    </div>
     <div class="flatCard margin55">
       <div class="successImg">
         <img src="@/assets/images/icon_success.png" alt="">

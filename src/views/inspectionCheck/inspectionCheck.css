@@ -35,16 +35,6 @@
    font-size: 30px;
 }
 
-.listData {
-   font-size: 28px;
-   display: flex;
-   justify-content: space-between;
-}
-
-.listData span {
-   padding: 8px 0px;
-}
-
 .md-field {
    padding: 0;
 }
