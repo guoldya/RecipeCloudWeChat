@@ -56,7 +56,7 @@
               <span>检查科室：{{item.examDept}}</span>
             </p>
             <p>检查项目：{{item.className}}</p>
-            <p v-show="item.status==2" class="learnMore" @click="intolineupinfo(item)">
+            <p v-if="item.reportId" class="learnMore" @click="intolineupinfo(item)">
               详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
             </p>
           </div>

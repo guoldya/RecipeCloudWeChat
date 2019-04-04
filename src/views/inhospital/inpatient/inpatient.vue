@@ -5,7 +5,7 @@
       <div class="inhospitalcontent">
          <img src="@/assets/images/hh1.png" alt="" width="94%" @click="payfee">
          <img src="@/assets/images/hh2.png" alt="" width="94%" @click="admission">
-         <img src="@/assets/images/hh3.png" alt="" width="94%" @click="quickpay">
+         <!-- <img src="@/assets/images/hh3.png" alt="" width="94%" @click="quickpay"> -->
       </div>
    </div>
 </template>
