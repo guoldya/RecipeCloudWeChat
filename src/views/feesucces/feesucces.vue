@@ -17,19 +17,19 @@
         <img src="@/assets/images/icon_success.png" alt="">
         <p>支付成功</p>
       </div>
-      <div class="bacCenter">
+      <div class="outCarint">
         <div class="margin16">
-          <div>
-            <span>付款总额： </span>
+          <div class="listData">
+            <span>付款总额</span>
             <span class="mu-secondary-text-color">￥{{jumpPar.money |keepTwoNum}}</span>
           </div>
-          <div>
-            <span>支付时间</span>：
+          <div class="listData">
+            <span>支付时间</span>
             <span class="mu-secondary-text-color">{{jumpPar.payTime}}</span>
 
           </div>
-          <div>
-            <span>订单单号：</span>
+          <div class="listData">
+            <span>订单单号</span>
             <span class="mu-secondary-text-color">{{jumpPar.orderCode}}</span>
           </div>
         </div>
@@ -147,14 +147,5 @@ export default {
 }
 .examineDetail .backH{
   margin-top: 60px;
-}
-.examineDetail .bacCenter{
-  background-color: #ffffff;
-  padding-bottom: 10px;
-  line-height: 52px;
-}
-.feesucces .bacCenter div div{
-  width: 60%;
-  margin: 0 auto;
 }
 </style>
