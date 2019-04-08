@@ -1,22 +1,6 @@
 <template>
     <div class="inspectionCheck">
-        <header class="aui-navBar aui-navBar-fixed"  >
-            <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
-                <img src="@/assets/images/icon_back.png">
-            </span>
-            <div class="aui-center">
-                <span class="aui-center-title">慢病续方</span>
-            </div>
-            <!--<span class="aui-navBar-item">-->
-                <!--<div>-->
-                    <!--<md-field>-->
-                        <!--<md-field-item :content="selectorValue" @click="showSelector" solid/>-->
-                    <!--</md-field>-->
-                    <!--<md-selector v-model="isSelectorShow" default-value="7" :data="optionsData[0]" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>-->
-                <!--</div>-->
-                <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
-            <!--</span>-->
-        </header>
+        <Header post-title="慢病续方"  ></Header>
         <div class="margin50">
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="titleIndex === 1">

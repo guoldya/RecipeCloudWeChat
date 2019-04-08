@@ -48,6 +48,9 @@ export default {
   /*灰色背景*/
   --primary--light:#CCCBCB;
 }
+.payMoney{
+  font-size:50px ;
+}
 /*冒号左边文字*/
 .colon-left{
   width: 17%;
@@ -192,12 +195,26 @@ body {
 .listData span {
   padding: 12px 0px;
 }
-
+.parElem span:nth-child(2){
+  /*width: 78%;*/
+  /*!*text-align: right;*!*/
+  /*text-align: justify;*/
+  text-align: justify;
+  color: var(--primary--right);
+}
 .parElem .sonElem{
-  /*display: inline-block;*/
-  /*width: 21%;*/
-  /*text-align: right;*/
   color: var(--primary--title);
+  display: flex;
+  align-items: center;
+  width: 48%;
+}
+.gButton{
+  background-color: var(--primary--content);
+  width: 60%;
+}
+.bButton{
+  background-color: var(--primary);
+  width: 40%;
 }
   /*医生职称边框*/
 .headname .levle {
@@ -393,7 +410,7 @@ p {
   margin-top: 120px;
 }
 .outCarint {
-  padding: 0 24px;
+  padding: 0 30px;
 }
 .appTitle {
   padding: 24px 30px;
@@ -505,7 +522,7 @@ p {
   color: var(--primary);
 }
 .partLine {
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 2px solid #e9e9e9;
   width: 100%;
   margin: 12px 0px;
 }

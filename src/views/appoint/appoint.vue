@@ -11,19 +11,16 @@
               <span class="mu-secondary-text-color">{{item.status | examStatus}}</span>
             </div>
             <div class="listData" style="padding-top: 6px">
-              <span>预约科室：
-                <span class="mu-light-text-color">{{item.examDept}}（{{item.hospital}}）</span>
-              </span>
+              <span>预约科室</span>
+              <span class="mu-light-text-color">{{item.examDept}}（{{item.hospital}}）</span>
             </div>
             <div class="listData">
-              <span>预约项目：
-                <span class="mu-light-text-color">{{item.className}}</span>
-              </span>
+              <span>预约项目</span>
+              <span class="mu-light-text-color">{{item.className}}</span>
             </div>
             <div class="listData">
-              <span>预约日期：
-                <span class="mu-light-text-color">{{item.serialTime}}</span>
-              </span>
+              <span>预约日期</span>
+              <span class="mu-light-text-color">{{item.serialTime}}</span>
             </div>
           </div>
         </div>

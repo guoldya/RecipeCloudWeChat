@@ -3,18 +3,19 @@
   <div class="select-people">
     <Header post-title="选择就诊人"></Header>
     <ul>
-      <li>
+      <li v-for="(item,index) in familyList" :key="index" @click="selectPeople(item)">
         <img src="../images/m.png" alt="">
-        <p>弟弟</p>
+        <p>{{item.name}}</p>
       </li>
-      <li>
+
+      <!-- <li>
         <img src="../images/w.png" alt="">
         <p>妈妈</p>
       </li>
       <li>
         <img src="../images/m.png" alt="">
         <p>爸爸</p>
-      </li>
+      </li> -->
       <!-- <router-link tag="li" to="addPeople">
         <img src="../images/w.png" alt="">
         <p class="addbTN">添加家人</p>
@@ -27,10 +28,36 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
+let appbdDrugsAlertreadselectMember = "/app/bizPatientCard/read/selectMemberByCard"
 export default {
   data() {
     return {
+      familyList: '',
     }
+  },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    // 初始化
+    ...mapActions(["chat/setPatienDetail"]),
+    async init() {
+      try {
+        let res = await this.$axios.put(appbdDrugsAlertreadselectMember, {});
+        if (res.data.code != 200) {
+          throw Error(res.data.msg);
+        }
+        this.familyList = res.data.rows;
+      } catch (error) {
+
+        console.log(error.message);
+      }
+    },
+    selectPeople(data) {
+      this["chat/setPatienDetail"](data);
+      this.$router.go(-1);
+    },
   }
 }
 </script>

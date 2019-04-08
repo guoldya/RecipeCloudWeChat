@@ -1,10 +1,10 @@
 <template>
     <div class="acceptAdd">
         <Header post-title="选择收获地址"  ></Header>
-        <div class="outCarint margin45">
-            <div class="outCarint">
+        <div class="margin55">
+            <div class="flatCard outCarint ">
                 <div   v-for="(item,i) in addInfo">
-                    <div class="cardText submitUser">
+                    <div class="submitUser">
                         <div class="iconInfo">
                             <div class="addImg" >
                                 <md-radio :name=i.toString() v-model="checked" @input="selectFun(checked)"  :select="selectRadio(checked)"/>
@@ -26,9 +26,7 @@
                     </div>
                     <p class="partLine" v-if="i!=addInfo.length-1"></p>
                 </div>
-                <div class="addAddress">
-                    <md-button type="primary" round>新增收获地址</md-button>
-                </div>
+                <p class="addbTN">新增收获地址</p>
             </div>
 
         </div>
@@ -60,7 +58,12 @@
             checkedFun:function(val){},
             selectFun(val){
                 setTimeout(()=>{
-                    let argu = {params:val,name:this.addInfo[val].name,tel:this.addInfo[val].tel,add:this.addInfo[val].add};
+                    let argu = {
+                        params:val,
+                        name:this.addInfo[val].name,
+                        tel:this.addInfo[val].tel,
+                        add:this.addInfo[val].add,
+                        addDefault:this.addInfo[val].addDefault};
                     this.$router.push({
                         name: 'submitOrder',
                         query: argu
@@ -108,9 +111,10 @@
     .acceptAdd .partLine{
         margin-bottom: 12px;
     }
-    .acceptAdd .md-button{
-        position: fixed;
-        bottom: 20px;
-        width: 654px;
+    .acceptAdd .flatCard:first-child{
+        border-top: none;
+    }
+    .acceptAdd .outCarint{
+        padding: 24px 30px;
     }
 </style>

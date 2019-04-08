@@ -1,6 +1,4 @@
-.submitOrder .cardText{
-    padding:15px 0px;
-}
+
 .submitOrder .submitUser{
     display: flex;
     justify-content: space-between;
@@ -30,7 +28,7 @@
     justify-content: flex-end;
 }
 .submitOrder .med{
-    display: flex
+    display: flex;
 }
 .submitOrder .medRight{
     width: 100%;
@@ -39,19 +37,21 @@
 .submitOrder .medInfo,.submitOrder .onlinePay div{
     display: flex;
     justify-content: space-between;
+    padding: 12px 0;
 }
 .submitOrder .storeName{
     font-size: 30px;
     font-weight: bold;
-}
-.grayButton{
-    width: 740px;
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
 }
 .grayButton span{
     margin: 0 auto;
 }
 .submitOrder .smallTotal{
     text-align: right;
+    padding: 12px 0;
 }
 .submitOrder .smallTotal span:first-child{
     margin-right: 20px;
@@ -65,4 +65,16 @@
 }
 .submitOrder .storeInfo .myStore{
     display: flex;
+}
+.submitOrder .outCarint{
+    padding: 16px 30px;
+}
+.submitOrder .addbTN{
+   display: flex;
+    /*justify-content: space-around;*/
+    background-color: transparent;
+}
+.submitOrder .addbTN span{
+    /*width: 50%;*/
+    display: inline-block;
 }

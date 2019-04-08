@@ -19,12 +19,14 @@
     <!-- <div class="buy-service-btn">
       <md-button type="primary" round @click="isCashierhow=true">立即支付</md-button>
     </div> -->
-    <p class="addbTN" @click="isCashierhow=true">立即支付</p>
+    <p class="addbTN" @click="payNow">立即支付</p>
     <md-cashier ref="cashier" @pay="onCashierPay" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :default-index=0 :payment-amount="cashierAmount"></md-cashier>
   </div>
 </template>
 <script>
-let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay"
+import { mapState, mapActions } from "vuex";
+let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
+let appbizOnlineServiceRecordupdate = "/app/bizOnlineServiceRecord/update";
 export default {
   data() {
     return {
@@ -50,7 +52,27 @@ export default {
     }
   },
   methods: {
+
+    ...mapActions(["chat/setPatienDetail"]),
+    payNow() {
+      this.isCashierhow = true;
+      // this.$axios.post(appbizOnlineServiceRecordupdate, nowPayParams).then((res) => {
+      //   if (res.data.code == '200') {
+
+      //   } else {
+
+      //   }
+      // }).catch(function (err) {
+      //   console.log(err);
+      // });
+    },
+
     onCashierPay(item) {
+
+      this["chat/setPatienDetail"]({
+        name: "点击选择就诊人",
+        id:null
+      });
       this.$router.push({
         name: "pictureConsult",
         query: { name: this.$route.query.name, id: this.$route.query.id }
@@ -72,6 +94,8 @@ export default {
         console.log(err);
       });
     },
+
+
   }
 }
 </script>

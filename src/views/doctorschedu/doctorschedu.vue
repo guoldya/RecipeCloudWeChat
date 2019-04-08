@@ -21,7 +21,15 @@
                         <p :class="{'ismore':!isSeemore,'yy_dateAA':isSeemore}">
                             介绍：{{doctorData.introduce}}
                         </p>
-                        <p class="open" @click="isSeemore=!isSeemore" v-show="moreButton"> 更多</p>
+                        <!--<p class="open" @click="isSeemore=!isSeemore"> 更多</p>-->
+                        <div class="open" @click="isSeemore=!isSeemore"  v-show="moreButton">
+                            <span class="openUp">
+                                <span :class="{'disNone':isSeemore,}">展开</span>
+                                <span :class="{'disNone':!isSeemore,}">收起</span>
+                                <!--<i class="icon i_open" :class="{'nomore':isSeemore,}"></i>-->
+                                <img :class="{'down':isSeemore,}" src="@/assets/images/icon_up.png" alt="">
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

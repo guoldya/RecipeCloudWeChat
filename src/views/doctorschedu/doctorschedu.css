@@ -38,11 +38,12 @@
     height: auto;
 }
 .doctorschedu .open{
-    padding: 10px 14px 0;
     text-align: right;
 }
 .doctorschedu .content{
     padding: 14px 0;
+    line-height: 42px;
+    text-align: justify;
 }
 .doctorschedu .content p:first-child{
     padding-bottom: 16px;

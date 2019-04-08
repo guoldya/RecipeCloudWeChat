@@ -1,100 +1,97 @@
 <template>
     <div class="selectStore">
         <Header post-title="药店选择"  ></Header>
-        <div class="outCarint margin45">
-            <div class="outCarint">
-                <div class="card margin16" v-for="(item,i) in acceptJumpData">
-                    <div class="cardText">
+        <div class="margin55">
+            <div class="flatCard margin5" v-for="(item,i) in acceptJumpData">
+                <div class="cardText">
+                    <div>
+                        <span>{{item.date}}</span>
+                        <span style="margin-left: 38px">{{item.no}}</span>
+                    </div>
+                    <p class="partLine"></p>
+                    <div class="userInfo">
+                        <span>{{item.add}}</span>
+                        <span>{{item.userName}}</span>
+                        <span>{{item.dept}}</span>
+                    </div>
+                    <div class="fold listData">
+                        <span class="mu-light-text-color">上呼吸道感染</span>
+                    </div>
+                    <div class="foldImg" @click="foldFun(i)">
                         <div>
-                            <span>{{item.date}}</span>
-                            <span style="margin-left: 38px">{{item.no}}</span>
+                            <img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">
+                            <img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">
+                            <div style="clear:both;"></div>
                         </div>
-                        <p class="partLine"></p>
-                        <div class="userInfo">
-                            <span>{{item.add}}</span>
-                            <span>{{item.userName}}</span>
-                            <span>{{item.dept}}</span>
-                        </div>
-                        <div class="fold listData">
-                            <span class="mu-light-text-color">上呼吸道感染</span>
-                        </div>
-                        <div class="foldImg" @click="foldFun(i)">
-                            <div>
-                                <img src="@/assets/images/icon_down@2x.png" alt="" :class="imgIndex === i ? 'block' : 'none' ">
-                                <img src="@/assets/images/icon_up@2x.png" alt="" :class="imgIndex === i ? 'none' : 'block' ">
-                                <div style="clear:both;"></div>
+                        <div :class="imgIndex === i ? 'block' : 'none'" v-for="list in item.userData">
+                            <div class="listData">
+                                <span>{{list.med}}</span>
                             </div>
-                            <div :class="imgIndex === i ? 'block' : 'none'" v-for="list in item.userData">
-                                <div class="listData">
-                                    <span>{{list.med}}</span>
-                                </div>
-                                <div class="listData userNum">
-                                    <span>{{list.weight}}</span>
-                                    <span>{{list.num}}盒</span>
-                                </div>
+                            <div class="listData userNum">
+                                <span>{{list.weight}}</span>
+                                <span>{{list.num}}盒</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="selectFilter">
-                    <p class="title">选择药店</p>
-                    <div class="selectContent">
-                        <div class="pageContent" v-for="(item, index) in changeTitle">
-                            <div class="updownImg" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
-                                <span>{{item.title}}</span>
-                                <div v-if="index==1" class="imgDiv">
-                                    <div><img :src="upImg" alt=""></div>
-                                    <div><img :src="openImg" alt=""></div>
-                                </div>
-                                <div v-if="index==2" class="imgDiv">
-                                    <div><img :src="farUpImg" alt=""></div>
-                                    <div><img :src="farOpenImg" alt=""></div>
-                                </div>
-                                <div v-if="index==3" class="singleImg">
-                                    <img :src="filterUpImg" alt="">
-                                </div>
+            </div>
+            <div class="selectFilter outCarint">
+                <p class="title">选择药店</p>
+                <div class="selectContent">
+                    <div class="pageContent" v-for="(item, index) in changeTitle">
+                        <div class="updownImg" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">
+                            <span>{{item.title}}</span>
+                            <div v-if="index==1" class="imgDiv">
+                                <div><img :src="upImg" alt=""></div>
+                                <div><img :src="openImg" alt=""></div>
+                            </div>
+                            <div v-if="index==2" class="imgDiv">
+                                <div><img :src="farUpImg" alt=""></div>
+                                <div><img :src="farOpenImg" alt=""></div>
+                            </div>
+                            <div v-if="index==3" class="singleImg">
+                                <img :src="filterUpImg" alt="">
                             </div>
                         </div>
                     </div>
-                    <div class="hospital" v-for="(item,i) in hosData" :class="farIndex==3? 'none' : 'block' ">
-                        <div style="margin-bottom: 10px">
-                            <div class="hosImg" @click="storeInfo">
-                                <img src="@/assets/images/example.png" alt="" style=" ">
+                </div>
+                <div class="hospital" v-for="(item,i) in hosData" :class="farIndex==3? 'none' : 'block' ">
+                    <div style="margin-bottom: 10px">
+                        <div class="hosImg" @click="storeInfo">
+                            <img src="@/assets/images/example.png" alt="" style=" ">
+                        </div>
+                        <div class="hosInfo" @click="submitOrder">
+                            <div>
+                                <span>{{item.name}}</span>
+                                <span class="mu-secondary-text-color">{{item.type}}</span>
                             </div>
-                            <div class="hosInfo" @click="submitOrder">
-                                <div>
-                                    <span>{{item.name}}</span>
-                                    <span class="mu-secondary-text-color">{{item.type}}</span>
-                                </div>
-                                <div>
-                                    <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater>
-                                    <span class="mu-secondary-text-color">{{item.score}}分</span>
-                                </div>
-                                <div>
-                                    <span>共{{item.medNum}}种药品 {{item.fee}}元</span>
-                                    <span>{{item.far}}km</span>
-                                </div>
+                            <div>
+                                <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater>
+                                <span class="mu-secondary-text-color">{{item.score}}分</span>
+                            </div>
+                            <div>
+                                <span>共{{item.medNum}}种药品 {{item.fee}}元</span>
+                                <span>{{item.far}}km</span>
                             </div>
                         </div>
-                        <p v-if="i!=hosData.length-1" class="partLine"></p>
                     </div>
-                    <div class="hospital" :class="farIndex==3? 'filterOpen' : 'filterClose' ">
-                        <div class="method">
-                            <img src="@/assets/images/icon_delivery.png" alt="" style=" ">
-                            <span class="mu-light-text-color">送货方式</span>
-                        </div>
-                        <div class="toHome">
+                    <p v-if="i!=hosData.length-1" class="partLine"></p>
+                </div>
+                <div class="hospital" :class="farIndex==3? 'filterOpen' : 'filterClose' ">
+                    <div class="method">
+                        <img src="@/assets/images/icon_delivery.png" alt="" style=" ">
+                        <span class="mu-light-text-color">送货方式</span>
+                    </div>
+                    <div class="toHome">
                             <span v-for="(item, index) in shopMethod" :key="'shopMethod' + index" @click="shopMethodFun(index)" :class="methodIndex === index ? 'methodTabAcitive' : '' ">
                                 {{item.title}}
                             </span>
-                        </div>
-                        <div class="methodButton">
-                            <md-button type="default" round @click="reset">重置</md-button>
-                            <md-button type="primary" round @click="confirm">确定</md-button>
-                        </div>
+                    </div>
+                    <div class="methodButton">
+                        <md-button type="default" round @click="reset">重置</md-button>
+                        <md-button type="primary" round @click="confirm">确定</md-button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -254,9 +251,16 @@ export default {
 };
 </script>
 <style   scoped>
-.selectFilter .title {
+    .selectFilter /deep/.small-icon {
+        padding: 10px !important;
+    }
+    .selectFilter /deep/.rater-box {
+        background-color: transparent;
+    }
+    .selectFilter .title {
   font-size: 32px;
   font-weight: bold;
+    padding: 24px 0;
 }
 /deep/.md-tab-bar-ink {
   top: 84px !important;
@@ -279,7 +283,7 @@ export default {
 .selectContent {
   display: flex;
   justify-content: space-between;
-  padding: 24px 52px;
+  padding:0  52px 24px;
 }
 .selectContent .pageContent span {
   width: 64px;
@@ -381,4 +385,7 @@ export default {
 .filterClose {
   display: none;
 }
+    .selectStore .flatCard{
+        border-top: none;
+    }
 </style>

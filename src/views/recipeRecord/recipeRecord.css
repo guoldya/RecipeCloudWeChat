@@ -41,8 +41,8 @@
 .recipeRecord .selfButton{
     margin-bottom: 40px;
 }
-/deep/.md-icon.icon-font.md{
-    font-size: 46px !important;
+.md-icon.icon-font.md{
+    font-size: 42px !important;
 }
 .userNum span{
     padding-top: 0px;
@@ -64,8 +64,6 @@
     background-color: #42484A;
     width: 240px;
     height: 100px;
-    border-top-left-radius: 64px;
-    border-bottom-left-radius: 64px;
 }
 .grayButton span{
     color: #fff;
@@ -92,12 +90,13 @@
 .recipeRecord .checkGroup span{
     margin-left: 12px;
 }
-.checkGroup .md-check{
-    height: 92px;
-    line-height: 92px;
+.md-check{
+    margin: 0;
 }
-
-
+.checkGroup .md-check{
+    height: 100px;
+    line-height: 100px;
+}
 .selfButton {
     width: 654px;
     height: 100px;
@@ -115,5 +114,12 @@
 }
 .recipeRecord .flatCard{
     border-top: none;
+}
+.recipeRecord .liatData{
+    padding: 6px 0;
+}
+.recipeRecord .addbTN span{
+    /*width: 50%;*/
+    display: inline-block;
 }
 

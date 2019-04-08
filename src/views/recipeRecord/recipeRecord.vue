@@ -63,24 +63,26 @@
             <!--</div>-->
 
             <div v-if="efficacyData.length!=0" v-show="!loadingtrue">
-                <div class="flatCard outCarint margin5" v-for="(item,i) in efficacyData" :key="i">
-                    <div class="cardText" v-if="i==0">
-                        <div @click="recordDetail(i,item.id)">
-                            <div class="listData mu-secondary-text-color"><!--class="md-check-group"-->
+                <div class="flatCard cardText margin5" v-for="(item,i) in efficacyData" :key="i">
+                    <div v-if="i==0">
+                        <div>
+                            <div class="listData mu-secondary-text-color" @click="getJumpId(item.id)"><!--class="md-check-group"-->
                                 <md-check-group v-model="favorites" :check="checkedFun(favorites)">
-                                    <md-check :name=i.toString() />
-                                    <span>{{item.recipeDate | time}}</span>
+                                    <md-check :name=i.toString()  class="lg"/>
+                                    <span style="margin-left: 4px">{{item.recipeDate | time}}</span>
                                 </md-check-group>
                                 <span>{{item.code}}</span>
                             </div>
                             <p class="partLine"></p>
-                            <div class="listData blod">
-                                <span>{{item.orgName}}</span>
-                                <span>{{item.patientName}}</span>
-                                <span>{{item.dept}}</span>
-                            </div>
-                            <div class="fold listData">
-                                <span>{{item.diag}}</span>
+                            <div  @click="recordDetail(i,item.id)">
+                                <div class="listData blod">
+                                    <span>{{item.orgName}}</span>
+                                    <span>{{item.patientName}}</span>
+                                    <span>{{item.dept}}</span>
+                                </div>
+                                <div class="fold listData">
+                                    <span>{{item.diag}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="foldImg" @click="foldFun(i)">
@@ -91,7 +93,7 @@
                                 </div>
                                 <div class="listData userNum mu-light-text-color" >
                                     <span>{{list.spec}}</span>
-                                    <span>{{list.total}} {{item.pickUnit}}</span>
+                                    <span>{{list.total}} {{list.packUnit}}</span>
                                 </div>
                             </div>
                             <div>
@@ -100,24 +102,26 @@
                             </div>
                         </div>
                     </div>
-                    <div v-else class="cardText">
-                        <div @click="recordDetail(i,item.id)">
-                            <div class="listData mu-secondary-text-color"><!--class="md-check-group"-->
+                    <div v-else>
+                        <div>
+                            <div class="listData mu-secondary-text-color" @click="getJumpId(item.id)"><!--class="md-check-group"-->
                                 <md-check-group v-model="favorites" :check="checkedFun(favorites)">
                                     <md-check :name=i.toString() />
-                                    <span>{{item.recipeDate | time}}</span>
+                                    <span style="margin-left: 4px">{{item.recipeDate | time}}</span>
                                 </md-check-group>
                                 <span>{{item.code}}</span>
                                 <!--<span class="mu-secondary-text-color">{{item.isChecked}}</span>-->
                             </div>
                             <p class="partLine"></p>
-                            <div class="listData blod">
-                                <span>{{item.orgName}}</span>
-                                <span>{{item.patientName}}</span>
-                                <span>{{item.dept}}</span>
-                            </div>
-                            <div class="fold listData">
-                                <span>{{item.diag}}</span>
+                            <div  @click="recordDetail(i,item.id)">
+                                <div class="listData blod">
+                                    <span>{{item.orgName}}</span>
+                                    <span>{{item.patientName}}</span>
+                                    <span>{{item.dept}}</span>
+                                </div>
+                                <div class="fold listData">
+                                    <span>{{item.diag}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="foldImg" @click="foldFun(i)">
@@ -128,7 +132,7 @@
                                 </div>
                                 <div class="listData userNum mu-light-text-color" >
                                     <span>{{list.spec}}</span>
-                                    <span>{{list.total}} {{item.pickUnit}}</span>
+                                    <span>{{list.total}} {{list.packUnit}}</span>
                                 </div>
                             </div>
                             <div>
@@ -139,7 +143,8 @@
                     </div>
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
-                <div class="bButton">
+                <div style="height: 27px"></div>
+                <div class="bButton addbTN">
                     <div class="grayButton" @click="allSelect()">
                         <div>
                             <md-check-group class="checkGroup" v-model="favorites" :check="checkedFun(favorites)">
@@ -149,7 +154,7 @@
                         </div>
                     </div>
                     <div class="blueButton" @click="selectStore()">
-                        <span>选药店</span>
+                        <span>去下单</span>
                     </div>
                 </div>
             </div>
@@ -347,7 +352,7 @@ export default {
             this.$store.commit('addjumpArr', this.jumpArrData);
             let argu = {};
             this.$router.push({
-                name: 'selectStore',
+                name: 'submitOrder',
                 query: { id: this.jumpId }
             });
         },
