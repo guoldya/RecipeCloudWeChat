@@ -2,12 +2,13 @@
 <template>
   <div class="select-people">
     <Header post-title="选择就诊人"></Header>
-    <ul>
-      <li v-for="(item,index) in familyList" :key="index" @click="selectPeople(item)">
+    <ul v-show="!loadingtrue&&cardlist.length!=0">
+      <li v-for="(item,index) in cardlist" :key="index" @click="selectPeople(item)">
         <img src="../images/m.png" alt="">
-        <p>{{item.name}}</p>
+        <p>{{item.patientName}}</p>
       </li>
-
+      <p v-show="!loadingtrue&&cardlist.length==0" class="noCardText">暂无就诊卡</p>
+      <Loading v-show="loadingtrue"></Loading>
       <!-- <li>
         <img src="../images/w.png" alt="">
         <p>妈妈</p>
@@ -21,10 +22,19 @@
         <p class="addbTN">添加家人</p>
       </router-link> -->
     </ul>
-    <router-link tag="li" to="addPeople">
-      <!-- <img src="../images/w.png" alt=""> -->
-      <p class="addbTN">添加家人</p>
-    </router-link>
+    <p class="warnbot">
+      您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
+      <span class="warnbottom" @click="cardneed" style="text-align:center;line-height:30px;color:#f44336">
+        电子就诊卡需知</span>
+    </p>
+    <div  v-show="cardlist.length<5">
+      <div style="height: 50px" ></div>
+      <p  @click="blidcard" class="addbTN">添加电子就诊卡</p>
+    </div>
+
+    <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
+      是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
+    </md-dialog>
   </div>
 </template>
 <script>
@@ -34,7 +44,34 @@ export default {
   data() {
     return {
       familyList: '',
+      loadingtrue: true,
+      actDialog: {
+        open: false,
+        btns: [
+          {
+            text: '取消',
+            handler: this.onActConfirm,
+          },
+          {
+            text: '已有',
+            handler: this.onActConfirm3,
+          },
+          {
+            text: '没有',
+            handler: this.onActConfirm2,
+          },]
+      }
+
     }
+  },
+  computed: {
+    ...mapState({
+      cardlist: state => state.home.cardList,
+    }),
+  },
+  async created() {
+    await this.$store.dispatch('getCards'/* , { update: true } */);
+    this.loadingtrue = false;
   },
   mounted() {
     this.init();
@@ -54,6 +91,33 @@ export default {
         console.log(error.message);
       }
     },
+    onActConfirm() {
+      // Toast({
+      //    content: '你点击了确认',
+      // })
+      this.actDialog.open = false
+    },
+    onActConfirm2() {
+      this.actDialog.open = false;
+      this.$router.push({
+        name: 'cardwrite',
+      });
+    },
+    onActConfirm3() {
+      this.actDialog.open = false;
+      this.$router.push({
+        name: 'cardblind',
+      });
+    },
+    blidcard() {
+      this.actDialog.open = true
+    },
+
+    cardneed() {
+      this.$router.push({
+        name: 'cardneed',
+      });
+    },
     selectPeople(data) {
       this["chat/setPatienDetail"](data);
       this.$router.go(-1);
@@ -62,6 +126,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.warnbot {
+  line-height: 50px;
+  font-size: 28px;
+  margin-top: 50px;
+}
+
+.noCardText {
+  line-height: 150px;
+  text-align: center;
+}
 .select-people {
   padding: 100px 40px 0;
   background: #f2f2f2;

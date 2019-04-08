@@ -102,9 +102,7 @@ export default {
   },
   async created() {
     await this.$store.dispatch('getCards'/* , { update: true } */);
-
     this.loadingtrue = false;
-
   },
   watch: {
     selected3: function (newselectedStatus, oldselectedStatus) {

@@ -27,6 +27,6 @@ export default {
   friendId: null, // 当前朋友id
   // 病人详情
   patienDetail: {
-    name: "点击选择就诊人"
+    patientName: "点击选择就诊人"
   },
 }
