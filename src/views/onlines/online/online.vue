@@ -141,9 +141,19 @@ export default {
                 {
                   value: "骨头断了",
                   label: "骨头断了"
-                }
+                },
               ]
-            }
+            },
+               children: {
+              name: "meiyou ",
+              label: "meiyou ",
+              options: [
+                {
+                  value: "meiyou ",
+                  label: "meiyou "
+                },
+              ]
+            },
           },
           {
             // 选项值

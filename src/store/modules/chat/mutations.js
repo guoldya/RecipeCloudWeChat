@@ -25,6 +25,9 @@ export default {
     }
     state.chatQueue = chatQueue
   },
+  setPatienDetail(state, data) { // 设置病人详情
+    state.patienDetail = data
+  },
   setHistoryNews(state, data) { // 设置历史消息
     state.historyNews = data
   },

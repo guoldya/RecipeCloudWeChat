@@ -18,7 +18,7 @@
         </li>
         <Loading v-show="loadingtrue"></Loading>
       </ul>
-      <div v-show="!loadingtrue&&cardlist.length==0" class="blindcardBtn">
+      <div v-show="cardlist.length==0" class="blindcardBtn">
         <md-button @click="blidcard" type="primary" round>注册电子就诊卡</md-button>
       </div>
       <div :class="cardlist.length==0 ? 'bindcardwarn' : ''" v-show="!loadingtrue">
@@ -29,9 +29,8 @@
         <p class="warnbot margin5">
           您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
         </p>
-        <p class="warnbottom" @click="cardneed">
+        <p class="warnbottom" @click="cardneed" style="text-align:center;line-height:30px;color:#f44336">
           电子就诊卡需知</p>
-
       </div>
     </div>
     <div v-show="cardlist.length<5">

@@ -5,7 +5,7 @@
     <div class="buy-service-info">
       <div class="buy-service-info-content">
         <img src="../images/icon_teletext.png" alt="">
-        <p>医生-周扬</p>
+        <p>医生-{{$route.query.name}}</p>
         <p class="money">￥20.00/次</p>
       </div>
       <div class="buy-service-info-tips">
@@ -19,11 +19,14 @@
     <!-- <div class="buy-service-btn">
       <md-button type="primary" round @click="isCashierhow=true">立即支付</md-button>
     </div> -->
-    <p class="addbTN" @click="isCashierhow=true">立即支付</p>
+    <p class="addbTN" @click="payNow">立即支付</p>
     <md-cashier ref="cashier" @pay="onCashierPay" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :default-index=0 :payment-amount="cashierAmount"></md-cashier>
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
+let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
+let appbizOnlineServiceRecordupdate = "/app/bizOnlineServiceRecord/update";
 export default {
   data() {
     return {
@@ -49,34 +52,50 @@ export default {
     }
   },
   methods: {
-    onCashierPay(item) {
-      this.$router.push({
-        name: "pictureConsult"
-      });
-      // let nowPayParams = {};
-      // nowPayParams.id = this.feeId;
-      // nowPayParams.orderCode = this.orderCode;
-      // nowPayParams.orderType = "4";
-      // nowPayParams.payType = item.value;
-      // nowPayParams.code = this.$route.query.code;
-      // this.$axios.post(now_pay_url, nowPayParams).then((res) => {
+
+    ...mapActions(["chat/setPatienDetail"]),
+    payNow() {
+      this.isCashierhow = true;
+      // this.$axios.post(appbizOnlineServiceRecordupdate, nowPayParams).then((res) => {
       //   if (res.data.code == '200') {
-      //     this.feeDetailData.push(res.data.data);
-      //     if (res.data.data.details) {
-      //       this.feeButtomDetail = res.data.data.details;
-      //     }
-      //     if (res.data.data.total) {
-      //       this.cashierAmount = res.data.data.total.toFixed(2);
-      //     }
-      //     this.doPay();
+
       //   } else {
-      //     this.$toast.info(res.data.msg);
-      //     this.isCashierhow = false;
+
       //   }
       // }).catch(function (err) {
       //   console.log(err);
       // });
     },
+
+    onCashierPay(item) {
+
+      this["chat/setPatienDetail"]({
+        name: "点击选择就诊人",
+        id:null
+      });
+      this.$router.push({
+        name: "pictureConsult",
+        query: { name: this.$route.query.name, id: this.$route.query.id }
+      });
+      let nowPayParams = {};
+      nowPayParams.payType = 1;
+      nowPayParams.doctorId = this.$route.query.id;
+      // 状态  1--新建  2--支付 3--接诊  4--完成  5--退费  6--关闭
+      nowPayParams.status = 2;
+      nowPayParams.type = 1;
+      nowPayParams.total = 20;
+      this.$axios.post(appbizOnlineServiceRecordnowPay, nowPayParams).then((res) => {
+        if (res.data.code == '200') {
+
+        } else {
+
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+
+
   }
 }
 </script>
@@ -94,7 +113,7 @@ $yellow: var(--primary);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding:30px 0 80px;
+    padding: 30px 0 80px;
     border-bottom: $border;
     img {
       width: 100px;
@@ -110,7 +129,7 @@ $yellow: var(--primary);
     }
     .money {
       // color: $yellow;
-       font-size: 50px;
+      font-size: 50px;
     }
     .ways {
       color: #999;

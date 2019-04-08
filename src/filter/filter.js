@@ -37,7 +37,7 @@ const payTypeFilter = function (value) {
         return "已就诊"
     } else if (value == 5) {
         return "已取消"
-    }else if (value == 6) {
+    } else if (value == 6) {
         return "已失效"
     }
 };
@@ -65,6 +65,9 @@ const lasttime = function (dataStr, pattern = 'YYYY-MM-DD HH:mm') {
     return moment(dataStr).format(pattern)
 };
 
+const inquiryTime = function (dataStr, pattern = 'HH:mm') {
+    return moment(dataStr).format(pattern)
+};
 const drugCheck = function (value) {
     if (value == undefined) {
         return ""
@@ -102,4 +105,5 @@ export default {
     lasttime,
     drugCheck,
     examStatus,
+    inquiryTime,
 }

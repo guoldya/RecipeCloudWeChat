@@ -1,6 +1,6 @@
 <!--在线问诊 -->
 <template>
-  <div class="inquiry-online">
+  <div class="inquiry-online ">
     <Navigation type="onlineNav">
       <span class="mu-secondary-text-color" @click="overQuesiton">结束问诊</span>
     </Navigation>
@@ -194,9 +194,8 @@ export default {
       const TIME_COUNT = 15;
       if (!this.timer) {
         this.timeH = TIME_COUNT;
-
         this.timer = setInterval(() => {
-          if (this.timeH > 0 && this.timeH <= TIME_COUNT) {
+          if (this.timeH > 1 && this.timeH <= TIME_COUNT) {
             this.timeH--;
           } else {
             this.isQeustion = false;
