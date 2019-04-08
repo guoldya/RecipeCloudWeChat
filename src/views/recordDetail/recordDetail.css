@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
+    line-height: 46px;
 }
 .recordDetail .hospital{
     text-align: center;
@@ -19,8 +20,11 @@
     padding-top: 0px;
 }
 .recordDetail .listData{
-    padding: 4px 0px;
+    padding: 10px 0px;
 }
 .recordDetail .userSign .listData span{
     padding: 0px;
+}
+.recordDetail .flatCard{
+    border-top: none;
 }

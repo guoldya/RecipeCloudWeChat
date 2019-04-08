@@ -475,7 +475,10 @@ export default new Router({
   {
     path: '/adress',
     name: 'adress',
-    component: adress
+    component: adress,
+      meta: {
+          keepAlive: true
+      }
   },
   {
     path: '/adressinfo',
@@ -490,7 +493,7 @@ export default new Router({
   {
     path: '/recipeRecord',
     name: 'recipeRecord',
-    component: recipeRecord
+    component: recipeRecord,
   },
   {
     path: '/orderrecord',

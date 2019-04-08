@@ -56,34 +56,31 @@
     font-size: 32px;
     padding: 40px;
 }
-.bButton{
-    display: flex;
-}
-.grayButton{
-    display: inline-flex;
-    background-color: #42484A;
-    width: 240px;
-    height: 100px;
-}
-.grayButton span{
-    color: #fff;
-    line-height: 100px;
-    margin-left: 10px;
-}
-.blueButton{
-    display: inline-block;
-    background-color: var(--primary);
-    width: 462px;
-    height: 100px;
-    border-top-right-radius: 64px;
-    border-bottom-right-radius: 64px;
-    text-align: center;
-}
-.blueButton span{
-    height: 100px;
-    line-height: 100px;
-    color: #fff;
-}
+/*.grayButton{*/
+    /*display: inline-flex;*/
+    /*background-color: #42484A;*/
+    /*width: 240px;*/
+    /*height: 100px;*/
+/*}*/
+/*.grayButton span{*/
+    /*color: #fff;*/
+    /*line-height: 100px;*/
+    /*margin-left: 10px;*/
+/*}*/
+/*.blueButton{*/
+    /*display: inline-block;*/
+    /*background-color: var(--primary);*/
+    /*width: 462px;*/
+    /*height: 100px;*/
+    /*border-top-right-radius: 64px;*/
+    /*border-bottom-right-radius: 64px;*/
+    /*text-align: center;*/
+/*}*/
+/*.blueButton span{*/
+    /*height: 100px;*/
+    /*line-height: 100px;*/
+    /*color: #fff;*/
+/*}*/
 .recipeRecord .checkGroup{
     margin-left: 40px;
 }

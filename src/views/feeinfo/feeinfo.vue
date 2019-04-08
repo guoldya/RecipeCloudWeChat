@@ -18,7 +18,7 @@
             </md-field>
 
         </div>
-        <div class="flatCard margin10 cardText" v-for="(item,i) in feeDetailData" :key="i" v-show="!loadingtrue">
+        <div class="flatCard margin10 cardText" v-for="(item,i) in feeDetailData" :key="'item'+i" v-show="!loadingtrue">
             <md-field>
                 <md-detail-item :title=feeTitle>
                     <span class="mu-secondary-text-color" style="font-size:25px">￥{{item.total | keepTwoNum}}</span>
