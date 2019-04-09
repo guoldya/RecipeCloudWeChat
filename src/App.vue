@@ -552,8 +552,7 @@ textarea::-webkit-input-placeholder {
 /* .md-icon.icon-font.md {
   font-size: 46px !important;
 } */
-.primary,
-.default {
+.primary{
   background-color: var(--primary);
   color: #fff;
   font-size: 28px;

@@ -133,10 +133,10 @@
 .md-cell-item-content {
    font-size: 28px !important;
 }
- .inspectionCheck .parElem .sonElem {
-     width: 25%;
+ .inspectionCheck .parElem:first-child span:last-child {
+     color: var(--primary);
  }
 
  .inspectionCheck .insCheck-cotent div{
-     line-height: 60px;
+     line-height: 40px;
  }

@@ -39,6 +39,10 @@
             <md-detail-item title="快递费">
                <span style="color:var(--primary); ">22.00元</span>
             </md-detail-item>
+         </div>
+         <div style="height:5px;background:#f8f8f8">
+         </div>
+         <div class="outCarint">
             <md-detail-item title="需支付费用" class="payFee">
                <span style="color:var(--primary);font-size:17px; ">72.00元</span>
             </md-detail-item>
