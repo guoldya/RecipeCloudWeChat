@@ -210,7 +210,7 @@ export default {
  <style scoped>
 @import url("../../cardwrite/cardwrite.css");
 .calculate {
-  margin-left: 370px;
+  margin-left: 360px;
 }
 
 .chooseBtn {

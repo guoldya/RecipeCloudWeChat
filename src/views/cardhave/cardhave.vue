@@ -23,39 +23,6 @@
     </p>
     <div class="flatCard margin16" style="margin-top:20px">
       <div class="cardText login-box">
-        <!-- <div class="content">
-          <div class="login-box">
-            <div class="login-box-div">
-              <span class="flexF">姓名</span>
-              <input class="flexF" type="text" name="username" id="phone" placeholder="姓名" :value="name" maxlength="11">
-            </div>
-            <md-field-item title="性别" solid>
-              <md-radio name="1" v-model="sex" label="男" inline />
-              <md-radio name="2" v-model="sex" label="女" inline />
-            </md-field-item>
-            <div class="login-box-div">
-              <span class="flexF">民族</span>
-              <input class="flexF" type="text" name="username" id="phone" placeholder="民族" :value="national" maxlength="11">
-            </div>
-            <md-field-item solid title="民族" placeholder="提示文本" />
-            <div class="login-box-div">
-              <span class="flexF">出生日期</span>
-              <input id="verify" type="text" class="infos flexF" name="yanz" :value="birth" placeholder="出生日期" />
-            </div>
-            <div class="login-box-div">
-              <span class="flexF">地址</span>
-              <input class="flexF" type="text" name="username" id="phone" placeholder="地址" :value="address" maxlength="11">
-            </div>
-            <div class="login-box-div">
-              <span class="flexF">身份证号</span>
-              <input id="verify" type="text" class="infos flexF" name="yanz" placeholder="身份证号" :value="idCard" maxlength="4" />
-            </div>
-            <div class="login-box-div">
-              <span class="flexF">身份证有效期</span>
-              <input id="verify" type="text" class="infos flexF" name="yanz" placeholder="身份证有效期" :value="goodtime" maxlength="4" />
-            </div>
-          </div>
-        </div> -->
         <md-field>
           <md-detail-item title="姓名" :content="name" />
           <md-detail-item v-if="sex==1" title="性别" content="男" />
@@ -76,7 +43,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bizPatientCard = "/app/bizPatientCard/insert"
+let bizPatientCard = "/app/bizPatientCard/insert";
 export default {
   data() {
     return {
@@ -106,11 +73,7 @@ export default {
     // var aa = date1 + "-" + date2 + "-" + date3;
     //  alert(aa.replace(/\b(0+)/gi, ""));
     document.title = '资料确认';
-
-
-
-
-
+    console.log(this.$store.state.photo0Data);
     if (this.$store.state.photo0Data) {
       console.log(this.$store.state.photo0Data.sex)
       console.log(this.$store.state.photo0Data)
@@ -139,15 +102,12 @@ export default {
   },
   methods: {
     tijiao() {
-
       if (this.$store.state.photo0Data) {
         if (this.idCard != this.photo0Data.idCard) {
           this.$toast.info("请核对身份证号码");
           return
         }
       }
-
-
       this.$axios.post(bizPatientCard, {
         idCardFrontImg: this.$store.state.idCardFrontImg,
         idCardBackImg: this.$store.state.idCardBackImg,
@@ -163,7 +123,7 @@ export default {
         if (res.data.code == '200') {
           this.$store.dispatch('getCards', { update: true });
           this.$toast.info("绑定成功");
-          this.$router.go(-4);
+          this.$router.go(-1);
           // this.$router.options.routes[0].meta.keepAlive = false;
         } else {
           this.$toast.info(res.data.msg);
