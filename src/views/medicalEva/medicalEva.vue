@@ -1,6 +1,6 @@
 <template>
     <div class="medicalEva">
-        <Header post-title="就医评价" selectOption=""></Header>
+        <Header post-title="就医评价"></Header>
         <div class="margin55">
             <div>
                 <div class="flatCard outCarint">

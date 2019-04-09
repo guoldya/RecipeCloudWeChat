@@ -4,24 +4,26 @@
         <div class="margin50">
             <Apptab :tab-title="changeTitle" v-on:childByValue="childByValue"></Apptab>
             <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0" v-if="titleIndex===1">
-                <div class="submitUser" @click="acceptAdd">
+                <div class="submitUser">
                     <div class="iconInfo">
                         <div class="iconImg">
-                            <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
+                            <img style="width: 16px" v-if="addressInfo.length!=0" class="addPic" src="@/assets/images/icon_address1.png" alt="">
+                            <!--<img v-else src="@/assets/images/icon_delivery.png" alt="">-->
                         </div>
-                        <div class="userInfo" v-for="(item,i) in addJumpInfo">
+                        <div class="userInfo" v-for="(item,i) in addressInfo" :key="i" v-if="addressInfo.length!=0 && i==0"  @click="acceptAdd">
                             <div>
-                                <span>{{item.name}}</span>
-                                <span>{{item.tel}}</span>
-                                <span class="first" v-if="item.addDefault==1">默认</span>
+                                <span>{{item.receiver}}</span>
+                                <span>{{item.mobile}}</span>
+                                <span class="first" v-if="item.isDefault==1">默认</span>
                             </div>
-                            <div>
-                                <span>{{item.add}}</span>
-                            </div>
+                            <div>{{item.address}}</div>
+                        </div>
+                        <div  @click="toAddress" v-if="addressInfo.length==0" class="addAddr">
+                            添加收获地址
                         </div>
                     </div>
                     <div  class="addImg nextImg">
-                        <img style="height: 18px" src="@/assets/images/icon_more2@2x.png" alt="">
+                        <img style="width: 8px" src="@/assets/images/icon_more2@2x.png" alt="">
                     </div>
                 </div>
             </div>
@@ -33,14 +35,12 @@
                         </div>
                         <div class="storeInfo" v-for="(item,i) in storeAdd" :key="i">
                             <div>
-                                <div class="listData">
-                                    <span>药店地址：</span>
-                                    <span>{{item.add}}</span>
-                                </div>
-                                <div>
-                                    <span >电话：</span>
-                                    <span>{{item.tel}}</span>
-                                </div>
+                                <span>药店地址：</span>
+                                <span>{{item.add}}</span>
+                            </div>
+                            <div>
+                                <span >电话：</span>
+                                <span>{{item.tel}}</span>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                     <div class="smallTotal">
                         <span>共{{medData.length}}件药品</span>
                         <span>小计：</span>
-                        <span class="mu-secondary-text-color payMoney">￥198.00</span>
+                        <span class="mu-secondary-text-color">￥198.00</span>
                     </div>
                 </div>
             </div>
@@ -107,10 +107,13 @@
                     <!--<span >{{ isCashierhow ? '' : '提交订单' }}</span>-->
                 <!--</div>-->
             <!--</div>-->
-            <div style="height: 50px;"></div>
-            <div class="addbTN">
-                    <span class="gButton">应付金额￥198.00</span>
-                    <span class="bButton"  @click="isCashierhow = !isCashierhow">{{ isCashierhow ? '' : '提交订单' }}</span>
+            <div style="height: 70px;"></div>
+            <div class="addbTN" style="padding: 0 15px;background-color: #fff">
+                <span>
+                    <span>应付金额 </span>
+                    <span class="payMoney mu-secondary-text-color">￥198.00</span>
+                </span>
+                <span class="orderSubmit"  @click="isCashierhow = !isCashierhow">{{ isCashierhow ? '' : '提交订单' }}</span>
             </div>
             <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect"
                         @pay="onCashierPay"
@@ -121,10 +124,12 @@
     </div>
 </template>
 <script type="text/babel">
+    let add_list_url = "/app/shippingAddress/addressList";
+    let recipe_getDetails_url="/app/recipe/getDetails ";
     export default {
         data() {
             return {
-                
+
                 changeTitle: [
                     { title: '配送到家',type:1 },
                     { title: '门店自提',type:2},
@@ -157,23 +162,56 @@
                     },
                 ],
                 addIndex:"0",
-                addJumpInfo:[{name:"土木君",tel:"188****5489",add:"重庆市渝北区仙桃街道xx号",addDefault:"1"}],
+                addressInfo:[],
                 storeAdd:[{add:"重庆市渝北88号（和平大药房）",tel:"023-52242565"}]
             };
         },
         created() {
 
         },
+
         mounted() {
-            if(this.$route.query.name){
-                console.log(this.$route.query)
+            if(this.$route.query.receiver){
                 this.addIndex=this.$route.query.params;
-                this.addJumpInfo.splice(0,1);
-                this.addJumpInfo.push(this.$route.query);
+                this.addressInfo.splice(0,1);
+                this.addressInfo.push(this.$route.query);
+            }else{
+                this.acceptAddFun();
             }
+            this.detailInfo();
             document.title = '提交订单';
         },
         methods: {
+            detailInfo(){
+                this.detailInfoId=this.$route.query.id;
+                console.log(this.detailInfoId)
+
+                this.$axios.put(recipe_getDetails_url,{recipeId:this.detailInfoId}, {
+                }).then(res => {
+                    if (res.data.code == '200') {
+                        console.log(res.data.data)
+                        // this.loadingtrue = false;
+                        // this.recipeData.push(res.data.data.recipe);
+                        // this.detailData=res.data.data.details;
+                        // console.log(this.recipeData);
+                        // console.log(this.detailData);
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
+            acceptAddFun(){
+                this.$axios.put(add_list_url, {}).then((res) => {
+                    this.loadingtrue = false;
+                    if (res.data.code == '200') {
+                        this.addressInfo = res.data.rows;
+                    } else {
+                        console.log(res.msg);
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            },
             childByValue: function (childValue) {
                 this.titleIndex = childValue.type;
             },
@@ -256,9 +294,24 @@
             acceptAdd(){
                 let argu = {checked:this.addIndex};
                 this.$router.push({
-                    name: 'acceptAdd',
+                    name: 'adress',
                     query: argu
                 });
+            },
+            toAddress(){
+                let argu = {addadress:1};
+                this.$router.push({
+                    name: 'adressinfo',
+                    query: argu
+                });
+            }
+        },
+        watch: {
+            "$route": function (to, from) {
+                console.log(to);
+                console.log(from);
+                from.meta.keepAlive = false;
+                to.meta.keepAlive = false;
             }
         },
         computed: {

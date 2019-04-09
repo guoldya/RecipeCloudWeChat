@@ -6,8 +6,8 @@
     <div class="navigation-content">
       {{postTitle}}
     </div>
-    <div class="right">
-      <slot></slot>
+    <div class="right" @click="switchTo()"  :class="active.length==0? 'mu-secondary-text-color' : '' ">
+      <slot>{{titleRight}}</slot>
     </div>
   </div>
 </template>
@@ -15,19 +15,21 @@
 export default {
   data() {
     return {
-
+      active:[""],
     }
   },
-  props: ['postTitle'],
+  props: ['postTitle','titleRight'],
   created() {
 
   },
   mounted() {
 
-
   },
   methods: {
-
+      switchTo() {
+          this.active=this.$store.state.activeId;
+          this.$emit('switchToValue');
+      },
   },
 }
 </script>

@@ -1,6 +1,8 @@
 <template>
     <div class="recipeRecord">
-        <Header post-title="处方记录"  ></Header>
+        <Header post-title="处方记录" v-on:switchToValue="switchToValue">
+            <span  :class="selectAll==''? '' : 'mu-secondary-text-color' ">全选</span>
+        </Header>
         <div class="margin55">
             <!--<div class="pageContent">-->
                 <!--<span v-for="(item, index) in changeTitle" :key="'changeTitle' + index" @click="switchTo(index)" :class="titleIndex === index ? 'appTabAcitive' : '' ">-->
@@ -62,8 +64,8 @@
                 <!--</div>-->
             <!--</div>-->
 
-            <div v-if="efficacyData.length!=0" v-show="!loadingtrue">
-                <div class="flatCard cardText margin5" v-for="(item,i) in efficacyData" :key="i">
+            <div v-if="recordData.length!=0" v-show="!loadingtrue">
+                <div class="flatCard cardText margin5" v-for="(item,i) in recordData" :key="i">
                     <div v-if="i==0">
                         <div>
                             <div class="listData mu-secondary-text-color" @click="getJumpId(item.id)"><!--class="md-check-group"-->
@@ -144,25 +146,13 @@
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
                 <div style="height: 27px"></div>
-                <div class="bButton addbTN">
-                    <div class="grayButton" @click="allSelect()">
-                        <div>
-                            <md-check-group class="checkGroup" v-model="favorites" :check="checkedFun(favorites)">
-                                <md-check :name="selectAll" />
-                                <span>全选</span>
-                            </md-check-group>
-                        </div>
-                    </div>
-                    <div class="blueButton" @click="selectStore()">
-                        <span>去下单</span>
-                    </div>
-                </div>
+                <p class="addbTN" @click="selectStore()">去下单</p>
             </div>
             <div v-show="!loadingtrue" class="nullDiv" v-else>
                 <img src="@/assets/images/null1.png">
             </div>
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
-                <span v-if="efficacyData.length!=0&&!nomore">
+                <span v-if="recordData.length!=0&&!nomore">
                     <span class="mu-light-text-color">加载中</span>
                     <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
                 </span>
@@ -184,41 +174,13 @@ export default {
 
     data() {
         return {
-            
+
             changeTitle: [
                 { title: '进行中' },
                 { title: '历史记录' },
             ],
             titleIndex: 0,
-            recordData: [
-                {                    id: 3, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
-                    userName: "张三三三", dept: "产科", userData: [
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
-                    ],                },
-                {                    id: 7, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
-                    userName: "李四", dept: "外科", userData: [
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                    ],                },
-                {                    id: 6, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
-                    userName: "王五五", dept: "放射科", userData: [
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                    ],                },
-                {                    id: 5, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
-                    userName: "王五五", dept: "放射科", userData: [
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                    ],                },
-                {                    id: 4, date: "2018-12-11", no: "S0027520", isChecked: "未选店", add: "重庆市演示医院",
-                    userName: "王五五", dept: "放射科", userData: [
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x1" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                        { med: "盐酸曲美他嗪片（万爽力）", weight: "20mgX30片", num: "x2" },
-                    ],                },
-            ],
+            recordData: [],
             efficacyData: [],
             agreeConf: {
                 checked: true,
@@ -237,7 +199,7 @@ export default {
             selectAll: "",
             jumpParams: [],
             jumpArrData: [],
-            jumpId: '',
+            jumpId:[],
             busy: true,
             nomore: false,
             loadingtrue: true,
@@ -261,7 +223,7 @@ export default {
                 if (res.data.rows) {
                     this.loadingtrue = false;
                     if (flag) {
-                        this.efficacyData = this.efficacyData.concat(res.data.rows);  //concat数组串联进行合并
+                        this.recordData = this.recordData.concat(res.data.rows);  //concat数组串联进行合并
                         if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
                             this.busy = false;
                             this.nomore = false;
@@ -270,7 +232,7 @@ export default {
                             this.nomore = true;
                         };
                     } else {
-                        this.efficacyData = res.data.rows;
+                        this.recordData = res.data.rows;
                         this.busy = true;
                         if (res.data.total < 10) {
                             this.busy = true;
@@ -281,7 +243,7 @@ export default {
                         }
                     }
                 } else {
-                    this.efficacyData = []
+                    this.recordData = []
                 }
             })
         },
@@ -292,14 +254,16 @@ export default {
             this.jumpParams = val;
             if (this.recordData.length === this.favorites.length) {
                 this.selectAll = this.favorites[this.favorites.length - 1];
+                //this.$store.commit('activeFun', this.favorites);
             } else {
                 this.selectAll = ""
             }
+            this.$store.commit('activeFun', this.favorites);
         },
         getJumpId(val) {
-            this.jumpId = val;
+            this.jumpId.push(val);
         },
-        allSelect: function () {
+        switchToValue: function () {
             this.favorites = [];
             if (this.selectStatus == false) {
                 for (let i = 0; i < this.recordData.length; i++) {
@@ -311,6 +275,11 @@ export default {
             } else {
                 this.selectStatus = false;
             }
+            this.jumpId=[];
+            for (let i = 0; i < this.jumpParams.length; i++) {
+                this.jumpId.push(this.recordData[this.jumpParams[i]].id);
+            }
+            console.log(this.jumpId);
         },
         foldFun: function (val) {
              if (this.downImg == true) {
@@ -346,11 +315,12 @@ export default {
                 Toast.info('请选择处方');
                 return;
             }
-            for (let i = 0; i < this.jumpParams.length; i++) {
-                this.jumpArrData.push(this.recordData[this.jumpParams[i]])
-            }
-            this.$store.commit('addjumpArr', this.jumpArrData);
-            let argu = {};
+
+            // for (let i = 0; i < this.jumpParams.length; i++) {
+            //     this.jumpArrData.push(this.recordData[this.jumpParams[i]])
+            // }
+            // this.$store.commit('addjumpArr', this.jumpArrData);
+            // let argu = {};
             this.$router.push({
                 name: 'submitOrder',
                 query: { id: this.jumpId }
@@ -366,7 +336,13 @@ export default {
                 this.recipeFun(true);
             }, 500);
         },
-
+    },
+    watch: {
+        "$route": function (to, from) {
+            console.log(to,from);
+            from.meta.keepAlive = false;
+            to.meta.keepAlive = false;
+        }
     },
     computed: {
 

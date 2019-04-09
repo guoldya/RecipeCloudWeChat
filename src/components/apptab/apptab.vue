@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     switchTo(item) {
-      if (this.active1 === item.type || this.active1 === item.id) return
+      if (this.active1 === item.type || this.active1 === item.id) return;
 
       if (item.orgName) {
         this.active1 = item.id;

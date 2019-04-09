@@ -1,9 +1,9 @@
 <template>
     <div class="recordDetail">
         <Header post-title="处方详情"  ></Header>
-        <div class="outCarint margin45">
+        <div class=" margin55">
             <div v-show="!loadingtrue">
-                <div class="card margin16">
+                <div class="flatCard">
                     <div class="cardText" v-for="(item,i) in recipeData" :key="i">
                         <!--<div class="userInfo">-->
                             <!--<span>取药码：092231</span>-->
@@ -43,7 +43,7 @@
                         <!--</div>-->
                     </div>
                 </div>
-                <div class="card margin16" v-if="detailData.length!=0">
+                <div class="flatCard margin5" v-if="detailData.length!=0">
                     <div class="cardText">
                         <div v-for="(item,i) in detailData">
                             <div class="listData medName">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card margin16" v-for="(item,i) in recipeData" :key="i">
+                <div class="flatCard margin5" v-for="(item,i) in recipeData" :key="i">
                     <div class="cardText">
                         <div class="userSign">
                             <div class="listData userNum">
@@ -81,16 +81,17 @@
                             <p class="partLine"></p>
                             <div class="listData userNum">
                                 <span>审方时间</span>
-                                <span>{{item.authTime |time}}</span>
+                                <span class="mu-light-text-color">{{item.authTime |time}}</span>
                             </div>
                             <p class="partLine"></p>
                             <div class="listData userNum">
                                 <span>药师</span>
-                                <span>{{item.druggistName}}</span>
+                                <span  class="mu-light-text-color">{{item.druggistName}}</span>
                             </div>
                             <p class="partLine" v-if="item.remark!=null"></p>
                             <div class="listData userNum" v-if="item.remark!=null">
-                                <span>注意：{{item.remark}}</span>
+                                <span>注意</span>
+                                <span>{{item.remark}}</span>
                             </div>
                         </div>
                     </div>

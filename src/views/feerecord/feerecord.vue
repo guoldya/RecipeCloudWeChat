@@ -211,6 +211,7 @@ export default {
     },
     watch: {
         "$route": function (to, from) {
+            console.log(to,from);
             from.meta.keepAlive = false;
             to.meta.keepAlive = false;
         }
