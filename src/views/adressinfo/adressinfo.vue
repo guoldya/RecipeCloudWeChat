@@ -3,7 +3,7 @@
     <Header :post-title="post"></Header>
     <div class="margin55 ">
       <md-field>
-        <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名"></md-input-item>
+        <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名" maxlength="10"></md-input-item>
         <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码"></md-input-item>
         <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
@@ -88,13 +88,14 @@ export default {
       this.areaId = childValue
     },
     tijiao() {
-      if (!(/^1[34578]\d{9}$/.test(this.mobile))) {
-        this.$toast.info("手机号码有误，请重填");
-        return false;
-      }
+
       if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
         this.$toast.info("请完善信息")
       } else {
+        if (!(/^1[34578]\d{9}$/.test(this.mobile))) {
+          this.$toast.info("手机号码有误，请重填");
+          return false;
+        }
         this.$axios.post(addOrUpdate, {
           id: this.$route.query.id * 1,
           receiver: this.receiver,
@@ -122,10 +123,10 @@ export default {
 .adressinfo .md-field-item-title {
   margin-right: 40px;
 }
-  .adressinfo /deep/.md-field-item-content{
-    padding:0 24px;
-  }
-  .adressinfo .md-agree{
-    padding: 0 16px;
-  }
+.adressinfo /deep/.md-field-item-content {
+  padding: 0 24px;
+}
+.adressinfo .md-agree {
+  padding: 0 16px;
+}
 </style>

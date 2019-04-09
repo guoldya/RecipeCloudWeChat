@@ -1,7 +1,7 @@
 <template>
   <div class="doctorList">
     <Header post-title="医生列表"></Header>
-    <div class="titleTag">
+    <div class="titleTag" ref="titleTag">
       <div class="tag1">
         <div class="tagdiv">
           <div class="showSelecA">
@@ -46,8 +46,8 @@
       </div>
     </div>
 
-    <div :class="{ pt50: !isTop}" style="margin-bottom:20px; ">
-      <div class="doctorList" id="mornign">
+    <div :class="{ pt43: !isTop}" style="margin-bottom:20px; ">
+      <div class="doctorList" ref="mornign">
         <!-- <div v-show="isAAA" style="height:90px">aa</div> -->
         <p class="forenoon">上午</p>
         <ul v-if="amList.length!=0" v-show="!loadingtrue">
@@ -55,7 +55,7 @@
         </ul>
 
         <!-- 测试用的 -->
-         <!-- <li v-for="aa in 11">
+        <!-- <li v-for="aa in 11">
           <div class="flatCard">
             <div class="cardText">
               <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
@@ -96,10 +96,9 @@
         <Loading v-show="loadingtrue"></Loading>
       </div>
 
-      <div class="doctorList" id="afternoon">
-        <!-- <div v-show="isBottom" style="height:90px"></div> -->
+      <div class="doctorList" ref="afternoon">
+        <div v-show="isBottom" style="height:90px"></div>
         <p class="forenoon">下午</p>
-
         <!-- 测试用的 -->
         <!-- <li v-for="aa in 11">
           <div class="flatCard">
@@ -109,7 +108,6 @@
                 <div class="headname">
                   <span>下午{{aa}}</span>
                   <span class="levle">s</span>
-
                 </div>
                 <p class="headdesc">擅长:{sfo.skill}}</p>
               </div>
@@ -183,7 +181,9 @@ export default {
   created() {
   },
 
-
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.onScroll)
+  },
   mounted() {
     document.title = '医生列表';
     if (!this.deptId) {
@@ -193,28 +193,52 @@ export default {
     if (!this.orgId) {
       this.orgId = this.$route.query.orgId * 1;
     }
-    var box = document.getElementById('mornign');
-    var w = box.style.width;
-    var h = box.style.height;
-    let mornignHeight = document.getElementById("mornign").offsetHeight;
-    let mornignTop = document.getElementById("mornign").offsetTop;
-    let afternoonHeight = document.getElementById("afternoon").offsetHeight;
-    let afternoonTop = document.getElementById("afternoon").offsetTop;
-    let _this = this;
-    window.addEventListener('scroll', function () {
+
+    // const navigation = document.querySelector('.navigation')
+    // const butTime = document.querySelector('.butTime')
+    // const mornign = document.querySelector('#mornign')
+    // const afternoon = document.querySelector('#afternoon')
+    this.onScroll = () => {
+      this.isBottom = false;
       let bodyTop = document.body.scrollTop || document.documentElement.scrollTop;
       if (bodyTop * 1 < 45) {
-        _this.isTop = true;
+        this.isTop = true;
       } else {
-        _this.isTop = false;
+        this.isTop = false;
       }
       const isToBottom = bodyTop + window.innerHeight > document.body.offsetHeight
-      if (bodyTop >= mornignHeight - 45) {
-        _this.isActive = 2;
+      if (bodyTop >= this.$refs['mornign'].offsetHeight - 45) {
+        this.isActive = 2;
       } else {
-        _this.isActive = 1
+        this.isActive = 1
       }
-    })
+    }
+
+    window.addEventListener('scroll', this.onScroll)
+    // var box = document.getElementById('mornign');
+    // var w = box.style.width;
+    // var h = box.style.height;
+    // let mornignHeight = document.getElementById("mornign").offsetHeight;
+    // let mornignTop = document.getElementById("mornign").offsetTop;
+    // let afternoonHeight = document.getElementById("afternoon").offsetHeight;
+    // let afternoonTop = document.getElementById("afternoon").offsetTop;
+    // let _this = this;
+    // window.addEventListener('scroll', function () {
+    //   console.log("aaaaaaa")
+    //   _this.isBottom = false;
+    //   let bodyTop = document.body.scrollTop || document.documentElement.scrollTop;
+    //   if (bodyTop * 1 < 45) {
+    //     _this.isTop = true;
+    //   } else {
+    //     _this.isTop = false;
+    //   }
+    //   const isToBottom = bodyTop + window.innerHeight > document.body.offsetHeight
+    //   if (bodyTop >= mornignHeight - 45) {
+    //     _this.isActive = 2;
+    //   } else {
+    //     _this.isActive = 1
+    //   }
+    // })
 
 
     if (!this.isTime) {
@@ -265,18 +289,24 @@ export default {
       });
     },
 
+    getBlankHeight() {
+      return this.$refs['titleTag'].offsetHeight
+    },
     goMornign() {
       this.isBottom = false;
       this.isAAA = true;
       this.isActive = 1;
-      document.querySelector("#mornign").scrollIntoView();
+      // document.querySelector("#mornign").scrollIntoView();
+
+      window.scrollTo(0, this.getBlankHeight())
     },
     goAfternoon() {
       this.isBottom = true;
       this.isAAA = false;
       this.isActive = 2;
-      document.querySelector("#afternoon").scrollIntoView();
+      // document.querySelector("#afternoon").scrollIntoView();
 
+      window.scrollTo(0, this.getBlankHeight() + this.$refs['mornign'].offsetHeight)
     },
     getData() {
       for (let i = 0; i < 15; i++) {

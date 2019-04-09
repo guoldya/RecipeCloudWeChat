@@ -126,6 +126,10 @@ input {
    padding-top: 100px;
 }
 
+.doctorList .pt43 {
+   padding-top: 86px;
+}
+
 .doctorList .time ul li p:first-child {
    font-size: 24px;
 }

@@ -199,7 +199,7 @@ export default {
       });
     },
     intoreportinfo(data) {
-
+      this.$store.commit('feeActiveFun', data.reportType);
       let argu = { id: data.reportId, reportType: data.reportType };
       this.$router.push({
         name: 'reportinfo',

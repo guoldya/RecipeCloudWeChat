@@ -1,7 +1,7 @@
 <template>
     <div class="slowConfirm">
         <Header post-title="申请详情"  ></Header>
-        <div class="outCarint margin45">
+        <div class="outCarint flatCard margin55">
             <div class="successImg">
                 <img src="@/assets/images/icon_success.png" alt="">
                 <p>申请成功</p>
@@ -9,7 +9,7 @@
             <div class="successWord">
                 <p>您已提交续方申请，现在请与在线医师完成病情评估，以便医生能够尽快审核通过您的续方申请。</p>
             </div>
-            <div>
+            <div style="padding-bottom: 10px">
                 <md-button type="primary" round @click="onlineEvaluate">点击在线评估</md-button>
             </div>
         </div>
@@ -45,9 +45,13 @@
     };
 </script>
 <style   scoped>
+    .slowConfirm .md-button.block{
+        width: 100%;
+        margin: 0;
+    }
     .slowConfirm .successImg{
         text-align: center;
-        margin-top: 180px;
+        padding: 140px 0 60px;
     }
     .slowConfirm .successImg img{
         width: 120px;
@@ -59,7 +63,7 @@
     }
     .slowConfirm .successWord p{
         margin: 44px 0;
-        text-indent: 7%;
+        text-indent: 8%;
         font-size: 26px;
         word-break : normal;
         color:  var(--primary--content);

@@ -19,7 +19,22 @@
             <em></em>
             <div v-html="item.content"></div>
           </div>
-          <div class="online-content-list-text" v-else>
+          <div class="online-content-list-text" v-if="item.msgType == 7">
+            <em></em>
+            <div class="describe">
+              <p>姓名：{{item.content.patientName}}</p>
+              <p>性别：{{item.content.sex|examSex}}</p>
+              <p>年龄：{{item.content.birthday }}</p>
+              <p>问题描述：{{item.content.questionDes}}</p>
+              <p>既往病史：{{item.content.anamnesisDes}}</p>
+            </div>
+            <div class="content">
+              <img src="@/assets/images/head1.png" alt="">
+              <img src="@/assets/images/head1.png" alt="">
+              <img src="@/assets/images/head1.png" alt="">
+            </div>
+          </div>
+          <div class="online-content-list-text" v-if="item.msgType == 1">
             <img :src="'http://192.168.0.22:8888'+item.content" alt="" style="width:100px;" @click="showViewer('http://192.168.0.22:8888'+item.content)">
           </div>
         </li>
@@ -141,6 +156,7 @@ export default {
   data() {
     return {
       timeH: '',
+      TIME_COUNT: 15,
       toolType: '', // 底部工具栏类型 img 图片 video 视频 drug 开药 emoji 表情 more 更多
       inputValue: "",
       socket: "",
@@ -187,24 +203,24 @@ export default {
     ...mapActions(['chat/setFriendId', 'updateUser']),
     closeMask() {
       this.isQeustion = false;
-      this.isQeustionOver = false
+      this.isQeustionOver = false;
+      clearInterval(this.timer);
     },
     overQuesiton() {
       this.isQeustion = true;
-      const TIME_COUNT = 15;
-      if (!this.timer) {
-        this.timeH = TIME_COUNT;
-        this.timer = setInterval(() => {
-          if (this.timeH > 1 && this.timeH <= TIME_COUNT) {
-            this.timeH--;
-          } else {
-            this.isQeustion = false;
-            clearInterval(this.timer);
-            this.timer = null;
-          }
-        }, 1000);
-      }
+      this.timeH = this.TIME_COUNT;
+      this.timer = setInterval(() => {
+        if (this.timeH > 1 && this.timeH <= this.TIME_COUNT) {
+          this.timeH--;
+        } else {
+          this.isQeustion = false;
+          clearInterval(this.timer);
+          this.timer = null;
+        }
+      }, 1000);
+
     },
+
     ...mapActions(["chat/updateChatQueue", "chat/setHistoryNews", "chat/setChatQueue"]),
     scrollBottom() { // 内容区在底部
       this.$nextTick(function () {
@@ -259,7 +275,7 @@ export default {
           let msg = {
             // 发送消息传的数据
             from: this.userInfo.id,
-            to: Number(this.$route.params.fromId),
+            to: Number(this.$route.query.id),
             cmd: 11,
             createTime: createTime,
             msgType: 1,
@@ -291,7 +307,7 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: Number(this.$route.params.fromId),
+        to: Number(this.$route.query.id),
         cmd: 11,
         createTime: createTime,
         msgType: 0,
@@ -347,20 +363,6 @@ export default {
     box-shadow: 0 0 18px rgba(131, 179, 208, 0.3);
     box-sizing: border-box;
 
-    .describe {
-      padding: 20px 30px 10px;
-      border-bottom: 1px solid #f4f4f4;
-      line-height: 36px;
-    }
-    .content {
-      padding: 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      img {
-        width: 180px;
-        height: 126px;
-      }
-    }
     .item {
       padding: 0 30px 20px;
       i {
@@ -477,6 +479,21 @@ export default {
     .online-content-list {
       display: flex;
       margin-bottom: 30px;
+
+      .describe {
+        padding: 5px 20px 10px;
+        border-bottom: 1px solid var(--primary--line);
+        line-height: 36px;
+      }
+      .content {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        img {
+          width: 120px;
+          height: 126px;
+        }
+      }
       // position: relative;
       .online-content-list-head {
         width: 90px;

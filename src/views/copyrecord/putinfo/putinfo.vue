@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="flatCard margin5 outCarint">
-      <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名"></md-input-item>
+      <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名" maxlength="10"></md-input-item>
       <md-input-item ref="input13" v-model="idcard" title="身份证号" placeholder="身份证号"></md-input-item>
     </div>
     <p class="chooseBtn" @click="chooseCase">

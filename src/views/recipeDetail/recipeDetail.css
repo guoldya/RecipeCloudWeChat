@@ -1,6 +1,4 @@
-.recipeDetail .cardText{
-    padding: 0;
-}
+
 .recipeDetail .listData{
     font-size: 28px;
 }
@@ -43,26 +41,19 @@
 .recipeDetail .md-cell-item-content{
     font-size: 28px !important;
 }
-.recipeDetail {
-    font-size: 122px !important;
-}
 textarea[name="textareaWord"] {
     border: none;
     font-size: 28px;
     outline: none;
     font-family: "PingFang-SC-Medium";
     color:  var(--primary--title);
-}
-.listData .longWord{
-    display: inline-block;
-    width: 74%;
+    padding: 6px 0;
 }
 .inputWord{
     display: inline-flex;
 }
 .applyDetail .detail-content div,.recipeDetail .detail-content div{
     line-height: 40px;
-    padding: 4px 12px;
 }
 .applyDetail .flatCard,.recipeDetail .flatCard{
     border-top: none;

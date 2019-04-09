@@ -32,7 +32,7 @@ export default {
       } else {
         this.$store.commit("searchTypeFun", this.type);
         this.$router.push({
-          path: "/result"
+          path: "/departsearch"
           // query: argu,
         });
       }
