@@ -1,50 +1,45 @@
 <template>
     <div class="recipeDetail">
-        <Header post-title="处方详情"  ></Header>
+        <Header post-title="处方详情"></Header>
         <div class="margin55">
             <div class="detail-content">
-                <div class="flatCard margin16" v-for="(item,i) in recipeData">
+                <div class="flatCard    " v-for="(item,i) in recipeData">
                     <div class="cardText">
                         <div class="listData">
-                            <span>处方号：
-                                <span class="mu-light-text-color">{{item.no}}</span>
-                            </span>
+                            <span>处方号</span>
+                            <span class="mu-light-text-color">{{item.no}}</span>
                         </div>
                         <div class="listData">
-                            <span>处方日期：
-                                <span class="mu-light-text-color">{{item.date}}</span>
-                            </span>
+                            <span>处方日期</span>
+                            <span class="mu-light-text-color">{{item.date}}</span>
                         </div>
                         <div class="listData">
-                            <span>姓名：
-                                <span class="mu-light-text-color">{{item.name}}</span>
-                            </span>
+                            <span>姓名</span>
+                            <span class="mu-light-text-color">{{item.name}}</span>
                         </div>
                         <div class="listData">
-                            <span>年龄：
-                                <span class="mu-light-text-color">{{item.age}}</span>
-                            </span>
-                            <span style="width: 50%">性别：
-                                <span class="mu-light-text-color">{{item.sex}}</span>
-                            </span>
+                            <span>年龄</span>
+                            <span class="mu-light-text-color">{{item.age}}</span>
                         </div>
                         <div class="listData">
-                            <span>科室：
-                                <span class="mu-light-text-color">{{item.dept}}</span>
-                            </span>
-                            <span style="width: 50%">开方医生：
-                                <span class="mu-light-text-color">{{item.doc}}</span>
-                            </span>
+                            <span>性别</span>
+                            <span class="mu-light-text-color">{{item.sex}}</span>
                         </div>
                         <div class="listData">
-                            <span>续方类型：
-                                <span class="mu-secondary-text-color">{{item.type}}</span>
-                            </span>
+                            <span>科室</span>
+                            <span class="mu-light-text-color">{{item.dept}}</span>
                         </div>
                         <div class="listData">
-                            <span>慢病诊断：
-                                <span class="mu-secondary-text-color">{{item.result}}</span>
-                            </span>
+                            <span>开方医生</span>
+                            <span class="mu-light-text-color">{{item.doc}}</span>
+                        </div>
+                        <div class="listData">
+                            <span>续方类型</span>
+                            <span class="mu-secondary-text-color">{{item.type}}</span>
+                        </div>
+                        <div class="listData">
+                            <span>慢病诊断</span>
+                            <span class="mu-secondary-text-color">{{item.result}}</span>
                         </div>
                         <p class="partLine"></p>
                         <div class="listBottom mu-light-text-color" v-for="item in listBottom">
@@ -54,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flatCard margin16" v-for="(item,i) in recipeData" v-if="isContinue==true">
+                <div class="flatCard margin5" v-for="(item,i) in recipeData" v-if="isContinue==true">
                     <div class="cardText ">
                         <div class="inputWord">
                             <span style="width: 28%">续方事由</span>
@@ -62,9 +57,9 @@
                         </div>
                     </div>
                 </div>
-                <div  style="margin-bottom:30px;">
-                    <md-button type="primary" round v-if="isContinue==true" @click="confirmApply">提交申请</md-button>
-                    <md-button type="default" round v-else @click="confirmApply">续方失效</md-button>
+                <div>
+                    <p class="addbTN" v-if="isContinue==true" @click="confirmApply">提交申请</p>
+                    <p class="addbTN" style="background-color:#979797" v-else @click="confirmApply">续方失效</p>
                 </div>
             </div>
         </div>

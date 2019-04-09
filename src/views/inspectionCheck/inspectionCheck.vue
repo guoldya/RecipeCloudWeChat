@@ -14,26 +14,24 @@
                 </div>
                 <div class="flatCard cardText margin5" v-for="(item,i) in cardData" :key="i+'i'">
                     <div class="insCheck-cotent">
-                        <div>
-                            <span class="par Elem">
-                                <span class="sonElem">处方日期</span>
-                                <span>：<span class="mu-secondary-text-color">{{item.date}}</span></span>
-                            </span>
-                            <span  v-if="item.first==1">
-                                <span  style="margin-left: 114px" class="first">首诊</span>
+                        <div class="parElem listData">
+                            <span class="sonElem">处方日期</span>
+                            <span>
+                                <span>{{item.date}}</span>
+                                <span v-if="item.first==1" style="margin-left: 14px" class="first mu-secondary-text-color">首诊</span>
                             </span>
                         </div>
-                        <div class="par Elem">
+                        <div class="parElem listData">
                             <span class="sonElem">慢病诊断</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.type}}</span></span>
+                            <span>{{item.type}}</span>
                         </div>
-                        <div class="par Elem">
+                        <div class="parElem listData">
                             <span class="sonElem">处方来源</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.source}}</span></span>
+                            <span>{{item.source}}</span>
                         </div>
-                        <div class="par Elem">
+                        <div class="parElem listData">
                             <span  class="sonElem">剩余续方日期</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.restDate}}</span></span>
+                            <span>{{item.restDate}}</span>
                         </div>
                         <div>
                             <md-button type="primary" round v-if="isContinue==true" @click="continueApply">续方申请</md-button>
@@ -53,25 +51,25 @@
                 </div>
                 <div class="flatCard cardText" v-for="(item,i) in applyData" :key="i">
                     <div class="insCheck-cotent">
-                        <div class="par Elem">
+                        <div class="parElem listData">
                             <span class="sonElem">申请日期</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.applyDate}}</span></span>
+                            <span>{{item.applyDate}}</span>
                         </div>
-                        <div class="par Elem">
-                            <span class="sonElem">续方日期</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.continueDate}}</span></span>
+                        <div class="listData">
+                            <span>续方日期</span>
+                            <span class="mu-secondary-text-color">{{item.continueDate}}</span>
                         </div>
-                        <div class="par Elem">
-                            <span class="sonElem">慢病诊断</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.type}}</span></span>
+                        <div class="listData">
+                            <span>慢病诊断</span>
+                            <span class="mu-secondary-text-color">{{item.type}}</span>
                         </div>
-                        <div class="par Elem">
+                        <div class="parElem listData">
                             <span class="sonElem">处理状态</span>
-                            <span>：<span class="mu-secondary-text-color">{{item.auditState}}</span></span>
+                            <span>{{item.auditState}}</span>
                         </div>
-                        <div class="par Elem">
+                        <div class="parElem listData">
                             <span class="sonElem">续方处方号</span>
-                            <span>：<span class="mu-secondary-text-color"></span>{{item.no}}</span>
+                            <span>{{item.no}}</span>
                         </div>
                         <div>
                             <md-button type="primary" round v-if="isContinue==true" @click="lookDetail">查看详情</md-button>
