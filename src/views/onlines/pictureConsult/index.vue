@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <md-cell-item title="为谁咨询" :addon="_patienDetail.name" arrow @click="routerTo(1)" />
+    <md-cell-item title="为谁咨询" :addon="_patienDetail.patientName" arrow @click="routerTo(1)" />
     <!-- 问题描述 -->
     <div class="picture-consult-problem">
       <p>
@@ -99,6 +99,8 @@ export default {
   mounted() {
     this.init();
     console.log(this.$store.state.chat.patienDetail, "就诊人");
+    this.getAge(this.$store.state.chat.patienDetail.birthday)
+
     //  用于演示临时加得
     let obj = {}
     obj.id = 125;
@@ -148,6 +150,60 @@ export default {
 
 
     },
+
+
+    async  getAge(strBirthday) {
+      var returnAge;
+      var strBirthdayArr = strBirthday.split(" ");
+      var strBirthdayArr = strBirthdayArr[0].split("-");
+      var birthYear = strBirthdayArr[0];
+      var birthMonth = strBirthdayArr[1];
+      var birthDay = strBirthdayArr[2];
+
+      var d = new Date();
+      var nowYear = d.getFullYear();
+      var nowMonth = d.getMonth() + 1;
+      var nowDay = d.getDate();
+
+      if (nowYear == birthYear) {
+        returnAge = 0;//同年 则为0岁
+      }
+      else {
+        var ageDiff = nowYear - birthYear; //年之差
+        if (ageDiff > 0) {
+          if (nowMonth == birthMonth) {
+            var dayDiff = nowDay - birthDay;//日之差
+            if (dayDiff < 0) {
+              returnAge = ageDiff - 1;
+            }
+            else {
+              returnAge = ageDiff;
+            }
+          }
+          else {
+            var monthDiff = nowMonth - birthMonth;//月之差
+            if (monthDiff < 0) {
+              returnAge = ageDiff - 1;
+            }
+            else {
+              returnAge = ageDiff;
+            }
+          }
+        }
+        else {
+          returnAge = -1;//返回-1 表示出生日期输入错误 晚于今天
+        }
+      }
+
+      var data = this._patienDetail;
+      data.age = returnAge;
+      this["chat/setPatienDetail"](data);
+
+      console.log(this._patienDetail, "鸟朦胧")
+      return returnAge;//返回周岁年龄
+
+    },
+
 
     // 初始化
     async init() {
