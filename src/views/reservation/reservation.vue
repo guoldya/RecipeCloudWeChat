@@ -122,9 +122,9 @@ export default {
    },
    mounted() {
       document.title = '预约信息';
-      if(this.$store.state.isCashierhowData){
-          this.isSucceed=this.$store.state.isCashierhowData;
-      }
+    //   if(this.$store.state.isCashierhowData){
+    //       this.isSucceed=this.$store.state.isCashierhowData;
+    //   }
       this.depart = this.$store.state.depart;
       this.major = this.$route.query.dept;
       if (this.$route.query.afternoon * 1 == 1) {

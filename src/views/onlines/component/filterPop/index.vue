@@ -113,44 +113,44 @@ export default {
           value: 3,
           text: '副教授',
           checked: false
-        },{
-            value: 4,
+        }, {
+          value: 4,
           text: '五级专家',
           checked: false
-        },{
-          value:5,
-          text:'四级专家',
+        }, {
+          value: 5,
+          text: '四级专家',
           checked: false
-        },{
-          value:6,
-          text:'三级专家',
+        }, {
+          value: 6,
+          text: '三级专家',
           checked: false
-        },{
-          value:7,
-          text:'二级专家',
+        }, {
+          value: 7,
+          text: '二级专家',
           checked: false
-        },{
-          value:8,
-          text:'一级专家',
-          checked:false
-        },{
-          value:9,
-          text:'特需',
-          checked:false
+        }, {
+          value: 8,
+          text: '一级专家',
+          checked: false
+        }, {
+          value: 9,
+          text: '特需',
+          checked: false
         }
       ],
       priceList: [
-          {
+        {
           value: '0-20',
           text: '0~20',
           checked: false
         },
-          {
+        {
           value: '20-50',
           text: '20~50',
           checked: false
         },
-          {
+        {
           value: '50-100',
           text: '50~100',
           checked: false
@@ -177,6 +177,12 @@ export default {
       this.consultList.forEach(item => item.checked = false)
     },
     getSelect() {
+      const levelresult = this.selectList.filter(item => item.checked == true);
+      const serviceresult = this.consultList.filter(item => item.checked == true);
+      console.log([{ one: serviceresult, two: levelresult }]);
+      this.$emit('childByValue', [serviceresult, levelresult]);
+      // this.$emit('childByValue', serviceresult);
+
       this.testshow = false;
     }
   }

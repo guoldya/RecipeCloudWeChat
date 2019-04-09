@@ -176,6 +176,7 @@ export default {
                 _this.$axios.put(searchClinicListByClinicOrDoctor, {
                     name: value,
                     orgId: _this.$store.state.feeActiveId,
+                    orgType: _this.$route.query.orgType ? _this.$route.query.orgType : undefined,
                 }).then(function (res) {
                     if (res.data.code == '200') {
                         _this.doctorList = res.data.data.doctorList;
@@ -199,9 +200,9 @@ export default {
 </script>
 
 <style scoped>
-@import url("./result.css");
-@import "../choosehospital/choosehospital.css";
-.booking-index--hospitals-item div {
+/* @import url("./result.css"); */
+/* @import "../choosehospital/choosehospital.css"; */
+/* .booking-index--hospitals-item div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -214,6 +215,6 @@ export default {
   color: var(--primary--content);
   font-size: 24px;
   border-bottom: 1px solid var(--primary--line);
-}
+} */
 </style>
 

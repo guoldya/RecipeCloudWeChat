@@ -24,6 +24,7 @@
         </div>
       </div>
     </div>
+
     <div :class="{'butTime':true,'butTimeaa':!isTop}">
       <div class="time" v-show="isTop">
         <ul>
@@ -44,27 +45,36 @@
         </div>
       </div>
     </div>
+
     <div :class="{ pt50: !isTop}" style="margin-bottom:20px; ">
-      <p class="forenoon">上午</p>
       <div class="doctorList" id="mornign">
+        <!-- <div v-show="isAAA" style="height:90px">aa</div> -->
+        <p class="forenoon">上午</p>
         <ul v-if="amList.length!=0" v-show="!loadingtrue">
           <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info)"> </li>
         </ul>
+
+        <!-- 测试用的 -->
+         <!-- <li v-for="aa in 11">
+          <div class="flatCard">
+            <div class="cardText">
+              <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+              <div>
+                <div class="headname">
+                  <span>{{aa}}{{aa}}{{aa}}{{isAAA}}</span>
+                  <span class="levle">s</span>
+
+                </div>
+                <p class="headdesc">擅长:{sfo.skill}}</p>
+              </div>
+            </div>
+          </div>
+        </li> -->
+        <!-- 测试用的end-->
         <ul v-if="amList.length!=0">
           <li v-for="(info,index2) in amList" :key="index2+'aa'" @click="intodoctordetail(info,1 )">
             <div class="flatCard">
-              <!--<div class="cardText">-->
-              <!--<div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>-->
-              <!--<div>-->
-              <!--<p class="headname">-->
-              <!--<span>{{info.name}}</span>-->
-              <!--<span class="levle" style="padding-bottom: 4px;">{{info.title}}</span>-->
-              <!--<span v-if="info.valNum!=0" class="have">余{{info.valNum}}</span>-->
-              <!--<span v-if="info.valNum==0" class="have no">余{{info.valNum}}</span>-->
-              <!--</p>-->
-              <!--<p class="headdesc">擅长:{{info.skill}}</p>-->
-              <!--</div>-->
-              <!--</div>-->
+
               <div class="cardText">
                 <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
                 <div>
@@ -85,8 +95,28 @@
         </div>
         <Loading v-show="loadingtrue"></Loading>
       </div>
-      <p class="forenoon">下午</p>
+
       <div class="doctorList" id="afternoon">
+        <!-- <div v-show="isBottom" style="height:90px"></div> -->
+        <p class="forenoon">下午</p>
+
+        <!-- 测试用的 -->
+        <!-- <li v-for="aa in 11">
+          <div class="flatCard">
+            <div class="cardText">
+              <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+              <div>
+                <div class="headname">
+                  <span>下午{{aa}}</span>
+                  <span class="levle">s</span>
+
+                </div>
+                <p class="headdesc">擅长:{sfo.skill}}</p>
+              </div>
+            </div>
+          </div>
+        </li> -->
+        <!-- 测试用的end -->
         <ul v-if="pmList.length!=0" v-show="!loadingtrue">
           <li v-for="(pmItem,index) in pmList" :key="index">
             <div class="flatCard" @click="intodoctordetail(pmItem,2)">
@@ -124,7 +154,8 @@ export default {
   data() {
     console.log(String(this.$route.query.deptId), "wp")
     return {
-
+      isBottom: false,
+      isAAA: false,
       isSelectorShow: false,
       selectorValue: '',
       num: 5,
@@ -141,7 +172,7 @@ export default {
       },
       departData: [],
       time: [],
-      choosedate: '1-01',
+      choosedate: '01-01',
       chooseweek: '当日号',
       isTime: '',
       amList: [],
@@ -178,9 +209,8 @@ export default {
         _this.isTop = false;
       }
       const isToBottom = bodyTop + window.innerHeight > document.body.offsetHeight
-      if (bodyTop >= mornignHeight) {
+      if (bodyTop >= mornignHeight - 45) {
         _this.isActive = 2;
-
       } else {
         _this.isActive = 1
       }
@@ -236,10 +266,14 @@ export default {
     },
 
     goMornign() {
-      this.isActive = 1
+      this.isBottom = false;
+      this.isAAA = true;
+      this.isActive = 1;
       document.querySelector("#mornign").scrollIntoView();
     },
     goAfternoon() {
+      this.isBottom = true;
+      this.isAAA = false;
       this.isActive = 2;
       document.querySelector("#afternoon").scrollIntoView();
 
@@ -250,6 +284,7 @@ export default {
         let d = nowTime.setDate(nowTime.getDate() + i - 1);
         let data = this.addDate(d, 1);
         let time = {};
+
         if (i == 0) {
           time = { date: data.newData, week: '当日号', year: data.newYear }
         } else {
@@ -257,6 +292,8 @@ export default {
         }
         this.time.push(time)
       }
+      this.choosedate = this.time[0].date;
+
     },
     addDate(val, days) {
       var d = new Date(val);
@@ -275,7 +312,7 @@ export default {
     },
     searchT: function () {
       this.$router.push({
-        name: 'resultdocotor',
+        name: 'doctorsearch',
         query: { deptId: this.deptId, isTime: this.isTime, valNum: this.valNum }
       });
     },

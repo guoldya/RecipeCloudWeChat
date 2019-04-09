@@ -11,7 +11,7 @@
     <div class="onlineheader">
       <p>在线问诊</p>
     </div>
- 
+
     <div class="margin45 outCarint">
       <Search type="onlines"></Search>
       <!-- <Skeleton v-if="isloading"></Skeleton> -->
@@ -43,8 +43,9 @@
             </div>
           </router-link>
         </div>
-        <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" />
+        <!-- <md-tab-picker title="请选择科室" :data="Fdata" v-model="show" @change="chooseDepart" /> -->
         <md-selector v-model="isSelectorShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
+        <md-selector v-model="show" :data="departData" @choose="chooseDepart" title="请选择科室"></md-selector>
         <h2>推荐医生</h2>
         <div class="yaobutton">
           <div :class="{ yaoActive: isChecked == 0 }" @click="choose">
@@ -81,7 +82,7 @@
       </div>
     </div>
     <!-- 筛选弹窗 -->
-    <filterPop ref="filterPop"></filterPop>
+    <filterPop ref="filterPop" v-on:childByValue="childByValue"></filterPop>
 
     <!-- 底部 -->
     <Footer></Footer>
@@ -109,71 +110,85 @@ export default {
       sortData: [
         {
           value: 1,
+          text: "综合排序"
+        },
+        {
+          value: 2,
           text: "问诊量"
         },
         {
-          value: "2",
+          value: "3",
           text: "价格"
         },
         {
-          value: "3",
+          value: "4",
           text: "好评度"
+        },
+        {
+          value: "5",
+          text: "回复速度"
         }
       ],
 
-      Fdata: {
-        // 唯一键名
-        name: "科室",
-        // 面板标签
-        label: "科室",
-        // 选项列表
-        options: [
-          {
-            // 选项值
-            value: "1",
-            // 选项标签
-            label: "骨科",
-            // 级联子面板
-            children: {
-              name: "骨头断了",
-              label: "骨头断了",
-              options: [
-                {
-                  value: "骨头断了",
-                  label: "骨头断了"
-                },
-              ]
-            },
-               children: {
-              name: "meiyou ",
-              label: "meiyou ",
-              options: [
-                {
-                  value: "meiyou ",
-                  label: "meiyou "
-                },
-              ]
-            },
-          },
-          {
-            // 选项值
-            value: "2",
-            // 选项标签
-            label: "妇科",
-            // 级联子面板
-            children: {
-              name: "妇科",
-              label: "妇科",
-              options: [
-                {
-                  value: "宫颈",
-                  label: "宫颈"
-                }
-              ]
-            }
-          }
-        ]
-      },
+      // Fdata: {
+      //   // 唯一键名
+      //   name: "科室",
+      //   // 面板标签
+      //   label: "科室",
+      //   // 选项列表
+      //   options: [
+      //     {
+      //       // 选项值
+      //       value: "1",
+      //       // 选项标签
+      //       label: "骨科",
+      //       // 级联子面板
+      //       children: {
+      //         name: "骨头断了",
+      //         label: "骨头断了",
+      //         options: [
+      //           {
+      //             value: "骨头断了",
+      //             label: "骨头断了"
+      //           },
+      //         ]
+      //       },
+      //          children: {
+      //         name: "meiyou ",
+      //         label: "meiyou ",
+      //         options: [
+      //           {
+      //             value: "meiyou ",
+      //             label: "meiyou "
+      //           },
+      //         ]
+      //       },
+      //     },
+      //     {
+      //       // 选项值
+      //       value: "2",
+      //       // 选项标签
+      //       label: "妇科",
+      //       // 级联子面板
+      //       children: {
+      //         name: "妇科",
+      //         label: "妇科",
+      //         options: [
+      //           {
+      //             value: "宫颈",
+      //             label: "宫颈"
+      //           }
+      //         ]
+      //       }
+      //     }
+      //   ]
+      // },
+      departData: [
+        {
+          value: '',
+          text: "全部科室"
+        },
+      ],
       departmentList: [], // 科室数据
       departmenParams: {
         // 科室分页信息
@@ -197,7 +212,44 @@ export default {
     await this.getRecommendDoctor();
     this.isloading = false;
   },
+  watch: {
+    doctorParams: {
+      handler(newdoctorParams, olddoctorParams) {
+        this.getRecommendDoctor();
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+
+
+  // levelByValue: function (data) {
+  //   this.doctorParams.level = data
+  // },
   methods: {
+
+    childByValue: function (data) {
+      var aa = [];
+      var bb = [];
+      for (var i = 0; i < data[0].length; i++) {
+        aa.push(parseInt(data[0][i].value))
+      }
+      for (var i = 0; i < data[1].length; i++) {
+        bb.push(parseInt(data[1][i].value))
+      }
+      if (data[0].length != 0) {
+        this.doctorParams.type = aa;
+      }else{
+        this.doctorParams.type = null;
+      }
+      if (data[0].length != 0) {
+        this.doctorParams.level = bb;
+      }else{
+        this.doctorParams.level = null;
+      }
+
+    },
+
     // 得到某院区下的所有科室
     async getDepartment() {
       try {
@@ -210,6 +262,13 @@ export default {
           throw Error(res.data.msg);
         }
         this.departmenParams.pages = res.data.pages;
+        for (let i = 0; i < res.data.rows.length; i++) {
+          let neslist = {
+            text: res.data.rows[i].orgName,
+            value: String(res.data.rows[i].id)
+          }
+          this.departData.push(neslist);
+        }
         this.departmentList = this.departmentList.concat(res.data.rows);
       } catch (error) {
         console.log(error);
@@ -231,11 +290,13 @@ export default {
         console.log(error.message);
       }
     },
+
     loadMoredepartment() {
       // 加载更多
       this.departmenParams.num++;
       this.getDepartment();
     },
+
     loadMore() {
       if (this.isloading) return false;
       if (this.doctorParams.pageNumber == this.doctorPages) return false;
@@ -254,6 +315,7 @@ export default {
     },
     chooseSort(data) {
       this.selectorValue = data.text.substring(0, 5);
+
       // this.doctorParams.
     },
     choose() {
@@ -268,9 +330,12 @@ export default {
       this.isChecked = 2;
       this.$refs.filterPop.openPop();
     },
-    chooseDepart({ options }) {
-      this.address = options;
-      this.addressStr = (options[0].label + options[1].label).substring(0, 5);
+    chooseDepart(data) {
+      this.address = data;
+      this.doctorParams.deptId = data.value ? data.value * 1 : null;
+      this.addressStr = data.text.substring(0, 5);
+      // this.addressStr = text;
+      // this.addressStr = (options[0].label + options[1].label).substring(0, 5);
     }
   },
   components: {

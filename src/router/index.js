@@ -22,6 +22,8 @@ import feesucces from '@/views/feesucces/feesucces.vue'
 import doctor from '@/views/doctordetail/doctor.vue'
 import payment from '@/views/payment/payment.vue'
 import doctorList from '@/views/doctorList/doctorList.vue'
+import doctorresult from '@/views/doctorList/doctorresult'
+import doctorsearch from '@/views/doctorList/doctorsearch'
 import reportrecord from '@/views/reportrecord/reportrecord.vue'
 import reportquery from '@/views/reportquery/reportquery.vue'
 import reportinfo from '@/views/reportinfo/reportinfo.vue'
@@ -111,6 +113,10 @@ import seeCase from '@/views/onlines/seeCase'
 import inspectionReport from '@/views/onlines/inspectionReport'
 import caseDetail from '@/views/onlines/caseDetail'
 import inspectionDetail from '@/views/onlines/inspectionDetail'
+import onlineresult from '@/views/onlines/onlineresult'
+import onlinesearch from '@/views/onlines/onlinesearch'
+
+
 
 import business from '@/views/copyrecord/business/business.vue'
 import chooseCase from '@/views/copyrecord/chooseCase/chooseCase.vue'
@@ -476,9 +482,9 @@ export default new Router({
     path: '/adress',
     name: 'adress',
     component: adress,
-      meta: {
-          keepAlive: true
-      }
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/adressinfo',
@@ -711,6 +717,38 @@ export default new Router({
     component: inspectionDetail,
     meta: {
       title: '报告详情'
+    }
+  },
+  {
+    path: '/onlinesearch',
+    name: 'onlinesearch',
+    component: onlinesearch,
+    meta: {
+      title: '在线医生搜索'
+    }
+  },
+  {
+    path: '/onlineresult',
+    name: 'onlineresult',
+    component: onlineresult,
+    meta: {
+      title: '搜索结果'
+    }
+  },
+  {
+    path: '/doctorresult',
+    name: 'doctorresult',
+    component: doctorresult,
+    meta: {
+      title: '搜索结果'
+    }
+  },
+  {
+    path: '/doctorsearch',
+    name: 'doctorsearch',
+    component: doctorsearch,
+    meta: {
+      title: '医生搜索'
     }
   },
   {

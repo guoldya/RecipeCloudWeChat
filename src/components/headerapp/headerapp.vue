@@ -98,8 +98,9 @@ export default {
       if (this.TOKEN && !this.isWin) {
          storage.setItem("token7", this.TOKEN);
          storage.setItem("UUID7", this.UUID);
-         this.$store.commit('cardIdFun', 39);
-         this.$store.commit('cardNnameFun', "冉有钱");
+        //  原生没有选中 卡 写死 用于测试
+        //  this.$store.commit('cardIdFun', 39);
+        //  this.$store.commit('cardNnameFun', "冉有钱");
       }
    },
    methods: {
