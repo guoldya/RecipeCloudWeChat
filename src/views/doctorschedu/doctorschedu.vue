@@ -1,46 +1,86 @@
 <template>
     <div class="doctorschedu">
         <Header post-title="医生排班" ></Header>
-        <div class="margin50">
-            <div class="doctor-head" v-show="!loadingtrue">
-                <div class="outCarint">
-                    <div class="doctor-info">
-                        <div class="header">
-                            <img src="@/assets/images/user.png" alt="医生头像">
+        <div class="doctor-head margin50" v-show="!loadingtrue">
+            <!--<div class="outCarint">-->
+                <!--<div class="doctor-info">-->
+                    <!--<div class="header">-->
+                        <!--<img src="@/assets/images/user.png" alt="医生头像">-->
+                    <!--</div>-->
+                    <!--<div class="doctor-right">-->
+                        <!--<p>-->
+                            <!--<span class="doctor-name">{{doctorData.name}} </span>-->
+                            <!--<span class="doctor-tag">{{doctorData.title}} </span>-->
+                        <!--</p>-->
+                        <!--<p class="hospital"> {{depart}} </p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="content">-->
+                    <!--<p v-if="doctorData.skill" >擅长：{{doctorData.skill}}</p>-->
+                    <!--<p :class="{'ismore':!isSeemore,'yy_dateAA':isSeemore}">-->
+                        <!--介绍：{{doctorData.introduce}}-->
+                    <!--</p>-->
+                    <!--&lt;!&ndash;<p class="open" @click="isSeemore=!isSeemore"> 更多</p>&ndash;&gt;-->
+                    <!--<div class="open" @click="isSeemore=!isSeemore"  v-show="moreButton">-->
+                            <!--<span class="openUp">-->
+                                <!--<span :class="{'disNone':isSeemore,}">展开</span>-->
+                                <!--<span :class="{'disNone':!isSeemore,}">收起</span>-->
+                                <!--&lt;!&ndash;<i class="icon i_open" :class="{'nomore':isSeemore,}"></i>&ndash;&gt;-->
+                                <!--<img :class="{'down':isSeemore,}" src="@/assets/images/icon_up.png" alt="">-->
+                            <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="doc_info ">
+                <div class="pic fl">
+                    <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorData.name">
+                </div>
+                <div class="detail">
+                    <div class="headname">
+                        <div style="height: 25px">
+                            <span class="name">{{doctorData.name}}</span>
+                            <span class="levle"> {{doctorData.title}}</span>
                         </div>
-                        <div class="doctor-right">
-                            <p>
-                                <span class="doctor-name">{{doctorData.name}} </span>
-                                <span class="doctor-tag">{{doctorData.title}} </span>
-                            </p>
-                            <p class="hospital"> {{depart}} </p>
-                        </div>
+
+                        <p style="font-size: 14px">{{depart}} </p>
+                        <!--<p style="font-size: 14px">擅长：{{doctorInfo.skill}}</p>-->
                     </div>
-                    <div class="content">
-                        <p v-if="doctorData.skill" >擅长：{{doctorData.skill}}</p>
-                        <p :class="{'ismore':!isSeemore,'yy_dateAA':isSeemore}">
-                            介绍：{{doctorData.introduce}}
-                        </p>
-                        <!--<p class="open" @click="isSeemore=!isSeemore"> 更多</p>-->
-                        <div class="open" @click="isSeemore=!isSeemore"  v-show="moreButton">
+                </div>
+            </div>
+            <div class="doc_info">
+                <p class="mu-light-text-color">擅长：{{doctorData.skill}}</p>
+            </div>
+            <div class="doc_introduce">
+                <div class="title">
+                    <i class="icon i_info"></i>
+                    <span class="doc_info_txt">医生介绍</span>
+                    <!--<div class="doc_open_btn" @click="isSeemore=!isSeemore">-->
+                        <!--<span id="open"  class="openUp">-->
+                            <!--<span :class="{'disNone':isSeemore,}">展开</span>-->
+                            <!--<span :class="{'disNone':!isSeemore,}">收起</span>-->
+                            <!--&lt;!&ndash;<i class="icon i_open" :class="{'nomore':isSeemore,}"></i>&ndash;&gt;-->
+                            <!--<img :class="{'nomore':isSeemore,}" src="@/assets/images/icon_up.png" alt="">-->
+                        <!--</span>-->
+                    <!--</div>-->
+                    <div class="open" @click="isSeemore=!isSeemore" >
                             <span class="openUp">
                                 <span :class="{'disNone':isSeemore,}">展开</span>
                                 <span :class="{'disNone':!isSeemore,}">收起</span>
                                 <!--<i class="icon i_open" :class="{'nomore':isSeemore,}"></i>-->
                                 <img :class="{'down':isSeemore,}" src="@/assets/images/icon_up.png" alt="">
                             </span>
-                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="doc_detail" v-show="isSeemore">
+                <div id="doc_detail">{{doctorData.introduce}}</div>
             </div>
             <div class="flatCard">
                 <Calendar style="margin-top: 8px;padding-top: 5px" v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
 
             </div>
             <Loading v-show="loadingtrue"></Loading>
-
         </div>
-
     </div>
 </template>
 <script>

@@ -190,33 +190,21 @@ export default {
         });
         await this.$store.dispatch('getCards'/* , { update: true } */);
         this.cardLoading = false;
+        console.log("选中的卡id", this.$store.state.cardId)
         if (this.$store.state.cardId) {
             this.chooseId = this.$store.state.cardId;
         } else {
             this.chooseId = this._cardlist[0].id;
+            this.$store.commit('cardListFun', this._cardlist);
+            this.$store.commit('patientIdFun', this._cardlist[0].patientId);
+            this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
+            this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
+            this.$store.commit('cardIdFun', this._cardlist[0].id);
         }
         await this.homeNumber(this.chooseId);
-        this.$store.commit('cardListFun', this._cardlist);
-        this.$store.commit('patientIdFun', this._cardlist[0].patientId);
-        this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
-        this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
-        this.$store.commit('cardIdFun', this._cardlist[0].id);
     },
     methods: {
-        // async homeNumber(data) {
-        //     this.$axios.put(bizPatientRegisterselectCount, {
-        //         cardId: data ? data : this.$store.state.cardId
-        //         // cardId:data? this.$store.state.cardId
-        //     }).then(res => {
-        //         if (res.data.code == '200') {
-        //             this.homeList = res.data.data
-        //         } else {
-        //             console.log(res.data.msg)
-        //         }
-        //     }).catch(function (err) {
-        //         console.log(err)
-        //     })
-        // },
+
 
         async homeNumber(data) {
             try {

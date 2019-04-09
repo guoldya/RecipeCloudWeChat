@@ -1,6 +1,6 @@
 <template>
     <div class="onlineEva">
-        <Header post-title="就医评价" selectOption=""></Header>
+        <Header post-title="就医评价"></Header>
         <div class="outCarint margin45">
             <div>
                 <div class="card  ">

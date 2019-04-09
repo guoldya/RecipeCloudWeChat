@@ -18,10 +18,11 @@ export default {
   },
   methods: {
     searchT: function () {
-        console.log(this.type);
+
       if (this.type == "onlines") {
         this.$router.push({
-          path: "/resultDoctor"
+          path: "/result",
+          query: { orgType: 3 },
         });
       } else if (this.type == "choosehospital") {
         this.$store.commit("searchTypeFun", this.type);

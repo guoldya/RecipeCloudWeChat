@@ -2,9 +2,11 @@
 .submitOrder .submitUser{
     display: flex;
     justify-content: space-between;
+    line-height: 44px;
 }
-.submitOrder .submitUser .iconInfo .userInfo{
-    margin-left: 10px;
+.submitOrder .submitUser .iconInfo .userInfo
+{
+    margin-left: 20px;
 }
 .submitOrder .submitUser .iconInfo{
     display: flex;
@@ -21,8 +23,8 @@
 .submitOrder .addImg .medImg{
     width: 100%;
 }
-.submitOrder .addImg .addPic{
-    width: 60%;
+.submitOrder .addPic{
+    width: 32px;
 }
 .submitOrder .nextImg{
     justify-content: flex-end;
@@ -71,10 +73,20 @@
 }
 .submitOrder .addbTN{
    display: flex;
-    /*justify-content: space-around;*/
     background-color: transparent;
+    justify-content: space-between;
 }
 .submitOrder .addbTN span{
-    /*width: 50%;*/
-    display: inline-block;
+
+}
+.submitOrder .addbTN span span:first-child{
+    color: var(--primary--title);
+}
+.submitOrder .orderSubmit{
+    border-radius: 60px;
+    width: 30%;
+    height: 80px;
+    line-height: 80px;
+    margin-top: 14px;
+    background-color: #1da1f3;
 }

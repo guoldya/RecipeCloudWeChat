@@ -2,7 +2,9 @@
    color: var(--primary--title);
    background: #ffffff;
 }
-
+.online .search{
+   padding:0  0 10px;
+}
 .online h2 {
    font-size: 32px;
    line-height: 50px;

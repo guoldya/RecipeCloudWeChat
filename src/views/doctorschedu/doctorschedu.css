@@ -1,9 +1,9 @@
-.doctorschedu .doctor-head {
-    width: 100%;
-    background: url(./bg.png) no-repeat;
-    color: #fff;
-    font-size: 28px;
-}
+/*.doctorschedu .doctor-head {*/
+    /*width: 100%;*/
+    /*background: url(./bg.png) no-repeat;*/
+    /*color: #fff;*/
+    /*font-size: 28px;*/
+/*}*/
 .doctorschedu .doctor-info{
     display: flex;
     justify-content: flex-start;
@@ -85,4 +85,60 @@
 }
 .doctorschedu .hospital{
     padding: 10px 0;
+}
+
+
+
+.doctorschedu .doc_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 24px;
+    font-size: 28px;
+    color: #858585;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+}
+.doctorschedu .doc_info:first-child{
+    border-bottom: none;
+}
+.doctorschedu .doc_info:nth-child(2){
+    margin-top: -36px;
+}
+
+.doctorschedu .pic,
+.doctorschedu .pic img {
+    display: inline-block;
+    width: 102px;
+    height: 102px;
+    border-radius: 50%;
+}
+
+.doctorschedu .doc_info .detail {
+    flex: 1;
+    margin-left: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.doctorschedu .doc_info .name {
+    color:  var(--primary--title);
+}
+.doctorschedu .doc_info p {
+    margin-bottom: 10px;
+    width: 100%;
+    margin-top: 10px;
+    line-height: 40px;
+    text-align: justify;
+    color:var(--primary--right) ;
+}
+
+/* /介绍 */
+
+.doctorschedu .doc_introduce {
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+    padding: 20px 24px;
 }

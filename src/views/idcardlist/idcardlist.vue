@@ -33,7 +33,7 @@
           电子就诊卡需知</p>
       </div>
     </div>
-    <div v-show="cardlist.length<5">
+    <div v-show="cardlist.length!=0&&cardlist.length<5">
       <div style="height: 50px"></div>
       <p @click="blidcard" class="addbTN">注册电子就诊卡</p>
     </div>

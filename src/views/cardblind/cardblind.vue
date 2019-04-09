@@ -2,8 +2,8 @@
   <div class="cardblind">
     <Header post-title="绑定就诊卡"></Header>
     <div class="margin55">
-      <md-field >
-        <md-input-item class="outCarint" ref="input13" v-model="name" title="姓名" placeholder="姓名"></md-input-item>
+      <md-field>
+        <md-input-item class="outCarint" ref="input13" v-model="name" title="姓名" placeholder="姓名" maxlength="4"></md-input-item>
         <md-field-item class="outCarint" title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector">
         </md-field-item>
         <md-input-item class="outCarint" ref="input13" v-model="cardNo" :title="selectorValue+'号'" maxlength="11" placeholder="请输入卡号"></md-input-item>
@@ -124,7 +124,7 @@ export default {
               orgCode: localStorage.getItem("hospitalId") * 1,
             }).then(res => {
               if (res.data.code == '200') {
-                
+
                 this.$store.dispatch('getCards', { update: true });
 
                 this.$dialog.alert({
@@ -136,7 +136,7 @@ export default {
                   },
                 });
               } else {
-                this.$toast.info(res.data.msg)
+                this.$toast.info("验证码错误或超时")
               }
             }).catch(function (err) {
               console.log(err);
@@ -157,10 +157,10 @@ export default {
 
 </script>
  <style scoped>
-   .cardblind .md-button.block {
-     width: 94%;
-     margin: 20px 24px;
-   }
+.cardblind .md-button.block {
+  width: 94%;
+  margin: 20px 24px;
+}
 .cardblind .login-box-div {
   display: flex;
   width: 100%;
@@ -195,9 +195,9 @@ export default {
   background: transparent;
   padding-left: 50px;
 }
-   .cardblind .warnTip{
-     text-align: left;
-     color:red ;
-     padding: 24px;
-   }
+.cardblind .warnTip {
+  text-align: left;
+  color: red;
+  padding: 24px;
+}
 </style>

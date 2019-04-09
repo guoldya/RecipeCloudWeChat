@@ -5,7 +5,7 @@
       <md-icon name="warn-color" size="lg" color="orange" svg style="position:relative;top:5px; "></md-icon>
       <span style="margin-left:10px;color:red">绑定3个月以上才可以解绑一次</span>
     </p>
-    <div class="flatCard"  style="margin-top:10px">
+    <div class="flatCard" style="margin-top:10px">
       <div class="cardText login-box">
         <div class="content">
           <div class="login-box">
@@ -56,7 +56,7 @@ let cardDetail = "/app/bizPatientCard/read/detail";
 export default {
   data() {
     return {
-      
+
       patientName: '',
       cardNo: '',
       registerNo: '',
@@ -105,6 +105,7 @@ export default {
             createTime: this.createTime,
           }).then(res => {
             if (res.data.code == '200') {
+              this.$store.dispatch('getCards', { update: true });
               this.$router.go(-1);
             } else {
               this.$toast.info(res.data.msg)

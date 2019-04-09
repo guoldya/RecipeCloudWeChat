@@ -5,26 +5,21 @@
             <ul v-if="addressInfo.length!=0" v-show="!loadingtrue">
                 <li v-for="(item,index) in addressInfo" :key="index">
                     <div class="flatCard">
-                        <div class="cardText">
-                            <p class="order-number">
-                                <span class="patientName">{{item.receiver}}</span>
-                                <span>{{item.mobile}}</span>
-                            </p>
-                            <p class="headdesc">{{item.address}}</p>
-                            <p class="order-bottom">
-                                <span>
-                                    <div class="md-agree" @click="onChange(item.id,item.isDefault)">
-                                        <div :class="{ 'md-agree-icon':true,'checked':item.isDefault==1}">
-                                            <div class="md-agree-icon-container">
-                                                <i class="md-icon icon-font md-icon-checked md"></i>
-                                                <i class="md-icon icon-font md-icon-check md"></i>
-                                            </div>
-                                        </div>
-                                        <div class="md-agree-content">
-                                            默认地址
-                                        </div>
+                        <div class="outCarint">
+                            <div class="addImg" >
+                                <div class="selectIcon">
+                                    <md-radio :name=index.toString() v-model="checked" @input="selectFun(checked)"  :select="selectRadio(checked)"/>
+                                </div>
+                                <div class="reciverInfo">
+                                    <div class="order-number">
+                                        <span class="patientName">{{item.receiver}}</span>
+                                        <span>{{item.mobile}}</span>
                                     </div>
-                                </span>
+                                    <div> <span>{{item.address}}</span> </div>
+                                </div>
+                            </div>
+                            <p class="partLine"></p>
+                            <p class="order-bottom">
                                 <span class="fr">
                                     <span @click="adressinfo(item)" class="bbb mui-icon mui-icon-compose">
                                         <label class="bianji">编辑</label>
@@ -62,16 +57,16 @@ export default {
         return {
             loadingtrue: true,
             num: 7,
-            checked: '0a',
+            checked: '',
             addressInfo: '',
 
-            agreeConf: {
-                checked: true,
-                name: 'agree0',
-                size: 'md',
-                disabled: false,
-                introduction: '选中状态',
-            },
+            // agreeConf: {
+            //     checked: true,
+            //     name: 'agree0',
+            //     size: 'md',
+            //     disabled: false,
+            //     introduction: '选中状态',
+            // },
         };
     },
     created() {
@@ -91,6 +86,7 @@ export default {
 
     },
     mounted() {
+        this.checked=this.$route.query.checked;
         document.title = '地址管理';
 
     },
@@ -161,15 +157,30 @@ export default {
                 query: { id: data.id, isDefault: data.isDefault }
             });
         },
-
-
         addadress() {
             this.$router.push({
                 name: 'adressinfo',
                 query: { addadress: 1 }
             });
         },
+        selectRadio(val){
+            //console.log(val);
 
+        },
+        selectFun(val){
+            setTimeout(()=>{
+                let argu = {
+                    params:val,
+                    receiver:this.addressInfo[val].receiver,
+                    mobile:this.addressInfo[val].mobile,
+                    address:this.addressInfo[val].address,
+                    isDefault:this.addressInfo[val].isDefault};
+                this.$router.push({
+                    name: 'submitOrder',
+                    query: argu
+                });
+            },300)
+        },
 
     },
     computed: {
