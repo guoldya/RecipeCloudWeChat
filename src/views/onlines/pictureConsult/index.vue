@@ -11,8 +11,8 @@
         <div class="doctor-info-content">
           <p class="name">{{ doctorInfo.name }}</p>
           <p class="gray">
-            <span>主治医生</span>
-            <span>儿科</span>
+            <span>{{ doctorInfo.title }}</span>
+            <span>{{ doctorInfo.orgName }}</span>
           </p>
         </div>
       </div>
@@ -99,8 +99,8 @@ export default {
   },
   mounted() {
     this.init();
-    console.log(this.$store.state.chat.patienDetail, "就诊人");
 
+    this.getAge(this.$store.state.chat.patienDetail.birthday);
     //  用于演示临时加得
     let obj = {}
     obj.id = 125;
@@ -110,6 +110,8 @@ export default {
   methods: {
     ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews", 'updateUser']),
     sendInfo() {
+
+      console.log(this.$store.state.chat.patienDetail, "就诊人");
       this.questionDes = this.questionDes.trim()
       // if (!this._patienDetail.id) {
       //   this.$toast.info("请选择就诊人")
@@ -154,7 +156,56 @@ export default {
 
 
     },
+    getAge(value) {
+      // if (value) return
+      if (!value.split(" ")) return
+      var strBirthdayArr = value.split(" ");
+      var strBirthdayArr = strBirthdayArr[0].split("-");
+      var birthYear = strBirthdayArr[0];
+      var birthMonth = strBirthdayArr[1];
+      var birthDay = strBirthdayArr[2];
 
+      var d = new Date();
+      var nowYear = d.getFullYear();
+      var nowMonth = d.getMonth() + 1;
+      var nowDay = d.getDate();
+
+      if (nowYear == birthYear) {
+        value = 0;//同年 则为0岁
+      }
+      else {
+        var ageDiff = nowYear - birthYear; //年之差
+        if (ageDiff > 0) {
+          if (nowMonth == birthMonth) {
+            var dayDiff = nowDay - birthDay;//日之差
+            if (dayDiff < 0) {
+              value = ageDiff - 1;
+            }
+            else {
+              value = ageDiff;
+            }
+          }
+          else {
+            var monthDiff = nowMonth - birthMonth;//月之差
+            if (monthDiff < 0) {
+              value = ageDiff - 1;
+            }
+            else {
+              value = ageDiff;
+            }
+          }
+        }
+        else {
+          value = -1;//返回-1 表示出生日期输入错误 晚于今天
+        }
+      }
+
+
+      this._patienDetail.age = value;
+      console.log(value, "岁数")
+      return value;//返回周岁年龄
+
+    },
 
 
     // 初始化

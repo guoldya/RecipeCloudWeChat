@@ -41,6 +41,21 @@ const payTypeFilter = function (value) {
         return "已失效"
     }
 };
+const admissionFilter = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return "待入院"
+    } else if (value == 2) {
+        return "已入院"
+    } else if (value == 3) {
+        return "出院"
+    }
+};
+
+
+
 //时间保留号数
 const time = function (value) {
     if (value == undefined) {
@@ -102,9 +117,9 @@ const examSex = function (value) {
     if (value == undefined) {
         return "未知"
     }
-    if (value == 0) {
+    if (value == 1) {
         return "男"
-    } else if (value == 1) {
+    } else if (value == 2) {
         return "女"
     }
 };
@@ -166,4 +181,5 @@ export default {
     inquiryTime,
     examSex,
     getAge,
+    admissionFilter,
 }

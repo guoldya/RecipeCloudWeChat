@@ -98,7 +98,14 @@ import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
 import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
 import register from '@/views/register/register.vue'
 import inpatient from '@/views/inhospital/inpatient/inpatient.vue'
+import bedhosipital from '@/views/inhospital/bedhosipital'
+import admuoload from '@/views/inhospital/admuoload'
+
+
 import payfee from '@/views/inhospital/payfee/payfee.vue'
+import payfeerecord from '@/views/inhospital/payfeerecord'
+
+
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 import admission from '@/views/inhospital/admission/admission.vue'
@@ -161,10 +168,38 @@ export default new Router({
     component: inpatient
   },
   {
+    path: '/bedhosipital',
+    name: 'bedhosipital',
+    component: bedhosipital,
+    meta: {
+      title: '入院信息'
+    }
+  },
+  {
+    path: '/admuoload',
+    name: 'admuoload',
+    component: admuoload,
+    meta: {
+      title: '证件上传'
+    }
+  },
+
+  {
     path: '/payfee',
     name: 'payfee',
     component: payfee
   },
+
+  {
+    path: '/payfeerecord',
+    name: 'payfeerecord',
+    component: payfeerecord,
+    meta: {
+      title: '缴费记录'
+    }
+  },
+
+
   {
     path: '/paymeet',
     name: 'paymeet',
@@ -608,7 +643,7 @@ export default new Router({
     }
   },
   {
-    path: '/inquiryOnline/:fromId',
+    path: '/inquiryOnline',
     name: 'inquiryOnline',
     component: inquiryOnline,
     meta: {

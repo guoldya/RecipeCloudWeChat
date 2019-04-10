@@ -156,7 +156,7 @@ export default {
           'Content-Type': 'multipart/form-data',
         }
       };  //添加请求头
-      this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
+      this.$axios.post(uploadImgimage + '?id=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
             this.$store.commit('photo0DataFun', res.data.fileData.photo0);

@@ -3,8 +3,8 @@
       <Header post-title="住院服务"></Header>
       <img src="@/assets/images/hospital.png" alt="" width="100%">
       <div class="inhospitalcontent">
+         <img src="@/assets/images/hh2.png" alt="" width="94%" @click="bedhosipital">
          <img src="@/assets/images/hh1.png" alt="" width="94%" @click="payfee">
-         <img src="@/assets/images/hh2.png" alt="" width="94%" @click="admission">
          <!-- <img src="@/assets/images/hh3.png" alt="" width="94%" @click="quickpay"> -->
       </div>
    </div>
@@ -28,9 +28,9 @@ export default {
          })
       },
       // 入院办理
-      admission() {
+      bedhosipital() {
          this.$router.push({
-            name: 'admission',
+            name: 'bedhosipital',
          })
       },
 

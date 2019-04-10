@@ -239,8 +239,8 @@ export default {
             if (!current) {
                 current = this._cardlist[0]
             }
-            this.homeNumber(this.chooseId);
             this.chooseId = current.id;
+            this.homeNumber(this.chooseId);
             this.$store.commit('patientIdFun', current.patientId);
             this.$store.commit('cardNoFun', current.cardNo);
             this.$store.commit('cardIdFun', current.id);

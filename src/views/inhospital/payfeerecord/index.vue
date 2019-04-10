@@ -1,20 +1,9 @@
 <template>
    <div class="feerecord">
 
-      <Navigation type="title" title="预缴款缴纳">
-         <span class="mu-secondary-text-color" @click="tijiao">预缴款记录</span>
+      <Navigation type="title" title="预缴款缴纳-记录">
+         <span class="mu-secondary-text-color" @click="tijiao">张三</span>
       </Navigation>
-
-      <div class="flatCard margin55 cardText">
-        
-         <md-field>
-         
-            <md-detail-item title="患者姓名" :content=item.patientName></md-detail-item>
-            <md-detail-item title="住院号" :content=item.createTime></md-detail-item>
-            <md-detail-item title="开单序号" :content=item.code></md-detail-item>
-         </md-field>
-
-      </div>
       <div class="margin50">
          <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
             <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
@@ -28,12 +17,20 @@
                      <span>{{item.name}}</span>
                   </p>
                   <p class="parElem listData">
-                     <span class="sonElem">床号</span>
-                     <span>{{item.bedNo}} 号</span>
+                     <span class="sonElem">住院号</span>
+                     <span>{{item.name}}</span>
                   </p>
                   <p class="parElem listData">
-                     <span class="sonElem">预交款金额</span>
+                     <span class="sonElem">住院科室</span>
+                     <span>{{item.dept}} 号</span>
+                  </p>
+                  <p class="parElem listData">
+                     <span class="sonElem">支付金额</span>
                      <span :class="{warn:item.money==0}">{{item.money|keepTwoNum}}元</span>
+                  </p>
+                  <p class="parElem listData">
+                     <span class="sonElem">支付时间</span>
+                     <span>{{item.money|lasttime}}</span>
                   </p>
                </div>
             </div>
@@ -132,6 +129,7 @@ export default {
       },
 
       tijiao() {
+         console.log("aaa")
          this.$router.push({
             name: 'payfeerecord',
          });
@@ -139,7 +137,7 @@ export default {
 
       appointinfo: function (val) {
          this.$router.push({
-            name: 'paymeet',
+            name: 'admission',
             query: { id: val.id }
          });
       },

@@ -145,7 +145,7 @@ export default {
   padding: 10px 56px 10px 72px;
   background: #f0f3fa;
   width: 100%;
-  height: 70px;
+  height: 80px;
   line-height: 40px;
   font-size: 28px;
   color: var(--primary--content);

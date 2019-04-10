@@ -24,7 +24,7 @@
             <div class="describe">
               <p>姓名：{{item.content.patientName}}</p>
               <p>性别：{{item.content.sex|examSex}}</p>
-              <p>年龄：{{item.content.birthday }}</p>
+              <p>年龄：{{item.content.age}}</p>
               <p>问题描述：{{item.content.questionDes}}</p>
               <p>既往病史：{{item.content.anamnesisDes}}</p>
             </div>
@@ -391,7 +391,7 @@ export default {
     .send {
       line-height: 52px;
       border-radius: 8px;
-      padding: 0 10px;
+      padding: 0 27px;
       background: #ccc;
       color: #fff;
       &.active {

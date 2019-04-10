@@ -11,7 +11,6 @@
     <div class="onlineheader">
       <p>在线问诊</p>
     </div>
-
     <div class="margin45 outCarint">
       <Search type="onlines"></Search>
       <!-- <Skeleton v-if="isloading"></Skeleton> -->
