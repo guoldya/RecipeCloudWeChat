@@ -482,9 +482,9 @@ export default new Router({
     path: '/adress',
     name: 'adress',
     component: adress,
-    meta: {
-      keepAlive: true
-    }
+    // meta: {
+    //   keepAlive: true
+    // }
   },
   {
     path: '/adressinfo',

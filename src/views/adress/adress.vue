@@ -59,7 +59,7 @@ export default {
             num: 7,
             checked: '',
             addressInfo: '',
-
+            routeFrom:'',
             // agreeConf: {
             //     checked: true,
             //     name: 'agree0',
@@ -81,9 +81,6 @@ export default {
         }).catch(function (err) {
             console.log(err);
         });
-    },
-    watch: {
-
     },
     mounted() {
         this.checked=this.$route.query.checked;
@@ -168,20 +165,36 @@ export default {
 
         },
         selectFun(val){
-            setTimeout(()=>{
-                let argu = {
-                    params:val,
-                    receiver:this.addressInfo[val].receiver,
-                    mobile:this.addressInfo[val].mobile,
-                    address:this.addressInfo[val].address,
-                    isDefault:this.addressInfo[val].isDefault};
-                this.$router.push({
-                    name: 'submitOrder',
-                    query: argu
-                });
-            },300)
+            console.log(this.routeFrom);
+            if(this.routeFrom=="submitOrder"){
+                setTimeout(()=>{
+                    let argu = {
+                        params:val,
+                        receiver:this.addressInfo[val].receiver,
+                        mobile:this.addressInfo[val].mobile,
+                        address:this.addressInfo[val].address,
+                        isDefault:this.addressInfo[val].isDefault};
+                    this.$router.push({
+                        name: 'submitOrder',
+                        query: argu
+                    });
+                },300)
+            }
         },
 
+    },
+    watch: {
+        "$route": function (to, from) {
+            console.log(to,from);
+            from.meta.keepAlive = false;
+            to.meta.keepAlive = false;
+        },
+    },
+    beforeRouteEnter(to,from,next){
+        next((vm)=>{
+            vm.routeFrom=from.name;
+            console.log(from.name)
+        })
     },
     computed: {
 

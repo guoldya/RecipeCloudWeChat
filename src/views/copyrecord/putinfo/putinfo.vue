@@ -70,6 +70,10 @@
         </div>
       </div>
     </div>
+    <form>
+      <input type="file" name="json" value="aaaa">
+    </form>
+
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
     <md-agree class="outCarint" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
       我已阅读并了解
@@ -126,6 +130,8 @@ export default {
           text: '报销',
         },
       ],
+        jsonStr:'',
+        nextPar:'',
     };
   },
   created() {
@@ -144,6 +150,10 @@ export default {
     document.scrollingElement.scrollTop = 0
 
 
+    this.nextPar=this.$route.query;
+
+      this.nextPar.idCardImg=JSON.stringify(this.$store.state.cardImgData)
+      console.log(this.nextPar);
   },
   methods: {
     chooseCase() {
@@ -152,9 +162,17 @@ export default {
       })
     },
     copyresult() {
-      this.$router.push({
-        name: 'copyresult'
-      })
+      // this.$router.push({
+      //   name: 'copyresult'
+      // })
+        this.$axios.post("app/bizCopyApply/uploadIdCard",this.nextPar).then(res => {
+            if (res.data.code == '200') {
+
+                // this.$router.go(-1);
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
     },
     onChange(checked) {
       console.log(`agree name =  ${checked ? 'checked' : 'unchecked'}`);

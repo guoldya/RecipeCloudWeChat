@@ -39,6 +39,7 @@ export default new Vuex.Store({
         searchType: '',
         orderData:'',
         isCashierhowData:'',
+        cardImgData:'',
     },
     mutations: {
         isCashierhowFun: (state, n) => {
@@ -117,6 +118,9 @@ export default new Vuex.Store({
         },
         idCardBackImgFun: (state, n) => {
             state.idCardBackImg = n;
+        },
+        cardImg: (state, n) => {
+            state.cardImgData = n;
         },
     },
     actions: {

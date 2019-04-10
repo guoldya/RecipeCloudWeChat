@@ -1,16 +1,17 @@
 <template>
     <div class="registrecord">
-        <!-- <header class="aui-navBar aui-navBar-fixed">
-            <a href="javascript:;" class="aui-navBar-item" @click="routeBack">
+        <div class="navigation">
+            <i class="icon-iconfontjiantou" @click="routeBack">
                 <img src="@/assets/images/icon_back.png">
-            </a>
-            <div class="aui-center">
-                <span class="aui-center-title">挂号记录</span>
+            </i>
+            <div class="navigation-content">
+                挂号记录
             </div>
-            <a href="javascript:;" class="aui-navBar-item" ></a>
-        </header> -->
-
-        <Header post-title="挂号记录"></Header>
+            <div class="right">
+                <slot></slot>
+            </div>
+        </div>
+        <!--<Header post-title="挂号记录"></Header>-->
         <div class="margin55">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
                 <div class="flatCard outCarint" v-for="(item,i) in cordData" :key="i">
@@ -83,7 +84,7 @@ export default {
     methods: {
         routeBack() {
             this.$router.push({
-                name: 'home',
+                name: 'my',
             });
         },
         cordFun(flag) {
