@@ -22,10 +22,6 @@
         <span>关系</span>
         <span class="changenetright" @click="showSelector">{{selectorValue}}<img class="icon_right" src="@/assets/images/icon_right.png" alt=""></span>
       </div>
-      <div>
-        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" is-highlight></md-input-item>
-        <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="患者身份证号" clearable is-highlight></md-input-item>
-      </div>
       <p style="color: var(--primary--title);margin-top: 15px">拍摄/上传您的二代身份证</p>
       <div class="pg_positive">
         <div class="pg_positive_img">
@@ -52,9 +48,13 @@
           <p>手持身份证</p>
         </div>
       </div>
+      <div style="margin-top: 20px">
+        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" is-highlight></md-input-item>
+        <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="患者身份证号" clearable is-highlight></md-input-item>
+      </div>
       <!-- 申请人 -->
       <div v-show="isSelf">
-        <p style="color:#000;margin-top:20px">申请人证件照</p>
+        <p style="margin-top:40px ">申请人证件照</p>
         <div class="pg_positive">
           <div class="pg_positive_img">
             <input class="ivu-upload-input" @change="uploadPosApp($event)" type="file" name="positiveApp" id="positiveApp" accept="image/gif,image/jpeg,image/x-png" />
@@ -87,8 +87,8 @@
           </div>
         </div>
         <div style="margin-top:20px">
-          <md-input-item ref="input13" v-model="name" title="申请人姓名" placeholder="申请人姓名" is-highlight></md-input-item>
-          <md-input-item type="phone" v-model="idcard" title="身份证号" placeholder="申请人身份证号" clearable is-highlight></md-input-item>
+          <md-input-item ref="input13" v-model="nameApp" title="申请人姓名" placeholder="申请人姓名" is-highlight></md-input-item>
+          <md-input-item type="phone" v-model="idcardApp" title="身份证号" placeholder="申请人身份证号" clearable is-highlight></md-input-item>
         </div>
     </div>
     </div>
@@ -103,6 +103,7 @@
 </template>
 <script type="text/babel">
 let uploadImgimage = "/uploadImg/image";
+let addOrUpdate = "/app/bizCopyApply/uploadIdCard";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 import pg_handheld from '@/assets/images/icon_handheld.png'
@@ -117,9 +118,12 @@ export default {
       EEE: '',
       name: '',
       idcard: '',
+        nameApp: '',
+        idcardApp: '',
       isSelf: false,
       isSelectorShow: false,
       selectorValue: '本人',
+      receiverType:'1',
       files: {
         posFile: null,
         othFile: null,
@@ -149,13 +153,16 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
-    // if (this.$store.state.posUrl) {
-    //   this.posUrl = this.$store.state.posUrl;
+    console.log(this.$route.query);
+    console.log(this.$store.state.posUrl);
+    console.log(this.$store.state.othUrl);
+    // if (this.$store.state.othUrl) {
+    //   this.posUrl = this.$store.state.othUrl;
     // } else {
     //   this.posUrl = pg_negative
     // }
-    // if (this.$store.state.othUrl) {
-    //   this.othUrl = this.$store.state.othUrl;
+    // if (this.$store.state.posUrl) {
+    //   this.othUrl = this.$store.state.posUrl;
     // } else {
     //   this.othUrl = pg_positive
     // }
@@ -163,6 +170,7 @@ export default {
 
   },
   methods: {
+      //患者正面
     uploadPos(e) {
       let that = this,
         file = e.target.files[0],
@@ -173,8 +181,12 @@ export default {
         that.othUrl = this.result;
       };
       this.AAA = e.target.files[0];
-
+      console.log(this.AAA)
+        if (this.AAA.name && this.BBB.name && this.CCC.name) {
+            this.cardKnowledge()
+        }
     },
+      //患者反面
     uploadOth(e) {
       let that = this,
         file = e.target.files[0],
@@ -185,7 +197,11 @@ export default {
         that.posUrl = this.result;
       };
       this.BBB = e.target.files[0];
+        if (this.AAA.name && this.BBB.name && this.CCC.name) {
+            this.cardKnowledge()
+        }
     },
+      //患者手持
     uploadHan(e) {
       let that = this,
         file = e.target.files[0],
@@ -195,6 +211,10 @@ export default {
       fileReader.onload = function () {
         that.hanUrl = this.result;
       };
+        this.CCC = e.target.files[0];
+        if (this.AAA.name && this.BBB.name && this.CCC.name) {
+            this.cardKnowledge()
+        }
     },
     // 申请人
     uploadPosApp(e) {
@@ -207,6 +227,9 @@ export default {
         that.othAppUrl = this.result;
       };
       this.DDD = e.target.files[0];
+        if (this.DDD.name && this.EEE.name && this.FFF.name) {
+            this.cardKnowledge()
+        }
     },
     uploadOthApp(e) {
       let that = this,
@@ -218,6 +241,9 @@ export default {
         that.posAppUrl = this.result;
       };
       this.EEE = e.target.files[0];
+        if (this.DDD.name && this.EEE.name && this.FFF.name) {
+            this.cardKnowledge()
+        }
     },
     uploadHanApp(e) {
       let that = this,
@@ -228,6 +254,10 @@ export default {
       fileReader.onload = function () {
         that.hanAppUrl = this.result;
       };
+        this.FFF = e.target.files[0];
+        if (this.DDD.name && this.EEE.name && this.FFF.name) {
+            this.cardKnowledge()
+        }
     },
     // 选着人
     showSelector() {
@@ -235,65 +265,108 @@ export default {
     },
     onSelectorChoose(data) {
       this.selectorValue = data.text;
+      this.receiverType = data.value;
+      console.log(this.selectorValue);
       if (data.value == 1) {
         this.isSelf = false
       } else {
         this.isSelf = true
       }
     },
+    cardKnowledge(){
+        let param = new FormData(); //创建form对象
+        console.log(this.AAA.name, this.BBB.name, "sss");
+        // if (!this.AAA.name || !this.BBB.name) {
+        //    this.$toast.info("请上传图片")
+        //    return;
+        // }
+        console.log(this.receiverType);
+        if(this.AAA){
+            var index1 = this.AAA.name.lastIndexOf(".");
+            var index2 = this.AAA.name.length;
+            var suffix = this.AAA.name.substring(index1 + 1, index2);//后缀名
+        }
+        if(this.BBB){
+            var index11 = this.BBB.name.lastIndexOf(".");
+            var index22 = this.BBB.name.length;
+            var suffix1 = this.BBB.name.substring(index11 + 1, index22);//后缀名
+        }
+        if(this.CCC){
+            var indexCCC = this.CCC.name.lastIndexOf(".");
+            var cccPng = this.CCC.name.length;
+            var suffixCCC = this.CCC.name.substring(indexCCC + 1, cccPng);//后缀名
+        }
+        if(this.DDD){
+            var indexDDD = this.DDD.name.lastIndexOf(".");
+            var dddPng = this.DDD.name.length;
+            var suffixDDD = this.DDD.name.substring(indexDDD + 1, dddPng);//后缀名
+        }
+        if(this.EEE){
+            var indexEEE = this.DDD.name.lastIndexOf(".");
+            var eeePng = this.DDD.name.length;
+            var suffixEEE = this.DDD.name.substring(indexEEE + 1, eeePng);//后缀名
+        }
+        if(this.FFF){
+            var indexFFF = this.FFF.name.lastIndexOf(".");
+            var fffPng = this.FFF.name.length;
+            var suffixFFF = this.FFF.name.substring(indexFFF + 1, fffPng);//后缀名
+        }
 
-    cardconfirm() {
-      this.$router.push({
-        name: 'putinfo'
-      });
-      // let param = new FormData(); //创建form对象
-      // console.log(this.AAA.name, this.BBB.name, "sss");
-      // if (!this.AAA.name || !this.BBB.name) {
-      //    this.$toast.info("请上传图片")
-      //    return;
-      // }
-      // var index1 = this.AAA.name.lastIndexOf(".");
-      // var index2 = this.AAA.name.length;
-      // var suffix = this.AAA.name.substring(index1 + 1, index2);//后缀名
-      // var index11 = this.BBB.name.lastIndexOf(".");
-      // var index22 = this.BBB.name.length;
-      // var suffix1 = this.BBB.name.substring(index11 + 1, index22);//后缀名
+        if(this.receiverType==1){
+            param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
+            param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
+            //param.append('photo2', this.CCC, "photo2." + suffixCCC);//通过append向form对象添加数据
+        }else if(this.receiverType==2){
+            param.append('photo0', this.AAA, "photo0." + suffixDDD);//通过append向form对象添加数据
+            param.append('photo1', this.BBB, "photo1." + suffixEEE);//通过append向form对象添加数据
+            //param.append('photo2', this.CCC, "photo2." + suffixFFF);//通过append向form对象添加数据
+        }
 
-      // param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
-      // param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
-      // console.log(param);
-      // let config = {
-      //    headers: {
-      //       'Content-Type': 'multipart/form-data',
-      //    }
-      // };  //添加请求头
-      // this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
-      //    .then(res => {
-      //       if (res.data.code == '200') {
-      //          this.$store.commit('photo0DataFun', res.data.fileData.photo0);
-      //          this.$store.commit('photo1DataFun', res.data.fileData.photo1);
-      //          console.log(res.data.fileInfo[0].fileName, "我是正面");
-      //          console.log(res.data.fileInfo[1].fileName, "我是正面");
-      //          this.posUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
-      //          this.othUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].filename;
+        console.log(param);
+        let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        };
+        this.$toast.loading('正在识别');
+        //添加请求头
+        this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
+            .then(res => {
+                if (res.data.code == '200') {
+                    this.$toast.hide();
+                    this.name=res.data.fileData.photo0.name;
+                    this.idcard=res.data.fileData.photo0.idCard;
+                    this.$store.commit('photo0DataFun', res.data.fileData.photo0);
+                    this.$store.commit('photo1DataFun', res.data.fileData.photo1);
 
-      //          this.$store.commit('idCardFrontImgFun', res.data.fileInfo[0]);
-      //          this.$store.commit('idCardBackImgFun', res.data.fileInfo[1]);
+                    this.posUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
+                    this.othUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].fileName;
 
-      //          this.$store.commit('posUrlFun', this.posUrl);
-      //          this.$store.commit('othUrlFun', this.othUrl);
-      //          this.$router.push({
-      //             name: 'cardhave',
-      //             // query: argu
-      //          });
-      //       } else {
-      //          this.$toast.info(res.data.msg)
-      //       }
-      //    });
+                    this.$store.commit('idCardFrontImgFun', res.data.fileInfo[0]);
+                    this.$store.commit('idCardBackImgFun', res.data.fileInfo[1]);
 
+                    this.$store.commit('posUrlFun', this.posUrl);
+                    this.$store.commit('othUrlFun', this.othUrl);
+                    // this.$router.push({
+                    //     name: 'cardhave',
+                    // });
+
+                } else {
+                    this.$toast.info(res.data.msg)
+                }
+            });
     },
-
+    cardconfirm() {
+      // this.$router.push({
+      //   name: 'putinfo'
+      // });
+        if (!this.AAA.name || !this.BBB.name || !this.CCC.name || !this.DDD.name || !this.EEE.name || !this.FFF.name) {
+           this.$toast.info("请上传图片");
+           return;
+        }
+    },
   },
+
   computed: {
 
   },
