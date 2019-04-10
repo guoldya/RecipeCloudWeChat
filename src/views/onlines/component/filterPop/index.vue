@@ -182,7 +182,6 @@ export default {
       console.log([{ one: serviceresult, two: levelresult }]);
       this.$emit('childByValue', [serviceresult, levelresult]);
       // this.$emit('childByValue', serviceresult);
-
       this.testshow = false;
     }
   }

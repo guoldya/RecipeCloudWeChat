@@ -46,21 +46,21 @@ export default {
   /* 背景色 */
   --primary--body: #f8f8f8;
   /*灰色背景*/
-  --primary--light:#CCCBCB;
+  --primary--light: #cccbcb;
 }
-.payMoney{
-  font-size:50px ;
+.payMoney {
+  font-size: 50px;
 }
 /*冒号左边文字*/
-.colon-left{
+.colon-left {
   width: 17%;
   text-align: right;
 }
 /*冒号右边文字颜色*/
-.colon-right{
-  color:var(--primary--content)
+.colon-right {
+  color: var(--primary--content);
 }
-.dis-flex{
+.dis-flex {
   display: flex;
   justify-content: space-between;
 }
@@ -77,12 +77,12 @@ body {
 .flatCard:first-child {
   border-top: 2px solid #e9e9e9;
 }
-.bottomback{
+.bottomback {
   display: flex;
   justify-content: space-between;
-  margin:24px;
+  margin: 24px;
 }
-.bottomback span{
+.bottomback span {
   border-radius: 60px;
   height: 86px;
   line-height: 86px;
@@ -96,7 +96,7 @@ body {
 }
 
 .bottomback .mainBtn {
-  background:var(--primary);
+  background: var(--primary);
   color: #ffffff;
 }
 .cardText {
@@ -110,6 +110,9 @@ body {
 }
 .margin50 {
   margin-top: 100px;
+}
+.margin55 {
+  margin-top: 110px;
 }
 .margin55 {
   margin-top: 110px;
@@ -195,29 +198,29 @@ body {
 .listData span {
   padding: 12px 0px;
 }
-.parElem span:nth-child(2){
+.parElem span:nth-child(2) {
   /*width: 78%;*/
   /*!*text-align: right;*!*/
   /*text-align: justify;*/
   text-align: justify;
   color: var(--primary--right);
 }
-.parElem .sonElem{
+.parElem .sonElem {
   color: var(--primary--title);
   display: flex;
   align-items: center;
   width: 50%;
   margin-right: 28px;
 }
-.gButton{
+.gButton {
   background-color: var(--primary--content);
   width: 60%;
 }
-.bButton{
+.bButton {
   background-color: var(--primary);
   width: 40%;
 }
-  /*医生职称边框*/
+/*医生职称边框*/
 .headname .levle {
   font-size: 22px;
   border: 2px solid rgb(29, 161, 243);
@@ -279,18 +282,12 @@ input:-ms-input-placeholder {
   padding: 4px 0;
   line-height: 36px;
 }
-#app .md-field-item-right{
-
-  color:var(--primary--right)
+#app .md-field-item-right {
+  color: var(--primary--right);
 }
-#app .md-input-item-input{
+#app .md-input-item-input {
   text-align: right !important;
 }
-
-
-
-
-
 
 .md-activity-indicator-rolling .rolling circle.stroke {
   fill: #ffffff;
@@ -553,7 +550,7 @@ textarea::-webkit-input-placeholder {
 /* .md-icon.icon-font.md {
   font-size: 46px !important;
 } */
-.primary{
+.primary {
   background-color: var(--primary);
   color: #fff;
   font-size: 28px;
@@ -611,7 +608,7 @@ textarea::-webkit-input-placeholder {
   margin: 0 6px;
   vertical-align: sub;
 }
-.md-input-item-input ,
+.md-input-item-input,
 .md-field-item-title,
 .md-check-box {
   font-size: 28px !important;
@@ -631,7 +628,7 @@ textarea::-webkit-input-placeholder {
   -webkit-box-orient: vertical;
   /* autoprefixer: on */
 }
-.md-landscape .md-icon.md-landscape-close{
+.md-landscape .md-icon.md-landscape-close {
   display: none !important;
 }
 </style>

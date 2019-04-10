@@ -13,6 +13,10 @@ import choosehospital from '@/views/choosehospital/choosehospital.vue'
 import hospitalsearch from '@/views/choosehospital/hospitalsearch/hospitalsearch.vue'
 import hospitalresult from '@/views/choosehospital/hospitalresult/hospitalresult.vue'
 import lostpage from '@/views/resultpage/lostpage/lostpage.vue'
+import departsearch from '@/views/choosedepart/departsearch'
+
+
+
 
 
 import result from '@/views/result/result.vue'
@@ -314,6 +318,11 @@ export default new Router({
     path: '/choosedepart',
     name: 'choosedepart',
     component: choosedepart
+  },
+  {
+    path: '/departsearch',
+    name: 'departsearch',
+    component: departsearch
   },
   {
     path: '/result',

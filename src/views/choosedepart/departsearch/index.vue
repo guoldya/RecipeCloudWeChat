@@ -15,7 +15,7 @@
             </div>
             <div class="line"></div>
             <div class="outCarint" style="background-color: #ffffff">
-                  <div class="resulthistory" v-show="doctorHistory.length!=0">
+                  <div class="resulthistory" v-show="HistoryList.length!=0">
                         <div class="history">
                               <div class="container fl">
                                     <span class="lf">搜索历史</span>
@@ -26,7 +26,7 @@
                         </div>
                         <div>
                               <ul class="emp">
-                                    <li class="history" v-for="(item,index) in doctorHistory" :key="index">
+                                    <li class="history" v-for="(item,index) in HistoryList" :key="index">
                                           <span class="hj" @click="resultT(item)">{{item}}</span>
                                           <span class="delete">
                                                 <md-icon name="close" @click="clearT(index)"></md-icon>
@@ -46,16 +46,16 @@ export default {
       data() {
             return {
                   value: '',
-                  doctorHistory: []
+                  HistoryList: []
             }
       },
       mounted() {
 
             document.getElementById("oc_vala").focus();
             var aa = window.localStorage;
-            if (aa.getItem("doctorHistory") != null && aa.getItem("doctorHistory") != undefined) {
-                  var json = aa.getItem("doctorHistory");
-                  this.doctorHistory = JSON.parse(json);
+            if (aa.getItem("HistoryList") != null && aa.getItem("HistoryList") != undefined) {
+                  var json = aa.getItem("HistoryList");
+                  this.HistoryList = JSON.parse(json);
             }
       },
       methods: {
@@ -63,35 +63,35 @@ export default {
                   this.SearchVal(value);
             },
             clearT: function (value) {
-                  this.doctorHistory.splice(value, 1);
-                  localStorage.setItem('doctorHistory', JSON.stringify(this.doctorHistory));
+                  this.HistoryList.splice(value, 1);
+                  localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
             },
             clear: function () {
-                  this.doctorHistory = [],
-                        localStorage.setItem('doctorHistory', JSON.stringify(this.doctorHistory));
+                  this.HistoryList = [],
+                        localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
             },
             SearchVal(val) {
                   if (!val) return;
                   val = val.trim() // 清除空格
-                  if (this.doctorHistory.length > 0) { // 有数据的话 判断
-                        if (this.doctorHistory.indexOf(val) !== -1) { // 有相同的，先删除 再添加 
-                              this.doctorHistory.splice(this.doctorHistory.indexOf(val), 1)
-                              this.doctorHistory.unshift(val);
+                  if (this.HistoryList.length > 0) { // 有数据的话 判断
+                        if (this.HistoryList.indexOf(val) !== -1) { // 有相同的，先删除 再添加 
+                              this.HistoryList.splice(this.HistoryList.indexOf(val), 1)
+                              this.HistoryList.unshift(val);
                         } else { // 没有相同的 添加
-                              this.doctorHistory.unshift(val);
+                              this.HistoryList.unshift(val);
                         }
                   } else { // 没有数据 添加
-                        this.doctorHistory.unshift(val);
+                        this.HistoryList.unshift(val);
                   }
-                  if (this.doctorHistory.length > 6) { // 保留六个值
-                        this.doctorHistory.pop();
+                  if (this.HistoryList.length > 6) { // 保留六个值
+                        this.HistoryList.pop();
                   }
 
                   this.$router.push({
-                        name: 'doctorresult',
+                        name: 'result',
                         query: { val: val }
                   });
-                  localStorage.setItem('doctorHistory', JSON.stringify(this.doctorHistory));
+                  localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
             }
 
       }

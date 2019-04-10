@@ -11,7 +11,7 @@
           <div class="login-box">
             <div class="login-box-div">
               <span class="flexF">姓名</span>
-              <input class="flexF" type="text" name="username" placeholder="姓名" :value="patientName" maxlength="11">
+              <input class="flexF" type="text" name="username" placeholder="姓名" :value="patientName" maxlength="10">
             </div>
             <div class="login-box-div">
               <span class="flexF">电子就诊卡号</span>
@@ -51,12 +51,12 @@
   </div>
 </template>
 <script type="text/babel">
+import { mapState } from 'vuex';
 let appbizPatientCarduntie = "/app/bizPatientCard/untie";
 let cardDetail = "/app/bizPatientCard/read/detail";
 export default {
   data() {
     return {
-
       patientName: '',
       cardNo: '',
       registerNo: '',
@@ -66,7 +66,15 @@ export default {
       cardinfo: '',
     };
   },
+  computed: {
+
+    ...mapState({
+      _cardlist: state => state.home.cardList,
+    }),
+
+  },
   created() {
+
     this.$axios.put(cardDetail, {
       id: this.$route.query.id * 1,
     }).then(res => {
@@ -85,8 +93,9 @@ export default {
 
   },
   mounted() {
-
+    console.log(this.$store.state.cardId)
     document.title = '就诊卡详情';
+    this.$store.dispatch('getCards', { update: true });
   },
   methods: {
     unBlind() {
@@ -105,7 +114,19 @@ export default {
             createTime: this.createTime,
           }).then(res => {
             if (res.data.code == '200') {
-              this.$store.dispatch('getCards', { update: true });
+
+              this.$store.dispatch('getCards', { update: true }).then(res => {
+                console.log(this._cardlist);
+                this.$store.commit('cardIdFun', this._cardlist[0].id);
+                if (this.$route.query.id * 1 == this.$store.state.cardId) {
+                  this.$store.commit('patientIdFun', this._cardlist[0].patientId);
+                  this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
+                  this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
+                  this.$store.commit('cardIdFun', this._cardlist[0].id);
+                }
+              }
+
+              );
               this.$router.go(-1);
             } else {
               this.$toast.info(res.data.msg)
@@ -116,12 +137,7 @@ export default {
 
         },
       });
-    }
-
-
-
-  },
-  computed: {
+    },
 
   },
 

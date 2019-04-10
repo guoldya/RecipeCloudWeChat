@@ -1,8 +1,8 @@
 <template>
     <div class="reportinfo">
-        <Header :post-title="postTitle"  ></Header>
+        <Header :post-title="postTitle"></Header>
         <div v-if="reportInfoData.length!=0" class="margin55" v-for="(item,i) in reportInfoData" :key="i">
-            <div v-if="feeActiveId==1"  v-show="!loadingtrue">
+            <div v-if="feeActiveId==1" v-show="!loadingtrue">
                 <div class="flatCard">
                     <div class="cardText alignJ">
                         <div class=" parElem listData">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="feeActiveId==2"  v-show="!loadingtrue">
+            <div v-if="feeActiveId==2" v-show="!loadingtrue">
                 <div class="flatCard">
                     <div class="cardText alignJ">
                         <div class="parElem listData">
@@ -128,14 +128,14 @@
         </div>
         <Loading v-show="loadingtrue"></Loading>
         <!--<div class="cardTextPP alignJ">-->
-            <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
-                <!--<span class="sonElem">检查参数</span>-->
-                <!--<span style="width:78%;">您牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
-            <!--</div>-->
-            <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
-                <!--<span class="sonElem">检数</span>-->
-                <!--<span style="width:78%;">牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
-            <!--</div>-->
+        <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
+        <!--<span class="sonElem">检查参数</span>-->
+        <!--<span style="width:78%;">您牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
+        <!--</div>-->
+        <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
+        <!--<span class="sonElem">检数</span>-->
+        <!--<span style="width:78%;">牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
+        <!--</div>-->
         <!--</div>-->
     </div>
 
@@ -146,7 +146,7 @@ let bizLisReportreaddetail = '/app/bizLisReport/read/detail';
 export default {
     data() {
         return {
-            
+
             normal: {
                 checkbox: true,
                 radio: 1,
@@ -176,11 +176,11 @@ export default {
     },
     mounted() {
         this.feeActiveId = this.$store.state.feeActiveId;
-        if (this.$store.state.feeActiveId == 1|| this.$route.query.reportType==1) {
+        if (this.$store.state.feeActiveId == 1) {
             this.checkReportDetail();
             this.postTitle = "检查报告详情";
             document.title = '检查报告详情';
-        } else if (this.$store.state.feeActiveId == 2|| this.$route.query.reportType==2) {
+        } else if (this.$store.state.feeActiveId == 2) {
             this.collectReportDetail();
             this.postTitle = "检验报告详情";
             document.title = '检验报告详情';
@@ -246,75 +246,74 @@ export default {
 };
 </script>
  <style   scoped>
-    .reportinfo .cardText .cardTextPP {
-      display: flex;
-      justify-content: space-between;
-      font-size: 28px;
-        /*align-items: center;*/
-        padding: 18px 0;
-    }
-    .reportinfo .cardText .cardTextPP:last-child,
-    .reportinfo .cardText .cardTextBor {
-      border: none;
-    }
-    .reportinfo .cardText .cardTextKind {
-      display: flex;
-      justify-content: space-between;
-      padding: 28px 0;
-      font-size: 27px;
-      border-bottom: 1px solid #e9e9e9;
-      font-weight: 700;
-        margin-bottom: 28px;
-    }
-    .reportinfo .spanWid span {
-      /*display: inline-block;*/
-      /*word-break: normal;*/
-      /*white-space: pre-wrap;*/
-      /*word-wrap: break-word;*/
-      /*overflow: hidden;*/
-      text-align: center;
-    }
+.reportinfo .cardText .cardTextPP {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28px;
+  /*align-items: center;*/
+  padding: 18px 0;
+}
+.reportinfo .cardText .cardTextPP:last-child,
+.reportinfo .cardText .cardTextBor {
+  border: none;
+}
+.reportinfo .cardText .cardTextKind {
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 0;
+  font-size: 27px;
+  border-bottom: 1px solid #e9e9e9;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+.reportinfo .spanWid span {
+  /*display: inline-block;*/
+  /*word-break: normal;*/
+  /*white-space: pre-wrap;*/
+  /*word-wrap: break-word;*/
+  /*overflow: hidden;*/
+  text-align: center;
+}
 
-    .reportinfo .spanWid span:first-child {
-      width: 28%;
-      text-align: left;
-    }
-    .reportinfo .spanWid span:nth-child(2) {
-      width: 28%;
-    }
-    .reportinfo .arrow span:nth-child(2) span{
-       color: red;
-        display: flex;
-        position: relative;
-        left: 140px;
-        top: -32px;
-    }
-    .reportinfo .spanWid span:nth-child(3) {
-      width: 20%;
-    }
-    .reportinfo .spanWid span:last-child {
-      width: 20%;
-      text-align: right;
-    }
-     .reportinfo .flatCard{
-         border-top: none;
-     }
-    .reportinfo .parElem{
-        line-height: 46px;
-    }
-    /*.cardBottom div{*/
-        /*padding-top: 0;*/
-    /*}*/
-    /*.cardBottom .alignJ .parElem span:first-child{*/
-        /*position: relative;*/
-        /*!*top: 16px;*!*/
-    /*}*/
-     /*.reportinfo .alignJ .parElem span:nth-child(2){*/
-        /*margin-left: 40px;*/
-         /*color:  var(--primary--content);*/
-     /*}*/
-    /*.reportinfo .alignJ .parElem:first-child{*/
-        /*padding-top: 0;*/
-    /*}*/
-
- </style>
+.reportinfo .spanWid span:first-child {
+  width: 28%;
+  text-align: left;
+}
+.reportinfo .spanWid span:nth-child(2) {
+  width: 28%;
+}
+.reportinfo .arrow span:nth-child(2) span {
+  color: red;
+  display: flex;
+  position: relative;
+  left: 140px;
+  top: -32px;
+}
+.reportinfo .spanWid span:nth-child(3) {
+  width: 20%;
+}
+.reportinfo .spanWid span:last-child {
+  width: 20%;
+  text-align: right;
+}
+.reportinfo .flatCard {
+  border-top: none;
+}
+.reportinfo .parElem {
+  line-height: 46px;
+}
+/*.cardBottom div{*/
+/*padding-top: 0;*/
+/*}*/
+/*.cardBottom .alignJ .parElem span:first-child{*/
+/*position: relative;*/
+/*!*top: 16px;*!*/
+/*}*/
+/*.reportinfo .alignJ .parElem span:nth-child(2){*/
+/*margin-left: 40px;*/
+/*color:  var(--primary--content);*/
+/*}*/
+/*.reportinfo .alignJ .parElem:first-child{*/
+/*padding-top: 0;*/
+/*}*/
+</style>

@@ -43,7 +43,7 @@
         既往病史&nbsp;&nbsp;
         <span>请填写既往病史</span>
       </p>
-      <textarea maxlength="500" v-model="questionDes"></textarea>
+      <textarea maxlength="500" v-model="anamnesisDes"></textarea>
       <!-- 上传图片 -->
       <ul class="image-reader-list">
         <li class="image-reader-item" v-for="(img, index) in imageList" :key="index" :style="{
@@ -87,6 +87,7 @@ export default {
       imageList: [],
       doctorInfo: '',
       questionDes: '',
+      anamnesisDes: '',
     };
   },
 
@@ -99,7 +100,6 @@ export default {
   mounted() {
     this.init();
     console.log(this.$store.state.chat.patienDetail, "就诊人");
-    this.getAge(this.$store.state.chat.patienDetail.birthday)
 
     //  用于演示临时加得
     let obj = {}
@@ -122,6 +122,7 @@ export default {
 
       var data = this._patienDetail;
       data.questionDes = this.questionDes;
+      data.anamnesisDes = this.anamnesisDes.trim();
       this["chat/setPatienDetail"](data);
 
       // 发送消息
@@ -129,12 +130,12 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: Number(this.$route.params.fromId),
+        to: Number(this.$route.query.id),
         cmd: 11,
         createTime: createTime,
-        msgType: 0,
+        msgType: 7,
         chatType: 2,
-        content: data
+        content: data,
       };
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.$store.state.chat.historyNews))
@@ -145,64 +146,15 @@ export default {
 
       this.$router.push({
         name: 'inquiryOnline',
+        query: {
+          id: this.$route.query.id
+        }
       });
 
 
 
     },
 
-
-    async  getAge(strBirthday) {
-      var returnAge;
-      var strBirthdayArr = strBirthday.split(" ");
-      var strBirthdayArr = strBirthdayArr[0].split("-");
-      var birthYear = strBirthdayArr[0];
-      var birthMonth = strBirthdayArr[1];
-      var birthDay = strBirthdayArr[2];
-
-      var d = new Date();
-      var nowYear = d.getFullYear();
-      var nowMonth = d.getMonth() + 1;
-      var nowDay = d.getDate();
-
-      if (nowYear == birthYear) {
-        returnAge = 0;//同年 则为0岁
-      }
-      else {
-        var ageDiff = nowYear - birthYear; //年之差
-        if (ageDiff > 0) {
-          if (nowMonth == birthMonth) {
-            var dayDiff = nowDay - birthDay;//日之差
-            if (dayDiff < 0) {
-              returnAge = ageDiff - 1;
-            }
-            else {
-              returnAge = ageDiff;
-            }
-          }
-          else {
-            var monthDiff = nowMonth - birthMonth;//月之差
-            if (monthDiff < 0) {
-              returnAge = ageDiff - 1;
-            }
-            else {
-              returnAge = ageDiff;
-            }
-          }
-        }
-        else {
-          returnAge = -1;//返回-1 表示出生日期输入错误 晚于今天
-        }
-      }
-
-      var data = this._patienDetail;
-      data.age = returnAge;
-      this["chat/setPatienDetail"](data);
-
-      console.log(this._patienDetail, "鸟朦胧")
-      return returnAge;//返回周岁年龄
-
-    },
 
 
     // 初始化

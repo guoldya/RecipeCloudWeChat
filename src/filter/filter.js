@@ -98,6 +98,64 @@ const examStatus = function (value) {
         return "检查中"
     }
 };
+const examSex = function (value) {
+    if (value == undefined) {
+        return "未知"
+    }
+    if (value == 0) {
+        return "男"
+    } else if (value == 1) {
+        return "女"
+    }
+};
+
+const getAge = function (value) {
+    if (value) return
+    if (!value.split(" ")) return
+    var strBirthdayArr = value.split(" ");
+    var strBirthdayArr = strBirthdayArr[0].split("-");
+    var birthYear = strBirthdayArr[0];
+    var birthMonth = strBirthdayArr[1];
+    var birthDay = strBirthdayArr[2];
+
+    var d = new Date();
+    var nowYear = d.getFullYear();
+    var nowMonth = d.getMonth() + 1;
+    var nowDay = d.getDate();
+
+    if (nowYear == birthYear) {
+        value = 0;//同年 则为0岁
+    }
+    else {
+        var ageDiff = nowYear - birthYear; //年之差
+        if (ageDiff > 0) {
+            if (nowMonth == birthMonth) {
+                var dayDiff = nowDay - birthDay;//日之差
+                if (dayDiff < 0) {
+                    value = ageDiff - 1;
+                }
+                else {
+                    value = ageDiff;
+                }
+            }
+            else {
+                var monthDiff = nowMonth - birthMonth;//月之差
+                if (monthDiff < 0) {
+                    value = ageDiff - 1;
+                }
+                else {
+                    value = ageDiff;
+                }
+            }
+        }
+        else {
+            value = -1;//返回-1 表示出生日期输入错误 晚于今天
+        }
+    }
+
+
+    return value;//返回周岁年龄
+};
 export default {
     keepTwoNum,
     payTypeFilter,
@@ -106,4 +164,6 @@ export default {
     drugCheck,
     examStatus,
     inquiryTime,
+    examSex,
+    getAge,
 }

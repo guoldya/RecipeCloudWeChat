@@ -1,98 +1,61 @@
 <template>
     <div class="result">
-        <Header post-title="搜索"></Header>
-        <div class="margin50" style="background-color: #ffffff">
-            <div class="search">
-                <input v-model="value" :placeholder="placeholder" autofocus="autofocus" class="oc_val" @input="loadMorelist(value)">
+        <Headerapp post-title="搜索结果"></Headerapp>
+        <div class="margin55 outCarint">
+            <div class="mu-sub-header margin14">科室</div>
+            <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
+            <div v-if="departData.length==0" class="margin7">
+                <p>暂无科室信息</p>
             </div>
-            <div class="outCarint">
-                <div class="line"></div>
-                <div class="resulthistory" v-show="isResult&&HistoryList.length!=0">
-                    <div class="history">
-                        <div class="container fl">
-                            <span class="lf">搜索历史</span>
-                            <span class="clear rt" @click="clear()">
-                                <md-icon name="delete" @click="clearT(index)"></md-icon>
-                            </span>
-                        </div>
-                    </div>
-                    <div>
-                        <ul class="emp">
-                            <li class="history" v-for="(item,index) in HistoryList" :key="index">
-                                <span class="hj" @click="resultT(item)">{{item}}</span>
-                                <span class="delete">
-                                    <md-icon name="close" @click="clearT(index)"></md-icon>
-                                </span>
-                            </li>
-                            <p class="noMore">没有更多记录了</p>
-                        </ul>
-                    </div>
-                </div>
-                <div v-show="!isResult">
-                    <div class="mu-sub-header margin14">科室</div>
-                    <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
-                    <div v-if="departData.length==0" class="margin7">
-                        <p>暂无科室信息</p>
-                    </div>
-                    <div class="mu-sub-header  margin14">医生</div>
-                    <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
-                        <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
-                    </md-cell-item>
-                    <div v-if="doctorList.length==0" class="margin7">
-                        <p>暂无医生信息</p>
-                    </div>
-                </div>
-
+            <div class="mu-sub-header  margin14">医生</div>
+            <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
+                <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+            </md-cell-item>
+            <div v-if="doctorList.length==0" class="margin7">
+                <p>暂无医生信息</p>
             </div>
         </div>
+
+        <Loading v-show="loadingtrue"></Loading>
     </div>
+    <!-- <div class="aui-footer" @click="lookagain">
+      <span>复诊</span>
+    </div> -->
+
 </template>
-<script>
-let searchClinicListByClinicOrDoctor = "/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+<script type="text/babel">
+let bdHospitalOrg = '/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor';
 export default {
     data() {
         return {
-            value: '',
-            HistoryList: [],
+            hospitaldata: [],
             departData: [],
             doctorList: [],
-            searchType: '',
-            isResult: true,
-            placeholder: "搜索医生、科室",
-        }
+            page: 1,
+            pageSize: 10,
+            loadingtrue: true,
+            busy: true,
+            nomore: false,
+        };
+    },
+    created() {
+
+    },
+    watch: {
+
     },
     mounted() {
-        document.title = '搜索';
-        var aa = window.localStorage;
-        if (aa.getItem("HistoryList") != null && aa.getItem("HistoryList") != undefined) {
-            var json = aa.getItem("HistoryList");
-            this.HistoryList = JSON.parse(json);
-        };
-
-        this.searchType = this.$store.state.searchType;
-        // if(this.searchType=="workdepart"){
-        //     aa.clear()
-        // }
-        console.log(this.searchType)
-        if (this.searchType == "choosehospital") {
-            this.placeholder = "搜索医院"
-        }
-
-        document.getElementsByClassName("oc_val")[0].focus();
+        this.orgFun();
     },
     methods: {
-        resultT: function (value) {
-            this.loadMorelist(value);
-        },
-        clearT: function (value) {
-            this.HistoryList.splice(value, 1);
-            localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
-        },
-        clear: function () {
-            this.HistoryList = [],
-                localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
-        },
 
+
+        intodoctorinfo(data) {
+            this.$router.push({
+                name: 'doctordetail',
+                query: { doctorId: data.id, islist: 1 }
+            });
+        },
         intodoctorList(data) {
             let argu = { deptName: data.orgName, deptId: data.id, yuanId: data.parentId };
             if (this.searchType == "workdepart") {
@@ -106,115 +69,38 @@ export default {
                 name: 'doctorList',
                 query: argu
             });
-
-            if (this.HistoryList.length > 0) { // 有数据的话 判断
-                if (this.HistoryList.indexOf(data.orgName) !== -1) { // 有相同的，先删除 再添加 
-                    this.HistoryList.splice(this.HistoryList.indexOf(data.orgName), 1)
-                    this.HistoryList.unshift(data.orgName);
-                } else { // 没有相同的 添加
-                    this.HistoryList.unshift(data.orgName);
-                }
-            } else { // 没有数据 添加
-                this.HistoryList.unshift(data.orgName);
-            }
-            if (this.HistoryList.length > 6) { // 保留六个值
-                this.HistoryList.pop();
-            }
-
-            localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
-
         },
-        intodoctorinfo(data) {
-            let argu = { doctorId: data.id };
-            if (this.searchType == "workdepart") {
-                this.$router.push({
-                    name: 'doctorschedu',
-                    query: argu
-                });
-                return;
-            }
-            this.$router.push({
-                name: 'doctordetail',
-                query: { doctorId: data.id, islist: 1 }
-            });
-
-            if (this.HistoryList.length > 0) { // 有数据的话 判断
-                if (this.HistoryList.indexOf(data.name) !== -1) { // 有相同的，先删除 再添加 
-                    this.HistoryList.splice(this.HistoryList.indexOf(data.name), 1)
-                    this.HistoryList.unshift(data.name);
-                } else { // 没有相同的 添加
-                    this.HistoryList.unshift(data.name);
-                }
-            } else { // 没有数据 添加
-                this.HistoryList.unshift(data.name);
-            }
-            if (this.HistoryList.length > 6) { // 保留六个值
-                this.HistoryList.pop();
-            }
-
-            localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
-        },
-        loadMorelist(value) {
-            this.isResult = false;
-            this.doctorList = [];
-            this.departData = [];
-            if (!value) {
-                this.isResult = true;
-                return;
-            }
-            value = value.trim() // 清除空格
-            if (!value) {
-                this.isResult = true;
-                return;
-            }
-            console.log("搜索数据", value, value.length);
-
-            let _this = this;
-            // console.log("搜索数据", value);
-            clearTimeout(this.t);
-            this.t = setTimeout(function () {
-                _this.$axios.put(searchClinicListByClinicOrDoctor, {
-                    name: value,
-                    orgId: _this.$store.state.feeActiveId,
-                    orgType: _this.$route.query.orgType ? _this.$route.query.orgType : undefined,
-                }).then(function (res) {
+        orgFun() {
+            // let deptparams = {};
+            // deptparams.pageNumber = this.page;
+            // deptparams.pageSize = this.pageSize;
+            // deptparams.keyword = this.$route.query.val;
+            this.$axios.put(bdHospitalOrg,
+                {                    name: this.$route.query.val,
+                    orgId: this.$store.state.feeActiveId,
+                    orgType: this.$route.query.orgType ? this.$route.query.orgType : undefined,
+                }).then((res) => {
                     if (res.data.code == '200') {
-                        _this.doctorList = res.data.data.doctorList;
-                        _this.departData = res.data.data.orgList;
+                        this.loadingtrue = false;
+                        this.doctorList = res.data.data.doctorList;
+                        this.departData = res.data.data.orgList;
                     } else {
+                        this.hospitaldata = []
                     }
                 }).catch(function (err) {
-                })
-            })
+                    console.log(err);
+                });
+        },
 
 
-        }
+
     },
-    watch: {
-        "$route": function (to, from) {
-            from.meta.keepAlive = false;
-            to.meta.keepAlive = false;
-        }
-    },
-}
+
+
+};
 </script>
-
-<style scoped>
-/* @import url("./result.css"); */
-/* @import "../choosehospital/choosehospital.css"; */
-/* .booking-index--hospitals-item div {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -webkit-align-items: start;
-  -ms-flex-align: start;
-  align-items: start;
-  padding: 32px 0;
-  color: var(--primary--content);
-  font-size: 24px;
-  border-bottom: 1px solid var(--primary--line);
-} */
+ <style scoped>
+.result {
+  background: #ffffff;
+}
 </style>
-
