@@ -237,10 +237,12 @@ export default {
             this.showPic = true;
         },
         switchCard(index) {
+            console.log(this._cardlist[index + 1]);
             let current = this._cardlist[index + 1];
             if (!current) {
                 current = this._cardlist[0]
             }
+            this.chooseId=this._cardlist[index + 1].id;
             this.homeNumber(this.chooseId);
             this.chooseId = current.id;
             this.$store.commit('patientIdFun', current.patientId);
