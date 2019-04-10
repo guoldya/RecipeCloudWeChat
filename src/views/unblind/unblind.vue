@@ -115,19 +115,18 @@ export default {
           }).then(res => {
             if (res.data.code == '200') {
 
-
-
-              this.$store.dispatch('getCards', { update: true });
-           
-              console.log(this._cardlist, "this._cardlist[0]")
-              if (this.$route.query.id * 1 == this.$store.state.cardId) {
-                this.$store.commit('cardListFun', this._cardlist);
-                this.$store.commit('patientIdFun', this._cardlist[0].patientId);
-                this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
-                this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
+              this.$store.dispatch('getCards', { update: true }).then(res => {
+                console.log(this._cardlist);
                 this.$store.commit('cardIdFun', this._cardlist[0].id);
+                if (this.$route.query.id * 1 == this.$store.state.cardId) {
+                  this.$store.commit('patientIdFun', this._cardlist[0].patientId);
+                  this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
+                  this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
+                  this.$store.commit('cardIdFun', this._cardlist[0].id);
+                }
               }
 
+              );
               this.$router.go(-1);
             } else {
               this.$toast.info(res.data.msg)
@@ -138,12 +137,7 @@ export default {
 
         },
       });
-    }
-
-
-
-  },
-  computed: {
+    },
 
   },
 

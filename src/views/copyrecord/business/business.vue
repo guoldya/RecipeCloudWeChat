@@ -69,7 +69,7 @@
 </template>
 <script type="text/babel">
 import Pgmodal from "../component/pgmodal/pgmodal.vue";
-let addOrUpdate = "/app/shippingAddress/addOrUpdate";
+let addOrUpdate = "/app/bizCopyApply/uploadIdCard";///app/shippingAddress/addOrUpdate
 export default {
   data() {
     return {
@@ -95,10 +95,10 @@ export default {
   },
   watch: {
     mail(newValue) {
-      console.log(newValue)
+      this.mail=newValue;
     },
       pay(newValue) {
-          console.log(newValue)
+          this.pay=newValue;
       }
   },
   methods: {
@@ -109,29 +109,33 @@ export default {
       this.$refs.Pgmodal.openPgmodel();
     },
     adressByValue: function (childValue) {
-      this.areaId = childValue
+      this.areaId = childValue;
+      console.log(this.areaId)
     },
 
     tijiao() {
-      this.$router.push({
-        name: 'certificate'
-      });
-      if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
-        this.$toast.info("请完善信息")
-      } else {
-        // this.$axios.post(addOrUpdate, {
-        //    receiver: this.receiver,
-        //    mobile: this.mobile,
-        //    address: this.address,
-        //    areaId: this.areaId,
-        // }).then(res => {
+      //   let addParam={};
+      //   addParam.receiveBy=this.receiver;
+      //   addParam.tel=this.mobile;
+      //   addParam.area=this.areaId;
+      //   addParam.address=this.address;
+      //   addParam.receiveMode=this.mail;
+      // if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
+      //   this.$toast.info("请完善信息")
+      // } else {
+          this.$router.push({
+              name: 'certificate',
+              //query:addParam
+          });
+        // this.$axios.post(addOrUpdate, addParam).then(res => {
         //    if (res.data.code == '200') {
-        //       this.$router.go(-1);
+        //
+        //       // this.$router.go(-1);
         //    }
         // }).catch(function (err) {
         //    console.log(err);
         // });
-      }
+      //}
 
     },
   },
@@ -179,7 +183,9 @@ export default {
       margin: 0 0 0 24px;
      width: 698px;
    }
-
-
+  .business /deep/.title-bar-left,
+  .business /deep/.title-bar-right{
+    font-size: 32px;
+  }
 
 </style>
