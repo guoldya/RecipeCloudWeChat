@@ -25,7 +25,10 @@
         <div class="warnText">
           <p>费用方式</p>
           <md-field class="radio-field">
-            <md-radio-list v-model="myBank" :options="banks" icon-size="lg" />
+            <md-radio-list    icon="right"
+        icon-inverse=""
+        icon-disabled=""
+        icon-position="right" v-model="myBank" :options="banks" icon-size="lg" />
           </md-field>
         </div>
       </div>

@@ -3,19 +3,20 @@
     <Header post-title="上传证件"></Header>
     <div class="flatCard margin5 outCarint">
       <!-- 申请人 -->
-      <div style="padding-top:20px ">
+      <div>
+        <p style="color:#000;padding-top: 16px">拍摄/上传您的二代身份证</p>
         <div class="pg_positive">
           <div class="pg_positive_img">
-            <input class="ivu-upload-input" @change="uploadPosApp($event)" type="file" name="positiveApp" id="positiveApp" accept="image/gif,image/jpeg,image/x-png" />
-            <label class="ivu-upload-input_label" for="positiveApp" style="display:block; height: 120px;">
-              <img :src="othAppUrl" alt="">
+            <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
+            <label class="ivu-upload-input_label" for="positive" style="display:block; height: 120px;">
+              <img :src="othUrl" alt="">
             </label>
             <p>身份证正面</p>
           </div>
           <div class="pg_positive_img">
-            <label class="ivu-upload-input_label" for="outAppside" style="display:block; height: 120px;">
-              <input class="ivu-upload-input" @change="uploadOthApp($event)" type="file" name="outAppside" id="outAppside" accept="image/gif,image/jpeg,image/x-png" />
-              <img :src="posAppUrl" alt="">
+            <label class="ivu-upload-input_label" for="outside" style="display:block; height: 120px;">
+              <input class="ivu-upload-input" @change="uploadOth($event)" type="file" name="outside" id="outside" accept="image/gif,image/jpeg,image/x-png" />
+              <img :src="posUrl" alt="">
             </label>
             <p>身份证反面</p>
           </div>
@@ -23,14 +24,15 @@
         <div class="pg_positive" style="padding-top:10px" v-show="$route.query.type==1">
           <div class="pg_positive_img">
             <label class="ivu-upload-input_label" for="hanAppside" style="display:block; height: 120px;">
-              <input class="ivu-upload-input" @change="uploadHanApp($event)" type="file" name="hanAppside" id="hanAppside" accept="image/gif,image/jpeg,image/x-png" />
-              <img :src="hanAppUrl" alt="">
+              <input class="ivu-upload-input" @change="uploadHan($event)" type="file" name="hanAppside" id="hanAppside" accept="image/gif,image/jpeg,image/x-png" />
+              <img :src="hanUrl" alt="">
             </label>
             <p>医保卡正面</p>
           </div>
           <div class="pg_positive_img">
             <label class="ivu-upload-input_label" style="display:block; height: 120px;">
-              <img src="@/assets/images/u152.png" alt="">
+              <input class="ivu-upload-input" @change="uploadHealth($event)" type="file" name="Healthside" id="Healthside" accept="image/gif,image/jpeg,image/x-png" />
+              <img :src="healthUrl" alt="">
             </label>
             <p>医保卡反面</p>
           </div>
@@ -42,10 +44,7 @@
     </div>
     <div style="height:78px;background-color: #ffffff"></div>
     <p @click="cardconfirm" class="addbTN">下一步</p>
-    <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
-    <md-landscape v-model="showPic" :mask-closable="true">
-      <img src="@/assets/images/u152.png" alt="">
-    </md-landscape>
+
   </div>
 </template>
 <script type="text/babel">
@@ -62,15 +61,12 @@ export default {
       BBB: '',
       CCC: '',
       DDD: '',
-      FFF: '',
-      EEE: '',
       name: '',
       idcard: '',
       nameApp: '',
       idcardApp: '',
       isSelf: false,
       isSelectorShow: false,
-    
       files: {
         posFile: null,
         othFile: null,
@@ -79,20 +75,10 @@ export default {
       posUrl: pg_negative,
       othUrl: pg_positive,
       hanUrl: pg_handheld,
-      posAppUrl: pg_negative,
-      othAppUrl: pg_positive,
-      hanAppUrl: pg_handheld,
+      healthUrl: pg_health,
+
       showPic: false,
-      test: [
-        {
-          value: '1',
-          text: '本人',
-        },
-        {
-          value: '2',
-          text: '代理人',
-        },
-      ],
+
     };
   },
   created() {
@@ -100,45 +86,33 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
-    console.log(this.$route.query);
-    console.log(this.$store.state.posUrl);
-    console.log(this.$store.state.othUrl);
- 
-
   },
   methods: {
-  
-    // 申请人
-    uploadPosApp(e) {
+
+    uploadPos(e) {
       let that = this,
         file = e.target.files[0],
         fileReader = new FileReader();
       this.files.posFile = file;
-      console.log(file,"dd")
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
-        that.othAppUrl = this.result;
+        that.othUrl = this.result;
       };
-      this.DDD = e.target.files[0];
-      if (this.DDD.name && this.EEE.name && this.FFF.name) {
-        this.cardKnowledge()
-      }
+      this.AAA = e.target.files[0];
+
     },
-    uploadOthApp(e) {
+    uploadOth(e) {
       let that = this,
         file = e.target.files[0],
         fileReader = new FileReader();
       this.files.othFile = file;
       fileReader.readAsDataURL(file);
       fileReader.onload = function () {
-        that.posAppUrl = this.result;
+        that.posUrl = this.result;
       };
-      this.EEE = e.target.files[0];
-      if (this.DDD.name && this.EEE.name && this.FFF.name) {
-        this.cardKnowledge()
-      }
+      this.BBB = e.target.files[0];
     },
-    uploadHanApp(e) {
+    uploadHan(e) {
       let that = this,
         file = e.target.files[0],
         fileReader = new FileReader();
@@ -147,14 +121,24 @@ export default {
       fileReader.onload = function () {
         that.hanAppUrl = this.result;
       };
-      this.FFF = e.target.files[0];
-      if (this.DDD.name && this.EEE.name && this.FFF.name) {
-        this.cardKnowledge()
-      }
+      this.CCC = e.target.files[0];
+    },
+
+
+    uploadHealth(e) {
+      let that = this,
+        file = e.target.files[0],
+        fileReader = new FileReader();
+      this.files.othFile = file;
+      fileReader.readAsDataURL(file);
+      fileReader.onload = function () {
+        that.healthUrl = this.result;
+      };
+      this.DDD = e.target.files[0];
     },
     // 选着人
- 
- 
+
+
     cardKnowledge() {
       let param = new FormData(); //创建form对象
       console.log(this.AAA.name, this.BBB.name, "sss");
@@ -162,7 +146,7 @@ export default {
       //    this.$toast.info("请上传图片")
       //    return;
       // }
-     
+
       if (this.AAA) {
         var index1 = this.AAA.name.lastIndexOf(".");
         var index2 = this.AAA.name.length;
@@ -178,7 +162,7 @@ export default {
         var cccPng = this.CCC.name.length;
         var suffixCCC = this.CCC.name.substring(indexCCC + 1, cccPng);//后缀名
       }
-       
+
 
       if (this.receiverType == 1) {
         param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
@@ -249,8 +233,7 @@ export default {
 #positive,
 #outside,
 #hanside,
-#positiveApp,
-#outAppside,
+#Healthside,
 #hanAppside {
   display: none;
 }

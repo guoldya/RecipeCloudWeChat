@@ -104,6 +104,7 @@ import admuoload from '@/views/inhospital/admuoload'
 
 import payfee from '@/views/inhospital/payfee/payfee.vue'
 import payfeerecord from '@/views/inhospital/payfeerecord'
+import payfeerecordinfo from '@/views/inhospital/payfeerecordinfo'
 
 
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
@@ -194,6 +195,14 @@ export default new Router({
     path: '/payfeerecord',
     name: 'payfeerecord',
     component: payfeerecord,
+    meta: {
+      title: '缴费记录'
+    }
+  },
+  {
+    path: '/payfeerecordinfo',
+    name: 'payfeerecordinfo',
+    component: payfeerecordinfo,
     meta: {
       title: '缴费记录'
     }

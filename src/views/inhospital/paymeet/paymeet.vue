@@ -15,7 +15,7 @@
           <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
           <md-detail-item title="主治医师" :content=item.doctor></md-detail-item>
           <md-detail-item title="本次预交款">
-            <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
+            <span class="mu-secondary-text-color">￥{{defaultMoney|keepTwoNum}}元</span>
           </md-detail-item>
           <md-detail-item title="预缴款金额">
             <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
@@ -29,11 +29,11 @@
 
           <div class="moneyflatCard">
             <!-- <div class="moneyflatActive">￥500</div> -->
-            <div v-for="item in money">￥{{item}}</div>
+            <div :class="active1 ===index ? 'moneyflatActive' : '' " v-for="(item2,index)  in money" :key="index+'s'" @click="chooseMoney(item2,index)">￥{{item2}}</div>
           </div>
 
           <div class="moneyflatCard">
-            <input type="text" placeholder="可输入其他金额">
+            <input type="text" placeholder="可输入其他金额" v-model="textMoney">
           </div>
         </div>
 
@@ -52,15 +52,26 @@ let cord_info_url = "/app/bizIhRecord/read/detail";
 export default {
   data() {
     return {
+      active1: 0,
       cordInfoData: [],
       loadingtrue: false,
-      myBank: '0',
-      money: [500, 1000, 1500, 2000]
+      money: [500, 1000, 1500, 2000],
+      defaultMoney: 500,
+      textMoney: '',
 
     };
   },
   components: {
 
+  },
+  watch: {
+    textMoney: function (newstextMoney, oldtextMoney) {
+      console.log(oldtextMoney);
+      console.log(newstextMoney);
+      if (newstextMoney) {
+        this.defaultMoney = newstextMoney;
+      }
+    }
   },
   mounted() {
     this.cordInfo();
@@ -68,7 +79,12 @@ export default {
 
   },
   methods: {
+    chooseMoney(data, index) {
 
+      this.defaultMoney = data;
+      this.active1 = index;
+
+    },
     cordInfo() {
       this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id) }, {
       }).then(res => {
@@ -86,10 +102,7 @@ export default {
       });
     },
     next() {
-      this.$router.push({
-        name: 'admuoload',
-        query: { type: this.myBank, id: this.$route.query.id }
-      });
+
 
 
     },
@@ -105,7 +118,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-   justify-content : space-between;
+  justify-content: space-between;
 }
 
 .moneyflatCard div {
@@ -120,7 +133,7 @@ export default {
   display: block;
   margin-top: 20px;
 }
- 
+
 .moneyflatCard .moneyflatActive {
   background: var(--primary);
   color: #ffffff;
