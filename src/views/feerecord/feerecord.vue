@@ -1,17 +1,17 @@
 <template>
     <div class="feerecord">
         <!--<header class="aui-navBar aui-navBar-fixed">-->
-            <!--<a href="javascript:;" class="aui-navBar-item" @click="routeBack">-->
-                <!--<img src="@/assets/images/icon_back.png">-->
-            <!--</a>-->
-            <!--<div class="aui-center">-->
-                <!--<span class="aui-center-title">缴费记录</span>-->
-            <!--</div>-->
-            <!--<a href="javascript:;" class="aui-navBar-item" >-->
-                <!--&lt;!&ndash;{{selectOption}} &ndash;&gt;-->
-            <!--</a>-->
+        <!--<a href="javascript:;" class="aui-navBar-item" @click="routeBack">-->
+        <!--<img src="@/assets/images/icon_back.png">-->
+        <!--</a>-->
+        <!--<div class="aui-center">-->
+        <!--<span class="aui-center-title">缴费记录</span>-->
+        <!--</div>-->
+        <!--<a href="javascript:;" class="aui-navBar-item" >-->
+        <!--&lt;!&ndash;{{selectOption}} &ndash;&gt;-->
+        <!--</a>-->
         <!--</header>-->
-        <div class="navigation">
+        <!-- <div class="navigation">
             <i class="icon-iconfontjiantou" @click="routeBack">
                 <img src="@/assets/images/icon_back.png">
             </i>
@@ -21,41 +21,41 @@
             <div class="right">
                 <slot></slot>
             </div>
-        </div>
-        <!--<Header post-title="缴费记录"></Header>-->
+        </div> -->
+        <Header post-title="缴费记录"></Header>
         <div class="margin50">
             <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
             <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
-                    <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
-                        <div class="appTitle">
-                            <span>{{item.type}}费</span>
-                            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
-                        </div>
-                        <div class="cardText">
-                            <p class="parElem listData">
-                                <span class="sonElem">患者</span>
-                                <span>{{item.patientName}}</span>
-                            </p>
-                            <p class="parElem listData">
-                                <span class="sonElem">医院</span>
-                                <span>{{item.hospital}}</span>
-                            </p>
-                            <p v-if="disType == 1" class="parElem listData">
-                                <span class="sonElem">开单时间</span>
-                                <span>{{item.createTime}}</span>
-                            </p>
-                            <p v-if="disType == 2" class="parElem listData">
-                                <span class="sonElem">支付时间</span>
-                                <span>{{item.payTime}}</span>
-                            </p>
-                            <div class="payatnow" v-if="disType == 1">
-                                <span>立即支付</span>
-                            </div>
+                <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
+                    <div class="appTitle">
+                        <span>{{item.type}}费</span>
+                        <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
+                    </div>
+                    <div class="cardText">
+                        <p class="parElem listData">
+                            <span class="sonElem">患者</span>
+                            <span>{{item.patientName}}</span>
+                        </p>
+                        <p class="parElem listData">
+                            <span class="sonElem">医院</span>
+                            <span>{{item.hospital}}</span>
+                        </p>
+                        <p v-if="disType == 1" class="parElem listData">
+                            <span class="sonElem">开单时间</span>
+                            <span>{{item.createTime}}</span>
+                        </p>
+                        <p v-if="disType == 2" class="parElem listData">
+                            <span class="sonElem">支付时间</span>
+                            <span>{{item.payTime}}</span>
+                        </p>
+                        <div class="payatnow" v-if="disType == 1">
+                            <span>立即支付</span>
                         </div>
                     </div>
-                    <p v-show="nomore" class="noMore">没有更多数据了</p>
+                </div>
+                <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
-            <div v-show="!loadingtrue" class="nullDiv"  v-else>
+            <div v-show="!loadingtrue" class="nullDiv" v-else>
                 <img src="@/assets/images/null1.png">
             </div>
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
@@ -65,9 +65,9 @@
                 </span>
             </div>
             <Loading v-show="loadingtrue"></Loading>
-            </div>
-
         </div>
+
+    </div>
 </template>
 <script >
 let pay_list_url = "/app/bizCostBill/selectCostBillList";
@@ -93,7 +93,7 @@ export default {
             nomore: false,
             loadingtrue: true,
             disType: '',
-            routePar:'',
+            routePar: '',
         };
     },
 
@@ -114,17 +114,7 @@ export default {
 
     },
     methods: {
-        routeBack(){
-            // let jumpPage='';
-            // if(this.routePar=='home'){
-            //     jumpPage=this.routePar;
-            // }else if(this.routePar=='my'){
-            //     jumpPage=this.routePar;
-            // }
-            this.$router.push({
-                name:this.routePar,
-            });
-        },
+
         personFun() {
             this.$axios.put(bizPatientCard, {
             }).then(res => {
@@ -217,36 +207,20 @@ export default {
         },
     },
     watch: {
-        "$route": function (to, from) {
-            from.meta.keepAlive = false;
-            to.meta.keepAlive = false;
-        },
+        // "$route": function (to, from) {
+        //     from.meta.keepAlive = false;
+        //     to.meta.keepAlive = false;
+        // },
     },
-    beforeRouteEnter(to, from,next){
-        next((vm)=>{
-            vm.routePar=from.name;
-            vm.$store.commit('addjumpArr', from.name);
-        });
-    },
-    // beforeRouteLeave(to, from, next) {
-    //     from.meta.keepAlive = false;
-    //     console.log(next);
-    //     next();
-    //     if(to.name == "feeinfo"){
-    //         if(!from.meta.keepAlive){
-    //             from.meta.keepAlive=true;
-    //         }
-    //         next();
-    //     }else{
-    //         from.meta.keepAlive=false;
-    //         to.meta.keepAlive=false;
-    //         this.$destroy();
-    //         next();
-    //     }
-    // },
-    computed: {
 
-    },
+    // beforeRouteEnter(to, from, next) {
+    //     next((vm) => {
+    //         vm.routePar = from.name;
+    //         vm.$store.commit('addjumpArr', from.name);
+    //     });
+    // },
+
+
 
 };
 </script>
@@ -256,17 +230,16 @@ export default {
 }
 .feerecord .cardText p {
   font-size: 28px;
-  color:  var(--primary--content);
+  color: var(--primary--content);
 }
-.feerecord .flatCard:first-child{
-    margin-top: 0;
+.feerecord .flatCard:first-child {
+  margin-top: 0;
 }
 
 .feerecord .listData span:nth-child(2) {
-  color:  var(--primary--right);
+  color: var(--primary--right);
 }
-.feerecord .alignJ{
-    line-height: 26px;
+.feerecord .alignJ {
+  line-height: 26px;
 }
-
 </style>

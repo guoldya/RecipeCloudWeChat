@@ -63,7 +63,6 @@ export default {
         posFile: null,
         othFile: null,
       },
-      imgFiles: [],
       posUrl: pg_negative,
       othUrl: pg_positive,
       test: [

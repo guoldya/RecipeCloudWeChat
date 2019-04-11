@@ -100,10 +100,15 @@ import register from '@/views/register/register.vue'
 import inpatient from '@/views/inhospital/inpatient/inpatient.vue'
 import bedhosipital from '@/views/inhospital/bedhosipital'
 import admuoload from '@/views/inhospital/admuoload'
-
+import admupayfee from '@/views/inhospital/admupayfee'
+import myhospital from '@/views/inhospital/myhospital'
+import hospitalinfo from '@/views/inhospital/hospitalinfo'
+import hospitalization from '@/views/inhospital/hospitalization'
+ 
 
 import payfee from '@/views/inhospital/payfee/payfee.vue'
 import payfeerecord from '@/views/inhospital/payfeerecord'
+import payfeerecordinfo from '@/views/inhospital/payfeerecordinfo'
 
 
 import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
@@ -198,6 +203,14 @@ export default new Router({
       title: '缴费记录'
     }
   },
+  {
+    path: '/payfeerecordinfo',
+    name: 'payfeerecordinfo',
+    component: payfeerecordinfo,
+    meta: {
+      title: '缴费记录'
+    }
+  },
 
 
   {
@@ -216,6 +229,38 @@ export default new Router({
     component: admission,
     meta: {
       title: '入院办理'
+    }
+  },
+  {
+    path: '/admupayfee',
+    name: 'admupayfee',
+    component: admupayfee,
+    meta: {
+      title: '缴费'
+    }
+  },
+  {
+    path: '/myhospital',
+    name: 'myhospital',
+    component: myhospital,
+    meta: {
+      title: '我的住院'
+    }
+  },
+  {
+    path: '/hospitalization',
+    name: 'hospitalization',
+    component: hospitalization,
+    meta: {
+      title: '住院费用'
+    }
+  },
+  {
+    path: '/hospitalinfo',
+    name: 'hospitalinfo',
+    component: hospitalinfo,
+    meta: {
+      title: '住院费用详情'
     }
   },
   {

@@ -1,25 +1,14 @@
 <template>
-  <div class="choosehospital">
+  <div class="result">
     <Headerapp post-title="搜索结果"></Headerapp>
     <div class="margin50">
-      <ul v-if="hospitaldata.length!=0" v-show="!loadingtrue">
-        <li class="booking-index--hospitals-item" v-for="(item,index) in hospitaldata" :key="index">
-          <div @click="intoDepart">
-            <span class="thumb"><img src="@/assets/images/hosiptal.png" class="x-img-fadein" normal="loaded"></span>
-            <span class="media">
-              <p class="title">{{item.orgName}}</p>
-              <p class="sub-title">
-                <span class="lv">三级甲等</span>
-                <span class="type">{{item.contacts}}</span>
-              </p>
-              <p class="feature">
-                <span class="dept-title">地址：{{item.address}}</span>
-              </p>
-            </span>
-          </div>
-        </li>
+      <div v-if="hospitaldata.length!=0" v-show="!loadingtrue">
+        <md-cell-item v-if="hospitaldata.length!=0" v-for="(item,index) in hospitaldata" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
+          <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+        </md-cell-item>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
-      </ul>
+      </div>
+
       <div v-show="!loadingtrue" class="nullDiv" v-else>
         <img src="@/assets/images/null1.png">
       </div>
@@ -31,6 +20,8 @@
       </div>
       <Loading v-show="loadingtrue"></Loading>
     </div>
+
+   
     <!-- <div class="aui-footer" @click="lookagain">
       <span>复诊</span>
     </div> -->
@@ -88,10 +79,10 @@ export default {
       deptparams.keyword = this.$route.query.val;
       deptparams.orgType = 3;
       this.$axios.put(bdHospitalOrg, deptparams).then((res) => {
-        if (res.data.rows) {
+        if (res.data.data) {
           this.loadingtrue = false;
           if (flag) {
-            this.hospitaldata = this.hospitaldata.concat(res.data.rows);
+            this.hospitaldata = this.hospitaldata.concat(res.data.data.doctorList);
             //concat数组串联进行合并
             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
               this.busy = false;
@@ -101,7 +92,7 @@ export default {
               this.nomore = true;
             };
           } else {
-            this.hospitaldata = res.data.rows;
+            this.hospitaldata = res.data.data.doctorList;
             this.busy = true;
             if (res.data.total <= 10) {
               this.busy = true;
@@ -135,5 +126,7 @@ export default {
 };
 </script>
  <style scoped>
-/* @import "../../choosehospital.css"; */
+.result {
+  background: #ffffff;
+}
 </style>

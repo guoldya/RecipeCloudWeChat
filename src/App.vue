@@ -67,6 +67,7 @@ export default {
 body {
   background: var(--primary--body);
 }
+
 .flatCard {
   background-color: #fff;
   position: relative;

@@ -1,45 +1,52 @@
 <template>
   <div class="registrecorddetail">
-    <Header post-title="入院办理"></Header>
+    <Header post-title="预交款详情"></Header>
     <div class="margin55">
       <div class="flatCard outCarint " v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
         <md-field>
-          <md-detail-item title="姓名" :content=item.name></md-detail-item>
-          <md-detail-item title="性别">
-            <span>{{item.sex|examSex}}</span>
+          <md-detail-item title="患者姓名" :content=item.name></md-detail-item>
+          <md-detail-item title="住院号" :content=item.ihNo>
+            <span>{{item.ihNo}} 号</span>
           </md-detail-item>
-          <md-detail-item title="身份证号" :content=item.cardNo></md-detail-item>
           <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
-          <md-detail-item title="主治医师" :content=item.doctor></md-detail-item>
-          <md-detail-item title="入院日期">
-            <span>{{item.inTime|lasttime}}</span>
-          </md-detail-item>
-          <md-detail-item title="预缴金额">
+          <!-- <md-detail-item title="缴纳时间">
+            <span>{{item.payTime|lasttime}}</span>
+          </md-detail-item> -->
+          <!-- <md-detail-item title="缴纳状态">
             <span>￥{{item.money}}</span>
-          </md-detail-item>
+          </md-detail-item> -->
 
         </md-field>
       </div>
       <Loading v-show="loadingtrue"></Loading>
       <div class="flatCard">
-        <div class="warnText">
-          <p>费用方式</p>
-          <md-field class="radio-field">
-            <md-radio-list    icon="right"
-        icon-inverse=""
-        icon-disabled=""
-        icon-position="right" v-model="myBank" :options="banks" icon-size="lg" />
+        <div class="warnText" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
+          <p>支付信息</p>
+          <md-field>
+            <md-detail-item title="支付时间">
+              <span>{{item.payTime|lasttime}}</span>
+            </md-detail-item>
+            <md-detail-item title="支付单号" :content=item.name></md-detail-item>
+            <md-detail-item title="支付金额">
+
+              <span class="mu-secondary-text-color">{{item.money|keepTwoNum}}元</span>
+            </md-detail-item>
+            <md-detail-item title="支付方式">
+              <span>{{item.payMode|payTypeFilter}} </span>
+            </md-detail-item>
+            <!-- <md-detail-item title="缴纳状态">
+                     <span>￥  </span>
+                  </md-detail-item> -->
+
           </md-field>
         </div>
       </div>
-
-      <p class="addbTN" @click="next">下一步</p>
     </div>
   </div>
 </template>
 <script  >
 import { Dialog } from 'mand-mobile'
-let cord_info_url = "/app/bizIhRecord/read/selectOne";
+let cord_info_url = "/app/bizIhPay/read/detail";
 import { Field, RadioList } from 'mand-mobile'
 
 export default {
@@ -74,7 +81,7 @@ export default {
   methods: {
 
     cordInfo() {
-      this.$axios.put(cord_info_url, { id: Number(this.$route.query.id) }, {
+      this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id) }, {
       }).then(res => {
         if (res.data.code == '200') {
           this.loadingtrue = false;

@@ -21,7 +21,7 @@ export default {
 
       if (this.type == "onlines") {
         this.$router.push({
-          path: "/result",
+          path: "/onlinesearch",
           query: { orgType: 3 },
         });
       } else if (this.type == "choosehospital") {

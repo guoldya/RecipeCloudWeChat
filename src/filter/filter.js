@@ -6,7 +6,7 @@ import moment from 'moment'
  */
 const keepTwoNum = function (value) {
     if (value == undefined) {
-        return ""
+        return "**"
     }
     var value = Math.round(parseFloat(value) * 100) / 100;
     var xsd = value.toString().split(".");
@@ -41,6 +41,21 @@ const payTypeFilter = function (value) {
         return "已失效"
     }
 };
+
+ 
+const payMethod = function (value) {
+    if (value == undefined) {
+        return "支付宝支付"
+    }
+    if (value == 1) {
+        return "支付宝支付"
+    } else if (value == 2) {
+        return "微信支付"
+    } else if (value == 3) {
+        return "医保支付"
+    }
+};
+
 const admissionFilter = function (value) {
     if (value == undefined) {
         return ""
@@ -53,8 +68,6 @@ const admissionFilter = function (value) {
         return "出院"
     }
 };
-
-
 
 //时间保留号数
 const time = function (value) {
@@ -123,7 +136,7 @@ const examSex = function (value) {
         return "女"
     }
 };
-
+ 
 const getAge = function (value) {
     if (value) return
     if (!value.split(" ")) return
@@ -175,6 +188,7 @@ export default {
     keepTwoNum,
     payTypeFilter,
     time,
+    payMethod,
     lasttime,
     drugCheck,
     examStatus,

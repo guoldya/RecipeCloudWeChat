@@ -16,7 +16,6 @@
                 <md-detail-item title="开单时间" :content=item.createTime></md-detail-item>
                 <md-detail-item title="开单序号" :content=item.code></md-detail-item>
             </md-field>
-
         </div>
         <div class="flatCard margin10 cardText" v-for="(item,i) in feeDetailData" :key="'item'+i" v-show="!loadingtrue">
             <md-field>

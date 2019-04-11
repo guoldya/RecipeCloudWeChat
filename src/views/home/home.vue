@@ -237,6 +237,10 @@ export default {
             this.showPic = true;
         },
         switchCard(index) {
+            if (this._cardlist.length == 1) {
+                console.log("等于一");
+                return
+            }
             console.log(this._cardlist[index + 1]);
             let current = this._cardlist[index + 1];
             if (!current) {

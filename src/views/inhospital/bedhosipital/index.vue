@@ -3,7 +3,6 @@
 
       <Header post-title="入院信息"></Header>
       <div class="margin50">
-
          <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
             <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
                <div class="appTitle">

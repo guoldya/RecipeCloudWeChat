@@ -1,16 +1,16 @@
 <template>
   <div class="admission">
-    <header id="scrollup" class="aui-navBar aui-navBar-fixed">
-      <a href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
+    <div id="scrollup" class="navigation">
+      <i class="icon-iconfontjiantou" @click="$router.go(-1)">
         <img id="back" src="@/assets/images/icon_back_white.png">
-      </a>
-      <div class="aui-center">
-        <span class="aui-center-title">一日清单</span>
+      </i>
+      <div class="navigation-content">
+        一日清单
       </div>
-      <a href="javascript:;" class="aui-navBar-item">
-        <!--{{selectOption}} -->
-      </a>
-    </header>
+      <div class="right">
+
+      </div>
+    </div>
     <div class="admissionbg">
       <div class="bigDate">
         <span class="bigDateDay">{{chooseday}}</span>
@@ -189,7 +189,7 @@ export default {
       var t = document.documentElement.scrollTop || document.body.scrollTop;
       var scrollup = document.getElementById('scrollup');
       var back = document.getElementById('back');
-      var aa = document.getElementsByClassName('aui-center-title');
+      var aa = document.getElementsByClassName('navigation-content');
       if (t >= 20) {
         if (aa[0]) {
           aa[0].style.color = " var(--primary--title)";
@@ -280,12 +280,11 @@ export default {
   background: -ms-linear-gradient(#57d0f4 20%, #42a3fb 90%);
   background: linear-gradient(#57d0f4 20%, #42a3fb 90%);
 }
-.admission header {
+.admission .navigation {
   background: transparent;
-}
-.admission header .aui-center-title {
   color: #ffffff;
 }
+
 .admission .bigDate {
   padding: 100px 44px 0;
   display: flex;
@@ -305,7 +304,7 @@ export default {
   margin-left: 30px;
   letter-spacing: 1px;
   height: 100px;
-  margin-top: 25px;
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

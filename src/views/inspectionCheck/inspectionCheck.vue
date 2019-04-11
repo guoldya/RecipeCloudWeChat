@@ -1,6 +1,6 @@
 <template>
     <div class="inspectionCheck">
-        <Header post-title="慢病续方"  ></Header>
+        <Header post-title="慢病续方" ></Header>
         <div class="margin50">
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="titleIndex === 1">

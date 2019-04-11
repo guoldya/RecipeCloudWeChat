@@ -16,7 +16,7 @@
           <span @click="reportrecord" monitor="my_subject"><img src="@/assets/images/icon_report.png" alt="">报告记录</span>
         </div>
         <div class="nav2">
-          <span><img src="@/assets/images/icon_hospitalization.png" alt="">我的住院</span>
+          <span @click="myhospital"><img src="@/assets/images/icon_hospitalization.png" alt="">我的住院</span>
           <span @click="recipeRecord"><img src="@/assets/images/icon_prescription.png" alt="">处方记录</span>
           <span @click="business"><img src="@/assets/images/icon_copy.png" alt="">复印记录</span>
           <span @click="askorder"><img src="@/assets/images/icon_order.png" alt="">问诊订单</span>
@@ -95,6 +95,14 @@ export default {
       let argu = {}
       this.$router.push({
         name: 'reportquery',
+        query: argu
+      });
+    },
+    // 我的住院
+    myhospital() {
+      let argu = {}
+      this.$router.push({
+        name: 'myhospital',
         query: argu
       });
     },

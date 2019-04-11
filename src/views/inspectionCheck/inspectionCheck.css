@@ -40,7 +40,7 @@
 }
 
 .mu-secondary-text-color {
-   color: var(--primary);
+   color: var(--primary) !important;
 }
 
 .inspectionCheck .footer {
