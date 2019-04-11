@@ -93,6 +93,7 @@ export default {
             nomore: false,
             loadingtrue: true,
             disType: '',
+            routePar:'',
         };
     },
 
@@ -100,7 +101,7 @@ export default {
 
     },
     mounted() {
-        console.log(this.$route)
+        // this.routePar=this.$store.state.jumpArr;
         if (this.$store.state.feeActiveId) {
             this.disType = this.$store.state.feeActiveId;
             if (this.$store.state.feeActiveId == 1) { this.type = 0; } else { this.type = 1; }
@@ -114,8 +115,14 @@ export default {
     },
     methods: {
         routeBack(){
+            // let jumpPage='';
+            // if(this.routePar=='home'){
+            //     jumpPage=this.routePar;
+            // }else if(this.routePar=='my'){
+            //     jumpPage=this.routePar;
+            // }
             this.$router.push({
-                name: 'home',
+                name:this.routePar,
             });
         },
         personFun() {
@@ -211,27 +218,32 @@ export default {
     },
     watch: {
         "$route": function (to, from) {
-            console.log(to,from);
             from.meta.keepAlive = false;
             to.meta.keepAlive = false;
-        }
+        },
     },
-    //beforeRouteLeave(to, from, next) {
-        // from.meta.keepAlive = false;
-        // console.log(next);
-        // next();
-        // if(to.name == "feeinfo"){
-        //     if(!from.meta.keepAlive){
-        //         from.meta.keepAlive=true;
-        //     }
-        //     next();
-        // }else{
-        //     from.meta.keepAlive=false;
-        //     to.meta.keepAlive=false;
-        //     this.$destroy();
-        //     next();
-        // }
-    //},
+    beforeRouteEnter(to, from,next){
+        next((vm)=>{
+            vm.routePar=from.name;
+            vm.$store.commit('addjumpArr', from.name);
+        });
+    },
+    // beforeRouteLeave(to, from, next) {
+    //     from.meta.keepAlive = false;
+    //     console.log(next);
+    //     next();
+    //     if(to.name == "feeinfo"){
+    //         if(!from.meta.keepAlive){
+    //             from.meta.keepAlive=true;
+    //         }
+    //         next();
+    //     }else{
+    //         from.meta.keepAlive=false;
+    //         to.meta.keepAlive=false;
+    //         this.$destroy();
+    //         next();
+    //     }
+    // },
     computed: {
 
     },
