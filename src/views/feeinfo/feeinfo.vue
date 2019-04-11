@@ -275,21 +275,21 @@ export default {
     //         }
     //     }
     // },
-    beforeRouteLeave(to, from, next) {
-        if (to.path == "/feerecord" && this.routeLoad != 1) {
-            to.meta.keepAlive = true;
-            //this.$destroy();
-        } else {
-            to.meta.keepAlive = false;
-            //this.$destroy();
-        }
-        next();
-    },
-    computed: {
-        cashier() {
-            return this.$refs.cashier
-        },
-    },
+    // beforeRouteLeave(to, from, next) {
+    //     if (to.path == "/feerecord" && this.routeLoad != 1) {
+    //         to.meta.keepAlive = true;
+    //         //this.$destroy();
+    //     } else {
+    //         to.meta.keepAlive = false;
+    //         //this.$destroy();
+    //     }
+    //     next();
+    //   },
+    // computed: {
+    //     cashier() {
+    //         return this.$refs.cashier
+    //     },
+    // },
 };
 </script>
 <style   scoped>
