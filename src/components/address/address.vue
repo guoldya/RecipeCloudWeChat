@@ -1,6 +1,6 @@
 <template>
    <div class="adressinfo">
-      <md-field-item title="所在区域" arrow="arrow-right" :addon="pickerValue1" @click="openAdress"> </md-field-item>
+      <md-field-item  title="所在区域" arrow="arrow-right" :addon="pickerValue1" @click="openAdress"> </md-field-item>
       <md-picker ref="picker1" v-model="isPickerShow1" :default-index="pickerDefaultIndex" :data="pickerData1" :cols="3" is-cascade title="选择省市区/县" @confirm="onPickerConfirm(1)"></md-picker>
    </div>
 </template>
@@ -13,6 +13,7 @@ export default {
          pickerValue1: '',
          isPickerShow1: false,
          pickerDefaultIndex: [],
+         
       }
    },
    props: ['defaultValue'],
@@ -41,6 +42,7 @@ export default {
             })
 
             this.pickerData1 = [this.areaList(res.data.rows)];
+            
          }
       }).catch(function (err) {
          console.log(err);

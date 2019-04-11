@@ -6,7 +6,7 @@
         <md-input-item ref="input13" v-model="receiver" title="姓名" placeholder="姓名" maxlength="10"></md-input-item>
         <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <md-input-item ref="input13" v-model="zipCode" maxlength="6" title="邮政编码" placeholder="邮政编码"></md-input-item>
-        <Address ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
+        <Address ref="openAdress" v-if="isOK" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
         <md-input-item ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
         <div class="md-agree margin7" @click="isDefault=!isDefault">
           <div :class="{ 'md-agree-icon':true,'checked':isDefault}">
@@ -44,6 +44,7 @@ export default {
       zipCode: '',
       post: "编辑地址",
       pickerDefaultValue: [],
+      isOK: false,
     }
   },
   /* DELETE */
@@ -64,7 +65,7 @@ export default {
           this.address = res.data.data.address;
           this.areaId = res.data.data.areaId;
           this.pickerDefaultValue = [parseInt(this.areaId / 1000) * 1000, parseInt(this.areaId / 100) * 100, this.areaId]
-
+          this.isOK = true;
           console.log(this.pickerDefaultValue, " this.pickerDefaultValue")
           this.zipCode = res.data.data.zipCode;
         }

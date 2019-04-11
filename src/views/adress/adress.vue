@@ -1,27 +1,32 @@
 <template>
     <div class="adress">
         <Header post-title="地址管理"></Header>
-        <div class=" margin55" style="margin-bottom:70px">
-            <ul v-if="addressInfo.length!=0" v-show="!loadingtrue">
+        <div class="margin55">
+            <ul>
                 <li v-for="(item,index) in addressInfo" :key="index">
-                    <div class="flatCard">
-                        <div class="outCarint">
-                            <div class="addImg" >
-                                <div class="selectIcon">
-                                    <md-radio :name=index.toString() v-model="checked" @input="selectFun(checked)"  :select="selectRadio(checked)"/>
-                                </div>
-                                <div class="reciverInfo">
-                                    <div class="order-number">
-                                        <span class="patientName">{{item.receiver}}</span>
-                                        <span>{{item.mobile}}</span>
-                                    </div>
-                                    <div> <span>{{item.address}}</span> </div>
-                                </div>
-                            </div>
-                            <p class="partLine"></p>
+                    <div class="card">
+                        <div class="cardText">
+                            <p class="order-number">
+                                <span>{{item.receiver}}</span>
+                                <span>{{item.mobile}}</span>
+                            </p>
+                            <p class="headdesc">{{item.address}}</p>
                             <p class="order-bottom">
+                                <span>
+                                    <div class="md-agree" @click="onChange(item.id,item.isDefault)">
+                                        <div :class="{ 'md-agree-icon':true,'checked':item.isDefault==1}">
+                                            <div class="md-agree-icon-container">
+                                                <i class="md-icon icon-font md-icon-checked md"></i>
+                                                <i class="md-icon icon-font md-icon-check md"></i>
+                                            </div>
+                                        </div>
+                                        <div class="md-agree-content">
+                                            默认地址
+                                        </div>
+                                    </div>
+                                </span>
                                 <span class="fr">
-                                    <span @click="adressinfo(item)" class="bbb mui-icon mui-icon-compose">
+                                    <span @click="adressinfo(item.id)" class="bbb mui-icon mui-icon-compose">
                                         <label class="bianji">编辑</label>
                                     </span>
                                     <span class="mui-icon" style="font-size: 13px;" @click="dedete(item.id)">
@@ -33,15 +38,8 @@
                     </div>
                 </li>
             </ul>
-
-            <div v-show="!loadingtrue" v-else class="nullDurg">
-                <img src="@/assets/images/null1.png" alt="">
-            </div>
         </div>
-        <Loading v-show="loadingtrue"></Loading>
-        <div style="height: 50px"></div>
-        <p class="addbTN" @click="addadress()">添加地址</p>
-
+        <p class="add" @click="addadress()">添加地址</p>
     </div>
 </template>
 <script type="text/babel">
@@ -51,28 +49,30 @@ import { Dialog, Button } from 'mand-mobile'
 let appshippingAddressaddressList = "/app/shippingAddress/addressList";
 let deleteAddress = "/app/shippingAddress/delete";
 
+
+
 let isDefault = "/app/shippingAddress/isDefault"
 export default {
     data() {
         return {
-            loadingtrue: true,
             num: 7,
-            checked: '',
+            checked: '0a',
             addressInfo: '',
-            routeFrom:'',
-            // agreeConf: {
-            //     checked: true,
-            //     name: 'agree0',
-            //     size: 'md',
-            //     disabled: false,
-            //     introduction: '选中状态',
-            // },
+            agreeConf: {
+                checked: true,
+                name: 'agree0',
+                size: 'md',
+                disabled: false,
+                introduction: '选中状态',
+            },
+
+
         };
     },
     created() {
         this.$axios.put(appshippingAddressaddressList, {
         }).then((res) => {
-            this.loadingtrue = false;
+            console.log(res)
             if (res.data.code == '200') {
                 this.addressInfo = res.data.rows;
             } else {
@@ -82,10 +82,12 @@ export default {
             console.log(err);
         });
     },
-    mounted() {
-        this.checked=this.$route.query.checked;
-        document.title = '地址管理';
+    watch: {
 
+    },
+    mounted() {
+        document.title = '地址管理';
+      
     },
     methods: {
 
@@ -96,10 +98,12 @@ export default {
             this.$axios.post(isDefault, {
                 id: data
             }).then((res) => {
+                console.log(res)
                 if (res.data.code == '200') {
                     this.$toast.info("设置成功");
                     this.$axios.put(appshippingAddressaddressList, {
                     }).then((res) => {
+                        console.log(res)
                         if (res.data.code == '200') {
                             this.addressInfo = res.data.rows;
                         } else {
@@ -128,17 +132,7 @@ export default {
                     this.$axios.delete(deleteAddress, params).then((res) => {
                         console.log(res)
                         if (res.data.code == '200') {
-                            this.$toast.info("删除成功");
-                            this.$axios.put(appshippingAddressaddressList, {
-                            }).then((res) => {
-                                if (res.data.code == '200') {
-                                    this.addressInfo = res.data.rows;
-                                } else {
-                                    console.log(res.msg);
-                                }
-                            }).catch(function (err) {
-                                console.log(err);
-                            })
+                            this.$toast.info("删除成功")
                         } else {
                             console.log(res.msg);
                         }
@@ -151,50 +145,19 @@ export default {
         adressinfo(data) {
             this.$router.push({
                 name: 'adressinfo',
-                query: { id: data.id, isDefault: data.isDefault }
+                query: { id: data }
             });
         },
+
+
         addadress() {
             this.$router.push({
                 name: 'adressinfo',
                 query: { addadress: 1 }
             });
         },
-        selectRadio(val){
-            //console.log(val);
 
-        },
-        selectFun(val){
-            console.log(this.routeFrom);
-            if(this.routeFrom=="submitOrder"){
-                setTimeout(()=>{
-                    let argu = {
-                        params:val,
-                        receiver:this.addressInfo[val].receiver,
-                        mobile:this.addressInfo[val].mobile,
-                        address:this.addressInfo[val].address,
-                        isDefault:this.addressInfo[val].isDefault};
-                    this.$router.push({
-                        name: 'submitOrder',
-                        query: argu
-                    });
-                },300)
-            }
-        },
 
-    },
-    watch: {
-        "$route": function (to, from) {
-            console.log(to,from);
-            from.meta.keepAlive = false;
-            to.meta.keepAlive = false;
-        },
-    },
-    beforeRouteEnter(to,from,next){
-        next((vm)=>{
-            vm.routeFrom=from.name;
-            console.log(from.name)
-        })
     },
     computed: {
 

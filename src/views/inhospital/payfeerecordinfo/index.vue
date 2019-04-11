@@ -75,8 +75,6 @@ export default {
   },
   mounted() {
     this.cordInfo();
-
-
   },
   methods: {
 
