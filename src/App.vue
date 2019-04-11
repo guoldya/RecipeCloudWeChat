@@ -209,7 +209,8 @@ body {
   color: var(--primary--title);
   display: flex;
   align-items: center;
-  width: 48%;
+  width: 50%;
+  margin-right: 28px;
 }
 .gButton {
   background-color: var(--primary--content);

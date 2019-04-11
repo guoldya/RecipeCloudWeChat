@@ -190,7 +190,7 @@ export default {
         });
         await this.$store.dispatch('getCards'/* , { update: true } */);
         this.cardLoading = false;
-        console.log("选中的卡id", this.$store.state.cardId)
+        console.log(this._cardlist);
         if (this.$store.state.cardId) {
             this.chooseId = this.$store.state.cardId;
         } else {
@@ -207,6 +207,8 @@ export default {
 
 
         async homeNumber(data) {
+            console.log(data);
+            console.log(this.$store.state.cardId);
             try {
                 let res = await this.$axios.put(bizPatientRegisterselectCount, {
                     cardId: data ? data : this.$store.state.cardId
@@ -235,6 +237,7 @@ export default {
             this.showPic = true;
         },
         switchCard(index) {
+            console.log(this._cardlist[index + 1]);
             let current = this._cardlist[index + 1];
             if (!current) {
                 current = this._cardlist[0]

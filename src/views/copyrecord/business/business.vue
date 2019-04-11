@@ -44,7 +44,7 @@
           <!--</span>-->
         <!--</div>-->
         <!--<p class="partLine outCarint"></p>-->
-        <md-input-item style="padding: 0 12px" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
+        <md-input-item style="padding: 0 12px" type="text" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
         <md-input-item style="padding: 0 12px" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <Address style="padding: 0 12px" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
         <md-input-item style="padding: 0 12px" ref="input13" v-model="address" title="详细地址" placeholder="详细地址"></md-input-item>
@@ -114,29 +114,20 @@ export default {
     },
 
     tijiao() {
-      //   let addParam={};
-      //   addParam.receiveBy=this.receiver;
-      //   addParam.tel=this.mobile;
-      //   addParam.area=this.areaId;
-      //   addParam.address=this.address;
-      //   addParam.receiveMode=this.mail;
-      // if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
-      //   this.$toast.info("请完善信息")
-      // } else {
+        let addParam={};
+        addParam.receiveBy=this.receiver;
+        addParam.tel=this.mobile;
+        addParam.area=this.areaId;
+        addParam.address=this.address;
+        addParam.receiveMode=this.mail;
+      if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
+        this.$toast.info("请完善信息")
+      } else {
           this.$router.push({
               name: 'certificate',
-              //query:addParam
+              query:addParam
           });
-        // this.$axios.post(addOrUpdate, addParam).then(res => {
-        //    if (res.data.code == '200') {
-        //
-        //       // this.$router.go(-1);
-        //    }
-        // }).catch(function (err) {
-        //    console.log(err);
-        // });
-      //}
-
+      }
     },
   },
   components: {

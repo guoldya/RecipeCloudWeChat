@@ -1,6 +1,16 @@
 <template>
     <div class="examineDetail">
-        <Header post-title="预约详情"  ></Header>
+        <div class="navigation">
+            <i class="icon-iconfontjiantou" @click="$router.go(-2)">
+                <img src="@/assets/images/icon_back.png">
+            </i>
+            <div class="navigation-content">
+                预约详情
+            </div>
+            <div class="right">
+                <slot></slot>
+            </div>
+        </div>
         <div>
             <div v-if="orderData.length!=0">
                 <div class="successImg">

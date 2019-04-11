@@ -19,7 +19,7 @@
                             <div>{{item.address}}</div>
                         </div>
                         <div  @click="toAddress" v-if="addressInfo.length==0" class="addAddr">
-                            添加收获地址
+                            添加收货地址
                         </div>
                     </div>
                     <div  class="addImg nextImg">
