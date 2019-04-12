@@ -75,6 +75,7 @@ export default {
     } else {
       document.title = '新增地址';
       this.post = '新增地址';
+      this.isOK = true;
     }
   },
   mounted() {

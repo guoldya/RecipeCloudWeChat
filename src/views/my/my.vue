@@ -356,11 +356,11 @@ export default {
 }
 
 .aui-user-cell-logo img {
-  width: 120px;
+  width: 130px;
   margin-right: 20px;
   display: block;
   border-radius: 8px;
-  border: 2px solid #5ea6df;
+  border: 4px solid #5ea6df;
 }
 
 .aui-user-cell-title {
