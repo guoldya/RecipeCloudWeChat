@@ -26,7 +26,7 @@
                                     </div>
                                 </span>
                                 <span class="fr">
-                                    <span @click="adressinfo(item.id)" class="bbb mui-icon mui-icon-compose">
+                                    <span @click="adressinfo(item)" class="bbb mui-icon mui-icon-compose">
                                         <label class="bianji">编辑</label>
                                     </span>
                                     <span class="mui-icon" style="font-size: 13px;" @click="dedete(item.id)">
@@ -87,7 +87,7 @@ export default {
     },
     mounted() {
         document.title = '地址管理';
-      
+
     },
     methods: {
 
@@ -145,11 +145,9 @@ export default {
         adressinfo(data) {
             this.$router.push({
                 name: 'adressinfo',
-                query: { id: data }
+                query: { id: data.id, isDefault: data.isDefault }
             });
         },
-
-
         addadress() {
             this.$router.push({
                 name: 'adressinfo',
