@@ -247,8 +247,8 @@ export default {
                     //     this.cashierAmount = res.data.data.total.toFixed(2);
                     // }
                     this.$router.go(-1);
-                    this.payStatus = "1";
-                    this.doPay();
+                    // this.payStatus = "1";
+                    // this.doPay();
                 } else {
                     this.$toast.info(res.data.msg);
                     this.isCashierhow = false;

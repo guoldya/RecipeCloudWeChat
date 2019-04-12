@@ -16,13 +16,13 @@
       <p class="signsucceedtitle">就诊预约情况</p>
       <div class="flatCard outCarint" v-for="(item,i) in waitList" :key="i" style="padding: 15px 12px 3px;">
         <!--<div class="cardText">-->
-          <!--<p class="cardTextPPTilt">就诊项目：-->
-            <!--<span class="mu-secondary-text-color">{{item.orgName}}</span>-->
-          <!--</p>-->
-          <!--<p class="cardTextPP">-->
-            <!--<span>就诊科室：{{item.orgName}}</span>-->
-            <!--<span>预约时间：{{item.regStage}}</span>-->
-          <!--</p>-->
+        <!--<p class="cardTextPPTilt">就诊项目：-->
+        <!--<span class="mu-secondary-text-color">{{item.orgName}}</span>-->
+        <!--</p>-->
+        <!--<p class="cardTextPP">-->
+        <!--<span>就诊科室：{{item.orgName}}</span>-->
+        <!--<span>预约时间：{{item.regStage}}</span>-->
+        <!--</p>-->
         <!--</div>-->
         <md-field>
           <md-detail-item title="就诊项目">
@@ -49,7 +49,7 @@ export default {
 
     // 获取当前时间
     var today = new Date();
-    this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
+    this.nowTime = today.getFullYear() + "年" + (today.getMonth() + 1) + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
 
 
     document.title = '签到成功';
@@ -137,9 +137,9 @@ export default {
 }
 </script>
 <style scoped>
-  .signsucceedtop{
-    padding: 60px 0;
-  }
+.signsucceedtop {
+  padding: 60px 0;
+}
 .signsucceedtop p {
   line-height: 70px;
   color: #5a5a5a;
@@ -174,8 +174,8 @@ export default {
 .signsucceed .cardText .cardTextPP:last-child {
   border: none;
 }
-  .signsucceed /deep/.md-detail-item .md-detail-content{
-    position: relative;
-    top: -10px;
-  }
+.signsucceed /deep/.md-detail-item .md-detail-content {
+  position: relative;
+  top: -10px;
+}
 </style>

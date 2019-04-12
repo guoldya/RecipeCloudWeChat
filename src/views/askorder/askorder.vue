@@ -54,23 +54,23 @@
         <div class="flatCard outCarint cardcc" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
           <p class="appTitle">
             <span>{{item.createTime|lasttime}}</span>
-            <span v-if="disType === 2">已付款
+            <span v-if="disType === 1">已付款
               <span class="mu-secondary-text-color"> ￥20.00</span>
             </span>
-            <span v-if="disType === 1">待付款
+            <span v-if="disType === 0">待付款
               <span class="mu-secondary-text-color"> ￥20.00</span>
             </span>
           </p>
           <div class="cardText">
-            <div style="width:100%;height:50px;padding-top: 6px">
+            <div style="width:100%;height:50px;padding-top:6px">
               <div class="headimg"><img onerror="@/assets/images/icon_more.png" :src="$conf.constant.img_base_url + item.filename" alt=" "></div>
               <p class="askorderTitle">{{item.name}}
                 <span class="levle">主任医师</span>
               </p>
               <p>{{item.orgName}}</p>
             </div>
-            <div v-show="disType === 1" style="height:30px;text-align: right;">
-              <span class="payatnow">立即支付</span>
+            <div v-show="disType === 0" style="height:30px;text-align: right;">
+              <span class="payatnow" @click="payNow(item.id)">立即支付</span>
               <span class="cancle" @click="cancelOrder(item.id)">取消订单</span>
             </div>
           </div>
@@ -87,14 +87,18 @@
         </span>
       </div>
       <Loading v-show="loadingtrue"></Loading>
+
+      <md-cashier ref="cashier" @pay="onCashierPay" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :default-index=0 :payment-amount="cashierAmount"></md-cashier>
     </div>
   </div>
 </template>
 <script  >
 import { Dialog } from 'mand-mobile'
 import pg_positive from '@/assets/images/user.png'
-let pay_list_url = "/app/bizOnlineServiceRecord/read/page";
+let pay_list_url = "/app/bizPatientRegister/read/selectPage";
 let cancelSourceId = "/app/bizPatientRegister/cancelSourceId";
+
+let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
 export default {
   data() {
     return {
@@ -103,11 +107,32 @@ export default {
       busy: true,
       nomore: false,
       loadingtrue: true,
-      disType: 1,
+      disType: 0,
+      id: '',
+      page: 1,
+      pageSize: 10,
       time: [
         { title: '待支付', type: 1 },
         { title: '已支付', type: 2 },
       ],
+      isCashierhow: false,
+      cashierAmount: '20',
+      cashierChannels: [
+        {
+          icon: 'cashier-icon-2',
+          text: '支付宝支付',
+          value: '1',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '微信支付',
+          value: '2',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '医保支付',
+          value: '3',
+        },]
     };
   },
   created() {
@@ -145,11 +170,11 @@ export default {
       })
 
 
-      
+
     },
     childByValue: function (childValue) {
       this.disType = childValue.type;
-      if (childValue.type == 1) { this.type = 0; } else { this.type = 1; }
+      if (childValue.type == 1) { this.disType = 0; } else { this.disType = 1; }
       this.$store.commit('feeActiveFun', childValue.type);
       this.waitPayData = [];
       this.loadingtrue = true;
@@ -163,7 +188,7 @@ export default {
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
       //params.patientId = parseInt(this.choseValue);
-      params.payType = this.type;
+      params.payType = this.disType;
       this.$axios.put(pay_list_url, params).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;
@@ -200,6 +225,33 @@ export default {
         this.WaitPay(true);
       }, 500);
     },
+
+    payNow(data) {
+      this.isCashierhow = true;
+      this.id = data;
+    },
+
+    onCashierPay(item) {
+      let nowPayParams = {};
+      nowPayParams.payType = Number(item.value);
+      nowPayParams.id = this.id;
+      // 状态  1--新建  2--支付 3--接诊  4--完成  5--退费  6--关闭
+      nowPayParams.status = 2;
+      nowPayParams.type = 1;
+      nowPayParams.total = 20;
+      this.$axios.post(appbizOnlineServiceRecordnowPay, nowPayParams).then((res) => {
+        if (res.data.code == '200') {
+          this.isCashierhow = false;
+          this.$toast.info("支付成功")
+          this.WaitPay(false);
+        } else {
+
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+
 
 
   },

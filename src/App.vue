@@ -210,7 +210,7 @@ body {
   color: var(--primary--title);
   display: flex;
   align-items: center;
-  width: 50%;
+  /* width: 50%; */
   margin-right: 28px;
 }
 .gButton {

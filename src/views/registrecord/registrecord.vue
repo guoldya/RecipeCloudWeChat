@@ -31,17 +31,18 @@
                         <span class="sonElem">医生</span>
                         <span>{{item.doctorName}}</span>
                     </div>
-                    <div class=" parElem listData">
+                    <div class="parElem listData">
                         <span class="sonElem">预约时间</span>
-                        <span>{{item.regDate |time}}</span>
+                        <span>{{item.regDate |time}} </span>
+                        <span>{{item.regStage}}</span>
                     </div>
                     <div class="parElem cardTextRight" @click="cordInfo(item.id,item.payType,item.sourceId)">
                         <span>详情</span>
                         <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
                     </div>
                     <!--<div class="learnMore mu-secondary-text-color" @click="cordInfo(item.id,item.payType,item.sourceId)">-->
-                        <!--<span>详情</span>-->
-                        <!--<img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">-->
+                    <!--<span>详情</span>-->
+                    <!--<img class="icon_more" src="@/assets/images/icon_more_blue.png" alt="">-->
                     <!--</div>-->
                 </div>
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
@@ -169,4 +170,6 @@ export default {
 .registrecord .parElem {
   height: 56px;
 }
+ 
+ 
 </style>

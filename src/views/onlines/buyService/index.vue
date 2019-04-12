@@ -74,7 +74,6 @@ export default {
     },
 
     onCashierPay(item) {
-
       this["chat/setPatienDetail"]({
         name: "点击选择就诊人",
         id: null
