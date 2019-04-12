@@ -149,7 +149,7 @@ export default {
       this.$router.push({
         name: 'inquiryOnline',
         query: {
-          id: this.$route.query.id
+          id: this.$route.query.id, orderId: this.$route.query.orderId, name: this.$route.query.name
         }
       });
 

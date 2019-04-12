@@ -48,11 +48,11 @@
     </div>
 </template>
 <script type="text/babel">
+let appbizOnlineServiceRecordcomment = "/app/bizOnlineServiceRecord/comment";
 export default {
     name: "medicalEva",
     data() {
         return {
-
             starArray: [
                 {
                     light: require("@/assets/images/icon_star@2x.png"),
@@ -84,9 +84,6 @@ export default {
     mounted() {
         this.evaluation();
         document.title = '就医评价';
-
-
-
     },
     methods: {
         sendFun: function () {

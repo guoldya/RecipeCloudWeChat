@@ -11,7 +11,7 @@
       <img src="@/assets/images/icon_back.png">
     </i>
     <div class="navigation-content" v-if="type === 'onlineNav'">
-      <p>张医生</p>
+      <p>{{title}}</p>
       <p class="time">问诊中
         <span>{{timeH}}</span>
       </p>

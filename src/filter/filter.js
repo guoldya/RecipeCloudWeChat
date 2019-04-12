@@ -42,7 +42,7 @@ const payTypeFilter = function (value) {
     }
 };
 
- 
+
 const payMethod = function (value) {
     if (value == undefined) {
         return "支付宝支付"
@@ -114,6 +114,39 @@ const drugCheck = function (value) {
         return "已下订单"
     }
 };
+const level = function (value) {
+    let msg = ''
+    switch (value) {
+        case 1:
+            msg = '普通';
+            break;
+        case 2:
+            msg = '主治医生';
+            break;
+        case 3:
+            msg = '副教授';
+            break;
+        case 4:
+            msg = '五级专家';
+            break;
+        case 5:
+            msg = '四级专家';
+            break;
+        case 6:
+            msg = '三级专家';
+            break;
+        case 7:
+            msg = '二级专家';
+            break;
+        case 8:
+            msg = '一级专家';
+            break;
+        case 9:
+            msg = '特需';
+            break;
+    }
+    return msg;
+};
 const examStatus = function (value) {
     if (value == undefined) {
         return ""
@@ -136,7 +169,7 @@ const examSex = function (value) {
         return "女"
     }
 };
- 
+
 const getAge = function (value) {
     if (value) return
     if (!value.split(" ")) return
@@ -196,4 +229,5 @@ export default {
     examSex,
     getAge,
     admissionFilter,
+    level, 
 }

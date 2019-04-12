@@ -1,11 +1,9 @@
 <!--在线问诊 -->
 <template>
   <div class="inquiry-online ">
-    <Navigation type="onlineNav">
-      <span class="mu-secondary-text-color" @click="overQuesiton">结束问诊</span>
+    <Navigation type="onlineNav" :title="$route.query.name">
+      <span class="mu-secondary-text-color" @click="endInquiry">结束问诊</span>
     </Navigation>
-    <!-- 用户信息 -->
-
     <!-- 聊天内容区域 -->
     <div class="inquiry-online-content" ref="chatContent" @click="toolType=''">
       <ul class="online-content-warp">
@@ -75,12 +73,7 @@
           </span>
           <span>快捷回复</span>
         </router-link> -->
-        <li @click="endInquiry">
-          <span class="icon-span">
-            <i class="iconfont icon-icon-test"></i>
-          </span>
-          <span>结束问诊</span>
-        </li>
+
         <!-- <router-link tag="li" to="/diagnosticRecord">
           <span class="icon-span">
             <i class="iconfont icon-xinxi"></i>
@@ -102,7 +95,7 @@
       <p class="inquiry-online-tool-cotent">感谢您的信任与支持，如结束咨询，请对我的服务进行评价</p>
       <p class="inquiry-online-tool-ab">
         <span class="questionBtn" @click="isQeustion=false">继续问诊</span>
-        <span class="questionBtn" @click="isQeustionOver=true">结束问诊</span>
+        <span class="questionBtn" @click="overConfirm">结束问诊</span>
       </p>
     </div>
     <div v-show="isQeustionOver" class="inquiry-online-tool-aa">
@@ -111,20 +104,11 @@
       </p>
       <p class="inquiry-online-tool-cotent">感谢您的信任与支持，本次问诊已结束，请对我的服务进行评价。</p>
       <p class="inquiry-online-tool-ab">
-        <span class="questionBtn">立即评价</span>
+        <span class="questionBtn" @click="medicalEva">立即评价</span>
         <span class="questionBtn">再次问诊</span>
       </p>
     </div>
-    <div v-show="isQeustionOver" class="inquiry-online-tool-aa">
-      <p class="inquiry-online-tool-ab">
-        <span style="color:#FF9900">问诊已结束</span>
-      </p>
-      <p class="inquiry-online-tool-cotent">感谢您的信任与支持，本次问诊已结束，请对我的服务进行评价。</p>
-      <p class="inquiry-online-tool-ab">
-        <span class="questionBtn">立即评价</span>
-        <span class="questionBtn">再次问诊</span>
-      </p>
-    </div>
+
     <!-- 编辑弹窗 -->
     <md-dialog :closable="true" layout="column" v-model="dialogOpen">
       <img src="@/assets/images/user.png" alt="">
@@ -150,7 +134,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import websocketConfig from '../../../service/websocket.js'
-
+let updateOrder = "/app/bizOnlineServiceRecord/updateOrder"
 import { Dialog } from 'mand-mobile'
 export default {
   data() {
@@ -203,10 +187,11 @@ export default {
     ...mapActions(['chat/setFriendId', 'updateUser']),
     closeMask() {
       this.isQeustion = false;
-      this.isQeustionOver = false;
+
       clearInterval(this.timer);
     },
-    overQuesiton() {
+    endInquiry() {
+      if (this.isQeustion) return
       this.isQeustion = true;
       this.timeH = this.TIME_COUNT;
       this.timer = setInterval(() => {
@@ -214,13 +199,47 @@ export default {
           this.timeH--;
         } else {
           this.isQeustion = false;
+          this.overQuestion();
           clearInterval(this.timer);
           this.timer = null;
         }
       }, 1000);
-
     },
 
+
+    overConfirm() {
+      this.isQeustionOver = true;
+    },
+
+    medicalEva() {
+      this.$router.push({
+        name: 'medicalEva',
+        query: {
+          id: this.$route.query.id, name: this.$route.query.name
+        }
+      });
+    },
+
+    // 结束问诊订单
+
+    async  overQuestion() {
+      // 查询评论
+      try {
+        let res = await this.$axios.post(updateOrder, {
+          id: Number(this.$route.query.orderId),
+          status: 4,
+        });
+        if (res.data.code != 200) {
+          throw Error(res.data.msg);
+        }
+        if (res.data.code == 200) {
+          this.medicalEva();
+        }
+
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
     ...mapActions(["chat/updateChatQueue", "chat/setHistoryNews", "chat/setChatQueue"]),
     scrollBottom() { // 内容区在底部
       this.$nextTick(function () {
@@ -237,15 +256,7 @@ export default {
       console.log("Aaa")
       this.inputValue = this.$refs.inputModel.innerHTML
     },
-    endInquiry() { // 结束问诊
-      Dialog.confirm({
-        title: '提示',
-        content: '是否结束问诊',
-        cancelText: '否',
-        confirmText: '是',
-        onConfirm: () => console.log('123'),
-      })
-    },
+
     tool(val) {
       // 重复点击相同的则视为取消选择
       if (this.toolType == val) {

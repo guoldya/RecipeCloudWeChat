@@ -1,63 +1,16 @@
 <template>
   <div class="askorder">
     <Header post-title="问诊订单"></Header>
-    <!-- <div class="margin50">
-      <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
-      <div class="demo-text" v-if="disType === 1" @click="appointinfo">
-        <div class="flatCard outCarint  cardcc">
-          <p class="appTitle">
-            <span>2019-12-05 12:30</span>
-            <span>等待付款
-              <span class="mu-secondary-text-color"> ￥27.0</span>
-            </span>
-          </p>
-          <div class="cardText">
-            <div style="width:100%;height:50px;padding-top: 6px">
-              <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-              <p>李华
-                <span class="levle">主任医师</span>
-              </p>
-              <p>呼吸内科</p>
-            </div>
-            <div style="height:30px;  text-align: right;">
-              <span class="payatnow">立即支付</span>
-              <span class="cancle">取消订单</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-text" v-if="disType === 2">
-        <div class="card cardcc">
-          <p class="appTitle">
-            <span>2019-12-05 12:30</span>
-            <span>已付款
-              <span class="mu-secondary-text-color"> ￥27.0</span>
-            </span>
-          </p>
-          <div class="cardText">
-            <div style="width:100%;height:50px;">
-              <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
-              <p>李华
-                <span class="levle">主任医师</span>
-              </p>
-              <p>呼吸内科</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <div class="margin50">
       <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
         <div class="flatCard outCarint cardcc" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
           <p class="appTitle">
             <span>{{item.createTime|lasttime}}</span>
-            <span v-if="disType === 1">已付款
+            <span v-if="disType === 2">已付款
               <span class="mu-secondary-text-color"> ￥20.00</span>
             </span>
-            <span v-if="disType === 0">待付款
+            <span v-if="disType === 1">待付款
               <span class="mu-secondary-text-color"> ￥20.00</span>
             </span>
           </p>
@@ -69,7 +22,7 @@
               </p>
               <p>{{item.orgName}}</p>
             </div>
-            <div v-show="disType === 0" style="height:30px;text-align: right;">
+            <div v-show="disType === 1" style="height:30px;text-align: right;">
               <span class="payatnow" @click="payNow(item.id)">立即支付</span>
               <span class="cancle" @click="cancelOrder(item.id)">取消订单</span>
             </div>
@@ -87,7 +40,6 @@
         </span>
       </div>
       <Loading v-show="loadingtrue"></Loading>
-
       <md-cashier ref="cashier" @pay="onCashierPay" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :default-index=0 :payment-amount="cashierAmount"></md-cashier>
     </div>
   </div>
@@ -95,8 +47,8 @@
 <script  >
 import { Dialog } from 'mand-mobile'
 import pg_positive from '@/assets/images/user.png'
-let pay_list_url = "/app/bizPatientRegister/read/selectPage";
-let cancelSourceId = "/app/bizPatientRegister/cancelSourceId";
+let pay_list_url = "/app/bizOnlineServiceRecord/read/page";
+let cancelSourceId = "/app/bizOnlineServiceRecord/updateOrder";
 let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
 export default {
   data() {
@@ -106,7 +58,7 @@ export default {
       busy: true,
       nomore: false,
       loadingtrue: true,
-      disType: 0,
+      disType: 1,
       id: '',
       page: 1,
       pageSize: 10,
@@ -173,7 +125,7 @@ export default {
     },
     childByValue: function (childValue) {
       this.disType = childValue.type;
-      if (childValue.type == 1) { this.disType = 0; } else { this.disType = 1; }
+      // if (childValue.type == 1) { this.disType = 0; } else { this.disType = 1; }
       this.$store.commit('feeActiveFun', childValue.type);
       this.waitPayData = [];
       this.loadingtrue = true;
@@ -187,7 +139,7 @@ export default {
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
       //params.patientId = parseInt(this.choseValue);
-      params.payType = this.disType;
+      params.status = this.disType;
       this.$axios.put(pay_list_url, params).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;

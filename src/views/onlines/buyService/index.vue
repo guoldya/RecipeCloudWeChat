@@ -26,7 +26,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
-let appbizOnlineServiceRecordupdate = "/app/bizOnlineServiceRecord/createOrder";
+let appbizOnlineServiceRecordupdate = "/app/bizOnlineServiceRecord/updateOrder";
 export default {
   data() {
     return {
@@ -76,7 +76,7 @@ export default {
       });
       this.$router.push({
         name: "pictureConsult",
-        query: { name: this.$route.query.name, id: this.$route.query.id }
+        query: { name: this.$route.query.name, id: this.$route.query.id, orderId: this.id }
       });
       let nowPayParams = {};
       nowPayParams.payType = Number(item.value);
