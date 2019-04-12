@@ -53,7 +53,6 @@ export default {
     }
   },
   methods: {
-
     ...mapActions(["chat/setPatienDetail"]),
     payNow() {
       let nowPayParams = {};
@@ -64,13 +63,10 @@ export default {
           this.isCashierhow = true;
           this.id = res.data.data;
         } else {
-
         }
       }).catch(function (err) {
         console.log(err);
       });
-
-
     },
 
     onCashierPay(item) {
