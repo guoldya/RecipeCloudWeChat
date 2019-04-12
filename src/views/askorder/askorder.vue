@@ -97,7 +97,6 @@ import { Dialog } from 'mand-mobile'
 import pg_positive from '@/assets/images/user.png'
 let pay_list_url = "/app/bizPatientRegister/read/selectPage";
 let cancelSourceId = "/app/bizPatientRegister/cancelSourceId";
-
 let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
 export default {
   data() {
