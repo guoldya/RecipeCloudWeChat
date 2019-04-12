@@ -1,6 +1,143 @@
 <template>
   <div class="gp-profile-index">
-    <div class="aui-head-yellow">
+
+    <header class="aui-navBar aui-navBar-fixed">
+      <div class="aui-center">
+        <span class="aui-center-title">我的</span>
+      </div>
+    </header>
+    <section class="aui-scrollView">
+      <div class="aui-user">
+        <div class="aui-user-cell">
+          <div class="aui-user-cell-logo">
+            <img :src="$conf.constant.img_base_url + accountinfo.headUrl" alt="">
+          </div>
+          <div class="aui-user-cell-title">
+            <p> {{accountinfo.name}}</p>
+            <p class="aui-user-info">{{accountinfo.account}}</p>
+          </div>
+          <div class="aui-user-row"></div>
+        </div>
+      </div>
+      <div class="aui-list-cell">
+        <a href="javascript:;" class="aui-list-item" @click="registrecord">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item01">
+            </i>
+            挂号记录
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+            点击查看
+          </div>
+        </a>
+      </div>
+      <div class="divHeight"></div>
+      <div class="aui-list-cell">
+        <a href="javascript:;" class="aui-list-item" @click="feerecord">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item02"></i>
+            缴费记录
+
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="appoint">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item03"></i>
+            预约记录
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="reportrecord">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item04"></i>
+            报告记录
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+
+      </div>
+      <div class="divHeight"></div>
+      <div class="aui-list-cell">
+        <a href="javascript:;" class="aui-list-item" @click="myhospital">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item05"></i>
+            我的住院
+
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="recipeRecord">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item06"></i>
+            处方记录
+
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="business">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item07"></i>
+            复印记录
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="askorder">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item08"></i>
+            问诊订单
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+      </div>
+      <div class="divHeight"></div>
+      <div class="aui-list-cell">
+        <a href="javascript:;" class="aui-list-item" @click="idcardlist">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item09"></i>
+            就诊卡
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="adress">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item10"></i>
+            地址管理
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="medicalEva">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item10"></i>
+            就医评价
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+      </div>
+      <div class="divHeight"></div>
+    </section>
+    <!-- <div class="aui-head-yellow">
       <div class="aui-head-box">
         <div class="aui-head-user"><img :src="headURL" alt=""></div>
         <p>{{name}}</p>
@@ -30,7 +167,7 @@
           <span @click="medicalEva"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
         </div>
       </div>
-    </div>
+    </div> -->
     <Footer></Footer>
   </div>
 </template>
@@ -44,7 +181,7 @@ export default {
       userInfo: '',
       outInfo: '',
       id: '',
-      name: '',
+      accountinfo: '',
       headURL: pg_positive,
     }
   },
@@ -63,7 +200,8 @@ export default {
         if (res.data.code != 200) {
           throw Error(res.data.msg);
         }
-        this.name = res.data.data.name;
+        this.accountinfo = res.data.data;
+        this.headUrl = this.$conf.constant.img_base_url + res.data.data.headUrl
       } catch (error) {
         console.log(error);
       }
@@ -157,51 +295,243 @@ export default {
 }
 </script>
 <style scoped>
-@import url("./my.css");
-
-.index {
-  height: 100%;
-}
-.bottomBar {
-  height: 100px;
-  width: 100%;
-  border: 1px solid #ccc;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
-  position: fixed;
-  bottom: 0;
-}
-.bottomBar ul {
+.aui-navBar {
+  height: 88px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  background-color: rgba(27, 130, 210, 1);
 }
 
-.bottomBar ul li img {
-  margin: 8px 0;
+.aui-navBar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 }
-.bottomBar ul li p {
-  font-family: "PingFangSC-Regular";
-  font-size: 20px;
-  color: #d2d7e8;
-  letter-spacing: 0;
-  line-height: 20px;
+
+.aui-center {
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  font-size: 32px;
+  color: #fff;
+  line-height: 88px;
 }
-.mainContent {
-  height: -webkit-calc(100% - 100px);
-  height: -moz-calc(100% - 100px);
-  height: calc(100% - 100px);
+
+.aui-scrollView {
+  width: 100%;
+  height: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  margin-bottom: -1px;
+  margin-top: 88px;
 }
-.bottomBarColorActive {
-  color: #4d81ee !important;
+
+.aui-user {
+  background-color: rgba(27, 130, 210, 1);
+  padding: 10px 20px 30px 30px;
 }
-.aui-left {
-  margin-left: 19px;
+
+.aui-user-cell {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
-.aui-right {
-  margin-left: 400px;
+
+.aui-user-cell-logo img {
+  width: 120px;
+  margin-right: 20px;
+  display: block;
+  border-radius: 8px;
+  border: 2px solid #5ea6df;
 }
-.changMobile {
-  border-bottom: 1px solid #f0f3fa;
+
+.aui-user-cell-title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+.aui-user-cell-title p {
+  color: #fff;
+  font-size: 30px;
+}
+
+.aui-user-cell-title .aui-user-info {
+  color: #aed3ef;
+  font-size: 26px;
+  padding-top: 15px;
+}
+
+/* .aui-user-row:after { */
+/* background-image: ; */
+/* width: 32px;
+  height:32x;
+  background-size: 32px;
+  display: block;
+  color: #c9c9c9;
+  content: " >";
+} */
+
+.aui-list-cell {
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.aui-list-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding-left: 24px;
+  padding-right: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+  color: inherit;
+}
+
+.aui-list-item:active {
+  background: #d9d9d9;
+}
+
+.aui-list-item:after {
+  margin-left: 24px;
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-bottom: 2px solid #f0f0f0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+
+.aui-list-item-fl {
+  color: #303030;
+  font-size: 28px;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.aui-list-item-fr {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  width: 100%;
+  min-height: 100px;
+  color: #9c9c9c;
+  text-align: right;
+  font-size: 26px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.divHeight {
+  width: 100%;
+  height: 20px;
+  background: #f8f8f8;
+}
+
+.aui-list-item-fr:after {
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  display: block;
+  color: #c9c9c9;
+  content: " ";
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAADQUlEQVRoQ+3ZTWsTQRgH8OfZTVIagrZg8VBQUIoHD2lsmt1ml7YRpEgPRfCsCHoV+k168aYQP4GK+AbWtMZdQxptqLSXHCoePKQU0qBt0zQ7sthAs32hJfNGuoFcws7O/Ob/ZHZ2F+GMffCMecEHd3rifsJ+wh02A35Jd1igBzh+wn7Cp5gBy8oPAmAGEXoAYCaZHJ4+RXMuh1ItacvKFxEx2hw5ISRtGIkHXCQn7IQyeOElIkzt71s2NGVwfhAR5wDgvBcdDgenY7FY5YRBMDuMKtgdpfs/PgJdDIeDKdFo6mDZ0UzAMqOZgZtoAEjvX7nd3wkhwsqbKdjFLS4u9mxu1udkQTMHy4bmApYJzQ18HBqA/CQE7hhGosjsArx3Yq7g45OGCgBJsUZzB4tGCwGLRAsDN9FbW/UZALzfuvdmV95CwU2kbefTvNBSgF14K5oAALo7Mvf70DS1Z7RWb2nA/9ELzwHgnufWsmoYiZbbzXbw0oAzmUwgFIq4DxAmPaBqMjncWeBCoRCs1ciLQ7DgOM4j09SetpPq/rbCEy6VSl3lcuU1ItzyrNQ1RDKZTCZmaWHd8wgFu9i1tcp7ABhvRZEtx1EnTHMoSxMrFGzbdjdA8O0h2KqiqBO6PpSjjRUGXl5ejmxsbH4AgKR3w6GqypiuDy2xwAoB53K5c46jfATAYU8ZrytKYFTXb6ywwnIHu9hGQ5lHxEHPtbasqkFT12Mllliu4Gx2qVdRtj8dxMLvQMAxNU1bZY3lBi4UChdqNcd9rnXdU8arjqOMm2b8Fw8sF3Au9+Nio7E9jwjXPNgSIV2mYUTLvLDMwXtYGxGueLArqkpGNU1b54llCrbtYj8h9c8HsbDU3R0YE/XKhclOy7K+XwZouNhLngS/KUrjpq7rVd7JNvujDnaxiLsWAPZ7Lj3ZSKTrdjQa/SsKS72kLatwFdGZ92IByGxfX+/kwMBATSSWOti2F74AgOFBvQuFcCoej9dFY6mDLSv/FRH1JowQeLWz8+duKpXalQHLAjwKgG8QIQIAT0ZG4o8R0ZEFSx0sE+yosVBfpWVH+2DZE2p3fH7C7c6g7O39hGVPqN3x+Qm3O4Oytz9zCf8DYh50TPjMNLAAAAAASUVORK5CYII=");
+}
+
+.icon {
+  width: 70px;
+  height: 46px;
+  background-size: 46px;
+  display: block;
+  background-repeat: no-repeat;
+}
+.icon-item01 {
+  background-image: url("~@/assets/images/7nn1.png");
+}
+
+.icon-item02 {
+  background-image: url("~@/assets/images/7nn2.png");
+}
+.icon-item03 {
+  background-image: url("~@/assets/images/7nn3.png");
+}
+
+.icon-item04 {
+  background-image: url("~@/assets/images/7nn4.png");
+}
+
+.icon-item05 {
+  background-image: url("~@/assets/images/7nn5.png");
+}
+
+.icon-item06 {
+  background-image: url("~@/assets/images/7nn6.png");
+}
+
+.icon-item07 {
+  background-image: url("~@/assets/images/7nn7.png");
+}
+
+.icon-item08 {
+  background-image: url("~@/assets/images/7nn8.png");
+}
+
+.icon-item09 {
+  background-image: url("~@/assets/images/7nn9.png");
+}
+
+.icon-item10 {
+  background-image: url("~@/assets/images/7nn10.png");
+}
+
+.icon-item11 {
+  background-image: url("~@/assets/images/7nn10.png");
 }
 </style>

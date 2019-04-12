@@ -75,11 +75,11 @@ let bizPatientCard = "/app/bizPatientCard/read/list";
 export default {
     data() {
         return {
-
             time: [
                 { title: '待支付', type: 1 },
                 { title: '已支付', type: 2 },
             ],
+              
             waitPayData: [],
             status: 0,
             selectorValue: '',
@@ -109,9 +109,7 @@ export default {
         this.WaitPay(false);
         // this.personFun();
         document.title = '缴费记录';
-
         // this.selectorValue = this.optionsData[0][0].text;
-
     },
     methods: {
 
@@ -153,7 +151,6 @@ export default {
         },
 
         childByValue: function (childValue) {
-            console.log(childValue);
             //this.type = childValue.type;
             this.disType = childValue.type;
             if (childValue.type == 1) { this.type = 0; } else { this.type = 1; }

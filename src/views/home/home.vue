@@ -204,8 +204,6 @@ export default {
         await this.homeNumber(this.chooseId);
     },
     methods: {
-
-
         async homeNumber(data) {
             console.log(data);
             console.log(this.$store.state.cardId);

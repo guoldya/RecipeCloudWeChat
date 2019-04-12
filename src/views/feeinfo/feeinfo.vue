@@ -234,7 +234,7 @@ export default {
             let nowPayParams = {};
             nowPayParams.id = this.feeId;
             nowPayParams.orderCode = this.orderCode;
-            nowPayParams.orderType = "4";
+            nowPayParams.orderType = Number(item.value);
             nowPayParams.payType = item.value;
             nowPayParams.code = this.$route.query.code;
             this.$axios.post(now_pay_url, nowPayParams).then((res) => {
@@ -246,6 +246,7 @@ export default {
                     // if (res.data.data.total) {
                     //     this.cashierAmount = res.data.data.total.toFixed(2);
                     // }
+                    this.$router.go(-1);
                     this.payStatus = "1";
                     this.doPay();
                 } else {
@@ -318,7 +319,7 @@ export default {
   text-align: center;
 }
 .feeinfo .spanWid span:first-child {
-  width: 20%;
+  width: 15%;
   text-align: left;
 }
 .feeinfo .spanWid span:nth-child(2) {
@@ -329,7 +330,7 @@ export default {
   /*text-align: center;*/
 }
 .feeinfo .spanWid span:last-child {
-  width: 20%;
+  width: 25%;
   text-align: right;
 }
 .feeinfo .cardText .cardTextKindcontent {

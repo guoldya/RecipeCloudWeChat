@@ -26,10 +26,11 @@
 <script>
 import { mapState, mapActions } from "vuex";
 let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
-let appbizOnlineServiceRecordupdate = "/app/bizOnlineServiceRecord/update";
+let appbizOnlineServiceRecordupdate = "/app/bizOnlineServiceRecord/createOrder";
 export default {
   data() {
     return {
+      id: '',
       isCashierhow: false,
       cashierAmount: '20',
       cashierChannels: [
@@ -55,31 +56,36 @@ export default {
 
     ...mapActions(["chat/setPatienDetail"]),
     payNow() {
-      this.isCashierhow = true;
-      // this.$axios.post(appbizOnlineServiceRecordupdate, nowPayParams).then((res) => {
-      //   if (res.data.code == '200') {
+      let nowPayParams = {};
+      nowPayParams.doctorId = this.$route.query.id;
+      nowPayParams.type = 1;
+      this.$axios.post(appbizOnlineServiceRecordupdate, nowPayParams).then((res) => {
+        if (res.data.code == '200') {
+          this.isCashierhow = true;
+          this.id = res.data.data;
+        } else {
 
-      //   } else {
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
 
-      //   }
-      // }).catch(function (err) {
-      //   console.log(err);
-      // });
+
     },
 
     onCashierPay(item) {
 
       this["chat/setPatienDetail"]({
         name: "点击选择就诊人",
-        id:null
+        id: null
       });
       this.$router.push({
         name: "pictureConsult",
         query: { name: this.$route.query.name, id: this.$route.query.id }
       });
       let nowPayParams = {};
-      nowPayParams.payType = 1;
-      nowPayParams.doctorId = this.$route.query.id;
+      nowPayParams.payType = Number(item.value);
+      nowPayParams.id = this.id;
       // 状态  1--新建  2--支付 3--接诊  4--完成  5--退费  6--关闭
       nowPayParams.status = 2;
       nowPayParams.type = 1;

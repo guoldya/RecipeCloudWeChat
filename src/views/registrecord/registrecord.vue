@@ -33,7 +33,7 @@
                     </div>
                     <div class=" parElem listData">
                         <span class="sonElem">预约时间</span>
-                        <span>{{item.regDate |time}} {{item.regStage}}</span>
+                        <span>{{item.regDate |time}}</span>
                     </div>
                     <div class="parElem cardTextRight" @click="cordInfo(item.id,item.payType,item.sourceId)">
                         <span>详情</span>

@@ -40,9 +40,9 @@
       <!-- 沟通方式 -->
       <div class="doctor-way">
         <div @click="consult()" class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
-          <div class="doctor-way-item-img">
-            <img src="../images/icon_teletext.png" v-if="item.type == 1" alt="" />
-            <img src="../images/icon_telephone.png" v-else-if="item.type == 2" alt="" />
+          <div class="doctor-way-item-img"> 
+            <img src="../images/icon_telephone.png" v-if="item.type == 2" alt="" />
+            <img src="../images/icon_teletext.png" v-else-if="item.type == 1" alt="" />
           </div>
           <div class="doctor-way-item-money doctor-way-item-image" v-if="item.type == 1">
             ￥{{ item.info.price }}/次

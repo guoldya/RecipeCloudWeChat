@@ -104,7 +104,7 @@ import admupayfee from '@/views/inhospital/admupayfee'
 import myhospital from '@/views/inhospital/myhospital'
 import hospitalinfo from '@/views/inhospital/hospitalinfo'
 import hospitalization from '@/views/inhospital/hospitalization'
- 
+
 
 import payfee from '@/views/inhospital/payfee/payfee.vue'
 import payfeerecord from '@/views/inhospital/payfeerecord'
