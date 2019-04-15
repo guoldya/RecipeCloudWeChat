@@ -6,7 +6,7 @@
          <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
             <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
                <div class="appTitle">
-                  <span>{{item.cardNo}}费</span>
+                  <span>{{item.cardNo}}</span>
                   <span class="mu-secondary-text-color">{{item.status | admissionFilter}}</span>
                </div>
                <div class="cardText">

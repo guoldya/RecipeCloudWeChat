@@ -4,7 +4,9 @@
     <div class="flatCard margin5 outCarint">
       <!-- 申请人 -->
       <div>
-        <p style="color:#000;padding-top: 16px">拍摄/上传您的二代身份证</p>
+        <p style="color:#000;padding-top: 16px">拍摄/上传您的二代身份证
+          <span v-show="$route.query.type==1">和医保卡</span>
+        </p>
         <div class="pg_positive">
           <div class="pg_positive_img">
             <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
@@ -38,7 +40,7 @@
           </div>
         </div>
 
-        <p style="color: var(--primary--title);margin-top: 40px">身份证请上传身份证的正面照片,医保卡需要上传医保卡正面照片公医证需要上传公医证照片,如需转诊请提前办理转诊并上传照片，否则以自费结算或参保地报销</p>
+        <!-- <p style="color: var(--primary--title);margin-top: 40px">身份证请上传身份证的正面照片,医保卡需要上传医保卡正面照片公医证需要上传公医证照片,如需转诊请提前办理转诊并上传照片，否则以自费结算或参保地报销</p> -->
 
       </div>
     </div>
@@ -136,17 +138,17 @@ export default {
     cardconfirm() {
       let param = new FormData(); //创建form对象
       console.log(this.AAA.name.lastIndexOf("."), this.BBB.name, "sss");
-      if (this.$route.query.type == 0) {
-        if (!this.AAA.name || !this.BBB.name) {
-          this.$toast.info("请上传图片")
-          return;
-        }
-      } else {
-        if (!this.AAA.name || !this.BBB.name || !this.CCC.name || !this.DDD.name) {
-          this.$toast.info("请上传图片")
-          return;
-        }
-      }
+      // if (Number(this.$route.query.type == 0)) {
+      //   if (!this.AAA.name || !this.BBB.name) {
+      //     this.$toast.info("请上传图片")
+      //     return;
+      //   }
+      // } else {
+      //   if (!this.AAA.name || !this.BBB.name || !this.CCC.name || !this.DDD.name) {
+      //     this.$toast.info("请上传图片")
+      //     return;
+      //   }
+      // }
 
 
       var index1 = this.AAA.name.lastIndexOf(".");
@@ -157,18 +159,22 @@ export default {
       var index22 = this.BBB.name.length;
       var suffix1 = this.BBB.name.substring(index11 + 1, index22);//后缀名
 
-      var index11CCC = this.CCC.name.lastIndexOf(".");
-      var index22CCC = this.CCC.name.length;
-      var suffix1CCC = this.CCC.name.substring(index11CCC + 1, index22CCC);//后缀名
 
-      var index11DDD = this.DDD.name.lastIndexOf(".");
-      var index22DDD = this.DDD.name.length;
-      var suffix1DDD = this.DDD.name.substring(index11DDD + 1, index22DDD);//后缀名
 
       param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
       param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
-      param.append('photo2', this.CCC, "photo2." + suffix1CCC);//通过append向form对象添加数据
-      param.append('photo3', this.DDD, "photo2." + suffix1DDD);//通过append向form对象添加数据
+      if (Number(this.$route.query.type == 1)) {
+        var index11CCC = this.CCC.name.lastIndexOf(".");
+        var index22CCC = this.CCC.name.length;
+        var suffix1CCC = this.CCC.name.substring(index11CCC + 1, index22CCC);//后缀名
+
+        var index11DDD = this.DDD.name.lastIndexOf(".");
+        var index22DDD = this.DDD.name.length;
+        var suffix1DDD = this.DDD.name.substring(index11DDD + 1, index22DDD);//后缀名
+
+        param.append('photo2', this.CCC, "photo2." + suffix1CCC);//通过append向form对象添加数据
+        param.append('photo3', this.DDD, "photo2." + suffix1DDD);//通过append向form对象添加数据
+      }
       // console.log(param);
       let config = {
         headers: {

@@ -36,14 +36,8 @@
 
         <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
       </div>
-      <md-field v-show="mail==1" >
-        <!--<div class="parElem" style="display: flex;">-->
-          <!--<span class="sonElem" style="width: 55px;margin:18px 16px 0 12px">收件人</span>-->
-          <!--<span>-->
-            <!--<md-input-item class="outCarint " v-model="receiver" ref="input13" is-highlight placeholder="收件人"></md-input-item>-->
-          <!--</span>-->
-        <!--</div>-->
-        <!--<p class="partLine outCarint"></p>-->
+      <md-field v-show="mail==1">
+
         <md-input-item style="padding: 0 12px" type="text" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
         <md-input-item style="padding: 0 12px" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <Address style="padding: 0 12px" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
@@ -95,11 +89,11 @@ export default {
   },
   watch: {
     mail(newValue) {
-      this.mail=newValue;
+      this.mail = newValue;
     },
-      pay(newValue) {
-          this.pay=newValue;
-      }
+    pay(newValue) {
+      this.pay = newValue;
+    }
   },
   methods: {
     onChange(checked) {
@@ -114,19 +108,19 @@ export default {
     },
 
     tijiao() {
-        let addParam={};
-        addParam.receiveBy=this.receiver;
-        addParam.tel=this.mobile;
-        addParam.area=this.areaId;
-        addParam.address=this.address;
-        addParam.receiveMode=this.mail;
+      let addParam = {};
+      addParam.receiveBy = this.receiver;
+      addParam.tel = this.mobile;
+      addParam.area = this.areaId;
+      addParam.address = this.address;
+      addParam.receiveMode = this.mail;
       if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
         this.$toast.info("请完善信息")
       } else {
-          this.$router.push({
-              name: 'certificate',
-              query:addParam
-          });
+        this.$router.push({
+          name: 'certificate',
+          query: addParam
+        });
       }
     },
   },
@@ -152,31 +146,30 @@ export default {
   line-height: 70px;
   font-size: 30px;
 }
-   .business .flatCard{
-     border-top: none;
-   }
-   .business .textTip{
-     line-height: 36px;
-     margin: 12px 0;
-     font-size: 24px;
-     /*padding: 0 24px;*/
-   }
-   .business .md-check-box{
-     color:  var(--primary--content);
-   }
-   .business .md-check-box.is-checked{
-     color: #2f86f6;
-   }
-   .business .partLine{
-     border-bottom: 1px solid #F2F3F5;
-     position: absolute;
-     z-index: 9999;
-      margin: 0 0 0 24px;
-     width: 698px;
-   }
-  .business /deep/.title-bar-left,
-  .business /deep/.title-bar-right{
-    font-size: 32px;
-  }
-
+.business .flatCard {
+  border-top: none;
+}
+.business .textTip {
+  line-height: 36px;
+  margin: 12px 0;
+  font-size: 24px;
+  /*padding: 0 24px;*/
+}
+.business .md-check-box {
+  color: var(--primary--content);
+}
+.business .md-check-box.is-checked {
+  color: #2f86f6;
+}
+.business .partLine {
+  border-bottom: 1px solid #f2f3f5;
+  position: absolute;
+  z-index: 9999;
+  margin: 0 0 0 24px;
+  width: 698px;
+}
+.business /deep/.title-bar-left,
+.business /deep/.title-bar-right {
+  font-size: 32px;
+}
 </style>

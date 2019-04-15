@@ -1,8 +1,8 @@
 <template>
   <div class="sign margin55">
     <Header post-title="就诊签到"></Header>
-    <div  class="margin45">
-      <md-notice-bar icon="location"  v-show="isHaveOrder" >
+    <div class="margin45">
+      <md-notice-bar icon="location" v-show="isHaveOrder">
         {{titlename}}
       </md-notice-bar>
       <div id="allmap"></div>
@@ -41,7 +41,7 @@ let readselectRegisterList = "read/selectRegisterList";
 export default {
   data() {
     return {
-      
+
       optionsData: [],
       titlename: '',
       isSelectorShow: false,
@@ -89,16 +89,11 @@ export default {
   },
   mounted() {
     document.title = '就诊签到';
-    
     var today = new Date();
-    this.nowTime = today.getFullYear() + "年" + today.getMonth() + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
-
-
+    this.nowTime = today.getFullYear() + "年" + (today.getMonth() + 1) + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
     this.drawmap(this.pointBpositionlat)
   },
   methods: {
-
-
     drawmap(e) {
       let _this = this;
       var map = new BMap.Map("allmap");
@@ -224,17 +219,17 @@ export default {
 }
 
 .sign .md-notice-bar {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    z-index: 1301;
-    font-size: 0.26rem;
-    min-height: 0.64rem;
-    background-color: rgba(89,158,248,.08);
-    color: #2f86f6;
-    position: relative;
-    padding-left: 0.32rem;
-    box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  z-index: 1301;
+  font-size: 0.26rem;
+  min-height: 0.64rem;
+  background-color: rgba(89, 158, 248, 0.08);
+  color: #2f86f6;
+  position: relative;
+  padding-left: 0.32rem;
+  box-sizing: border-box;
 }
 </style>
 

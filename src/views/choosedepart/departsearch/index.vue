@@ -6,9 +6,9 @@
                         <div class="g-suggest">
                               <div class="g-suggest--input">
                                     <div class="g-suggest--input-wrap">
-                                          <input type="search" id="oc_vala" v-model="searchValue" autofocus="autofocus" placeholder="搜索医生">
+                                          <input type="search" id="oc_vala" v-model="searchValue" autofocus="autofocus" placeholder="请输入医生，科室名称">
                                     </div>
-                                    <label class="page-search--cancel" @click="SearchVal()">搜索</label>
+                                    <label class="page-search--cancel" @click="SearchVal(searchValue)">搜索</label>
                               </div>
                         </div>
                   </form>
@@ -71,12 +71,12 @@ export default {
                   this.HistoryList = [],
                         localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
             },
-            SearchVal() {
-                  if (!this.searchValue) {
+            SearchVal(value) {
+                  if (!value) {
                         this.$toast.info("请输入你要搜索的内容")
                         return;
                   }
-                  let val = this.searchValue.trim() // 清除空格
+                  let val = value.trim() // 清除空格
                   if (this.HistoryList.length > 0) { // 有数据的话 判断
                         if (this.HistoryList.indexOf(val) !== -1) { // 有相同的，先删除 再添加 
                               this.HistoryList.splice(this.HistoryList.indexOf(val), 1)

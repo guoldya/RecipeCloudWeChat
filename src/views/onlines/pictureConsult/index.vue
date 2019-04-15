@@ -110,8 +110,6 @@ export default {
   methods: {
     ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews", 'updateUser']),
     sendInfo() {
-
-      console.log(this.$store.state.chat.patienDetail, "就诊人");
       this.questionDes = this.questionDes.trim()
       // if (!this._patienDetail.id) {
       //   this.$toast.info("请选择就诊人")
@@ -121,12 +119,10 @@ export default {
         this.$toast.info("问题描述不能为空")
         return
       }
-
       var data = this._patienDetail;
       data.questionDes = this.questionDes;
       data.anamnesisDes = this.anamnesisDes.trim();
       this["chat/setPatienDetail"](data);
-
       // 发送消息
       let createTime = new Date().getTime();
       let msg = {
@@ -143,18 +139,13 @@ export default {
       let arr = JSON.parse(JSON.stringify(this.$store.state.chat.historyNews))
       arr.push(msg)
       this['chat/setHistoryNews'](arr)
-
       this.$store.state.chat.websocket.send(JSON.stringify(msg));
-
       this.$router.push({
         name: 'inquiryOnline',
         query: {
           id: this.$route.query.id, orderId: this.$route.query.orderId, name: this.$route.query.name
         }
       });
-
-
-
     },
     getAge(value) {
       // if (value) return

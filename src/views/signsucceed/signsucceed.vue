@@ -49,7 +49,7 @@ export default {
 
     // 获取当前时间
     var today = new Date();
-    this.nowTime = today.getFullYear() + "年" + (today.getMonth() + 1) + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
+    this.nowTime = today.getFullYear() + "年" + Number(today.getMonth() + 1) + "月" + today.getDate() + "日" + today.getHours() + "时" + today.getMinutes() + "分" + today.getSeconds() + "秒";
 
 
     document.title = '签到成功';

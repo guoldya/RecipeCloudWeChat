@@ -111,12 +111,12 @@ export default {
       if (this.phonenumber.length < 11 || this.name.length == 0 || this.verifyCode.length < 6 || this.cardNo.length === 0) {
         this.$toast.info('请完善信息')
       } else {
-        this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.phonenumber, {
+        this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.mobile, {
         }).then(res => {
           if (res.data.code == '200') {
             this.$axios.post(wechatbizPatientCardbinding, {
               patientName: this.name,
-              mobile: this.phonenumber,
+              mobile: this.mobile,
               verifyType: 1,
               type: this.type,
               cardNo: this.cardNo,
@@ -150,6 +150,9 @@ export default {
 
       }
     },
+
+
+
   },
 }
 

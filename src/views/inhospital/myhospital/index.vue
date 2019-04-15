@@ -14,7 +14,6 @@
                   <md-detail-item title="住院日期">
                      {{item.inTime|lasttime}}
                   </md-detail-item>
-
                </md-field>
             </div>
 
@@ -79,7 +78,12 @@ export default {
          }).then(res => {
             if (res.data.code == '200') {
                this.loadingtrue = false;
-               this.cordInfoData.push(res.data.data);
+               if (res.data.data) {
+                  this.cordInfoData.push(res.data.data);
+               } else {
+                  this.cordInfoData = []
+               }
+
                this.id = res.data.data.id
             }
          }).catch(function (err) {

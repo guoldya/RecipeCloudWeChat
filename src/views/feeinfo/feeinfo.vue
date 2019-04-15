@@ -56,7 +56,6 @@ import { Toast, Button } from 'mand-mobile'
 export default {
     data() {
         return {
-
             active1: 0,
             normal: {
                 checkbox: true,

@@ -40,7 +40,7 @@
       <!-- 沟通方式 -->
       <div class="doctor-way">
         <div @click="consult()" class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
-          <div class="doctor-way-item-img"> 
+          <div class="doctor-way-item-img">
             <img src="../images/icon_telephone.png" v-if="item.type == 2" alt="" />
             <img src="../images/icon_teletext.png" v-else-if="item.type == 1" alt="" />
           </div>
@@ -371,6 +371,8 @@ export default {
   .doctor-abstract,
   .doctor-comment,
   .doctor-comment-item {
+    padding: 0 24px;
+    background: #ffffff;
     > div {
       padding: 24px 0;
       margin-top: 20px;

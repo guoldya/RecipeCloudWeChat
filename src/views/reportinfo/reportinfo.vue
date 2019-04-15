@@ -246,6 +246,9 @@ export default {
 };
 </script>
  <style   scoped>
+.reportinfo .parElem .sonElem {
+  width: 50%;
+}
 .reportinfo .cardText .cardTextPP {
   display: flex;
   justify-content: space-between;

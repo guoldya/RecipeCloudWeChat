@@ -14,10 +14,11 @@ import hospitalsearch from '@/views/choosehospital/hospitalsearch/hospitalsearch
 import hospitalresult from '@/views/choosehospital/hospitalresult/hospitalresult.vue'
 import lostpage from '@/views/resultpage/lostpage/lostpage.vue'
 import departsearch from '@/views/choosedepart/departsearch'
+import news from '@/views/home/news'
+import propaganda from '@/views/home/propaganda'
+import newsinfo from '@/views/home/newsinfo'
 
-
-
-
+ 
 
 import result from '@/views/result/result.vue'
 import feeinfo from '@/views/feeinfo/feeinfo.vue'
@@ -166,6 +167,21 @@ export default new Router({
     path: '/register',
     name: 'register',
     component: register
+  },
+  {
+    path: '/propaganda',
+    name: 'propaganda',
+    component: propaganda
+  },
+  {
+    path: '/newsinfo',
+    name: 'newsinfo',
+    component: newsinfo
+  },
+  {
+    path: '/news',
+    name: 'news',
+    component: news
   },
   {
     path: '/inpatient',

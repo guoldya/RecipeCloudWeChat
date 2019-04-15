@@ -31,11 +31,19 @@
       病案信息
     </p>
     <div class="flatCard margin16 outCarint">
-      <md-input-item ref="input13" v-model="name" title="住院科室" placeholder="住院科室"></md-input-item>
-      <md-input-item ref="input13" v-model="idcard" title="住院诊断" placeholder="住院诊断"></md-input-item>
-      <md-input-item ref="input13" v-model="idcard" title="住院次数" placeholder="住院次数"></md-input-item>
-      <md-input-item ref="input13" v-model="name" title="入院时间" placeholder="入院时间"></md-input-item>
-      <md-input-item ref="input13" v-model="idcard" title="出院时间" placeholder="出院时间"></md-input-item>
+      <div style="background:#ffffff">
+        <md-detail-item title="住院科室" :content="_cardlist.dept" />
+        <md-detail-item title="住院诊断" :content="_cardlist.diag" />
+        <md-detail-item title="住院次数" :content="_cardlist.renewalMum">
+          <span>{{_cardlist.renewalMum}}次</span>
+        </md-detail-item>
+        <md-detail-item title="入院时间">
+          <span>{{_cardlist.inTime|lasttime}}</span>
+        </md-detail-item>
+        <md-detail-item title="出院时间">
+          <span>{{_cardlist.recipeDate|lasttime}}</span>
+        </md-detail-item>
+      </div>
     </div>
     <p class="smallTitle">
       复印用途
@@ -53,7 +61,7 @@
                 <span> {{num}}</span>
                 <img src="@/assets/images/icon_add@2x.png" @click="num++">
               </span> -->
-              <md-stepper slot="right" v-model="value" min="0" />
+              <md-stepper slot="right" v-model="value" min="1" />
             </div>
           </div>
           <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注"></md-input-item>
@@ -70,30 +78,31 @@
         </div>
       </div>
     </div>
-    <form>
+    <!-- <form>
       <input type="file" name="json" value="aaaa">
-    </form>
-
-    <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择卡类型" @choose="onSelectorChoose"></md-selector>
+    </form> -->
+    <md-selector v-model="isSelectorShow" :data="test" :default-value="1" @choose="onSelectorChoose" title="复印用途"></md-selector>
     <md-agree class="outCarint" v-model="agreeConf.checked" :disabled="false" size="md" @change="onChange(agreeConf.checked)">
       我已阅读并了解
       <a @click="openPgmodel" style="color:var(--primary)">《病历复印规定》</a>
     </md-agree>
     <Pgmodal ref="Pgmodal"></Pgmodal>
     <div style="height:55px"></div>
-    <p @click="copyresult" class="addbTN">下一步</p>
-    <!-- <md-button type="primary" round class="margin16" @click="copyresult">确认提交</md-button> -->
+    <p @click="tijiao" class="addbTN">下一步</p>
   </div>
 </template>
 <script type="text/babel">
+import { mapState } from 'vuex';
 import Pgmodal from "../component/pgmodal/pgmodal.vue";
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
+let checkMobile = "/app/bizPatientCard/checkMobile";
+let wechatbizPatientCardbinding = "/app/bizCopyApply/uploadIdCard"
 export default {
   data() {
     return {
-      name: '张三丰',
+      name: '',
       copyUse: '',
-      idcard: '454444444',
+      idcard: '',
       mobile: '',
       verifyCode: '',
       count: '',
@@ -106,36 +115,43 @@ export default {
       },
       num: 1,
       value: 0,
+      type: 1,
       selectorValue: '全套复印',
       isSelectorShow: false,
       test: [
         {
-          value: '1',
+          value: 1,
           text: '全套复印',
         },
         {
-          value: '2',
+          value: 2,
           text: '交通事故',
         },
         {
-          value: '3',
+          value: 3,
           text: '保险',
         },
         {
-          value: '4',
+          value: 4,
           text: '商业保险',
         },
         {
-          value: '5',
+          value: 5,
           text: '报销',
         },
       ],
-        jsonStr:'',
-        nextPar:'',
+      jsonStr: '',
+      nextPar: '',
     };
   },
+  computed: {
+    ...mapState({
+      _cardlist: state => state.chooseInfo,
+    }),
+  },
   created() {
-
+    this.name = this.$route.query.name;
+    this.idcard = this.$route.query.idcard
 
   },
   watch: {
@@ -150,10 +166,10 @@ export default {
     document.scrollingElement.scrollTop = 0
 
 
-    this.nextPar=this.$route.query;
+    this.nextPar = this.$route.query;
 
-      this.nextPar.idCardImg=JSON.stringify(this.$store.state.cardImgData)
-      console.log(this.nextPar);
+    this.nextPar.idCardImg = JSON.stringify(this.$store.state.cardImgData)
+    console.log(this.$store.state.idCardInfo);
   },
   methods: {
     chooseCase() {
@@ -161,18 +177,70 @@ export default {
         name: 'chooseCase'
       })
     },
-    copyresult() {
-      // this.$router.push({
-      //   name: 'copyresult'
-      // })
-        this.$axios.post("app/bizCopyApply/uploadIdCard",this.nextPar).then(res => {
-            if (res.data.code == '200') {
 
-                // this.$router.go(-1);
-            }
+    tijiao() {
+      let _this = this;
+      if (this.mobile.length < 11 || this.verifyCode.length < 6 || this.useInfo.length === 0) {
+        this.$toast.info('请完善信息');
+        return
+      } else {
+        this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.mobile, {
+        }).then(res => {
+          if (res.data.code == '200') {
+            this.$axios.post(wechatbizPatientCardbinding, {
+              mobile: this.mobile,
+              verifyType: 1,
+              receiverType: this.$route.query.receiverTypem,
+              useInfo: this.useInfo,
+              // 复印用途
+              type: this.type,
+              // 验证码
+              verifyCode: this.verifyCode,
+              //  住院id
+              ihRecordId: this._cardlist.ihRecordId,
+              idCardImg: this.$store.state.idCardInfo
+            }).then(res => {
+              if (res.data.code == '200') {
+                this.$store.dispatch('getCards', { update: true });
+                this.$dialog.alert({
+                  title: '提示',
+                  content: '该卡绑定成功!',
+                  confirmText: '确定',
+                  onConfirm: () => {
+                    this.$router.go(-1);
+                  },
+                });
+              } else {
+                this.$toast.info("验证码错误或超时")
+              }
+            }).catch(function (err) {
+              console.log(err);
+            });
+          } else {
+            this.$toast.info("验证码错误或超时")
+          }
         }).catch(function (err) {
-            console.log(err);
+          console.log(err);
         });
+      }
+    },
+
+
+    copyresult() {
+      if (this.mobile > 0 && this.verifyCode < 5) {
+        this.$toast.info("请完善信息");
+        return
+      }
+      this.$axios.post("app/bizCopyApply/uploadIdCard", this.nextPar).then(res => {
+        if (res.data.code == '200') {
+          this.$router.push({
+            name: 'copyresult'
+          })
+          // this.$router.go(-1);
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
     },
     onChange(checked) {
       console.log(`agree name =  ${checked ? 'checked' : 'unchecked'}`);
@@ -182,15 +250,19 @@ export default {
     },
     onSelectorChoose(data) {
       this.selectorValue = data.text;
-      // this.type = data.value * 1;
+      this.type = data.value * 1;
+      console.log(data, "this")
     },
+
+
     showSelector() {
       this.isSelectorShow = true
     },
     getCode() {
+
       let _this = this;
       const TIME_COUNT = 60;
-      if (this.phonenumber.length < 11) {
+      if (this.mobile.length < 11) {
         this.$toast.info('请输入正确的手机号')
       } else {
         if (!this.timer) {
@@ -205,7 +277,7 @@ export default {
               this.timer = null;
             }
           }, 1000);
-          this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.phonenumber + '&verifyType=' + 1, {
+          this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.mobile + '&verifyType=' + 1, {
           }).then(res => {
             if (res.data.code == '200') {
               _this.$toast.info('请查看验证码')
@@ -219,6 +291,11 @@ export default {
       }
 
     },
+
+
+
+
+
   },
   components: {
     Pgmodal,
@@ -261,11 +338,11 @@ export default {
   color: #c5cad5;
   font-size: 28px;
 }
-   .putinfo .partLine{
-     border-bottom: 1px solid #F2F3F5;
-     position: absolute;
-     margin: 0;
-     z-index: 9999;
-     width: 698px;
-   }
+.putinfo .partLine {
+  border-bottom: 1px solid #f2f3f5;
+  position: absolute;
+  margin: 0;
+  z-index: 9999;
+  width: 698px;
+}
 </style>

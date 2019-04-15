@@ -1,80 +1,175 @@
 <template>
-   <div class=" copyresult  margin55 ">
-      <Header post-title="确认支付"></Header>
-      <md-field>
-         <div class="outCarint addr">
-            <!--<md-detail-item title="收件人：众但是安" content="1345648648" bold />-->
-            <!--&lt;!&ndash;<md-detail-item class="addr" title="重庆市渝北区大龙山202" />&ndash;&gt;-->
-            <!--<p style="padding-bottom: 6px">重庆市渝北区大龙山202</p>-->
-            <md-detail-item title="收件人" content="众但是安" />
-            <md-detail-item title="手机号码" content="1345648648" />
-            <md-detail-item title="联系地址" content="重庆市渝北区大龙山202" />
-         </div>
-         <div style="height:5px;background:#f8f8f8">
-         </div>
-         <div class="outCarint">
-            <md-detail-item title="申请信息" bold/>
-            <p class="partLine" style="margin-top: 9px"></p>
-            <md-detail-item title="申请编号" content="可用8000.34" />
-            <md-detail-item title="住院号" content="00022010010002201001 " />
-            <md-detail-item title="患者姓名" content="众安" />
-            <md-detail-item title="入院时间" content="2018/08/08 ~ 2019/08/08" />
-            <md-detail-item title="出院时间" content="123456789" />
-         </div>
-         <div style="height:5px;background:#f8f8f8">
-         </div>
-         <div class="outCarint">
-            <md-detail-item title="复印用途" bold/>
-            <p class="partLine" style="margin-top: 9px"></p>
-            <md-detail-item title="保险报销" content="1份" />
-         </div>
-         <div style="height:5px;background:#f8f8f8">
-         </div>
-         <div class="outCarint">
-            <md-detail-item title="费用信息" bold/>
-            <p class="partLine" style="margin-top: 9px"></p>
-            <md-detail-item title="复印费">
-               <span style="color:var(--primary); ">50.00元</span>
-            </md-detail-item>
-            <md-detail-item title="快递费">
-               <span style="color:var(--primary); ">22.00元</span>
-            </md-detail-item>
-         </div>
-         <div style="height:5px;background:#f8f8f8">
-         </div>
-         <div class="outCarint">
-            <md-detail-item title="需支付费用" class="payFee">
-               <span style="color:var(--primary);font-size:17px; ">72.00元</span>
-            </md-detail-item>
-         </div>
-      </md-field>
-      <div>
-         <md-button type="primary" round style="margin-top:16px;">支付</md-button>
+  <div class=" copyresult  margin55 ">
+    <Header post-title="确认支付"></Header>
+    <md-field>
+      <div class="outCarint addr">
+        <!--<md-detail-item title="收件人：众但是安" content="1345648648" bold />-->
+        <!--&lt;!&ndash;<md-detail-item class="addr" title="重庆市渝北区大龙山202" />&ndash;&gt;-->
+        <!--<p style="padding-bottom: 6px">重庆市渝北区大龙山202</p>-->
+        <md-detail-item title="收件人" content="众但是安" />
+        <md-detail-item title="手机号码" content="1345648648" />
+        <md-detail-item title="联系地址" content="重庆市渝北区大龙山202" />
       </div>
-   </div>
+      <div style="height:5px;background:#f8f8f8">
+      </div>
+      <div class="outCarint">
+        <md-detail-item title="申请信息" bold/>
+        <p class="partLine" style="margin-top: 9px"></p>
+        <md-detail-item title="申请编号" content="可用8000.34" />
+        <md-detail-item title="住院号" content="00022010010002201001" />
+        <md-detail-item title="患者姓名" content="众安" />
+        <md-detail-item title="入院时间">
+          <span>{{_cardlist.inTime|lasttime}}</span>
+        </md-detail-item>
+        <md-detail-item title="出院时间">
+          <span>{{_cardlist.recipeDate|lasttime}}</span>
+        </md-detail-item>
+
+      </div>
+      <div style="height:5px;background:#f8f8f8">
+      </div>
+      <div class="outCarint">
+        <md-detail-item title="复印用途" bold/>
+        <p class="partLine" style="margin-top: 9px"></p>
+        <md-detail-item title="保险报销" content="1份" />
+      </div>
+      <div style="height:5px;background:#f8f8f8">
+      </div>
+      <div class="outCarint">
+        <md-detail-item title="费用信息" bold/>
+        <p class="partLine" style="margin-top: 9px"></p>
+        <md-detail-item title="复印费">
+          <span style="color:var(--primary); ">50.00元</span>
+        </md-detail-item>
+        <md-detail-item title="快递费">
+          <span style="color:var(--primary); ">22.00元</span>
+        </md-detail-item>
+      </div>
+      <div style="height:5px;background:#f8f8f8">
+      </div>
+      <div class="outCarint">
+        <md-detail-item title="需支付费用" class="payFee">
+          <span style="color:var(--primary);font-size:17px; ">72.00元</span>
+        </md-detail-item>
+      </div>
+    </md-field>
+    <div style="height:60px">
+    </div>
+    <p class="addbTN" @click="rightPay">支付</p>
+    <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
+  </div>
 </template>
 <script>
+import { mapState } from 'vuex';
+let appbizCopyApplypayment = "/app/bizCopyApply/payment"
+let fee_detail_url = "/app/bizCostBill/detail";
+let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
+let now_pay_url = "/app/bizCostBill/nowPay";
 import { Field, DetailItem } from 'mand-mobile'
 export default {
-   name: 'detail-item-demo',
-   components: {
-      [Field.name]: Field,
-      [DetailItem.name]: DetailItem,
-   },
+  name: 'detail-item-demo',
+  data() {
+    return {
+      isCashierhow: false,
+      isCashierCaptcha: false,
+      cashierAmount: '24',
+      cashierResult: 'success',
+      cashierChannels: [
+        {
+          icon: 'cashier-icon-2',
+          text: '支付宝支付',
+          value: '1',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '微信支付',
+          value: '2',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '医保支付',
+          value: '3',
+        },
+      ],
+
+    };
+  },
+  created() {
+
+  },
+  components: {
+    [Field.name]: Field,
+    [DetailItem.name]: DetailItem,
+  },
+
+
+  computed: {
+    ...mapState({
+      _cardlist: state => state.chooseInfo,
+    }),
+  },
+  methods: {
+    onCashierCancel() {
+      // Abort pay request or checking request
+      this.timer && clearTimeout(this.timer);
+      if (this.payStatus == "1") {
+        this.$router.go(-1);
+      }
+    },
+    rightPay() {
+      this.isCashierhow = !this.isCashierhow;
+
+    },
+    onCashierSelect(item) {
+      console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
+    },
+    onCashierPay(item) {
+      let nowPayParams = {};
+      nowPayParams.id = this.feeId;
+      nowPayParams.orderCode = this.orderCode;
+      nowPayParams.orderType = Number(item.value);
+      nowPayParams.payType = item.value;
+      nowPayParams.code = this.$route.query.code;
+      this.$axios.post(appbizCopyApplypayment, nowPayParams).then((res) => {
+        if (res.data.code == '200') {
+          // this.feeDetailData.push(res.data.data);
+          // if (res.data.data.details) {
+          //     this.feeButtomDetail = res.data.data.details;
+          // }
+          // if (res.data.data.total) {
+          //     this.cashierAmount = res.data.data.total.toFixed(2);
+          // }
+          this.$router.go(-1);
+          // this.payStatus = "1";
+          // this.doPay();
+        } else {
+          this.$toast.info(res.data.msg);
+          this.isCashierhow = false;
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+
+
+
+  }
+
+
 }
 
 </script>
 <style>
-   .copyresult .addr .md-detail-item div:first-child{
-      width: 32%;
-   }
-   .copyresult .payFee .md-detail-title{
-      width: 20%;
-   }
-   .copyresult .outCarint{
-      padding: 16px 24px;
-   }
-   .copyresult .partLine{
-      height: 2px;
-   }
+.copyresult .addr .md-detail-item div:first-child {
+  width: 32%;
+}
+.copyresult .payFee .md-detail-title {
+  width: 20%;
+}
+.copyresult .outCarint {
+  padding: 16px 24px;
+}
+.copyresult .partLine {
+  height: 2px;
+}
 </style>

@@ -84,7 +84,7 @@
     </div>
 </template>
 <script>
-    let doctor_url="/app/bdHospitalDoctor/read/selectOne ";
+    let doctor_url="/app/bdHospitalDoctor/selectDoctorDetail ";
     import Calendar from 'vue-calendar-component';
     export default {
         components: {

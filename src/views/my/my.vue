@@ -10,7 +10,8 @@
       <div class="aui-user">
         <div class="aui-user-cell">
           <div class="aui-user-cell-logo">
-            <img :src="$conf.constant.img_base_url + accountinfo.headUrl" alt="">
+            <img v-if="accountinfo.headUrl" :src="$conf.constant.img_base_url + accountinfo.headUrl" alt="">
+            <img v-else src="@/assets/images/user.png">
           </div>
           <div class="aui-user-cell-title">
             <p> {{accountinfo.name}}</p>
@@ -487,8 +488,8 @@ export default {
 
 .icon {
   width: 70px;
-  height: 46px;
-  background-size: 46px;
+  height: 50px;
+  background-size: 42px;
   display: block;
   background-repeat: no-repeat;
 }

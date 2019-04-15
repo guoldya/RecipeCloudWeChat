@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-       <p v-show="nomore" class="noMore">没有更多数据了</p>
+      <p v-show="nomore" class="noMore">没有更多数据了</p>
     </div>
     <div v-show="!loadingtrue" class="nullDiv" v-else>
       <img src="@/assets/images/null1.png">
@@ -31,7 +31,7 @@
         <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
       </span>
     </div>
-    
+
     <Loading v-show="loadingtrue"></Loading>
   </div>
 </template>
@@ -65,16 +65,14 @@ export default {
   methods: {
     ...mapActions(['chat/setFriendId', 'updateUser']),
     routerTo(item) {
-      // 获取历史消息
-      let msg = {
-        cmd: 19,
-        type: 1,
-        fromUserId: item.from,
-        userId: this.userInfo.id
-        // userId:item.from  == 123 ? 125 :123
-      };
-      this['chat/setFriendId'](item.from)
-      this.chat.websocket.send(JSON.stringify(msg));
+      this.$router.push({
+        name: 'inquiryOnline',
+        query: {
+          id: item.id, name: item.name
+        }
+      })
+
+
     },
 
 

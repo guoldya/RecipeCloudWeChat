@@ -96,6 +96,10 @@
                 <img src="@/assets/images/icon_Intelligent.png" alt="">
                 <img src="@/assets/images/icon_navigation.png" alt="">
             </div>
+            <div class="home-Intel home-flex">
+                <img src="@/assets/images/icon_information.png" alt="" @click="propaganda">
+                <img src="@/assets/images/icon_news.png" alt="" @click="news">
+            </div>
             <div class="tools home-Intel" :class="{'isDownIntel':isDown}">
                 <h2>医院简介</h2>
                 <div class="introduce">
@@ -255,6 +259,21 @@ export default {
             let argu = {};
             this.$router.push({
                 name: 'feerecord',
+                query: argu
+            });
+        },
+
+        propaganda() {
+            let argu = {};
+            this.$router.push({
+                name: 'propaganda',
+                query: argu
+            });
+        },
+        news() {
+            let argu = {};
+            this.$router.push({
+                name: 'news',
                 query: argu
             });
         },

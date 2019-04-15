@@ -82,16 +82,16 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
-    // if (this.$store.state.posUrl) {
-    //   this.posUrl = this.$store.state.posUrl;
-    // } else {
-    //   this.posUrl = pg_negative
-    // }
-    // if (this.$store.state.othUrl) {
-    //   this.othUrl = this.$store.state.othUrl;
-    // } else {
-    //   this.othUrl = pg_positive
-    // }
+    if (this.$store.state.posUrl) {
+      this.posUrl = this.$store.state.posUrl;
+    } else {
+      this.posUrl = pg_negative
+    }
+    if (this.$store.state.othUrl) {
+      this.othUrl = this.$store.state.othUrl;
+    } else {
+      this.othUrl = pg_positive
+    }
 
     if (this.$route.query.isSon * 1 == 2) {
       this.isSon = true;
@@ -155,7 +155,7 @@ export default {
           'Content-Type': 'multipart/form-data',
         }
       };  //添加请求头
-      this.$axios.post(uploadImgimage + '?id=idCard', param, config)
+      this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
             this.$store.commit('photo0DataFun', res.data.fileData.photo0);

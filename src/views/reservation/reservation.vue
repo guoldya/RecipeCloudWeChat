@@ -61,7 +61,7 @@
    </div>
 </template>
 <script type="text/babel">
-let doctorInfo = "/app/bdHospitalDoctor/read/selectOne";
+let doctorInfo = "/app/bdHospitalDoctor/selectDoctorDetail";
 let fee_detail_url = "/app/bizCostBill/detail";
 // 生成预约
 let fconfirm_pay_url = "/app/bizPatientRegister/subscribe";

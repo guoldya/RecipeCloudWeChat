@@ -29,6 +29,7 @@ export default new Vuex.Store({
         cardNo: '',
         idCardFrontImg: '',
         idCardBackImg: '',
+        idCardInfo: '',
         mobile: '',
         depart: '',
         major: '',
@@ -37,9 +38,10 @@ export default new Vuex.Store({
         keepAlive: '',
         cardList: '',
         searchType: '',
-        orderData:'',
-        isCashierhowData:'',
-        cardImgData:'',
+        orderData: '',
+        isCashierhowData: '',
+        cardImgData: '',
+        chooseInfo: [],
     },
     mutations: {
         isCashierhowFun: (state, n) => {
@@ -57,6 +59,8 @@ export default new Vuex.Store({
         mobileFun: (state, n) => {
             state.mobile = n;
         },
+
+
         cardIdFun: (state, n) => {
             state.cardId = n;
         },
@@ -116,12 +120,20 @@ export default new Vuex.Store({
         idCardFrontImgFun: (state, n) => {
             state.idCardFrontImg = n;
         },
+
+        idCardInfoFun: (state, n) => {
+            state.idCardInfo = n;
+        },
         idCardBackImgFun: (state, n) => {
             state.idCardBackImg = n;
         },
         cardImg: (state, n) => {
             state.cardImgData = n;
         },
+        chooseInfoFun: (state, n) => {
+            state.chooseInfo = n;
+        },
+
     },
     actions: {
 
