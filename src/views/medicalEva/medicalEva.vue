@@ -7,12 +7,12 @@
                     <div>
                         <div class="star">
                             <img src="@/assets/images/1.jpg" alt="" style="width: 14%;height: 14%">
-                            <rater class="diy-box" :score="0" :stars=this.starArray></rater>
+                            <rater class="diy-box" :score="score" :stars=this.starArray :change="change(score)"></rater>
                             <span>请选择评分</span>
                         </div>
                         <p class="partLine"></p>
                         <div>
-                            <textarea name="" id="" cols="49" rows="5" placeholder="服务满足你的期待吗？请大胆说出它的优点与美中不足的地方吧！"></textarea>
+                            <textarea name="" id="" v-model="comment" cols="49" rows="5" placeholder="服务满足你的期待吗？请大胆说出它的优点与美中不足的地方吧！"></textarea>
                             <ul class="image-reader-list">
                                 <li class="image-reader-item" v-for="(img, index) in imageList['reader0']" :key="index" :style="{
                                               'backgroundImage': `url(${img})`,
@@ -77,6 +77,8 @@ export default {
                 ],
             },
             checked: false,
+            comment: "",
+            score: 0,
         };
     },
     created() {
@@ -86,7 +88,27 @@ export default {
         document.title = '就医评价';
     },
     methods: {
-        sendFun: function () {
+        change(val) {
+            console.log(val, "ss")
+        },
+        async  sendFun() {
+            // 查询评论
+            try {
+                let res = await this.$axios.post(appbizOnlineServiceRecordcomment, {
+                    id: Number(this.$route.query.id),
+                    score: 4,
+                    comment: 'comment',
+                });
+                if (res.data.code != 200) {
+                    throw Error(res.data.msg);
+                }
+                if (res.data.code == 200) {
+                    this.medicalEva();
+                }
+
+            } catch (error) {
+                console.log(error.message);
+            }
         },
         evaluation: function () {
         },

@@ -217,6 +217,12 @@ body {
   background-color: var(--primary--content);
   width: 60%;
 }
+.page-search--cancel {
+  display: inline-block;
+  height: 80px;
+  line-height: 80px;
+   
+}
 .bButton {
   background-color: var(--primary);
   width: 40%;

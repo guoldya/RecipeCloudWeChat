@@ -4,7 +4,7 @@
             <div class="margin50" style="background-color: #ffffff">
                   <div class="search">
                         <form action="">
-                              <input type="search" v-model="value" placeholder="搜索医院" autofocus="autofocus" class="oc_val" @keyup.enter="SearchVal(value)">
+                              <input type="search" v-model="value" placeholder="搜索医院" autofocus="autofocus" class="oc_val" @click="SearchVal(value)">
                         </form>
                   </div>
             </div>
