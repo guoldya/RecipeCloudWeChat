@@ -32,7 +32,7 @@
                     <i class="icon i_info"></i>
                     <span class="doc_info_txt">医生介绍</span>
                     <div class="doc_open_btn" @click="isSeemore=!isSeemore">
-                        <span id="open"  class="openUp">
+                        <span id="open" class="openUp">
                             <span :class="{'disNone':isSeemore,}">展开</span>
                             <span :class="{'disNone':!isSeemore,}">收起</span>
                             <!--<i class="icon i_open" :class="{'nomore':isSeemore,}"></i>-->
@@ -113,7 +113,7 @@
 
             </div>
 
-            <div class="wx_yy_date_time" v-show="islook && dateList.length==0 " >
+            <div class="wx_yy_date_time" v-show="islook && dateList.length==0 ">
                 <a class="wx_yy_date_time_item ">
                     <p class="aligncenter">暂无号源</p>
                 </a>
@@ -132,7 +132,7 @@ let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/selectDoctorB
 export default {
     data() {
         return {
-            loadingtrue:true,
+            loadingtrue: true,
             showMaskClosable: false,
             img,
             start,
@@ -154,7 +154,7 @@ export default {
     },
     mounted() {
         document.title = '医生详情';
- 
+
         if (this.$route.query.afternoon * 1 == 1) {
             this.afternoon = '上午';
         }
@@ -222,7 +222,7 @@ export default {
                 time: this.$route.query.time ? this.$route.query.time : undefined,
             }).then((res) => {
                 if (res.data.code == '200') {
-                    this.loadingtrue=false;
+                    this.loadingtrue = false;
                     this.doctorInfo = res.data.data;
                     if (this.doctorInfo.introduce.length > 16) {
                         this.moreButton = true;
@@ -235,10 +235,10 @@ export default {
             });
         },
         dateListFun() {
-            let dateListPar={};
-            dateListPar.doctorId=this.$route.query.doctorId * 1;
+            let dateListPar = {};
+            dateListPar.doctorId = this.$route.query.doctorId * 1;
 
-            this.$axios.put(appbdHospitalDoctorreadrankWorld,dateListPar).then((res) => {
+            this.$axios.put(appbdHospitalDoctorreadrankWorld, dateListPar).then((res) => {
                 if (res.data.code == '200') {
                     if (res.data.rows.length != 0) {
                         this.isHave = true;

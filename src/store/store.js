@@ -49,6 +49,7 @@ export default new Vuex.Store({
         ,
         adressname: '',
         recipients: [],
+        idCardAPPInfo: '',
     },
     mutations: {
         isCashierhowFun: (state, n) => {
@@ -59,6 +60,9 @@ export default new Vuex.Store({
         },
         searchTypeFun: (state, n) => {
             state.searchType = n;
+        },
+        idCardAPPInfoFun: (state, n) => {
+            state.idCardAPPInfo = n;
         },
         cardListFun: (state, n) => {
             state.cardList = n;

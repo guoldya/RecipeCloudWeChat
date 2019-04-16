@@ -141,8 +141,8 @@ import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
 import businssrecord from '@/views/copyrecord/businssrecord'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
-
-
+import businssrecordinfo from '@/views/copyrecord/businssrecordinfo'
+ 
 
 
 import resultDoctor from '@/views/resultDr/result.vue'
@@ -730,6 +730,15 @@ export default new Router({
       keepAlive: true
     }
   },
+  {
+    path: '/businssrecordinfo',
+    name: 'businssrecordinfo',
+    component: businssrecordinfo,
+    
+  },
+
+
+
   {
     path: '/chooseCase',
     name: 'chooseCase',

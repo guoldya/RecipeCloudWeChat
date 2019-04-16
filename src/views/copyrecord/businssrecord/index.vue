@@ -1,41 +1,44 @@
 <template>
-  <div class="feerecord">
-    <Header post-title="复印记录"></Header>
+  <div class="lineupnow">
+    <Headerapp post-title="复印记录"></Headerapp>
     <div class="margin50">
-      <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
-      <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
-        <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item.id,item.code)">
-          <div class="appTitle">
-            <span>申请编号：{{item.type}}</span>
-            <span class="mu-secondary-text-color">{{item.total | keepTwoNum}}元</span>
+      <div class="upnowHead">
+        <div class="cardHEADER cardText" style="display:flex;">
+          <div class="fleft">
           </div>
+          <div class="fright">
+            <span class="pingbi">仅看通过</span>
+            <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
+          </div>
+        </div>
+      </div>
+      <div v-if="goodsList.length!=0 " v-show="!loadingtrue">
+        <div class="flatCard margin5" v-for="(item,index) in goodsList" :key="index">
           <div class="cardText">
-            <p class="parElem listData">
-              <span class="sonElem">
-                {{item.name}}
-              </span>
-              <span class="sonElem">
-                住院病历邮寄
-              </span>
-              <span class="sonElem">
-                {{item.hospital}}
-              </span>
-
-            </p>
-             
-            <p class="parElem listData">
-              <span class="sonElem">入院时间</span>
-              <span>{{item.createTime|lasttime}}</span>
-            </p>
-            <p class="parElem listData">
-              <span class="sonElem">出院时间</span>
-              <span>{{item.createTime|lasttime}}</span>
-            </p>
-
-            <div class="payatnow">
-              <span class="cancle" @click="cancelOrder(item.id)">取消订单</span>
-              <span class="payatnow" @click="payNow(item.id)">立即支付</span>
+            <div class="appTitle">
+              <span>{{item.name}}</span>
+              <span class="mu-secondary-text-color">{{item.status|busistatus}}</span>
             </div>
+            <p class="cardTextPP">
+              <span>患者姓名：
+                <span class="mu-secondary-text-color" v-if="item.waitingTime>=0">{{item.waitingTime}}分钟</span>
+                <span class="mu-secondary-text-color" v-else>过时</span>
+              </span>
+              <span>科室：
+                <span class="mu-secondary-text-color">{{item.dept}}</span>
+              </span>
+            </p>
+            <div class="listData parElem">
+              <span class="sonElem">入院日期：</span>
+              <span class="mu-light-text-color">{{item.inTime}}</span>
+            </div>
+            <div class="listData parElem">
+              <span class="sonElem">出院日期：</span>
+              <span class="mu-light-text-color">{{item.ouTime}}</span>
+            </div>
+            <p class="learnMore" @click="businssrecordinfo(item)">
+              住院病历详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
+            </p>
           </div>
         </div>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
@@ -44,127 +47,77 @@
         <img src="@/assets/images/null1.png">
       </div>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
-        <span v-if="waitPayData.length!=0&&!nomore">
+        <span v-if="goodsList.length!=0&&!nomore">
           <span class="mu-light-text-color">加载中</span>
           <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
         </span>
       </div>
       <Loading v-show="loadingtrue"></Loading>
     </div>
-
   </div>
 </template>
-<script >
-let pay_list_url = "/app/bizCopyApply/read/page";
-let bizPatientCard = "/app/bizPatientCard/read/list";
+<script type="text/babel">
+let appbizWaitingQueuereadlist = "/app/bizCopyApply/read/page";
 export default {
   data() {
     return {
-      time: [
-        { title: '待支付', type: 1 },
-        { title: '已支付', type: 2 },
-      ],
-
-      waitPayData: [],
-      status: 0,
-      selectorValue: '',
-      choseValue: '',
-      isSelectorShow: false,
-      optionsData: [],
-      page: 1,
-      pageSize: 10,
-      type: 0,
       busy: true,
       nomore: false,
       loadingtrue: true,
-      disType: '',
-      routePar: '',
+      goodsList: [],
+      page: 1,
+      pageSize: 10,
+      isActive: false,
+      nowTime: '',
+      onlyWaiting: '',
+      waitingDate: '',
+
     };
   },
-
-  created() {
-
-  },
+ 
   mounted() {
-    // this.routePar=this.$store.state.jumpArr;
-    if (this.$store.state.feeActiveId) {
-      this.disType = this.$store.state.feeActiveId;
-      if (this.$store.state.feeActiveId == 1) { this.type = 0; } else { this.type = 1; }
-    }
-    this.WaitPay(false);
-    // this.personFun();
-    document.title = '缴费记录';
-    // this.selectorValue = this.optionsData[0][0].text;
+    document.title = '就诊队列';
+
+
+    var today = new Date();
+    var m = today.getMonth() + 1;
+    m = m <= 9 ? "0" + m : m;
+    var newDate = today.getDate();
+    newDate = newDate <= 9 ? "0" + newDate : newDate;
+    this.nowTime = today.getFullYear() + "年" + m + "月" + newDate + "日";
+    this.waitingDate = today;
+    this.getGoodslist()
+
   },
   methods: {
 
-    personFun() {
-      this.$axios.put(bizPatientCard, {
-      }).then(res => {
-        if (res.data.code == '200') {
-          for (let i = 0; i < res.data.rows.length; i++) {
-            this.selectorValue = res.data.rows[0].patientName;
-            this.cardNo = res.data.rows[0].cardNo;
-            let neslist = {
-              text: res.data.rows[i].patientName,
-              value: res.data.rows[i].cardNo,
-              aaa: res.data.rows[i].createTime,
-            }
-            this.optionsData.push(neslist);
-          }
-
-        } else if (res.data.code == '800') {
-
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    },
-    onSelectorChoose({ text, value }) {
-      this.selectorValue = text;
-      this.choseValue = value;
-      this.WaitPay(false);
-    },
-    showSelector() {
-      this.isSelectorShow = true
-    },
-    appointinfo: function (val, code) {
-      this.$router.push({
-        name: 'feeinfo',
-        query: { id: val, code: code }
-      });
-    },
-
-    childByValue: function (childValue) {
-      //this.type = childValue.type;
-      this.disType = childValue.type;
-      if (childValue.type == 1) { this.type = 0; } else { this.type = 1; }
-      this.$store.commit('feeActiveFun', childValue.type);
-      this.waitPayData = [];
+    handler(name, active) {
+      this.goodsList = [];
       this.loadingtrue = true;
       this.page = 1;
-      this.WaitPay();
+      this.getGoodslist();
     },
-    WaitPay(flag) {
+
+    getGoodslist(flag) {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
-      //params.patientId = parseInt(this.choseValue);
-      params.payType = this.type;
-      this.$axios.put(pay_list_url, params).then((res) => {
+      params.status = this.isActive ? 2 : undefined;
+      // params.waitingDate = "2019-02-22";
+      this.$axios.put(appbizWaitingQueuereadlist, params).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;
           if (flag) {
-            this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
+            this.goodsList = this.goodsList.concat(res.data.rows);  //concat数组串联进行合并
             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
               this.busy = false;
               this.nomore = false;
             } else {
               this.busy = true;
               this.nomore = true;
-            }
+            };
           } else {
-            this.waitPayData = res.data.rows;
+            this.goodsList = res.data.rows;
             this.busy = true;
             if (res.data.total < 10) {
               this.busy = true;
@@ -174,62 +127,71 @@ export default {
               this.nomore = false;
             }
           }
-          //2、
         } else {
-          this.waitPayData = []
+          this.goodsList = []
         }
       })
+    },
+
+    // switchTo(data) {
+    //   this.queryType = data.queryType;
+    //   this.getGoodslist();
+    // },
+    businssrecordinfo(data) {
+      let argu = {};
+      this.$router.push({
+        name: 'businssrecordinfo',
+        query: { id: data.id, queryType: this.queryType }
+      });
+    },
+    intoreportinfo(data) {
+      this.$store.commit('feeActiveFun', data.reportType);
+      let argu = { id: data.reportId, reportType: data.reportType };
+      this.$router.push({
+        name: 'reportinfo',
+        query: argu
+      });
     },
     loadMore() {
       this.busy = true;  //将无限滚动给禁用
       setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
         this.page++;  //滚动之后加载第二页
-        this.WaitPay(true);
+        this.getGoodslist(true);
       }, 500);
     },
-  },
-  watch: {
-    // "$route": function (to, from) {
-    //     from.meta.keepAlive = false;
-    //     to.meta.keepAlive = false;
+    // lunbo() {
+    //   let mySwiper = new Swiper('.swiper-container', {
+    //     // freeMode: false,
+    //     pagination: {
+    //       el: '.swiper-pagination',
+    //       clickable: true,
+    //     },
+    //     onInit: function (swiper) {
+    //       //Swiper初始化了
+    //       alert(swiper.activeIndex);
+    //     },
+    //     loop: true,
+    //     loopedSlides: 10,
+    //     initialSlide: 2,
+    //     roundLengths: true,
+    //     slidesPerView: "auto",
+    //     centeredSlides: true,
+    //     followFinger: false,
+
+    //   });
+    //   for (let i = 0; i < this.test.length; i++) {
+    //     mySwiper.appendSlide(this.slidedata(this.test[i]));
+    //   };
+    // },
+    // slidedata(i) {
+    //   return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">演示医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
     // },
   },
+  computed: {
 
-  // beforeRouteEnter(to, from, next) {
-  //     next((vm) => {
-  //         vm.routePar = from.name;
-  //         vm.$store.commit('addjumpArr', from.name);
-  //     });
-  // },
-
-
+  },
 
 };
 </script>
  <style   scoped>
-.feerecord {
-  font-size: 28px;
-}
-.feerecord .cardText p {
-  font-size: 28px;
-  color: var(--primary--content);
-}
-.feerecord .flatCard:first-child {
-  margin-top: 0;
-}
-
-.feerecord .listData span:nth-child(2) {
-  color: var(--primary--right);
-}
-.feerecord .alignJ {
-  line-height: 26px;
-}
-
-.feerecord .cancle {
-  color: #474747;
-  background: #ffffff;
-  margin-right: 20px;
-  border: 2px solid #474747;
-  box-sizing: border-box;
-}
 </style>

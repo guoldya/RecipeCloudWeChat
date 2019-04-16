@@ -164,6 +164,7 @@ export default {
   margin: 12px 0;
   font-size: 24px;
   /*padding: 0 24px;*/
+  background: #ffffff;
 }
 .business .md-check-box {
   color: var(--primary--content);

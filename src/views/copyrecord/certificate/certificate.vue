@@ -79,7 +79,16 @@
             </label>
             <p>手持身份证</p>
           </div>
-          <div class="pg_positive_img" @click="showPic=true">
+          <div class="pg_positive_img">
+            <label class="ivu-upload-input_label" for="helpAppside" style="display:block; height: 120px;">
+              <input class="ivu-upload-input" @change="uploadhelpApp($event)" type="file" name="helpAppside" id="helpAppside" accept="image/gif,image/jpeg,image/x-png" />
+              <img :src="helpAppUrl" alt="">
+            </label>
+            <p style="text-align: center;line-height: 30px;">上传委托书</p>
+          </div>
+        </div>
+        <div @click="showPic=true">
+          <div class="pg_positive_img" style="width:50%;margin-top:50px;">
             <label class="ivu-upload-input_label" style="display:block; height: 120px;">
               <img src="@/assets/images/u152.png" alt="">
             </label>
@@ -107,6 +116,8 @@ let appLoginuploadImage = "/appLogin/uploadImage";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 import pg_handheld from '@/assets/images/icon_handheld.png'
+import pg_hep from '@/assets/images/icon_handheld.png'
+
 export default {
   data() {
     return {
@@ -116,6 +127,7 @@ export default {
       DDD: '',
       FFF: '',
       EEE: '',
+      GGG: '',
       name: '',
       idcard: '',
       nameApp: '',
@@ -135,6 +147,7 @@ export default {
       posAppUrl: pg_negative,
       othAppUrl: pg_positive,
       hanAppUrl: pg_handheld,
+      helpAppUrl: pg_hep,
       showPic: false,
       test: [
         {
@@ -228,7 +241,7 @@ export default {
         that.othAppUrl = this.result;
       };
       this.DDD = e.target.files[0];
-      if (this.DDD.name && this.EEE.name && this.FFF.name) {
+      if (this.DDD.name && this.EEE.name && this.FFF.name && this.GGG.name) {
         this.applyKnoeledge()
       }
     },
@@ -242,7 +255,7 @@ export default {
         that.posAppUrl = this.result;
       };
       this.EEE = e.target.files[0];
-      if (this.DDD.name && this.EEE.name && this.FFF.name) {
+      if (this.DDD.name && this.EEE.name && this.FFF.name && this.GGG.name) {
         this.applyKnoeledge()
       }
     },
@@ -256,7 +269,21 @@ export default {
         that.hanAppUrl = this.result;
       };
       this.FFF = e.target.files[0];
-      if (this.DDD.name && this.EEE.name && this.FFF.name) {
+      if (this.DDD.name && this.EEE.name && this.FFF.name && this.GGG.name) {
+        this.applyKnoeledge()
+      }
+    },
+    uploadhelpApp(e) {
+      let that = this,
+        file = e.target.files[0],
+        fileReader = new FileReader();
+      this.files.othFile = file;
+      fileReader.readAsDataURL(file);
+      fileReader.onload = function () {
+        that.helpAppUrl = this.result;
+      };
+      this.GGG = e.target.files[0];
+      if (this.DDD.name && this.EEE.name && this.FFF.name && this.GGG.name) {
         this.applyKnoeledge()
       }
     },
@@ -264,6 +291,7 @@ export default {
     showSelector() {
       this.isSelectorShow = true
     },
+
     onSelectorChoose(data) {
       this.selectorValue = data.text;
       this.receiverType = data.value;
@@ -329,19 +357,14 @@ export default {
             this.$store.commit('photo0DataFun', res.data.fileData.photo0);
             this.$store.commit('photo1DataFun', res.data.fileData.photo1);
 
-            this.othUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
-            this.posUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].fileName;
+            // this.othUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
+            // this.posUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].fileName;
 
             this.$store.commit('idCardFrontImgFun', res.data.fileInfo[0]);
             this.$store.commit('idCardBackImgFun', res.data.fileInfo[1]);
 
             this.$store.commit('posUrlFun', this.posUrl);
             this.$store.commit('othUrlFun', this.othUrl);
-
-            // this.$router.push({
-            //     name: 'cardhave',
-            // });
-            // app/bizCopyApply/uploadIdCard?json={asdsadsadd}
 
 
           } else {
@@ -351,7 +374,23 @@ export default {
     },
     applyKnoeledge() {
       let param = new FormData(); //创建form对象
+      let param2 = new FormData(); //创建form对象
       console.log(this.receiverType);
+      if (this.AAA) {
+        var index1 = this.AAA.name.lastIndexOf(".");
+        var index2 = this.AAA.name.length;
+        var suffix = this.AAA.name.substring(index1 + 1, index2);//后缀名
+      }
+      if (this.BBB) {
+        var index11 = this.BBB.name.lastIndexOf(".");
+        var index22 = this.BBB.name.length;
+        var suffix1 = this.BBB.name.substring(index11 + 1, index22);//后缀名
+      }
+      if (this.CCC) {
+        var indexCCC = this.CCC.name.lastIndexOf(".");
+        var cccPng = this.CCC.name.length;
+        var suffixCCC = this.CCC.name.substring(indexCCC + 1, cccPng);//后缀名
+      }
       if (this.DDD) {
         var indexDDD = this.DDD.name.lastIndexOf(".");
         var dddPng = this.DDD.name.length;
@@ -367,10 +406,21 @@ export default {
         var fffPng = this.FFF.name.length;
         var suffixFFF = this.FFF.name.substring(indexFFF + 1, fffPng);//后缀名
       }
-      param.append('photo0', this.DDD, "photo0." + suffixDDD);//通过append向form对象添加数据
-      param.append('photo1', this.EEE, "photo1." + suffixEEE);//通过append向form对象添加数据
-      //param.append('photo5', this.FFF, "photo5." + suffixFFF);//通过append向form对象添加数据
+      if (this.GGG) {
+        var indexGGG = this.GGG.name.lastIndexOf(".");
+        var GGGPng = this.GGG.name.length;
+        var suffixGGG = this.GGG.name.substring(indexGGG + 1, GGGPng);//后缀名
+      }
+      param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
+      param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
+      param.append('photo2', this.CCC, "photo2." + suffixCCC);//通过append向form对象添加数据
+      param.append('photo3', this.FFF, "photo3." + suffixGGG);//通过append向form对象添加数据
+      param.append('photo4', this.DDD, "photo4." + suffixDDD);//通过append向form对象添加数据
+      param.append('photo5', this.EEE, "photo5." + suffixEEE);//通过append向form对象添加数据
+      param.append('photo6', this.FFF, "photo6." + suffixFFF);//通过append向form对象添加数据
 
+      param2.append('photo0', this.DDD, "photo0." + suffixDDD);//通过append向form对象添加数据
+      param2.append('photo1', this.EEE, "photo1." + suffixEEE);//通过append向form对象添加数据
       let config = {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -378,28 +428,21 @@ export default {
       };
       this.$toast.loading('正在识别');
       //添加请求头
-      this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
+      this.$axios.post(uploadImgimage + '?certificateName=idCard', param2, config)
         .then(res => {
           if (res.data.code == '200') {
             this.$toast.hide();
             this.nameApp = res.data.fileData.photo0.name;
             this.idcardApp = res.data.fileData.photo0.idCard;
-
-            this.$store.commit('photo0DataFun', res.data.fileData.photo0);
-            this.$store.commit('photo1DataFun', res.data.fileData.photo1);
-
-            this.othAppUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
-            this.posAppUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].fileName;
-
-            this.$store.commit('idCardFrontImgFun', res.data.fileInfo[0]);
-            this.$store.commit('idCardBackImgFun', res.data.fileInfo[1]);
-
-            this.$store.commit('posUrlFun', this.posUrl);
-            this.$store.commit('othUrlFun', this.othUrl);
-            // this.$router.push({
-            //     name: 'cardhave',
-            // });
-
+          } else {
+            this.$toast.info(res.data.msg)
+          }
+        });
+      // 上传图片文件
+      this.$axios.post(appLoginuploadImage + '?certificateName=idCard', param, config)
+        .then(res => {
+          if (res.data.code == '200') {
+            this.$store.commit('idCardAPPInfoFun', res.data.fileInfo);
           } else {
             this.$toast.info(res.data.msg)
           }
@@ -451,6 +494,7 @@ export default {
 .cardwritesecond {
   margin-top: 28px;
 }
+#helpAppside,
 #positive,
 #outside,
 #hanside,

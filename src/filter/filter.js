@@ -159,6 +159,18 @@ const examStatus = function (value) {
         return "检查中"
     }
 };
+const cardType = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return "身份证"
+    } else if (value == 2) {
+        return "医保卡"
+    } else if (value == 3) {
+        return "护照"
+    }
+};
 const examSex = function (value) {
     if (value == undefined) {
         return "未知"
@@ -167,6 +179,23 @@ const examSex = function (value) {
         return "男"
     } else if (value == 2) {
         return "女"
+    }
+};
+
+const busistatus = function (value) {
+    if (value == undefined) {
+        return "未知"
+    }
+    if (value == 1) {
+        return "审核中"
+    } else if (value == 2) {
+        return "审核通过"
+    } else if (value == 3) {
+        return "审核未通过"
+    } else if (value == 4) {
+        return "已发药"
+    } else if (value == 5) {
+        return "交易完成"
     }
 };
 
@@ -229,5 +258,7 @@ export default {
     examSex,
     getAge,
     admissionFilter,
-    level, 
+    level,
+    busistatus,
+    cardType,
 }
