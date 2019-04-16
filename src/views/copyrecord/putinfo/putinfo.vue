@@ -56,12 +56,8 @@
           <div class="login-box-div">
             <span class="flexF">复印份数</span>
             <div class="flexR calculate">
-              <!-- <span class="addValue ">
-                <img src="@/assets/images/icon_reduce@2x(1).png" @click="num--">
-                <span> {{num}}</span>
-                <img src="@/assets/images/icon_add@2x.png" @click="num++">
-              </span> -->
-              <md-stepper slot="right" v-model="value" min="1" />
+
+              <md-stepper slot="right" v-model="num" min="1" />
             </div>
           </div>
           <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注"></md-input-item>
@@ -188,30 +184,28 @@ export default {
         }).then(res => {
           if (res.data.code == '200') {
             this.$axios.post(wechatbizPatientCardbinding, {
+              name: this.name,
+              idcard: this.idcard,
               mobile: this.mobile,
               verifyType: 1,
               receiverType: this.$route.query.receiverTypem,
-              useInfo: this.useInfo,
+              usageDesc: this.useInfo,
               // 复印用途
-              type: this.type,
+              usage: this.type,
               // 验证码
               verifyCode: this.verifyCode,
+              num: this.num,
               //  住院id
               ihRecordId: this._cardlist.ihRecordId,
-              idCardImg: this.$store.state.idCardInfo
+              idCardImg: this.$store.state.idCardInfo,
+              remark: this.remark,
             }).then(res => {
               if (res.data.code == '200') {
-                this.$store.dispatch('getCards', { update: true });
-                this.$dialog.alert({
-                  title: '提示',
-                  content: '该卡绑定成功!',
-                  confirmText: '确定',
-                  onConfirm: () => {
-                    this.$router.go(-1);
-                  },
-                });
+                this.$router.push({
+                  name: 'copyresult'
+                })
               } else {
-                this.$toast.info("验证码错误或超时")
+                console.log(res.data.code);
               }
             }).catch(function (err) {
               console.log(err);
