@@ -39,14 +39,10 @@
             <p>医保卡反面</p>
           </div>
         </div>
-
-        <!-- <p style="color: var(--primary--title);margin-top: 40px">身份证请上传身份证的正面照片,医保卡需要上传医保卡正面照片公医证需要上传公医证照片,如需转诊请提前办理转诊并上传照片，否则以自费结算或参保地报销</p> -->
-
       </div>
     </div>
     <div style="height:78px;background-color: #ffffff"></div>
     <p @click="cardconfirm" class="addbTN">下一步</p>
-
   </div>
 </template>
 <script type="text/babel">
@@ -136,6 +132,7 @@ export default {
 
 
     cardconfirm() {
+      this.$toast.loading('图片读取中...')
       let param = new FormData(); //创建form对象
       console.log(this.AAA.name.lastIndexOf("."), this.BBB.name, "sss");
       // if (Number(this.$route.query.type == 0)) {
@@ -149,7 +146,6 @@ export default {
       //     return;
       //   }
       // }
-
 
       var index1 = this.AAA.name.lastIndexOf(".");
       var index2 = this.AAA.name.length;
@@ -195,14 +191,12 @@ export default {
 
     },
     uploadIdCard(data) {
-      console.log("dddd")
       var param = {};
       param.idCardImg = data;
       param.id = 1;
       this.$axios.post(addOrUpdate, param)
         .then(res => {
           if (res.data.code == '200') {
-            console.log("ssssssss")
             this.$router.push({
               name: 'admupayfee',
               query: { id: this.$route.query.id }

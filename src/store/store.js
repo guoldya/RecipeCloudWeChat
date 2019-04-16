@@ -41,7 +41,14 @@ export default new Vuex.Store({
         orderData: '',
         isCashierhowData: '',
         cardImgData: '',
-        chooseInfo: [],
+        chooseInfo:
+        {
+            dept: "科室",
+            diag: "病历",
+        }
+        ,
+        adressname: '',
+        recipients: [],
     },
     mutations: {
         isCashierhowFun: (state, n) => {
@@ -59,7 +66,12 @@ export default new Vuex.Store({
         mobileFun: (state, n) => {
             state.mobile = n;
         },
-
+        adressnameFun: (state, n) => {
+            state.adressname = n;
+        },
+        recipientsFun: (state, n) => {
+            state.recipients = n;
+        },
 
         cardIdFun: (state, n) => {
             state.cardId = n;
