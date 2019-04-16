@@ -1,6 +1,6 @@
 <template>
     <div class="registrecorddetail">
-        <Header post-title="挂号记录详情"  ></Header>
+        <Header post-title="挂号记录详情"></Header>
         <div class="margin55">
             <div class="flatCard outCarint " v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
                 <md-field>
@@ -9,7 +9,9 @@
                     <md-detail-item title="患者姓名" :content=item.patientName></md-detail-item>
                     <md-detail-item title="日期" :content=item.regDate></md-detail-item>
                     <md-detail-item title="时段" :content=item.regStage></md-detail-item>
-                    <md-detail-item title="金额"><span>￥{{item.money}}</span></md-detail-item>
+                    <md-detail-item title="金额">
+                        <span>￥{{item.money}}</span>
+                    </md-detail-item>
                     <md-detail-item title="地点" :content=item.address></md-detail-item>
                 </md-field>
             </div>
@@ -27,7 +29,7 @@
                         <span class="cancle" @click="orderCancle">取消预约</span>
                         <span>
                             <md-button type="primary" @click="rightPay" round>立即支付</md-button>
-                        <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
+                            <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="cashierAmount" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
                         </span>
                     </div>
                     <div v-if="payType==1" class="outCarint">
@@ -45,16 +47,17 @@
     </div>
 </template>
 <script  >
-import { Dialog } from 'mand-mobile'
+import { Dialog, Cashier } from 'mand-mobile'
+
 let cord_info_url = "/app/bizPatientRegister/read/detail";
 let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
 let now_pay_url = "/app/bizPatientRegister/nowPay";
-let order_back_url="/app/bizPatientRegister/outSourceId";
-let order_cancle_url="/app/bizPatientRegister/cancelSourceId";
+let order_back_url = "/app/bizPatientRegister/outSourceId";
+let order_cancle_url = "/app/bizPatientRegister/cancelSourceId";
 export default {
     data() {
         return {
-            
+
             cordInfoId: null,
             cordInfoData: [],
             payType: '',
@@ -63,7 +66,7 @@ export default {
             isCashierCaptcha: false,
             cashierAmount: '',
             cashierResult: 'success',
-            payStatus:'',
+            payStatus: '',
             cashierChannels: [
                 {
                     icon: 'cashier-icon-2',
@@ -81,20 +84,25 @@ export default {
                     value: '3',
                 },
             ],
-            sourceId:null,
-            okParams:[],
-            feeId:'',
+            sourceId: null,
+            okParams: [],
+            feeId: '',
         };
     },
     created() {
 
     },
     mounted() {
-        this.feeId=parseInt(this.$route.query.id);
-        this.sourceId=parseInt(this.$route.query.sourceId);
+        this.feeId = parseInt(this.$route.query.id);
+        this.sourceId = parseInt(this.$route.query.sourceId);
         this.cordInfo();
         document.title = '预约记录';
-       
+
+    },
+    computed: {
+        cashier() {
+            return this.$refs.cashier
+        },
     },
     methods: {
         cordInfo() {
@@ -110,7 +118,7 @@ export default {
                 console.log(err);
             });
         },
-        rightPay(){
+        rightPay() {
             this.isCashierhow = !this.isCashierhow;
             this.cashierAmount = this.cordInfoData[0].money.toFixed(2);
             // this.$axios.put(fconfirm_pay_url, { id: this.feeId }).then((res) => {
@@ -124,13 +132,13 @@ export default {
             //     console.log(err);
             // });
         },
-        orderCancle(){
+        orderCancle() {
             Dialog.confirm({
                 title: '温馨提示',
                 content: '是否取消预约',
                 confirmText: '确定',
                 onConfirm: () => {
-                    this.$axios.post(order_cancle_url, { id: this.feeId}).then((res) => {
+                    this.$axios.post(order_cancle_url, { id: this.feeId }).then((res) => {
                         if (res.data.code == '200') {
                             this.$toast.info("取消成功");
                             setTimeout(() => {
@@ -139,7 +147,7 @@ export default {
                                     query: {}
                                 });
                             }, 3000)
-                        }else if(res.data.code == '500'){
+                        } else if (res.data.code == '500') {
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
                                 this.$router.push({
@@ -154,46 +162,7 @@ export default {
                 },
             })
         },
-        doPay() {
-            if (this.isCashierCaptcha) {
-                this.cashier.next('captcha', {
-                    text: 'Verification code sent to 156 **** 8965',
-                    brief: 'The latest verification code is still valid',
-                    autoCountdown: false,
-                    countNormalText: 'Send Verification code',
-                    countActiveText: 'Retransmission after {$1}s',
-                    onSend: countdown => {
-                        console.log('[Mand Mobile] Send Captcha')
-                        this.sendCaptcha().then(() => {
-                            countdown()
-                        })
-                    },
-                    onSubmit: code => {
-                        console.log(`[Mand Mobile] Send Submit ${code}`)
-                        this.checkCaptcha(code).then(res => {
-                            if (res) {
-                                this.createPay().then(() => {
-                                    this.cashier.next(this.cashierResult)
-                                })
-                            }
-                        })
-                    },
-                })
-            } else {
-                this.createPay().then(() => {
-                    this.cashier.next(this.cashierResult, {
-                        buttonText: '好的',
-                        handler: () => {
-                            this.isCashierhow = false;
-                            this.$router.push({
-                                name: 'feesucces',
-                                query: this.okParams
-                            });
-                        },
-                    })
-                })
-            }
-        },
+
         createPay() {
             this.cashier.next('loading')
             return new Promise(resolve => {
@@ -221,34 +190,41 @@ export default {
         },
         onCashierPay(item) {
             let nowPayParams = {};
-             nowPayParams.id = this.feeId;
-             nowPayParams.sourceId = this.sourceId;
-             nowPayParams.payType = item.value;
-            if(this.cashierAmount){}
-                this.$axios.post(now_pay_url, nowPayParams).then((res) => {
-                    if (res.data.code == '200') {
-                        this.okParams=res.data.data;
-                        this.payStatus="1";
-                        this.doPay();
-                    } else {
-                        this.$toast.info(res.data.msg);
-                        this.isCashierhow = false;
-                        // setTimeout(() => {
-                        //     this.$router.push({
-                        //         name: 'registrecord',
-                        //         query: {}
-                        //     });
-                        // }, 3000)
-                    }
-                }).catch(function (err) {
-                    console.log(err);
-                });
+            nowPayParams.id = this.feeId;
+            nowPayParams.sourceId = this.sourceId;
+            nowPayParams.payType = item.value;
+            if (this.cashierAmount) { }
+            this.$axios.post(now_pay_url, nowPayParams).then((res) => {
+                if (res.data.code == '200') {
+                    this.okParams = res.data.data;
+                    this.payStatus = "1";
+                    this.createPay().then(() => {
+                        this.cashier.next('success', {
+                            buttonText: '好的',
+                            handler: () => {
+                                this.isCashierhow = false
+                            },
+                        })
+                    })
+                } else {
+                    this.$toast.info(res.data.msg);
+                    this.isCashierhow = false;
+                    // setTimeout(() => {
+                    //     this.$router.push({
+                    //         name: 'registrecord',
+                    //         query: {}
+                    //     });
+                    // }, 3000)
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
 
         },
         onCashierCancel() {
             // Abort pay request or checking request
             this.timer && clearTimeout(this.timer)
-            if(this.payStatus=="1"){
+            if (this.payStatus == "1") {
                 this.$router.go(-1);
             }
         },
@@ -265,7 +241,7 @@ export default {
                 content: '是否申请退号',
                 confirmText: '确定',
                 onConfirm: () => {
-                    this.$axios.post(order_back_url, { id: this.feeId,sourceId:this.sourceId}).then((res) => {
+                    this.$axios.post(order_back_url, { id: this.feeId, sourceId: this.sourceId }).then((res) => {
                         if (res.data.code == '200') {
                             this.$toast.info("退号成功");
                             setTimeout(() => {
@@ -274,7 +250,7 @@ export default {
                                     query: {}
                                 });
                             }, 1500)
-                        }else if(res.data.code == '500'){
+                        } else if (res.data.code == '500') {
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
                                 this.$router.push({
@@ -309,19 +285,19 @@ export default {
   justify-content: space-between;
   margin-top: 8px;
 }
-.registrecorddetail .myButton div span{
+.registrecorddetail .myButton div span {
   border-radius: 60px;
   letter-spacing: 1px;
   width: 46%;
   height: 86px;
   text-align: center;
 }
-.registrecorddetail .myButton div span:first-child{
-    line-height: 86px;
+.registrecorddetail .myButton div span:first-child {
+  line-height: 86px;
 }
 .registrecorddetail .md-button.block {
-    height: 86px;
-    width: 100%;
+  height: 86px;
+  width: 100%;
 }
 .registrecorddetail .cancle {
   font-size: 26px;
@@ -337,16 +313,16 @@ export default {
 .registrecorddetail .default:after {
   border: none !important;
 }
-.registrecorddetail .partLine{
-    margin: 16px 0px;
+.registrecorddetail .partLine {
+  margin: 16px 0px;
 }
-    .registrecorddetail .flatCard{
-        border-top: none;
-    }
-    .registrecorddetail .payatnow{
-        margin-top: 0;
-    }
-    .registrecorddetail .md-button.block{
-        margin: 0;
-    }
+.registrecorddetail .flatCard {
+  border-top: none;
+}
+.registrecorddetail .payatnow {
+  margin-top: 0;
+}
+.registrecorddetail .md-button.block {
+  margin: 0;
+}
 </style>

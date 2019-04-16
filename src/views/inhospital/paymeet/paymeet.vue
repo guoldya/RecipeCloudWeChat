@@ -46,7 +46,7 @@
   </div>
 </template>
 <script  >
-import { Dialog } from 'mand-mobile'
+import { Dialog, Cashier } from 'mand-mobile'
 let cord_info_url = "/app/bizIhRecord/read/selectOne";
 
 let now_pay_url = "/app/bizIhPay/payment";
@@ -88,8 +88,6 @@ export default {
   },
   watch: {
     textMoney: function (newstextMoney, oldtextMoney) {
-      console.log(oldtextMoney);
-      console.log(newstextMoney);
       if (newstextMoney) {
         this.defaultMoney = newstextMoney;
       }
@@ -97,6 +95,12 @@ export default {
   },
   mounted() {
     this.cordInfo();
+  },
+
+  computed: {
+    cashier() {
+      return this.$refs.cashier
+    },
   },
   methods: {
     chooseMoney(data, index) {
@@ -134,6 +138,14 @@ export default {
         this.$router.go(-1);
       }
     },
+    createPay() {
+      this.cashier.next('loading')
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 3000)
+      })
+    },
     onCashierPay(item) {
       let nowPayParams = {};
       nowPayParams.ihRecordId = Number(this.$route.query.id);
@@ -142,7 +154,17 @@ export default {
       nowPayParams.payMode = Number(item.value);
       this.$axios.post(now_pay_url, nowPayParams).then((res) => {
         if (res.data.code == '200') {
-          this.$router.go(-1);
+
+          this.createPay().then(() => {
+            this.cashier.next('success', {
+              buttonText: '好的',
+              handler: () => {
+                this.isCashierhow = false
+                this.$router.go(-1);
+              },
+            })
+          })
+
         } else {
           this.$toast.info(res.data.msg);
           this.isCashierhow = false;

@@ -45,7 +45,7 @@
   </div>
 </template>
 <script  >
-import { Dialog } from 'mand-mobile'
+import { Dialog, Cashier } from 'mand-mobile'
 import pg_positive from '@/assets/images/user.png'
 let pay_list_url = "/app/bizOnlineServiceRecord/read/page";
 let cancelSourceId = "/app/bizOnlineServiceRecord/updateOrder";
@@ -86,6 +86,11 @@ export default {
         },]
     };
   },
+  computed: {
+    cashier() {
+      return this.$refs.cashier
+    },
+  },
   created() {
 
   },
@@ -94,6 +99,15 @@ export default {
     this.WaitPay(false);
   },
   methods: {
+
+    createPay() {
+      this.cashier.next('loading')
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 3000)
+      })
+    },
     appointinfo: function (value) {
       // this.$router.push({
       //    name: 'feeinfo',
@@ -192,9 +206,16 @@ export default {
       nowPayParams.total = 20;
       this.$axios.post(appbizOnlineServiceRecordnowPay, nowPayParams).then((res) => {
         if (res.data.code == '200') {
-          this.isCashierhow = false;
-          this.$toast.info("支付成功")
-          this.WaitPay(false);
+          this.createPay().then(() => {
+            this.cashier.next('success', {
+              buttonText: '好的',
+              handler: () => {
+                this.isCashierhow = false
+                this.WaitPay(false);
+              },
+            })
+          })
+
         } else {
 
         }

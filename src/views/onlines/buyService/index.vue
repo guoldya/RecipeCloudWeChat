@@ -25,6 +25,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import { Cashier } from 'mand-mobile'
 let appbizOnlineServiceRecordnowPay = "/app/bizOnlineServiceRecord/nowPay";
 let appbizOnlineServiceRecordupdate = "/app/bizOnlineServiceRecord/updateOrder";
 export default {
@@ -52,6 +53,11 @@ export default {
       ]
     }
   },
+  computed: {
+    cashier() {
+      return this.$refs.cashier
+    },
+  },
   methods: {
     ...mapActions(["chat/setPatienDetail"]),
     payNow() {
@@ -68,16 +74,20 @@ export default {
         console.log(err);
       });
     },
-
+    createPay() {
+      this.cashier.next('loading')
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 3000)
+      })
+    },
     onCashierPay(item) {
       this["chat/setPatienDetail"]({
         name: "点击选择就诊人",
         id: null
       });
-      this.$router.push({
-        name: "pictureConsult",
-        query: { name: this.$route.query.name, id: this.$route.query.id, orderId: this.id }
-      });
+
       let nowPayParams = {};
       nowPayParams.payType = Number(item.value);
       nowPayParams.id = this.id;
@@ -87,6 +97,19 @@ export default {
       nowPayParams.total = 20;
       this.$axios.post(appbizOnlineServiceRecordnowPay, nowPayParams).then((res) => {
         if (res.data.code == '200') {
+          this.createPay().then(() => {
+            this.cashier.next('success', {
+              buttonText: '好的',
+              handler: () => {
+                this.isCashierhow = false
+                this.$router.push({
+                  name: "pictureConsult",
+                  query: { name: this.$route.query.name, id: this.$route.query.id, orderId: this.id }
+                });
+              },
+            })
+          })
+
 
         } else {
 

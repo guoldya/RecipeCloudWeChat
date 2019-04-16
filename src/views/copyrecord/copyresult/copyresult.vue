@@ -17,21 +17,22 @@
         <p class="partLine" style="margin-top: 9px"></p>
         <md-detail-item title="申请编号" content="可用8000.34" />
         <md-detail-item title="住院号" content="00022010010002201001" />
-        <md-detail-item title="患者姓名" content="众安" />
+        <md-detail-item title="患者姓名" :content="$route.query.name" />
         <md-detail-item title="入院时间">
           <span>{{_cardlist.inTime|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="出院时间">
           <span>{{_cardlist.recipeDate|lasttime}}</span>
         </md-detail-item>
-
       </div>
       <div style="height:5px;background:#f8f8f8">
       </div>
       <div class="outCarint">
         <md-detail-item title="复印用途" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
-        <md-detail-item title="保险报销" content="1份" />
+        <md-detail-item title="保险报销">
+          <span>{{$route.query.num}}份</span>
+        </md-detail-item>
       </div>
       <div style="height:5px;background:#f8f8f8">
       </div>
@@ -65,7 +66,7 @@ let appbizCopyApplypayment = "/app/bizCopyApply/payment"
 let fee_detail_url = "/app/bizCostBill/detail";
 let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
 let now_pay_url = "/app/bizCostBill/nowPay";
-import { Field, DetailItem } from 'mand-mobile'
+import { Cashier } from 'mand-mobile'
 export default {
   name: 'detail-item-demo',
   data() {
@@ -97,16 +98,14 @@ export default {
   created() {
 
   },
-  components: {
-    [Field.name]: Field,
-    [DetailItem.name]: DetailItem,
-  },
-
 
   computed: {
     ...mapState({
       _cardlist: state => state.chooseInfo,
     }),
+    cashier() {
+      return this.$refs.cashier
+    },
   },
   methods: {
     onCashierCancel() {
@@ -115,6 +114,14 @@ export default {
       if (this.payStatus == "1") {
         this.$router.go(-1);
       }
+    },
+    createPay() {
+      this.cashier.next('loading')
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 3000)
+      })
     },
     rightPay() {
       this.isCashierhow = !this.isCashierhow;
@@ -132,16 +139,15 @@ export default {
       nowPayParams.code = this.$route.query.code;
       this.$axios.post(appbizCopyApplypayment, nowPayParams).then((res) => {
         if (res.data.code == '200') {
-          // this.feeDetailData.push(res.data.data);
-          // if (res.data.data.details) {
-          //     this.feeButtomDetail = res.data.data.details;
-          // }
-          // if (res.data.data.total) {
-          //     this.cashierAmount = res.data.data.total.toFixed(2);
-          // }
-          this.$router.go(-1);
-          // this.payStatus = "1";
-          // this.doPay();
+          this.createPay().then(() => {
+            this.cashier.next('success', {
+              buttonText: '好的',
+              handler: () => {
+                this.isCashierhow = false
+                this.$router.go(-1);
+              },
+            })
+          })
         } else {
           this.$toast.info(res.data.msg);
           this.isCashierhow = false;

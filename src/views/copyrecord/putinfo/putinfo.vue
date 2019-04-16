@@ -188,7 +188,7 @@ export default {
               idcard: this.idcard,
               mobile: this.mobile,
               verifyType: 1,
-              receiverType: this.$route.query.receiverTypem,
+              receiverType: this.$route.query.receiverType,
               usageDesc: this.useInfo,
               // 复印用途
               usage: this.type,
@@ -228,7 +228,8 @@ export default {
       this.$axios.post("app/bizCopyApply/uploadIdCard", this.nextPar).then(res => {
         if (res.data.code == '200') {
           this.$router.push({
-            name: 'copyresult'
+            name: 'copyresult',
+            query: { num: this.num, name: this.name }
           })
           // this.$router.go(-1);
         }

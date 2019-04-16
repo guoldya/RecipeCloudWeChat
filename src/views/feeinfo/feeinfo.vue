@@ -49,10 +49,11 @@
     </div>
 </template>
 <script>
+
 let fee_detail_url = "/app/bizCostBill/detail";
 let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
 let now_pay_url = "/app/bizCostBill/nowPay";
-import { Toast, Button } from 'mand-mobile'
+import { Cashier } from 'mand-mobile'
 export default {
     data() {
         return {
@@ -70,7 +71,6 @@ export default {
             isCashierhow: false,
             isCashierCaptcha: false,
             cashierAmount: '',
-            cashierResult: 'success',
             cashierChannels: [
                 {
                     icon: 'cashier-icon-2',
@@ -109,6 +109,11 @@ export default {
         console.log(this.feeActiveId, "详情");
         this.feeDetail();
 
+    },
+    computed: {
+        cashier() {
+            return this.$refs.cashier
+        },
     },
     methods: {
         feeDetail() {
@@ -159,48 +164,7 @@ export default {
                 return 'background-color:#abc'
             }
         },
-        doPay() {
-            console.log("dopay")
-            if (this.isCashierCaptcha) {
-                this.cashier.next('captcha', {
-                    text: 'Verification code sent to 156 **** 8965',
-                    brief: 'The latest verification code is still valid',
-                    autoCountdown: false,
-                    countNormalText: 'Send Verification code',
-                    countActiveText: 'Retransmission after {$1}s',
-                    onSend: countdown => {
-                        console.log('[Mand Mobile] Send Captcha')
-                        this.sendCaptcha().then(() => {
-                            countdown()
-                        })
-                    },
-                    onSubmit: code => {
-                        console.log(`[Mand Mobile] Send Submit ${code}`)
-                        this.checkCaptcha(code).then(res => {
-                            if (res) {
-                                this.createPay().then(() => {
-                                    this.cashier.next(this.cashierResult)
-                                })
-                            }
-                        })
-                    },
-                })
-            } else {
-                this.createPay().then(() => {
-                    this.cashier.next(this.cashierResult, {
-                        buttonText: '好的',
-                        handler: () => {
-                            this.isCashierhow = false;
-                            this.routeLoad = 1;
-                            this.$router.push({
-                                name: 'feerecord',
-                                query: {}
-                            });
-                        },
-                    })
-                })
-            }
-        },
+
         // Create a pay request & check pay result
         createPay() {
             this.cashier.next('loading')
@@ -230,6 +194,8 @@ export default {
             console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
         },
         onCashierPay(item) {
+
+
             let nowPayParams = {};
             nowPayParams.id = this.feeId;
             nowPayParams.orderCode = this.orderCode;
@@ -245,9 +211,17 @@ export default {
                     // if (res.data.data.total) {
                     //     this.cashierAmount = res.data.data.total.toFixed(2);
                     // }
-                    this.$router.go(-1);
+                    this.createPay().then(() => {
+                        this.cashier.next('success', {
+                            buttonText: '好的',
+                            handler: () => {
+                                this.isCashierhow = false
+                                this.$router.go(-1);
+                            },
+                        })
+                    })
                     // this.payStatus = "1";
-                    // this.doPay();
+
                 } else {
                     this.$toast.info(res.data.msg);
                     this.isCashierhow = false;
@@ -285,11 +259,7 @@ export default {
     //     }
     //     next();
     //   },
-    // computed: {
-    //     cashier() {
-    //         return this.$refs.cashier
-    //     },
-    // },
+
 };
 </script>
 <style   scoped>

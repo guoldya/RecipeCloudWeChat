@@ -1,133 +1,151 @@
 <template>
-   <div class="registrecorddetail">
+  <div class="registrecorddetail">
 
-      <Navigation type="title" title="预缴款缴纳">
-      </Navigation>
-      <div class="margin55">
-         <div class="flatCard outCarint ">
-            <md-field>
-               <md-detail-item title="本次预交款">
-                  <span class="mu-secondary-text-color">￥{{defaultMoney|keepTwoNum}}元</span>
-               </md-detail-item>
+    <Navigation type="title" title="预缴款缴纳">
+    </Navigation>
+    <div class="margin55">
+      <div class="flatCard outCarint ">
+        <md-field>
+          <md-detail-item title="本次预交款">
+            <span class="mu-secondary-text-color">￥{{defaultMoney|keepTwoNum}}元</span>
+          </md-detail-item>
 
-            </md-field>
-         </div>
-
-         <div class="flatCard outCarint">
-            <div class="outCarintcontent">
-               <p>选择预交款金额</p>
-
-               <div class="moneyflatCard">
-                  <!-- <div class="moneyflatActive">￥500</div> -->
-                  <div :class="active1 ===index ? 'moneyflatActive' : '' " v-for="(item2,index)  in money" :key="index+'s'" @click="chooseMoney(item2,index)">￥{{item2}}</div>
-               </div>
-
-               <div class="moneyflatCard">
-                  <input type="text" placeholder="可输入其他金额" v-model="textMoney">
-               </div>
-            </div>
-
-         </div>
-         <p class="addbTN" @click="next">立即缴纳</p>
-
-         <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="String(defaultMoney)" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
+        </md-field>
       </div>
-   </div>
+
+      <div class="flatCard outCarint">
+        <div class="outCarintcontent">
+          <p>选择预交款金额</p>
+
+          <div class="moneyflatCard">
+            <!-- <div class="moneyflatActive">￥500</div> -->
+            <div :class="active1 ===index ? 'moneyflatActive' : '' " v-for="(item2,index)  in money" :key="index+'s'" @click="chooseMoney(item2,index)">￥{{item2}}</div>
+          </div>
+
+          <div class="moneyflatCard">
+            <input type="text" placeholder="可输入其他金额" v-model="textMoney">
+          </div>
+        </div>
+
+      </div>
+      <p class="addbTN" @click="next">立即缴纳</p>
+
+      <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="String(defaultMoney)" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
+    </div>
+  </div>
 </template>
 <script  >
-import { Dialog } from 'mand-mobile'
+import { Cashier } from 'mand-mobile'
 let now_pay_url = "/app/bizIhPay/payment";
 
 export default {
-   data() {
-      return {
-         active1: 0,
-         money: [500, 1000, 1500, 2000],
-         defaultMoney: 500,
-         textMoney: '',
-         isCashierhow: false,
-         isCashierCaptcha: false,
-         cashierAmount: '',
-         cashierResult: 'success',
-         cashierChannels: [
-            {
-               icon: 'cashier-icon-2',
-               text: '支付宝支付',
-               value: '1',
-            },
-            {
-               icon: 'cashier-icon-3',
-               text: '微信支付',
-               value: '2',
-            },
-            {
-               icon: 'cashier-icon-3',
-               text: '医保支付',
-               value: '3',
-            },
-         ],
-      };
-   },
-   components: {
-
-   },
-   watch: {
-      textMoney: function (newstextMoney, oldtextMoney) {
-         console.log(oldtextMoney);
-         console.log(newstextMoney);
-         if (newstextMoney) {
-            this.defaultMoney = newstextMoney;
-         }
+  data() {
+    return {
+      active1: 0,
+      money: [500, 1000, 1500, 2000],
+      defaultMoney: 500,
+      textMoney: '',
+      isCashierhow: false,
+      isCashierCaptcha: false,
+      cashierAmount: '',
+      cashierResult: 'success',
+      cashierChannels: [
+        {
+          icon: 'cashier-icon-2',
+          text: '支付宝支付',
+          value: '1',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '微信支付',
+          value: '2',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '医保支付',
+          value: '3',
+        },
+      ],
+    };
+  },
+  computed: {
+    cashier() {
+      return this.$refs.cashier
+    },
+  },
+  watch: {
+    textMoney: function (newstextMoney, oldtextMoney) {
+      console.log(oldtextMoney);
+      console.log(newstextMoney);
+      if (newstextMoney) {
+        this.defaultMoney = newstextMoney;
       }
-   },
-   mounted() {
+    }
+  },
+  mounted() {
 
 
-   },
-   methods: {
-      chooseMoney(data, index) {
-         this.defaultMoney = data;
-         this.active1 = index;
-      },
-      tijiao() {
-         this.$router.push({
-            name: 'payfeerecord',
-         });
-      },
-      next() {
-         this.isCashierhow = !this.isCashierhow;
-      },
-      onCashierSelect(item) {
-         console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
-      },
-      onCashierCancel() {
-         // Abort pay request or checking request
-         this.timer && clearTimeout(this.timer);
-         if (this.payStatus == "1") {
-            this.$router.go(-1);
-         }
-      },
-      onCashierPay(item) {
-         let nowPayParams = {};
-         nowPayParams.ihRecordId = Number(this.$route.query.id);
-         nowPayParams.money = this.defaultMoney;
-         // 支付方式
-         nowPayParams.payMode = Number(item.value);
-         this.$axios.post(now_pay_url, nowPayParams).then((res) => {
-            if (res.data.code == '200') {
+  },
+  methods: {
+    chooseMoney(data, index) {
+      this.defaultMoney = data;
+      this.active1 = index;
+    },
+    tijiao() {
+      this.$router.push({
+        name: 'payfeerecord',
+      });
+    },
+    next() {
+      this.isCashierhow = !this.isCashierhow;
+    },
+    onCashierSelect(item) {
+      console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
+    },
+    onCashierCancel() {
+      // Abort pay request or checking request
+      this.timer && clearTimeout(this.timer);
+      if (this.payStatus == "1") {
+        this.$router.go(-1);
+      }
+    },
+    createPay() {
+      this.cashier.next('loading')
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 3000)
+      })
+    },
+    onCashierPay(item) {
+      let nowPayParams = {};
+      nowPayParams.ihRecordId = Number(this.$route.query.id);
+      nowPayParams.money = this.defaultMoney;
+      // 支付方式
+      nowPayParams.payMode = Number(item.value);
+      this.$axios.post(now_pay_url, nowPayParams).then((res) => {
+        if (res.data.code == '200') {
+          this.createPay().then(() => {
+            this.cashier.next('success', {
+              buttonText: '好的',
+              handler: () => {
+                this.isCashierhow = false
+                this.$router.go(-3);
+              },
+            })
+          })
 
-               this.$router.go(-3);
 
-            } else {
-               this.$toast.info(res.data.msg);
-               this.isCashierhow = false;
-            }
-         }).catch(function (err) {
-            console.log(err);
-         });
-      },
+        } else {
+          this.$toast.info(res.data.msg);
+          this.isCashierhow = false;
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
 
-   },
+  },
 
 };
 </script>
