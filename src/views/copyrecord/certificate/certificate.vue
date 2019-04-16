@@ -424,7 +424,7 @@ export default {
       this.$store.commit('chooseInfoFun', "");
       this.$router.push({
         name: 'putinfo',
-        query: { name: this.name, idcard: this.idcard, receiverType: this.receiverType }
+        query: { name: this.name, idcard: this.idcard, receiverType: this.receiverType, mail: this.$route.query.mail }
       });
       console.log(JSON.stringify(this.cardImg));
       console.log(JSON.stringify(this.nextPar.cardImg));

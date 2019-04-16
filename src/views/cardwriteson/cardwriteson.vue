@@ -82,16 +82,16 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
-    if (this.$store.state.posUrl) {
-      this.posUrl = this.$store.state.posUrl;
-    } else {
-      this.posUrl = pg_negative
-    }
-    if (this.$store.state.othUrl) {
-      this.othUrl = this.$store.state.othUrl;
-    } else {
-      this.othUrl = pg_positive
-    }
+    // if (this.$store.state.posUrl) {
+    //   this.posUrl = this.$store.state.posUrl;
+    // } else {
+    //   this.posUrl = pg_negative
+    // }
+    // if (this.$store.state.othUrl) {
+    //   this.othUrl = this.$store.state.othUrl;
+    // } else {
+    //   this.othUrl = pg_positive
+    // }
 
     if (this.$route.query.isSon * 1 == 2) {
       this.isSon = true;

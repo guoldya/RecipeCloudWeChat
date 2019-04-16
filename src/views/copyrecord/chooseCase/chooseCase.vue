@@ -56,7 +56,7 @@ let copyApply_page_url = "/app/bizRecipeApply/read/page";
 export default {
   data() {
     return {
-      checked: 0,
+      checked: '77',
       favorites: [],
       busy: true,
       nomore: false,
@@ -64,13 +64,7 @@ export default {
       page: 1,
       pageSize: 10,
       copyResultData: [],
-      agreeConf: {
-        checked: true,
-        name: 'agree0',
-        size: 'md',
-        disabled: false,
-        introduction: '选中状态',
-      },
+ 
 
 
     };

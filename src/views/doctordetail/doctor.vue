@@ -125,7 +125,6 @@
 <script>
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
-
 let appbdHospitalDoctorreaddetail = "/app/bdHospitalDoctor/read/selectDoctorDetail";
 let appbizRegisterSourcereadsourceDetail = "/app/bdHospitalDoctor/read/rankWorld";
 let appbdHospitalDoctorreadrankWorld = "/app/bdHospitalDoctor/read/selectDoctorByTime";

@@ -27,6 +27,7 @@
         <p class="kinds">领取方式</p>
         <md-check-box name="1" v-model="mail" label="邮寄" />
         <md-check-box name="2" v-model="mail" label="自提" />
+
         <p v-show="mail==1" style="color: var(--primary--content);margin:6px 0">
           为保正您能及时收到病历，请确保收件地址准确无误!
         </p>
@@ -37,7 +38,6 @@
         <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
       </div>
       <md-field v-show="mail==1">
-
         <md-input-item style="padding: 0 12px" type="text" v-model="receiver" title="收件人" placeholder="收件人"></md-input-item>
         <md-input-item style="padding: 0 12px" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <Address style="padding: 0 12px" ref="openAdress" :default-value="pickerDefaultValue" v-on:adressByValue="adressByValue"></Address>
@@ -104,24 +104,34 @@ export default {
     },
     adressByValue: function (childValue) {
       this.areaId = childValue;
-      console.log(this.areaId)
+      console.log(this.address)
     },
 
     tijiao() {
-      let addParam = {};
-      addParam.receiveBy = this.receiver;
-      addParam.tel = this.mobile;
-      addParam.area = this.areaId;
-      addParam.address = this.address;
-      addParam.receiveMode = this.mail;
-      if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
-        this.$toast.info("请完善信息")
+      if (this.mail == 1) {
+        let addParam = {};
+        addParam.receiveBy = this.receiver;
+        addParam.tel = this.mobile;
+        addParam.area = this.areaId;
+        addParam.address = this.address;
+        addParam.receiveMode = this.mail;
+        addParam.adressname = this.$store.state.adressname;
+        this.$store.commit('recipientsFun', addParam);
+        if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
+          this.$toast.info("请完善信息")
+        } else {
+          this.$router.push({
+            name: 'certificate',
+            query: { mail: this.mail }
+          });
+        }
       } else {
         this.$router.push({
           name: 'certificate',
-          query: addParam
+          query: { mail: this.mail }
         });
       }
+
     },
   },
   components: {

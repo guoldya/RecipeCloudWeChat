@@ -18,7 +18,7 @@ import news from '@/views/home/news'
 import propaganda from '@/views/home/propaganda'
 import newsinfo from '@/views/home/newsinfo'
 
- 
+
 
 import result from '@/views/result/result.vue'
 import feeinfo from '@/views/feeinfo/feeinfo.vue'
@@ -138,6 +138,7 @@ import onlinesearch from '@/views/onlines/onlinesearch'
 import business from '@/views/copyrecord/business/business.vue'
 import chooseCase from '@/views/copyrecord/chooseCase/chooseCase.vue'
 import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
+import businssrecord from '@/views/copyrecord/businssrecord'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 
@@ -724,7 +725,10 @@ export default new Router({
   }, {
     path: '/putinfo',
     name: 'putinfo',
-    component: putinfo
+    component: putinfo,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/chooseCase',
@@ -750,7 +754,14 @@ export default new Router({
       title: "用户协议"
     }
   },
-
+  {
+    path: '/businssrecord',
+    name: 'businssrecord',
+    component: businssrecord,
+    meta: {
+      title: "复印记录"
+    }
+  },
   {
     path: '/copyresult',
     name: 'copyresult',

@@ -148,7 +148,6 @@ export default {
   created() {
     this.name = this.$route.query.name;
     this.idcard = this.$route.query.idcard
-
   },
   watch: {
     num(newValue) {
@@ -188,7 +187,8 @@ export default {
               idcard: this.idcard,
               mobile: this.mobile,
               verifyType: 1,
-              receiverType: this.$route.query.receiverType,
+              money: 72,
+              receiverType: Number(this.$route.query.receiverType),
               usageDesc: this.useInfo,
               // 复印用途
               usage: this.type,
@@ -202,7 +202,8 @@ export default {
             }).then(res => {
               if (res.data.code == '200') {
                 this.$router.push({
-                  name: 'copyresult'
+                  name: 'copyresult',
+                  query: { num: this.num, name: this.name, feeid: res.data.data }
                 })
               } else {
                 console.log(res.data.code);
@@ -220,23 +221,23 @@ export default {
     },
 
 
-    copyresult() {
-      if (this.mobile > 0 && this.verifyCode < 5) {
-        this.$toast.info("请完善信息");
-        return
-      }
-      this.$axios.post("app/bizCopyApply/uploadIdCard", this.nextPar).then(res => {
-        if (res.data.code == '200') {
-          this.$router.push({
-            name: 'copyresult',
-            query: { num: this.num, name: this.name }
-          })
-          // this.$router.go(-1);
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    },
+    // copyresult() {
+    //   if (this.mobile > 0 && this.verifyCode < 5) {
+    //     this.$toast.info("请完善信息");
+    //     return
+    //   }
+    //   this.$axios.post("app/bizCopyApply/uploadIdCard", this.nextPar).then(res => {
+    //     if (res.data.code == '200') {
+    //       this.$router.push({
+    //         name: 'copyresult',
+    //         query: { num: this.num, name: this.name }
+    //       })
+    //       // this.$router.go(-1);
+    //     }
+    //   }).catch(function (err) {
+    //     console.log(err);
+    //   });
+    // },
     onChange(checked) {
       console.log(`agree name =  ${checked ? 'checked' : 'unchecked'}`);
     },

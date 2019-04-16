@@ -302,7 +302,7 @@ export default {
   top: -1px;
 }
 .askorder .flatCard {
-  padding: 20px;
+  padding:0 24px 20px;
   margin-top: 0;
   margin-bottom: 20px;
 }

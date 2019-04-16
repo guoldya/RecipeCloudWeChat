@@ -257,7 +257,7 @@ export default {
     business() {
       let argu = {}
       this.$router.push({
-        name: 'business',
+        name: 'businssrecord',
         query: argu
       });
     },
@@ -358,6 +358,7 @@ export default {
 
 .aui-user-cell-logo img {
   width: 130px;
+  height: 130px;
   margin-right: 20px;
   display: block;
   border-radius: 8px;
