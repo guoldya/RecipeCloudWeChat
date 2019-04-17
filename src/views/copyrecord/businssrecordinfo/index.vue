@@ -1,12 +1,12 @@
 <template>
   <div class=" copyresult  margin55 ">
     <Header post-title="复印记录详情"></Header>
-    <md-field  v-show="!loadingtrue">
+    <md-field v-show="!loadingtrue">
       <div class="outCarint">
         <md-detail-item title="申请信息" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
         <md-detail-item title="申请编号" :content="businssrecordinfo.code" />
-        <md-detail-item title="申请人姓名" />
+        <md-detail-item title="申请人姓名" :content="businssrecordinfo.patientName" />
         <md-detail-item title="与患者关系" :content="businssrecordinfo.ihNo" />
         <md-detail-item title="证件类型">
           <span>{{businssrecordinfo.inTime|lasttime}}</span>
@@ -39,7 +39,7 @@
           <span>{{businssrecordinfo.recipeDate|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="处理状态">
-          <span class="mu-light-text-color">{{businssrecordinfo.recipeDate}}</span>
+          <span class="mu-light-text-color">{{businssrecordinfo.status|busistatus}}</span>
         </md-detail-item>
       </div>
       <div style="height:5px;background:#f8f8f8">
@@ -86,7 +86,7 @@ export default {
       this.$axios.put(appbizCopyApplypayment, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.loadingtrue = false;
-          this.businssrecordinfo = res.data.data
+          this.businssrecordinfo = res.data.data.bizIhRecord
         } else {
           this.loadingtrue = false;
           this.$toast.info(res.data.msg);

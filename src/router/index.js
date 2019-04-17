@@ -16,6 +16,9 @@ import lostpage from '@/views/resultpage/lostpage/lostpage.vue'
 import departsearch from '@/views/choosedepart/departsearch'
 import news from '@/views/home/news'
 import propaganda from '@/views/home/propaganda'
+import propagandainfo from '@/views/home/propagandainfo'
+
+ 
 import newsinfo from '@/views/home/newsinfo'
 import choose from '@/views/inspectionCheck/choose'
 import confirmOrder from '@/views/inspectionCheck/confirmOrder'
@@ -188,17 +191,30 @@ export default new Router({
     name: 'register',
     component: register
   },
-
-
+   
+  {
+    path: '/propagandainfo',
+    name: 'propagandainfo',
+    component: propagandainfo,
+    meta: {
+      title: '宣教信息详情'
+    }
+  },
   {
     path: '/propaganda',
     name: 'propaganda',
-    component: propaganda
+    component: propaganda,
+    meta: {
+      title: '宣教信息'
+    }
   },
   {
     path: '/newsinfo',
     name: 'newsinfo',
-    component: newsinfo
+    component: newsinfo,
+    meta: {
+      title: '新闻详情'
+    }
   },
   {
     path: '/news',

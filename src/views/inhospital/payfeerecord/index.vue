@@ -2,7 +2,6 @@
   <div class="feerecord">
 
     <Navigation type="title" title="预缴款缴纳-记录">
-      <!-- <span class="mu-secondary-text-color" @click="tijiao">张三</span> -->
     </Navigation>
     <div class="margin50">
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">

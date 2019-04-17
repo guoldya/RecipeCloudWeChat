@@ -7,7 +7,7 @@
         <md-field-item class="outCarint" title="卡类型" arrow="arrow-right" :addon="selectorValue" @click="showSelector">
         </md-field-item>
         <md-input-item class="outCarint" ref="input13" v-model="cardNo" :title="selectorValue+'号'" maxlength="11" placeholder="请输入卡号"></md-input-item>
-        <md-input-item class="outCarint" type="phone" v-model="phonenumber" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
+        <md-input-item class="outCarint" type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
         <div class="hq login-box-div outCarint">
           <span class="flexF">验证码</span>
           <input class="flexF" type="text" name="username" v-model="verifyCode" placeholder="请输入验证码" maxlength="6">
@@ -33,7 +33,7 @@ export default {
   title: '普通输入框',
   data() {
     return {
-      phonenumber: '',
+      mobile: '',
       type: 1,
       name: '',
       cardNo: '',
@@ -78,7 +78,7 @@ export default {
     getCode() {
       let _this = this;
       const TIME_COUNT = 60;
-      if (this.phonenumber.length < 11) {
+      if (this.mobile.length < 11) {
         this.$toast.info('请输入正确的手机号')
       } else {
         if (!this.timer) {
@@ -93,7 +93,7 @@ export default {
               this.timer = null;
             }
           }, 1000);
-          this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.phonenumber + '&verifyType=' + 1, {
+          this.$axios.post(sendNewVerifyCode + '?mobile=' + _this.mobile + '&verifyType=' + 1, {
           }).then(res => {
             if (res.data.code == '200') {
               _this.$toast.info('请查看验证码')
@@ -108,7 +108,7 @@ export default {
 
     },
     tijiao() {
-      if (this.phonenumber.length < 11 || this.name.length == 0 || this.verifyCode.length < 6 || this.cardNo.length === 0) {
+      if (this.mobile.length < 11 || this.name.length == 0 || this.verifyCode.length < 6 || this.cardNo.length === 0) {
         this.$toast.info('请完善信息')
       } else {
         this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.mobile, {

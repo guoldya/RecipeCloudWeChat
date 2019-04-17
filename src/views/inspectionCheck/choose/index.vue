@@ -1,10 +1,12 @@
 <template>
    <div class="inspectionCheck">
       <Header post-title="选择邮寄方式"></Header>
-      <div class="margin50">
-         <div @click="askself">自取</div>
-         <div @click="mail">寄送</div>
+
+      <div style="margin-top:150px;text-align:center;">
+         <img src="@/assets/images/icon_selftaking1.png" alt="" width="94%" @click="askself">
+         <img src="@/assets/images/icon_send1.png" alt="" width="94%" @click="mail" style="margin-top:15px;">
       </div>
+
    </div>
 </template>
 
