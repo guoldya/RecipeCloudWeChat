@@ -197,7 +197,7 @@ export default {
       this.$axios.post(addOrUpdate, param)
         .then(res => {
           if (res.data.code == '200') {
-            this.$toast.loading('图片上传中...')
+            // this.$toast.loading('图片上传中...')
             this.$router.push({
               name: 'admupayfee',
               query: { id: this.$route.query.id }

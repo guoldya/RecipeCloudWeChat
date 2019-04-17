@@ -55,22 +55,34 @@
             <div class="date_yy">
                 <div class="wx_yy_date_time" v-show="orderinfo.length!=0">
                     <a class="wx_yy_date_time_item" v-for="(order,index) in orderinfo" :key="index">
-                        <span v-if="order.valNum==0">
+                        <span v-if="order.overTime==0">
                             <span class="current wx_residue_null">余{{order.valNum}}</span>
                             <label> {{order.orgName}} {{order.regStage}}</label>
                         </span>
-                        <span v-else>
-                            <span class="current ">余{{order.valNum}}</span>
-                            <label> {{order.orgName}} {{order.regStage}}</label>
-                        </span>
-                        <div class="wx_residue_num" v-if="order.valNum==0">
+                        <template v-else-if="order.overTime==1">
+                            <span v-if="order.valNum==0">
+                                <span class="current ">余{{order.valNum}}</span>
+                                <label> {{order.orgName}} {{order.regStage}}</label>
+                            </span>
+                            <span v-else>
+                                <span class="current ">余{{order.valNum}}</span>
+                                <label> {{order.orgName}} {{order.regStage}}</label>
+                            </span>
+                        </template>
+                        <div class="wx_residue_num" v-if="order.overTime==0">
                             <span class="keyy" style="background-color: #cccbcb">{{order.money | keepTwoNum}}元</span>
                             <i class="time_btn"></i>
                         </div>
-                        <div class="wx_residue_num" v-else @click="todayreservation(order)">
-                            <span class="keyy">{{order.money | keepTwoNum}}元</span>
-                            <i class="time_btn"></i>
-                        </div>
+                        <template v-else-if="order.overTime==1">
+                            <div class="wx_residue_num" v-if="order.valNum==0">
+                                <span class="keyy" style="background-color: #cccbcb">{{order.money | keepTwoNum}}元</span>
+                                <i class="time_btn"></i>
+                            </div>
+                            <div class="wx_residue_num" v-if="order.valNum!=0" @click="todayreservation(order)">
+                                <span class="keyy">{{order.money | keepTwoNum}}元</span>
+                                <i class="time_btn"></i>
+                            </div>
+                        </template>
                     </a>
                 </div>
                 <div class="wx_yy_date_time" v-show="orderinfo.length==0">
@@ -103,22 +115,26 @@
                             {{item.money | keepTwoNum}}元
                         </p>
                     </span>
+                    <!-- <div class="wx_list_null" v-show="item.valNum==0">
+                        <span>约满</span>
+                    </div>
+                    <div class="wx_list_num" v-show="item.valNum!=0" @click="reservation(item)">
+                        <span class="keyy">剩 {{item.valNum}}</span>
+                    </div> -->
 
-                    <span class="num noNum" v-if="item.remaindNum==0&&item.overTime==0">无号</span>
-                    <div class="wx_list_null" v-show="item.valNum==0&&item.overTime==0">
+                    <div class="wx_list_null" v-if="item.overTime==0">
                         <span>约满</span>
                     </div>
-                    <div class="wx_list_null" v-show="item.valNum!=0&&item.overTime==0">
-                        <span>约满</span>
-                    </div>
-                    <div class="wx_list_null" v-show="item.valNum==0&&item.overTime!=0">
-                        <span>约满</span>
-                    </div>
-                    <div @click="reservation(item)" class="wx_list_null" v-show="item.valNum!=0&&item.overTime!=0">
-                        <span>预约</span>
-                    </div>
-
-                    
+                    <template v-else-if="item.overTime==1">
+                        <div class="wx_list_null" v-if="item.valNum==0">
+                            <span>约满</span>
+                        </div>
+                        <div class="wx_list_num" v-if="item.valNum!=0">
+                            <span @click="reservation(item)">
+                                <span class="keyy">剩 {{item.valNum}}</span>
+                            </span>
+                        </div>
+                    </template>
                 </span>
 
             </div>
