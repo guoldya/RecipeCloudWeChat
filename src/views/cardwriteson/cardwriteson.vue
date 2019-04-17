@@ -19,7 +19,7 @@
     </div>
     <div class="cardText flatCard">
       <div v-show="isSon" class=" margin5">
-        <div class="changenet" >
+        <div class="changenet">
           <span>关系</span>
           <span class="changenetright" @click="showSelector">{{selectorValue}}<img class="icon_right" src="@/assets/images/icon_right.png" alt=""></span>
         </div>
@@ -138,7 +138,7 @@ export default {
         this.$toast.info("请上传图片")
         return;
       }
-
+      this.$toast.loading('图片上传中...')
       var index1 = this.AAA.name.lastIndexOf(".");
       var index2 = this.AAA.name.length;
       var suffix = this.AAA.name.substring(index1 + 1, index2);//后缀名
@@ -158,6 +158,7 @@ export default {
       this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
+            this.$toast.hide();
             this.$store.commit('photo0DataFun', res.data.fileData.photo0);
             this.$store.commit('photo1DataFun', res.data.fileData.photo1);
             console.log(res.data.fileInfo[0].fileName, "我是正面");

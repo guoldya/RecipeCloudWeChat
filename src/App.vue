@@ -285,6 +285,9 @@ input:-ms-input-placeholder {
   color: var(--primary--content);
   padding: 24px;
 }
+.colopor{
+   color: var(--primary--content);
+}
 .warnText p {
   padding: 4px 0;
   line-height: 36px;

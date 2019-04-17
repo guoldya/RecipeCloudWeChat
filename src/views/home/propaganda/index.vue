@@ -4,14 +4,17 @@
     <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
       <div class="mui-card" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
         <div class="mui-card-header mui-card-media">
-          <img src="@/assets/images/bg.png" alt=""></div>
+          <img :src="$conf.constant.img_base_url + item.photoUrl" alt=""></div>
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
-            <p>Posted on January 18, 2016</p>
-            <p style="color: #333;">这里显示文章摘要，让读者对文章内容有个粗略的概念这里显示文章摘要，让读者对文章内容有个粗略的概念...</p>
+            <p style="color: #333;">{{item.title}}</p>
+            <p>{{item.createTime}}</p>
+            <p>{{item.content}}...</p>
           </div>
         </div>
+
       </div>
+
     </div>
     <div v-show="!loadingtrue" class="nullDiv" v-else>
       <img src="@/assets/images/null1.png">
@@ -51,6 +54,7 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
+      params.contentClass = 26;
       this.$axios.put(pay_list_url, params).then((res) => {
         this.loadingtrue = false;
         if (res.data.code == 200) {

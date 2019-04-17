@@ -62,7 +62,7 @@ export default {
     };
   },
   created() {
- document.scrollingElement.scrollTop = 0
+    document.scrollingElement.scrollTop = 0
   },
   mounted() {
 
@@ -123,7 +123,7 @@ export default {
         if (res.data.code == '200') {
           this.$store.dispatch('getCards', { update: true });
           this.$toast.info("绑定成功");
-          this.$router.go(-1);
+          this.$router.go(-4);
           // this.$router.options.routes[0].meta.keepAlive = false;
         } else {
           this.$toast.info(res.data.msg);
@@ -145,18 +145,18 @@ export default {
   line-height: 1.7;
   font-size: 30px;
 }
-   .cardhave .havePadd{
-     padding: 18px 24px 0;
-   }
+.cardhave .havePadd {
+  padding: 18px 24px 0;
+}
 
-   .cardhave /deep/.md-detail-item div {
-     width: 30%;
-     line-height: 36px;
-   }
-.cardhave /deep/.md-detail-item div:first-child:after{
+.cardhave /deep/.md-detail-item div {
+  width: 30%;
+  line-height: 36px;
+}
+.cardhave /deep/.md-detail-item div:first-child:after {
   display: block;
 }
 .cardhave .default:after {
   border: transparent !important;
 }
- </style>
+</style>
