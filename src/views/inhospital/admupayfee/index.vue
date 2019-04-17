@@ -9,25 +9,21 @@
           <md-detail-item title="本次预交款">
             <span class="mu-secondary-text-color">￥{{defaultMoney|keepTwoNum}}元</span>
           </md-detail-item>
-
         </md-field>
       </div>
 
-      <div class="flatCard outCarint">
-        <div class="outCarintcontent">
-          <p>选择预交款金额</p>
+      <!-- // <div class="flatCard outCarint">
+      //   <div class="outCarintcontent">
+      //     <p>选择预交款金额</p>
+      //     <div class="moneyflatCard">
+      //       <div :class="active1 ===index ? 'moneyflatActive' : '' " v-for="(item2,index)  in money" :key="index+'s'" @click="chooseMoney(item2,index)">￥{{item2}}</div>
+      //     </div>
+      //     <div class="moneyflatCard">
+      //       <input type="text" placeholder="可输入其他金额" v-model="textMoney">
+      //     </div>
+      //   </div>
+      // </div> -->
 
-          <div class="moneyflatCard">
-            <!-- <div class="moneyflatActive">￥500</div> -->
-            <div :class="active1 ===index ? 'moneyflatActive' : '' " v-for="(item2,index)  in money" :key="index+'s'" @click="chooseMoney(item2,index)">￥{{item2}}</div>
-          </div>
-
-          <div class="moneyflatCard">
-            <input type="text" placeholder="可输入其他金额" v-model="textMoney">
-          </div>
-        </div>
-
-      </div>
       <p class="addbTN" @click="next">立即缴纳</p>
 
       <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="String(defaultMoney)" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
@@ -42,8 +38,7 @@ export default {
   data() {
     return {
       active1: 0,
-      money: [500, 1000, 1500, 2000],
-      defaultMoney: 500,
+      defaultMoney: this.$route.query.money,
       textMoney: '',
       isCashierhow: false,
       isCashierCaptcha: false,

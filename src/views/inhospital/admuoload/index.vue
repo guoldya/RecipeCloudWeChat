@@ -134,7 +134,7 @@ export default {
     cardconfirm() {
 
       let param = new FormData(); //创建form对象
-      console.log(this.AAA.name.lastIndexOf("."), this.BBB.name, "sss");
+
       if (Number(this.$route.query.type == 0)) {
         if (!this.AAA.name || !this.BBB.name) {
           this.$toast.info("请上传图片")
@@ -176,14 +176,16 @@ export default {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
-      };  //添加请求头
+      };
+      this.$toast.loading('图片上传中...')
+      //添加请求头
       this.$axios.post(uploadImgimage, param, config)
         .then(res => {
           if (res.data.code == '200') {
-            console.log(res.data.fileInfo, "res.data.fileInfo")
             this.uploadIdCard(res.data.fileInfo)
           } else {
-            this.$toast.info(res.data.msg)
+            this.$toast.info(res.data.msg);
+            this.$toast.hide();
           }
         }).catch(function (err) {
           console.log(err);
@@ -197,10 +199,12 @@ export default {
       this.$axios.post(addOrUpdate, param)
         .then(res => {
           if (res.data.code == '200') {
-            // this.$toast.loading('图片上传中...')
+
+
+            this.$toast.hide();
             this.$router.push({
               name: 'admupayfee',
-              query: { id: this.$route.query.id }
+              query: { id: this.$route.query.id, money: this.$route.query.money }
             });
           } else {
             this.$toast.info(res.data.msg)

@@ -121,10 +121,16 @@
                     <div class="wx_list_num" v-show="item.valNum!=0" @click="reservation(item)">
                         <span class="keyy">剩 {{item.valNum}}</span>
                     </div> -->
-
-                    <div class="wx_list_null" v-if="item.overTime==0">
-                        <span>约满</span>
-                    </div>
+                    <template v-if="item.overTime==0">
+                        <div class="wx_list_null" v-if="item.valNum==0">
+                            <span>约满</span>
+                        </div>
+                        <div class="wx_list_null" v-if="item.valNum!=0">
+                            <span>
+                                <span>剩 {{item.valNum}}</span>
+                            </span>
+                        </div>
+                    </template>
                     <template v-else-if="item.overTime==1">
                         <div class="wx_list_null" v-if="item.valNum==0">
                             <span>约满</span>

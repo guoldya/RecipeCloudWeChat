@@ -2,7 +2,6 @@
    <div class="submitOrder">
       <Header post-title="提交订单"></Header>
       <div class="margin50">
-       
          <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0" v-if="titleIndex===1">
             <div class="submitUser">
                <div class="iconInfo">

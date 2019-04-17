@@ -21,7 +21,10 @@
                         </p>
                     </div>
                     <div class="nowOrder">
-                        <span class="num noNum" v-if="item.overTime==0">无号</span>
+                        <template v-if="item.overTime==0">
+                            <span class="num noNum" v-if="item.remaindNum==0">无号</span>
+                            <span class="num noNum" v-if="item.remaindNum!=0">预约</span>
+                        </template>
                         <template v-else-if="item.overTime==1">
                             <span class="num noNum" v-if="item.remaindNum==0">无号</span>
                             <span class="num" v-if="item.remaindNum!=0" @click="makeOrder(item.id)">预约</span>

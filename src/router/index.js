@@ -820,14 +820,15 @@ export default new Router({
     name: 'pictureConsult',
     component: pictureConsult,
     meta: {
-      title: '图文咨询'
+      title: '图文咨询',
+      keepAlive: true,
     }
   }, {
     path: '/selectPeople',
     name: 'selectPeople',
     component: selectPeople,
     meta: {
-      title: '选择就诊人'
+      title: '选择就诊人',
     }
   }, {
     path: '/addPeople',

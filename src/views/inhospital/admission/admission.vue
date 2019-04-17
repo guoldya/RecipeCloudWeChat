@@ -8,7 +8,7 @@
           <md-detail-item title="性别">
             <span>{{item.sex|examSex}}</span>
           </md-detail-item>
-          <md-detail-item title="身份证号" :content=item.cardNo></md-detail-item>
+          <md-detail-item title="身份证号" :content=item.idCard></md-detail-item>
           <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
           <md-detail-item title="主治医师" :content=item.doctor></md-detail-item>
           <md-detail-item title="入院日期">
@@ -17,7 +17,6 @@
           <md-detail-item title="预缴金额">
             <span>￥{{item.money}}</span>
           </md-detail-item>
-
         </md-field>
       </div>
       <Loading v-show="loadingtrue"></Loading>
@@ -25,10 +24,7 @@
         <div class="warnText">
           <p>费用方式</p>
           <md-field class="radio-field">
-            <md-radio-list    icon="right"
-        icon-inverse=""
-        icon-disabled=""
-        icon-position="right" v-model="myBank" :options="banks" icon-size="lg" />
+            <md-radio-list icon="right" icon-inverse="" icon-disabled="" icon-position="right" v-model="myBank" :options="banks" icon-size="lg" />
           </md-field>
         </div>
       </div>
@@ -48,6 +44,7 @@ export default {
       cordInfoData: [],
       loadingtrue: false,
       myBank: '0',
+      money: '',
       banks: [
         {
           value: '0',
@@ -79,6 +76,7 @@ export default {
         if (res.data.code == '200') {
           this.loadingtrue = false;
           this.cordInfoData.push(res.data.data);
+          this.money = res.data.data.money;
         }
       }).catch(function (err) {
         console.log(err);
@@ -88,7 +86,7 @@ export default {
     next() {
       this.$router.push({
         name: 'admuoload',
-        query: { type: this.myBank, id: this.$route.query.id }
+        query: { type: this.myBank, id: this.$route.query.id, money: this.money }
       });
 
 

@@ -20,9 +20,8 @@
               <span class="mu-secondary-text-color">{{item.status|busistatus}}</span>
             </div>
             <p class="cardTextPP">
-              <span>患者姓名：
-                <span class="mu-secondary-text-color" v-if="item.waitingTime>=0">{{item.waitingTime}}分钟</span>
-                <span class="mu-secondary-text-color" v-else>过时</span>
+              <span>类型：
+                <span class="mu-secondary-text-color"> 住院病历</span>
               </span>
               <span>科室：
                 <span class="mu-secondary-text-color">{{item.dept}}</span>
@@ -37,7 +36,7 @@
               <span class="mu-light-text-color">{{item.ouTime}}</span>
             </div>
             <p class="learnMore" @click="businssrecordinfo(item)">
-              住院病历详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
+              详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
             </p>
           </div>
         </div>
@@ -144,7 +143,7 @@ export default {
         query: { id: data.id, ihRecordId: data.ihRecordId, queryType: this.queryType }
       });
     },
- 
+
     loadMore() {
       this.busy = true;  //将无限滚动给禁用
       setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
