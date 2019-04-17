@@ -199,8 +199,8 @@ export default {
             let nowPayParams = {};
             nowPayParams.id = this.feeId;
             nowPayParams.orderCode = this.orderCode;
-            nowPayParams.orderType = Number(item.value);
-            nowPayParams.payType = item.value;
+            nowPayParams.orderType = 4;
+            nowPayParams.payType = Number(item.value);
             nowPayParams.code = this.$route.query.code;
             this.$axios.post(now_pay_url, nowPayParams).then((res) => {
                 if (res.data.code == '200') {
