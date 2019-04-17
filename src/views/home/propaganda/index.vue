@@ -13,7 +13,6 @@
         </div>
       </div>
     </div>
-
     <div v-show="!loadingtrue" class="nullDiv" v-else>
       <img src="@/assets/images/null1.png">
     </div>
