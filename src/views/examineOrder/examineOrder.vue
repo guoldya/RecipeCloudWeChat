@@ -22,6 +22,9 @@
                     </div>
                     <div class="nowOrder">
                         <span class="num noNum" v-if="item.remaindNum==0||item.overTime==0">无号</span>
+                        <span class="num noNum" v-if="item.remaindNum!=0||item.overTime==0">无号</span>
+                        <span class="num noNum" v-if="item.remaindNum==0||item.overTime!=0">无号</span>
+                        <span class="num" v-if="item.remaindNum!=0||item.overTime!=0">预约</span>
                         <span class="num" v-else @click="makeOrder(item.id)">预约</span>
                     </div>
                     <!--<p class="partLine" v-if="i!=timeData.length-1"></p>-->

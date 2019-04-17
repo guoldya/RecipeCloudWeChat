@@ -1,6 +1,6 @@
 <template>
     <div class="inspectionCheck">
-        <Header post-title="慢病续方" ></Header>
+        <Header post-title="慢病续方"></Header>
         <div class="margin50">
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="titleIndex === 1">
@@ -12,7 +12,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flatCard cardText margin5" v-for="(item,i) in cardData" :key="i+'i'">
+                <div class="flatCard cardText margin5" v-for="(item,i) in goodsList" :key="i+'i'">
                     <div class="insCheck-cotent">
                         <div class="parElem listData">
                             <span class="sonElem">处方日期</span>
@@ -30,7 +30,7 @@
                             <span>{{item.source}}</span>
                         </div>
                         <div class="parElem listData">
-                            <span  class="sonElem">剩余续方日期</span>
+                            <span class="sonElem">剩余续方日期</span>
                             <span>{{item.restDate}}</span>
                         </div>
                         <div>
@@ -40,12 +40,12 @@
                     </div>
                 </div>
             </div>
-            <div  v-if="titleIndex === 2">
+            <div v-if="titleIndex === 2">
                 <div class="flatCard" style="margin-top: 0">
                     <div class="cardHEADER headCard">
                         <span>仅看通过</span>
                         <div>
-                            <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
+                            <md-switch v-model="isActive2" @change="handler('switch0', isActive2, $event)"></md-switch>
                         </div>
                     </div>
                 </div>
@@ -80,12 +80,19 @@
         </div>
     </div>
 </template>
-
+ 
 <script type="text/babel">
+let recipeApplyRenewRecipe = "/app/bizRecipeApply/recipeApplyRenewRecipe";
 export default {
     data() {
         return {
-            
+            busy: true,
+            nomore: false,
+            loadingtrue: true,
+            goodsList: '',
+            pageNumber: 1,
+            page: 1,
+            pageSize: 10,
             departs: [
                 { title: '处方记录', type: 1 },
                 { title: '申请记录', type: 2 },
@@ -112,46 +119,39 @@ export default {
             open: false,
             isContinue: true,
             isSelectorShow: false,
-            selectorValue: '陈楚生得',
-            isActive: true,
-            choseValue:'',
-            loadingtrue:'',
+            isActive: false,
+            isActive2: false,
+            loadingtrue: '',
         };
     },
     created() {
     },
     mounted() {
+        if (this.$store.state.feeActiveId) {
+            this.type = this.$store.state.feeActiveId
+        }
+        this.getGoodslist(false);
         document.title = '慢病续方';
     },
     methods: {
-        showSelector() {
-            this.isSelectorShow = true
-        },
-        onSelectorChoose({ text ,value}) {
-            this.selectorValue = text;
-            this.choseValue=value;
-        },
-        // switchTo(num) {
-        //     this.titleIndex = num;
-        // },
+
         childByValue: function (childValue) {
             this.titleIndex = childValue.type;
-            //this.noDataTitle = childValue.title;
             this.$store.commit('feeActiveFun', childValue.type);
-            //this.goodsList = [];
-            //this.loadingtrue = true;
+            this.goodsList = [];
+            this.loadingtrue = true;
             this.page = 1;
-            //this.getGoodslist();
+            this.getGoodslist();
         },
         continueApply() {
-            let argu = { name: this.selectorValue };
+            let argu = {};
             this.$router.push({
                 name: 'recipeDetail',
                 query: argu
             });
         },
         lookDetail() {
-            let argu = {name: this.selectorValue};
+            let argu = {};
             this.$router.push({
                 name: 'applyDetail',
                 query: argu
@@ -160,6 +160,47 @@ export default {
         handler(name, active) {
             console.log(`Status of switch ${name} is ${active ? 'active' : 'inactive'}`)
         },
+        getGoodslist(flag) {
+            const params = {};
+            params.pageNumber = this.page;
+            params.pageSize = this.pageSize;
+            params.queryType = this.type;
+            if (this.queryType * 1 == 2) {
+                params.isUsable = this.isActive2 ? 1 : undefined;
+            } else {
+                params.isShield = this.isActive ? 1 : undefined;
+            }
+            this.$axios.post(recipeApplyRenewRecipe, params).then((res) => {
+                if (res.data.rows) {
+                    this.loadingtrue = false;
+                    if (flag) {
+                        this.goodsList = this.goodsList.concat(res.data.rows);  //concat数组串联进行合并
+                        if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                            this.busy = false;
+                            this.nomore = false;
+                        } else {
+                            this.busy = true;
+                            this.nomore = true;
+                        };
+                    } else {
+                        this.goodsList = res.data.rows;
+                        this.busy = true;
+                        if (res.data.total < 10) {
+                            this.busy = true;
+                            this.nomore = true;
+                        } else {
+                            this.busy = false;
+                            this.nomore = false;
+                        }
+                    }
+                } else {
+                    this.goodsList = []
+                }
+            })
+        },
+
+
+
     }
 };
 </script>

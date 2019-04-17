@@ -7,27 +7,9 @@
          <div class="aui-center">
             <span class="aui-center-title">报告记录</span>
          </div>
-         <!--<span class="aui-navBar-item">-->
-         <!--<div>-->
-         <!--<md-field>-->
-         <!--<md-field-item :content="selectorValue" @click="showSelector" solid/>-->
-         <!--</md-field>-->
-         <!--<md-selector v-model="isSelectorShow" default-value="7" :data="optionsData" max-height="320px" title="选择姓名" @choose="onSelectorChoose"></md-selector>-->
-         <!--</div>-->
-         <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
-         <!--</span>-->
       </header>
       <div class="outCarint margin45">
-         <!--<div class="timeTab" style="margin-top:20px">-->
-         <!--<span v-for="(item, index) in reportTime" :key="'reportTime' + index" @click="timeSwitchTo(index)" :class="reportactive1 === index ? 'appTabAcitive' : '' ">-->
-         <!--{{item.title}}-->
-         <!--</span>-->
-         <!--</div>-->
-         <!-- <div class="appTab">
-            <span v-for="(item, index) in departs" :key="'departs' + index" @click="switchTo(item.type,index)" :class="active1 === index ? 'appTabAcitive' : '' ">
-               {{item.title}}
-            </span>
-         </div> -->
+        
          <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
          <div v-if="goodsList.length!=0" v-show="!loadingtrue" class="outCarint">
             <div class="card margin16" v-for="(item,i) in goodsList" :key="i">

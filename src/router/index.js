@@ -17,7 +17,9 @@ import departsearch from '@/views/choosedepart/departsearch'
 import news from '@/views/home/news'
 import propaganda from '@/views/home/propaganda'
 import newsinfo from '@/views/home/newsinfo'
-
+import choose from '@/views/inspectionCheck/choose'
+import confirmOrder from '@/views/inspectionCheck/confirmOrder'
+import inspectSuccess from '@/views/inspectionCheck/inspectSuccess'
 
 
 import result from '@/views/result/result.vue'
@@ -135,6 +137,7 @@ import onlinesearch from '@/views/onlines/onlinesearch'
 
 
 
+
 import business from '@/views/copyrecord/business/business.vue'
 import chooseCase from '@/views/copyrecord/chooseCase/chooseCase.vue'
 import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
@@ -142,7 +145,7 @@ import businssrecord from '@/views/copyrecord/businssrecord'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 import businssrecordinfo from '@/views/copyrecord/businssrecordinfo'
- 
+
 
 
 import resultDoctor from '@/views/resultDr/result.vue'
@@ -165,10 +168,28 @@ export default new Router({
     // }
   },
   {
+    path: '/confirmOrder',
+    name: 'confirmOrder',
+    component: confirmOrder,
+    meta: {
+      title: '订单确认'
+    }
+  },
+  {
+    path: '/inspectSuccess',
+    name: 'inspectSuccess',
+    component: inspectSuccess,
+    meta: {
+      title: '支付成功'
+    }
+  },
+  {
     path: '/register',
     name: 'register',
     component: register
   },
+
+
   {
     path: '/propaganda',
     name: 'propaganda',
@@ -734,7 +755,14 @@ export default new Router({
     path: '/businssrecordinfo',
     name: 'businssrecordinfo',
     component: businssrecordinfo,
-    
+  },
+  {
+    path: '/choose',
+    name: 'choose',
+    component: choose,
+    meta: {
+      title: "邮寄方式"
+    }
   },
 
 

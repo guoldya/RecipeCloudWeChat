@@ -50,7 +50,7 @@
                 <div>
                     <span class="storeName">和平大药房</span>
                     <p class="partLine"></p>
-                    <div v-for="(item,i) in medData">
+                    <div v-for="(item,i) in medData" :key="i">
                         <div class="med">
                             <div class="addImg">
                                 <img  class="medImg" :src=item.img alt="" >

@@ -74,9 +74,9 @@ export default {
 
     };
   },
- 
+
   mounted() {
-    document.title = '就诊队列';
+    document.title = '复印记录';
 
 
     var today = new Date();
@@ -141,17 +141,10 @@ export default {
       let argu = {};
       this.$router.push({
         name: 'businssrecordinfo',
-        query: { id: data.id, queryType: this.queryType }
+        query: { id: data.id, ihRecordId: data.ihRecordId, queryType: this.queryType }
       });
     },
-    intoreportinfo(data) {
-      this.$store.commit('feeActiveFun', data.reportType);
-      let argu = { id: data.reportId, reportType: data.reportType };
-      this.$router.push({
-        name: 'reportinfo',
-        query: argu
-      });
-    },
+ 
     loadMore() {
       this.busy = true;  //将无限滚动给禁用
       setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
