@@ -94,8 +94,9 @@ export default {
             page: 1,
             pageSize: 10,
             departs: [
-                { title: '处方记录', type: 1 },
-                { title: '申请记录', type: 2 },
+
+                { title: '申请记录', type: 1 },
+                { title: '历史记录', type: 2 },
             ],
             titleIndex: 1,
             cardData: [

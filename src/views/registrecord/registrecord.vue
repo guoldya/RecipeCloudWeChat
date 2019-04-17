@@ -1,17 +1,7 @@
 <template>
     <div class="registrecord">
-        <div class="navigation">
-            <i class="icon-iconfontjiantou" @click="routeBack">
-                <img src="@/assets/images/icon_back.png">
-            </i>
-            <div class="navigation-content">
-                挂号记录
-            </div>
-            <div class="right">
-                <slot></slot>
-            </div>
-        </div>
-        <!--<Header post-title="挂号记录"></Header>-->
+
+        <Header post-title="挂号记录"></Header>
         <div class="margin55">
             <div v-if="cordData.length!=0" v-show="!loadingtrue">
                 <div class="flatCard outCarint" v-for="(item,i) in cordData" :key="i">
@@ -33,8 +23,8 @@
                     </div>
                     <div class="parElem listData">
                         <span class="sonElem">预约时间</span>
-                        <span>{{item.regDate |time}} </span>
-                        <span>{{item.regStage}}</span>
+                        <span >{{item.regDate |time}} </span>
+                        <span style="color: var(--primary--content);">{{item.regStage}}</span>
                     </div>
                     <div class="parElem cardTextRight" @click="cordInfo(item.id,item.payType,item.sourceId)">
                         <span>详情</span>
@@ -83,11 +73,7 @@ export default {
         this.cordFun(false);
     },
     methods: {
-        routeBack() {
-            this.$router.push({
-                name: 'my',
-            });
-        },
+     
         cordFun(flag) {
             const params = {};
             params.pageNumber = this.page;
@@ -170,6 +156,4 @@ export default {
 .registrecord .parElem {
   height: 56px;
 }
- 
- 
 </style>

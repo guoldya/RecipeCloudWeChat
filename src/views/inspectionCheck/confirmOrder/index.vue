@@ -4,7 +4,7 @@
       <div class="margin50">
          <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0" v-if="titleIndex===1">
             <div class="submitUser">
-               <div class="iconInfo">
+               <!-- <div class="iconInfo">
                   <div class="iconImg">
                      <img style="width: 16px" v-if="addressInfo.length!=0" class="addPic" src="@/assets/images/icon_address1.png" alt="">
                   </div>
@@ -19,7 +19,24 @@
                   <div @click="toAddress" v-if="addressInfo.length==0" class="addAddr">
                      添加收货地址
                   </div>
+               </div> -->
+               <div class="iconInfo">
+                  <div class="iconImg">
+                     <img style="width: 16px" v-if="_selectAdress" class="addPic" src="@/assets/images/icon_address1.png" alt="">
+                  </div>
+                  <div class="userInfo" v-if="_selectAdress && i==0" @click="acceptAdd">
+                     <div>
+                        <span>{{_selectAdress.receiver}}</span>
+                        <span>{{_selectAdress.mobile}}</span>
+                        <span class="first" v-if="_selectAdress.isDefault==1">默认</span>
+                     </div>
+                     <div>{{_selectAdress.address}}</div>
+                  </div>
+                  <div @click="toAddress" v-if="_selectAdress.length==0" class="addAddr">
+                     添加收货地址
+                  </div>
                </div>
+
                <div class="addImg nextImg">
                   <img style="width: 8px" src="@/assets/images/icon_more2@2x.png" alt="">
                </div>
@@ -118,8 +135,9 @@
    </div>
 </template>
 <script type="text/babel">
+import { mapState } from 'vuex';
 let add_list_url = "/app/shippingAddress/addressList";
-let recipe_getDetails_url = "/app/recipe/getDetails ";
+let recipe_getDetails_url = "/app/recipe/getDetails";
 export default {
    data() {
       return {
@@ -165,21 +183,21 @@ export default {
    },
 
    mounted() {
-      if (this.$route.query.receiver) {
-         this.addIndex = this.$route.query.params;
-         this.addressInfo.splice(0, 1);
-         this.addressInfo.push(this.$route.query);
-      } else {
-         this.acceptAddFun();
+      // if (this.$route.query.receiver) {
+      //    this.addIndex = this.$route.query.params;
+      //    this.addressInfo.splice(0, 1);
+      //    this.addressInfo.push(this.$route.query);
+      // } else {
+      //    this.acceptAddFun();
+      // }
+      if (!this._selectAdress) {
+         this.detailInfo();
       }
-      this.detailInfo();
       document.title = '提交订单';
    },
    methods: {
       detailInfo() {
          this.detailInfoId = this.$route.query.id;
-         console.log(this.detailInfoId)
-
          this.$axios.put(recipe_getDetails_url, { recipeId: this.detailInfoId }, {
          }).then(res => {
             if (res.data.code == '200') {
@@ -194,11 +212,13 @@ export default {
             console.log(err);
          });
       },
+
       acceptAddFun() {
          this.$axios.put(add_list_url, {}).then((res) => {
             this.loadingtrue = false;
             if (res.data.code == '200') {
                this.addressInfo = res.data.rows;
+               this.$store.commit('selectAdressFun', this.addressInfo.filter(item => item.isDefault == 1));
             } else {
                console.log(res.msg);
             }
@@ -206,7 +226,7 @@ export default {
             console.log(err);
          });
       },
-      
+
       doPay() {
          if (this.isCashierCaptcha) {
             this.cashier.next('captcha', {
@@ -301,6 +321,11 @@ export default {
       cashier() {
          return this.$refs.cashier
       },
+
+      ...mapState({
+         _selectAdress: state => state.selectAdress,
+      }),
+
    },
 
 };

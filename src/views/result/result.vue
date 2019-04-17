@@ -51,10 +51,18 @@ export default {
 
 
         intodoctorinfo(data) {
-            this.$router.push({
-                name: 'doctordetail',
-                query: { doctorId: data.id, islist: 1 }
-            });
+            if (this.$route.query.type) {
+                this.$router.push({
+                    name: 'doctorschedu',
+                    query: { doctorId: data.id, islist: 1 }
+                });
+            } else {
+                this.$router.push({
+                    name: 'doctordetail',
+                    query: { doctorId: data.id, islist: 1 }
+                });
+            }
+
         },
         intodoctorList(data) {
             let argu = { deptName: data.orgName, deptId: data.id, yuanId: data.parentId };
@@ -65,6 +73,14 @@ export default {
                 });
                 return;
             }
+            if (this.$route.query.type) {
+                this.$router.push({
+                    name: 'workdoctor',
+                    query: argu
+                });
+                return;
+            }
+
             this.$router.push({
                 name: 'doctorList',
                 query: argu
@@ -76,7 +92,8 @@ export default {
             // deptparams.pageSize = this.pageSize;
             // deptparams.keyword = this.$route.query.val;
             this.$axios.put(bdHospitalOrg,
-                {                    name: this.$route.query.val,
+                {
+                    name: this.$route.query.val,
                     orgId: this.$store.state.feeActiveId,
                     orgType: this.$route.query.orgType ? this.$route.query.orgType : undefined,
                 }).then((res) => {

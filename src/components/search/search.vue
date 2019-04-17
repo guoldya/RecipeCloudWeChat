@@ -29,6 +29,12 @@ export default {
         this.$router.push({
           path: "/hospitalsearch"
         });
+      } else if (this.type == "workdepart") {
+        this.$store.commit("searchTypeFun", this.type);
+        this.$router.push({
+          path: "/departsearch",
+          query: { type: this.type },
+        });
       } else {
         this.$store.commit("searchTypeFun", this.type);
         this.$router.push({

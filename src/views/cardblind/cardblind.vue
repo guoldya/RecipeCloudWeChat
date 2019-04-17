@@ -134,13 +134,13 @@ export default {
                   },
                 });
               } else {
-                this.$toast.info("验证码错误或超时")
+                this.$toast.info(res.data.msg)
               }
             }).catch(function (err) {
               console.log(err);
             });
           } else {
-            this.$toast.info("验证码错误或超时")
+            this.$toast.info(res.data.msg)
           }
         }).catch(function (err) {
           console.log(err);

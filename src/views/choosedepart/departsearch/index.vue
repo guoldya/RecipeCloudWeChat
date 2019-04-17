@@ -51,7 +51,6 @@ export default {
             }
       },
       mounted() {
-
             document.getElementById("oc_vala").focus();
             var aa = window.localStorage;
             if (aa.getItem("HistoryList") != null && aa.getItem("HistoryList") != undefined) {
@@ -90,11 +89,18 @@ export default {
                   if (this.HistoryList.length > 6) { // 保留六个值
                         this.HistoryList.pop();
                   }
+                  if (this.$route.query.type) {
+                        this.$router.push({
+                              name: 'result',
+                              query: { val: val, type: this.$route.query.type }
+                        });
+                  } else {
+                        this.$router.push({
+                              name: 'result',
+                              query: { val: val }
+                        });
+                  }
 
-                  this.$router.push({
-                        name: 'result',
-                        query: { val: val }
-                  });
                   localStorage.setItem('HistoryList', JSON.stringify(this.HistoryList));
             }
 

@@ -2,15 +2,18 @@
     <div class="adress">
         <Header post-title="地址管理"></Header>
         <div class="margin55">
-            <ul>
+            <ul v-if="addressInfo.length!=0" v-show="!loadingtrue">
                 <li v-for="(item,index) in addressInfo" :key="index">
                     <div class="card">
                         <div class="cardText">
-                            <p class="order-number">
-                                <span>{{item.receiver}}</span>
-                                <span>{{item.mobile}}</span>
-                            </p>
-                            <p class="headdesc">{{item.address}}</p>
+                            <div @input="selectFun(item)">
+                                <p class="order-number">
+                                    <span>{{item.receiver}}</span>
+                                    <span>{{item.mobile}}</span>
+                                </p>
+                                <p class="headdesc">{{item.address}}</p>
+                            </div>
+
                             <p class="order-bottom">
                                 <span>
                                     <div class="md-agree" @click="onChange(item.id,item.isDefault)">
@@ -38,7 +41,12 @@
                     </div>
                 </li>
             </ul>
+            <div v-show="!loadingtrue" v-else class="nullDurg">
+                <img src="@/assets/images/null1.png" alt="">
+            </div>
         </div>
+
+        <div style="height: 60px"></div>
         <p class="add" @click="addadress()">添加地址</p>
     </div>
 </template>
@@ -58,15 +66,7 @@ export default {
             num: 7,
             checked: '0a',
             addressInfo: '',
-            agreeConf: {
-                checked: true,
-                name: 'agree0',
-                size: 'md',
-                disabled: false,
-                introduction: '选中状态',
-            },
-
-
+            loadingtrue: true,
         };
     },
     created() {
@@ -74,6 +74,7 @@ export default {
         }).then((res) => {
             console.log(res)
             if (res.data.code == '200') {
+                this.loadingtrue = false;
                 this.addressInfo = res.data.rows;
             } else {
                 console.log(res.msg);
@@ -90,7 +91,10 @@ export default {
 
     },
     methods: {
-
+        selectFun(val) {
+            this.$store.commit('selectAdressFun', val);
+            this.back.go(-1);
+        },
         onChange(data, index) {
             if (index == 1) {
                 return
@@ -133,6 +137,17 @@ export default {
                         console.log(res)
                         if (res.data.code == '200') {
                             this.$toast.info("删除成功")
+                            this.$axios.put(appshippingAddressaddressList, {
+                            }).then((res) => {
+                                console.log(res)
+                                if (res.data.code == '200') {
+                                    this.addressInfo = res.data.rows;
+                                } else {
+                                    console.log(res.msg);
+                                }
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
                         } else {
                             console.log(res.msg);
                         }

@@ -202,7 +202,11 @@ export default {
                         this.cashier.next('success', {
                             buttonText: '好的',
                             handler: () => {
-                                this.isCashierhow = false
+                                this.isCashierhow = false;
+                                this.$router.push({
+                                    name: 'feesucces',
+                                    query: res.data.data
+                                });
                             },
                         })
                     })

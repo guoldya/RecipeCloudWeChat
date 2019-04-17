@@ -9,7 +9,7 @@
           <div class="mui-card-content-inner">
             <p style="color: #333;">{{item.title}}</p>
             <p>{{item.createTime}}</p>
-            <p>{{item.content}}...</p>
+            <!-- <p>{{item.content}}...</p> -->
           </div>
         </div>
 

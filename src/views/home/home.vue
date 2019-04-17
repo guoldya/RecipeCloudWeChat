@@ -194,7 +194,6 @@ export default {
         });
         await this.$store.dispatch('getCards'/* , { update: true } */);
         this.cardLoading = false;
-        console.log(this._cardlist);
         if (this.$store.state.cardId) {
             this.chooseId = this.$store.state.cardId;
         } else {

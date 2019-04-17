@@ -16,7 +16,7 @@
           </p>
           <p style="overflow:hidden; word-wrap:break-word;" v-html='articleInfo.content'>
           </p>
-          <img :src="'http://192.168.0.150:40080/res/'+articleInfo.photoUrl" alt="" style="width:100%">
+          <img :src="$conf.constant.img_base_url + articleInfo.photoUrl" alt="" style="width:100%">
         </div>
       </div>
 
