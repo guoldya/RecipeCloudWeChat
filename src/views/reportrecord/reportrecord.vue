@@ -1,6 +1,6 @@
 <template>
    <div class="reportquery">
-      <header class="aui-navBar aui-navBar-fixed"  >
+      <header class="aui-navBar aui-navBar-fixed">
          <span href="javascript:;" class="aui-navBar-item" @click="$router.go(-1)">
             <img src="@/assets/images/icon_back.png">
          </span>
@@ -9,7 +9,6 @@
          </div>
       </header>
       <div class="outCarint margin45">
-        
          <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
          <div v-if="goodsList.length!=0" v-show="!loadingtrue" class="outCarint">
             <div class="card margin16" v-for="(item,i) in goodsList" :key="i">
@@ -62,7 +61,7 @@ export default {
          type: 1,
          datepick: false,
          date: undefined,
-         
+
          isDatePickerShow: false,
          active1: 0,
          reportactive1: 0,

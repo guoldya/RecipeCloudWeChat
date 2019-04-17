@@ -4,7 +4,8 @@
     <div class="flatCard margin5 outCarint">
       <!-- 申请人 -->
       <div>
-        <p style="color:#000;padding-top: 16px">拍摄/上传您的二代身份证<span v-show="$route.query.type==1">和医保卡</span>
+        <p style="color:#000;padding-top: 16px">拍摄/上传您的二代身份证
+          <span v-show="$route.query.type==1">和医保卡</span>
         </p>
         <div class="pg_positive">
           <div class="pg_positive_img">
@@ -131,7 +132,7 @@ export default {
 
 
     cardconfirm() {
-      this.$toast.loading('图片读取中...')
+
       let param = new FormData(); //创建form对象
       console.log(this.AAA.name.lastIndexOf("."), this.BBB.name, "sss");
       if (Number(this.$route.query.type == 0)) {
@@ -196,6 +197,7 @@ export default {
       this.$axios.post(addOrUpdate, param)
         .then(res => {
           if (res.data.code == '200') {
+            this.$toast.loading('图片上传中...')
             this.$router.push({
               name: 'admupayfee',
               query: { id: this.$route.query.id }

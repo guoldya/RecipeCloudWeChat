@@ -103,12 +103,22 @@
                             {{item.money | keepTwoNum}}元
                         </p>
                     </span>
-                    <div class="wx_list_null" v-show="item.valNum==0">
+
+                    <span class="num noNum" v-if="item.remaindNum==0&&item.overTime==0">无号</span>
+                    <div class="wx_list_null" v-show="item.valNum==0&&item.overTime==0">
                         <span>约满</span>
                     </div>
-                    <div class="wx_list_num" v-show="item.valNum!=0" @click="reservation(item)">
-                        <span class="keyy">剩 {{item.valNum}}</span>
+                    <div class="wx_list_null" v-show="item.valNum!=0&&item.overTime==0">
+                        <span>约满</span>
                     </div>
+                    <div class="wx_list_null" v-show="item.valNum==0&&item.overTime!=0">
+                        <span>约满</span>
+                    </div>
+                    <div @click="reservation(item)" class="wx_list_null" v-show="item.valNum!=0&&item.overTime!=0">
+                        <span>预约</span>
+                    </div>
+
+                    
                 </span>
 
             </div>

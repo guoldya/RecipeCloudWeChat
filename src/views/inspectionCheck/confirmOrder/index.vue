@@ -85,7 +85,7 @@
                </div>
                <p class="partLine"></p>
             </div>
-            <div v-for="(item,i) in priceData" class="onlinePay">
+            <div v-for="(item,i) in priceData" class="onlinePay" :key="i">
                <div v-if="titleIndex==1">
                   <span>{{item.pei}}</span>
                   <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
