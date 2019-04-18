@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-            <p class="mu-secondary-text-color" style="    text-align: center;" @click="isContinue=!isContinue">查看缴费详情</p>
+            <p class="mu-secondary-text-color" style="line-height:30px; text-align: center;" @click="isContinue=!isContinue">查看缴费详情</p>
 
             <div style="height: 50px"></div>
 

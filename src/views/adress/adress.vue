@@ -92,8 +92,11 @@ export default {
     },
     methods: {
         selectFun(val) {
-            this.$store.commit('selectAdressFun', val);
-            this.$router.go(-1);
+            if (this.$route.query.checked) {
+                this.$store.commit('selectAdressFun', val);
+                this.$router.go(-1);
+            }
+
         },
         onChange(data, index) {
             if (index == 1) {

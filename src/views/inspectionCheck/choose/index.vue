@@ -22,15 +22,15 @@ export default {
          let argu = {};
          this.$router.push({
             name: 'confirmOrder',
-            query: { id: this.$route.query.id * 1, titleIndex: 2, recipeId: this.$route.query.recipeId }
+            query: { id: this.$route.query.id * 1, deliveryMode: 2, recipeId: this.$route.query.recipeId }
          });
       },
-      
+
       mail() {
          let argu = {};
          this.$router.push({
             name: 'confirmOrder',
-            query: { id: this.$route.query.id * 1, titleIndex: 1, recipeId: this.$route.query.recipeId }
+            query: { id: this.$route.query.id * 1, deliveryMode: 1, recipeId: this.$route.query.recipeId }
          });
       },
 

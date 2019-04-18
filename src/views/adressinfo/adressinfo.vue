@@ -90,7 +90,6 @@ export default {
       this.areaId = childValue
     },
     tijiao() {
-
       if (!this.receiver || !this.mobile || !this.address || !this.areaId) {
         this.$toast.info("请完善信息")
       } else {

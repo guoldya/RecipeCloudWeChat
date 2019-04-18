@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <p class="addbTN" @click="online">点击在线评估</p>
+    <p class="addbTN" @click="send">点击在线评估</p>
   </div>
 </template>
 <script type="text/babel">
@@ -54,8 +54,13 @@ export default {
       acceptIndex: null,
     };
   },
-  created() {
 
+  computed: {
+    ...mapState({
+      // 这里用于测试 实际上要区分
+      chat: state => state.chat,
+      userInfo: state => state.userInfo
+    }),
   },
   mounted() {
     this.payWay.push(this.$store.state.payWay[0]);
@@ -63,13 +68,32 @@ export default {
     document.title = '支付成功';
   },
   methods: {
-    online() { 
-      
-    }
-  },
-  computed: {
+    ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews", 'updateUser']),
+    // 发送消息
+    send() {
 
+      
+      let createTime = new Date().getTime();
+      let msg = {
+        // 发送消息传的数据
+        from: this.userInfo.id,
+        to: Number(this.$route.query.id),
+        cmd: 11,
+        createTime: createTime,
+        msgType: 0,
+        chatType: 2,
+        content: "咨询药品的测试"
+      };
+   
+      // 把当前发送的消息添加到历史消息去
+      let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
+      arr.push(msg)
+      this['chat/setHistoryNews'](arr)
+      this.chat.websocket.send(JSON.stringify(msg));
+     
+    },
   },
+
 
 };
 </script>

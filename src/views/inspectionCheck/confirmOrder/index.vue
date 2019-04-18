@@ -2,7 +2,7 @@
    <div class="submitOrder">
       <Header post-title="提交订单"></Header>
       <div class="margin50">
-         <!-- 用于测试的 记得加上 v-if="titleIndex===1"-->
+         <!-- 用于测试的 记得加上 v-if="deliveryMode===1"-->
          <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0">
             <div class="submitUser">
                <!-- <div class="iconInfo">
@@ -43,7 +43,7 @@
                </div>
             </div>
          </div>
-         <div class="flatCard outCarint" style="border-top: 1px solid #ededed;margin-top: 0" v-if="titleIndex===2">
+         <div class="flatCard outCarint" style="border-top: 1px solid #ededed;margin-top: 0" v-if="deliveryMode===2">
             <div class="submitUser">
                <div class="iconInfo">
                   <div class="iconImg">
@@ -103,16 +103,16 @@
                <p class="partLine"></p>
             </div>
             <!-- <div v-for="(item,i) in priceData" class="onlinePay" :key="i">
-               <div v-if="titleIndex==1">
+               <div v-if="deliveryMode==1">
                   <span>{{item.pei}}</span>
                   <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
                </div>
-               <p class="partLine" v-if="i!=priceData.length-1 && titleIndex==1"></p>
-               <div v-if="titleIndex==2 && i!==0">
+               <p class="partLine" v-if="i!=priceData.length-1 && deliveryMode==1"></p>
+               <div v-if="deliveryMode==2 && i!==0">
                   <span>{{item.pei}}</span>
                   <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
                </div>
-               <p class="partLine" v-if="i!=priceData.length-1 && i!==0 &&titleIndex==2"></p>
+               <p class="partLine" v-if="i!=priceData.length-1 && i!==0 &&deliveryMode==2"></p>
             </div> -->
             <div class="onlinePay">
                <div>
@@ -164,7 +164,7 @@ export default {
             { title: '配送到家', type: 1 },
             { title: '门店自提', type: 2 },
          ],
-         titleIndex: this.$route.query.titleIndex,
+         deliveryMode: this.$route.query.deliveryMode,
          medData: [
             { img: require("@/assets/images/pic.png"), medBrand: "万爽力", medName: "盐酸曲美他嗪片", weight: "20mgx30片", num: "1", price: "66.00" },
             { img: require("@/assets/images/pic.png"), medBrand: "万爽力", medName: "999感冒灵", weight: "20mgx30片", num: "1", price: "66.00" },
@@ -269,6 +269,10 @@ export default {
          nowPayParams.orderType = 4;
          nowPayParams.payMode = Number(item.value);
          nowPayParams.recipeId = this.$route.query.recipeId;
+         nowPayParams.deliveryMode = this.$route.query.deliveryMode;
+
+         //   地址id
+         nowPayParams.adress = this._selectAdress.id;
          this.$axios.post(recipeApplyRenewRecipe, nowPayParams).then((res) => {
             if (res.data.code == '200') {
                this.createPay().then(() => {
