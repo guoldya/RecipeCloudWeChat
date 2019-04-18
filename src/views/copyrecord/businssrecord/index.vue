@@ -131,16 +131,12 @@ export default {
         }
       })
     },
-
-    // switchTo(data) {
-    //   this.queryType = data.queryType;
-    //   this.getGoodslist();
-    // },
+ 
     businssrecordinfo(data) {
       let argu = {};
       this.$router.push({
         name: 'businssrecordinfo',
-        query: { id: data.id, ihRecordId: data.ihRecordId, queryType: this.queryType }
+        query: { id: data.id,  }
       });
     },
 

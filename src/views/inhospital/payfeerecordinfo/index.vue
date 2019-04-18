@@ -32,11 +32,11 @@
               <span class="mu-secondary-text-color">{{item.money|keepTwoNum}}元</span>
             </md-detail-item>
             <md-detail-item title="支付方式">
-              <span>{{item.payMode|payTypeFilter}} </span>
+              <span>{{item.payMode|payMethod}} </span>
             </md-detail-item>
-            <!-- <md-detail-item title="缴纳状态">
-                     <span>￥  </span>
-                  </md-detail-item> -->
+            <md-detail-item title="支付状态">
+              <span>{{item.payType|payTypeFilter}} </span>
+            </md-detail-item>
 
           </md-field>
         </div>

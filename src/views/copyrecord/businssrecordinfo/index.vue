@@ -81,8 +81,7 @@ export default {
     onCashierPay() {
       this.loadingtrue = true;
       let nowPayParams = {};
-      nowPayParams.recordId = this.$route.query.ihRecordId;
-      nowPayParams.copyId = this.$route.query.id;
+      nowPayParams.id = this.$route.query.id;
       this.$axios.put(appbizCopyApplypayment, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.loadingtrue = false;

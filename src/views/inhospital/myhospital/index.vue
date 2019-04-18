@@ -21,7 +21,7 @@
                <div class="outCarintcontent">
                   <div class="flatCard outCarint" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
                      <md-field>
-                        <md-detail-item title="预缴款总额">
+                        <md-detail-item title="预交款总额">
                            <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
                         </md-detail-item>
                         <md-detail-item title="未结总费用">

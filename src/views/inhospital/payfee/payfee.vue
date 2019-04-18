@@ -1,7 +1,7 @@
 <template>
   <div class="feerecord">
-    <Navigation type="title" title="预缴款缴纳">
-      <span class="mu-secondary-text-color" @click="tijiao">预缴款记录</span>
+    <Navigation type="title" title="预交款缴纳">
+      <span class="mu-secondary-text-color" @click="tijiao">预交款记录</span>
     </Navigation>
     <div class="margin50">
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
@@ -16,11 +16,15 @@
               <span>{{item.name}}</span>
             </p>
             <p class="parElem listData">
+              <span class="sonElem">住院科室</span>
+              <span>{{item.dept}}</span>
+            </p>
+            <p class="parElem listData">
               <span class="sonElem">床号</span>
               <span>{{item.bedNo}} 号</span>
             </p>
             <p class="parElem listData">
-              <span class="sonElem">预交款金额</span>
+              <span class="sonElem">预交款余额</span>
               <span :class="{warn:item.money==0}">{{item.money|keepTwoNum}} 元</span>
             </p>
           </div>

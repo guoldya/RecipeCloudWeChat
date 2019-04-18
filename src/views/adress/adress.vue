@@ -6,7 +6,7 @@
                 <li v-for="(item,index) in addressInfo" :key="index">
                     <div class="card">
                         <div class="cardText">
-                            <div @input="selectFun(item)">
+                            <div @click="selectFun(item)">
                                 <p class="order-number">
                                     <span>{{item.receiver}}</span>
                                     <span>{{item.mobile}}</span>
@@ -93,7 +93,7 @@ export default {
     methods: {
         selectFun(val) {
             this.$store.commit('selectAdressFun', val);
-            this.back.go(-1);
+            this.$router.go(-1);
         },
         onChange(data, index) {
             if (index == 1) {

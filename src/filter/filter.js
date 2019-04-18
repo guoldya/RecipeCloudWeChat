@@ -41,7 +41,24 @@ const payTypeFilter = function (value) {
         return "已失效"
     }
 };
-
+const recipeTypeFilter = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 0) {
+        return "新处方"
+    } else if (value == 1) {
+        return "已审核"
+    } else if (value == 2) {
+        return "已取药"
+    } else if (value == 3) {
+        return "已退药 "
+    } else if (value == 4) {
+        return "已失效"
+    } else if (value == 5) {
+        return "已下订单"
+    }
+};
 
 const payMethod = function (value) {
     if (value == undefined) {
@@ -198,7 +215,17 @@ const busistatus = function (value) {
         return "交易完成"
     }
 };
-
+const deliveryMode = function (value) {
+    if (value == undefined) {
+        return "未知"
+    }
+    if (value == 1){
+        return "配送"
+    } else if (value == 2) {
+        return "自取"
+    } 
+};
+ 
 const getAge = function (value) {
     if (value) return
     if (!value.split(" ")) return
@@ -261,4 +288,6 @@ export default {
     level,
     busistatus,
     cardType,
+    recipeTypeFilter,
+    deliveryMode,
 }

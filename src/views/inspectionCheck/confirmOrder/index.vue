@@ -2,7 +2,8 @@
    <div class="submitOrder">
       <Header post-title="提交订单"></Header>
       <div class="margin50">
-         <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0" v-if="titleIndex===1">
+         <!-- 用于测试的 记得加上 v-if="titleIndex===1"-->
+         <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0">
             <div class="submitUser">
                <!-- <div class="iconInfo">
                   <div class="iconImg">
@@ -22,9 +23,9 @@
                </div> -->
                <div class="iconInfo">
                   <div class="iconImg">
-                     <img style="width: 16px" v-if="_selectAdress" class="addPic" src="@/assets/images/icon_address1.png" alt="">
+                     <img style="width: 16px" v-if="_selectAdress.length!=0" class="addPic" src="@/assets/images/icon_address1.png" alt="">
                   </div>
-                  <div class="userInfo" v-if="_selectAdress && i==0" @click="acceptAdd">
+                  <div class="userInfo" v-if="_selectAdress.length!=0" @click="acceptAdd">
                      <div>
                         <span>{{_selectAdress.receiver}}</span>
                         <span>{{_selectAdress.mobile}}</span>
@@ -68,19 +69,19 @@
                <div v-for="(item,i) in medData" :key="i">
                   <div class="med">
                      <div class="addImg">
-                        <img class="medImg" :src=item.img alt="">
+                        <img class="medImg" src="@/assets/images/pic.png" alt="">
                      </div>
                      <div class="medRight">
                         <div class="medInfo">
                            <div>
-                              <span style="padding-right: 10px">{{item.medBrand}}</span>
+                              <span style="padding-right: 10px">{{item.name}}</span>
                               <span>{{item.medName}}</span>
                            </div>
-                           <span>x{{item.num}}</span>
+                           <span>x {{item.total}}</span>
                         </div>
                         <div class="listData">
-                           <span>{{item.weight}}</span>
-                           <span class="mu-secondary-text-color">￥{{item.price}}</span>
+                           <span>规格 {{item.spec}}{{item.doseUnit}}</span>
+                           <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}</span>
                         </div>
                      </div>
                   </div>
@@ -137,11 +138,12 @@
 <script type="text/babel">
 import { mapState } from 'vuex';
 let add_list_url = "/app/shippingAddress/addressList";
-let recipe_getDetails_url = "/app/recipe/getDetails";
+let apprecipegetDetails = "/app/recipe/getDetails";
+let recipeApplyRenewRecipe = "/app/bizRecipeApply/recipeApplyRenewRecipe"
 export default {
    data() {
       return {
-
+         totalNum: '',
          changeTitle: [
             { title: '配送到家', type: 1 },
             { title: '门店自提', type: 2 },
@@ -190,23 +192,36 @@ export default {
       // } else {
       //    this.acceptAddFun();
       // }
-      if (!this._selectAdress) {
-         this.detailInfo();
+      if (this._selectAdress.length == 0) {
+         this.acceptAddFun();
       }
+      this.detailInfo();
       document.title = '提交订单';
    },
    methods: {
+      onCashierSelect(item) {
+         console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
+      },
       detailInfo() {
-         this.detailInfoId = this.$route.query.id;
-         this.$axios.put(recipe_getDetails_url, { recipeId: this.detailInfoId }, {
-         }).then(res => {
+         this.$axios.put(apprecipegetDetails, {
+            recipeId: this.$route.query.recipeId * 1,
+            id: this.$route.query.id * 1,
+         }).then((res) => {
+            console.log(res)
             if (res.data.code == '200') {
-               console.log(res.data.data)
-               // this.loadingtrue = false;
-               // this.recipeData.push(res.data.data.recipe);
-               // this.detailData=res.data.data.details;
-               // console.log(this.recipeData);
-               // console.log(this.detailData);
+               this.medData = res.data.data.details;
+               var totalNum;
+               res.data.data.details.forEach((value, index) => {
+                  totalNum = value.money * value.total;
+                  console.log(totalNum, "总价");
+                 
+               }) 
+               totalNum += totalNum;
+               console.log(this.totalNum);
+
+
+            } else {
+               console.log(res.msg);
             }
          }).catch(function (err) {
             console.log(err);
@@ -218,7 +233,7 @@ export default {
             this.loadingtrue = false;
             if (res.data.code == '200') {
                this.addressInfo = res.data.rows;
-               this.$store.commit('selectAdressFun', this.addressInfo.filter(item => item.isDefault == 1));
+               this.$store.commit('selectAdressFun', this.addressInfo.filter(item => item.isDefault == 1)[0]);
             } else {
                console.log(res.msg);
             }
@@ -227,80 +242,48 @@ export default {
          });
       },
 
-      doPay() {
-         if (this.isCashierCaptcha) {
-            this.cashier.next('captcha', {
-               text: 'Verification code sent to 156 **** 8965',
-               brief: 'The latest verification code is still valid',
-               autoCountdown: false,
-               countNormalText: 'Send Verification code',
-               countActiveText: 'Retransmission after {$1}s',
-               onSend: countdown => {
-                  console.log('[Mand Mobile] Send Captcha');
-                  this.sendCaptcha().then(() => {
-                     countdown()
+
+      onCashierPay(item) {
+         let nowPayParams = {};
+         nowPayParams.id = this.$route.query.id;
+         nowPayParams.money = this.money;
+         nowPayParams.orderType = 4;
+         nowPayParams.payMode = Number(item.value);
+         nowPayParams.recipeId = this.$route.query.recipeId;
+         this.$axios.post(recipeApplyRenewRecipe, nowPayParams).then((res) => {
+            if (res.data.code == '200') {
+               this.createPay().then(() => {
+                  this.cashier.next('success', {
+                     buttonText: '好的',
+                     handler: () => {
+                        this.isCashierhow = false
+                        this.$router.go(-1);
+                     },
                   })
-               },
-               onSubmit: code => {
-                  console.log(`[Mand Mobile] Send Submit ${code}`);
-                  this.checkCaptcha(code).then(res => {
-                     if (res) {
-                        this.createPay().then(() => {
-                           this.cashier.next(this.cashierResult)
-                        })
-                     }
-                  })
-               },
-            })
-         } else {
-            this.createPay().then(() => {
-               this.cashier.next(this.cashierResult, {
-                  buttonText: '好的',
-                  handler: () => {
-                     this.isCashierhow = false;
-                     //this.$toast.info(`${this.cashierResult}点击`)
-                     let argu = {};
-                     this.$router.push({
-                        name: 'inspectSuccess',
-                        query: argu
-                     });
-                  },
                })
-            })
+               // this.payStatus = "1";
+
+            } else {
+               this.$toast.info(res.data.msg);
+               this.isCashierhow = false;
+            }
+         }).catch(function (err) {
+            console.log(err);
+         });
+      },
+      onCashierCancel() {
+         this.timer && clearTimeout(this.timer);
+         if (this.payStatus == "1") {
+            this.$router.go(-1);
          }
       },
       createPay() {
-         this.cashier.next('loading');
+         this.cashier.next('loading')
          return new Promise(resolve => {
             this.timer = setTimeout(() => {
                resolve()
             }, 3000)
          })
-      },
-      sendCaptcha() {
-         return new Promise(resolve => {
-            this.timer = setTimeout(() => {
-               resolve()
-            }, 200)
-         })
-      },
-      checkCaptcha(code) {
-         return new Promise(resolve => {
-            this.timer = setTimeout(() => {
-               resolve(!!code)
-            }, 200)
-         })
-      },
-      onCashierSelect(item) {
-         console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`);
-         this.$store.commit('payWayFun', item);
-      },
-      onCashierPay(item) {
-         console.log(`[Mand Mobile] Pay ${JSON.stringify(item)}`);
-         this.doPay()
-      },
-      onCashierCancel() {
-         this.timer && clearTimeout(this.timer)
       },
       acceptAdd() {
          let argu = { checked: this.addIndex };

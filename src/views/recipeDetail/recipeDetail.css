@@ -1,60 +1,93 @@
+.recipeDetail .listData {
+   font-size: 28px;
+}
 
-.recipeDetail .listData{
-    font-size: 28px;
+.recipeDetail .listBottom,
+.applyDetail .listBottom {
+   height: 110px;
+   display: flex;
+   justify-content: space-between;
 }
-.recipeDetail .listBottom,.applyDetail .listBottom{
-    height: 110px;
-    display: flex;
-    justify-content: space-between;
+
+.recipeDetail .listBottom :first-child,
+.applyDetail .listBottom span:first-child {
+   font-size: 28px;
+   width: 74%;
+   display: inline-block;
 }
-.recipeDetail .listBottom :first-child,.applyDetail .listBottom span:first-child{
-    font-size: 28px;
-    width: 74%;
-    display: inline-block;
+
+.recipeDetail .listBottom :last-child,
+.applyDetail .listBottom :last-child {
+   width: 26%;
+   text-align: right;
 }
-.recipeDetail .listBottom :last-child,.applyDetail .listBottom :last-child{
-    width: 26%;
-    text-align: right;
-}
+
 .recipeDetail .primary,
 .recipeDetail .default,
 .applyDetail .primary,
-.recipeRecord .primary{
-    background-color: var(--primary) !important;
-    color:#fff !important;
-    font-size: 28px;
+.recipeRecord .primary {
+   background-color: var(--primary) !important;
+   color: #fff !important;
+   font-size: 28px;
 }
+
 .recipeDetail .primary:after,
 .applyDetail .primary:after,
-.recipeRecord .primary:after{
-    border : 1px solid var(--primary) !important;
+.recipeRecord .primary:after {
+   border: 1px solid var(--primary) !important;
 }
-.recipeDetail .default{
-    background-color: #43484b !important;
+
+.recipeDetail .default {
+   background-color: #43484b !important;
 }
-.recipeDetail .default:after{
-    border : 1px solid #43484b !important;
+
+.recipeDetail .default:after {
+   border: 1px solid #43484b !important;
 }
-.recipeDetail .md-popup-title-bar .title-bar-title p.title{
-    font-size: 36px !important;
+
+.recipeDetail .md-popup-title-bar .title-bar-title p.title {
+   font-size: 36px !important;
 }
-.recipeDetail .md-cell-item-content{
-    font-size: 28px !important;
+
+.recipeDetail .md-cell-item-content {
+   font-size: 28px !important;
 }
+
 textarea[name="textareaWord"] {
-    border: none;
-    font-size: 28px;
-    outline: none;
-    font-family: "PingFang-SC-Medium";
-    color:  var(--primary--title);
-    padding: 6px 0;
+   border: none;
+   font-size: 28px;
+   outline: none;
+   font-family: "PingFang-SC-Medium";
+   color: var(--primary--title);
+   padding: 6px 0;
 }
-.inputWord{
-    display: inline-flex;
+
+.inputWord {
+   display: inline-flex;
 }
-.applyDetail .detail-content div,.recipeDetail .detail-content div{
-    line-height: 40px;
+
+.applyDetail .detail-content div,
+.recipeDetail .detail-content div {
+   line-height: 40px;
 }
-.applyDetail .flatCard,.recipeDetail .flatCard{
-    border-top: none;
+
+.applyDetail .flatCard,
+.recipeDetail .flatCard {
+   border-top: none;
+}
+
+.zhankai {
+   height: auto;
+}
+
+.shouqi {
+   height: 110px;
+   overflow: hidden;
+   background-color: #fff;
+}
+
+.shouqirecipeDetail {
+   height: 330px;
+   overflow: hidden;
+   background-color: #fff;
 }

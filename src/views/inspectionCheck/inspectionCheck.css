@@ -1,82 +1,92 @@
  /*.appTabAcitive {*/
-   /*color: var(--primary);*/
-   /*border-bottom: 4px solid var(--primary);*/
-/*} */
+ /*color: var(--primary);*/
+ /*border-bottom: 4px solid var(--primary);*/
+ /*} */
 
-.margin16 {
-   margin: 0 0 32px 0;
-}
+ .margin16 {
+    margin: 0 0 32px 0;
+ }
 
-.pageContent {
-   display: flex;
-   justify-content: space-evenly;
-   padding: 16px 50px;
-   font-size: 14px;
-}
+ .pageContent {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 16px 50px;
+    font-size: 14px;
+ }
 
-.pageContent span {
-   padding: 0 4px 4px;
-   font-size: 28px;
-}
-.pageContent .card {
-   box-shadow: 0 0 17px rgba(20,19,51,.1);
-   background-color: #fff;
-   border-radius: 5px;
-   padding: 6px 30px;
-}
+ .pageContent span {
+    padding: 0 4px 4px;
+    font-size: 28px;
+ }
 
-.cardHEADER {
-   padding:24px;
-   font-size: 28px;
-   color:  var(--primary--title);
-}
+ .pageContent .card {
+    box-shadow: 0 0 17px rgba(20, 19, 51, .1);
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 6px 30px;
+ }
 
-.cardHEADER span {
-   font-size: 30px;
-}
+ .cardHEADER {
+    padding: 24px;
+    font-size: 28px;
+    color: var(--primary--title);
+ }
 
-.md-field {
-   padding: 0;
-}
+ .cardHEADER span {
+    font-size: 30px;
+ }
 
-.mu-secondary-text-color {
-   color: var(--primary) !important;
-}
+ .md-field {
+    padding: 0;
+ }
 
-.inspectionCheck .footer {
-   font-size: 28px;
-   border-top: 1px solid  var(--primary--line);
-   padding: 20px 0px;
-}
+ .mu-secondary-text-color {
+    color: var(--primary) !important;
+ }
 
-.inspectionCheck .cardText p {
-   line-height: 30px;
-   letter-spacing: 1px;
-   text-align: center;
-}
-.cardHEADER {
+ .inspectionCheck .footer {
+    font-size: 28px;
+    border-top: 1px solid var(--primary--line);
+    padding: 20px 0px;
+ }
+
+ .inspectionCheck .cardText p {
+    line-height: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+ }
+
+ .cardHEADER {
     padding: 8px 25px;
     font-size: 14px;
-    color:  var(--primary--title);
-}
-.md-field{
+    color: var(--primary--title);
+ }
+
+ .md-field {
     padding: 0px !important;
-}
-.inspectionCheck .md-field-item-control{
+ }
+
+ .inspectionCheck .md-field-item-control {
     font-size: 28px !important;
-}
-.inspectionCheck .md-popup-title-bar .title-bar-title p.title{
+ }
+
+ .inspectionCheck .md-popup-title-bar .title-bar-title p.title {
     font-size: 31px !important;
-}
-.inspectionCheck .md-cell-item-content{
+ }
+
+ .inspectionCheck .md-cell-item-content {
     font-size: 28px !important;
-}
-.inspectionCheck .md-button.block{
+ }
+
+ .inspectionCheck .md-button.block {
     height: 80px;
     width: 100%;
     margin: 0;
-}
-.inspectionCheck .first,.submitOrder .first,.acceptAdd .first{
+ }
+
+ .inspectionCheck .first,
+ .submitOrder .first,
+ .acceptAdd .first {
     border: 2px solid var(--primary);
     border-radius: 10px;
     color: var(--primary);
@@ -84,55 +94,113 @@
     height: 52px;
     line-height: 52px;
     font-size: 22px;
-}
-.headCard{
-    display:flex;
-    justify-content: flex-end;
-    line-height: 46px;
-   /*padding: 8px 25px;*/
-   /*font-size: 14px;*/
-   /*color:  var(--primary--title);*/
-}
-
-.md-field {
-   padding: 0px !important;
-}
-
-.inspectionCheck .md-field-item-control {
-   font-size: 28px !important;
-}
-
-.downImg img {
-   width: 26px !important;
-   height: 14px !important;
-   margin-left: 10px;
-}
-.inspectionCheck .primary,
-.inspectionCheck .default {
-   background-color: var(--primary) !important;
-   color: #fff !important;
-   font-size: 28px;
-}
-
-.inspectionCheck .primary:after {
-   border: 1px solid var(--primary) !important;
-}
-
-.inspectionCheck .default {
-   background-color: #43484b !important;
-}
-
-.inspectionCheck .default:after {
-   border: 1px solid #43484b !important;
-}
-
-.md-cell-item-content {
-   font-size: 28px !important;
-}
- .inspectionCheck .parElem:first-child span:last-child {
-     color: var(--primary);
  }
 
- .inspectionCheck .insCheck-cotent div{
-     line-height: 40px;
+ .headCard {
+    display: flex;
+    justify-content: flex-end;
+    line-height: 46px;
+    /*padding: 8px 25px;*/
+    /*font-size: 14px;*/
+    /*color:  var(--primary--title);*/
+ }
+
+ .md-field {
+    padding: 0px !important;
+ }
+
+ .inspectionCheck .md-field-item-control {
+    font-size: 28px !important;
+ }
+
+ .downImg img {
+    width: 26px !important;
+    height: 14px !important;
+    margin-left: 10px;
+ }
+
+ .inspectionCheck .primary,
+ .inspectionCheck .default {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+    font-size: 28px;
+ }
+
+ .inspectionCheck .primary:after {
+    border: 1px solid var(--primary) !important;
+ }
+
+ .inspectionCheck .default {
+    background-color: #979797 !important;
+ }
+
+ .inspectionCheck .default:after {
+    border: 1px solid #979797 !important;
+ }
+
+ .md-cell-item-content {
+    font-size: 28px !important;
+ }
+
+ .inspectionCheck .parElem:first-child span:last-child {
+    color: var(--primary);
+ }
+
+ .inspectionCheck .insCheck-cotent div {
+    line-height: 40px;
+ }
+
+
+
+
+
+ .hog-chart-tab li {
+    font-size: 24px;
+    color: #1da1f3;
+    display: inline-block;
+    height: 52px;
+    line-height: 52px;
+    width: 130px;
+    position: relative;
+    box-sizing: border-box;
+    border: 2px solid #1da1f3;
+    text-align: center;
+ }
+
+ .hog-chart-tab li:first-child {
+    border-radius: 8px 0 0 8px;
+    border-right: none;
+ }
+
+ .hog-chart-tab li:last-child {
+    border-radius: 0 8px 8px 0;
+    border-left: none;
+ }
+
+ .hog-chart-tab li.chart-button {
+    color: #ffffff;
+    background: rgb(68, 180, 251)
+ }
+
+ .rightflatCard {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 25px;
+ }
+
+ .rightflatCardBtn {
+    display: flex;
+    justify-content: flex-end;
+    line-height: 0.46rem;
+ }
+
+ .sonElem .firstdoct {
+    border: 2px solid #1da1f3;
+    border-radius: 8px;
+    color: #1da1f3;
+    color: var(--primary);
+    padding: 0 6px 3px;
+    height: 40px;
+    font-size: 24px;
+    margin-left: 10px;
  }

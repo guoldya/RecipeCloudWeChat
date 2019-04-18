@@ -14,7 +14,7 @@
           <md-detail-item title="入院日期">
             <span>{{item.inTime|lasttime}}</span>
           </md-detail-item>
-          <md-detail-item title="预缴金额">
+          <md-detail-item title="预交金额">
             <span>￥{{item.money}}</span>
           </md-detail-item>
         </md-field>

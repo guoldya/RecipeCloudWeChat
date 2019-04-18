@@ -1,7 +1,7 @@
 <template>
   <div class="feerecord">
 
-    <Navigation type="title" title="预缴款缴纳-记录">
+    <Navigation type="title" title="预交款缴纳-记录">
     </Navigation>
     <div class="margin50">
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">

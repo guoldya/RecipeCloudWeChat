@@ -18,7 +18,7 @@ import news from '@/views/home/news'
 import propaganda from '@/views/home/propaganda'
 import propagandainfo from '@/views/home/propagandainfo'
 
- 
+
 import newsinfo from '@/views/home/newsinfo'
 import choose from '@/views/inspectionCheck/choose'
 import confirmOrder from '@/views/inspectionCheck/confirmOrder'
@@ -121,6 +121,7 @@ import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
 import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
 import admission from '@/views/inhospital/admission/admission.vue'
 import dayof from '@/views/inhospital/dayof/dayof.vue'
+import paysucced from '@/views/inhospital/paysucced'
 
 
 
@@ -191,7 +192,7 @@ export default new Router({
     name: 'register',
     component: register
   },
-   
+
   {
     path: '/propagandainfo',
     name: 'propagandainfo',
@@ -325,6 +326,15 @@ export default new Router({
       title: '一日清单'
     }
   },
+  {
+    path: '/paysucced',
+    name: 'paysucced',
+    component: paysucced,
+    meta: {
+      title: '支付成功'
+    }
+  },
+   
   {
     path: '/resultdocotor',
     name: 'resultdocotor',

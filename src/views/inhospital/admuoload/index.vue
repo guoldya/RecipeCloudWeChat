@@ -4,7 +4,8 @@
     <div class="flatCard margin5 outCarint">
       <!-- 申请人 -->
       <div>
-        <p style="color:#000;padding-top: 16px">拍摄/上传您的二代身份证
+        <p style="color:#000;padding-top: 16px">
+          拍摄/上传您的二代身份证
           <span v-show="$route.query.type==1">和医保卡</span>
         </p>
         <div class="pg_positive">
@@ -50,8 +51,8 @@ let uploadImgimage = "/appLogin/uploadImage";
 let addOrUpdate = "/app/bizIhRecord/uploadIdCard";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
-import pg_handheld from '@/assets/images/icon_handheld.png'
-import pg_health from '@/assets/images/pg_positive.png'
+import pg_handheld from '@/assets/images/sb_positive.png'
+import pg_health from '@/assets/images/sb_negative.png'
 export default {
   data() {
     return {
@@ -195,12 +196,10 @@ export default {
     uploadIdCard(data) {
       var param = {};
       param.idCardImg = data;
-      param.id = 1;
+      param.id = this.$route.query.id;
       this.$axios.post(addOrUpdate, param)
         .then(res => {
           if (res.data.code == '200') {
-
-
             this.$toast.hide();
             this.$router.push({
               name: 'admupayfee',

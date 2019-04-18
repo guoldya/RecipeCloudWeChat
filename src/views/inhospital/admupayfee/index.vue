@@ -1,7 +1,7 @@
 <template>
   <div class="registrecorddetail">
 
-    <Navigation type="title" title="预缴款缴纳">
+    <Navigation type="title" title="预交款缴纳">
     </Navigation>
     <div class="margin55">
       <div class="flatCard outCarint ">
@@ -70,8 +70,6 @@ export default {
   },
   watch: {
     textMoney: function (newstextMoney, oldtextMoney) {
-      console.log(oldtextMoney);
-      console.log(newstextMoney);
       if (newstextMoney) {
         this.defaultMoney = newstextMoney;
       }
@@ -125,7 +123,11 @@ export default {
               buttonText: '好的',
               handler: () => {
                 this.isCashierhow = false
-                this.$router.go(-3);
+                // this.$router.go(-3);
+                this.$router.push({
+                  name: 'paysucced',
+                  query: { nowPayParams: nowPayParams }
+                });
               },
             })
           })

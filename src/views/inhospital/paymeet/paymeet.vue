@@ -1,21 +1,22 @@
 <template>
   <div class="registrecorddetail">
     <Navigation type="title" title="缴纳款缴纳">
-      <span v-show="!$route.query.isMyhospital" class="mu-secondary-text-color" @click="tijiao">预缴款记录</span>
+      <span v-show="!$route.query.isMyhospital" class="mu-secondary-text-color" @click="tijiao">预交款记录</span>
     </Navigation>
     <div class="margin55">
       <div class="flatCard outCarint " v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
         <md-field>
           <md-detail-item title="患者姓名" :content=item.name></md-detail-item>
           <md-detail-item title="住院号">
-            <span>{{item.sex|examSex}}</span>
+            <span>{{item.ihNo}}</span>
           </md-detail-item>
           <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
+          <md-detail-item title="床号" :content=item.bedNo></md-detail-item>
           <md-detail-item title="主治医师" :content=item.doctor></md-detail-item>
           <md-detail-item title="本次预交款">
             <span class="mu-secondary-text-color">￥{{defaultMoney|keepTwoNum}}元</span>
           </md-detail-item>
-          <md-detail-item title="预缴款金额">
+          <md-detail-item title="预交款金额">
             <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
           </md-detail-item>
         </md-field>

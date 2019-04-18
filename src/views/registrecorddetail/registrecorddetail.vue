@@ -142,18 +142,13 @@ export default {
                         if (res.data.code == '200') {
                             this.$toast.info("取消成功");
                             setTimeout(() => {
-                                this.$router.push({
-                                    name: 'registrecord',
-                                    query: {}
-                                });
+                                this.$router.go(-1);
                             }, 3000)
+
                         } else if (res.data.code == '500') {
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
-                                this.$router.push({
-                                    name: 'registrecord',
-                                    query: {}
-                                });
+                                this.$router.go(-1);
                             }, 3000)
                         }
                     }).catch(function (err) {
@@ -249,18 +244,13 @@ export default {
                         if (res.data.code == '200') {
                             this.$toast.info("退号成功");
                             setTimeout(() => {
-                                this.$router.push({
-                                    name: 'registrecord',
-                                    query: {}
-                                });
+                                this.$router.go(-1);
                             }, 1500)
                         } else if (res.data.code == '500') {
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
-                                this.$router.push({
-                                    name: 'registrecord',
-                                    query: {}
-                                });
+                                this.$router.go(-1);
+
                             }, 1500)
                         }
                     }).catch(function (err) {
