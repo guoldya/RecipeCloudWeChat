@@ -88,9 +88,9 @@
                   <p class="partLine"></p>
                </div>
                <div class="smallTotal">
-                  <span>共{{medData.length}}件药品</span>
+                  <span>共{{tolal}}件药品</span>
                   <span>小计：</span>
-                  <span class="mu-secondary-text-color">￥198.00</span>
+                  <span class="mu-secondary-text-color">￥{{totalNum|keepTwoNum}}</span>
                </div>
             </div>
          </div>
@@ -102,7 +102,7 @@
                </div>
                <p class="partLine"></p>
             </div>
-            <div v-for="(item,i) in priceData" class="onlinePay" :key="i">
+            <!-- <div v-for="(item,i) in priceData" class="onlinePay" :key="i">
                <div v-if="titleIndex==1">
                   <span>{{item.pei}}</span>
                   <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
@@ -113,7 +113,22 @@
                   <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
                </div>
                <p class="partLine" v-if="i!=priceData.length-1 && i!==0 &&titleIndex==2"></p>
+            </div> -->
+            <div class="onlinePay">
+               <div>
+                  <span>配送费</span>
+                  <span class="mu-secondary-text-color">￥ 0</span>
+               </div>
+               <div>
+                  <span>药品总金额</span>
+                  <span class="mu-secondary-text-color">￥{{totalNum|keepTwoNum}}</span>
+               </div>
+               <!-- <div >
+                  <span>医保可支付</span>
+                  <span class="mu-secondary-text-color">￥{{item.peiPri}}</span>
+               </div> -->
             </div>
+
          </div>
          <!--<div class="bButton addbTN">-->
          <!--<div class="grayButton">-->
@@ -127,7 +142,7 @@
          <div class="addbTN" style="padding: 0 15px;background-color: #fff">
             <span>
                <span>应付金额 </span>
-               <span class="payMoney mu-secondary-text-color">￥198.00</span>
+               <span class="payMoney mu-secondary-text-color">￥{{totalNum|keepTwoNum}}</span>
             </span>
             <span class="orderSubmit" @click="isCashierhow = !isCashierhow">{{ isCashierhow ? '' : '提交订单' }}</span>
          </div>
@@ -144,6 +159,7 @@ export default {
    data() {
       return {
          totalNum: '',
+         tolal: '',
          changeTitle: [
             { title: '配送到家', type: 1 },
             { title: '门店自提', type: 2 },
@@ -210,16 +226,19 @@ export default {
             console.log(res)
             if (res.data.code == '200') {
                this.medData = res.data.data.details;
-               var totalNum;
-               res.data.data.details.forEach((value, index) => {
-                  totalNum = value.money * value.total;
-                  console.log(totalNum, "总价");
-                 
-               }) 
-               totalNum += totalNum;
-               console.log(this.totalNum);
 
+               // res.data.data.details.forEach((value, index) => {
+               //    totalNum = value.money * value.total;
+               //    totalNum += totalNum;
+               // })
 
+               for (let i = 0; i < res.data.data.details.length - 1; i++) {
+                  this.totalNum = res.data.data.details[i].money * res.data.data.details[i].total;
+                  this.totalNum += this.totalNum;
+                  this.tolal = res.data.data.details[i].total;
+                  this.tolal += this.tolal
+               }
+               console.log(this.totalNum, "总价");
             } else {
                console.log(res.msg);
             }
@@ -257,7 +276,7 @@ export default {
                      buttonText: '好的',
                      handler: () => {
                         this.isCashierhow = false
-                        this.$router.go(-1);
+                        this.$router.go(-3);
                      },
                   })
                })

@@ -87,19 +87,23 @@
                     </div>
 
                 </div>
-                <div class="flatCard outCarint margin16" :class="{'zhankai':iszhankai,'shouqi':!iszhankai,} ">
-                    <div v-for="(item,index) in listBottom" :key="index">
-                        <div class="listData parElem">
-                            <span class="sonElem">药师备注</span>
-                            <span>{{item.remark}}</span>
-                        </div>
-                        <div class="listBottom mu-light-text-color">
-                            <span>{{item.name}}[{{item.spec}}],{{item.usage}},[{{item.freq}}]每次{{item.eachDose}}{{item.doseUnit}}</span>
-                            <span>{{item.total}} 盒</span>
+                <div class="flatCard outCarint margin16">
+                    <div :class="{'zhankai':iszhankai,'shouqi':!iszhankai,} ">
+                        <div v-for="(item,index) in listBottom" :key="index">
+                            <div class="listData parElem">
+                                <span class="sonElem">药师备注</span>
+                                <span>{{item.remark}}</span>
+                            </div>
+                            <div class="listBottom mu-light-text-color">
+                                <span>{{item.name}}[{{item.spec}}],{{item.usage}},[{{item.freq}}]每次{{item.eachDose}}{{item.doseUnit}}</span>
+                                <span>{{item.total}} 盒</span>
+                            </div>
                         </div>
                     </div>
+
+                    <p @click="iszhankai=!iszhankai" style="text-align: right;">展开</p>
                 </div>
-                <p @click="iszhankai=!iszhankai" style="text-align: right;">展开</p>
+
                 <div class="flatCard outCarint margin5" v-show="isContinue">
                     <div class="listData">
                         <span>支付状态</span>
@@ -121,8 +125,11 @@
 
                 </div>
             </div>
+
+            <p class="mu-secondary-text-color" style="    text-align: center;" @click="isContinue=!isContinue">查看缴费详情</p>
+
             <div style="height: 50px"></div>
-            <p class="mu-secondary-text-color" @click="isContinue=!isContinue">查看缴费详情</p>
+
         </div>
     </div>
 </template>
