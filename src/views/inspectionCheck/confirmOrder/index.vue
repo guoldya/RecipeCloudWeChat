@@ -3,29 +3,13 @@
       <Header post-title="提交订单"></Header>
       <div class="margin50">
 
-         <div class="flatCard outCarint " v-if="deliveryMode===1" style="border-top: 1px solid #ededed;margin-top: 0">
-            <div class="submitUser">
-               <!-- <div class="iconInfo">
+         <div class="flatCard outCarint " v-if="deliveryMode==1" style="border-top: 1px solid #ededed;margin-top: 0">
+            <div class="submitUser" v-show="_selectAdress.receiver">
+               <div class="iconInfo" @click="acceptAdd">
                   <div class="iconImg">
-                     <img style="width: 16px" v-if="addressInfo.length!=0" class="addPic" src="@/assets/images/icon_address1.png" alt="">
+                     <img style="width: 16px" class="addPic" src="@/assets/images/icon_address1.png" alt="">
                   </div>
-                  <div class="userInfo" v-for="(item,i) in addressInfo" :key="i" v-if="addressInfo.length!=0 && i==0" @click="acceptAdd">
-                     <div>
-                        <span>{{item.receiver}}</span>
-                        <span>{{item.mobile}}</span>
-                        <span class="first" v-if="item.isDefault==1">默认</span>
-                     </div>
-                     <div>{{item.address}}</div>
-                  </div>
-                  <div @click="toAddress" v-if="addressInfo.length==0" class="addAddr">
-                     添加收货地址
-                  </div>
-               </div> -->
-               <div class="iconInfo">
-                  <div class="iconImg">
-                     <img style="width: 16px" v-if="_selectAdress.length!=0" class="addPic" src="@/assets/images/icon_address1.png" alt="">
-                  </div>
-                  <div class="userInfo" v-if="_selectAdress.length!=0" @click="acceptAdd">
+                  <div class="userInfo">
                      <div>
                         <span>{{_selectAdress.receiver}}</span>
                         <span>{{_selectAdress.mobile}}</span>
@@ -33,17 +17,26 @@
                      </div>
                      <div>{{_selectAdress.address}}</div>
                   </div>
-                  <div @click="toAddress" v-if="_selectAdress.length==0" class="addAddr">
+               </div>
+               <div class="addImg nextImg">
+                  <img style="width: 8px" src="@/assets/images/icon_more2@2x.png" alt="">
+               </div>
+            </div>
+            <div class="submitUser" v-show="!_selectAdress.receiver">
+               <div class="iconInfo">
+                  <div class="iconImg">
+                     <img style="width: 16px;margin-right:10px" class="addPic" src="@/assets/images/addd.png" alt="">
+                  </div>
+                  <div @click="toAddress" class="addAddr">
                      添加收货地址
                   </div>
                </div>
-
                <div class="addImg nextImg">
                   <img style="width: 8px" src="@/assets/images/icon_more2@2x.png" alt="">
                </div>
             </div>
          </div>
-         <div class="flatCard outCarint" style="border-top: 1px solid #ededed;margin-top: 0" v-if="deliveryMode===2">
+         <div class="flatCard outCarint" style="border-top: 1px solid #ededed;margin-top: 0" v-if="deliveryMode==2">
             <div class="submitUser">
                <div class="iconInfo">
                   <div class="iconImg">
@@ -88,7 +81,7 @@
                   <p class="partLine"></p>
                </div>
                <div class="smallTotal">
-                  <span>共{{tolal}}件药品</span>
+                  <span>共 {{tolal}} 件药品</span>
                   <span>小计：</span>
                   <span class="mu-secondary-text-color">￥{{totalNum|keepTwoNum}}</span>
                </div>
@@ -154,7 +147,9 @@
 import { mapState } from 'vuex';
 let add_list_url = "/app/shippingAddress/addressList";
 let apprecipegetDetails = "/app/recipe/getDetails";
-let recipeApplyRenewRecipe = "/app/bizRecipeApply/recipeApplyRenewRecipe"
+let recipeApplyRenewRecipe = "/app/bizRecipeApply/recipeApplyRenewRecipe";
+// 药店地址
+let appbdOrgDrugstoregetStoreAddress = "/app/bdOrg/getStoreAddress"
 export default {
    data() {
       return {
@@ -193,22 +188,38 @@ export default {
          ],
          addIndex: "0",
          addressInfo: [],
+         drugInfo: [],
          storeAdd: [{ add: "重庆市渝北88号（和平大药房）", tel: "023-52242565" }]
       };
    },
-   created() {
+   computed: {
+      cashier() {
+         return this.$refs.cashier
+      },
+
+      ...mapState({
+         _selectAdress: state => state.selectAdress,
+      }),
 
    },
 
    mounted() {
-      // if (this.$route.query.receiver) {
-      //    this.addIndex = this.$route.query.params;
-      //    this.addressInfo.splice(0, 1);
-      //    this.addressInfo.push(this.$route.query);
-      // } else {
-      //    this.acceptAddFun();
-      // }
-      if (this._selectAdress.length == 0) {
+      if (this.deliveryMode == 2) {
+         this.$axios.put(appbdOrgDrugstoregetStoreAddress, {
+            id: this.$route.query.orgId * 1,
+         }).then((res) => {
+            console.log(res)
+            if (res.data.code == '200') {
+               this.drugInfo = res.data.data
+            } else {
+               console.log(res.msg);
+            }
+         }).catch(function (err) {
+            console.log(err);
+         });
+      }
+
+      if (!this._selectAdress.receiver) {
          this.acceptAddFun();
       }
       this.detailInfo();
@@ -216,7 +227,7 @@ export default {
    },
    methods: {
 
-    
+
       onCashierSelect(item) {
          console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
       },
@@ -254,6 +265,7 @@ export default {
             this.loadingtrue = false;
             if (res.data.code == '200') {
                this.addressInfo = res.data.rows;
+               console.log(this.addressInfo.filter(item => item.isDefault == 1)[0].length, "sssssssss")
                this.$store.commit('selectAdressFun', this.addressInfo.filter(item => item.isDefault == 1)[0]);
             } else {
                console.log(res.msg);
@@ -331,16 +343,7 @@ export default {
          });
       }
    },
-   computed: {
-      cashier() {
-         return this.$refs.cashier
-      },
 
-      ...mapState({
-         _selectAdress: state => state.selectAdress,
-      }),
-
-   },
 
 };
 </script>

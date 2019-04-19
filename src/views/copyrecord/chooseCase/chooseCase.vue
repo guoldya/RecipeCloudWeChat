@@ -1,11 +1,14 @@
 <template>
   <div class="chooseCase">
-    <Header post-title="选择复印病案"></Header>
+    <Header post-title=" "></Header>
+    <Navigation type="title" title="选择复印病案">
+      <span class="mu-secondary-text-color" @click="getJumpId">确定</span>
+    </Navigation>
     <div class="margin55" style="margin-bottom:70px">
       <div class="tabAdiv flatCard" v-for="(item,i) in copyResultData" v-if="copyResultData.length!=0" v-show="!loadingtrue" :key="i">
         <div class="listData mu-secondary-text-color">
           <!-- <md-radio :name="i" v-model="checked" /> -->
-          <label class="md-radio" :class="{'is-checked':checked==item.ihRecordId}" @click="checkedFun(item,i)">
+          <label class="md-radio" :class="{'is-checked':checked==item.id}" @click="checkedFun(item,i)">
             <div class="md-radio-icon">
               <i class="md-icon icon-font md-icon-checked checked md"></i>
             </div>
@@ -19,12 +22,12 @@
         </div>
         <div class="chooseCaseTime">
           <span>第
-            <span class="number">{{item.renewalMum}}</span>次 </span>
+            <span class="number">{{item.recordNum}}</span>次 </span>
           <!--第-->
           <!--<div class="number">1</div>-->
           <!--次-->
         </div>
-        <p class="addbTN" @click="getJumpId()">确定</p>
+        <!-- <p class="addbTN" @click="getJumpId()">确定</p> -->
       </div>
       <div v-show="!loadingtrue" class="aligncenter nullDiv" v-else>
         <img src="@/assets/images/null1.png">
@@ -40,8 +43,7 @@
   </div>
 </template>
 <script type="text/babel"> 
-let copyApply_page_url = "/app/bizRecipeApply/read/page";
-
+let copyApply_page_url = "/app/bizCopyApply/read/page";
 export default {
   data() {
     return {
@@ -53,9 +55,6 @@ export default {
       page: 1,
       pageSize: 10,
       copyResultData: [],
-
-
-
     };
   },
 
@@ -68,7 +67,7 @@ export default {
   mounted() {
     this.addadress();
     this.$axios.put(copyApply_page_url, {}).then(res => {
-      this.checked = res.data.rows[0].ihRecordId;
+      this.checked = res.data.rows[0].id;
       this.$store.commit('chooseInfoFun', res.data.rows[0]);
     })
   },
@@ -117,7 +116,7 @@ export default {
     },
     checkedFun: function (val, i) {
       this.$store.commit('chooseInfoFun', val);
-      this.checked = val.ihRecordId
+      this.checked = val.id
     },
 
     getJumpId(val) {

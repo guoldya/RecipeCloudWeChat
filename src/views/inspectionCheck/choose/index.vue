@@ -9,7 +9,7 @@
 
    </div>
 </template>
-
+ 
 <script>
 export default {
    data() {
@@ -17,12 +17,16 @@ export default {
 
       };
    },
+   mounted() {
+      this.$store.commit('selectAdressFun', '');
+   },
    methods: {
       askself() {
          let argu = {};
          this.$router.push({
             name: 'confirmOrder',
-            query: { recipeId: this.$route.query.recipeId, id: this.$route.query.id, deliveryMode: 2, orderId: this.$route.query.orderId }
+            query: { recipeId: this.$route.query.recipeId, id: this.$route.query.id, deliveryMode: 2, 
+            orderId: this.$route.query.orderId,orgId:this.$route.query.orgId, }
          });
       },
 
@@ -30,7 +34,7 @@ export default {
          let argu = {};
          this.$router.push({
             name: 'confirmOrder',
-            query: {recipeId: this.$route.query.recipeId, id: this.$route.query.id, deliveryMode: 1, orderId: this.$route.query.recipeId }
+            query: { recipeId: this.$route.query.recipeId, id: this.$route.query.id, deliveryMode: 1, orderId: this.$route.query.recipeId }
          });
       },
 

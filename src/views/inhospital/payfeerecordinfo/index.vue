@@ -4,6 +4,10 @@
     <div class="margin55">
       <div class="flatCard outCarint " v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
         <md-field>
+          <div class="appTitle" style="padding: 0.24rem 0;">
+            <span>患者信息</span>
+            <!-- <span v-show="item.status==2" class="mu-secondary-text-color">预交款缴纳成功</span> -->
+          </div>
           <md-detail-item title="患者姓名" :content=item.name></md-detail-item>
           <md-detail-item title="住院号" :content=item.ihNo>
             <span>{{item.ihNo}} 号</span>
@@ -20,22 +24,27 @@
       </div>
       <Loading v-show="loadingtrue"></Loading>
       <div class="flatCard">
-        <div class="warnText" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
-          <p>支付信息</p>
+        <div class="warnText" style="padding:0 0.24rem;" v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
           <md-field>
+            <div class="appTitle" style="padding: 0.24rem 0;">
+              <span style="color:#272727">支付信息</span>
+            </div>
+            <img v-show="item.status==2" src="@/assets/images/icon_pay1.png" alt="" class="icon_pay1">
+            <img v-show="item.status==3" src="@/assets/images/icon_closed.png" alt="" class="icon_pay1">
+            <img v-show="item.status==1" src="@/assets/images/icon_tobepaid.png" alt="" class="icon_pay1">
+            <md-detail-item title="支付状态">
+              <span>{{item.status|payStatus}} </span>
+            </md-detail-item>
             <md-detail-item title="支付时间">
               <span>{{item.payTime|lasttime}}</span>
             </md-detail-item>
             <md-detail-item title="支付单号" :content=item.name></md-detail-item>
             <md-detail-item title="支付金额">
 
-              <span class="mu-secondary-text-color">{{item.money|keepTwoNum}}元</span>
+              <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
             </md-detail-item>
             <md-detail-item title="支付方式">
               <span>{{item.payMode|payMethod}} </span>
-            </md-detail-item>
-            <md-detail-item title="支付状态">
-              <span>{{item.status|payStatus}} </span>
             </md-detail-item>
 
           </md-field>
@@ -155,5 +164,11 @@ export default {
 }
 .registrecorddetail .md-button.block {
   margin: 0;
+}
+.icon_pay1 {
+  position: absolute;
+  width: 90px;
+  right: 24px;
+  top: 5px;
 }
 </style>

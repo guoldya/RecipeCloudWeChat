@@ -63,7 +63,7 @@
                     <div class="cardText ">
                         <div class="inputWord">
                             <span style="width: 28%">续方事由</span>
-                            <textarea v-model="applyCause  " name="textareaWord" maxlength="36" class="textareaWord" id="" cols="40" rows="2" placeholder="选填（录入与续方申请相关的申请原因、现状情况，便于医生判断，限制在36个字符）"></textarea>
+                            <textarea v-model="applyCause" name="textareaWord" maxlength="36" class="textareaWord" id="" cols="40" rows="2" placeholder="选填（录入与续方申请相关的申请原因、现状情况，便于医生判断，限制在36个字符）"></textarea>
                         </div>
                     </div>
                 </div>
@@ -92,6 +92,7 @@ export default {
                 { name: "培哚普利（100mg*7）, 口服（每日三次）每次100mg", num: "115" },
                 { name: "培哚普利（100mg*7）, 口服（每日三次）每次100mg", num: "115" },
             ],
+            orgId: '',
             isContinue: true,
         };
     },
@@ -118,6 +119,7 @@ export default {
                     console.log(res.data.data, " res.data.data")
                     this.recipeData = res.data.data.recipe;
                     this.listBottom = res.data.data.details;
+                    this.orgId = res.data.data.recipe.orgId;
                 } else {
                     console.log(res.msg);
                 }
@@ -134,7 +136,7 @@ export default {
                 if (res.data.code == '200') {
                     this.$router.push({
                         name: 'choose',
-                        query: { recipeId: this.$route.query.id * 1, orderId: res.data.data.orderId, id: res.data.data.id }
+                        query: { recipeId: this.$route.query.id * 1, orderId: res.data.data.orderId, id: res.data.data.id, orgId: this.orgId }
                     });
                 } else {
                     console.log(res.msg);
