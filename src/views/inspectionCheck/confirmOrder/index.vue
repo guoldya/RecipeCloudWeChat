@@ -272,7 +272,8 @@ export default {
          nowPayParams.deliveryMode = this.$route.query.deliveryMode;
 
          //   地址id
-         nowPayParams.adress = this._selectAdress.id;
+         nowPayParams.adress = this._selectAdress.address;
+         nowPayParams.receiver = this._selectAdress.receiver;
          this.$axios.post(recipeApplyRenewRecipe, nowPayParams).then((res) => {
             if (res.data.code == '200') {
                this.createPay().then(() => {
