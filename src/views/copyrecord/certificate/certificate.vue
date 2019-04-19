@@ -105,8 +105,12 @@
     <p @click="cardconfirm" class="addbTN">下一步</p>
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择方式" @choose="onSelectorChoose"></md-selector>
     <md-landscape v-model="showPic" :mask-closable="true">
-      <img src="@/assets/images/u152.png" alt="">
+      <div class="codema">
+        <img src="@/assets/images/u152.png" alt="">
+        <p class="namecodema">委托书样例</p>
+      </div>
     </md-landscape>
+    
   </div>
 </template>
 <script type="text/babel">
