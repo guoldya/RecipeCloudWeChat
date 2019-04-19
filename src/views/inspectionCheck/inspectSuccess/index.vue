@@ -47,6 +47,7 @@
   </div>
 </template>
 <script type="text/babel">
+import { mapState , mapActions} from 'vuex';
 export default {
   data() {
     return {
@@ -92,6 +93,9 @@ export default {
       this.chat.websocket.send(JSON.stringify(msg));
      
     },
+
+
+    
   },
 
 
