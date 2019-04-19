@@ -42,14 +42,14 @@
                   <div class="iconImg">
                      <img class="addPic" src="@/assets/images/icon_address1.png" alt="">
                   </div>
-                  <div class="storeInfo" v-for="(item,i) in storeAdd" :key="i">
+                  <div class="storeInfo">
                      <div>
                         <span>药店地址：</span>
-                        <span>{{item.add}}</span>
+                        <span>{{drugInfo.address}}</span>
                      </div>
                      <div>
                         <span>电话：</span>
-                        <span>{{item.tel}}</span>
+                        <span>{{drugInfo.tel}}</span>
                      </div>
                   </div>
                </div>
@@ -57,7 +57,7 @@
          </div>
          <div class="flatCard outCarint margin5">
             <div>
-               <span class="storeName">和平大药房</span>
+               <span class="storeName">{{$route.query.orgName}}</span>
                <p class="partLine"></p>
                <div v-for="(item,i) in medData" :key="i">
                   <div class="med">
@@ -188,8 +188,11 @@ export default {
          ],
          addIndex: "0",
          addressInfo: [],
-         drugInfo: [],
-         storeAdd: [{ add: "重庆市渝北88号（和平大药房）", tel: "023-52242565" }]
+         drugInfo: '',
+        
+         storeAdd: [{ add: "重庆市渝北88号（和平大药房）", tel: "023-52242565" }],
+         address: '',
+         tel: ''
       };
    },
    computed: {
@@ -210,18 +213,21 @@ export default {
          }).then((res) => {
             console.log(res)
             if (res.data.code == '200') {
-               this.drugInfo = res.data.data
+               this.drugInfo = res.data.data;
+               this.address = res.data.data.address;
+               this.tel = res.data.data.tel;
             } else {
                console.log(res.msg);
             }
          }).catch(function (err) {
             console.log(err);
          });
+      } else {
+         if (!this._selectAdress.receiver) {
+            this.acceptAddFun();
+         }
       }
 
-      if (!this._selectAdress.receiver) {
-         this.acceptAddFun();
-      }
       this.detailInfo();
       document.title = '提交订单';
    },
@@ -244,7 +250,7 @@ export default {
                //    totalNum = value.money * value.total;
                //    totalNum += totalNum;
                // })
-
+             
                for (let i = 0; i < res.data.data.details.length - 1; i++) {
                   this.totalNum = res.data.data.details[i].money * res.data.data.details[i].total;
                   this.totalNum += this.totalNum;
@@ -285,10 +291,17 @@ export default {
          nowPayParams.payMode = Number(item.value);
          nowPayParams.recipeId = this.$route.query.recipeId * 1;
          nowPayParams.deliveryMode = this.$route.query.deliveryMode;
-
+         if (this.$route.query.deliveryMode == 1) {
+            nowPayParams.receiver = this._selectAdress.receiver;
+            nowPayParams.receiver = this._selectAdress.receiver;
+            nowPayParams.adress = this._selectAdress.address;
+         } else {
+            nowPayParams.address = this.address;
+            nowPayParams.tel = this.tel;
+         }
          //   地址id
-         nowPayParams.adress = this._selectAdress.address;
-         nowPayParams.receiver = this._selectAdress.receiver;
+
+
          this.$axios.post(recipeApplyRenewRecipe, nowPayParams).then((res) => {
             if (res.data.code == '200') {
                this.createPay().then(() => {

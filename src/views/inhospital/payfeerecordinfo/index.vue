@@ -6,20 +6,12 @@
         <md-field>
           <div class="appTitle" style="padding: 0.24rem 0;">
             <span>患者信息</span>
-            <!-- <span v-show="item.status==2" class="mu-secondary-text-color">预交款缴纳成功</span> -->
           </div>
           <md-detail-item title="患者姓名" :content=item.name></md-detail-item>
           <md-detail-item title="住院号" :content=item.ihNo>
             <span>{{item.ihNo}} 号</span>
           </md-detail-item>
           <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
-          <!-- <md-detail-item title="缴纳时间">
-            <span>{{item.payTime|lasttime}}</span>
-          </md-detail-item> -->
-          <!-- <md-detail-item title="缴纳状态">
-            <span>￥{{item.money}}</span>
-          </md-detail-item> -->
-
         </md-field>
       </div>
       <Loading v-show="loadingtrue"></Loading>

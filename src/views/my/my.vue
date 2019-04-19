@@ -241,7 +241,7 @@ export default {
     myhospital() {
       let argu = {}
       this.$router.push({
-        name: 'myhospital',
+        name: 'myhospitalfirst',
         query: argu
       });
     },

@@ -110,6 +110,8 @@ import admupayfee from '@/views/inhospital/admupayfee'
 import myhospital from '@/views/inhospital/myhospital'
 import hospitalinfo from '@/views/inhospital/hospitalinfo'
 import hospitalization from '@/views/inhospital/hospitalization'
+import myhospitalfirst from '@/views/inhospital/myhospitalfirst'
+import hospitalhistroy from '@/views/inhospital/hospitalhistroy'
 
 
 import payfee from '@/views/inhospital/payfee/payfee.vue'
@@ -148,6 +150,8 @@ import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
 import businssrecord from '@/views/copyrecord/businssrecord'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
+
+
 import businssrecordinfo from '@/views/copyrecord/businssrecordinfo'
 import needkown from '@/views/copyrecord/needkown'
 
@@ -309,6 +313,14 @@ export default new Router({
     component: hospitalization,
     meta: {
       title: '住院费用'
+    }
+  },
+  {
+    path: '/hospitalhistroy',
+    name: 'hospitalhistroy',
+    component: hospitalhistroy,
+    meta: {
+      title: '住院历史记录'
     }
   },
   {
@@ -777,7 +789,17 @@ export default new Router({
     // meta: {
     //   keepAlive: true
     // }
+  }, {
+    path: '/myhospitalfirst',
+    name: 'myhospitalfirst',
+    component: myhospitalfirst,
+    // meta: {
+    //   keepAlive: true
+    // }
   },
+
+
+
   {
     path: '/businssrecordinfo',
     name: 'businssrecordinfo',
@@ -799,7 +821,7 @@ export default new Router({
       title: "用户需知"
     }
   },
-   
+
 
   {
     path: '/chooseCase',

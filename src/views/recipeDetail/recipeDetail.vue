@@ -93,6 +93,7 @@ export default {
                 { name: "培哚普利（100mg*7）, 口服（每日三次）每次100mg", num: "115" },
             ],
             orgId: '',
+            orgName: '',
             isContinue: true,
         };
     },
@@ -120,6 +121,7 @@ export default {
                     this.recipeData = res.data.data.recipe;
                     this.listBottom = res.data.data.details;
                     this.orgId = res.data.data.recipe.orgId;
+                    this.orgName = res.data.data.recipe.orgName;
                 } else {
                     console.log(res.msg);
                 }
@@ -136,7 +138,7 @@ export default {
                 if (res.data.code == '200') {
                     this.$router.push({
                         name: 'choose',
-                        query: { recipeId: this.$route.query.id * 1, orderId: res.data.data.orderId, id: res.data.data.id, orgId: this.orgId }
+                        query: { recipeId: this.$route.query.id * 1, orderId: res.data.data.orderId, id: res.data.data.id, orgId: this.orgId, orgName: this.orgName }
                     });
                 } else {
                     console.log(res.msg);
