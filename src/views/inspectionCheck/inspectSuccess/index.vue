@@ -21,11 +21,11 @@
           <div class="margin16">
             <div class="listData">
               <span>支付方式</span>
-              <span class="mu-secondary-text-color">{{payWay.text}}</span>
+              <span class="mu-secondary-text-color">{{$route.query.payMode|payMethod}}</span>
             </div>
             <div class="listData">
               <span>支付金额</span>
-              <span class="mu-secondary-text-color">￥198.00</span>
+              <span class="mu-secondary-text-color">￥{{$route.query.money|keepTwoNum}}</span>
             </div>
             <div v-if="acceptIndex==1" class="listData">
               <span>自提地址</span>
@@ -47,7 +47,8 @@
   </div>
 </template>
 <script type="text/babel">
-import { mapState , mapActions} from 'vuex';
+import { mapState, mapActions } from 'vuex';
+import websocketConfig from '../../../service/websocket.js'
 export default {
   data() {
     return {
@@ -63,39 +64,48 @@ export default {
       userInfo: state => state.userInfo
     }),
   },
-  mounted() {
-    this.payWay.push(this.$store.state.payWay[0]);
-    this.acceptIndex = this.$store.state.payWay[1];
-    document.title = '支付成功';
+  async mounted() {
+    // websocketConfig();
+    //  用于演示临时加得
+    let obj = {}
+    obj.id = 125;
+    this.updateUser(obj)
+    websocketConfig()
+
   },
   methods: {
     ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews", 'updateUser']),
     // 发送消息
     send() {
+      console.log("我是ya亚男")
 
-      
       let createTime = new Date().getTime();
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: Number(this.$route.query.id),
+        to: 125,
         cmd: 11,
         createTime: createTime,
         msgType: 0,
         chatType: 2,
         content: "咨询药品的测试"
       };
-   
+
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
       arr.push(msg)
       this['chat/setHistoryNews'](arr)
       this.chat.websocket.send(JSON.stringify(msg));
-     
+      this.$router.push({
+        name: 'inquiryOnline',
+        query: {
+          id: 125, name: "处方医生"
+        }
+      });
     },
 
 
-    
+
   },
 
 

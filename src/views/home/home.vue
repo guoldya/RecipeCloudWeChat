@@ -344,7 +344,7 @@ export default {
         business() {
             let argu = {}
             this.$router.push({
-                name: 'business',
+                name: 'needkown',
                 query: argu
             });
         },

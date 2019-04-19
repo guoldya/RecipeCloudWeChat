@@ -103,7 +103,7 @@
     </div>
     <div style="height:78px;background-color: #ffffff"></div>
     <p @click="cardconfirm" class="addbTN">下一步</p>
-    <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="普通模式" @choose="onSelectorChoose"></md-selector>
+    <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择方式" @choose="onSelectorChoose"></md-selector>
     <md-landscape v-model="showPic" :mask-closable="true">
       <img src="@/assets/images/u152.png" alt="">
     </md-landscape>
@@ -168,8 +168,6 @@ export default {
   },
   mounted() {
     document.title = '身份验证';
-    console.log(this.$store.state.posUrl);
-    console.log(this.$store.state.othUrl);
     // if (this.$store.state.othUrl) {
     //   this.posUrl = this.$store.state.othUrl;
     // } else {
@@ -411,13 +409,13 @@ export default {
         var GGGPng = this.GGG.name.length;
         var suffixGGG = this.GGG.name.substring(indexGGG + 1, GGGPng);//后缀名
       }
-      param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
-      param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
-      param.append('photo2', this.CCC, "photo2." + suffixCCC);//通过append向form对象添加数据
-      param.append('photo3', this.FFF, "photo3." + suffixGGG);//通过append向form对象添加数据
-      param.append('photo4', this.DDD, "photo4." + suffixDDD);//通过append向form对象添加数据
-      param.append('photo5', this.EEE, "photo5." + suffixEEE);//通过append向form对象添加数据
-      param.append('photo6', this.FFF, "photo6." + suffixFFF);//通过append向form对象添加数据
+      param.append('photo0', this.DDD, "photo0." + suffixDDD);//通过append向form对象添加数据
+      param.append('photo1', this.EEE, "photo1." + suffixEEE);//通过append向form对象添加数据
+      param.append('photo2', this.FFF, "photo2." + suffixFFF);//通过append向form对象添加数据
+      param.append('photo3', this.GGG, "photo3." + suffixGGG);//通过append向form对象添加数据
+      // param.append('photo4', this.DDD, "photo4." + suffixDDD);//通过append向form对象添加数据
+      // param.append('photo5', this.EEE, "photo5." + suffixEEE);//通过append向form对象添加数据
+      // param.append('photo6', this.FFF, "photo6." + suffixFFF);//通过append向form对象添加数据
 
       param2.append('photo0', this.DDD, "photo0." + suffixDDD);//通过append向form对象添加数据
       param2.append('photo1', this.EEE, "photo1." + suffixEEE);//通过append向form对象添加数据
@@ -442,7 +440,9 @@ export default {
       this.$axios.post(appLoginuploadImage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
-            this.$store.commit('idCardAPPInfoFun', res.data.fileInfo);
+            console.log(res.data.fileInfo,"res.data.fileInfo")
+             //this.$store.commit('idCardInfoFun', res.data.fileInfo);
+             this.$store.commit('idCardAPPInfoFun', res.data.fileInfo);
           } else {
             this.$toast.info(res.data.msg)
           }
@@ -464,14 +464,12 @@ export default {
       this.nextPar = this.$route.query;
       this.nextPar.receiverType = this.receiverType;
       this.nextPar.idCardImg = this.cardImg;
-      this.$store.commit('chooseInfoFun', "");
+ 
       this.$router.push({
         name: 'putinfo',
         query: { name: this.name, idcard: this.idcard, receiverType: this.receiverType, mail: this.$route.query.mail }
       });
-      console.log(JSON.stringify(this.cardImg));
-      console.log(JSON.stringify(this.nextPar.cardImg));
-      console.log(this.nextPar);
+     
       // this.$axios.post(addOrUpdate,this.nextPar).then(res => {
       //     if (res.data.code == '200') {
       //

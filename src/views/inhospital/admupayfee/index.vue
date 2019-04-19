@@ -126,7 +126,7 @@ export default {
                 // this.$router.go(-3);
                 this.$router.push({
                   name: 'paysucced',
-                  query: { nowPayParams: nowPayParams }
+                  query: { money: nowPayParams.money, payMode: nowPayParams.payMode }
                 });
               },
             })

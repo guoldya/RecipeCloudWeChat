@@ -3,20 +3,9 @@
     <Header post-title="选择复印病案"></Header>
     <div class="margin55" style="margin-bottom:70px">
       <div class="tabAdiv flatCard" v-for="(item,i) in copyResultData" v-if="copyResultData.length!=0" v-show="!loadingtrue" :key="i">
-        <!-- -->
-        <!-- <div class="listData mu-secondary-text-color">
-          <div class="md-agree" @click="checkedFun(item.id,item.isDefault)">
-            <div :class="{ 'md-agree-icon':true,'checked':item.isDefault==1}" style="height:2.4rem">
-              <div class="md-agree-icon-container">
-                <i class="md-icon icon-font md-icon-checked md"></i>
-                <i class="md-icon icon-font md-icon-check md"></i>
-              </div>
-            </div>
-          </div>
-        </div> -->
         <div class="listData mu-secondary-text-color">
           <!-- <md-radio :name="i" v-model="checked" /> -->
-          <label class="md-radio" :class="{'is-checked':checked==i}" @click="checkedFun(item,i)">
+          <label class="md-radio" :class="{'is-checked':checked==item.ihRecordId}" @click="checkedFun(item,i)">
             <div class="md-radio-icon">
               <i class="md-icon icon-font md-icon-checked checked md"></i>
             </div>
@@ -35,7 +24,7 @@
           <!--<div class="number">1</div>-->
           <!--次-->
         </div>
-        <p class="addbTN" @click="getJumpId()">确认提交</p>
+        <p class="addbTN" @click="getJumpId()">确定</p>
       </div>
       <div v-show="!loadingtrue" class="aligncenter nullDiv" v-else>
         <img src="@/assets/images/null1.png">
@@ -52,11 +41,11 @@
 </template>
 <script type="text/babel"> 
 let copyApply_page_url = "/app/bizRecipeApply/read/page";
- 
+
 export default {
   data() {
     return {
-      checked: '77',
+      checked: '',
       favorites: [],
       busy: true,
       nomore: false,
@@ -64,12 +53,12 @@ export default {
       page: 1,
       pageSize: 10,
       copyResultData: [],
- 
+
 
 
     };
   },
- 
+
   created() {
 
   },
@@ -78,6 +67,10 @@ export default {
   },
   mounted() {
     this.addadress();
+    this.$axios.put(copyApply_page_url, {}).then(res => {
+      this.checked = res.data.rows[0].ihRecordId;
+      this.$store.commit('chooseInfoFun', res.data.rows[0]);
+    })
   },
   methods: {
     addadress(flag) {
@@ -88,6 +81,7 @@ export default {
         if (res.data.rows) {
           this.loadingtrue = false;
           if (flag) {
+
             this.copyResultData = this.copyResultData.concat(res.data.rows);  //concat数组串联进行合并
             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
               this.busy = false;
@@ -123,14 +117,18 @@ export default {
     },
     checkedFun: function (val, i) {
       this.$store.commit('chooseInfoFun', val);
-      this.checked = i
+      this.checked = val.ihRecordId
     },
 
     getJumpId(val) {
-      // this.$router.replace({
-      //   name: 'putinfo',
-      // });
-      this.$router.go(-1)
+      if (this.checked == 777) {
+        this.$toast.info("请选择复印病案")
+        return
+      }
+      this.$router.push({
+        name: 'business',
+      });
+      // this.$router.go(-1)
     },
 
   },
@@ -151,6 +149,7 @@ export default {
 .chooseCase .tabAdiv div:first-child {
   /*line-height: 200px;*/
   display: flex;
+  width: 10%;
 }
 .chooseCase .chooseCaseBtn {
   width: 15%;
@@ -159,7 +158,9 @@ export default {
   display: inline-block;
   color: #ffffff;
 }
-
+.chooseCase .md-radio {
+  margin-left: 20%;
+}
 .chooseCase .chooseCaseText {
   width: 60%;
   height: 200px;
@@ -169,7 +170,7 @@ export default {
   justify-content: space-between;
 }
 .chooseCase .chooseCaseTime {
-  width: 25%;
+  width: 30%;
   /*height: 200px;*/
   line-height: 248px;
   text-align: center;

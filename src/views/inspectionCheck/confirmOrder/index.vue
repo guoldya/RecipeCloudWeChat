@@ -2,8 +2,8 @@
    <div class="submitOrder">
       <Header post-title="提交订单"></Header>
       <div class="margin50">
-         <!-- 用于测试的 记得加上 v-if="deliveryMode===1"-->
-         <div class="flatCard outCarint " style="border-top: 1px solid #ededed;margin-top: 0">
+
+         <div class="flatCard outCarint " v-if="deliveryMode===1" style="border-top: 1px solid #ededed;margin-top: 0">
             <div class="submitUser">
                <!-- <div class="iconInfo">
                   <div class="iconImg">
@@ -215,6 +215,8 @@ export default {
       document.title = '提交订单';
    },
    methods: {
+
+    
       onCashierSelect(item) {
          console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
       },
@@ -264,11 +266,12 @@ export default {
 
       onCashierPay(item) {
          let nowPayParams = {};
-         nowPayParams.id = this.$route.query.id;
-         nowPayParams.money = this.money;
+         nowPayParams.id = this.$route.query.id * 1;
+         nowPayParams.orderId = this.$route.query.orderId * 1;
+         nowPayParams.money = this.totalNum;
          nowPayParams.orderType = 4;
          nowPayParams.payMode = Number(item.value);
-         nowPayParams.recipeId = this.$route.query.recipeId;
+         nowPayParams.recipeId = this.$route.query.recipeId * 1;
          nowPayParams.deliveryMode = this.$route.query.deliveryMode;
 
          //   地址id
@@ -281,7 +284,11 @@ export default {
                      buttonText: '好的',
                      handler: () => {
                         this.isCashierhow = false
-                        this.$router.go(-3);
+                        // this.$router.go(-3);
+                        this.$router.push({
+                           name: 'inspectSuccess',
+                           query: { money: this.totalNum, payMode: nowPayParams.payMode }
+                        });
                      },
                   })
                })

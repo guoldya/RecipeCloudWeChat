@@ -1,6 +1,6 @@
 <template>
   <div class="registrecorddetail">
-    <Navigation type="title" title="缴纳款缴纳">
+    <Navigation type="title" title="预交款缴纳">
       <span v-show="!$route.query.isMyhospital" class="mu-secondary-text-color" @click="tijiao">预交款记录</span>
     </Navigation>
     <div class="margin55">
@@ -16,7 +16,7 @@
           <md-detail-item title="本次预交款">
             <span class="mu-secondary-text-color">￥{{defaultMoney|keepTwoNum}}元</span>
           </md-detail-item>
-          <md-detail-item title="预交款金额">
+          <md-detail-item title="预交款余额">
             <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
           </md-detail-item>
         </md-field>

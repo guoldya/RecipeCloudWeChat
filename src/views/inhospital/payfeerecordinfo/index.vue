@@ -35,7 +35,7 @@
               <span>{{item.payMode|payMethod}} </span>
             </md-detail-item>
             <md-detail-item title="支付状态">
-              <span>{{item.payType|payTypeFilter}} </span>
+              <span>{{item.status|payStatus}} </span>
             </md-detail-item>
 
           </md-field>

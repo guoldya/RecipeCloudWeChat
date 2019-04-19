@@ -21,16 +21,16 @@
       <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="姓名" maxlength="10"></md-input-item>
       <md-input-item ref="input13" v-model="idcard" title="身份证号" placeholder="身份证号"></md-input-item>
     </div>
-    <p class="chooseBtn" @click="chooseCase">
+    <!-- <p class="chooseBtn" @click="chooseCase">
       <img src="@/assets/images/jia.png">
       <span>
         选择复印病案
       </span>
-    </p>
+    </p> -->
     <p class="smallTitle">
       病案信息
     </p>
-    <div class="flatCard margin16 outCarint">
+    <div class="flatCard   outCarint">
       <div style="background:#ffffff">
         <md-detail-item title="住院科室" :content="_cardlist.dept" />
         <md-detail-item title="住院诊断" :content="_cardlist.diag" />
@@ -182,24 +182,30 @@ export default {
         this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.mobile, {
         }).then(res => {
           if (res.data.code == '200') {
-            this.$axios.post(wechatbizPatientCardbinding, {
-              name: this.name,
-              idcard: this.idcard,
-              mobile: this.mobile,
-              verifyType: 1,
-              money: 72,
-              receiverType: Number(this.$route.query.receiverType),
-              usageDesc: this.useInfo,
-              // 复印用途
-              usage: this.type,
-              // 验证码
-              verifyCode: this.verifyCode,
-              num: this.num,
-              //  住院id
-              ihRecordId: this._cardlist.ihRecordId,
-              idCardImg: this.$store.state.idCardInfo,
-              remark: this.remark,
-            }).then(res => {
+            var param = {};
+            param.name = this.name;
+            param.idcard = this.idcard;
+            param.mobile = this.mobile;
+            param.verifyType = 1;
+            param.money = 72;
+            param.receiverType = Number(this.$route.query.receiverType);
+            param.usageDesc = this.useInfo;
+            // 复印用途
+            param.usage = this.type;
+            // 验证码
+            param.verifyCode = this.verifyCode;
+            param.num = this.num;
+            //  住院id
+            param.ihRecordId = this._cardlist.ihRecordId;
+            if (this.$route.query.receiverType == 1) {
+              param.idCardImg = this.$store.state.idCardInfo;
+            } else {
+              param.idCardImg = this.$store.state.idCardAPPInfo;
+
+            }
+
+            param.remark = this.remark;
+            this.$axios.post(wechatbizPatientCardbinding, param).then(res => {
               if (res.data.code == '200') {
                 this.$router.push({
                   name: 'copyresult',

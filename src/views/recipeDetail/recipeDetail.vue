@@ -134,7 +134,7 @@ export default {
                 if (res.data.code == '200') {
                     this.$router.push({
                         name: 'choose',
-                        query: { recipeId: this.$route.query.id * 1, id: res.data.data }
+                        query: { recipeId: this.$route.query.id * 1, orderId: res.data.data.orderId, id: res.data.data.id }
                     });
                 } else {
                     console.log(res.msg);

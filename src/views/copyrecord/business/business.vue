@@ -21,13 +21,8 @@
       <div class="cardText textTip">
         <p class="mu-light-text-color" style="text-align: justify">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
         </p>
-        <p class="kinds">病历类型</p>
-        <md-check-box name="month" v-model="pay" label="住院病历" />
-        <md-check-box name="season" v-model="pay" label="急诊病历" />
         <p class="kinds">领取方式</p>
-        <md-check-box name="1" v-model="mail" label="邮寄" />
-        <md-check-box name="2" v-model="mail" label="自提" />
-
+        <md-radio-list v-model="mail" :options="reasons" icon-size="lg" />
         <p v-show="mail==1" style="color: var(--primary--content);margin:6px 0">
           为保正您能及时收到病历，请确保收件地址准确无误!
         </p>
@@ -52,7 +47,6 @@
     <!-- <md-button type="primary" @click="tijiao" round style="margin-top:16px">下一步</md-button> -->
     <Pgmodal ref="Pgmodal"></Pgmodal>
     <md-landscape v-model="showPic" :mask-closable="true">
-
       <div class="codema">
         <img src="@/assets/images/u152.png" alt="">
         <p class="namecodema">委托书样例</p>
@@ -78,6 +72,18 @@ export default {
       address: '',
       areaId: '',
       pickerDefaultValue: '',
+
+      reasons: [
+        {
+          value: '1',
+          text: '自提',
+        },
+        {
+          value: '2',
+          text: '邮寄',
+        },
+
+      ],
     };
   },
   created() {

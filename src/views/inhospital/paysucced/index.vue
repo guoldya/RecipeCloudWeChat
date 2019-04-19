@@ -21,11 +21,11 @@
                <div class="margin16">
                   <div class="listData">
                      <span>支付方式</span>
-                     <span class="mu-secondary-text-color">{{payWay.payMode|payMethod}}</span>
+                     <span class="mu-secondary-text-color">{{$route.query.payMode|payMethod}}</span>
                   </div>
                   <div class="listData">
                      <span>支付金额</span>
-                     <span class="mu-secondary-text-color">￥{{payWay.payMode|keepTwoNum}}</span>
+                     <span class="mu-secondary-text-color">￥{{$route.query.money|keepTwoNum}}</span>
                   </div>
                   <div class="listData">
                      <span>温馨提示</span>
@@ -42,7 +42,6 @@
 export default {
    data() {
       return {
-
          payWay: [],
          acceptIndex: null,
       };

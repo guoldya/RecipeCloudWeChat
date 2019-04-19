@@ -41,6 +41,18 @@ const payTypeFilter = function (value) {
         return "已失效"
     }
 };
+const payStatus= function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 3) {
+        return "已关闭"
+    } else if (value == 1) {
+        return "待支付"
+    } else if (value == 2) {
+        return "已支付"
+    }  
+};
 const recipeTypeFilter = function (value) {
     if (value == undefined) {
         return ""
@@ -80,7 +92,7 @@ const admissionFilter = function (value) {
     if (value == 1) {
         return "待入院"
     } else if (value == 2) {
-        return "已入院"
+        return "正在住院"
     } else if (value == 3) {
         return "出院"
     }
@@ -290,4 +302,5 @@ export default {
     cardType,
     recipeTypeFilter,
     deliveryMode,
+    payStatus,
 }

@@ -149,6 +149,7 @@ import businssrecord from '@/views/copyrecord/businssrecord'
 import certificate from '@/views/copyrecord/certificate/certificate.vue'
 import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
 import businssrecordinfo from '@/views/copyrecord/businssrecordinfo'
+import needkown from '@/views/copyrecord/needkown'
 
 
 
@@ -334,7 +335,7 @@ export default new Router({
       title: '支付成功'
     }
   },
-   
+
   {
     path: '/resultdocotor',
     name: 'resultdocotor',
@@ -773,9 +774,9 @@ export default new Router({
     path: '/putinfo',
     name: 'putinfo',
     component: putinfo,
-    meta: {
-      keepAlive: true
-    }
+    // meta: {
+    //   keepAlive: true
+    // }
   },
   {
     path: '/businssrecordinfo',
@@ -790,8 +791,15 @@ export default new Router({
       title: "邮寄方式"
     }
   },
-
-
+  {
+    path: '/needkown',
+    name: 'needkown',
+    component: needkown,
+    meta: {
+      title: "用户需知"
+    }
+  },
+   
 
   {
     path: '/chooseCase',

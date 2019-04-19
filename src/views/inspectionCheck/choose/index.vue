@@ -22,7 +22,7 @@ export default {
          let argu = {};
          this.$router.push({
             name: 'confirmOrder',
-            query: { id: this.$route.query.id * 1, deliveryMode: 2, recipeId: this.$route.query.recipeId }
+            query: { recipeId: this.$route.query.recipeId, id: this.$route.query.id, deliveryMode: 2, orderId: this.$route.query.orderId }
          });
       },
 
@@ -30,7 +30,7 @@ export default {
          let argu = {};
          this.$router.push({
             name: 'confirmOrder',
-            query: { id: this.$route.query.id * 1, deliveryMode: 1, recipeId: this.$route.query.recipeId }
+            query: {recipeId: this.$route.query.recipeId, id: this.$route.query.id, deliveryMode: 1, orderId: this.$route.query.recipeId }
          });
       },
 
