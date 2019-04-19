@@ -207,6 +207,7 @@ export default {
 }
 
 .moneyflatCard input[type="text"] {
+  padding: 10px 24px;
   margin-top: 20px;
   width: 100%;
   height: 80px;

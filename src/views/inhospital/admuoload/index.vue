@@ -32,13 +32,13 @@
             </label>
             <p>医保卡正面</p>
           </div>
-          <div class="pg_positive_img">
+          <!-- <div class="pg_positive_img">
             <label class="ivu-upload-input_label" style="display:block; height: 120px;">
               <input class="ivu-upload-input" @change="uploadHealth($event)" type="file" name="Healthside" id="Healthside" accept="image/gif,image/jpeg,image/x-png" />
               <img :src="healthUrl" alt="">
             </label>
             <p>医保卡反面</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -118,17 +118,17 @@ export default {
     },
 
 
-    uploadHealth(e) {
-      let that = this,
-        file = e.target.files[0],
-        fileReader = new FileReader();
-      this.files.healthUrl = file;
-      fileReader.readAsDataURL(file);
-      fileReader.onload = function () {
-        that.healthUrl = this.result;
-      };
-      this.DDD = e.target.files[0];
-    },
+    // uploadHealth(e) {
+    //   let that = this,
+    //     file = e.target.files[0],
+    //     fileReader = new FileReader();
+    //   this.files.healthUrl = file;
+    //   fileReader.readAsDataURL(file);
+    //   fileReader.onload = function () {
+    //     that.healthUrl = this.result;
+    //   };
+    //   this.DDD = e.target.files[0];
+    // },
     // 选着人
 
 
@@ -142,7 +142,7 @@ export default {
           return;
         }
       } else {
-        if (!this.AAA.name || !this.BBB.name || !this.CCC.name || !this.DDD.name) {
+        if (!this.AAA.name || !this.BBB.name || !this.CCC.name  ) {
           this.$toast.info("请上传图片")
           return;
         }
@@ -165,12 +165,12 @@ export default {
         var index22CCC = this.CCC.name.length;
         var suffix1CCC = this.CCC.name.substring(index11CCC + 1, index22CCC);//后缀名
 
-        var index11DDD = this.DDD.name.lastIndexOf(".");
-        var index22DDD = this.DDD.name.length;
-        var suffix1DDD = this.DDD.name.substring(index11DDD + 1, index22DDD);//后缀名
+        // var index11DDD = this.DDD.name.lastIndexOf(".");
+        // var index22DDD = this.DDD.name.length;
+        // var suffix1DDD = this.DDD.name.substring(index11DDD + 1, index22DDD);//后缀名
 
         param.append('photo2', this.CCC, "photo2." + suffix1CCC);//通过append向form对象添加数据
-        param.append('photo3', this.DDD, "photo2." + suffix1DDD);//通过append向form对象添加数据
+        // param.append('photo3', this.DDD, "photo2." + suffix1DDD);//通过append向form对象添加数据
       }
       // console.log(param);
       let config = {
