@@ -41,7 +41,7 @@ const payTypeFilter = function (value) {
         return "已失效"
     }
 };
-const payStatus= function (value) {
+const payStatus = function (value) {
     if (value == undefined) {
         return ""
     }
@@ -51,7 +51,19 @@ const payStatus= function (value) {
         return "待支付"
     } else if (value == 2) {
         return "已支付"
-    }  
+    }
+};
+const payStatusIMG = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 3) {
+        return "@/assets/images/icon_closed.png"
+    } else if (value == 1) {
+        return "@/assets/images/icon_tobepaid.png"
+    } else if (value == 2) {
+        return "@/assets/images/icon_pay1.png"
+    }
 };
 const recipeTypeFilter = function (value) {
     if (value == undefined) {
@@ -94,7 +106,7 @@ const admissionFilter = function (value) {
     } else if (value == 2) {
         return "正在住院"
     } else if (value == 3) {
-        return "出院"
+        return "已出院"
     }
 };
 
@@ -231,13 +243,13 @@ const deliveryMode = function (value) {
     if (value == undefined) {
         return "未知"
     }
-    if (value == 1){
+    if (value == 1) {
         return "配送"
     } else if (value == 2) {
         return "自取"
-    } 
+    }
 };
- 
+
 const getAge = function (value) {
     if (value) return
     if (!value.split(" ")) return
@@ -303,4 +315,5 @@ export default {
     recipeTypeFilter,
     deliveryMode,
     payStatus,
+    payStatusIMG,
 }

@@ -51,16 +51,17 @@
     <div class="flatCard margin16 outCarint">
       <div class="content">
         <div class="login-box">
-          <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
+          <md-field-item v-show="type==1" title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
           <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明"></md-input-item>
           <div class="login-box-div">
             <span class="flexF">复印份数</span>
             <div class="flexR calculate">
-
               <md-stepper slot="right" v-model="num" min="1" />
             </div>
           </div>
-          <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注"></md-input-item>
+          <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注">
+            <div class="input-operator" slot="right">(选填)</div>
+          </md-input-item>
           <p class="partLine outCarint"></p>
           <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
           <div class="hq login-box-div">
@@ -175,55 +176,63 @@ export default {
 
     tijiao() {
       let _this = this;
-      if (this.mobile.length < 11 || this.verifyCode.length < 6 || this.useInfo.length === 0) {
-        this.$toast.info('请完善信息');
-        return
+      if (this.type == 1) {
+        if (this.mobile.length < 11 || this.verifyCode.length < 6 || this.useInfo.length === 0) {
+          this.$toast.info('请完善信息');
+          return
+        }
       } else {
-        this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.mobile, {
-        }).then(res => {
-          if (res.data.code == '200') {
-            var param = {};
-            param.name = this.name;
-            param.idcard = this.idcard;
-            param.mobile = this.mobile;
-            param.verifyType = 1;
-            param.money = 72;
-            param.receiverType = Number(this.$route.query.receiverType);
-            param.usageDesc = this.useInfo;
-            // 复印用途
-            param.usage = this.type;
-            // 验证码
-            param.verifyCode = this.verifyCode;
-            param.num = this.num;
-            //  住院id
-            param.ihRecordId = this._cardlist.ihRecordId;
-            if (this.$route.query.receiverType == 1) {
-              param.idCardImg = this.$store.state.idCardInfo;
-            } else {
-              param.idCardImg = this.$store.state.idCardAPPInfo;
-
-            }
-
-            param.remark = this.remark;
-            this.$axios.post(wechatbizPatientCardbinding, param).then(res => {
-              if (res.data.code == '200') {
-                this.$router.push({
-                  name: 'copyresult',
-                  query: { num: this.num, name: this.name, feeid: res.data.data }
-                })
-              } else {
-                console.log(res.data.code);
-              }
-            }).catch(function (err) {
-              console.log(err);
-            });
-          } else {
-            this.$toast.info("验证码错误或超时")
-          }
-        }).catch(function (err) {
-          console.log(err);
-        });
+        if (this.mobile.length < 11 || this.verifyCode.length < 6) {
+          this.$toast.info('请完善信息');
+          return
+        }
       }
+
+      this.$axios.put(checkMobile + '?verifyCode=' + this.verifyCode + '&verifyType=' + 1 + '&mobile=' + this.mobile, {
+      }).then(res => {
+        if (res.data.code == '200') {
+          var param = {};
+          param.name = this.name;
+          param.idcard = this.idcard;
+          param.mobile = this.mobile;
+          param.verifyType = 1;
+          param.money = 72;
+          param.receiverType = Number(this.$route.query.receiverType);
+          param.usageDesc = this.useInfo;
+          // 复印用途
+          param.usage = this.type;
+          // 验证码
+          param.verifyCode = this.verifyCode;
+          param.num = this.num;
+          //  住院id
+          param.ihRecordId = this._cardlist.ihRecordId;
+          if (this.$route.query.receiverType == 1) {
+            param.idCardImg = this.$store.state.idCardInfo;
+          } else {
+            param.idCardImg = this.$store.state.idCardAPPInfo;
+
+          }
+
+          param.remark = this.remark;
+          this.$axios.post(wechatbizPatientCardbinding, param).then(res => {
+            if (res.data.code == '200') {
+              this.$router.push({
+                name: 'copyresult',
+                query: { num: this.num, name: this.name, feeid: res.data.data }
+              })
+            } else {
+              console.log(res.data.code);
+            }
+          }).catch(function (err) {
+            console.log(err);
+          });
+        } else {
+          this.$toast.info("验证码错误或超时")
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+
     },
 
 

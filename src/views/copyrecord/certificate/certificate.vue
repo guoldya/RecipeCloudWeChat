@@ -455,25 +455,23 @@ export default {
     cardconfirm() {
       if (this.receiverType == 1) {
         if (!this.name || !this.idcard) {
-          this.$toast.info("请上传图片");
+          this.$toast.info("请输入患者姓名和身份证号");
           return;
         }
       }
       if (this.receiverType == 2) {
         if (!this.name || !this.idcard || !this.nameApp || !this.idcardApp) {
-          this.$toast.info("请上传图片");
+          this.$toast.info("请完善信息");
           return;
         }
       }
       this.nextPar = this.$route.query;
       this.nextPar.receiverType = this.receiverType;
       this.nextPar.idCardImg = this.cardImg;
- 
       this.$router.push({
         name: 'putinfo',
         query: { name: this.name, idcard: this.idcard, receiverType: this.receiverType, mail: this.$route.query.mail }
       });
-     
       // this.$axios.post(addOrUpdate,this.nextPar).then(res => {
       //     if (res.data.code == '200') {
       //

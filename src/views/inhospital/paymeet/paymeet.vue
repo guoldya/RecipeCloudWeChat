@@ -32,7 +32,7 @@
           </div>
 
           <div class="moneyflatCard">
-            <input type="text" placeholder="可输入其他金额" v-model="textMoney">
+            <input type="text" placeholder="可输入其他金额" v-model="textMoney" oninput="value=value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')">
           </div>
         </div>
 

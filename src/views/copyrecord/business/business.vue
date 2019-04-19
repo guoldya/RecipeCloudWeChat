@@ -19,15 +19,15 @@
         </div>
       </div>
       <div class="cardText textTip">
-        <p class="mu-light-text-color" style="text-align: justify">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一.般在出院后七个工作日归档，请在七个工作日后申请。
+        <p class="mu-light-text-color" style="text-align: justify">复印预约仅适用于本人或代理人申请，公检法保险机构和死亡病历复印需到医院窗口复印。住院病历一般在出院后七个工作日归档，请在七个工作日后申请。
         </p>
         <p class="kinds">领取方式</p>
         <md-radio-list v-model="mail" :options="reasons" icon-size="lg" />
         <p v-show="mail==1" style="color: var(--primary--content);margin:6px 0">
-          为保正您能及时收到病历，请确保收件地址准确无误!
+          为保证您能及时收到病历，请确保收件地址准确无误!
         </p>
         <p v-show="mail==2" style="color: var(--primary--content); margin-top:0.2rem">
-          医院病案室审核通过后，会将预约时间推送给您，请按通知约定日期工作时间内携带所申请惠者有效证件前往医院领取复印病历。如无法前往请代理人携带双方身份证原件、复印件及委托书前往代办或选择邮寄服务
+          医院病案室审核通过后，会将预约时间推送给您，请按通知约定日期工作时间内携带所申请患者有效证件前往医院领取复印病历。如无法前往请代理人携带双方身份证原件、复印件及委托书前往代办或选择邮寄服务
         </p>
 
         <p class="letter" v-show="mail==2" @click="showPic=true">委托书样例</p>
@@ -76,11 +76,11 @@ export default {
       reasons: [
         {
           value: '1',
-          text: '自提',
+          text: '邮寄',
         },
         {
           value: '2',
-          text: '邮寄',
+          text: '自提',
         },
 
       ],

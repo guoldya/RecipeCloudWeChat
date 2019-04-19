@@ -21,9 +21,9 @@
             <div class="appTitle" style="padding: 0.24rem 0;">
               <span style="color:#272727">支付信息</span>
             </div>
-            <img v-show="item.status==2" src="@/assets/images/icon_pay1.png" alt="" class="icon_pay1">
-            <img v-show="item.status==3" src="@/assets/images/icon_closed.png" alt="" class="icon_pay1">
-            <img v-show="item.status==1" src="@/assets/images/icon_tobepaid.png" alt="" class="icon_pay1">
+            <img :src="item.status|payStatusIMG" alt="" class="icon_pay1">
+            <!-- <img v-show="item.status==3" src="@/assets/images/icon_closed.png" alt="" class="icon_pay1">
+            <img v-show="item.status==1" src="@/assets/images/icon_tobepaid.png" alt="" class="icon_pay1"> -->
             <md-detail-item title="支付状态">
               <span>{{item.status|payStatus}} </span>
             </md-detail-item>
@@ -32,13 +32,11 @@
             </md-detail-item>
             <md-detail-item title="支付单号" :content=item.name></md-detail-item>
             <md-detail-item title="支付金额">
-
               <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
             </md-detail-item>
             <md-detail-item title="支付方式">
               <span>{{item.payMode|payMethod}} </span>
             </md-detail-item>
-
           </md-field>
         </div>
       </div>

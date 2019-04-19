@@ -2,7 +2,7 @@
   <div class="chooseCase">
     <Header post-title=" "></Header>
     <Navigation type="title" title="选择复印病案">
-      <span class="mu-secondary-text-color" @click="getJumpId">确定</span>
+      <span v-show="copyResultData.length!=0" class="mu-secondary-text-color" @click="getJumpId">确定</span>
     </Navigation>
     <div class="margin55" style="margin-bottom:70px">
       <div class="tabAdiv flatCard" v-for="(item,i) in copyResultData" v-if="copyResultData.length!=0" v-show="!loadingtrue" :key="i">
@@ -29,7 +29,7 @@
         </div>
         <!-- <p class="addbTN" @click="getJumpId()">确定</p> -->
       </div>
-      <div v-show="!loadingtrue" class="aligncenter nullDiv" v-else>
+      <div v-show="!loadingtrue" class="aligncenter nullDiv" v-if="copyResultData.length==0">
         <img src="@/assets/images/null1.png">
       </div>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
@@ -120,7 +120,7 @@ export default {
     },
 
     getJumpId(val) {
-      if (this.checked == 777) {
+      if (!this.checked) {
         this.$toast.info("请选择复印病案")
         return
       }

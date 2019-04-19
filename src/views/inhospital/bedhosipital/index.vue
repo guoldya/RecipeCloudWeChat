@@ -79,6 +79,7 @@ export default {
          const params = {};
          params.pageNumber = this.page;
          params.pageSize = this.pageSize;
+         params.status = 1;
          this.$axios.put(pay_list_url, params).then((res) => {
 
             this.loadingtrue = false;
