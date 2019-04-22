@@ -228,16 +228,12 @@ const busistatus = function (value) {
         return "未知"
     }
     if (value == 1) {
-        return "审核中"
+        return "待审核"
     } else if (value == 2) {
         return "审核通过"
     } else if (value == 3) {
-        return "审核未通过"
-    } else if (value == 4) {
-        return "已发药"
-    } else if (value == 5) {
-        return "交易完成"
-    }
+        return "审核不通过"
+    } 
 };
 const deliveryMode = function (value) {
     if (value == undefined) {

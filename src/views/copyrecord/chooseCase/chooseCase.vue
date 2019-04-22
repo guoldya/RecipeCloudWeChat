@@ -22,7 +22,7 @@
         </div>
         <div class="chooseCaseTime">
           <span>第
-            <span class="number">{{item.recordNum}}</span>次 </span>
+            <span class="number">{{item.ihCount}}</span>次 </span>
           <!--第-->
           <!--<div class="number">1</div>-->
           <!--次-->
@@ -43,7 +43,7 @@
   </div>
 </template>
 <script type="text/babel"> 
-let copyApply_page_url = "/app/bizCopyApply/read/page";
+let copyApply_page_url = "/app/bizIhRecord/read/page";
 export default {
   data() {
     return {
@@ -66,7 +66,7 @@ export default {
   },
   mounted() {
     this.addadress();
-    this.$axios.put(copyApply_page_url, {}).then(res => {
+    this.$axios.put(copyApply_page_url, { status: 3 }).then(res => {
       this.checked = res.data.rows[0].id;
       this.$store.commit('chooseInfoFun', res.data.rows[0]);
     })
@@ -76,6 +76,7 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
+      params.status = 3;
       this.$axios.put(copyApply_page_url, params).then(res => {
         if (res.data.rows) {
           this.loadingtrue = false;

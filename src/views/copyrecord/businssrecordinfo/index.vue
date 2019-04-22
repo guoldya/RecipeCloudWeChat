@@ -11,6 +11,9 @@
         <md-detail-item title="证件类型">
           <span>{{businssrecordinfo.inTime|lasttime}}</span>
         </md-detail-item>
+        <md-detail-item title="身份证号">
+          <span>{{businssrecordinfo.inTime|lasttime}}</span>
+        </md-detail-item>
       </div>
       <div style="height:5px;background:#f8f8f8">
       </div>

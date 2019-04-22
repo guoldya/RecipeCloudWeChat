@@ -10,11 +10,11 @@
             </div>
             <div class="cardText">
                <p class="parElem listData">
-                  <span class="sonElem">入院日期</span>
+                  <span class="sonElem">患者姓名</span>
                   <span>{{item.inTime|lasttime}}</span>
                </p>
                <p class="parElem listData">
-                  <span class="sonElem">出院日期</span>
+                  <span class="sonElem">住院号</span>
                   <span>{{item.outTime|lasttime}}</span>
                </p>
                <p class="parElem listData">

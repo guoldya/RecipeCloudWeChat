@@ -38,11 +38,8 @@
 
       </div>
       <Loading v-show="loadingtrue"></Loading>
-
       <p class="addbTN" @click="next">立即缴纳</p>
-
       <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="String(defaultMoney)" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
-
     </div>
   </div>
 </template>

@@ -28,7 +28,7 @@
             <p v-show="nomore" class="noMore">没有更多数据了</p>
          </div>
          <div v-show="!loadingtrue" class="nullDiv" v-else>
-            <img src="@/assets/images/null1.png">
+            <img src="@/assets/images/null_hosi.png">
          </div>
          <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
             <span v-if="waitPayData.length!=0&&!nomore">
@@ -125,7 +125,7 @@ export default {
       appointinfo: function (val) {
          this.$router.push({
             name: 'admission',
-            query: { id: val.id }
+            query: { id: val.id, }
          });
       },
 

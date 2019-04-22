@@ -21,7 +21,7 @@
             </div>
             <p class="cardTextPP">
               <span>类型：
-                <span class="mu-secondary-text-color"> 住院病历</span>
+                <span class="mu-secondary-text-color">住院病历</span>
               </span>
               <span>科室：
                 <span class="mu-secondary-text-color">{{item.dept}}</span>
@@ -29,11 +29,11 @@
             </p>
             <div class="listData parElem">
               <span class="sonElem">入院日期：</span>
-              <span class="mu-light-text-color">{{item.inTime}}</span>
+              <span class="mu-light-text-color">{{item.inTime|lasttime}}</span>
             </div>
             <div class="listData parElem">
               <span class="sonElem">出院日期：</span>
-              <span class="mu-light-text-color">{{item.ouTime}}</span>
+              <span class="mu-light-text-color">{{item.outTime|lasttime}}</span>
             </div>
             <p class="learnMore" @click="businssrecordinfo(item)">
               详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">

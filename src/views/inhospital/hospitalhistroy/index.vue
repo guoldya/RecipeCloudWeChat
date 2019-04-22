@@ -1,31 +1,31 @@
 <template>
   <div class="feerecord">
-
-    <Navigation type="title" title="住院历史记录">
-      
-    </Navigation>
-    <div class="margin50 hospitalhistroy">
+    <Navigation type="title" title="住院历史记录"> </Navigation>
+    <div class="margin50  ">
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
-        <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
-          <div class="appTitleinhosipital">
-            <img src="@/assets/images/inhosipital.png" alt="" class="inhosipital-img">
+  
+
+        <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item,i)">
+          <div class="appTitle">
+            <span>第
+              <span class="mu-secondary-text-color">{{waitPayData.length-i}}</span> 次住院</span>
           </div>
           <div class="cardText">
             <p class="parElem listData">
-              <span class="sonElem">姓名</span>
+              <span class="sonElem">患者姓名</span>
               <span>{{item.name}}</span>
+            </p>
+            <p class="parElem listData">
+              <span class="sonElem">住院号</span>
+              <span>{{item.ihNo}}</span>
             </p>
             <p class="parElem listData">
               <span class="sonElem">住院科室</span>
               <span>{{item.dept}}</span>
             </p>
             <p class="parElem listData">
-              <span class="sonElem">床号</span>
-              <span>{{item.bedNo}}号</span>
-            </p>
-            <p class="parElem listData">
               <span class="sonElem">住院费用</span>
-              <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}</span>
+              <span>{{item.money|keepTwoNum}} 元</span>
             </p>
           </div>
         </div>
@@ -83,6 +83,7 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
+      params.status = 3;
       this.$axios.put(pay_list_url, params).then((res) => {
 
         this.loadingtrue = false;
@@ -125,10 +126,10 @@ export default {
 
 
 
-    appointinfo: function (val) {
+    appointinfo: function (val, index) {
       this.$router.push({
-        name: 'admission',
-        query: { id: val.id }
+        name: 'hospitalinfo',
+        query: { id: val.id, time: this.waitPayData.length - index }
       });
     },
 

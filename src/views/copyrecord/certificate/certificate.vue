@@ -49,8 +49,8 @@
         </div>
       </div>
       <div style="margin-top: 20px">
-        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" is-highlight></md-input-item>
-        <md-input-item v-model="idcard" title="身份证号" placeholder="患者身份证号" clearable is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" maxlength="20" is-highlight></md-input-item>
+        <md-input-item v-model="idcard" title="身份证号" maxlength="18" placeholder="患者身份证号" clearable is-highlight></md-input-item>
       </div>
       <!-- 申请人 -->
       <div v-show="isSelf">
@@ -96,8 +96,8 @@
           </div>
         </div>
         <div style="margin-top:20px">
-          <md-input-item ref="input13" v-model="nameApp" title="申请人姓名" placeholder="申请人姓名" is-highlight></md-input-item>
-          <md-input-item v-model="idcardApp" title="身份证号" placeholder="申请人身份证号" clearable is-highlight></md-input-item>
+          <md-input-item ref="input13" v-model="nameApp" title="申请人姓名" placeholder="申请人姓名" maxlength="20" is-highlight></md-input-item>
+          <md-input-item v-model="idcardApp" title="身份证号" placeholder="申请人身份证号" clearable is-highlight maxlength="18"></md-input-item>
         </div>
       </div>
     </div>
@@ -110,7 +110,7 @@
         <p class="namecodema">委托书样例</p>
       </div>
     </md-landscape>
-    
+
   </div>
 </template>
 <script type="text/babel">
@@ -145,6 +145,7 @@ export default {
         othFile: null,
       },
       imgFiles: [],
+
       posUrl: pg_negative,
       othUrl: pg_positive,
       hanUrl: pg_handheld,
@@ -165,6 +166,8 @@ export default {
       ],
       nextPar: '',
       cardImg: [],
+      shibie: false,
+      shibieOther: false,
     };
   },
   created() {
@@ -350,6 +353,7 @@ export default {
       this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
+            this.shibie = true;
             this.$toast.hide();
             this.cardImg = res.data.fileInfo;
             this.$store.commit('cardImg', res.data.fileInfo);
@@ -367,9 +371,8 @@ export default {
 
             this.$store.commit('posUrlFun', this.posUrl);
             this.$store.commit('othUrlFun', this.othUrl);
-
-
           } else {
+            this.shibie = false;
             this.$toast.info(res.data.msg)
           }
         });
@@ -433,6 +436,7 @@ export default {
       this.$axios.post(uploadImgimage + '?certificateName=idCard', param2, config)
         .then(res => {
           if (res.data.code == '200') {
+
             this.$toast.hide();
             this.nameApp = res.data.fileData.photo0.name;
             this.idcardApp = res.data.fileData.photo0.idCard;
@@ -444,26 +448,58 @@ export default {
       this.$axios.post(appLoginuploadImage + '?certificateName=idCard', param, config)
         .then(res => {
           if (res.data.code == '200') {
-            console.log(res.data.fileInfo,"res.data.fileInfo")
-             //this.$store.commit('idCardInfoFun', res.data.fileInfo);
-             this.$store.commit('idCardAPPInfoFun', res.data.fileInfo);
+            this.shibieOther = false;
+            this.$store.commit('idCardAPPInfoFun', res.data.fileInfo);
           } else {
+            this.shibieOther = true;
             this.$toast.info(res.data.msg)
           }
         });
     },
     cardconfirm() {
       if (this.receiverType == 1) {
-        if (!this.name || !this.idcard) {
-          this.$toast.info("请输入患者姓名和身份证号");
+        if (!this.AAA.name || !this.BBB.name || !this.CCC.name) {
+          this.$toast.info("请上传图片");
           return;
+        } else {
+          if (!this.shibie) {
+            if (!this.name || !this.idcard) {
+              this.$toast.info("请输入患者姓名和身份证号");
+              return;
+            }
+          }
+
         }
+
       }
+
       if (this.receiverType == 2) {
-        if (!this.name || !this.idcard || !this.nameApp || !this.idcardApp) {
-          this.$toast.info("请完善信息");
+
+        if (!this.AAA.name || !this.BBB.name || !this.CCC.name) {
+          this.$toast.info("请上传图片");
           return;
+        } else {
+          if (!this.shibie) {
+            if (!this.name || !this.idcard) {
+              this.$toast.info("请输入患者姓名和身份证号");
+              return;
+            }
+          }
+
         }
+        if (!this.DDD.name || !this.EEE.name || !this.FFF.name || !this.GGG.name) {
+          this.$toast.info("请上传图片");
+          return;
+        } else {
+          if (!this.shibieOther) {
+            if (!this.name || !this.idcard || !this.nameApp || !this.idcardApp) {
+              this.$toast.info("请输入代理人姓名和身份证号");
+              return;
+            }
+          }
+
+        }
+
       }
       this.nextPar = this.$route.query;
       this.nextPar.receiverType = this.receiverType;
@@ -472,14 +508,10 @@ export default {
         name: 'putinfo',
         query: { name: this.name, idcard: this.idcard, receiverType: this.receiverType, mail: this.$route.query.mail }
       });
-      // this.$axios.post(addOrUpdate,this.nextPar).then(res => {
-      //     if (res.data.code == '200') {
-      //
-      //         // this.$router.go(-1);
-      //     }
-      // }).catch(function (err) {
-      //     console.log(err);
-      // });
+
+
+
+
     },
   },
 

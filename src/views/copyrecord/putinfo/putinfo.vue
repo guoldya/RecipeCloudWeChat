@@ -51,8 +51,8 @@
     <div class="flatCard margin16 outCarint">
       <div class="content">
         <div class="login-box">
-          <md-field-item v-show="type==1" title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
-          <md-input-item ref="input13" v-model="useInfo" title="用途说明" placeholder="用途说明"></md-input-item>
+          <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
+          <md-input-item ref="input13" v-show="type==1"  v-model="useInfo" title="用途说明" placeholder="用途说明"></md-input-item>
           <div class="login-box-div">
             <span class="flexF">复印份数</span>
             <div class="flexR calculate">
@@ -60,7 +60,7 @@
             </div>
           </div>
           <md-input-item ref="input13" v-model="remark" title="备注" placeholder="备注">
-            <div class="input-operator" slot="right">(选填)</div>
+            <div class="input-operator" slot="right" style="color:#c5cad5">(选填)</div>
           </md-input-item>
           <p class="partLine outCarint"></p>
           <md-input-item type="phone" v-model="mobile" title="手机号码" placeholder="xxx xxxx xxxx" clearable></md-input-item>
@@ -342,7 +342,7 @@ export default {
 }
 
 .putinfo .content .login-box div .flexS {
-  padding-left: 228px;
+  /* padding-left: 228px; */
   text-align: right;
 }
 .content .login-box div input::-webkit-input-placeholder {
