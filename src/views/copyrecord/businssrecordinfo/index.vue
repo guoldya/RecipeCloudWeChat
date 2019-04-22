@@ -6,13 +6,17 @@
         <md-detail-item title="申请信息" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
         <md-detail-item title="申请编号" :content="businssrecordinfo.code" />
-        <md-detail-item title="申请人姓名" :content="businssrecordinfo.patientName" />
-        <md-detail-item title="与患者关系" :content="businssrecordinfo.ihNo" />
-        <md-detail-item title="证件类型">
-          <span>{{businssrecordinfo.inTime|lasttime}}</span>
+        <md-detail-item title="申请人姓名" :content="bizIhRecord.name" />
+        <md-detail-item title="与患者关系">
+          <span v-if="businssrecordinfo.receiverType==1">本人</span>
+          <span v-else>代理人</span>
         </md-detail-item>
-        <md-detail-item title="身份证号">
-          <span>{{businssrecordinfo.inTime|lasttime}}</span>
+        <md-detail-item title="证件类型">
+          <span v-if="businssrecordinfo.idCard">身份证</span>
+          <span v-else>医保卡</span>
+        </md-detail-item>
+        <md-detail-item title="证件号">
+          <span v-if="businssrecordinfo.idCard">{{businssrecordinfo.idCard}}</span>
         </md-detail-item>
       </div>
       <div style="height:5px;background:#f8f8f8">
@@ -23,7 +27,7 @@
         <md-detail-item title="住院信息" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
         <md-detail-item title="患者姓名">
-          <span>{{businssrecordinfo.name}}</span>
+          <span>{{businssrecordinfo.patientName}}</span>
         </md-detail-item>
         <md-detail-item title="入院时间">
           <span>{{businssrecordinfo.inTime|lasttime}}</span>
@@ -32,12 +36,14 @@
           <span>{{businssrecordinfo.ouTime|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="住院号">
-          <span>{{businssrecordinfo.ihNo}}</span>
+          <span>{{bizIhRecord.ihNo}}</span>
         </md-detail-item>
         <md-detail-item title="住院科室" :content="businssrecordinfo.dept" />
         <md-detail-item title="住院诊断" :content="businssrecordinfo.diag" />
-        <md-detail-item title="住院次数" :content="businssrecordinfo.renewalMum" />
-        <md-detail-item title="病历类型" content="住院病历" />
+        <md-detail-item title="住院次数" :content="bizIhRecord.renewalMum">
+          <span>{{bizIhRecord.ihCount}} 次</span>
+        </md-detail-item>
+        <!-- <md-detail-item title="病历类型" content="住院病历" /> -->
         <md-detail-item title="申请日期">
           <span>{{businssrecordinfo.recipeDate|lasttime}}</span>
         </md-detail-item>
@@ -70,6 +76,7 @@ export default {
   name: 'detail-item-demo',
   data() {
     return {
+      bizIhRecord: '',
       businssrecordinfo: '',
       loadingtrue: true,
     };
@@ -88,7 +95,8 @@ export default {
       this.$axios.put(appbizCopyApplypayment, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.loadingtrue = false;
-          this.businssrecordinfo = res.data.data.bizIhRecord
+          this.businssrecordinfo = res.data.data;
+          this.bizIhRecord = res.data.data.bizIhRecord;
         } else {
           this.loadingtrue = false;
           this.$toast.info(res.data.msg);

@@ -46,13 +46,13 @@
                         <div>
                             <div class="cardTextPP spanWid arrow" v-for="(item,i) in waitPayData" :key="i">
                                 <span>{{item.dept}}</span>
-                                <span>{{item.ihNo}}
-                                    <span>{{item.ihCount}}</span>
-                                </span>
+                                <span>{{item.ihNo}} </span>
                                 <span>{{item.ihCount}}</span>
                                 <span>{{item.ihCount}}</span>
                             </div>
-
+                            <p style="text-align:right">合计：
+                                <span class="mu-secondary-text-color">2000</span>
+                            </p>
                         </div>
                     </div>
                     <p v-show="nomore" class="noMore">没有更多数据了</p>
