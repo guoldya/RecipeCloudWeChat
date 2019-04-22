@@ -113,7 +113,7 @@
                             <span>单位</span>
                             <span style="text-align: right">参考值</span>
                         </div>
-                        <div class="cardTextPP spanWid arrow" v-for="(item,i) in reportResult">
+                        <div class="cardTextPP spanWid arrow" v-for="(item,i) in reportResult" :key="i">
                             <span>{{item.itemName}}</span>
                             <span>{{item.itemValue}}
                                 <span>{{item.contrast}}</span>

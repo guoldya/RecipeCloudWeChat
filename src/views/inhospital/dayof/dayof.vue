@@ -28,147 +28,57 @@
         </ul>
       </div>
     </div>
-    <div class="outCarint">
-      <div class="card">
-        <div class="cardText">
-          <p class="cardTextPP">
-            预交款总额
-            <span class="mu-secondary-text-color">￥2000.00</span>
-          </p>
-          <p class="cardTextPP">
-            未结总费用
-            <span class="mu-secondary-text-color">-￥2000.00</span>
-          </p>
-          <p class="cardTextPP">
-            剩余款
-            <span class="mu-secondary-text-color">￥2000.00</span>
-          </p>
-        </div>
-      </div>
+    <div class="cardText alignJ flatCard">
+      <p class="parElem listData">
+        <span class="sonElem">预交款总额</span>
+        <span class="mu-secondary-text-color">.name}}</span>
+      </p>
+      <p class="parElem listData">
+        <span class="sonElem">未结总费用</span>
+        <span class="mu-secondary-text-color">.name}}</span>
+      </p>
+      <p class="parElem listData">
+        <span class="sonElem">剩余款</span>
+        <span class="mu-secondary-text-color">.name}}</span>
+      </p>
     </div>
-    <div class="outCarint">
-      <div class="card">
-        <div class="cardText">
-          <p class="cardTextPP cardTextTitle">
-            <span style="width: 20%;">类别</span>
-            <span style="width: 44%;">项目名</span>
-            <span style="width: 18%;text-align:right">数量</span>
-            <span style="width: 18%;text-align:right">金额</span>
-          </p>
-          <div style="border-bottom:1px solid #e9e9e9">
-            <div class="cardTextPP" style="border-bottom:none">
-              <span style="width: 20%;">西药费</span>
-              <span style="width: 44%;">双肺纹理增多</span>
-              <span style="width: 18%;text-align:right">100</span>
-              <span style="width: 18%;text-align:right">1</span>
-            </div>
-            <div class="cardTextPP">
-              <span style="width: 20%;"> </span>
-              <span style="width: 44%;">心影形态大小未见明显异常</span>
-              <span style="width: 18%;text-align:right">10</span>
-              <span style="width: 18%;text-align:right">100</span>
-            </div>
-          </div>
-          <div>
-            <div class="cardTextPP" style="border-bottom:none">
-              <span style="width: 20%;">检查费</span>
-              <span style="width: 44%;">双肺纹理增多</span>
-              <span style="width: 18%;text-align:right">100</span>
-              <span style="width: 18%;text-align:right">1</span>
-            </div>
-            <div class="cardTextPP">
-              <span style="width: 20%;"> </span>
-              <span style="width: 44%;">心影形态大小未见明显异常</span>
-              <span style="width: 18%;text-align:right">10</span>
-              <span style="width: 18%;text-align:right">100</span>
+    <div class="margin5" v-if="waitPayData.length!=0">
+      <div class="cardText flatCard">
+        <div class="cardTextKind spanWid">
+          <span style="text-align: left">类别</span>
+          <span>项目名称</span>
+          <span>数量</span>
+          <span style="text-align: right">金额</span>
+        </div>
+        <div>
+          <div v-for="(item,i) in waitPayData" :key="i">
+            <p style="border-bottom: 1px solid #e9e9e9; line-height: 40px;">{{item.feeType|feeType}}</p>
+            <div class="spanWid cardTextPP arrow" v-for="(item2,index) in item.list" :key="index">
+              <span> </span>
+              <span>{{item2.itemName}} </span>
+              <span>{{item2.num}}</span>
+              <span>{{item2.price|keepTwoNum}}</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="cardText">
-          <p class="cardTextPP cardTextTitle">
-            <span>类别</span>
-            <span>项目名</span>
-            <span>数量</span>
-            <span>金额</span>
-          </p>
-          <p class="cardTextPP">
-            <span>西药费</span>
-            <span>
-              <p>肺力咳合剂</p>
-              <p>肺力咳合剂 </p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查费</span>
-            <span>
-              <p>肺力咳合剂</p>
-              <p>肺力咳合剂 </p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="cardText">
-          <p class="cardTextPP cardTextTitle">
-            <span>类别</span>
-            <span>项目名</span>
-            <span>数量</span>
-            <span>金额</span>
-          </p>
-          <p class="cardTextPP">
-            <span>西药费</span>
-            <span>
-              <p>肺力咳合剂</p>
-              <p>肺力咳合剂 </p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-          </p>
-          <p class="cardTextPP">
-            <span>检查费</span>
-            <span>
-              <p>肺力咳合剂</p>
-              <p>肺力咳合剂 </p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-            <span>
-              <p>1</p>
-              <p>1</p>
-            </span>
-          </p>
-        </div>
-      </div>
+      <p v-show="nomore" class="noMore">没有更多数据了</p>
     </div>
+    <div v-show="!loadingtrue" class="nullDiv" v-else>
+      <img src="@/assets/images/null1.png">
+    </div>
+    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
+      <span v-if="waitPayData.length!=0&&!nomore">
+        <span class="mu-light-text-color">加载中</span>
+        <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+      </span>
+    </div>
+    <Loading v-show="loadingtrue"></Loading>
   </div>
 </template>
 <script type="text/babel">
+let cord_info_url = "/app/bizIhRecord/read/detail";
+let selectIhRecordPriceList = "/app/bizIhFee/read/page"
 export default {
   data() {
     return {
@@ -178,9 +88,87 @@ export default {
       chooseWeek: '一',
       isAAA: false,
       activetime: 0,
+
+
+      rows: [
+        {
+          feeType: 1,
+          list: [
+            {
+              feeDate: "2019 - 04 - 22",
+              feeType: 1,
+              id: '2',
+              ihNo: '0005',
+              itemName: "感冒了",
+              num: '1',
+              price: '5600',
+              recordId: '1',
+              total: '5600'
+            },
+            {
+              feeDate: "2019 - 04 - 22",
+              feeType: '1',
+              id: '1',
+              ihNo: '0005',
+              itemName: "测试",
+              num: '2',
+              price: '5000',
+              recordId: '1',
+              total: '10000',
+            }
+          ]
+        },
+        {
+          feeType: 2,
+          list: [
+            {
+              feeDate: "2019 - 04 - 22",
+              feeType: 1,
+              id: '2',
+              ihNo: '0005',
+              itemName: "111",
+              num: '1',
+              price: '5600',
+              recordId: '1',
+              total: '5600'
+            },
+            {
+              feeDate: "2019 - 04 - 22",
+              feeType: 1,
+              id: '2',
+              ihNo: '0005',
+              itemName: "2222",
+              num: '1',
+              price: '5600',
+              recordId: '1',
+              total: '5600'
+            },
+            {
+              feeDate: "2019 - 04 - 22",
+              feeType: '1',
+              id: '1',
+              ihNo: '0005',
+              itemName: "333333",
+              num: '2',
+              price: '5000',
+              recordId: '1',
+              total: '10000',
+            }
+          ]
+        },
+      ],
+      busy: true,
+      loadingtrue: true,
+      nomore: false,
+      waitPayData: '',
+      page: 1,
+      pageSize: 10,
+      loadingtrue: true,
     };
   },
   created() {
+    this.WaitPay(false);
+    this.cordInfo()
   },
   mounted() {
     document.title = '一日清单';
@@ -220,6 +208,7 @@ export default {
     choose(data, index) {
       this.activetime = index;
       this.chooseday = data.day;
+
       this.chooseDate = data.date;
       this.chooseWeek = data.week;
 
@@ -250,6 +239,8 @@ export default {
       }
       var m = d.getMonth() + 1;
       var newDay = dayArr[d.getDay()];
+      if (m < 10)
+        m = '0' + m
       data.newData = y + '.' + m;
       if (d.getDate() < 10) {
         data.newYear = '0' + d.getDate();
@@ -260,7 +251,66 @@ export default {
       data.newDay = newDay;
       return data;
     },
+    cordInfo() {
+      this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id) }, {
+      }).then(res => {
+        if (res.data.code == '200') {
+          this.loadingtrue = false;
+          if (res.data.data) {
+            console.log(res.data.data)
+            this.cordInfoData = res.data.data;
+          } else {
+            this.cordInfoData = []
+          }
 
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    WaitPay(flag) {
+      const params = {};
+      params.pageNumber = this.page;
+      params.pageSize = this.pageSize;
+      params.recordId = 1;
+      this.$axios.put(selectIhRecordPriceList, params).then((res) => {
+        this.loadingtrue = false;
+        if (res.data.code == 200) {
+          if (res.data.rows) {
+            if (flag) {
+              this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
+              if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                this.busy = false;
+                this.nomore = false;
+              } else {
+                this.busy = true;
+                this.nomore = true;
+              }
+            } else {
+              this.waitPayData = res.data.rows;
+              this.busy = true;
+              if (res.data.total < 10) {
+                this.busy = true;
+                this.nomore = true;
+              } else {
+                this.busy = false;
+                this.nomore = false;
+              }
+            }
+          }
+          //2、
+        } else {
+          this.waitPayData = []
+        }
+      })
+    },
+    loadMore() {
+      this.busy = true;  //将无限滚动给禁用
+      setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
+        this.page++;  //滚动之后加载第二页
+        this.WaitPay(true);
+      }, 500);
+    },
   },
   computed: {
 
@@ -271,9 +321,6 @@ export default {
  <style scoped>
 @import "../../submitOrder/submitOrder.css";
 .admissionbg {
-  /* background: #57d0f4;
-  background: #42a3fb; */
-  /* height: 400px; */
   background: -moz-linear-gradient(#57d0f4 20%, #42a3fb 90%);
   background: -webkit-linear-gradient(#57d0f4 20%, #42a3fb 90%);
   background: -o-linear-gradient(#57d0f4 20%, #42a3fb 90%);
@@ -340,23 +387,49 @@ export default {
   text-align: center;
   color: #ffffff;
 }
-.admission .card {
-  margin-top: 30px;
-}
-.admission .card:last-child {
-  margin-bottom: 30px;
+
+.admission .parElem .sonElem {
+  width: 50%;
 }
 .admission .cardText .cardTextPP {
   display: flex;
   justify-content: space-between;
-  padding: 0.25rem 0;
-  font-size: 0.28rem;
-  border-bottom: 0.01rem solid #e9e9e9;
+  font-size: 28px;
+  /*align-items: center;*/
+  padding: 18px 0;
+  color: var(--primary--right);
 }
-.admission .cardText .cardTextPP:last-child {
+.admission .cardText .cardTextPP:last-child,
+.admission .cardText .cardTextBor {
   border: none;
 }
-.admission .cardText .cardTextTitle {
-  font-weight: 600;
+.admission .cardText .cardTextKind {
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 0;
+  font-size: 27px;
+  border-bottom: 1px solid #e9e9e9;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+.admission .spanWid span {
+  text-align: center;
+}
+
+.admission .spanWid span:first-child {
+  width: 20%;
+  text-align: left;
+}
+.admission .spanWid span:nth-child(2) {
+  width: 32%;
+  text-align: left;
+}
+
+.admission .spanWid span:nth-child(3) {
+  width: 20%;
+}
+.admission .spanWid span:last-child {
+  width: 20%;
+  text-align: right;
 }
 </style>

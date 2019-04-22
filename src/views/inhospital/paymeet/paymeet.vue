@@ -25,17 +25,14 @@
       <div class="flatCard outCarint">
         <div class="outCarintcontent">
           <p>选择预交款金额</p>
-
           <div class="moneyflatCard">
             <!-- <div class="moneyflatActive">￥500</div> -->
             <div :class="active1 ===index ? 'moneyflatActive' : '' " v-for="(item2,index)  in money" :key="index+'s'" @click="chooseMoney(item2,index)">￥{{item2}}</div>
           </div>
-
           <div class="moneyflatCard">
-            <input type="text" placeholder="可输入其他金额" v-model="textMoney" oninput="value=value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')">
+            <input type="text" placeholder="可输入其他金额" v-model="textMoney" oninput="value = value && ((value.match(/\d+(\.(\d(\d)?)?)?/) || [])[0] || '')">
           </div>
         </div>
-
       </div>
       <Loading v-show="loadingtrue"></Loading>
       <p class="addbTN" @click="next">立即缴纳</p>
@@ -101,6 +98,21 @@ export default {
     },
   },
   methods: {
+
+
+
+    amount(th) {
+      var regStrs = [
+        ['^0(\\d+)$', '$1'], //禁止录入整数部分两位以上，但首位为0  
+        ['[^\\d\\.]+$', ''], //禁止录入任何非数字和点  
+        ['\\.(\\d?)\\.+', '.$1'], //禁止录入两个以上的点  
+        ['^(\\d+\\.\\d{2}).+', '$1'] //禁止录入小数点后两位以上  
+      ];
+      for (var i = 0; i < regStrs.length; i++) {
+        var reg = new RegExp(regStrs[i][0]);
+        th.value = th.value.replace(reg, regStrs[i][1]);
+      }
+    } ,
     chooseMoney(data, index) {
 
       this.defaultMoney = data;

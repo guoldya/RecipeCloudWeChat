@@ -2,7 +2,7 @@
     <div class="hospitalinfo">
         <Navigation type="title" title="住院费用"></Navigation>
         <div class="margin55">
-            <div v-show="!loadingtrue">
+            <div>
                 <div class="cardText alignJ flatCard">
                     <div class="appTitle" style="padding: 0.24rem 0">
                         <span>第
@@ -35,7 +35,12 @@
                         </p>
                     </div>
                 </div>
-                <div class=" margin5" v-if="waitPayData.length!=0" v-show="!loadingtrue">
+                <div class="cardText alignJ flatCard">
+                    <p style="text-align:right">合计：
+                        <span class="mu-secondary-text-color" style="font-size:16px">{{totalMoney|keepTwoNum}}</span>元
+                    </p>
+                </div>
+                <div class="margin5" v-if="waitPayData.length!=0">
                     <div class="cardText flatCard">
                         <div class="cardTextKind spanWid">
                             <span style="text-align: left">类别</span>
@@ -44,15 +49,15 @@
                             <span style="text-align: right">金额</span>
                         </div>
                         <div>
-                            <div class="cardTextPP spanWid arrow" v-for="(item,i) in waitPayData" :key="i">
-                                <span>{{item.dept}}</span>
-                                <span>{{item.ihNo}} </span>
-                                <span>{{item.ihCount}}</span>
-                                <span>{{item.ihCount}}</span>
+                            <div v-for="(item,i) in waitPayData" :key="i">
+                                <p style="border-bottom: 1px solid #e9e9e9; line-height: 40px;">{{item.feeType|feeType}}</p>
+                                <div class="spanWid cardTextPP arrow" v-for="(item2,index) in item.list" :key="index">
+                                    <span> </span>
+                                    <span>{{item2.itemName}} </span>
+                                    <span>{{item2.num}}</span>
+                                    <span>{{item2.price|keepTwoNum}}</span>
+                                </div>
                             </div>
-                            <p style="text-align:right">合计：
-                                <span class="mu-secondary-text-color">2000</span>
-                            </p>
                         </div>
                     </div>
                     <p v-show="nomore" class="noMore">没有更多数据了</p>
@@ -74,10 +79,77 @@
 </template>
 <script  >
 let cord_info_url = "/app/bizIhRecord/read/detail";
-let selectIhRecordPriceList = "/app/bizIhRecord/read/selectIhRecordPriceList"
+let selectIhRecordPriceList = "/app/bizIhFee/read/page"
 export default {
     data() {
         return {
+            rows: [
+                {
+                    feeType: 1,
+                    list: [
+                        {
+                            feeDate: "2019 - 04 - 22",
+                            feeType: 1,
+                            id: '2',
+                            ihNo: '0005',
+                            itemName: "感冒了",
+                            num: '1',
+                            price: '5600',
+                            recordId: '1',
+                            total: '5600'
+                        },
+                        {
+                            feeDate: "2019 - 04 - 22",
+                            feeType: '1',
+                            id: '1',
+                            ihNo: '0005',
+                            itemName: "测试",
+                            num: '2',
+                            price: '5000',
+                            recordId: '1',
+                            total: '10000',
+                        }
+                    ]
+                },
+                {
+                    feeType: 2,
+                    list: [
+                        {
+                            feeDate: "2019 - 04 - 22",
+                            feeType: 1,
+                            id: '2',
+                            ihNo: '0005',
+                            itemName: "111",
+                            num: '1',
+                            price: '5600',
+                            recordId: '1',
+                            total: '5600'
+                        },
+                        {
+                            feeDate: "2019 - 04 - 22",
+                            feeType: 1,
+                            id: '2',
+                            ihNo: '0005',
+                            itemName: "2222",
+                            num: '1',
+                            price: '5600',
+                            recordId: '1',
+                            total: '5600'
+                        },
+                        {
+                            feeDate: "2019 - 04 - 22",
+                            feeType: '1',
+                            id: '1',
+                            ihNo: '0005',
+                            itemName: "333333",
+                            num: '2',
+                            price: '5000',
+                            recordId: '1',
+                            total: '10000',
+                        }
+                    ]
+                },
+            ],
             busy: true,
             loadingtrue: true,
             nomore: false,
@@ -86,6 +158,7 @@ export default {
             pageSize: 10,
             cordInfoData: '',
             loadingtrue: true,
+            totalMoney: '',
         };
     },
 
@@ -122,7 +195,9 @@ export default {
             this.$axios.put(selectIhRecordPriceList, params).then((res) => {
                 this.loadingtrue = false;
                 if (res.data.code == 200) {
+                    this.totalMoney = res.data.totalMoney;
                     if (res.data.rows) {
+
                         if (flag) {
                             this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
                             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
@@ -175,6 +250,7 @@ export default {
   font-size: 28px;
   /*align-items: center;*/
   padding: 18px 0;
+  color: var(--primary--right);
 }
 .hospitalinfo .cardText .cardTextPP:last-child,
 .hospitalinfo .cardText .cardTextBor {
@@ -204,6 +280,7 @@ export default {
 }
 .hospitalinfo .spanWid span:nth-child(2) {
   width: 32%;
+  text-align: left;
 }
 .hospitalinfo .arrow span:nth-child(2) span {
   color: red;

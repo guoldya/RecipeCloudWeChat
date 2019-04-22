@@ -233,7 +233,7 @@ const busistatus = function (value) {
         return "审核通过"
     } else if (value == 3) {
         return "审核不通过"
-    } 
+    }
 };
 const deliveryMode = function (value) {
     if (value == undefined) {
@@ -246,6 +246,18 @@ const deliveryMode = function (value) {
     }
 };
 
+const feeType = function (value) {
+    if (value == undefined) {
+        return "未知"
+    }
+    if (value == 1) {
+        return "西药费"
+    } else if (value == 2) {
+        return "检查费"
+    } else if (value == 3) {
+        return "检验费"
+    }
+};
 const getAge = function (value) {
     if (value) return
     if (!value.split(" ")) return
@@ -312,4 +324,5 @@ export default {
     deliveryMode,
     payStatus,
     payStatusIMG,
+    feeType,
 }
