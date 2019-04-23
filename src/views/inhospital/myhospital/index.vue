@@ -91,9 +91,10 @@ export default {
       dayof() {
          this.$router.push({
             name: 'dayof',
+            query: { id: parseInt(this.$route.query.id) }
          });
       },
- 
+
       paymeet: function (val) {
          this.$router.push({
             name: 'paymeet',

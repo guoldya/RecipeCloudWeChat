@@ -245,6 +245,25 @@ const deliveryMode = function (value) {
         return "自取"
     }
 };
+const weekMode = function (value) {
+    switch (value) {
+        case 0:
+            return "天"
+        case 1:
+            return "一"
+        case 2:
+            return "二"
+        case 3:
+            return "三"
+        case 4:
+            return "四"
+        case 5:
+            return "五"
+        case 6:
+            return "六"
+        default:
+    }
+};
 
 const feeType = function (value) {
     if (value == undefined) {
@@ -325,4 +344,5 @@ export default {
     payStatus,
     payStatusIMG,
     feeType,
+    weekMode,
 }

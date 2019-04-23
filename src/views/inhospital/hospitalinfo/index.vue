@@ -35,7 +35,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="cardText alignJ flatCard">
+                <div class="cardText alignJ flatCard" v-show="waitPayData.length!=0">
                     <p style="text-align:right">合计：
                         <span class="mu-secondary-text-color" style="font-size:16px">{{totalMoney|keepTwoNum}}</span>元
                     </p>

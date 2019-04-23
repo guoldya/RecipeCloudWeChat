@@ -131,9 +131,18 @@ export default {
 
 
     appointinfo: function (val) {
+      let arg = {}
+      if (val.inTime) {
+        arg.feeDate = val.inTime.split(' ')[0];
+        arg.id = val.id;
+
+      }else{
+         arg.id = val.id;
+
+      }
       this.$router.push({
         name: 'myhospital',
-        query: { id: val.id, feeDate: val.inTime.split(' ')[0] }
+        query: arg
       });
     },
 

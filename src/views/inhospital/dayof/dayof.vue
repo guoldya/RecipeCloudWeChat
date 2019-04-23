@@ -15,15 +15,15 @@
       <div class="bigDate">
         <span class="bigDateDay">{{chooseday}}</span>
         <span class="bigDateTime">
-          <span>星期{{chooseWeek}}</span>
+          <span>星期{{chooseWeek|weekMode}}</span>
           <span class="week">{{chooseDate}}</span>
         </span>
       </div>
       <div class="big_date">
         <ul>
-          <li v-for="(item,index) in time" :key="index" @click="choose(item,index)">
-            <p>{{item.week}}</p>
-            <p :class="activetime === index ? 'aa' : '' ">{{item.day}}</p>
+          <li v-for="(item,index) in cordInfoData" :key="index" @click="choose(item,index)" :class="item.index == 0 ? 'cannot' : '' ">
+            <p>{{item.week|weekMode}}</p>
+            <p :class="activetime === index ? 'aa' : '' ">{{item.times.substring(8 ,10)}}</p>
           </li>
         </ul>
       </div>
@@ -31,15 +31,15 @@
     <div class="cardText alignJ flatCard">
       <p class="parElem listData">
         <span class="sonElem">预交款总额</span>
-        <span class="mu-secondary-text-color">.name}}</span>
+        <span class="mu-secondary-text-color">￥{{money|keepTwoNum}}</span>
       </p>
       <p class="parElem listData">
         <span class="sonElem">未结总费用</span>
-        <span class="mu-secondary-text-color">.name}}</span>
+        <span class="mu-secondary-text-color">￥{{balance|keepTwoNum}}</span>
       </p>
       <p class="parElem listData">
         <span class="sonElem">剩余款</span>
-        <span class="mu-secondary-text-color">.name}}</span>
+        <span class="mu-secondary-text-color">￥{{balance|keepTwoNum}}</span>
       </p>
     </div>
     <div class="margin5" v-if="waitPayData.length!=0">
@@ -57,7 +57,7 @@
               <span> </span>
               <span>{{item2.itemName}} </span>
               <span>{{item2.num}}</span>
-              <span>{{item2.price|keepTwoNum}}</span>
+              <span>￥{{item2.price|keepTwoNum}}</span>
             </div>
           </div>
         </div>
@@ -77,8 +77,9 @@
   </div>
 </template>
 <script type="text/babel">
-let cord_info_url = "/app/bizIhRecord/read/detail";
-let selectIhRecordPriceList = "/app/bizIhFee/read/page"
+
+let selectIhRecordPriceList = "/app/bizIhFee/read/page";
+let selectTimes = "/app/bizIhFee/selectTimes";
 export default {
   data() {
     return {
@@ -88,8 +89,9 @@ export default {
       chooseWeek: '一',
       isAAA: false,
       activetime: 0,
-
-
+      readyMoney: '',
+      balance: '',
+      money: '',
       rows: [
         {
           feeType: 1,
@@ -164,6 +166,8 @@ export default {
       page: 1,
       pageSize: 10,
       loadingtrue: true,
+      cordInfoData: '',
+      feeDate: '',
     };
   },
   created() {
@@ -204,14 +208,27 @@ export default {
     }
     this.getData()
   },
+  watch: {
+    feeDate(newdoctorParams, olddoctorParams) {
+      console.log(newdoctorParams, olddoctorParams)
+
+      this.goodsList = [];
+      this.loadingtrue = true;
+      this.page = 1;
+      this.WaitPay(false);
+      // this.feeDate = newFeeDate;
+    },
+
+  },
   methods: {
     choose(data, index) {
+      if (data.index == 0) return
       this.activetime = index;
-      this.chooseday = data.day;
-
-      this.chooseDate = data.date;
+      this.chooseday = data.times.substring(8, 10);;
+      this.chooseDate = data.times.substring(0, 7);
       this.chooseWeek = data.week;
-
+      this.feeDate = data.times.split(' ')[0];
+      console.log(this.feeDate.split(' ')[0])
     },
 
     getData() {
@@ -251,14 +268,16 @@ export default {
       data.newDay = newDay;
       return data;
     },
+
+
     cordInfo() {
-      this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id) }, {
+      this.$axios.put(selectTimes, { id: parseInt(this.$route.query.id) }, {
       }).then(res => {
         if (res.data.code == '200') {
           this.loadingtrue = false;
-          if (res.data.data) {
-            console.log(res.data.data)
-            this.cordInfoData = res.data.data;
+          if (res.data.rows) {
+            console.log(res.data.rows)
+            this.cordInfoData = res.data.rows;
           } else {
             this.cordInfoData = []
           }
@@ -272,10 +291,14 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
-      params.recordId = 1;
+      params.recordId = parseInt(this.$route.query.id);
+      params.feeDate = this.feeDate;
       this.$axios.put(selectIhRecordPriceList, params).then((res) => {
         this.loadingtrue = false;
         if (res.data.code == 200) {
+          this.money = res.data.money;
+          this.balance = res.data.balance;
+
           if (res.data.rows) {
             if (flag) {
               this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
@@ -356,7 +379,9 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-
+.admission .big_date ul .cannot {
+  color: #cccbcb;
+}
 .admission .big_date {
   width: 100%;
   overflow-x: scroll;
