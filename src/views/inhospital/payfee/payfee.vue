@@ -3,12 +3,11 @@
     <Navigation type="title" title="预交款缴纳">
       <span class="mu-secondary-text-color" @click="tijiao">预交款记录</span>
     </Navigation>
-    <div class="margin50">
+    <div class="margin55 feerecordhistroy">
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
         <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
-          <div class="appTitle">
-            <span>{{item.cardNo}}</span>
-            <span class="mu-secondary-text-color">{{item.status | admissionFilter}}</span>
+          <div class="appTitleinhosipital">
+            <img src="@/assets/images/inhosipital.png" alt="" class="inhosipital-img">
           </div>
           <div class="cardText">
             <p class="parElem listData">
@@ -16,12 +15,17 @@
               <span>{{item.name}}</span>
             </p>
             <p class="parElem listData">
+              <span class="sonElem">卡号</span>
+              <span>{{item.cardNo}}</span>
+            </p>
+
+            <p class="parElem listData">
               <span class="sonElem">住院科室</span>
               <span>{{item.dept}}</span>
             </p>
             <p class="parElem listData">
               <span class="sonElem">床号</span>
-              <span>{{item.bedNo}} 号</span>
+              <span>{{item.bedNo}} 床</span>
             </p>
             <p class="parElem listData">
               <span class="sonElem">预交款余额</span>
@@ -166,5 +170,21 @@ export default {
 }
 .feerecord .warn {
   color: red !important;
+}
+.feerecordhistroy {
+  padding: 0 20px;
+}
+.feerecordhistroy .flatCard:first-child {
+  border-top: none;
+}
+.feerecordhistroy .flatCard {
+  border-radius: 10px;
+}
+.appTitleinhosipital {
+  height: 50px;
+}
+.inhosipital-img {
+  position: absolute;
+  width: 130px;
 }
 </style>

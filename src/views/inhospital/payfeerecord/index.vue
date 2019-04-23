@@ -6,7 +6,6 @@
     <div class="margin50">
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
         <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
-
           <div class="cardText">
             <p class="parElem listData">
               <span class="sonElem">姓名</span>
@@ -14,7 +13,7 @@
             </p>
             <p class="parElem listData">
               <span class="sonElem">住院号</span>
-              <span>{{item.ihNo}}号</span>
+              <span>{{item.ihNo}}</span>
             </p>
             <p class="parElem listData">
               <span class="sonElem">住院科室</span>

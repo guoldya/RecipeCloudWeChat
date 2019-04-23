@@ -72,7 +72,7 @@ export default {
 
    methods: {
       cordInfo() {
-         this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id) }, {
+         this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id), status: 2 }, {
          }).then(res => {
             if (res.data.code == '200') {
                this.loadingtrue = false;
@@ -91,9 +91,10 @@ export default {
       dayof() {
          this.$router.push({
             name: 'dayof',
+            query: { id: parseInt(this.$route.query.id) }
          });
       },
- 
+
       paymeet: function (val) {
          this.$router.push({
             name: 'paymeet',

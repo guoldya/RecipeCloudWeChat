@@ -44,11 +44,14 @@
     </div>
     <div style="height:78px;background-color: #ffffff"></div>
     <p @click="cardconfirm" class="addbTN">下一步</p>
+
+    <md-cashier ref="cashier" v-model="isCashierhow" :channels="cashierChannels" :channel-limit="2" :payment-amount="String(defaultMoney)" @select="onCashierSelect" @pay="onCashierPay" @cancel="onCashierCancel" :default-index=0></md-cashier>
   </div>
 </template>
 <script type="text/babel">
 let uploadImgimage = "/appLogin/uploadImage";
 let addOrUpdate = "/app/bizIhRecord/uploadIdCard";
+let now_pay_url = "/app/bizIhPay/payment";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 import pg_handheld from '@/assets/images/sb_positive.png'
@@ -72,11 +75,40 @@ export default {
       hanUrl: pg_handheld,
       healthUrl: pg_health,
 
+      defaultMoney: this.$route.query.money,
+      textMoney: '',
+      isCashierhow: false,
+      isCashierCaptcha: false,
+      cashierAmount: '',
+      cashierResult: 'success',
+      cashierChannels: [
+        {
+          icon: 'cashier-icon-2',
+          text: '支付宝支付',
+          value: '1',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '微信支付',
+          value: '2',
+        },
+        {
+          icon: 'cashier-icon-3',
+          text: '医保支付',
+          value: '3',
+        },
+      ],
     };
   },
   created() {
 
   },
+  computed: {
+    cashier() {
+      return this.$refs.cashier
+    },
+  },
+
   mounted() {
     document.title = '身份验证';
   },
@@ -142,7 +174,7 @@ export default {
           return;
         }
       } else {
-        if (!this.AAA.name || !this.BBB.name || !this.CCC.name  ) {
+        if (!this.AAA.name || !this.BBB.name || !this.CCC.name) {
           this.$toast.info("请上传图片")
           return;
         }
@@ -201,10 +233,12 @@ export default {
         .then(res => {
           if (res.data.code == '200') {
             this.$toast.hide();
-            this.$router.push({
-              name: 'admupayfee',
-              query: { id: this.$route.query.id, money: this.$route.query.money }
-            });
+
+            this.isCashierhow = !this.isCashierhow;
+            // this.$router.push({
+            //   name: 'admupayfee',
+            //   query: { id: this.$route.query.id, money: this.$route.query.money }
+            // });
           } else {
             this.$toast.info(res.data.msg)
           }
@@ -212,14 +246,60 @@ export default {
           console.log(err);
         });
 
-    }
+    },
+    onCashierSelect(item) {
+      console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
+    },
+    onCashierCancel() {
+      // Abort pay request or checking request
+      this.timer && clearTimeout(this.timer);
+      if (this.payStatus == "1") {
+        this.$router.go(-1);
+      }
+    },
+    createPay() {
+      this.cashier.next('loading')
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve()
+        }, 3000)
+      })
+    },
+    onCashierPay(item) {
+      let nowPayParams = {};
+      nowPayParams.ihRecordId = Number(this.$route.query.id);
+      nowPayParams.money = this.defaultMoney;
+      // 支付方式
+      nowPayParams.payMode = Number(item.value);
+      this.$axios.post(now_pay_url, nowPayParams).then((res) => {
+        if (res.data.code == '200') {
+          this.createPay().then(() => {
+            this.cashier.next('success', {
+              buttonText: '好的',
+              handler: () => {
+                this.isCashierhow = false
+                // this.$router.go(-3);
+                this.$router.push({
+                  name: 'paysucced',
+                  query: { money: nowPayParams.money, payMode: nowPayParams.payMode }
+                });
+              },
+            })
+          })
+
+
+        } else {
+          this.$toast.info(res.data.msg);
+          this.isCashierhow = false;
+        }
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
 
 
   },
 
-  computed: {
-
-  },
 
 };
 </script>

@@ -37,7 +37,7 @@ let now_pay_url = "/app/bizIhPay/payment";
 export default {
   data() {
     return {
-      active1: 0,
+  
       defaultMoney: this.$route.query.money,
       textMoney: '',
       isCashierhow: false,
@@ -68,22 +68,13 @@ export default {
       return this.$refs.cashier
     },
   },
-  watch: {
-    textMoney: function (newstextMoney, oldtextMoney) {
-      if (newstextMoney) {
-        this.defaultMoney = newstextMoney;
-      }
-    }
-  },
+ 
   mounted() {
 
 
   },
   methods: {
-    chooseMoney(data, index) {
-      this.defaultMoney = data;
-      this.active1 = index;
-    },
+  
     tijiao() {
       this.$router.push({
         name: 'payfeerecord',

@@ -2,7 +2,7 @@
    <div class="paySuccess">
       <div class=" feesucces examineDetail page-loadmore">
          <div class="navigation">
-            <i class="icon-iconfontjiantou" @click="$router.go(-4)">
+            <i class="icon-iconfontjiantou" @click="$router.go(-3)">
                <img src="@/assets/images/icon_back.png">
             </i>
             <div class="navigation-content">
@@ -29,7 +29,7 @@
                   </div>
                   <div class="listData">
                      <span>温馨提示</span>
-                     <span style="width: 74%" class="mu-secondary-text-color">您的入院办理已经完成，请到医院核对</span>
+                     <span style="width: 74%" class="mu-secondary-text-color">您的入院办理已经完成，请到病区护士站办理入科手续。</span>
                   </div>
                </div>
             </div>

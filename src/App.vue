@@ -83,6 +83,12 @@ body {
   justify-content: space-between;
   margin: 24px;
 }
+
+.nullTEXT{
+  font-size: 26px;
+  line-height: 100px;
+  color:#a7a7a7
+}
 .bottomback span {
   border-radius: 60px;
   height: 86px;

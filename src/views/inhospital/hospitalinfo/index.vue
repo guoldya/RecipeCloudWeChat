@@ -35,7 +35,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="cardText alignJ flatCard">
+                <div class="cardText alignJ flatCard" v-show="waitPayData.length!=0">
                     <p style="text-align:right">合计：
                         <span class="mu-secondary-text-color" style="font-size:16px">{{totalMoney|keepTwoNum}}</span>元
                     </p>
@@ -171,7 +171,7 @@ export default {
     },
     methods: {
         cordInfo() {
-            this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id) }, {
+            this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id), status: 3  }, {
             }).then(res => {
                 if (res.data.code == '200') {
                     this.loadingtrue = false;

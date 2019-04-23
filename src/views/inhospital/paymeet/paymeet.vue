@@ -11,7 +11,9 @@
             <span>{{item.ihNo}}</span>
           </md-detail-item>
           <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
-          <md-detail-item title="床号" :content=item.bedNo></md-detail-item>
+          <md-detail-item title="床号">
+            <span>{{item.bedNo}}床</span>
+          </md-detail-item>
           <md-detail-item title="主治医师" :content=item.doctor></md-detail-item>
           <md-detail-item title="本次预交款">
             <span class="mu-secondary-text-color">￥{{defaultMoney|keepTwoNum}}元</span>
@@ -21,7 +23,6 @@
           </md-detail-item>
         </md-field>
       </div>
-
       <div class="flatCard outCarint">
         <div class="outCarintcontent">
           <p>选择预交款金额</p>
@@ -42,7 +43,7 @@
 </template>
 <script  >
 import { Dialog, Cashier } from 'mand-mobile'
-let cord_info_url = "/app/bizIhRecord/read/selectOne";
+let cord_info_url = "app/bizIhRecord/read/selectRecordDetail";
 
 let now_pay_url = "/app/bizIhPay/payment";
 

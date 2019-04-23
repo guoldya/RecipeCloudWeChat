@@ -29,6 +29,7 @@
          </div>
          <div v-show="!loadingtrue" class="nullDiv" v-else>
             <img src="@/assets/images/null_hosi.png">
+            <p class="nullTEXT">对不起，暂时没有你的待入院信息</p>
          </div>
          <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
             <span v-if="waitPayData.length!=0&&!nomore">
@@ -81,7 +82,6 @@ export default {
          params.pageSize = this.pageSize;
          params.status = 1;
          this.$axios.put(pay_list_url, params).then((res) => {
-
             this.loadingtrue = false;
             if (res.data.code == 200) {
                if (res.data.rows) {

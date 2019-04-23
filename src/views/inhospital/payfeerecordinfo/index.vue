@@ -9,7 +9,7 @@
           </div>
           <md-detail-item title="患者姓名" :content=item.name></md-detail-item>
           <md-detail-item title="住院号" :content=item.ihNo>
-            <span>{{item.ihNo}} 号</span>
+            <span>{{item.ihNo}}</span>
           </md-detail-item>
           <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
         </md-field>
@@ -30,7 +30,7 @@
             <md-detail-item title="支付时间">
               <span>{{item.payTime|lasttime}}</span>
             </md-detail-item>
-            <md-detail-item title="支付单号" :content=item.name></md-detail-item>
+            <md-detail-item title="支付单号" :content=item.payNo></md-detail-item>
             <md-detail-item title="支付金额">
               <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
             </md-detail-item>

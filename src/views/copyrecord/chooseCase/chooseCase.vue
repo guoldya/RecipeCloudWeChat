@@ -15,6 +15,7 @@
           </label>
         </div>
         <div class="chooseCaseText">
+          <p>患者姓名：{{item.name}}</p>
           <p>住院科室：{{item.dept}}</p>
           <p>出院诊断：{{item.diag}} </p>
           <p>入院日期：{{item.inTime | lasttime}}</p>
