@@ -77,31 +77,35 @@ export default {
     ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews", 'updateUser']),
     // 发送消息
     send() {
-      console.log("我是ya亚男")
-
-      let createTime = new Date().getTime();
-      let msg = {
-        // 发送消息传的数据
-        from: this.userInfo.id,
-        to: 125,
-        cmd: 11,
-        createTime: createTime,
-        msgType: 0,
-        chatType: 2,
-        content: "咨询药品的测试"
-      };
-
-      // 把当前发送的消息添加到历史消息去
-      let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
-      arr.push(msg)
-      this['chat/setHistoryNews'](arr)
-      this.chat.websocket.send(JSON.stringify(msg));
       this.$router.push({
-        name: 'inquiryOnline',
-        query: {
-          id: 125, name: "处方医生"
-        }
+        name: 'online',
+        // query: {
+        //   id: 125, name: "处方医生"
+        // }
       });
+      // let createTime = new Date().getTime();
+      // let msg = {
+      //   // 发送消息传的数据
+      //   from: this.userInfo.id,
+      //   to: 125,
+      //   cmd: 11,
+      //   createTime: createTime,
+      //   msgType: 0,
+      //   chatType: 2,
+      //   content: "咨询药品的测试"
+      // };
+
+      // // 把当前发送的消息添加到历史消息去
+      // let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
+      // arr.push(msg)
+      // this['chat/setHistoryNews'](arr)
+      // this.chat.websocket.send(JSON.stringify(msg));
+      // this.$router.push({
+      //   name: 'inquiryOnline',
+      //   query: {
+      //     id: 125, name: "处方医生"
+      //   }
+      // });
     },
 
 

@@ -8,7 +8,6 @@
         </md-cell-item>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
-
       <div v-show="!loadingtrue" class="nullDiv" v-else>
         <img src="@/assets/images/null1.png">
       </div>
@@ -21,14 +20,13 @@
       <Loading v-show="loadingtrue"></Loading>
     </div>
 
-   
     <!-- <div class="aui-footer" @click="lookagain">
       <span>复诊</span>
     </div> -->
   </div>
 </template>
 <script type="text/babel">
-let bdHospitalOrg = '/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor';
+let bdHospitalOrg = '/app/bdOnlineDoctor/read/page';
 export default {
   data() {
     return {
@@ -77,12 +75,11 @@ export default {
       deptparams.pageNumber = this.page;
       deptparams.pageSize = this.pageSize;
       deptparams.keyword = this.$route.query.val;
-      deptparams.orgType = 3;
       this.$axios.put(bdHospitalOrg, deptparams).then((res) => {
-        if (res.data.data) {
+        if (res.data.rows) {
           this.loadingtrue = false;
           if (flag) {
-            this.hospitaldata = this.hospitaldata.concat(res.data.data.doctorList);
+            this.hospitaldata = this.hospitaldata.concat(res.data.rows);
             //concat数组串联进行合并
             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
               this.busy = false;
@@ -92,7 +89,7 @@ export default {
               this.nomore = true;
             };
           } else {
-            this.hospitaldata = res.data.data.doctorList;
+            this.hospitaldata = res.data.rows;
             this.busy = true;
             if (res.data.total <= 10) {
               this.busy = true;
@@ -117,6 +114,13 @@ export default {
         this.orgFun(true);
       }, 500);
     },
+    intodoctorinfo(val) {
+      this.$router.push({
+        name: 'pictureConsult',
+        query: { val: val.id }
+      });
+    }
+
 
   },
   computed: {

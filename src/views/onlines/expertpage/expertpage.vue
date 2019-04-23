@@ -6,7 +6,9 @@
     <!-- 搜索框 -->
     <Loading v-if="isloading"></Loading>
     <!-- 弹窗 -->
-    <md-tab-picker title="请选择科室" :data="Fdata" v-model="isDepartShow" @change="chooseDepart" />
+    <!-- <md-tab-picker title="请选择科室" :data="Fdata" v-model="isDepartShow" @change="chooseDepart" /> -->
+
+    <md-selector v-model="isDepartShow" :data="departData" @choose="chooseDepart" title="请选择科室"></md-selector>
     <md-selector v-model="isSortShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
     <!-- 查询菜单栏 -->
     <div class="selectTool" v-if="doctorList.length&&!isloading">
@@ -45,13 +47,14 @@
     </div>
 
     <!-- 筛选弹窗 -->
-    <filterPop ref="filterPop"></filterPop>
+    <filterPop ref="filterPop" v-on:childByValue="childByValue"></filterPop>
   </div>
 </template>
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
 import doctorList from "../../../components/doctorList";
+const departmentUrl = "/app/bdHospitalOrg/read/selectClinicListByHospitalArea";
 const recommendUrl = "/app/bdOnlineDoctor/read/page";
 
 export default {
@@ -59,6 +62,7 @@ export default {
     return {
       isloading: true, // 是否正在请求
       busy: false,
+      show: false,
       isChecked: 0, // 科室选择
       departmentText: "科室",
       sortText: "排序",
@@ -74,6 +78,17 @@ export default {
         pageNumber: 1
       },
       doctorList: [],
+      departData: [
+        {
+          value: '',
+          text: "全部科室"
+        },
+      ],
+      departmenParams: {
+        // 科室分页信息
+        num: 1,
+        pages: 1
+      },
       sortData: [
         {
           value: 1,
@@ -141,10 +156,66 @@ export default {
   },
   async mounted() {
     document.title = this.$route.query.orgName;
+    await this.getDepartment();
     await this.getRecommendDoctor();
     this.isloading = false;
   },
+  watch: {
+    doctorParams: {
+      handler(newdoctorParams, olddoctorParams) {
+        this.getRecommendDoctor();
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   methods: {
+
+    childByValue: function (data) {
+      var aa = [];
+      var bb = [];
+      for (var i = 0; i < data[0].length; i++) {
+        aa.push(parseInt(data[0][i].value))
+      }
+      for (var i = 0; i < data[1].length; i++) {
+        bb.push(parseInt(data[1][i].value))
+      }
+      if (data[0].length != 0) {
+        this.doctorParams.type = aa;
+      } else {
+        this.doctorParams.type = null;
+      }
+      if (data[0].length != 0) {
+        this.doctorParams.level = bb;
+      } else {
+        this.doctorParams.level = null;
+      }
+
+    },
+    // 得到某院区下的所有科室
+    async getDepartment() {
+      try {
+        let res = await this.$axios.put(departmentUrl, {
+          orgId: Number(localStorage.getItem("hospitalId")),
+          orgType: 3,
+          pageNumber: this.departmenParams.num
+        });
+        if (res.data.code != 200) {
+          throw Error(res.data.msg);
+        }
+        this.departmenParams.pages = res.data.pages;
+        for (let i = 0; i < res.data.rows.length; i++) {
+          let neslist = {
+            text: res.data.rows[i].orgName,
+            value: String(res.data.rows[i].id)
+          }
+          this.departData.push(neslist);
+        }
+        this.departmentList = this.departmentList.concat(res.data.rows);
+      } catch (error) {
+        console.log(error);
+      }
+    },
     // 得到推荐医生
     async getRecommendDoctor() {
       try {
@@ -190,11 +261,12 @@ export default {
       this.$refs.filterPop.openPop();
     },
     // 科室选择弹窗返回的数据
-    chooseDepart({ options }) {
-      this.departmentText = (options[0].label + options[1].label).substring(
-        0,
-        5
-      );
+    chooseDepart(data) {
+      this.address = data;
+      this.doctorParams.deptId = data.value ? data.value * 1 : null;
+      this.addressStr = data.text.substring(0, 5);
+      // this.addressStr = text;
+      // this.addressStr = (options[0].label + options[1].label).substring(0, 5);
     },
     // 排序选择返回数据
     chooseSort(data) {
