@@ -33,7 +33,7 @@
           <span>{{businssrecordinfo.inTime|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="出院时间">
-          <span>{{businssrecordinfo.ouTime|lasttime}}</span>
+          <span>{{businssrecordinfo.outTime|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="住院号">
           <span>{{bizIhRecord.ihNo}}</span>
@@ -41,14 +41,17 @@
         <md-detail-item title="住院科室" :content="businssrecordinfo.dept" />
         <md-detail-item title="住院诊断" :content="businssrecordinfo.diag" />
         <md-detail-item title="住院次数" :content="bizIhRecord.renewalMum">
-          <span>{{bizIhRecord.ihCount}} 次</span>
+          <span>第 {{bizIhRecord.ihCount}} 次</span>
         </md-detail-item>
         <!-- <md-detail-item title="病历类型" content="住院病历" /> -->
         <md-detail-item title="申请日期">
-          <span>{{businssrecordinfo.recipeDate|lasttime}}</span>
+          <span>{{businssrecordinfo.createTime|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="处理状态">
           <span class="mu-light-text-color">{{businssrecordinfo.status|busistatus}}</span>
+        </md-detail-item>
+        <md-detail-item v-show="businssrecordinfo.status==3" title="不通过原因">
+          <span class="mu-light-text-color">{{businssrecordinfo.refuseReson}}</span>
         </md-detail-item>
       </div>
       <div style="height:5px;background:#f8f8f8">
@@ -56,8 +59,8 @@
       <div class="outCarint">
         <md-detail-item title="复印用途" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
-        <md-detail-item title="保险报销">
-          <span>{{businssrecordinfo.num}}份</span>
+        <md-detail-item :title="businssrecordinfo.usage">
+          <span>{{businssrecordinfo.num}} 份</span>
         </md-detail-item>
       </div>
     </md-field>

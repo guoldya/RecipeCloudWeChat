@@ -28,6 +28,10 @@
               </span>
             </p>
             <div class="listData parElem">
+              <span class="sonElem">申请编号</span>
+              <span class="mu-light-text-color">{{item.code}}</span>
+            </div>
+            <div class="listData parElem">
               <span class="sonElem">入院日期：</span>
               <span class="mu-light-text-color">{{item.inTime|lasttime}}</span>
             </div>
@@ -101,7 +105,7 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
-      params.status = this.isActive ? 2 : undefined;
+      params.multipleStatus = this.isActive ? [2, 4] : undefined;
       // params.waitingDate = "2019-02-22";
       this.$axios.put(appbizWaitingQueuereadlist, params).then((res) => {
         if (res.data.rows) {
@@ -131,12 +135,12 @@ export default {
         }
       })
     },
- 
+
     businssrecordinfo(data) {
       let argu = {};
       this.$router.push({
         name: 'businssrecordinfo',
-        query: { id: data.id,  }
+        query: { id: data.id, }
       });
     },
 

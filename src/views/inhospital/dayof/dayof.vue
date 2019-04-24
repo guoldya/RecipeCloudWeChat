@@ -268,6 +268,8 @@ export default {
       data.newDay = newDay;
       return data;
     },
+
+
     cordInfo() {
       this.$axios.put(selectTimes, { id: parseInt(this.$route.query.id) }, {
       }).then(res => {

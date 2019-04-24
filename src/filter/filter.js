@@ -229,7 +229,7 @@ const busistatus = function (value) {
     }
     if (value == 1) {
         return "待审核"
-    } else if (value == 2) {
+    } else if (value == 2 || value == 4) {
         return "审核通过"
     } else if (value == 3) {
         return "审核不通过"

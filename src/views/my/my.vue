@@ -1,6 +1,5 @@
 <template>
   <div class="gp-profile-index">
-
     <header class="aui-navBar aui-navBar-fixed">
       <div class="aui-center">
         <span class="aui-center-title">我的</span>
@@ -71,7 +70,6 @@
           <div class="aui-list-item-fl">
             <i class="icon icon-item05"></i>
             我的住院
-
           </div>
           <div class="aui-list-item-fr aui-list-item-arrow">
             <i></i>
