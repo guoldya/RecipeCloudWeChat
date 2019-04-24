@@ -105,6 +105,7 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
+      params.payStatus = 2;
       params.multipleStatus = this.isActive ? [2, 4] : undefined;
       // params.waitingDate = "2019-02-22";
       this.$axios.put(appbizWaitingQueuereadlist, params).then((res) => {

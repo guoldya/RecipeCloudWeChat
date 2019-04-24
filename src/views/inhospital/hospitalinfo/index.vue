@@ -63,7 +63,8 @@
                     <p v-show="nomore" class="noMore">没有更多数据了</p>
                 </div>
                 <div v-show="!loadingtrue" class="nullDiv" v-else>
-                    <img src="@/assets/images/null1.png">
+                    <img src="@/assets/images/null_hosi.png" style="width:30%">
+                    <p class="nullTEXT">暂时没有你的费用信息</p>
                 </div>
                 <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
                     <span v-if="waitPayData.length!=0&&!nomore">
@@ -171,7 +172,7 @@ export default {
     },
     methods: {
         cordInfo() {
-            this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id), status: 3  }, {
+            this.$axios.put(cord_info_url, { id: parseInt(this.$route.query.id), status: 3 }, {
             }).then(res => {
                 if (res.data.code == '200') {
                     this.loadingtrue = false;

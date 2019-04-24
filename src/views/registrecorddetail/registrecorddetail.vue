@@ -145,7 +145,7 @@ export default {
                                 this.$router.go(-1);
                             }, 3000)
 
-                        } else if (res.data.code == '500') {
+                        } else {
                             this.$toast.info(res.data.msg);
                             setTimeout(() => {
                                 this.$router.go(-1);

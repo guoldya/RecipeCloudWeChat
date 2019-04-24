@@ -52,7 +52,7 @@
       <div class="content">
         <div class="login-box">
           <md-field-item title="复印用途" arrow="arrow-right" :addon="selectorValue" @click="showSelector "> </md-field-item>
-          <md-input-item ref="input13" v-show="type==1"  v-model="useInfo" title="用途说明" placeholder="用途说明"></md-input-item>
+          <md-input-item ref="input13" v-show="type==1" v-model="useInfo" title="用途说明" placeholder="用途说明"></md-input-item>
           <div class="login-box-div">
             <span class="flexF">复印份数</span>
             <div class="flexR calculate">
@@ -205,7 +205,7 @@ export default {
           param.verifyCode = this.verifyCode;
           param.num = this.num;
           //  住院id
-          param.ihRecordId = this._cardlist.ihRecordId;
+          param.ihRecordId = this._cardlist.id;
           if (this.$route.query.receiverType == 1) {
             param.idCardImg = this.$store.state.idCardInfo;
           } else {
@@ -218,7 +218,7 @@ export default {
             if (res.data.code == '200') {
               this.$router.push({
                 name: 'copyresult',
-                query: { num: this.num, name: this.name, feeid: res.data.data }
+                query: { num: this.num, name: this.name, feeid: res.data.data.orderId, code: res.data.data.code }
               })
             } else {
               console.log(res.data.code);

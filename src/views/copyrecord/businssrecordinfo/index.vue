@@ -62,6 +62,9 @@
         <md-detail-item :title="businssrecordinfo.usage">
           <span>{{businssrecordinfo.num}} 份</span>
         </md-detail-item>
+        <md-detail-item title="用途说明" v-show="businssrecordinfo.usage=='全套复印'">
+          <span>{{businssrecordinfo.usageDesc}}</span>
+        </md-detail-item>
       </div>
     </md-field>
     <Loading v-show="loadingtrue"></Loading>

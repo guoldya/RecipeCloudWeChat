@@ -10,12 +10,11 @@
         <md-detail-item title="手机号码" :content="_recipients.tel" />
         <md-detail-item title="联系地址" :content="_recipients.adressname" />
       </div>
-      <div style="height:5px;background:#f8f8f8">
-      </div>
+      <div style="height:5px;background:#f8f8f8"> </div>
       <div class="outCarint">
         <md-detail-item title="申请信息" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
-        <md-detail-item title="申请编号" :content="_cardlist.code" />
+        <md-detail-item title="申请编号" :content="$route.query.code" />
         <md-detail-item title="住院号" :content="_cardlist.ihNo" />
         <md-detail-item title="患者姓名" :content="$route.query.name" />
         <md-detail-item title="入院时间">
@@ -39,7 +38,7 @@
       <div class="outCarint">
         <md-detail-item title="费用信息" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
-        <md-detail-item title="复印费">
+        <md-detail-item title="复印费(1.00院/页)">
           <span style="color:var(--primary); ">50.00元</span>
         </md-detail-item>
         <md-detail-item title="快递费">
@@ -63,7 +62,7 @@
 <script>
 import { mapState } from 'vuex';
 let appbizCopyApplypayment = "/app/bizPayOrder/nowPay"
- 
+
 
 import { Cashier } from 'mand-mobile'
 export default {
@@ -72,7 +71,7 @@ export default {
     return {
       isCashierhow: false,
       isCashierCaptcha: false,
-      cashierAmount: '24',
+      cashierAmount: '75',
       cashierResult: 'success',
       cashierChannels: [
         {
@@ -132,10 +131,11 @@ export default {
     },
     onCashierPay(item) {
       let nowPayParams = {};
-      nowPayParams.id = this.$route.query.feeId;
+      nowPayParams.id = this.$route.query.feeid;
       nowPayParams.orderCode = this.orderCode;
       nowPayParams.orderType = Number(item.value);
-      nowPayParams.payType = item.value;
+      nowPayParams.totalMoney = 72;
+      nowPayParams.payType = Number(item.value);
       nowPayParams.code = this.$route.query.code;
       this.$axios.post(appbizCopyApplypayment, nowPayParams).then((res) => {
         if (res.data.code == '200') {
@@ -144,7 +144,7 @@ export default {
               buttonText: '好的',
               handler: () => {
                 this.isCashierhow = false
-                this.$router.go(-1);
+                this.$router.go(-4);
               },
             })
           })

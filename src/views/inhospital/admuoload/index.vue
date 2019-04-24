@@ -5,8 +5,7 @@
       <!-- 申请人 -->
       <div>
         <p style="color:#000;padding-top: 16px">
-          拍摄/上传您的二代身份证
-          <span v-show="$route.query.type==1">和医保卡</span>
+          拍摄/上传您的二代身份证<span v-show="$route.query.type==1">和医保卡</span>
         </p>
         <div class="pg_positive">
           <div class="pg_positive_img">
