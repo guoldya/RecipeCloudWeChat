@@ -137,6 +137,10 @@ export default {
       });
     },
     next() {
+      if (this.defaultMoney == 0) {
+        this.$toast.info("请输入大于0的数");
+        return
+      }
       this.isCashierhow = !this.isCashierhow;
     },
     onCashierSelect(item) {
