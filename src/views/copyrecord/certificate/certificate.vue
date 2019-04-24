@@ -70,8 +70,8 @@
       </div>
 
       <div>
-        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" maxlength="20" is-highlight></md-input-item>
-        <md-input-item v-model="idcard" title="身份证号" maxlength="18" placeholder="患者身份证号" clearable is-highlight></md-input-item>
+        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" maxlength="20" disabled  is-highlight></md-input-item>
+        <md-input-item v-model="idcard" title="身份证号" maxlength="18" placeholder="患者身份证号" clearable disabled  is-highlight></md-input-item>
         <md-input-item v-show="isSelf" ref="input13" v-model="nameApp" title="申请人姓名" placeholder="申请人姓名" maxlength="20" is-highlight></md-input-item>
         <md-input-item v-show="isSelf" v-model="idcardApp" title="身份证号" placeholder="申请人身份证号" clearable is-highlight maxlength="18"></md-input-item>
       </div>

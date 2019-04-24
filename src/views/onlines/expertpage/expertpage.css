@@ -1,43 +1,56 @@
-.selectTool{
-  display:flex;
+.selectTool {
+   display: flex;
 }
-.selectTool div{
-  width:33.33%;
-  height: 50px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  margin:20px;
-  overflow: hidden;
+
+.selectTool div {
+   width: 33.33%;
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 20px;
+   overflow: hidden;
 }
+
 .selectTool .isActive {
-    color: #24a5f1;
+   color: #24a5f1;
 }
-.selectTool div span:nth-of-type(1){
-    display:inline-block;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
+
+.selectTool div span:nth-of-type(1) {
+   display: inline-block;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
+
 .expertpage {
-  /* overflow: auto;
+   /* overflow: auto;
   padding-top:100px;
   height: 100vh;
   box-sizing: border-box; */
+   background: #ffffff;
 }
+
+.expertpage .search {
+   padding: 0;
+}
+
 .doctorlist-warp {
-  box-sizing: border-box;
-  height:calc(100vh - 270px);
-  overflow-y: auto;
+   box-sizing: border-box;
+   height: calc(100vh - 270px);
+   overflow-y: auto;
 }
+
 .doctorlist-warp::-webkit-scrollbar {
-  display: none;
+   display: none;
 }
+
 .nodata {
-  margin-top:170px;
-  text-align: center;
+   margin-top: 170px;
+   text-align: center;
 
 }
-.nodata  img {
-  width:350px;
+
+.nodata img {
+   width: 350px;
 }

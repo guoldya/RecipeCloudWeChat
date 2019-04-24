@@ -28,7 +28,7 @@
           </div>
           <div class="aui-list-item-fr aui-list-item-arrow">
             <i></i>
-            点击查看
+            <!-- 点击查看 -->
           </div>
         </a>
       </div>
@@ -38,7 +38,6 @@
           <div class="aui-list-item-fl">
             <i class="icon icon-item02"></i>
             缴费记录
-
           </div>
           <div class="aui-list-item-fr aui-list-item-arrow">
             <i></i>

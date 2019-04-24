@@ -39,10 +39,10 @@
         <md-detail-item title="费用信息" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
         <md-detail-item title="复印费(1.00元/页)">
-          <span style="color:var(--primary); ">50.00元</span>
+          <span style="color:var(--primary)">50.00元</span>
         </md-detail-item>
         <md-detail-item title="快递费">
-          <span style="color:var(--primary); ">22.00元</span>
+          <span style="color:var(--primary)">22.00元</span>
         </md-detail-item>
       </div>
       <div style="height:5px;background:#f8f8f8">
@@ -131,12 +131,16 @@ export default {
     },
     onCashierPay(item) {
       let nowPayParams = {};
-      nowPayParams.id = this.$route.query.feeid;
+      // nowPayParams.id = Number(this.$route.query.feeid);
+      nowPayParams.orderId = Number(this.$route.query.feeid);
+      nowPayParams.id = Number(this.$route.query.copyId);
+      nowPayParams.ihRecordId = Number(this.$route.query.ihRecordId);
       nowPayParams.orderCode = this.orderCode;
+      nowPayParams.receiveMode = Number(this.$route.query.mail);
       nowPayParams.orderType = Number(item.value);
       nowPayParams.totalMoney = 72;
       nowPayParams.payType = Number(item.value);
-      nowPayParams.code = this.$route.query.code;
+      // nowPayParams.code = this.$route.query.code;
       this.$axios.post(appbizCopyApplypayment, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.createPay().then(() => {

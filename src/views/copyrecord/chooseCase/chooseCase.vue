@@ -19,7 +19,7 @@
           <p>住院科室：{{item.dept}}</p>
           <p>出院诊断：{{item.diag}} </p>
           <p>入院日期：{{item.inTime | lasttime}}</p>
-          <p>出院日期：{{item.recipeDate | lasttime}}</p>
+          <p>出院日期：{{item.outTime | lasttime}}</p>
         </div>
         <div class="chooseCaseTime">
           <span>第

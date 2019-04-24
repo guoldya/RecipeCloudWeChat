@@ -1,17 +1,16 @@
 <!-- 专家问诊 -->
 <template>
-  <div class="outCarint expertpage margin45">
+  <div class="outCarint expertpage margin50">
     <Header :post-title="$route.query.orgName"></Header>
     <Search type="onlines"></Search>
     <!-- 搜索框 -->
     <Loading v-if="isloading"></Loading>
     <!-- 弹窗 -->
     <!-- <md-tab-picker title="请选择科室" :data="Fdata" v-model="isDepartShow" @change="chooseDepart" /> -->
-
-    <md-selector v-model="isDepartShow" :data="departData" @choose="chooseDepart" title="请选择科室"></md-selector>
+    <md-selector v-model="isDepartShow"  :default-value="$route.query.id" :data="departData" @choose="chooseDepart" title="请选择科室"></md-selector>
     <md-selector v-model="isSortShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
     <!-- 查询菜单栏 -->
-    <div class="selectTool" v-if="doctorList.length&&!isloading">
+    <div class="selectTool" v-if="doctorList.length&&!isloading" style=" background: #ffffff;">
       <div :class="isChecked == 0 ? 'isActive' : ''" @click="department">
         <span>{{ departmentText }}</span>
         <span class="downImg">
@@ -45,7 +44,6 @@
         <div class="nomore" v-if="this.doctorPages==this.doctorParams.pageNumber">没有更多了</div>
       </div>
     </div>
-
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop" v-on:childByValue="childByValue"></filterPop>
   </div>
@@ -64,7 +62,7 @@ export default {
       busy: false,
       show: false,
       isChecked: 0, // 科室选择
-      departmentText: "科室",
+      departmentText: this.$route.query.orgName,
       sortText: "排序",
       isDepartShow: false, // 控制选择科室弹窗是否显示
       isSortShow: false, // 控制选择排序弹窗是否显示
@@ -264,9 +262,9 @@ export default {
     chooseDepart(data) {
       this.address = data;
       this.doctorParams.deptId = data.value ? data.value * 1 : null;
-      this.addressStr = data.text.substring(0, 5);
-      // this.addressStr = text;
-      // this.addressStr = (options[0].label + options[1].label).substring(0, 5);
+      this.departmentText = data.text.substring(0, 5);
+      // this.departmentText = text;
+      // this.departmentText = (options[0].label + options[1].label).substring(0, 5);
     },
     // 排序选择返回数据
     chooseSort(data) {

@@ -5,20 +5,28 @@
       <p>在线问诊</p>
     </div>
     <div class="margin45 outCarint">
-      <Search type="onlines"></Search>
+      <Search type="onlines" postPlaceholder="搜索科室或者在线医生"></Search>
       <div class="online-content">
         <div class="tools">
           <div class="nav2">
-            <router-link tag="span" :to="{ path: 'expertpage', query: { id: item.id ,orgName:item.orgName} }" v-for="(item, index) in departmentList" :key="index">
-              <img :src="$conf.constant.img_base_url + item.orgPicFileName" alt="" />{{ item.orgName }}
-            </router-link>
+            <!-- <router-link tag="span" :to="{ path: 'expertpage', query: { id: item.id ,orgName:item.orgName} }" v-for="(item, index) in departmentList" :key="index">
+              <img src="@/assets/images/online1.png" alt="" />{{ item.orgName }}
+              <img :src="$conf.constant.img_base_url + item.orgPicFileName" alt="" />{{ item.orgName }} -->
+            <!-- </router-link> -->
           </div>
+          <ul class="tools-ul" :class="{'tools-ul-zhankai':isDown}">
+            <router-link tag="li" :to="{ path: 'expertpage', query: { id: item.id ,orgName:item.orgName} }" v-for="(item, index) in departmentList" :key="index">
+              <!-- <li v-for="(item, index) in departmentList" :key="index"> -->
+              <img src="@/assets/images/online1.png" alt="" />
+              <p>{{ item.orgName }}</p>
+              <!-- </li> -->
+            </router-link>
+          </ul>
         </div>
-        <div class="more" @click="loadMoredepartment" v-if="
-            departmenParams.pages > 1 &&
-              departmenParams.num < departmenParams.pages
-          ">
-          展开<img src="./xiangxia.png" alt="" />
+        <div class="more" @click="isDown=!isDown" v-if="departmentList.length > 4  ">
+          <span v-show="isDown">收起</span>
+          <span v-show="!isDown">展开</span>
+          <img src="./xiangxia.png" alt="" :class="{'zhankaitu':isDown}" />
         </div>
         <div class="tabA">
           <router-link to="/followDoctor" tag="div" class="tabAdiv">
@@ -40,7 +48,7 @@
         <h2>推荐医生</h2>
         <div class="yaobutton">
           <div :class="{ yaoActive: isChecked == 0 }" @click="choose">
-            {{ addressStr }}
+            {{ departmentText }}
             <span class="downImg">
               <img v-show="isChecked == 0" src="@/assets/images/top11.png" />
               <img v-show="isChecked != 0" src="@/assets/images/icon_down.png" />
@@ -90,13 +98,14 @@ export default {
   height: 500,
   data() {
     return {
+      isDown: false,
       isloading: true, // 是否正在请求
       busy: false, // 用于请求添加页面
       isChecked: 0,
       show: false,
       isSelectorShow: false,
       address: [],
-      addressStr: "科室",
+      departmentText: "科室",
       selectorValue: "排序",
       sortData: [
         {
@@ -324,9 +333,9 @@ export default {
     chooseDepart(data) {
       this.address = data;
       this.doctorParams.deptId = data.value ? data.value * 1 : null;
-      this.addressStr = data.text.substring(0, 5);
-      // this.addressStr = text;
-      // this.addressStr = (options[0].label + options[1].label).substring(0, 5);
+      this.departmentText = data.text.substring(0, 5);
+      // this.departmentText = text;
+      // this.departmentText = (options[0].label + options[1].label).substring(0, 5);
     }
   },
   components: {

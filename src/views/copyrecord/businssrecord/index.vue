@@ -16,27 +16,23 @@
         <div class="flatCard margin5" v-for="(item,index) in goodsList" :key="index">
           <div class="cardText">
             <div class="appTitle">
-              <span>{{item.code}}</span>
+              <span>患者编号：{{item.code}}</span>
               <span class="mu-secondary-text-color">{{item.status|busistatus}}</span>
             </div>
-            <p class="cardTextPP">
-              <span>类型：
-                <span class="mu-secondary-text-color">住院病历</span>
-              </span>
-              <span>科室：
-                <span class="mu-secondary-text-color">{{item.dept}}</span>
-              </span>
-            </p>
             <div class="listData parElem">
-              <span class="sonElem">申请姓名：</span>
+              <span class="sonElem">科室</span>
+              <span class="mu-light-text-color">{{item.dept}}</span>
+            </div>
+            <div class="listData parElem">
+              <span class="sonElem">患者姓名</span>
               <span class="mu-light-text-color">{{item.name}}</span>
             </div>
             <div class="listData parElem">
-              <span class="sonElem">入院日期：</span>
+              <span class="sonElem">入院日期</span>
               <span class="mu-light-text-color">{{item.inTime|lasttime}}</span>
             </div>
             <div class="listData parElem">
-              <span class="sonElem">出院日期：</span>
+              <span class="sonElem">出院日期</span>
               <span class="mu-light-text-color">{{item.outTime|lasttime}}</span>
             </div>
             <p class="learnMore" @click="businssrecordinfo(item)">
@@ -177,7 +173,7 @@ export default {
     //   };
     // },
     // slidedata(i) {
-    //   return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">演示医院</h1> <p>地址：成都市武侯区</p>   </div></div></div>';
+    //   return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">演示医院</h1> <p>地址成都市武侯区</p>   </div></div></div>';
     // },
   },
   computed: {

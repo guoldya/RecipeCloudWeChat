@@ -2,9 +2,11 @@
    color: var(--primary--title);
    background: #ffffff;
 }
-.online .search{
-   padding:0  0 10px;
+
+.online .search {
+   padding: 0 0 10px;
 }
+
 .online h2 {
    font-size: 32px;
    line-height: 50px;
@@ -24,6 +26,7 @@
    text-align: center;
    -webkit-box-align: center;
    -webkit-align-items: center;
+
 }
 
 .online .more {
@@ -47,20 +50,21 @@
 
 .online .tools .nav2>span {
    width: 25%;
-   display: block;
+   display: inline-block;
+   height: 150px;
    font-size: 28px;
    color: #323232;
    /* font-weight: 600; */
 }
 
-.online .nav2>span {
+.online .nav2>div {
    padding: 20px 0 20px;
 }
 
-.online .nav2>span img {
+.online .nav2>div img {
    width: 60px;
    height: 60px;
-   display: block;
+   /* display: block; */
    margin: 0 auto 12px;
 }
 
@@ -162,4 +166,78 @@
    height: 80px;
    align-items: center;
    justify-content: center;
+}
+
+.circle-list {
+   background-color: #fff;
+   padding: 0 10px 20px;
+   -webkit-flex-flow: wrap;
+   -ms-flex-flow: wrap;
+   flex-flow: wrap;
+}
+
+.circle-list .circle-item {
+   -webkit-box-flex: 1;
+   -webkit-flex: 1 25%;
+   -ms-flex: 1 25%;
+   flex: 1 25%;
+   -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+   -webkit-flex-direction: column;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   margin-top: 14px;
+}
+
+.circle-list .circle-item,
+.circle-list {
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -ms-flexbox;
+   display: flex;
+}
+
+.circle-list .circle-item__icon {
+   margin: auto;
+   width: 96px;
+   height: 96px;
+   background-size: cover;
+}
+
+.circle-list .circle-item__icon img {
+   width: 80px;
+   height: 80px;
+}
+
+.tools-ul {
+   height: 123px;
+   overflow: hidden;
+}
+
+.tools-ul-zhankai {
+   height: auto;
+}
+
+.tools-ul li {
+   display: inline-block;
+   width: 25%;
+   text-align: center;
+   color: #222222;
+}
+
+.tools-ul li img {
+   width: 70px;
+   height: 70px;
+   margin: 15px 0 0;
+}
+
+.tools-ul li p {
+   width: 90%;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.zhankaitu {
+   transform: rotate(180deg);
 }

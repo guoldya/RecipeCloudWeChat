@@ -35,7 +35,7 @@
         <md-detail-item title="住院科室" :content="_cardlist.dept" />
         <md-detail-item title="住院诊断" :content="_cardlist.diag" />
         <md-detail-item title="住院次数" :content="_cardlist.renewalMum">
-          <span>{{_cardlist.renewalMum}}次</span>
+          <span>第 {{_cardlist.ihCount}} 次</span>
         </md-detail-item>
         <md-detail-item title="入院时间">
           <span>{{_cardlist.inTime|lasttime}}</span>
@@ -193,10 +193,11 @@ export default {
         if (res.data.code == '200') {
           var param = {};
           param.name = this.name;
-          param.idcard = this.idcard;
+          param.idCard = this.idcard;
           param.mobile = this.mobile;
           param.verifyType = 1;
           param.money = 72;
+          param.receiveMode = this.$route.query.mail;
           param.receiverType = Number(this.$route.query.receiverType);
           param.usageDesc = this.useInfo;
           // 复印用途
@@ -210,15 +211,15 @@ export default {
             param.idCardImg = this.$store.state.idCardInfo;
           } else {
             param.idCardImg = this.$store.state.idCardAPPInfo;
-
           }
-
           param.remark = this.remark;
           this.$axios.post(wechatbizPatientCardbinding, param).then(res => {
             if (res.data.code == '200') {
               this.$router.push({
                 name: 'copyresult',
-                query: { num: this.num, name: this.name, feeid: res.data.data.orderId, code: res.data.data.code }
+                query: {                  num: this.num, name: this.name, feeid: res.data.data.orderId,
+                  copyId: res.data.data.copyId, ihRecordId: this._cardlist.id,
+                  code: res.data.data.code, mail: this.$route.query.mail, receiverType: this.$route.query.receiverType                }
               })
             } else {
               console.log(res.data.code);
