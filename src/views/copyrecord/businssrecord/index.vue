@@ -16,7 +16,7 @@
         <div class="flatCard margin5" v-for="(item,index) in goodsList" :key="index">
           <div class="cardText">
             <div class="appTitle">
-              <span>{{item.name}}</span>
+              <span>{{item.code}}</span>
               <span class="mu-secondary-text-color">{{item.status|busistatus}}</span>
             </div>
             <p class="cardTextPP">
@@ -28,8 +28,8 @@
               </span>
             </p>
             <div class="listData parElem">
-              <span class="sonElem">申请编号</span>
-              <span class="mu-light-text-color">{{item.code}}</span>
+              <span class="sonElem">申请姓名：</span>
+              <span class="mu-light-text-color">{{item.name}}</span>
             </div>
             <div class="listData parElem">
               <span class="sonElem">入院日期：</span>

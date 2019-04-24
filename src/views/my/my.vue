@@ -200,6 +200,7 @@ export default {
           throw Error(res.data.msg);
         }
         this.accountinfo = res.data.data;
+        this.$store.commit('accountinfoFun', res.data.data);
         this.headUrl = this.$conf.constant.img_base_url + res.data.data.headUrl
       } catch (error) {
         console.log(error);

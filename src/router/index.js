@@ -395,7 +395,7 @@ export default new Router({
     component: my,
     meta: {
       title: '个人中心',
-      keepAlive: true
+      // keepAlive: true
     }
   },
   {

@@ -146,7 +146,14 @@ export default {
                             }, 3000)
 
                         } else {
-                            this.$toast.info(res.data.msg);
+                            this.$dialog.alert({
+                                title: '提示',
+                                content: res.data.msg,
+                                confirmText: '确定',
+                                onConfirm: () => {
+                                    this.$router.go(-1);
+                                },
+                            });
                             setTimeout(() => {
                                 this.$router.go(-1);
                             }, 3000)

@@ -214,7 +214,16 @@ export default {
                     this.isCashierhow = !this.isCashierhow;
                     this.backId = res.data.data;
                 } else {
-                    this.$toast.info(res.data.msg)
+
+                    this.$dialog.alert({
+                        title: '提示',
+                        content: res.data.msg,
+                        confirmText: '确定',
+                        onConfirm: () => {
+                            this.$router.go(-1);
+                        },
+                    });
+
                 }
             }).catch(function (err) {
                 console.log(err);

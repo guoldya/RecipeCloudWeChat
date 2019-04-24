@@ -51,11 +51,16 @@ export default new Vuex.Store({
         recipients: [],
         idCardAPPInfo: '',
         selectAdress: '',
+        accountinfo: '',
     },
     mutations: {
         isCashierhowFun: (state, n) => {
             state.isCashierhowData = n;
         },
+        accountinfoFun: (state, n) => {
+            state.accountinfo = n;
+        },
+
         selectAdressFun: (state, n) => {
             state.selectAdress = n;
         },

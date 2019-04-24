@@ -22,39 +22,10 @@
         <span>关系</span>
         <span class="changenetright" @click="showSelector">{{selectorValue}}<img class="icon_right" src="@/assets/images/icon_right.png" alt=""></span>
       </div>
-      <p style="color: var(--primary--title);margin-top: 15px">拍摄/上传您的二代身份证</p>
-      <div class="pg_positive">
-        <div class="pg_positive_img">
-          <input class="ivu-upload-input" @change="uploadPos($event)" type="file" name="positive" id="positive" accept="image/gif,image/jpeg,image/x-png" />
-          <label class="ivu-upload-input_label" for="positive" style="display:block; height: 120px;">
-            <img :src="othUrl" alt="">
-          </label>
-          <p>身份证正面</p>
-        </div>
-        <div class="pg_positive_img">
-          <label class="ivu-upload-input_label" for="outside" style="display:block; height: 120px;">
-            <input class="ivu-upload-input" @change="uploadOth($event)" type="file" name="outside" id="outside" accept="image/gif,image/jpeg,image/x-png" />
-            <img :src="posUrl" alt="">
-          </label>
-          <p>身份证反面</p>
-        </div>
-      </div>
-      <div class="pg_positive" style="padding-top:10px">
-        <div class="pg_positive_img">
-          <label class="ivu-upload-input_label" for="hanside" style="display:block; height: 120px;">
-            <input class="ivu-upload-input" @change="uploadHan($event)" type="file" name="hanside" id="hanside" accept="image/gif,image/jpeg,image/x-png" />
-            <img :src="hanUrl" alt="">
-          </label>
-          <p>手持身份证</p>
-        </div>
-      </div>
-      <div style="margin-top: 20px">
-        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" maxlength="20" is-highlight></md-input-item>
-        <md-input-item v-model="idcard" title="身份证号" maxlength="18" placeholder="患者身份证号" clearable is-highlight></md-input-item>
-      </div>
-      <!-- 申请人 -->
+    </div>
+    <div class="flatCard margin5 outCarint">
       <div v-show="isSelf">
-        <p style="margin-top:40px ">申请人证件照</p>
+        <p style="padding-top:20px ">申请人证件照</p>
         <div class="pg_positive">
           <div class="pg_positive_img">
             <input class="ivu-upload-input" @change="uploadPosApp($event)" type="file" name="positiveApp" id="positiveApp" accept="image/gif,image/jpeg,image/x-png" />
@@ -95,13 +66,18 @@
             <p class="mu-secondary-text-color">委托书样例</p>
           </div>
         </div>
-        <div style="margin-top:20px">
-          <md-input-item ref="input13" v-model="nameApp" title="申请人姓名" placeholder="申请人姓名" maxlength="20" is-highlight></md-input-item>
-          <md-input-item v-model="idcardApp" title="身份证号" placeholder="申请人身份证号" clearable is-highlight maxlength="18"></md-input-item>
-        </div>
+
       </div>
+
+      <div>
+        <md-input-item ref="input13" v-model="name" title="患者姓名" placeholder="患者姓名" maxlength="20" is-highlight></md-input-item>
+        <md-input-item v-model="idcard" title="身份证号" maxlength="18" placeholder="患者身份证号" clearable is-highlight></md-input-item>
+        <md-input-item v-show="isSelf" ref="input13" v-model="nameApp" title="申请人姓名" placeholder="申请人姓名" maxlength="20" is-highlight></md-input-item>
+        <md-input-item v-show="isSelf" v-model="idcardApp" title="身份证号" placeholder="申请人身份证号" clearable is-highlight maxlength="18"></md-input-item>
+      </div>
+
     </div>
-    <div style="height:78px;background-color: #ffffff"></div>
+    <div style="height:55px"></div>
     <p @click="cardconfirm" class="addbTN">下一步</p>
     <md-selector v-model="isSelectorShow" default-value="1" :data="test" max-height="320px" title="选择方式" @choose="onSelectorChoose"></md-selector>
     <md-landscape v-model="showPic" :mask-closable="true">
@@ -125,15 +101,12 @@ import pg_hep from '@/assets/images/icon_handheld.png'
 export default {
   data() {
     return {
-      AAA: '',
-      BBB: '',
-      CCC: '',
       DDD: '',
       FFF: '',
       EEE: '',
       GGG: '',
-      name: '',
-      idcard: '',
+      name: this.$store.state.accountinfo.name,
+      idcard: this.$store.state.accountinfo.idCard,
       nameApp: '',
       idcardApp: '',
       isSelf: false,
@@ -145,7 +118,6 @@ export default {
         othFile: null,
       },
       imgFiles: [],
-
       posUrl: pg_negative,
       othUrl: pg_positive,
       hanUrl: pg_handheld,
@@ -189,52 +161,7 @@ export default {
 
   },
   methods: {
-    //患者正面
-    uploadPos(e) {
-      let that = this,
-        file = e.target.files[0],
-        fileReader = new FileReader();
-      this.files.posFile = file;
-      fileReader.readAsDataURL(file);
-      fileReader.onload = function () {
-        that.othUrl = this.result;
-      };
-      this.AAA = e.target.files[0];
-      console.log(this.AAA)
-      if (this.AAA.name && this.BBB.name && this.CCC.name) {
-        this.cardKnowledge()
-      }
-    },
-    //患者反面
-    uploadOth(e) {
-      let that = this,
-        file = e.target.files[0],
-        fileReader = new FileReader();
-      this.files.othFile = file;
-      fileReader.readAsDataURL(file);
-      fileReader.onload = function () {
-        that.posUrl = this.result;
-      };
-      this.BBB = e.target.files[0];
-      if (this.AAA.name && this.BBB.name && this.CCC.name) {
-        this.cardKnowledge()
-      }
-    },
-    //患者手持
-    uploadHan(e) {
-      let that = this,
-        file = e.target.files[0],
-        fileReader = new FileReader();
-      this.files.othFile = file;
-      fileReader.readAsDataURL(file);
-      fileReader.onload = function () {
-        that.hanUrl = this.result;
-      };
-      this.CCC = e.target.files[0];
-      if (this.AAA.name && this.BBB.name && this.CCC.name) {
-        this.cardKnowledge()
-      }
-    },
+    
     // 申请人
     uploadPosApp(e) {
       let that = this,
@@ -306,96 +233,11 @@ export default {
         this.isSelf = true
       }
     },
-    cardKnowledge() {
-      let param = new FormData(); //创建form对象
-      let param2 = new FormData(); //创建form对象
-      if (this.AAA) {
-        var index1 = this.AAA.name.lastIndexOf(".");
-        var index2 = this.AAA.name.length;
-        var suffix = this.AAA.name.substring(index1 + 1, index2);//后缀名
-      }
-      if (this.BBB) {
-        var index11 = this.BBB.name.lastIndexOf(".");
-        var index22 = this.BBB.name.length;
-        var suffix1 = this.BBB.name.substring(index11 + 1, index22);//后缀名
-      }
-      if (this.CCC) {
-        var indexCCC = this.CCC.name.lastIndexOf(".");
-        var cccPng = this.CCC.name.length;
-        var suffixCCC = this.CCC.name.substring(indexCCC + 1, cccPng);//后缀名
-      }
-      console.log(this.receiverType);
-      param.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
-      param.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
-      param2.append('photo0', this.AAA, "photo0." + suffix);//通过append向form对象添加数据
-      param2.append('photo1', this.BBB, "photo1." + suffix1);//通过append向form对象添加数据
-      param2.append('photo2', this.CCC, "photo2." + suffixCCC);//通过append向form对象添加数据
-      console.log(param);
-      let config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        }
-      };
-      this.$toast.loading('正在识别');
-      //添加请求头
-
-
-      this.$axios.post(appLoginuploadImage + '?certificateName=idCard', param2, config)
-        .then(res => {
-          if (res.data.code == '200') {
-            this.$store.commit('idCardInfoFun', res.data.fileInfo);
-          } else {
-            this.$toast.info(res.data.msg)
-          }
-        });
-
-
-      this.$axios.post(uploadImgimage + '?certificateName=idCard', param, config)
-        .then(res => {
-          if (res.data.code == '200') {
-            this.shibie = true;
-            this.$toast.hide();
-            this.cardImg = res.data.fileInfo;
-            this.$store.commit('cardImg', res.data.fileInfo);
-            console.log(res.data.fileData.photo0);
-            this.name = res.data.fileData.photo0.name;
-            this.idcard = res.data.fileData.photo0.idCard;
-            this.$store.commit('photo0DataFun', res.data.fileData.photo0);
-            this.$store.commit('photo1DataFun', res.data.fileData.photo1);
-
-            // this.othUrl = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName;
-            // this.posUrl = this.$conf.constant.img_base_url + res.data.fileInfo[1].fileName;
-
-            this.$store.commit('idCardFrontImgFun', res.data.fileInfo[0]);
-            this.$store.commit('idCardBackImgFun', res.data.fileInfo[1]);
-
-            this.$store.commit('posUrlFun', this.posUrl);
-            this.$store.commit('othUrlFun', this.othUrl);
-          } else {
-            this.shibie = false;
-            this.$toast.info(res.data.msg)
-          }
-        });
-    },
+   
     applyKnoeledge() {
       let param = new FormData(); //创建form对象
       let param2 = new FormData(); //创建form对象
-      console.log(this.receiverType);
-      if (this.AAA) {
-        var index1 = this.AAA.name.lastIndexOf(".");
-        var index2 = this.AAA.name.length;
-        var suffix = this.AAA.name.substring(index1 + 1, index2);//后缀名
-      }
-      if (this.BBB) {
-        var index11 = this.BBB.name.lastIndexOf(".");
-        var index22 = this.BBB.name.length;
-        var suffix1 = this.BBB.name.substring(index11 + 1, index22);//后缀名
-      }
-      if (this.CCC) {
-        var indexCCC = this.CCC.name.lastIndexOf(".");
-        var cccPng = this.CCC.name.length;
-        var suffixCCC = this.CCC.name.substring(indexCCC + 1, cccPng);//后缀名
-      }
+    
       if (this.DDD) {
         var indexDDD = this.DDD.name.lastIndexOf(".");
         var dddPng = this.DDD.name.length;
@@ -420,9 +262,6 @@ export default {
       param.append('photo1', this.EEE, "photo1." + suffixEEE);//通过append向form对象添加数据
       param.append('photo2', this.FFF, "photo2." + suffixFFF);//通过append向form对象添加数据
       param.append('photo3', this.GGG, "photo3." + suffixGGG);//通过append向form对象添加数据
-      // param.append('photo4', this.DDD, "photo4." + suffixDDD);//通过append向form对象添加数据
-      // param.append('photo5', this.EEE, "photo5." + suffixEEE);//通过append向form对象添加数据
-      // param.append('photo6', this.FFF, "photo6." + suffixFFF);//通过append向form对象添加数据
 
       param2.append('photo0', this.DDD, "photo0." + suffixDDD);//通过append向form对象添加数据
       param2.append('photo1', this.EEE, "photo1." + suffixEEE);//通过append向form对象添加数据
@@ -457,36 +296,7 @@ export default {
         });
     },
     cardconfirm() {
-      if (this.receiverType == 1) {
-        if (!this.AAA.name || !this.BBB.name || !this.CCC.name) {
-          this.$toast.info("请上传图片");
-          return;
-        } else {
-          if (!this.shibie) {
-            if (!this.name || !this.idcard) {
-              this.$toast.info("请输入患者姓名和身份证号");
-              return;
-            }
-          }
-
-        }
-
-      }
-
       if (this.receiverType == 2) {
-
-        if (!this.AAA.name || !this.BBB.name || !this.CCC.name) {
-          this.$toast.info("请上传图片");
-          return;
-        } else {
-          if (!this.shibie) {
-            if (!this.name || !this.idcard) {
-              this.$toast.info("请输入患者姓名和身份证号");
-              return;
-            }
-          }
-
-        }
         if (!this.DDD.name || !this.EEE.name || !this.FFF.name || !this.GGG.name) {
           this.$toast.info("请上传图片");
           return;
@@ -508,8 +318,6 @@ export default {
         name: 'putinfo',
         query: { name: this.name, idcard: this.idcard, receiverType: this.receiverType, mail: this.$route.query.mail }
       });
-
-
 
 
     },

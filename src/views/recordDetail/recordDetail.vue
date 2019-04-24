@@ -133,8 +133,7 @@
                         this.loadingtrue = false;
                         this.recipeData.push(res.data.data.recipe);
                         this.detailData=res.data.data.details;
-                        console.log(this.recipeData);
-                        console.log(this.detailData);
+                       
                     }
                 }).catch(function (err) {
                     console.log(err);

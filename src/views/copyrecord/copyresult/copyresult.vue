@@ -21,7 +21,7 @@
           <span>{{_cardlist.inTime|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="出院时间">
-          <span>{{_cardlist.recipeDate|lasttime}}</span>
+          <span>{{_cardlist.outTime|lasttime}}</span>
         </md-detail-item>
       </div>
       <div style="height:5px;background:#f8f8f8">
@@ -38,7 +38,7 @@
       <div class="outCarint">
         <md-detail-item title="费用信息" bold/>
         <p class="partLine" style="margin-top: 9px"></p>
-        <md-detail-item title="复印费(1.00院/页)">
+        <md-detail-item title="复印费(1.00元/页)">
           <span style="color:var(--primary); ">50.00元</span>
         </md-detail-item>
         <md-detail-item title="快递费">
@@ -71,7 +71,7 @@ export default {
     return {
       isCashierhow: false,
       isCashierCaptcha: false,
-      cashierAmount: '75',
+      cashierAmount: '72',
       cashierResult: 'success',
       cashierChannels: [
         {

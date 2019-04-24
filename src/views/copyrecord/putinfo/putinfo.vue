@@ -41,7 +41,7 @@
           <span>{{_cardlist.inTime|lasttime}}</span>
         </md-detail-item>
         <md-detail-item title="出院时间">
-          <span>{{_cardlist.recipeDate|lasttime}}</span>
+          <span>{{_cardlist.outTime|lasttime}}</span>
         </md-detail-item>
       </div>
     </div>
