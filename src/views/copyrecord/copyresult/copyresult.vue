@@ -9,6 +9,7 @@
         <md-detail-item title="收件人" :content="_recipients.receiveBy" />
         <md-detail-item title="手机号码" :content="_recipients.tel" />
         <md-detail-item title="联系地址" :content="_recipients.adressname" />
+        <md-detail-item title="详细地址" :content="_recipients.address" />
       </div>
       <div style="height:5px;background:#f8f8f8"> </div>
       <div class="outCarint">
@@ -140,6 +141,13 @@ export default {
       nowPayParams.orderType = Number(item.value);
       nowPayParams.totalMoney = 72;
       nowPayParams.payType = Number(item.value);
+      if (this.$route.query.mail == 1) {
+        nowPayParams.area = this._recipients.area;
+        nowPayParams.address = this._recipients.address;
+        nowPayParams.adressname = this._recipients.adressname;
+        nowPayParams.receiveBy = this._recipients.receiver;
+      }
+
       // nowPayParams.code = this.$route.query.code;
       this.$axios.post(appbizCopyApplypayment, nowPayParams).then((res) => {
         if (res.data.code == '200') {

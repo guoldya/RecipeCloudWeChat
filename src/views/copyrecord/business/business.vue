@@ -43,8 +43,6 @@
         <a @click="openPgmodel" style="color:var(--primary)">《病历复印规定》</a>
       </md-agree>
     </div>
-
-    <!-- <md-button type="primary" @click="tijiao" round style="margin-top:16px">下一步</md-button> -->
     <Pgmodal ref="Pgmodal"></Pgmodal>
     <md-landscape v-model="showPic" :mask-closable="true">
       <div class="codema">
