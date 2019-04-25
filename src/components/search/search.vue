@@ -69,7 +69,7 @@ input {
   right: 0;
   margin: 0 auto;
   padding-left: 70px;
-  background: #f0f3fa url(./search.png) 3% 50% no-repeat !important;
+  background: #f0f3fa url("~@/assets/images/search.png") 3% 50% no-repeat !important;
   background-size: auto 40% !important;
   opacity: 1;
   outline: none;

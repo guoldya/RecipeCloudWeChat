@@ -2,11 +2,17 @@
       <div class="result">
             <Header post-title="搜索"></Header>
             <div class="margin50" style="background-color: #ffffff">
-                  <div class="search">
-                        <form action="">
-                              <input type="search" v-model="value" placeholder="搜索医院" autofocus="autofocus" class="oc_val" @keyup.enter="SearchVal(value)">
-                        </form>
-                  </div>
+
+                  <form action="">
+                        <div class="g-suggest">
+                              <div class="g-suggest--input">
+                                    <div class="g-suggest--input-wrap">
+                                          <input type="search" id="oc_vala" v-model="value" autofocus="autofocus" placeholder="搜索科室或者在线医生">
+                                    </div>
+                                    <label class="page-search--cancel" @click="SearchVal(value)">搜索</label>
+                              </div>
+                        </div>
+                  </form>
             </div>
             <!-- <form action="">
                   <div class="g-suggest">
@@ -73,9 +79,12 @@ export default {
                   this.onlineHistory = [],
                         localStorage.setItem('onlineHistory', JSON.stringify(this.onlineHistory));
             },
-            SearchVal(val) {
-                  if (!val) return;
-                  val = val.trim() // 清除空格
+            SearchVal(value) {
+                  if (!value) {
+                        this.$toast.info("请输入你要搜索的内容")
+                        return;
+                  }
+                  let val = value.trim() // 清除空格
                   if (this.onlineHistory.length > 0) { // 有数据的话 判断
                         if (this.onlineHistory.indexOf(val) !== -1) { // 有相同的，先删除 再添加 
                               this.onlineHistory.splice(this.onlineHistory.indexOf(val), 1)
@@ -102,5 +111,63 @@ export default {
 </script>
 
 <style scoped>
+.g-suggest {
+  position: relative;
+  height: 92px;
+  background-color: #fff;
+}
+.g-suggest--input {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 24px 16px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.g-suggest--input-wrap {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  width: 1%;
+  margin-right: 20px;
+}
+.g-suggest--input-wrap:before {
+  position: absolute;
+  z-index: 1;
+  content: "";
+  width: 28px;
+  height: 28px;
+  left: 22px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: url("~@/assets/images/search.png")  no-repeat 50%;
+  background-size: cover;
+}
+.g-suggest--input-wrap input[type="search"] {
+  padding: 10px 56px 10px 72px;
+  background: #f0f3fa;
+  width: 100%;
+  height: 80px;
+  line-height: 40px;
+  font-size: 28px;
+  color: var(--primary--content);
+  border-radius: 5px;
+  border: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+.g-search--active .g-search--input-cancel {
+  display: block;
+  color: var(--primary--content);
+  font-size: 28px;
+}
 </style>
 

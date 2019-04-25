@@ -145,7 +145,7 @@ export default {
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url(./search.png) no-repeat 50%;
+  background: url("~@/assets/images/search.png") no-repeat 50%;
   background-size: cover;
 }
 .g-suggest--input-wrap input[type="search"] {

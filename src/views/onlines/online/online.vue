@@ -213,13 +213,27 @@ export default {
     this.isloading = false;
   },
   watch: {
-    doctorParams: {
-      handler(newdoctorParams, olddoctorParams) {
-        this.getRecommendDoctor();
-      },
-      deep: true,
-      immediate: true
-    }
+
+    'doctorParams.type': function (val, oldval) {
+      this.doctorParams.pageNumber = 1;
+      this.getRecommendDoctor();
+    },
+    'doctorParams.level': function (vallevel, oldlevel) {
+      this.doctorParams.pageNumber = 1;
+      this.getRecommendDoctor();
+    },
+    'doctorParams.deptId': function (valdeptId, olddeptId) {
+      this.doctorParams.pageNumber = 1;
+      this.getRecommendDoctor();
+    },
+    // doctorParams: {
+    //   handler(newdoctorParams, olddoctorParams) {
+    //     this.doctorParams.pageNumber = 1;
+    //     this.getRecommendDoctor();
+    //   },
+    //   deep: true,
+    //   immediate: true
+    // }
   },
 
 
@@ -276,6 +290,7 @@ export default {
     },
     // 得到推荐医生
     async getRecommendDoctor() {
+      console.log(this.doctorParams.pageNumber, "this.doctorParams.pageNumber")
       try {
         let res = await this.$axios.put(recommendUrl, this.doctorParams);
         if (res.data.code != 200) {
@@ -284,8 +299,9 @@ export default {
         if (res.data.rows) {
           this.doctorList = this.doctorParams.pageNumber == 1 ? res.data.rows : this.doctorList.concat(res.data.rows);
         }
-        this.doctorPages = res.data.pages;
         this.doctorParams.pageNumber = res.data.current;
+        this.doctorPages = res.data.pages;
+
       } catch (error) {
         console.log(error.message);
       }

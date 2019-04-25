@@ -117,7 +117,7 @@ export default {
     intodoctorinfo(val) {
       this.$router.push({
         name: 'pictureConsult',
-        query: { val: val.id }
+        query: { id: val.id }
       });
     }
 
