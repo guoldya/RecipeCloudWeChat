@@ -60,7 +60,7 @@ export default {
       },
       mounted() {
 
-            document.getElementsByClassName("oc_val")[0].focus();
+            document.getElementById("oc_vala").focus();
             var aa = window.localStorage;
             if (aa.getItem("onlineHistory") != null && aa.getItem("onlineHistory") != undefined) {
                   var json = aa.getItem("onlineHistory");
@@ -147,7 +147,7 @@ export default {
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  background: url("~@/assets/images/search.png")  no-repeat 50%;
+  background: url("~@/assets/images/search.png") no-repeat 50%;
   background-size: cover;
 }
 .g-suggest--input-wrap input[type="search"] {
