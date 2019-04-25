@@ -140,14 +140,15 @@ export default {
   position: absolute;
   z-index: 1;
   content: "";
-  width: 28px;
-  height: 28px;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
   left: 22px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   background: url("~@/assets/images/search.png") no-repeat 50%;
-  background-size: cover;
+  background-size: 30px;
 }
 .g-suggest--input-wrap input[type="search"] {
   padding: 10px 56px 10px 72px;

@@ -2,7 +2,7 @@
   <div class="result">
     <Headerapp post-title="搜索结果"></Headerapp>
     <div class="margin50">
-      <div v-if="hospitaldata.length!=0" v-show="!loadingtrue">
+      <div v-if="hospitaldata.length!=0" v-show="!loadingtrue" style=" background: #ffffff;">
         <md-cell-item v-if="hospitaldata.length!=0" v-for="(item,index) in hospitaldata" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
           <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
         </md-cell-item>
@@ -130,7 +130,7 @@ export default {
 };
 </script>
  <style scoped>
-.result {
+/* .result {
   background: #ffffff;
-}
+} */
 </style>

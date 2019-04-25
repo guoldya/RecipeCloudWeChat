@@ -2,7 +2,7 @@
 <template>
   <div class="outCarint expertpage margin50">
     <Header :post-title="$route.query.orgName"></Header>
-    <Search type="onlines"></Search>
+    <Search type="onlines" postPlaceholder="搜索科室或者在线医生"></Search>
     <!-- 搜索框 -->
     <Loading v-if="isloading"></Loading>
     <!-- 弹窗 -->
