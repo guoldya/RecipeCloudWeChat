@@ -8,7 +8,7 @@
         <!--<p style="padding-bottom: 6px">重庆市渝北区大龙山202</p>-->
         <md-detail-item title="收件人" :content="_recipients.receiveBy" />
         <md-detail-item title="手机号码" :content="_recipients.tel" />
-        <md-detail-item title="联系地址" :content="_recipients.adressname" />
+        <md-detail-item title="所在区域" :content="_recipients.adressname" />
         <md-detail-item title="详细地址" :content="_recipients.address" />
       </div>
       <div style="height:5px;background:#f8f8f8"> </div>
