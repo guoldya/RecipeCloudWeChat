@@ -2,7 +2,6 @@
       <div class="result">
             <Header post-title="搜索"></Header>
             <div class="margin50" style="background-color: #ffffff">
-
                   <form action="">
                         <div class="g-suggest">
                               <div class="g-suggest--input">
