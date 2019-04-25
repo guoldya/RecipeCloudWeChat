@@ -6,7 +6,7 @@
       <div class="buy-service-info-content">
         <img src="../images/icon_teletext.png" alt="">
         <p>医生-{{$route.query.name}}</p>
-        <p class="money">￥20.00/次</p>
+        <p class="money">￥{{$route.query.money}}/次</p>
       </div>
       <div class="buy-service-info-tips">
         服务承诺：医生在24小时内进行回复，如未回复自动取消订单并全额退款。退款时间为7日内。
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="pay-money">共需支付
-      <span class="total-money">20元</span>
+      <span class="total-money">{{$route.query.money}}元</span>
     </div>
     <!-- <div class="buy-service-btn">
       <md-button type="primary" round @click="isCashierhow=true">立即支付</md-button>
@@ -33,7 +33,7 @@ export default {
     return {
       id: '',
       isCashierhow: false,
-      cashierAmount: '20',
+      cashierAmount: this.$route.query.money,
       cashierChannels: [
         {
           icon: 'cashier-icon-2',

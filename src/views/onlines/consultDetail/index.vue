@@ -39,26 +39,44 @@
       </div>
       <!-- 沟通方式 -->
       <div class="doctor-way">
-        <div @click="consult()" class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
+        <div @click="consult(item)" class="doctor-way-item" v-for="(item, index) in doctorInfo.mapTypeList" :key="index">
           <div class="doctor-way-item-img">
-            <img src="../images/icon_telephone.png" v-if="item.type == 2" alt="" />
-            <img src="../images/icon_teletext.png" v-else-if="item.type == 1" alt="" />
+            <img src="../images/icon_teletext.png" v-if="item.type == 1&&item.status == 1" alt="" />
+            <img src="../images/icon_teletext_gray.png" v-if="item.type == 1&&item.status == 0" alt="" />
+
+            <img src="../images/icon_telephone.png" v-if="item.type == 2&&item.status == 1" alt="" />
+            <img src="../images/icon_telephone_gray.png" v-if="item.type == 2&&item.status == 0" alt="" />
+
+            <img src="../images/icon_video_pre.png" v-if="item.type == 3&&item.status == 1" alt="" />
+            <img src="../images/icon_video.png" v-if="item.type == 3&&item.status == 0" alt="" />
           </div>
-          <div class="doctor-way-item-money doctor-way-item-image" v-if="item.type == 1">
-            ￥{{ item.info.price }}/次
+          <div class="doctor-way-item-money doctor-way-item-image" v-if="item.type == 1&&item.status == 1">
+            ￥{{ item.info.price| keepTwoNum}}/次
           </div>
-          <div class="doctor-way-item-money doctor-way-item-phone" v-else-if="item.type == 2">
-            ￥{{ item.info.price }}/次
+          <div class="doctor-way-item-money doctor-way-item-phone" v-if="item.type == 2&&item.status == 1">
+            ￥{{ item.info.price| keepTwoNum }}/次
+          </div>
+          <div class="doctor-way-item-money doctor-way-item-video " v-if="item.type == 3&&item.status == 1">
+            ￥{{ item.info.price| keepTwoNum }}/次
+          </div>
+          <div class="doctor-way-item-money doctor-way-item-image doctor-way-item-disabled" v-if="item.type == 1&&item.status == 0">
+            暂未开通
+          </div>
+          <div class="doctor-way-item-money doctor-way-item-phone doctor-way-item-disabled" v-if="item.type == 2&&item.status == 0">
+            暂未开通
+          </div>
+          <div class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled" v-if="item.type == 3&&item.status == 0">
+            暂未开通
           </div>
         </div>
-        <div class="doctor-way-item video">
+        <!-- <div class="doctor-way-item video">
           <div class="doctor-way-item-img">
             <img src="../images/icon_video.png" alt="" />
           </div>
           <div class="doctor-way-item-money doctor-way-item-video doctor-way-item-disabled">
             暂未开通
           </div>
-        </div>
+        </div> -->
       </div>
       <!--擅长-->
       <div class="doctor-speciality doctor-item">
@@ -97,7 +115,7 @@
       <md-dialog :title="basicDialog.title" :closable="true" v-model="basicDialog.open" :btns="basicDialog.btns">
         <p class="money">$20.0/次</p>
         <p>咨询师-{{ doctorInfo.name}}</p>
-        <p class="ways">通过文字,图片进行咨询</p>
+        <p class="ways">{{basicDialog.content}}</p>
         <md-agree v-model="basicDialog.checked" :disabled="false" size="sm">
           同意
           <a>《重庆市妇幼保健院在线问诊用户协议》</a>
@@ -119,7 +137,7 @@ const followDoctorUrl = "/app/bizDoctorFollow/followDoctor"
 export default {
   data() {
     return {
-
+      money: '',
       isloading: true, // 是否显示loading
       doctorInfo: {}, // 医生信息
       // 咨询弹窗
@@ -127,6 +145,7 @@ export default {
         open: false,
         checked: true,
         title: "",
+        content: '',
         type: null, // 咨询弹窗类型 type 1 图文 2 电话 3视频
         btns: [
           {
@@ -221,18 +240,28 @@ export default {
         onConfirm: () => {
           this.$router.push({
             path: "/buyService",
-            query: { name: this.doctorInfo.name, id: this.doctorInfo.id }
+            query: { name: this.doctorInfo.name, id: this.doctorInfo.id, money: this.money }
           });
         }
       });
     },
     // 咨询
     consult(val) {
+      if (val.status == 0) return
       this.basicDialog.open = true;
-      if (val === "img") {
+      this.money = val.info.price;
+      console.log(val,"ss")
+      if (val.type === 1) {
         this.basicDialog.title = "图文咨询";
-      } else if (val === "phone") {
+        this.basicDialog.content = "通过文字,图片进行咨询";
+      } else if (val.type === 2) {
         this.basicDialog.title = "电话咨询";
+        this.basicDialog.content = "通过电话进行咨询";
+
+      } else if (val.type === 3) {
+        this.basicDialog.title = "视频咨询";
+        this.basicDialog.content = "通过视频进行咨询";
+
       }
     },
     async followDoctor() {
@@ -261,7 +290,7 @@ export default {
 <style lang="scss" scoped>
 .doctor-detail {
   overflow-y: auto;
-  height: 100vh;
+  // height: 100vh;
   box-sizing: border-box;
   margin-top: 70px;
   .gray {
@@ -361,6 +390,10 @@ export default {
     .doctor-way-item-phone {
       border: 1px solid #16c2c2;
       color: #16c2c2;
+    }
+    .doctor-way-item-video {
+      border: 1px solid #ffb155;
+      color: #ffb155;
     }
     .doctor-way-item-disabled {
       border: 1px solid #d5d5d5;
