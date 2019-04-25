@@ -165,7 +165,7 @@ export default {
         let _this = this;
         function UrlSearch() {
             let name, value;
-            // let str = location.href;
+            //  let str = location.href;
             let str = "http://192.168.0.26:8080/?code=081qs5ZX03iwTU1YH5YX0Kv6ZX0qs5Zn"; //取得整个地址栏
             let num = str.indexOf("?");
             str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]

@@ -26,7 +26,7 @@
                         <p class="info">评价内容</p>
                         <div class="star">
                             <img src="@/assets/images/1.jpg" alt="" style="width: 14%;height: 14%">
-                            <rater class="diy-box" :score="0" :stars=this.starArray></rater>
+                            <!-- <rater class="diy-box" :score="0" :stars=this.starArray></rater> -->
                             <span>请选择评分</span>
                         </div>
                         <p class="partLine"></p>

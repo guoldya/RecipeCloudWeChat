@@ -38,7 +38,7 @@ import './assets/global.css'
 
 
 
-import rater from 'w-rater'
+// import rater from 'w-rater'
 
 Vue.component('Header', Header);
 Vue.component('Headerapp', Headerapp);
@@ -52,7 +52,7 @@ Vue.component('Loading', Loading);
 Vue.component('Skeleton', Skeleton);
 Vue.component('Footer', Footer);
 Vue.component('Address', Address);
-Vue.component('rater', rater);
+// Vue.component('rater', rater);
 Vue.config.productionTip = false;
 Vue.use(infiniteScroll);
 // import Vconsole from 'vconsole';
@@ -101,8 +101,10 @@ axios.interceptors.request.use(function (config) {
     let url = config.url;
     // 如果是登陆
     if (localStorage.getItem("token7")) {
-        config.headers.TOKEN = localStorage.getItem("token7");
-        config.headers.UUID = localStorage.getItem("UUID7");
+        // config.headers.TOKEN = localStorage.getItem("token7");
+        // config.headers.UUID = localStorage.getItem("UUID7");
+        config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
+        config.headers.UUID = "AAA";
     } else {
         if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
             config.headers.TOKEN = "";

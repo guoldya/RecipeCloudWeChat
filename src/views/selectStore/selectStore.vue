@@ -66,7 +66,7 @@
                                 <span class="mu-secondary-text-color">{{item.type}}</span>
                             </div>
                             <div>
-                                <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater>
+                                <!-- <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater> -->
                                 <span class="mu-secondary-text-color">{{item.score}}分</span>
                             </div>
                             <div>

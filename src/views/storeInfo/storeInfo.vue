@@ -64,7 +64,7 @@
                         <div class="cardText">
                             <div class="listData">
                                 <span class="contentName">{{item.name}}</span>
-                                <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater>
+                                <!-- <rater class="diy-box" :score=item.score :onlyShow=true :stars=starArray></rater> -->
                             </div>
                             <div class="listData">
                                 <span style="font-size: 12px;">{{item.date}}</span>
