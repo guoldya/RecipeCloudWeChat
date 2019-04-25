@@ -7,7 +7,7 @@
     <Loading v-if="isloading"></Loading>
     <!-- 弹窗 -->
     <!-- <md-tab-picker title="请选择科室" :data="Fdata" v-model="isDepartShow" @change="chooseDepart" /> -->
-    <md-selector v-model="isDepartShow"  :default-value="$route.query.id" :data="departData" @choose="chooseDepart" title="请选择科室"></md-selector>
+    <md-selector v-model="isDepartShow" :default-value="$route.query.id" :data="departData" @choose="chooseDepart" title="请选择科室"></md-selector>
     <md-selector v-model="isSortShow" :data="sortData" @choose="chooseSort" title="选择排序"></md-selector>
     <!-- 查询菜单栏 -->
     <div class="selectTool" v-if="doctorList.length&&!isloading" style=" background: #ffffff;">
@@ -196,7 +196,8 @@ export default {
         let res = await this.$axios.put(departmentUrl, {
           orgId: Number(localStorage.getItem("hospitalId")),
           orgType: 3,
-          pageNumber: this.departmenParams.num
+          pageNumber: this.departmenParams.num,
+          pageSize: 100
         });
         if (res.data.code != 200) {
           throw Error(res.data.msg);

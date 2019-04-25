@@ -193,7 +193,8 @@ export default {
       departmenParams: {
         // 科室分页信息
         num: 1,
-        pages: 1
+        pages: 1,
+
       },
       doctorPages: null, // 医生总页数
       doctorParams: {
@@ -270,7 +271,8 @@ export default {
         let res = await this.$axios.put(departmentUrl, {
           orgId: Number(localStorage.getItem("hospitalId")),
           orgType: 3,
-          pageNumber: this.departmenParams.num
+          pageNumber: this.departmenParams.num,
+          pageSize:100
         });
         if (res.data.code != 200) {
           throw Error(res.data.msg);
