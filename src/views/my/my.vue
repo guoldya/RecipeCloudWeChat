@@ -8,13 +8,13 @@
     <section class="aui-scrollView">
       <div class="aui-user">
         <div class="aui-user-cell">
-          <div class="aui-user-cell-logo">
-            <img v-if="accountinfo.headUrl" :src="$conf.constant.img_base_url + accountinfo.headUrl" alt="">
+          <div class="aui-user-cell-logo" @click="acctest">
+            <img v-if="userInfo.headUrl" :src="$conf.constant.img_base_url + userInfo.headUrl" alt="">
             <img v-else src="@/assets/images/user.png">
           </div>
           <div class="aui-user-cell-title">
-            <p> {{accountinfo.name}}</p>
-            <p class="aui-user-info">{{accountinfo.account}}</p>
+            <p>{{userInfo.name}}</p>
+            <p class="aui-user-info">{{userInfo.account}}</p>
           </div>
           <div class="aui-user-row"></div>
         </div>
@@ -22,8 +22,7 @@
       <div class="aui-list-cell">
         <a href="javascript:;" class="aui-list-item" @click="registrecord">
           <div class="aui-list-item-fl">
-            <i class="icon icon-item01">
-            </i>
+            <i class="icon icon-item01"></i>
             挂号记录
           </div>
           <div class="aui-list-item-fr aui-list-item-arrow">
@@ -61,7 +60,6 @@
             <i></i>
           </div>
         </a>
-
       </div>
       <div class="divHeight"></div>
       <div class="aui-list-cell">
@@ -78,7 +76,6 @@
           <div class="aui-list-item-fl">
             <i class="icon icon-item06"></i>
             处方记录
-
           </div>
           <div class="aui-list-item-fr aui-list-item-arrow">
             <i></i>
@@ -123,10 +120,19 @@
             <i></i>
           </div>
         </a>
-        <a href="javascript:;" class="aui-list-item" @click="medicalEva">
+        <a href="javascript:;" class="aui-list-item" @click="evaluate">
           <div class="aui-list-item-fl">
             <i class="icon icon-item10"></i>
             就医评价
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
+        <a href="javascript:;" class="aui-list-item" @click="suggestion">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item10"></i>
+            意见收集
           </div>
           <div class="aui-list-item-fr aui-list-item-arrow">
             <i></i>
@@ -165,133 +171,137 @@
           <span @click="medicalEva"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
         </div>
       </div>
-    </div> -->
+    </div>-->
     <Footer></Footer>
   </div>
 </template>
 <script>
-let sysUserselectUserByAccount = '/app/sysPatient/read/myDetailed';
+import { mapState } from "vuex";
 
-import pg_positive from '@/assets/images/user.png'
+// import pg_positive from "@/assets/images/user.png";
 export default {
   data() {
     return {
-      userInfo: '',
-      outInfo: '',
-      id: '',
-      accountinfo: '',
-      headURL: pg_positive,
-    }
+      outInfo: "",
+      id: "",
+      // headURL: pg_positive
+    };
+  },
+  computed: {
+    ...mapState({
+      userInfo: state => state.home.userInfo
+    })
   },
   created() {
-    this.$store.commit('feeActiveFun', 1);
-
+    this.$store.commit("feeActiveFun", 1);
   },
   async mounted() {
-    await this.getDepartment();
+    await this.$store.dispatch("getUserInfo");
   },
   methods: {
-    async getDepartment() {
-      try {
-        let res = await this.$axios.put(sysUserselectUserByAccount, {
-        });
-        if (res.data.code != 200) {
-          throw Error(res.data.msg);
-        }
-        this.accountinfo = res.data.data;
-        this.$store.commit('accountinfoFun', res.data.data);
-        this.headUrl = this.$conf.constant.img_base_url + res.data.data.headUrl
-      } catch (error) {
-        console.log(error);
-      }
-    },
     registrecord() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'registrecord',
+        name: "registrecord",
+        query: argu
+      });
+    },
+    // 用户设置
+    acctest() {
+      let argu = {};
+      this.$router.push({
+        name: "acctest",
         query: argu
       });
     },
     // 缴费记录
     feerecord() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'feerecord',
+        name: "feerecord",
         query: argu
       });
     },
     appoint() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'appoint',
+        name: "appoint",
         query: argu
       });
     },
     // 报告查询
     reportrecord() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'reportquery',
+        name: "reportquery",
         query: argu
       });
     },
     // 我的住院
     myhospital() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'myhospitalfirst',
+        name: "myhospitalfirst",
         query: argu
       });
     },
     // 处方记录
     recipeRecord() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'recipeRecord',
+        name: "recipeRecord",
         query: argu
       });
     },
     // 处方记录
     business() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'businssrecord',
+        name: "businssrecord",
         query: argu
       });
     },
     askorder() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'askorder',
+        name: "askorder",
         query: argu
       });
     },
     // 就诊卡
     idcardlist() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'idcardlist',
+        name: "idcardlist",
         query: argu
       });
     },
     // 就医评价
-    medicalEva() {
-      let argu = {}
+    evaluate() {
+      let argu = {};
       this.$router.push({
-        name: 'medicalEva',
+        name: "evaluate",
         query: argu
       });
     },
     // 地址
     adress() {
-      let argu = {}
+      let argu = {};
       this.$router.push({
-        name: 'adress',
+        name: "adress",
+        query: argu
+      });
+    },
+    //意见收集
+    suggestion() {
+      let argu = {};
+      this.$router.push({
+        name: "suggestion",
         query: argu
       });
     },
   }
-}
+};
 </script>
 <style scoped>
 .aui-navBar {

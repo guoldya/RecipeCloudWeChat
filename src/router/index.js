@@ -28,6 +28,10 @@ import inspectSuccess from '@/views/inspectionCheck/inspectSuccess'
 import result from '@/views/result/result.vue'
 import feeinfo from '@/views/feeinfo/feeinfo.vue'
 import feerecord from '@/views/feerecord/feerecord.vue'
+import acctest from '@/views/acctest/acctest.vue'
+import acctestinfo from '@/views/acctestinfo/acctestinfo.vue'
+import suggestion from '@/views/suggestion/suggestion.vue'
+import evaluate from '@/views/evaluate/evaluate.vue'
 import feesucces from '@/views/feesucces/feesucces.vue'
 import doctor from '@/views/doctordetail/doctor.vue'
 import payment from '@/views/payment/payment.vue'
@@ -507,6 +511,26 @@ export default new Router({
     name: 'feerecord',
     component: feerecord,
     // meta: { keepAlive: true }
+  },
+  {
+    path: '/acctest',
+    name: 'acctest',
+    component: acctest,
+  },
+  {
+    path: '/acctestinfo',
+    name: 'acctestinfo',
+    component: acctestinfo,
+  },
+  {
+    path: '/suggestion',
+    name: 'suggestion',
+    component: suggestion,
+  },
+  {
+    path: '/evaluate',
+    name: 'evaluate',
+    component: evaluate,
   },
   {
     path: '/feesucces',
