@@ -1,35 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/views/home/home.vue'
-import druginfo from '@/views/druginfo/druginfo.vue'
-import online from '@/views/onlines/online/online.vue'
-import article from '@/views/article/article.vue'
-import inquiryOnline from '@/views/onlines/inquiryOnline'
-import my from '@/views/my/my.vue'
-import appoint from '@/views/appoint/appoint.vue'
-import appointinfo from '@/views/appointinfo/appointinfo.vue'
-import choosedepart from '@/views/choosedepart/choosedepart.vue'
-import choosehospital from '@/views/choosehospital/choosehospital.vue'
-import hospitalsearch from '@/views/choosehospital/hospitalsearch/hospitalsearch.vue'
-import hospitalresult from '@/views/choosehospital/hospitalresult/hospitalresult.vue'
-import lostpage from '@/views/resultpage/lostpage/lostpage.vue'
-import departsearch from '@/views/choosedepart/departsearch'
-import news from '@/views/home/news'
-import propaganda from '@/views/home/propaganda'
-import propagandainfo from '@/views/home/propagandainfo'
 
+// 主页
+const index = () => import(/* webpackChunkName: "home" */ "@/views/home/home.vue")
+const druginfo = () => import(/* webpackChunkName: "home" */ "@/views/druginfo/druginfo.vue")
+const result = () => import(/* webpackChunkName: "home" */ "@/views/result/result.vue")
+const feeinfo = () => import(/* webpackChunkName: "home" */ "@/views/feeinfo/feeinfo.vue")
+const feerecord = () => import(/* webpackChunkName: "home" */ "@/views/feerecord/feerecord.vue")
+const feesucces = () => import(/* webpackChunkName: "home" */ "@/views/feesucces/feesucces.vue")
+const doctor = () => import(/* webpackChunkName: "home" */ "@/views/doctordetail/doctor.vue")
 
-import newsinfo from '@/views/home/newsinfo'
-import choose from '@/views/inspectionCheck/choose'
-import confirmOrder from '@/views/inspectionCheck/confirmOrder'
-import inspectSuccess from '@/views/inspectionCheck/inspectSuccess'
-
-
-import result from '@/views/result/result.vue'
-import feeinfo from '@/views/feeinfo/feeinfo.vue'
-import feerecord from '@/views/feerecord/feerecord.vue'
-import feesucces from '@/views/feesucces/feesucces.vue'
-import doctor from '@/views/doctordetail/doctor.vue'
+ 
 import payment from '@/views/payment/payment.vue'
 import doctorList from '@/views/doctorList/doctorList.vue'
 import doctorresult from '@/views/doctorList/doctorresult'
@@ -59,7 +40,33 @@ import cardblind from '@/views/cardblind/cardblind.vue'
 import cardhave from '@/views/cardhave/cardhave.vue'
 import resultdocotor from '@/views/resultdocotor/resultdocotor.vue'
 import registrecorddetail from '@/views/registrecorddetail/registrecorddetail.vue'
-import doctorschedu from '@/views/doctorschedu/doctorschedu.vue'
+import doctorschedu from '@/views/doctorschedu/doctorschedu.vue' 
+
+
+
+import online from '@/views/onlines/online/online.vue'
+import article from '@/views/article/article.vue'
+import inquiryOnline from '@/views/onlines/inquiryOnline'
+import my from '@/views/my/my.vue'
+import appoint from '@/views/appoint/appoint.vue'
+import appointinfo from '@/views/appointinfo/appointinfo.vue'
+import choosedepart from '@/views/choosedepart/choosedepart.vue'
+import choosehospital from '@/views/choosehospital/choosehospital.vue'
+import hospitalsearch from '@/views/choosehospital/hospitalsearch/hospitalsearch.vue'
+import hospitalresult from '@/views/choosehospital/hospitalresult/hospitalresult.vue'
+import lostpage from '@/views/resultpage/lostpage/lostpage.vue'
+import departsearch from '@/views/choosedepart/departsearch'
+import news from '@/views/home/news'
+import propaganda from '@/views/home/propaganda'
+import propagandainfo from '@/views/home/propagandainfo'
+
+
+import newsinfo from '@/views/home/newsinfo'
+import choose from '@/views/inspectionCheck/choose'
+import confirmOrder from '@/views/inspectionCheck/confirmOrder'
+import inspectSuccess from '@/views/inspectionCheck/inspectSuccess'
+
+ 
 
 
 
