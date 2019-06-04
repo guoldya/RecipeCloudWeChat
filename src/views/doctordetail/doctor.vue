@@ -2,7 +2,7 @@
 <template>
     <div class="margin55 doc_scheduling  ">
         <Header post-title="医生详情"></Header>
-        <div class="doctor-head  " v-show="!loadingtrue" v-if="doctorInfo.length!=0">
+        <div class="doctor-head" v-show="!loadingtrue" v-if="doctorInfo.length!=0">
             <div class="doc_info ">
                 <div class="pic fl">
                     <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorInfo.name">
@@ -13,7 +13,6 @@
                             <span class="name">{{doctorInfo.name}}</span>
                             <span class="levle"> {{doctorInfo.title}}</span>
                         </div>
-
                         <p style="font-size: 14px">{{doctorInfo.orgName}} </p>
                         <!--<p style="font-size: 14px">擅长：{{doctorInfo.skill}}</p>-->
                     </div>
