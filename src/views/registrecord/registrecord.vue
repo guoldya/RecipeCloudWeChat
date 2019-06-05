@@ -77,8 +77,8 @@ export default {
         cordFun(flag) {
             const params = {};
             params.pageNumber = this.page;
-            params.pageSize = this.pageSize;
-            params.cardId = this.$store.state.cardId;
+            params.pageSize = this.pageSize;  
+            params.cardId =JSON.parse(sessionStorage.getItem('objInfo')).cardId;
             this.$axios.put(read_page_url, params).then((res) => {
                 if (res.data.rows) {
                     this.loadingtrue = false;

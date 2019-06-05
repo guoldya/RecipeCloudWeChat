@@ -1,6 +1,6 @@
 <template>
   <div class="lineupnow">
-    <Headerapp post-title="复印记录"></Headerapp>
+    <Header post-title="复印记录"></Header>
     <div class="margin50">
       <div class="upnowHead">
         <div class="cardHEADER cardText" style="display:flex;">

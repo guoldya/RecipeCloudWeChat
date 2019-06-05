@@ -6,6 +6,7 @@
       </span>
       <span v-for="(item, index) in tabTitle" v-if="item.type" :key="'time' + index" @click="switchTo(item)" :class="active1 === item.type ? 'appTabAcitive' : '' ">
         {{item.title}}
+        <label v-if="item.unReadTotal">未读({{item.unReadTotal}})</label>
       </span>
     </div>
   </div>
@@ -18,17 +19,14 @@ export default {
     }
   },
   props: ['tabTitle'],
-  created() {
-
-  },
   mounted() {
-    if (this.$store.state.feeActiveId) {
-      this.active1 = this.$store.state.feeActiveId
+    if (sessionStorage.getItem('feeActiveFun')) {
+      this.active1 = sessionStorage.getItem('feeActiveFun') * 1
     }
   },
   methods: {
     switchTo(item) {
-      if (this.active1 === item.type || this.active1 === item.id) return;
+      if (this.active1 === item.type || this.active1 === item.id || this.tabTitle[0].loading) return;
 
       if (item.orgName) {
         this.active1 = item.id;
@@ -46,27 +44,31 @@ export default {
 .appTabCarint {
   text-align: center;
   width: 100%;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 .appTitle {
   padding: 28px 0px;
-  border-bottom: 2px solid  var(--primary--line);
+  border-bottom: 2px solid var(--primary--line);
   display: flex;
   justify-content: space-between;
 }
 .appTab {
   display: flex;
   justify-content: space-around;
-  padding: 20px 100px 20px;
-  line-height: 72px;
+  padding: 0 100px;
+  /* line-height: 72px; */
   padding-bottom: 0;
+  line-height: 67px;
+  margin-bottom: 20px;
 }
 .appTab span {
-  padding: 0 8px 8px;
-  font-size: 32px;
+  /* padding: 0 8px 8px; */
+  font-size: 30px;
   position: relative;
 }
-
+.appTab label {
+  font-size: 26px;
+}
 .appTab .appTabAcitive {
   color: var(--primary);
   border-bottom: 4px solid var(--primary);

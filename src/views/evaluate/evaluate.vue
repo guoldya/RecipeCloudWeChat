@@ -1,6 +1,6 @@
 <template>
     <div class="evaluate"> 
-        <Headerapp post-title="就医评价"></Headerapp>
+        <Header post-title="就医评价"></Header>
         <div class="margin50">
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="goodsList.length!=0" v-show="!loadingtrue">

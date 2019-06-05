@@ -60,6 +60,15 @@
             <i></i>
           </div>
         </a>
+        <a href="javascript:;" class="aui-list-item" >
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item07"></i>
+            诊疗记录
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
       </div>
       <div class="divHeight"></div>
       <div class="aui-list-cell">
@@ -90,6 +99,7 @@
             <i></i>
           </div>
         </a>
+
         <a href="javascript:;" class="aui-list-item" @click="askorder">
           <div class="aui-list-item-fl">
             <i class="icon icon-item08"></i>

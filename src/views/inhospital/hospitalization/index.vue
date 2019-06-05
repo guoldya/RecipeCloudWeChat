@@ -65,7 +65,7 @@ export default {
          params.pageNumber = this.page;
          params.pageSize = this.pageSize;
          // params.type = 1;
-         params.cardNo = this.$store.state.cardNo;
+          params.cardNo = JSON.parse(sessionStorage.getItem('objInfo')).cardNo;
          this.$axios.put(appbizIhRecordreadselectIhRecordPriceList, params).then((res) => {
             this.loadingtrue = false;
             if (res.data.code == 200) {

@@ -17,7 +17,7 @@
         <!--<span class="downImg"><img src="@/assets/images/icon_down.png"></span>-->
         <!--</span>-->
         <!--</header>-->
-        <Headerapp post-title="报告查询"></Headerapp>
+        <Header post-title="报告查询"></Header>
         <div class="margin50">
             <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
             <div v-if="goodsList.length!=0" v-show="!loadingtrue">

@@ -1,6 +1,6 @@
 <template>
    <div class="choosehospital">
-      <Headerapp post-title="搜索结果"></Headerapp>
+      <Header post-title="搜索结果"></Header>
       <div class="margin50">
          <ul v-if="hospitaldata.length!=0" v-show="!loadingtrue">
             <li class="booking-index--hospitals-item" v-for="(item,index) in hospitaldata" :key="index">

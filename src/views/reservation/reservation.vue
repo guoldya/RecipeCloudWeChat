@@ -15,7 +15,7 @@
                     </li>
                     <li class="dis-flex">
                         <label>科室</label>
-                        <p class="colon-right">{{major}} </p>
+                        <p class="colon-right">{{doctorInfo.orgName}} </p>
                     </li>
                     <li class="dis-flex">
                         <label>看诊时间</label>
@@ -36,7 +36,7 @@
                     <div class="dis-flex">
                         <label class="nowidth">就诊人</label>
                         <span class="input-box">
-                            {{cardName}}
+                            {{this.getInfo.patientName}}
                         </span>
                     </div>
                 </li>
@@ -44,14 +44,14 @@
                 <li class="input-line g-arrow-r" id="J_SelectDis" data-init="[{&quot;name&quot;:&quot;尚未确诊&quot;,&quot;uuid&quot;:&quot;0&quot;}]">
                     <div class="dis-flex">
                         <label class="nowidth">就诊卡</label>
-                        <span class="input-box">{{cardNo}}
+                        <span class="input-box">{{this.getInfo.cardNo}}
                         </span>
                     </div>
                 </li>
             </ul>
         </div>
         <div v-show="!isSucceed">
-            <md-button type="primary" round @click="rightPay">提交</md-button>
+            <md-button :inactive="!isTijiao" type="primary" round @click="rightPay">提交</md-button>
         </div>
         <div v-show="isSucceed" class="bottomback">
             <span @click="backindex()" class="cancle">返回主页</span>
@@ -61,20 +61,17 @@
     </div>
 </template>
 <script type="text/babel">
-let doctorInfo = "/app/bdHospitalDoctor/read/selectDoctorDetail";
+let doctorInfo = "/bdHospitalDoctor/read/selectDoctorDetail";
 let fee_detail_url = "/app/bizCostBill/detail";
 // 生成预约
 let fconfirm_pay_url = "/app/bizPatientRegister/subscribe";
-// 付钱
+// 付钱 
 let now_pay_url = "/app/bizPatientRegister/nowPay";
-
-
 export default {
     data() {
         return {
-
+            isTijiao: true,
             depart: '',
-            major: '',
             time: '',
             afternoon: '',
             doctorInfo: '',
@@ -86,6 +83,7 @@ export default {
             cashierResult: 'success',
             backId: '',
             regStage: '',
+            getInfo: '',
             cashierChannels: [
                 {
                     icon: 'cashier-icon-2',
@@ -105,8 +103,13 @@ export default {
             ],
         };
     },
+    computed: {
+        cashier() {
+            return this.$refs.cashier
+        },
+    },
     created() {
-
+        this.getInfo = JSON.parse(sessionStorage.getItem('objInfo'))
         this.$axios.put(doctorInfo, {
             id: this.$route.query.doctorId * 1,
         }).then((res) => {
@@ -121,12 +124,7 @@ export default {
 
     },
     mounted() {
-        document.title = '预约信息';
-        //   if(this.$store.state.isCashierhowData){
-        //       this.isSucceed=this.$store.state.isCashierhowData;
-        //   }
         this.depart = this.$store.state.depart;
-        this.major = this.$route.query.dept;
         if (this.$route.query.afternoon * 1 == 1) {
             this.afternoon = '上午';
         } else if (this.$route.query.afternoon * 1 == 2) {
@@ -134,14 +132,11 @@ export default {
         } else {
             this.afternoon = this.$route.query.afternoon;
         }
-
         this.time = this.$route.query.time;
-
-        this.cardName = this.$store.state.patientName;
         this.regStage = this.$route.query.regStage;
-        this.cardNo = this.$store.state.cardNo;
         this.money = String(this.$route.query.money);
     },
+
     methods: {
         doPay() {
             if (this.isCashierCaptcha) {
@@ -201,20 +196,26 @@ export default {
             console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
         },
         onCashierCancel() {
-            // Abort pay request or checking request
+            //  console.log("点击取消")
+            this.$router.go(-1);
+            this.isTijiao = true;
             this.timer && clearTimeout(this.timer)
         },
 
         rightPay() {
+            this.isTijiao = false;
             this.$axios.post(fconfirm_pay_url, {
                 sourceId: this.$route.query.sourceId,
-                cardId: this.$store.state.cardId,
+                cardId: this.getInfo.id,
+                regType: this.$route.query.today * 1,
+                patientName: this.getInfo.patientName,
+                cardNo: this.getInfo.cardNo,
             }).then((res) => {
                 if (res.data.code == '200') {
                     this.isCashierhow = !this.isCashierhow;
-                    this.backId = res.data.data;
-                } else {
-
+                    this.backId = res.data.data.id;
+                    this.payOrderId = res.data.data.payOrderId;
+                } else if (res.data.code == '800') {
                     this.$dialog.alert({
                         title: '提示',
                         content: res.data.msg,
@@ -224,6 +225,8 @@ export default {
                         },
                     });
 
+                } else {
+                    this.$toast.info(res.data.msg)
                 }
             }).catch(function (err) {
                 console.log(err);
@@ -251,11 +254,7 @@ export default {
         },
 
     },
-    computed: {
-        cashier() {
-            return this.$refs.cashier
-        },
-    },
+
 
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="choosedepart">
-    <Headerapp post-title="选择科室"></Headerapp>
+    <Header post-title="选择科室"></Header>
     <div class=" margin50">
       <Search type="choosedepart" post-placeholder="请输入医生，科室名称"></Search>
       <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>

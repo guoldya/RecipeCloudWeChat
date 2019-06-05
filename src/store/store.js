@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import home from './home';
+import my from './my';
 import chat from './modules/chat'
 
 console.log(home)
@@ -165,6 +166,7 @@ export default new Vuex.Store({
     },
     modules: {
         home,
+        my,
         chat
     }
 })

@@ -1,6 +1,6 @@
 <template>
    <div class="choosehospital">
-      <Headerapp post-title="选择医院"></Headerapp>
+      <Header post-title="选择医院"></Header>
       <div class="margin50">
          <Search post-placeholder="请输入医院名称" type="choosehospital"></Search>
          <ul v-if="hospitaldata.length!=0" v-show="!loadingtrue">
