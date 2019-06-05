@@ -46,7 +46,6 @@ export default {
 .appTabCarint {
   text-align: center;
   width: 100%;
-  background-color: #ffffff;
 }
 .appTitle {
   padding: 28px 0px;
@@ -57,9 +56,11 @@ export default {
 .appTab {
   display: flex;
   justify-content: space-around;
-  padding: 20px 100px 20px;
-  line-height: 72px;
+  padding: 0 100px;
+  /* line-height: 72px; */
+  line-height: 67px;
   padding-bottom: 0;
+  margin-bottom: 20px;
 }
 .appTab span {
   padding: 0 8px 8px;

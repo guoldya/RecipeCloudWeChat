@@ -8,8 +8,10 @@ import store from './store/store';
 import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
 import Headerapp from './components/headerapp/headerapp.vue';
-import Navigation from '@/components/Navigation'
+import Navigation from '@/components/Navigation';
 import Apptab from './components/apptab/apptab.vue';
+import Null from './components/null';
+import ValuationCard from './components/valuationCard/valuationCard.vue';
 import Search from './components/search/search.vue';
 import Address from './components/address/address.vue';
 import Footer from './components/footer/footer.vue';
@@ -47,7 +49,9 @@ Vue.component('Navigation', Navigation);
 
 
 Vue.component('Search', Search);
-Vue.component('Apptab', Apptab)
+Vue.component('Apptab', Apptab);
+Vue.component('Null', Null);
+Vue.component('ValuationCard', ValuationCard);
 Vue.component('Loading', Loading);
 Vue.component('Skeleton', Skeleton);
 Vue.component('Footer', Footer);
@@ -103,13 +107,13 @@ axios.interceptors.request.use(function (config) {
     if (localStorage.getItem("token7")) {
         // config.headers.TOKEN = localStorage.getItem("token7");
         // config.headers.UUID = localStorage.getItem("UUID7");
-        config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
+        config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
         config.headers.UUID = "AAA";
     } else {
         if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
             config.headers.TOKEN = "";
         } else {
-            config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
+            config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
             config.headers.UUID = "AAA";
         };
     }

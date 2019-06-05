@@ -4,6 +4,32 @@ import moment from 'moment'
  * 给商品价格加补0
  * @param {*} value
  */
+
+const filterType = function (value) {
+    if (value == undefined) {
+        return " "
+    }
+    if (value == 1) {
+        return "住院"
+    } else if (value == 2) {
+        return "门诊"
+    } else if (value == 3) {
+        return "体检"
+    }
+};
+const filterTypeIMG = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return require('@/assets/images/zhuyuan.png')
+    } else if (value == 2) {
+        return require('@/assets/images/menzhen.png')
+    } else if (value == 3) {
+        return require('@/assets/images/tijian.png')
+    }
+};
+
 const keepTwoNum = function (value) {
     if (value == undefined) {
         return "**"
@@ -325,6 +351,8 @@ const getAge = function (value) {
     return value;//返回周岁年龄
 };
 export default {
+    filterType,
+    filterTypeIMG,
     keepTwoNum,
     payTypeFilter,
     time,
