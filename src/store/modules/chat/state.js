@@ -24,7 +24,7 @@ export default {
   // chatQueue:[],// 聊天队列
   historyNews: [], // 历史消息
   // currentFriendNews:{}, // 好友传过来的当前消息
-  friendId: null, // 当前朋友id
+  friendId: 12, // 当前朋友id
   // 病人详情
   patienDetail: {
     patientName: "点击选择就诊人"

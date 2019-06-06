@@ -16,6 +16,14 @@ export default {
   },
   setPatienDetail({ commit }, data) {
     commit('setPatienDetail', data)
+  },
+
+  
+  updateUser({ commit }, data) {
+    commit('updateUser', data)
+  },
+  updateToken({ commit }, data) {
+    commit('updateToken', data)
   }
 
   

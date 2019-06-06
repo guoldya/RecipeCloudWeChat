@@ -156,6 +156,7 @@ export default {
   },
   // 
   computed: {
+    // ...mapState(["chat", "userInfo"])
     ...mapState({
       chat: state => state.chat,
       userInfo: state => state.userInfo
@@ -169,9 +170,8 @@ export default {
     //  用于演示临时加得
     let obj = {}
     obj.id = 125;
-    this.updateUser(obj)
-    websocketConfig()
-
+    // this.updateUser(obj)
+    websocketConfig();
   },
   updated: function () {
     if (this.isViewerShow) {
@@ -270,45 +270,46 @@ export default {
       }
     },
     async upload() {
-
-      var formData = new FormData();
-      var file = this.$refs.uploadImg.files[0];
-      formData.append("file", file);
-
-      let config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+      try {
+        var formData = new FormData();
+        var file = this.$refs.uploadImg.files[0];
+        formData.append("file", file);
+        let res = await httpService({
+          method: "post",
+          url: "/api/upload",
+          headers: {
+            Authorization: "",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          body: formData
+        });
+        if (res.code != 200) {
+          throw Error(res.msg);
         }
-      };
-      this.$axios.post('/upload', formData).then(res => {
-        if (res.data.code == '200') {
-          let createTime = new Date().getTime();
-          let msg = {
-            // 发送消息传的数据
-            from: this.userInfo.id,
-            to: Number(this.$route.query.id),
-            cmd: 11,
-            createTime: createTime,
-            msgType: 1,
-            chatType: 2,
-            content: '/api/file?img=' + res.data[file.name]
-          };
-          console.log(msg)
-          // 把当前发送的消息添加到历史消息去
-          let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
-          arr.push(msg)
-          this['chat/setHistoryNews'](arr)
-          this.chat.websocket.send(JSON.stringify(msg));
-        } else {
-
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });;
-
+        let createTime = new Date().getTime();
+        let msg = {
+          // 发送消息传的数据
+          from: this.userInfo.id,
+          to: Number(this.$route.params.fromId),
+          cmd: 11,
+          createTime: createTime,
+          msgType: 1,
+          chatType: 2,
+          content: "/api/file?img=" + res.data[file.name]
+        };
+          console.log(msg+"把当前发送的消息添加到历史消息去")
+        // 把当前发送的消息添加到历史消息去
+        let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
+        arr.push(msg);
+        this["chat/setHistoryNews"](arr);
+        this.chat.websocket.send(JSON.stringify(msg));
+      } catch (error) {
+        console.log(error);
+      }
     },
     // 发送消息
     send() {
+    console.log(this.chat.historyNews+"xxxxxxx")
       console.log("我是ya亚男")
       if (this.inputValue == 0) {
         this.$toast.info("请输入消息");
@@ -318,14 +319,14 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: Number(this.$route.query.id),
+        to: 12,
         cmd: 11,
         createTime: createTime,
         msgType: 0,
         chatType: 2,
         content: this.inputValue
       };
-      console.log(msg)
+      console.log(msg.from+"from:")
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
       arr.push(msg)
@@ -334,6 +335,17 @@ export default {
       this.inputValue = "";
       // 清空输入框的数据
       this.$refs.inputModel.innerHTML = "";
+
+      // let msg = {
+      //   cmd: 19,
+      //   type: 1,
+      //   fromUserId: 12,
+      //   userId: 125
+      //   //userId:item.from  == 125 ? 123 :125
+      // };
+      // console.log("有趣")
+      // this.chat.websocket.send(JSON.stringify(msg));
+
     },
     // 添加消息
     emojiAdd(val) {

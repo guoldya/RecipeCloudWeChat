@@ -7,6 +7,7 @@ import Config from './config/config.js';
 import store from './store/store';
 import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
+import Headerwhite from './components/headerwhite/headerwhite.vue';
 import Headerapp from './components/headerapp/headerapp.vue';
 import Navigation from '@/components/Navigation';
 import Apptab from './components/apptab/apptab.vue';
@@ -44,6 +45,7 @@ import './assets/global.css'
 
 Vue.component('Header', Header);
 Vue.component('Headerapp', Headerapp);
+Vue.component('Headerwhite', Headerwhite);
 Vue.component('Navigation', Navigation);
 
 
@@ -107,13 +109,13 @@ axios.interceptors.request.use(function (config) {
     if (localStorage.getItem("token7")) {
         // config.headers.TOKEN = localStorage.getItem("token7");
         // config.headers.UUID = localStorage.getItem("UUID7");
-        config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
+        config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
         config.headers.UUID = "AAA";
     } else {
         if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
             config.headers.TOKEN = "";
         } else {
-            config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
+            config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
             config.headers.UUID = "AAA";
         };
     }

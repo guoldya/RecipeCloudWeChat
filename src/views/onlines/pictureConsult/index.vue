@@ -92,7 +92,9 @@ export default {
   },
 
   computed: {
+    // ...mapState(["chat", "userInfo"])
     ...mapState({
+      chat: state => state.chat,
       _patienDetail: state => state.chat.patienDetail,
       userInfo: state => state.userInfo
     }),
@@ -108,8 +110,9 @@ export default {
     websocketConfig()
   },
   methods: {
-    ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews", 'updateUser']),
+    ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews",'updateUser']),
     sendInfo() {
+      console.log("发消息")
       this.questionDes = this.questionDes.trim()
       // if (!this._patienDetail.id) {
       //   this.$toast.info("请选择就诊人")
@@ -128,18 +131,23 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: Number(this.$route.query.id),
+        to: 12,
         cmd: 11,
         createTime: createTime,
         msgType: 7,
         chatType: 2,
         content: data,
       };
+      
+      console.log(this.chat.historyNews+"historyNews:")
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.$store.state.chat.historyNews))
+      console.log(arr+"arr:")
       arr.push(msg)
+
       this['chat/setHistoryNews'](arr)
-      this.$store.state.chat.websocket.send(JSON.stringify(msg));
+      this.chat.websocket.send(JSON.stringify(msg));
+      // this.$store.state.chat.websocket.send(JSON.stringify(msg));
       this.$router.push({
         name: 'inquiryOnline',
         query: {

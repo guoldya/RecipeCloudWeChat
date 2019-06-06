@@ -29,10 +29,10 @@
             </p>
             <p class="listData" v-show="queryType==1">
               <span> </span>
-              <span class="have" @click="intoDetail(waitData)">去评价</span>
+              <span class="have" @click="intoDetail()">去评价</span>
             </p>
           </div>
-          <div class="lookmore" @click="intoDetail(waitData)" v-show="queryType!=1">
+          <div class="lookmore" @click="intoDetail(waitData.type)" v-show="queryType!=1">
             <span>查看详情</span>
             <span><img src="@/assets/images/icon_right.png" alt=""></span>
           </div>
@@ -49,11 +49,27 @@ export default {
       'waitData',
       'queryType' 
   ],
-  created() {
-  },
-  mounted() {
-  },
   methods: {
+    intoDetail() {
+      let id = this.waitData.type;
+      let time = this.waitData.time;
+      let pla = {};
+      if (this.waitData.type == 1) {
+        pla = this.waitData.area;
+      }else {
+        if (this.waitData.type == 2) {
+          pla = this.waitData.dept;
+        }
+      }
+      this.$router.push({
+        name: "valuation",
+        query: {
+          id,
+          time,
+          pla
+        }
+      });
+    },
   },
 }
 </script>

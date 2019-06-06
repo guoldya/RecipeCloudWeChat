@@ -61,8 +61,6 @@ export default {
       this.departs[0].loading = true;
       this.WaitPay(false);
     },
-
-
   },
   methods: {
 

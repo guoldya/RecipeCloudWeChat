@@ -13,6 +13,7 @@ import acctest from '@/views/acctest/acctest.vue'
 import acctestinfo from '@/views/acctestinfo/acctestinfo.vue'
 import suggestion from '@/views/suggestion/suggestion.vue'
 import valuationList from '@/views/my/valuationList/valuationList.vue'
+import valuation from '@/views/my/valuationList/valuation/valuation.vue'
  
 import payment from '@/views/payment/payment.vue'
 import doctorList from '@/views/doctorList/doctorList.vue'
@@ -537,6 +538,11 @@ export default new Router({
     path: '/valuationList',
     name: 'valuationList',
     component: valuationList,
+  },
+  {
+    path: '/valuation',
+    name: 'valuation',
+    component: valuation,
   },
   {
     path: '/feesucces',
