@@ -4,6 +4,32 @@ import moment from 'moment'
  * 给商品价格加补0
  * @param {*} value
  */
+
+const filterType = function (value) {
+    if (value == undefined) {
+        return " "
+    }
+    if (value == 1) {
+        return "住院"
+    } else if (value == 2) {
+        return "门诊"
+    } else if (value == 3) {
+        return "体检"
+    }
+};
+const filterTypeIMG = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return require('@/assets/images/zhuyuan.png')
+    } else if (value == 2) {
+        return require('@/assets/images/menzhen.png')
+    } else if (value == 3) {
+        return require('@/assets/images/tijian.png')
+    }
+};
+
 const keepTwoNum = function (value) {
     if (value == undefined) {
         return "0.00"
@@ -56,42 +82,9 @@ const paystatusFilter = function (value) {
         return "已关闭"
     }
 };
-const filterType = function (value) {
-    if (value == undefined) {
-        return " "
-    }
-    if (value == 1) {
-        return "住院"
-    } else if (value == 2) {
-        return "门诊"
-    } else if (value == 3) {
-        return "体检"
-    }
-};
-const filterTypeIMG = function (value) {
-    if (value == undefined) {
-        return ""
-    }
-    if (value == 1) {
-        return require('@/assets/images/zhuyuan.png')
-    } else if (value == 2) {
-        return require('@/assets/images/menzhen.png')
-    } else if (value == 3) {
-        return require('@/assets/images/tijian.png')
-    }
-};
-const timeFilter = function (value) {
-    if (value == undefined) {
-        return ""
-    }
-    if (value == 1) {
-        return "近一个月"
-    } else if (value == 2) {
-        return "近三个月"
-    } else if (value == 3) {
-        return "近半年"
-    }
-};
+ 
+ 
+ 
 
 const payStatus = function (value) {
     if (value == undefined) {
@@ -583,6 +576,8 @@ const getAge = function (value) {
     return value;//返回周岁年龄
 };
 export default {
+    filterType,
+    filterTypeIMG,
     keepTwoNum,
     payTypeFilter,
     time,
@@ -606,7 +601,6 @@ export default {
     feeType,
     weekMode,
     bizTypeFilterIMG,
-    timeFilter,
     feeClass,
     bizType,
     usageFilter,
@@ -614,8 +608,7 @@ export default {
     feeTypeFilterIMG,
     stageType,
     paystatusFilter,
-    filterType,
-    filterTypeIMG,
+ 
     inquiryDDD,
     inquiryYaer,
 }

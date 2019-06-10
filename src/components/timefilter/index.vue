@@ -45,7 +45,7 @@ export default {
     };
 
     if (this.$store.state.feeType) {
-      this.istabTime = this.$store.state.feeType 
+      this.istabTime = this.$store.state.feeType
     }
   },
   methods: {
@@ -73,38 +73,37 @@ export default {
 
 <style lang="scss" scoped>
 .time-picker {
-  // padding: 0 0 30px;
+  padding: 0 0 12px;
   display: flex;
   justify-content: space-between;
 }
 
- .hog-chart-tab li {
-   font-size: 24px;
-   color: #1da1f3;
-   display: inline-block;
-   height: 52px;
-   line-height: 48px;
-   width: 105px;
-   position: relative;
-   box-sizing: border-box;
-   border: 2px solid #1da1f3;
-   text-align: center;
-   
+.hog-chart-tab li {
+  font-size: 24px;
+  color: #1da1f3;
+  display: inline-block;
+  height: 52px;
+  line-height: 48px;
+  width: 105px;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid #1da1f3;
+  text-align: center;
 }
 
 .hog-chart-tab li:first-child {
-   border-radius: 8px 0 0 8px;
-   border-right: none;
+  border-radius: 8px 0 0 8px;
+  border-right: none;
 }
 
 .hog-chart-tab li:last-child {
-   border-radius: 0 8px 8px 0;
-   border-left: none;
+  border-radius: 0 8px 8px 0;
+  border-left: none;
 }
 
 .hog-chart-tab li.chart-button {
-   color: #ffffff;
-   background: #1da1f3
+  color: #ffffff;
+  background: #1da1f3;
 }
 .timefilter .time-picker .timePicker {
   padding: 6px 30px 10px;

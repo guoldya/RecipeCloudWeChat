@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="bt">
-        <md-button type="primary" round @click="submit()">确定修改</md-button>
+        <md-button type="primary" round @click="submit()" :inactive="isSubmit">确定修改</md-button>
       </div>
     </div>
   </div>
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       name:'',
+      isSubmit:false,
     };
   },
   computed: {
@@ -37,7 +38,7 @@ export default {
   },
   methods: {
     submit(){
-      console.log(this.name);
+      this.isSubmit = true;
       if(!this.name || this.name.length == 0 || this.name.indexOf(' ') != -1){
         this.$toast.info('请输入你要修改的昵称');
       }else{
@@ -48,6 +49,7 @@ export default {
               this.$store.dispatch("getUserInfo", { update: true });
               this.$toast.info('修改成功');
               this.$router.go(-1);
+              this.isSubmit = true;
           } else {
             this.$toast.info(res.msg);
           }

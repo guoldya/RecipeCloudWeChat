@@ -44,27 +44,17 @@ export default {
 .appTabCarint {
   text-align: center;
   width: 100%;
-  /* background-color: #ffffff; */
 }
-.appTitle {
-  padding: 28px 0px;
-  border-bottom: 2px solid var(--primary--line);
-  display: flex;
-  justify-content: space-between;
-}
+
 .appTab {
   display: flex;
   justify-content: space-around;
-  padding: 0 100px;
-  /* line-height: 72px; */
-  padding-bottom: 0;
-  line-height: 67px;
-  margin-bottom: 20px;
+  padding: 14px 100px;
 }
 .appTab span {
-  /* padding: 0 8px 8px; */
   font-size: 30px;
   position: relative;
+  line-height: 50px
 }
 .appTab label {
   font-size: 26px;
@@ -74,15 +64,4 @@ export default {
   border-bottom: 4px solid var(--primary);
   z-index: 2;
 }
-/* .appTab .appTabAcitive:after {
-  content: " ";
-  background-color: var(--primary);
-  width: 64px;
-  height: 4px;
-  display: block;
-  position: absolute;
-  bottom: -1px;
-  left: 28%;
-  border-radius: 4px;
-} */
 </style>
