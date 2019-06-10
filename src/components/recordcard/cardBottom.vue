@@ -14,7 +14,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .lookmore {
-  
   padding: 14px 24px;
   display: flex;
   justify-content: space-between;

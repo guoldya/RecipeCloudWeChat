@@ -12,39 +12,12 @@
           </div>
         </div>
       </div>
+      <div class="upnowHeaddiv"> </div>
       <div v-if="goodsList.length!=0 " v-show="!loadingtrue">
-        <div class="flatCard margin5" v-for="(item,index) in goodsList" :key="index">
-          <div class="cardText">
-            <div class="appTitle">
-              <span>患者编号：{{item.code}}</span>
-              <span class="mu-secondary-text-color">{{item.status|busistatus}}</span>
-            </div>
-            <div class="listData parElem">
-              <span class="sonElem">科室</span>
-              <span class="mu-light-text-color">{{item.dept}}</span>
-            </div>
-            <div class="listData parElem">
-              <span class="sonElem">患者姓名</span>
-              <span class="mu-light-text-color">{{item.name}}</span>
-            </div>
-            <div class="listData parElem">
-              <span class="sonElem">入院日期</span>
-              <span class="mu-light-text-color">{{item.inTime|lasttime}}</span>
-            </div>
-            <div class="listData parElem">
-              <span class="sonElem">出院日期</span>
-              <span class="mu-light-text-color">{{item.outTime|lasttime}}</span>
-            </div>
-            <p class="learnMore" @click="businssrecordinfo(item)">
-              详情 <img class="icon_more" src="@/assets/images/icon_more.png" alt="">
-            </p>
-          </div>
-        </div>
+        <Recordcard v-for="(item,i) in goodsList" :key="i" :content="item" :type="3"></Recordcard>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
-      <div v-show="!loadingtrue" class="nullDiv" v-else>
-        <img src="@/assets/images/null1.png">
-      </div>
+      <Null :loading-true="!loadingtrue&&goodsList.length==0"></Null>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
         <span v-if="goodsList.length!=0&&!nomore">
           <span class="mu-light-text-color">加载中</span>
@@ -67,29 +40,14 @@ export default {
       page: 1,
       pageSize: 10,
       isActive: false,
-      nowTime: '',
-      onlyWaiting: '',
-      waitingDate: '',
-
     };
   },
 
   mounted() {
-    document.title = '复印记录';
-
-
-    var today = new Date();
-    var m = today.getMonth() + 1;
-    m = m <= 9 ? "0" + m : m;
-    var newDate = today.getDate();
-    newDate = newDate <= 9 ? "0" + newDate : newDate;
-    this.nowTime = today.getFullYear() + "年" + m + "月" + newDate + "日";
-    this.waitingDate = today;
     this.getGoodslist()
 
   },
   methods: {
-
     handler(name, active) {
       this.goodsList = [];
       this.loadingtrue = true;
@@ -101,9 +59,9 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
-      params.payStatus = 2;
-      params.multipleStatus = this.isActive ? [2, 4] : undefined;
-      // params.waitingDate = "2019-02-22";
+      // params.payStatus = 2;
+      params.queryType = this.isActive ? 2 : 3;
+      // params.queryType = 3;
       this.$axios.put(appbizWaitingQueuereadlist, params).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;
@@ -132,15 +90,6 @@ export default {
         }
       })
     },
-
-    businssrecordinfo(data) {
-      let argu = {};
-      this.$router.push({
-        name: 'businssrecordinfo',
-        query: { id: data.id, }
-      });
-    },
-
     loadMore() {
       this.busy = true;  //将无限滚动给禁用
       setTimeout(() => {  //发送请求有时间间隔第一个滚动时间结束后才发送第二个请求
@@ -148,39 +97,25 @@ export default {
         this.getGoodslist(true);
       }, 500);
     },
-    // lunbo() {
-    //   let mySwiper = new Swiper('.swiper-container', {
-    //     // freeMode: false,
-    //     pagination: {
-    //       el: '.swiper-pagination',
-    //       clickable: true,
-    //     },
-    //     onInit: function (swiper) {
-    //       //Swiper初始化了
-    //       alert(swiper.activeIndex);
-    //     },
-    //     loop: true,
-    //     loopedSlides: 10,
-    //     initialSlide: 2,
-    //     roundLengths: true,
-    //     slidesPerView: "auto",
-    //     centeredSlides: true,
-    //     followFinger: false,
-
-    //   });
-    //   for (let i = 0; i < this.test.length; i++) {
-    //     mySwiper.appendSlide(this.slidedata(this.test[i]));
-    //   };
-    // },
-    // slidedata(i) {
-    //   return '<div class="swiper-slide"> <div class="card"><div class="cardTextslider"><a class="headimg"> <img src="' + i.filename + '" alt="文章详情"> </a> <h1 class="titleh1">演示医院</h1> <p>地址成都市武侯区</p>   </div></div></div>';
-    // },
-  },
-  computed: {
 
   },
+
 
 };
 </script>
  <style   scoped>
+@import url("../../lineupnow/lineupnow.css");
+.upnowHead {
+  position: fixed;
+  z-index: 99;
+  background: #ffffff;
+  position: fixed;
+  width: 100%;
+  top: 80px;
+  border-top: 10px solid #f8f8f8;
+  border-bottom: 5px solid #f8f8f8;
+}
+.upnowHeaddiv {
+  height: 60px;
+}
 </style>

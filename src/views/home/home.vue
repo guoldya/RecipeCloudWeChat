@@ -69,7 +69,7 @@
                     <p>报告查询</p>
                     <!-- <span class="examineNumber">1</span> -->
                 </li>
-                <li class="examineLi">
+                <li class="examineLi" @click="medical">
                     <img src="@/assets/images/3.png" alt="" class="image">
                     <p>体检报告</p>
                     <!-- <span class="examineNumber">1</span> -->
@@ -292,6 +292,13 @@ export default {
             });
         },
         //  
+        medical() {
+            let argu = {}
+            this.$router.push({
+                name: 'medical',
+                query: argu
+            });
+        },
         examine() {
             let argu = {}
             this.$router.push({
@@ -299,7 +306,6 @@ export default {
                 query: argu
             });
         },
-
         // 医生排班
         workdepart() {
             let argu = {}

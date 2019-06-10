@@ -1,6 +1,6 @@
 <template>
   <div class="registrecorddetail">
-    <Header post-title="预交款详情"></Header>
+    <Header post-title="预缴款详情"></Header>
     <div class="margin55">
       <div class="flatCard outCarint " v-for="(item,i) in cordInfoData" :key="i" v-show="!loadingtrue">
         <md-field>
@@ -11,7 +11,10 @@
           <md-detail-item title="住院号" :content=item.ihNo>
             <span>{{item.ihNo}}</span>
           </md-detail-item>
-          <md-detail-item title="住院科室" :content=item.dept></md-detail-item>
+          <md-detail-item title="病区" :content=item.area></md-detail-item>
+          <md-detail-item title="床号">
+            <span>{{item.bedNo}}床</span>
+          </md-detail-item>
         </md-field>
       </div>
       <Loading v-show="loadingtrue"></Loading>
@@ -21,21 +24,25 @@
             <div class="appTitle" style="padding: 0.24rem 0;">
               <span style="color:#272727">支付信息</span>
             </div>
-            <img :src="item.status|payStatusIMG" alt="" class="icon_pay1">
-            <!-- <img v-show="item.status==3" src="@/assets/images/icon_closed.png" alt="" class="icon_pay1">
-            <img v-show="item.status==1" src="@/assets/images/icon_tobepaid.png" alt="" class="icon_pay1"> -->
-            <md-detail-item title="支付状态">
-              <span>{{item.status|payStatus}} </span>
+            <!-- <img :src="item.status|payStatusIMG" alt="" class="icon_pay1"> -->
+            <img v-show="item.status==3" src="@/assets/images/icon_closed.png" alt="" class="icon_pay1">
+            <img v-show="item.status==1" src="@/assets/images/icon_tobepaid.png" alt="" class="icon_pay1">
+            <img v-show="item.status==2" src="@/assets/images/icon_pay1.png" alt="" class="icon_pay1">
+            <md-detail-item title="业务类型">
+              <span>{{item.feeClass|feeClass}} </span>
             </md-detail-item>
             <md-detail-item title="支付时间">
               <span>{{item.payTime|lasttime}}</span>
             </md-detail-item>
             <md-detail-item title="支付单号" :content=item.payNo></md-detail-item>
             <md-detail-item title="支付金额">
-              <span class="mu-secondary-text-color">￥{{item.money|keepTwoNum}}元</span>
+              <span class="mu-secondary-text-color">￥{{item.totalMoney|keepTwoNum}}</span>
             </md-detail-item>
             <md-detail-item title="支付方式">
               <span>{{item.payMode|payMethod}} </span>
+            </md-detail-item>
+            <md-detail-item title="支付状态">
+              <span>{{item.status|payStatus}} </span>
             </md-detail-item>
           </md-field>
         </div>
@@ -53,19 +60,6 @@ export default {
     return {
       cordInfoData: [],
       loadingtrue: false,
-      myBank: '0',
-      banks: [
-        {
-          value: '0',
-          text: '自费',
-        },
-        {
-          value: '1',
-          text: '医保',
-        },
-
-      ],
-
     };
   },
   components: {
@@ -89,14 +83,7 @@ export default {
       });
     },
 
-    next() {
-      this.$router.push({
-        name: 'admuoload',
-        query: { type: this.myBank, id: this.$route.query.id }
-      });
-
-
-    },
+ 
 
 
   },

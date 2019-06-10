@@ -1,15 +1,13 @@
 <template>
   <div class="recipeRecord  valuationList">
     <Header post-title="就医评价"></Header>
-    <div class="margin50">
+    <div class="margin100">
       <div class="reportqueryTab">
         <Apptab :tab-title="departs" v-on:childByValue="childByValue"></Apptab>
       </div>
       <div class="reportqueryTabDIV2"></div>
       <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
-        <div class="recordcard" v-for="(item,i) in waitPayData" :key="i">
-          <ValuationCard :waitData="item" :queryType="queryType"></ValuationCard>
-        </div>
+        <Recordcard v-for="(item,i) in waitPayData" :key="i" :content="item" :type="9" :query-type="queryType"></Recordcard>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
       <Null :loading-true="!loadingtrue&&waitPayData.length==0"></Null>
@@ -25,7 +23,6 @@
 </template>
 <script type="text/babel">
 let bizLisReportreadpage = '/app/bizPatientEvaluate/read/page';
-
 export default {
   data() {
     return {
@@ -45,7 +42,7 @@ export default {
   },
   created() {
     if (sessionStorage.getItem('feeActiveFun')) {
-      this.status = sessionStorage.getItem('feeActiveFun') * 1
+      this.queryType = sessionStorage.getItem('feeActiveFun') * 1
     }
   },
   async mounted() {
@@ -71,6 +68,7 @@ export default {
       this.noDataTitle = childValue.title;
       sessionStorage.setItem('feeActiveFun', childValue.type)
     },
+
     async  WaitPay(flag) {
       const params = {};
       params.pageNumber = this.page;
@@ -124,39 +122,61 @@ export default {
     },
 
 
-    intoDetail(val) {
-      let aa = {};
-      aa.id = val.id;
-      aa.type = val.type;
-      aa.evaluateStatus = this.queryType - 1;
-      if (this.queryType - 1 == 0) {
-        aa.time = val.outTime;
-      } else {
-        aa.time = val.createTime;
-      }
-      if (val.type == 1) {
-        aa.title = val.area
-      } else if (val.type == 2) {
-        aa.title = val.dept
-      }
-      this.$router.push({
-        name: 'valuationList',
-        query: aa,
-      });
-    },
+  
 
   },
 
 };
 </script>
-<style>
+<style lang="scss"  scoped>
+ 
+.reportqueryTabDIV {
+  height: 160px;
+}
+.reportqueryTabDIV2 {
+  height: 60px;
+}
+.outbTN {
+  width: 100%;
+  line-height: 100px;
+  bottom: 0;
+  z-index: 999;
+  border-top: 2px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1da1f3;
+  color: #ffffff;
+  position: fixed;
+  text-align: center;
+  .outbTN-left {
+    padding-left: 50px;
+    display: flex;
+    justify-content: space-between;
+    span {
+      margin-right: 50px;
+    }
+  }
+  .outbTN-right {
+    background: #ffffff;
+    flex: 0 0 250px;
+    color: #272727;
+    align-items: center;
+    text-align: center;
+    font-size: 32px;
+  }
+}
+
 .reportqueryTab {
-  z-index: 70;
+  z-index: 99;
   background: #f8f8f8;
   position: fixed;
   width: 100%;
 }
-.reportqueryTabDIV2 {
-  height: 70px;
+.valuationList .listData img {
+  width: 47px;
+}
+.valuationList .recordcard-content {
+  padding: 30px 0;
 }
 </style>

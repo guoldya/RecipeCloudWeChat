@@ -18,6 +18,7 @@ import Footer from './components/footer/footer.vue';
 import Loading from './components/loading/loading.vue';
 import meQrcode from "./components/meQrcode/meQrcode.vue";
 import Homesk from './components/homesk';
+import Skeleton from './Skeleton';
 import Recordcard from './components/recordcard';
 import infiniteScroll from 'vue-infinite-scroll';
 import filters from './filter/filter';
@@ -46,7 +47,7 @@ import './assets/global.css'
 
 
  
-
+Vue.component('Skeleton', Skeleton);
 Vue.component('Header', Header);
 Vue.component('Navigation', Navigation);
 Vue.component('Timefilter', Timefilter);

@@ -1,87 +1,71 @@
 <template>
-  <div class="feerecord">
-
-    <Navigation type="title" title="预交款缴纳-记录">
-    </Navigation>
-    <div class="margin50">
-      <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
-        <div class="flatCard" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
-          <div class="cardText">
-            <p class="parElem listData">
-              <span class="sonElem">姓名</span>
-              <span>{{item.name}}</span>
-            </p>
-            <p class="parElem listData">
-              <span class="sonElem">住院号</span>
-              <span>{{item.ihNo}}</span>
-            </p>
-            <p class="parElem listData">
-              <span class="sonElem">住院科室</span>
-              <span>{{item.dept}}</span>
-            </p>
-            <p class="parElem listData">
-              <span class="sonElem">支付金额</span>
-              <span class="mu-secondary-text-color">{{item.money|keepTwoNum}}元</span>
-            </p>
-            <p class="parElem listData">
-              <span class="sonElem">支付时间</span>
-              <span>{{item.payTime|lasttime}}</span>
-            </p>
-          </div>
-        </div>
-        <p v-show="nomore" class="noMore">没有更多数据了</p>
+  <div class="feerecord margin100">
+    <Navigation type="title" title="预缴款记录"> </Navigation>
+    <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
+      <div class="feerecordTab">
+        <Timefilter v-on:childByTime="childByTime" type="payfeerecord" />
       </div>
-      <div v-show="!loadingtrue" class="nullDiv" v-else>
-        <img src="@/assets/images/null1.png">
-      </div>
-      <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
-        <span v-if="waitPayData.length!=0&&!nomore">
-          <span class="mu-light-text-color">加载中</span>
-          <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
-        </span>
-      </div>
-      <Loading v-show="loadingtrue"></Loading>
+      <div class="feerecordTabDIV"></div>
+      <Recordcard v-for="(item,i) in waitPayData" :key="i" :content="item" :type="7"></Recordcard>
+      <p v-show="nomore" class="noMore">没有更多数据了</p>
     </div>
 
+    <Null :loading-true="!loadingtrue&&waitPayData.length==0"></Null>
+    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
+      <span v-if="waitPayData.length!=0&&!nomore">
+        <span class="mu-light-text-color">加载中</span>
+        <md-icon name="spinner" size="lg" style="-webkit-filter:invert(1)"></md-icon>
+      </span>
+    </div>
+    <Loading v-show="loadingtrue"></Loading>
   </div>
 </template>
 <script >
 let pay_list_url = "/app/bizIhPay/read/page";
-
 export default {
   data() {
     return {
-
       waitPayData: [],
-      status: 0,
-      selectorValue: '',
-      choseValue: '',
-      isSelectorShow: false,
-      optionsData: [],
       page: 1,
       pageSize: 10,
       type: 0,
       busy: true,
       nomore: false,
       loadingtrue: true,
-      disType: '',
+      timeClass: 1,
     };
   },
 
-  created() {
 
-  },
   mounted() {
     this.WaitPay(false);
   },
+  watch: {
+    timeClass: function (val, oldval) {
+      this.page = 1;
+      this.WaitPay(false);
+    },
+
+
+  },
   methods: {
+    goBack() {
+      if (this.$route.query.otherpay) {
+        this.$router.go(-3)
+      } else {
+        this.$router.go(-1)
+      }
+    },
+    childByTime: function (childByTime) {
+      this.timeClass = childByTime.timeClass;
+    },
     WaitPay(flag) {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
+      params.timeClass = this.timeClass;
       params.type = 2;
       this.$axios.put(pay_list_url, params).then((res) => {
-
         this.loadingtrue = false;
         if (res.data.code == 200) {
           if (res.data.rows) {
@@ -120,20 +104,6 @@ export default {
       }, 500);
     },
 
-    tijiao() {
-      console.log("aaa")
-      this.$router.push({
-        name: 'payfeerecord',
-      });
-    },
-
-    appointinfo: function (val) {
-      this.$router.push({
-        name: 'payfeerecordinfo',
-        query: { id: val.id }
-      });
-    },
-
 
   },
 
@@ -145,24 +115,19 @@ export default {
 };
 </script>
  <style   scoped>
-.feerecord {
-  font-size: 28px;
-}
-.feerecord .cardText p {
-  font-size: 28px;
-  color: var(--primary--content);
-}
-.feerecord .flatCard:first-child {
-  margin-top: 0;
+.feerecordTab {
+  z-index: 99;
+  background: #f8f8f8;
+  position: fixed;
+  width: 100%;
+  padding: 20px 0;
 }
 
-.feerecord .listData span:nth-child(2) {
-  color: var(--primary--right);
-}
-.feerecord .alignJ {
-  line-height: 26px;
+.feerecordTabDIV {
+  height: 88px;
 }
 .feerecord .warn {
   color: red !important;
 }
+ 
 </style>

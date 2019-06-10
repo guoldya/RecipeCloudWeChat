@@ -528,6 +528,18 @@ const feeType = function (value) {
         return "材料费"
     }
 };
+const timeFilter = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return "近一个月"
+    } else if (value == 2) {
+        return "近三个月"
+    } else if (value == 3) {
+        return "近半年"
+    }
+};
 const getAge = function (value) {
     if (value) return
     if (!value.split(" ")) return
@@ -608,7 +620,7 @@ export default {
     feeTypeFilterIMG,
     stageType,
     paystatusFilter,
- 
+    timeFilter,
     inquiryDDD,
     inquiryYaer,
 }

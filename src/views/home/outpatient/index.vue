@@ -128,10 +128,8 @@ export default {
         { title: '已支付', type: 2, },
       ],
       noDataTitle: "待支付",
-      waitPayData: [],
       status: 0,
       timeClass: 1,
-
       page: 1,
       pageSize: 10,
       busy: true,
@@ -147,6 +145,7 @@ export default {
           value: '2',
         },
       ],
+      click: false,
     };
   },
   computed: {
@@ -161,7 +160,6 @@ export default {
   },
   async mounted() {
     await this.WaitPay(false);
-
   },
   watch: {
     status: function (val, oldval) {
@@ -178,11 +176,9 @@ export default {
     },
   },
   methods: {
-
     childByValue: function (childValue) {
       this.status = childValue.type;
       this.noDataTitle = childValue.title;
-
       sessionStorage.setItem('feeActiveFun', childValue.type)
     },
     childByTime: function (childByTime) {
@@ -201,6 +197,8 @@ export default {
           this.departs[0].loading = false;
           this.loadingtrue = false;
           if (res.data.rows) {
+            res.data.rows.forEach(item => item.checked = false);
+
             if (flag) {
               this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
               if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
@@ -224,7 +222,6 @@ export default {
               } else {
                 res.data.rows.forEach(item => item.checked = false);
               }
-
             } else {
               this.waitPayData = res.data.rows;
               this.busy = true;
@@ -260,12 +257,10 @@ export default {
         if (!this.waitPayData[index].checked) {
           this.isAll = true;
         }
-
       } else {
         if (serviceresult.length == this.waitPayData.length) {
           this.isAll = false;
         } else {
-
           this.isAll = true;
         }
 
@@ -275,8 +270,11 @@ export default {
       this.totalId = serviceresult.map(x => {
         return { id: x.id, feeType: x.objId ? x.feeType : null, objId: x.objId ? x.objId : null, }
       })
-      const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      this.totalMoney = map1.reduce(reducer)
+      if (this.totalId.length != 0) {
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        this.totalMoney = map1.reduce(reducer)
+      }
+
 
 
     },
@@ -307,9 +305,8 @@ export default {
       let aa = {};
       aa.id = val.id;
       aa.feeType = val.feeType;
-      if (val.feeType == 3 || val.feeType == 4 || val.feeType == 2) {
-        aa.objId = val.objId;
-      }
+      aa.objId = val.objId;
+
       this.$router.push({
         name: 'outpatientinfo',
         query: aa,
@@ -336,7 +333,7 @@ export default {
         this.cashierAmount = String(this.totalMoney);
       }
 
-      if (!this.totalId[0].id || this.totalId.length == 0) {
+      if (this.totalId.length == 0 || !this.totalId[0].id) {
         this.$toast.info("请选择你要付款的订单");
         return
       }
@@ -350,7 +347,7 @@ export default {
       this.$axios.post(now_pay_url, nowPayParams).then((res) => {
         if (res.data.code == '200') {
           this.totalId = '';
-
+          this.click = false;
           this.createPay().then(() => {
             this.cashier.next('success', {
               buttonText: '好的',
@@ -361,8 +358,8 @@ export default {
             })
           })
           // this.payStatus = "1";
-
         } else {
+          this.click = false;
           this.$toast.info(res.data.msg);
           this.isCashierhow = false;
         }
@@ -399,6 +396,7 @@ export default {
       console.log(`[Mand Mobile] Select ${JSON.stringify(item)}`)
     },
     onCashierCancel() {
+      this.click = false;
       // this.totalId = '';
       // Abort pay request or checking request
       this.timer && clearTimeout(this.timer);
@@ -413,6 +411,9 @@ export default {
 };
 </script>
 <style lang="scss"  scoped>
+.AAA{
+  color: PINK
+}
 .recordcard {
   background: #fff;
   border-radius: 17px;

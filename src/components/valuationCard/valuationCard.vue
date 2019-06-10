@@ -105,20 +105,7 @@ export default {
 .listBody {
     padding: 30px 24px 0;
 }
-.lookmore {
-    height: 79px;
-    display: flex;
-    line-height: 79px;
-    justify-content:space-between;
-    border-top: 0.01rem solid var(--primary--line);
-}
-.lookmore span {
-    padding: 0 24px 0;
-    color: var(--primary--content);
-}
-.lookmore span img {
-    width: 12px;
-    height: 22.28px;
-}
+ 
+ 
 </style>
 
