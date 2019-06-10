@@ -14,7 +14,7 @@
           <textarea maxlength="200" v-model="suggestion" placeholder="请输入您的意见或建议以便于我们提供更好的服务"></textarea>
       </div>
       <div class="bt">
-        <md-button type="primary" round @click="submit()">提交</md-button>
+        <md-button type="primary" round @click="submit()" :inactive='isSubmit'>提交</md-button>
       </div>
     </div>
   </div>
@@ -29,10 +29,12 @@ export default {
   data() {
     return {
       suggestion:'',
+      isSubmit:false,
     };
   },
   methods: {
     submit(){
+      this.isSubmit = true;
       // if(!this.suggestion || this.suggestion.replace(/(^\s*)|(\s*$)/g, "").length < this.suggestion.length){
       if(!this.suggestion){
         this.$toast.info('请输入您的意见');
@@ -42,6 +44,7 @@ export default {
         }).then((res) => {
           if (res.data.code == '200') {
               this.$toast.info('提交成功');
+              this.isSubmit = false;
           } else {
             this.$toast.info(res.msg);
           }

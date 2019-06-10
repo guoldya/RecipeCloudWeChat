@@ -7,11 +7,11 @@ import Config from './config/config';
 import store from './store/store';
 import FastClick from 'fastclick'
 import Header from './components/header/header.vue';
-import Navigation from '@/components/Navigation'
-import Timefilter from '@/components/timefilter'
- 
+import Headerapp from './components/headerapp/headerapp.vue';
+import Navigation from '@/components/Navigation';
 import Apptab from './components/apptab/apptab.vue';
 import Null from './components/null';
+import ValuationCard from './components/valuationCard/valuationCard.vue';
 import Search from './components/search/search.vue';
 import Address from './components/address/address.vue';
 import Footer from './components/footer/footer.vue';
@@ -22,7 +22,9 @@ import Recordcard from './components/recordcard';
 import infiniteScroll from 'vue-infinite-scroll';
 import filters from './filter/filter';
 import router from './router'
- 
+import Timefilter from '@/components/timefilter' 
+
+
  
 
 Vue.prototype.$conf = Config;
@@ -56,8 +58,9 @@ Vue.component('meQrcode', meQrcode);
  
 
 Vue.component('Search', Search);
-Vue.component('Apptab', Apptab)
-Vue.component('Null', Null)
+Vue.component('Apptab', Apptab);
+Vue.component('Null', Null);
+Vue.component('ValuationCard', ValuationCard);
 Vue.component('Loading', Loading);
  
 Vue.component('Footer', Footer);
@@ -113,17 +116,15 @@ axios.defaults.baseURL = BASE_URL;
 axios.interceptors.request.use(function (config) {
     let url = config.url;
     // 如果是登陆
-    if (sessionStorage.getItem("token7")) {
-        // 李航的
+    if (localStorage.getItem("token7")) {
+        // config.headers.TOKEN = localStorage.getItem("token7");
+        // config.headers.UUID = localStorage.getItem("UUID7");
         config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
-        //开发用的token
-        //config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
         config.headers.UUID = "AAA";
     } else {
         if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
             config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
         } else {
-            // config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
             config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
             config.headers.UUID = "AAA";
         };

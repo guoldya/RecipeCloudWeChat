@@ -130,7 +130,7 @@
             <i></i>
           </div>
         </a>
-        <a href="javascript:;" class="aui-list-item" @click="evaluate">
+        <a href="javascript:;" class="aui-list-item" @click="valuationList">
           <div class="aui-list-item-fl">
             <i class="icon icon-item10"></i>
             就医评价
@@ -287,10 +287,10 @@ export default {
       });
     },
     // 就医评价
-    evaluate() {
+    valuationList() {
       let argu = {};
       this.$router.push({
-        name: "evaluate",
+        name: "valuationList",
         query: argu
       });
     },

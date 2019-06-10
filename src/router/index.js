@@ -12,12 +12,11 @@ const doctor = () => import(/* webpackChunkName: "home" */ "@/views/doctordetail
 const outpatientinfo = () => import(/* webpackChunkName: "home" */ "@/views/home/outpatientinfo")
 const outpatient = () => import(/* webpackChunkName: "home" */ "@/views/home/outpatient")
 
-
 import acctest from '@/views/acctest/acctest.vue'
 import acctestinfo from '@/views/acctestinfo/acctestinfo.vue'
 import suggestion from '@/views/suggestion/suggestion.vue'
-import evaluate from '@/views/evaluate/evaluate.vue'
-
+import valuationList from '@/views/my/valuationList/valuationList.vue'
+ 
 import payment from '@/views/payment/payment.vue'
 import doctorList from '@/views/doctorList/doctorList.vue'
 import doctorresult from '@/views/doctorList/doctorresult'
@@ -548,9 +547,9 @@ export default new Router({
     component: suggestion,
   },
   {
-    path: '/evaluate',
-    name: 'evaluate',
-    component: evaluate,
+    path: '/valuationList',
+    name: 'valuationList',
+    component: valuationList,
   },
   {
     path: '/feesucces',
