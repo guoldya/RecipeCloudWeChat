@@ -1,6 +1,6 @@
 <template>
   <div class="result">
-    <Headerapp post-title="搜索结果"></Headerapp>
+    <Header post-title="搜索结果"></Header>
     <div class="margin50">
       <div v-if="hospitaldata.length!=0" v-show="!loadingtrue">
         <md-cell-item v-for="(item,index) in hospitaldata" :key="index+'aa'" @click="intodoctorinfo(item)" :title="item.name" :brief="item.introduce" arrow>

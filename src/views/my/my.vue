@@ -9,8 +9,8 @@
       <div class="aui-user">
         <div class="aui-user-cell">
           <div class="aui-user-cell-logo" @click="acctest">
-            <img v-if="userInfo.headUrl" :src="$conf.constant.img_base_url + userInfo.headUrl" alt="">
-            <img v-else src="@/assets/images/user.png">
+            <!-- <img v-if="userInfo.headUrl" :src="$conf.constant.img_base_url + userInfo.headUrl" alt=""> -->
+            <img src="@/assets/images/user.png">
           </div>
           <div class="aui-user-cell-title">
             <p>{{userInfo.name}}</p>
@@ -60,6 +60,15 @@
             <i></i>
           </div>
         </a>
+        <a href="javascript:;" class="aui-list-item">
+          <div class="aui-list-item-fl">
+            <i class="icon icon-item07"></i>
+            诊疗记录
+          </div>
+          <div class="aui-list-item-fr aui-list-item-arrow">
+            <i></i>
+          </div>
+        </a>
       </div>
       <div class="divHeight"></div>
       <div class="aui-list-cell">
@@ -90,6 +99,7 @@
             <i></i>
           </div>
         </a>
+
         <a href="javascript:;" class="aui-list-item" @click="askorder">
           <div class="aui-list-item-fl">
             <i class="icon icon-item08"></i>
@@ -141,62 +151,34 @@
       </div>
       <div class="divHeight"></div>
     </section>
-    <!-- <div class="aui-head-yellow">
-      <div class="aui-head-box">
-        <div class="aui-head-user"><img :src="headURL" alt=""></div>
-        <p>{{name}}</p>
-      </div>
-    </div>
-    <div class="outCarint">
-      <div class="tools">
-        <h2>就医信息</h2>
-        <div class="nav2">
-          <span @click="registrecord"><img src="@/assets/images/icon_registerMy.png" alt="">挂号记录</span>
-          <span @click="feerecord"><img src="@/assets/images/icon_pay.png" alt="">缴费记录</span>
-          <span @click="appoint"><img src="@/assets/images/icon_appointment.png" alt="">预约记录</span>
-          <span @click="reportrecord" monitor="my_subject"><img src="@/assets/images/icon_report.png" alt="">报告记录</span>
-        </div>
-        <div class="nav2">
-          <span @click="myhospital"><img src="@/assets/images/icon_hospitalization.png" alt="">我的住院</span>
-          <span @click="recipeRecord"><img src="@/assets/images/icon_prescription.png" alt="">处方记录</span>
-          <span @click="business"><img src="@/assets/images/icon_copy.png" alt="">复印记录</span>
-          <span @click="askorder"><img src="@/assets/images/icon_order.png" alt="">问诊订单</span>
-        </div>
-      </div>
-      <div class="tools">
-        <h2>个人信息</h2>
-        <div class="nav2">
-          <span @click="idcardlist"><img src="@/assets/images/icon_Visitingcard.png" alt="">就诊卡</span>
-          <span @click="adress"><img src="@/assets/images/icon_address.png" alt="">地址管理</span>
-          <span @click="medicalEva"><img src="@/assets/images/icon_evaluate.png" Falt="">就医评价</span>
-        </div>
-      </div>
-    </div>-->
+
     <Footer></Footer>
   </div>
 </template>
 <script>
 import { mapState } from "vuex";
 
-// import pg_positive from "@/assets/images/user.png";
+import pg_positive from "@/assets/images/3.jpg";
 export default {
   data() {
     return {
       outInfo: "",
       id: "",
-      // headURL: pg_positive
+      headURL: ''
     };
   },
   computed: {
     ...mapState({
-      userInfo: state => state.home.userInfo
-    })
+      userInfo: state => state.my.accountinfo,
+      _cardlist: state => state.home.cardList,
+    }),
   },
   created() {
     this.$store.commit("feeActiveFun", 1);
   },
   async mounted() {
-    await this.$store.dispatch("getUserInfo");
+    await this.$store.dispatch('getAccount');
+    await this.$store.dispatch('getCards', );
   },
   methods: {
     registrecord() {

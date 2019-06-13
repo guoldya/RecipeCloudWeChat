@@ -1,18 +1,28 @@
 <!--在线问诊 -->
 <template>
-  <div class="inquiry-online ">
+  <div class="inquiry-online">
     <Navigation type="onlineNav" :title="$route.query.name">
       <span class="mu-secondary-text-color" @click="endInquiry">结束问诊</span>
     </Navigation>
     <!-- 聊天内容区域 -->
     <div class="inquiry-online-content" ref="chatContent" @click="toolType=''">
       <ul class="online-content-warp">
-        <li v-for="(item, index) in  chat.historyNews" :key="index" class="online-content-list" :class="item.from != userInfo.id ? '' : 'right'">
+        <li
+          v-for="(item, index) in  chat.historyNews"
+          :key="index"
+          class="online-content-list"
+          :class="item.from != userInfo.id ? '' : 'right'"
+        >
           <!-- <img class="online-content-list-head" src="@/assets/images/3.jpg" v-if="item.from != userInfo.id" alt="" />
-          <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" /> -->
+          <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" />-->
 
-          <img class="online-content-list-head" src="@/assets/images/head1.png" v-if="item.from != userInfo.id" alt="" />
-          <img class="online-content-list-head" src="@/assets/images/head.png" v-else alt="" />
+          <img
+            class="online-content-list-head"
+            src="@/assets/images/head1.png"
+            v-if="item.from != userInfo.id"
+            alt
+          >
+          <img class="online-content-list-head" src="@/assets/images/head.png" v-else alt>
           <div class="online-content-list-text" v-if="item.msgType == 0">
             <em></em>
             <div v-html="item.content"></div>
@@ -27,13 +37,13 @@
               <p>既往病史：{{item.content.anamnesisDes}}</p>
             </div>
             <div class="content">
-              <img src="@/assets/images/head1.png" alt="">
-              <img src="@/assets/images/head1.png" alt="">
-              <img src="@/assets/images/head1.png" alt="">
+              <img v-for="(item2, index) in  item.content.post" :key="index+'img'" :src="item2" alt>
+              <!-- <img :src="item.content.post[1]" alt>
+              <img :src="item.content.post[2]" alt> -->
             </div>
           </div>
           <div class="online-content-list-text" v-if="item.msgType == 1">
-            <img :src="'http://192.168.0.22:8888'+item.content" alt="" style="width:100px;" @click="showViewer('http://192.168.0.22:8888'+item.content)">
+            <img :src="item.content" alt style="width:100px;" @click="showViewer(item.content)">
           </div>
         </li>
       </ul>
@@ -44,8 +54,13 @@
         <span class="yuyiin">
           <i class="iconfont icon-yuyin"></i>
         </span>
-        <div contentEditable="true" class="input" @click="e => e.target.focus()" @input="changeVal" ref="inputModel">
-        </div>
+        <div
+          contenteditable="true"
+          class="input"
+          @click="e => e.target.focus()"
+          @input="changeVal"
+          ref="inputModel"
+        ></div>
         <span class="send" @click="send" :class="inputValue ? 'active' : ''">发送</span>
       </div>
       <div class="inquiry-online-tool-detail">
@@ -64,7 +79,7 @@
         </span>
         <!-- <span @click="tool('more')" :class="toolType == 'more' ? 'active' :''">
           <i class="iconfont icon-jiahao"></i>
-        </span> -->
+        </span>-->
       </div>
       <ul class="inquiry-online-tool-add" v-if="toolType == 'more'">
         <!-- <router-link tag="li" to="/quickReply">
@@ -72,14 +87,14 @@
             <md-icon name="authentication"></md-icon>
           </span>
           <span>快捷回复</span>
-        </router-link> -->
+        </router-link>-->
 
         <!-- <router-link tag="li" to="/diagnosticRecord">
           <span class="icon-span">
             <i class="iconfont icon-xinxi"></i>
           </span>
           <span>诊疗记录</span>
-        </router-link> -->
+        </router-link>-->
       </ul>
 
       <ul class="emoji-list" v-if="toolType == 'emoji'">
@@ -89,7 +104,7 @@
     <div v-show="isQeustion" @click="closeMask" class="md-popup-mask"></div>
     <div v-show="isQeustion" class="inquiry-online-tool-aa">
       <p class="inquiry-online-tool-ab">
-        <span style="color:#FF9900"> 是否结束问诊?</span>
+        <span style="color:#FF9900">是否结束问诊?</span>
         <span class="mu-secondary-text-color">00:{{timeH}}</span>
       </p>
       <p class="inquiry-online-tool-cotent">感谢您的信任与支持，如结束咨询，请对我的服务进行评价</p>
@@ -111,7 +126,7 @@
 
     <!-- 编辑弹窗 -->
     <md-dialog :closable="true" layout="column" v-model="dialogOpen">
-      <img src="@/assets/images/user.png" alt="">
+      <img src="@/assets/images/user.png" alt>
       <div class="edit-dialog-item">
         <p>张丽&nbsp;&nbsp;女&nbsp;&nbsp;30岁</p>
         <div>
@@ -127,21 +142,22 @@
       </div>
     </md-dialog>
     <!-- 图片显示器 -->
-    <md-image-viewer v-model="isViewerShow" :list="currentImg" :has-dots="false" :initial-index="0">
-    </md-image-viewer>
+    <md-image-viewer v-model="isViewerShow" :list="currentImg" :has-dots="false" :initial-index="0"></md-image-viewer>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
-import websocketConfig from '../../../service/websocket.js'
-let updateOrder = "/app/bizOnlineServiceRecord/updateOrder"
-import { Dialog } from 'mand-mobile'
+import websocketConfig from "../../../service/websocket.js";
+let updateOrder = "/app/bizOnlineServiceRecord/updateOrder";
+let uploadImage = "/appLogin/uploadImage";
+import { Dialog } from "mand-mobile";
+import { setTimeout } from 'timers';
 export default {
   data() {
     return {
-      timeH: '',
+      timeH: "",
       TIME_COUNT: 15,
-      toolType: '', // 底部工具栏类型 img 图片 video 视频 drug 开药 emoji 表情 more 更多
+      toolType: "", // 底部工具栏类型 img 图片 video 视频 drug 开药 emoji 表情 more 更多
       inputValue: "",
       socket: "",
       isQeustion: false,
@@ -151,47 +167,51 @@ export default {
       dialogOpen: false,
       isViewerShow: false, // 是否大图显示
       clickViewer: false, // 是否点击的是图片，true点击，用于不让滚动条滚动到指定位置
-      emojiList: ['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😉', '😋', '😎', '😍', '😘', '😗', '😙', '😚', '😇', '😐', '😑', '😶', '😏', '😣', '😥', '😮', '😯', '😪', '😫', '😴', '😌', '😛', '😜', '😝', '😒', '😓', '😔', '😕', '😲', '😷', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😬', '😰', '😱', '😳', '😵', '😡', '😠'],
+      emojiList: ['😀', '😁', '😂', '😃', '😄', '😅', '😆', '😉', '😋', '😎', '😍', '😘', '😗', '😙', '😚', '😇', '😐', '😑', '😶', '😏', '😣', '😥', '😮', '😯', '😪', '😫', '😴', '😌', '😛', '😜', '😝', '😒', '😓', '😔', '😕', '😲', '😷', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😬', '😰', '😱', '😳', '😵', '😡', '😠']
     };
   },
-  // 
+  //
   computed: {
     // ...mapState(["chat", "userInfo"])
     ...mapState({
       chat: state => state.chat,
       userInfo: state => state.userInfo
-    }),
+    })
   },
   async mounted() {
     // 让滚动条滚动到指定位置
     this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
-    // websocketConfig();
     //  用于演示临时加得
-    let obj = {}
-    obj.id = 125;
-    // this.updateUser(obj)
-    websocketConfig();
+    // this['chat/setFriendId'](this.$route.query.id);
+    console.log("historyNews:"+JSON.stringify(this.chat.historyNews))
+    console.log("用户id:" + this.userInfo.id);
+    console.log("朋友id:" + this.chat.friendId);
+    if (typeof this.chat.websocket.url == "undefined")
+      websocketConfig();
+    // let args = this.chat.historyNews.filter(item => item.msgType == 7);
+    window.onresize = () => {
+      this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight
+    }
+    
   },
-  updated: function () {
+  updated: function() {
     if (this.isViewerShow) {
-      return false
+      return false;
     } else if (!this.isViewerShow && this.clickViewer) {
-      this.clickViewer = false
-      return false
+      this.clickViewer = false;
+      return false;
     }
     this.scrollBottom();
   },
   methods: {
-
-    ...mapActions(['chat/setFriendId', 'updateUser']),
+    ...mapActions(["chat/setFriendId", "updateUser"]),
     closeMask() {
       this.isQeustion = false;
-
       clearInterval(this.timer);
     },
     endInquiry() {
-      if (this.isQeustion) return
+      if (this.isQeustion) return;
       this.isQeustion = true;
       this.timeH = this.TIME_COUNT;
       this.timer = setInterval(() => {
@@ -205,29 +225,27 @@ export default {
         }
       }, 1000);
     },
-
-
     overConfirm() {
       this.isQeustionOver = true;
     },
-
     medicalEva() {
       this.$router.push({
-        name: 'medicalEva',
+        name: "medicalEva",
         query: {
-          id: this.$route.query.id, name: this.$route.query.name
+          id: this.$route.query.id,
+          name: this.$route.query.name
         }
       });
     },
 
     // 结束问诊订单
 
-    async  overQuestion() {
+    async overQuestion() {
       // 查询评论
       try {
         let res = await this.$axios.post(updateOrder, {
           id: Number(this.$route.query.orderId),
-          status: 4,
+          status: 4
         });
         if (res.data.code != 200) {
           throw Error(res.data.msg);
@@ -235,131 +253,130 @@ export default {
         if (res.data.code == 200) {
           this.medicalEva();
         }
-
       } catch (error) {
         console.log(error.message);
       }
     },
-    ...mapActions(["chat/updateChatQueue", "chat/setHistoryNews", "chat/setChatQueue"]),
-    scrollBottom() { // 内容区在底部
-      this.$nextTick(function () {
+    ...mapActions([
+      "chat/updateChatQueue",
+      "chat/setHistoryNews",
+      "chat/setChatQueue"
+    ]),
+    scrollBottom() {
+      // 内容区在底部
+      this.$nextTick(() =>{
         var ele = this.$refs.chatContent;
+        console.log(this.$refs)
+        console.log("scrollHeight:"+JSON.stringify(ele.scrollHeight))
         ele.scrollTop = ele.scrollHeight;
+        
+        console.log("scrollTop:"+JSON.stringify(this.$refs.chatContent.scrollTop))
+        
       });
     },
     showViewer(index) {
-      this.isViewerShow = true
-      this.clickViewer = true
-      this.currentImg = [index]
+      this.isViewerShow = true;
+      this.clickViewer = true;
+      this.currentImg = [index];
     },
     changeVal(val) {
-      console.log("Aaa")
-      this.inputValue = this.$refs.inputModel.innerHTML
+      //获取输入的消息
+      this.inputValue = this.$refs.inputModel.innerHTML;
     },
 
     tool(val) {
       // 重复点击相同的则视为取消选择
       if (this.toolType == val) {
-        this.toolType = ''
-        return false
+        this.toolType = "";
+        return false;
       }
-      this.toolType = val
+      this.toolType = val;
 
-      if (val === 'img') {
-
+      if (val === "img") {
       }
     },
     async upload() {
       try {
         var formData = new FormData();
         var file = this.$refs.uploadImg.files[0];
+        console.log(file, "file");
         formData.append("file", file);
-        let res = await httpService({
-          method: "post",
-          url: "/api/upload",
+        let config = {
           headers: {
-            Authorization: "",
-            "X-Requested-With": "XMLHttpRequest"
-          },
-          body: formData
-        });
-        if (res.code != 200) {
-          throw Error(res.msg);
+            "Content-Type": "multipart/form-data"
+          }
+        }; //添加请求头
+        this.$axios.post(uploadImage, formData, config)
+          .then(res => {
+            if (res.data.code == "200") {
+              let createTime = new Date().getTime();
+              let msg = {
+                // 发送消息传的数据
+                from: this.userInfo.id,
+                to: Number(this.$route.params.fromId)? Number(this.$route.params.fromId): Number(this.$route.query.id),
+                // to: 57,
+                cmd: 11,
+                createTime: createTime,
+                msgType: 1,
+                chatType: 2,
+                content: this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName
+              };
+              // console.log(msg.content+"把当前发送的消息添加到历史消息去")
+              // 把当前发送的消息添加到历史消息去
+              let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
+              arr.push(msg);
+              this["chat/setHistoryNews"](arr);
+              this.chat.websocket.send(JSON.stringify(msg));
+              // console.log("res："+JSON.stringify(res.data.fileInfo[0].fileName))
+            } else {
+              this.$toast.info(res.data.msg);
+            }
+          })
+        } catch(err) {
+            console.log(err);
         }
-        let createTime = new Date().getTime();
-        let msg = {
-          // 发送消息传的数据
-          from: this.userInfo.id,
-          to: Number(this.$route.params.fromId),
-          cmd: 11,
-          createTime: createTime,
-          msgType: 1,
-          chatType: 2,
-          content: "/api/file?img=" + res.data[file.name]
-        };
-          console.log(msg+"把当前发送的消息添加到历史消息去")
-        // 把当前发送的消息添加到历史消息去
-        let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
-        arr.push(msg);
-        this["chat/setHistoryNews"](arr);
-        this.chat.websocket.send(JSON.stringify(msg));
-      } catch (error) {
-        console.log(error);
-      }
     },
     // 发送消息
     send() {
-    console.log(this.chat.historyNews+"xxxxxxx")
-      console.log("我是ya亚男")
       if (this.inputValue == 0) {
         this.$toast.info("请输入消息");
-        return
+        return;
       }
       let createTime = new Date().getTime();
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: 12,
+        to: Number(this.$route.params.fromId)? Number(this.$route.params.fromId): Number(this.$route.query.id),
+        // to: 57,
         cmd: 11,
         createTime: createTime,
         msgType: 0,
         chatType: 2,
         content: this.inputValue
       };
-      console.log(msg.from+"from:")
+      console.log("TO:" + msg.to);
       // 把当前发送的消息添加到历史消息去
-      let arr = JSON.parse(JSON.stringify(this.chat.historyNews))
-      arr.push(msg)
-      this['chat/setHistoryNews'](arr)
+      let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
+      arr.push(msg);
+      this["chat/setHistoryNews"](arr);
       this.chat.websocket.send(JSON.stringify(msg));
       this.inputValue = "";
       // 清空输入框的数据
       this.$refs.inputModel.innerHTML = "";
-
-      // let msg = {
-      //   cmd: 19,
-      //   type: 1,
-      //   fromUserId: 12,
-      //   userId: 125
-      //   //userId:item.from  == 125 ? 123 :125
-      // };
-      // console.log("有趣")
-      // this.chat.websocket.send(JSON.stringify(msg));
-
     },
     // 添加消息
     emojiAdd(val) {
-      console.log(val, "我是白哦")
-      this.$refs.inputModel.innerHTML = this.inputValue + val
-      this.inputValue = this.inputValue + val
-    },
+      console.log(val, "我是白哦");
+      this.$refs.inputModel.innerHTML = this.inputValue + val;
+      this.inputValue = this.inputValue + val;
+    }
   },
   beforeRouteLeave(to, from, next) {
     let id = this.$route.params.fromId;
-    let index = this.chat.chatQueue.findIndex(msg => msg.from == id);
-    let arr = JSON.parse(JSON.stringify(this.chat.chatQueue))
+    let index = this.chat.chatQueue.findIndex(msg => msg.id == id);
+    let arr = JSON.parse(JSON.stringify(this.chat.chatQueue));
     if (index != -1) {
-      arr[index].newNews = 0
+      arr[index].newNews = 0;
       this["chat/setChatQueue"](arr);
     }
     next();

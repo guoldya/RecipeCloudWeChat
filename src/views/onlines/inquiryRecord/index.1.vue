@@ -49,9 +49,9 @@ export default {
   },
   mounted() {
     //  用于演示临时加得
-    let obj = {}
-    obj.id = 125;
-    this.updateUser(obj)
+    // let obj = {}
+    // obj.id = 125;
+    // this.updateUser(obj)
     websocketConfig()
   },
   methods: {

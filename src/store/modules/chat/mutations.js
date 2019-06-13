@@ -1,20 +1,19 @@
 export default {
   setWebsocket(state, websocket) {
     state.websocket = websocket
+    console.log(websocket, 'websocket的值')
   },
   updateChatQueue(state, data) { //更新队列
     let friend = data
+    console.log("data:"+JSON.stringify(data))
     let chatQueue = state.chatQueue
-    let index = chatQueue.findIndex(msg => msg.from == friend.from)
+    let index = chatQueue.findIndex(msg => msg.id == friend.from)
     if (index != -1) {
       let obj = chatQueue[index]
-      console.log(obj, 11)
-      console.log(chatQueue[index].newNews, chatQueue[index].newNews + (friend.newNews || 1))
       let num = chatQueue[index].newNews + (friend.newNews || 1)
-      obj = friend
       obj.newNews = num
-      console.log(num, 'num')
-      console.log(obj, 11)
+      obj.id = friend.from
+      obj.content = friend.content
       chatQueue.splice(index, 1, obj)
     } else { // 添加新的队列
       if (!friend.newNews) {
@@ -24,6 +23,9 @@ export default {
       chatQueue.unshift(friend)
     }
     state.chatQueue = chatQueue
+  },
+  updatePayChatQueue(state, data) { //更新后台队列
+    state.chatQueue = data
   },
   setPatienDetail(state, data) { // 设置病人详情
     state.patienDetail = data

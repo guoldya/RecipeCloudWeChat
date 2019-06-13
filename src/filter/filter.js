@@ -32,7 +32,7 @@ const filterTypeIMG = function (value) {
 
 const keepTwoNum = function (value) {
     if (value == undefined) {
-        return "**"
+        return "0.00"
     }
     var value = Math.round(parseFloat(value) * 100) / 100;
     var xsd = value.toString().split(".");
@@ -47,6 +47,7 @@ const keepTwoNum = function (value) {
         return value;
     }
 };
+
 const payTypeFilter = function (value) {
     if (value == undefined) {
         return ""
@@ -67,6 +68,24 @@ const payTypeFilter = function (value) {
         return "已失效"
     }
 };
+const paystatusFilter = function (value) {
+    if (value == undefined) {
+        return " "
+    }
+    if (value == 1) {
+        return "待支付"
+    } else if (value == 2) {
+        return "已支付"
+    } else if (value == 3) {
+        return "已退款"
+    } else if (value == 4) {
+        return "已关闭"
+    }
+};
+ 
+ 
+ 
+
 const payStatus = function (value) {
     if (value == undefined) {
         return ""
@@ -79,16 +98,163 @@ const payStatus = function (value) {
         return "已支付"
     }
 };
+//   <!-- 1-- 一般 2--口腔 3--血常规 4--尿常规 5--实验室 6--超声 7--放射 8--心电图 -->
 const payStatusIMG = function (value) {
     if (value == undefined) {
         return ""
     }
-    if (value == 3) {
-        return "@/assets/images/icon_closed.png"
-    } else if (value == 1) {
-        return "@/assets/images/icon_tobepaid.png"
+    if (value == 1) {
+        return require('@/assets/images/medica1 (10).png')
     } else if (value == 2) {
-        return "@/assets/images/icon_pay1.png"
+        return require('@/assets/images/medica1 (4).png')
+    } else if (value == 3) {
+        return require('@/assets/images/medica1 (9).png')
+    } else if (value == 4) {
+        return require('@/assets/images/medica1 (6).png')
+    } else if (value == 5) {
+        return require('@/assets/images/medica1 (5).png')
+    } else if (value == 6) {
+        return require('@/assets/images/medica1 (1).png')
+    } else if (value == 7) {
+        return require('@/assets/images/medica1 (2).png')
+    } else if (value == 8) {
+        return require('@/assets/images/medica1 (8).png')
+    }
+};
+const payStatusText = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return "一般"
+    } else if (value == 2) {
+        return "口腔"
+    } else if (value == 3) {
+        return "血常规"
+    } else if (value == 4) {
+        return "尿常规"
+    } else if (value == 5) {
+        return "实验室"
+    } else if (value == 6) {
+        return "超声"
+    } else if (value == 7) {
+        return "放射"
+    } else if (value == 8) {
+        return "心电图"
+    }
+};
+
+
+const medicaIMG = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 3) {
+        return require('@/assets/images/icon_closed.png')
+
+    } else if (value == 1) {
+        return require('@/assets/images/icon_tobepaid.png')
+
+    } else if (value == 2) {
+        return require('@/assets/images/icon_pay1.png')
+    }
+};
+const feeTypeFilterIMG = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return require('@/assets/images/mse(4).png')
+    } else if (value == 2) {
+        return require('@/assets/images/jiancha5.png')
+    } else if (value == 3) {
+        return require('@/assets/images/jiancha1.png')
+    } else if (value == 4) {
+        return require('@/assets/images/jiancha2.png')
+    } else if (value == 5) {
+        return require('@/assets/images/jiancha3.png')
+    } else if (value == 6) {
+        return require('@/assets/images/jiancha6.png')
+    } else if (value == 7) {
+        return require('@/assets/images/jiancha4.png')
+    }
+};
+const bizTypeFilterIMG = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return require('@/assets/images/mse(4).png')
+    } else if (value == 2) {
+        return require('@/assets/images/mse(2).png')
+    } else if (value == 3) {
+        return require('@/assets/images/mse(5).png')
+    } else if (value == 4) {
+        return require('@/assets/images/mse(3).png')
+    } else if (value == 5) {
+        return require('@/assets/images/mse(1).png')
+    } else if (value == 6) {
+        return require('@/assets/images/tingzhen.png')
+    } else {
+        return require('@/assets/images/mse(4).png')
+    }
+};
+const feeTypeFilter = function (value) {
+    if (value == undefined) {
+        return " "
+    }
+    if (value == 1) {
+        return "挂号"
+
+    } else if (value == 2) {
+        return "西药"
+
+    } else if (value == 3) {
+        return "检查"
+    } else if (value == 4) {
+        return "检验"
+
+    } else if (value == 5) {
+        return "治疗"
+    } else if (value == 6) {
+        return "病案复印"
+
+    } else if (value == 7) {
+        return "住院预缴"
+    }
+};
+// 复印用途
+
+
+const stageType = function (value) {
+    if (value == undefined) {
+        return " "
+    }
+    if (value == 1) {
+        return "上午"
+
+    } else if (value == 2) {
+        return "下午"
+
+    }
+};
+const usageFilter = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return "全套复印"
+
+    } else if (value == 2) {
+        return '交通事故'
+
+    } else if (value == 3) {
+        return '保险'
+    } else if (value == 4) {
+        return '商业保险'
+
+    } else if (value == 5) {
+        return '保险报销'
     }
 };
 const recipeTypeFilter = function (value) {
@@ -112,14 +278,42 @@ const recipeTypeFilter = function (value) {
 
 const payMethod = function (value) {
     if (value == undefined) {
-        return "支付宝支付"
+        return " "
     }
     if (value == 1) {
-        return "支付宝支付"
+        return "支付宝"
     } else if (value == 2) {
-        return "微信支付"
+        return "微信"
     } else if (value == 3) {
-        return "医保支付"
+        return "医保"
+    }
+};
+const bizType = function (value) {
+    if (value == undefined) {
+        return " "
+    }
+    if (value == 1) {
+        return "预约"
+    } else if (value == 2) {
+        return "缴费"
+    } else if (value == 3) {
+        return "报告"
+    } else if (value == 4) {
+        return "排队"
+    } else if (value == 5) {
+        return "病案复印"
+    } else if (value == 6) {
+        return "停诊"
+    }
+};
+const feeClass = function (value) {
+    if (value == undefined) {
+        return "预缴金"
+    }
+    if (value == 1) {
+        return "预缴金缴纳"
+    } else if (value == 2) {
+        return "结算缴费"
     }
 };
 
@@ -161,6 +355,12 @@ const lasttime = function (dataStr, pattern = 'YYYY-MM-DD HH:mm') {
 };
 
 const inquiryTime = function (dataStr, pattern = 'HH:mm') {
+    return moment(dataStr).format(pattern)
+};
+const inquiryYaer = function (dataStr, pattern = 'YYYY') {
+    return moment(dataStr).format(pattern)
+};
+const inquiryDDD = function (dataStr, pattern = 'MM-DD') {
     return moment(dataStr).format(pattern)
 };
 const drugCheck = function (value) {
@@ -240,7 +440,7 @@ const cardType = function (value) {
 };
 const examSex = function (value) {
     if (value == undefined) {
-        return "未知"
+        return " "
     }
     if (value == 1) {
         return "男"
@@ -251,19 +451,21 @@ const examSex = function (value) {
 
 const busistatus = function (value) {
     if (value == undefined) {
-        return "未知"
+        return " "
     }
     if (value == 1) {
         return "待审核"
-    } else if (value == 2 || value == 4) {
+    } else if (value == 2) {
         return "审核通过"
     } else if (value == 3) {
         return "审核不通过"
+    } else if (value == 4) {
+        return "已发件"
     }
 };
 const deliveryMode = function (value) {
     if (value == undefined) {
-        return "未知"
+        return " "
     }
     if (value == 1) {
         return "配送"
@@ -291,16 +493,51 @@ const weekMode = function (value) {
     }
 };
 
+// const feeType = function (value) {
+//     if (value == undefined) {
+//         return " "
+//     }
+//     if (value == 1) {
+//         return "西药费"
+//     } else if (value == 2) {
+//         return "检查费"
+//     } else if (value == 3) {
+//         return "检验费"
+//     } else if (value == 6) {
+//         return "材料费"
+//     } else if (value == 5) {
+//         return "检验费"
+//     }
+// };
+
 const feeType = function (value) {
     if (value == undefined) {
-        return "未知"
+        return " "
     }
     if (value == 1) {
         return "西药费"
     } else if (value == 2) {
-        return "检查费"
+        return "中药费"
     } else if (value == 3) {
+        return "治疗费"
+    } else if (value == 4) {
+        return "检查费"
+    } else if (value == 5) {
         return "检验费"
+    } else if (value == 6) {
+        return "材料费"
+    }
+};
+const timeFilter = function (value) {
+    if (value == undefined) {
+        return ""
+    }
+    if (value == 1) {
+        return "近一个月"
+    } else if (value == 2) {
+        return "近三个月"
+    } else if (value == 3) {
+        return "近半年"
     }
 };
 const getAge = function (value) {
@@ -371,6 +608,19 @@ export default {
     deliveryMode,
     payStatus,
     payStatusIMG,
+    payStatusText,
+    medicaIMG,
     feeType,
     weekMode,
+    bizTypeFilterIMG,
+    feeClass,
+    bizType,
+    usageFilter,
+    feeTypeFilter,
+    feeTypeFilterIMG,
+    stageType,
+    paystatusFilter,
+    timeFilter,
+    inquiryDDD,
+    inquiryYaer,
 }

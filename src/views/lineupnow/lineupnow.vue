@@ -1,6 +1,6 @@
 <template>
   <div class="lineupnow">
-    <Headerapp post-title="就诊队列"></Headerapp>
+    <Header post-title="就诊队列"></Header>
     <div class="margin50">
       <Apptab :tab-title="time" v-on:childByValue="childByValue"></Apptab>
       <div class="upnowHead">

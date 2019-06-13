@@ -113,7 +113,6 @@ export default {
 <style   scoped>
 .navigation {
   background: none;
-  color: var(--primary--body);
 }
 .Img {
   position:absolute;

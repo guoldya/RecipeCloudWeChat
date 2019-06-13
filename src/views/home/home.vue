@@ -21,8 +21,8 @@
                             </p>
                         </div>
                         <div class="towma" @click="showPicFun(item)">
-                            <p><img src="@/assets/images/lili.jpg" alt=""></p>
-                            <p>点击扫码</p>
+                            <me-qrcode :qr-url='item.cardNo' :qr-size='60'></me-qrcode>
+                            <p>刷卡请出示</p>
                         </div>
                     </div>
                     <div v-show="cardLoading" class="spinner">
@@ -36,15 +36,14 @@
                 </div>
                 <span v-show="!cardLoading" class="bindCardBtn" @click="blidcard">绑定就诊卡</span>
             </div>
-            <div class="cardPositon">
-            </div>
+            <div class="cardPositon"> </div>
             <div>
                 <ul class="home-cz home-flex">
                     <li @click="choosedepart">
                         <img src="@/assets/images/icon_register1.png" alt="" class="image">
                         <p>预约挂号</p>
                     </li>
-                    <li @click="feerecord">
+                    <li @click="outpatient">
                         <img src="@/assets/images/icon_self.png" alt="" class="image">
                         <p>门诊缴费</p>
                         <a class="signNumber" v-show="homeList.notPayCount!=0">{{homeList.notPayCount}}</a>
@@ -68,6 +67,11 @@
                 <li @click="reportquery" class="examineLi">
                     <img src="@/assets/images/3.png" alt="" class="image">
                     <p>报告查询</p>
+                    <!-- <span class="examineNumber">1</span> -->
+                </li>
+                <li class="examineLi" @click="medical">
+                    <img src="@/assets/images/3.png" alt="" class="image">
+                    <p>体检报告</p>
                     <!-- <span class="examineNumber">1</span> -->
                 </li>
                 <li @click="lineupnow" class="examineLi">
@@ -109,14 +113,11 @@
             <div class="club-new-spread" v-show="!isDown" @click="isDown=!isDown">...展开</div>
             <div class="club-new-suo" v-show="isDown" @click="isDown=!isDown">收起</div>
             <div style="height:10px"></div>
-            <!-- <div class="lookupmore" :class="{'down':isDown}" @click="isDown=!isDown">
-                <img src="@/assets/images/icon_up.png" alt="">
-            </div> -->
         </div>
         <md-landscape v-model="showPic">
             <div class="codema">
                 <p class="namecodema">{{picName}}</p>
-                <img src="@/assets/images/lili.jpg" alt="">
+                <me-qrcode :qr-url='link2' :qr-size='250'></me-qrcode>
                 <p class="namecodema">就诊卡二维码</p>
                 <md-button type="primary" size="small" inline round @click="showPic=false">关闭</md-button>
             </div>
@@ -126,93 +127,57 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-
-let appLoginlogin = '/appLogin/login';
-let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
 let bizPatientRegisterselectCount = "/app/bizPatientRegister/selectCount";
 export default {
     data() {
         return {
+            link2: "12", // 二维码2
             code: 'ss',
             showPic: false,
-            cardlist: [],
             showindex: 0,
-            // maxindex: 0,
             cardLoading: true,
-            aliveValue: '2',
             isDown: false,
             chooseId: '',
             picName: '',
             homeList: '',
+            getInfo: '',
         }
     },
     computed: {
         ...mapState({
-            // _cardlist: state => state.cardList,
             _cardlist: state => state.home.cardList,
-            maxindex: state => state.home.cardTotal,
+            _accountinfo: state => state.my.accountinfo,
         }),
     },
     created() {
         this.$store.commit('feeActiveFun', 1);
-
-        console.log(this.$store.state.userInfo.id, "我是缓存的id")
     },
     async mounted() {
-        // console.log(this.$store.state.home.cardList)
-        // 用于测试
-        document.title = '互联网医院';
-        let _this = this;
-        function UrlSearch() {
-            let name, value;
-            //  let str = location.href;
-            let str = "http://192.168.0.26:8080/?code=081qs5ZX03iwTU1YH5YX0Kv6ZX0qs5Zn"; //取得整个地址栏
-            let num = str.indexOf("?");
-            str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
-            _this.code = str.match(/code=[^&]+/)[0].split("=")[1];
-        };
-        let Request = new UrlSearch(); //实例化
-        this.$axios.get(appLoginlogin + '?wechatCode=' + _this.code + '&verifyType=' + 1, {
-        }).then(res => {
-            if (res.data.code == '200') {
-                // res.data.data.value = JSON.parse(res.data.data.value);
-                // var storage = window.localStorage;
-                // storage.setItem("token1", res.data.data.value.token);
-                // storage.setItem("id", res.data.data.value.id);
-            } else if (res.data.code == '800') {
-                // this.$router.push({
-                //     name: 'register',
-                // });
-                var storage = window.localStorage;
-                // storage.setItem("token7", "");
-                // storage.setItem("UUID7", "");
-                localStorage.removeItem('token7');
-                localStorage.removeItem('UUID7');
-                storage.setItem("token1", "2136a544595a4c638e8969bfafc2a1a1");
-                storage.setItem("hospitalId", "49");
-            }
-        });
-        await this.$store.dispatch('getCards'/* , { update: true } */);
+        await this.$store.dispatch('getAccount', );
+        await this.$store.dispatch('getCards', );
         this.cardLoading = false;
-        if (this.$store.state.cardId) {
-            this.chooseId = this.$store.state.cardId;
+        this.getInfo = JSON.parse(sessionStorage.getItem('objInfo'));
+        if (this.getInfo) {
+            if (this.getInfo.id) {
+                this.chooseId = this.getInfo.id;
+                this.link2 = this.getInfo.cardNo;
+            }
         } else {
+            if (this._cardlist.length == 0) {
+                return
+            }
             this.chooseId = this._cardlist[0].id;
-            this.$store.commit('cardListFun', this._cardlist);
-            this.$store.commit('patientIdFun', this._cardlist[0].patientId);
-            this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
-            this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
-            this.$store.commit('cardIdFun', this._cardlist[0].id);
+            this.link2 = this._cardlist[0].cardNo;
+            let setInfo = JSON.stringify(this._cardlist[0])
+            sessionStorage.setItem('objInfo', setInfo)
         }
-        await this.homeNumber(this.chooseId);
+        this.homeNumber(this.chooseId);
     },
     methods: {
         async homeNumber(data) {
-            console.log(data);
-            console.log(this.$store.state.cardId);
             try {
                 let res = await this.$axios.put(bizPatientRegisterselectCount, {
-                    cardId: data ? data : this.$store.state.cardId
+                    cardId: data ? data : this.getInfo.id
                 });
                 if (res.data.code != 200) {
                     throw Error(res.data.msg);
@@ -223,7 +188,7 @@ export default {
             }
         },
         choosedepart() {
-            if (!this.$store.state.cardId) {
+            if (!this.getInfo.id) {
                 this.$toast.info("请添加或者绑定就诊卡")
                 return
             }
@@ -234,25 +199,19 @@ export default {
             });
         },
         showPicFun(data) {
+            this.link2 = data.cardNo;
             this.picName = data.patientName;
             this.showPic = true;
         },
         switchCard(index) {
-            if (this._cardlist.length == 1) {
-                console.log("等于一");
-                return
-            }
-            console.log(this._cardlist[index + 1]);
             let current = this._cardlist[index + 1];
             if (!current) {
                 current = this._cardlist[0]
             }
-            this.chooseId = current.id;
             this.homeNumber(this.chooseId);
-            this.$store.commit('patientIdFun', current.patientId);
-            this.$store.commit('cardNoFun', current.cardNo);
-            this.$store.commit('cardIdFun', current.id);
-            this.$store.commit('cardNnameFun', current.patientName);
+            this.chooseId = current.id;
+            let setInfo = JSON.stringify(current)
+            sessionStorage.setItem('objInfo', setInfo)
         },
         feerecord() {
             let argu = {};
@@ -261,7 +220,17 @@ export default {
                 query: argu
             });
         },
-
+        // 门诊缴费
+        outpatient() {
+            // if (!this.testRegist()) {
+            //     return
+            // }
+            let argu = {}
+            this.$router.push({
+                name: 'outpatient',
+                query: argu
+            });
+        },
         propaganda() {
             let argu = {};
             this.$router.push({
@@ -323,6 +292,13 @@ export default {
             });
         },
         //  
+        medical() {
+            let argu = {}
+            this.$router.push({
+                name: 'medical',
+                query: argu
+            });
+        },
         examine() {
             let argu = {}
             this.$router.push({
@@ -330,7 +306,6 @@ export default {
                 query: argu
             });
         },
-
         // 医生排班
         workdepart() {
             let argu = {}
@@ -358,10 +333,7 @@ export default {
         },
 
     },
-    // beforeRouteLeave(to, from, next) {
-    //       from.meta.keepAlive = true;
-    //       next();
-    // },
+
 
 
 }

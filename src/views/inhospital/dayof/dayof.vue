@@ -8,7 +8,6 @@
         一日清单
       </div>
       <div class="right">
-
       </div>
     </div>
     <div class="admissionbg">
@@ -19,8 +18,8 @@
           <span class="week">{{chooseDate}}</span>
         </span>
       </div>
-      <div class="big_date">
-        <ul>
+      <div class="big_date" id="container">
+        <ul id="content">
           <li v-for="(item,index) in cordInfoData" :key="index" @click="choose(item,index)" :class="item.index == 0 ? 'cannot' : '' ">
             <p>{{item.week|weekMode}}</p>
             <p :class="activetime === index ? 'aa' : '' ">{{item.times.substring(8 ,10)}}</p>
@@ -30,42 +29,47 @@
     </div>
     <div class="cardText alignJ flatCard">
       <p class="parElem listData">
-        <span class="sonElem">预交款总额</span>
+        <span class="sonElem">预缴款总额</span>
         <span class="mu-secondary-text-color">￥{{money|keepTwoNum}}</span>
       </p>
       <p class="parElem listData">
-        <span class="sonElem">未结总费用</span>
-        <span class="mu-secondary-text-color">￥{{balance|keepTwoNum}}</span>
+        <span class="sonElem">已发生费用</span>
+        <span class="mu-secondary-text-color" :class="{'red':occurredMoney <=0}">￥{{occurredMoney |keepTwoNum}}</span>
       </p>
       <p class="parElem listData">
         <span class="sonElem">剩余款</span>
-        <span class="mu-secondary-text-color">￥{{balance|keepTwoNum}}</span>
+        <span class="mu-secondary-text-color" :class="{'red':balance<=0}">￥{{balance|keepTwoNum}}</span>
       </p>
     </div>
-    <div class="margin5" v-if="waitPayData.length!=0">
-      <div class="cardText flatCard">
-        <div class="cardTextKind spanWid">
-          <span style="text-align: left">类别</span>
-          <span>项目名称</span>
-          <span>数量</span>
-          <span style="text-align: right">金额</span>
-        </div>
-        <div>
-          <div v-for="(item,i) in waitPayData" :key="i">
-            <p style="border-bottom: 1px solid #e9e9e9; line-height: 40px;">{{item.feeType|feeType}}</p>
-            <div class="spanWid cardTextPP arrow" v-for="(item2,index) in item.list" :key="index">
-              <span> </span>
-              <span>{{item2.itemName}} </span>
-              <span>{{item2.num}}</span>
-              <span>￥{{item2.price|keepTwoNum}}</span>
-            </div>
+    <div class="cardText outpatien-card ">
+      <div class="cardTextKind spanWid">
+        <span style="text-align: left">类别</span>
+        <span>项目名称</span>
+        <span>数量</span>
+        <span style="text-align: right">金额</span>
+      </div>
+      <div>
+        <div class="cardTextDiv" v-for="(item,i) in waitPayData" :key="i">
+          <p class="  cardTextPP  cardTexttitle">
+            <span>{{item.feeType|feeType}}</span>
+            <span> </span>
+            <span> </span>
+            <span>￥{{item.totalPrice|keepTwoNum}} </span>
+          </p>
+          <div class="spanWid cardTextPP arrow" v-for="(item2,index) in item.list" :key="index">
+            <span> </span>
+            <span>{{item2.itemName}} </span>
+            <span>{{item2.num}}</span>
+            <span>￥{{item2.price|keepTwoNum}}</span>
           </div>
         </div>
       </div>
-      <p v-show="nomore" class="noMore">没有更多数据了</p>
-    </div>
-    <div v-show="!loadingtrue" class="nullDiv" v-else>
-      <img src="@/assets/images/null1.png">
+      <div class="cardTextKind" style="border-bottom:none;padding-bottom:0">
+        <span style="text-align: left"> </span>
+        <span> </span>
+        <span> </span>
+        <span style="text-align: right;line-height:0.6rem"> 合计：￥{{totalMoney|keepTwoNum}}</span>
+      </div>
     </div>
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
       <span v-if="waitPayData.length!=0&&!nomore">
@@ -83,89 +87,20 @@ let selectTimes = "/app/bizIhFee/selectTimes";
 export default {
   data() {
     return {
-      time: [],
-      chooseday: '08',
-      chooseDate: '2019.04',
-      chooseWeek: '一',
-      isAAA: false,
+      totalMoney: '',
+      chooseday: '',
+      chooseDate: '',
+      chooseWeek: '',
       activetime: 0,
-      readyMoney: '',
       balance: '',
+      occurredMoney: "",
       money: '',
-      rows: [
-        {
-          feeType: 1,
-          list: [
-            {
-              feeDate: "2019 - 04 - 22",
-              feeType: 1,
-              id: '2',
-              ihNo: '0005',
-              itemName: "感冒了",
-              num: '1',
-              price: '5600',
-              recordId: '1',
-              total: '5600'
-            },
-            {
-              feeDate: "2019 - 04 - 22",
-              feeType: '1',
-              id: '1',
-              ihNo: '0005',
-              itemName: "测试",
-              num: '2',
-              price: '5000',
-              recordId: '1',
-              total: '10000',
-            }
-          ]
-        },
-        {
-          feeType: 2,
-          list: [
-            {
-              feeDate: "2019 - 04 - 22",
-              feeType: 1,
-              id: '2',
-              ihNo: '0005',
-              itemName: "111",
-              num: '1',
-              price: '5600',
-              recordId: '1',
-              total: '5600'
-            },
-            {
-              feeDate: "2019 - 04 - 22",
-              feeType: 1,
-              id: '2',
-              ihNo: '0005',
-              itemName: "2222",
-              num: '1',
-              price: '5600',
-              recordId: '1',
-              total: '5600'
-            },
-            {
-              feeDate: "2019 - 04 - 22",
-              feeType: '1',
-              id: '1',
-              ihNo: '0005',
-              itemName: "333333",
-              num: '2',
-              price: '5000',
-              recordId: '1',
-              total: '10000',
-            }
-          ]
-        },
-      ],
       busy: true,
       loadingtrue: true,
       nomore: false,
       waitPayData: '',
       page: 1,
       pageSize: 10,
-      loadingtrue: true,
       cordInfoData: '',
       feeDate: '',
     };
@@ -174,116 +109,59 @@ export default {
     this.WaitPay(false);
     this.cordInfo()
   },
-  mounted() {
-    document.title = '一日清单';
-    window.onscroll = function () {
-      //变量t是滚动条滚动时，距离顶部的距离
-      var t = document.documentElement.scrollTop || document.body.scrollTop;
-      var scrollup = document.getElementById('scrollup');
-      var back = document.getElementById('back');
-      var aa = document.getElementsByClassName('navigation-content');
-      if (t >= 20) {
-        if (aa[0]) {
-          aa[0].style.color = " var(--primary--title)";
-        }
-        if (back) {
-          back.setAttribute("src", require("@/assets/images/icon_back.png"));
-        }
-        if (scrollup) {
-          scrollup.style.background = "#ffffff";
-        }
-      } else {
-        //恢复正常
-        if (scrollup) {
-          scrollup.style.background = "transparent";
-        }
-        if (back) {
-          back.setAttribute("src", require("@/assets/images/icon_back_white.png"));
-        }
-        if (aa[0]) {
-          aa[0].style.color = "#ffffff";
-        }
-
-      }
-    }
-    this.getData()
-  },
+ 
   watch: {
     feeDate(newdoctorParams, olddoctorParams) {
-      console.log(newdoctorParams, olddoctorParams)
-
       this.goodsList = [];
       this.loadingtrue = true;
       this.page = 1;
       this.WaitPay(false);
-      // this.feeDate = newFeeDate;
     },
-
   },
   methods: {
     choose(data, index) {
       if (data.index == 0) return
       this.activetime = index;
-      this.chooseday = data.times.substring(8, 10);;
+      this.chooseday = data.times.substring(8, 10);
       this.chooseDate = data.times.substring(0, 7);
       this.chooseWeek = data.week;
       this.feeDate = data.times.split(' ')[0];
-      console.log(this.feeDate.split(' ')[0])
     },
-
-    getData() {
-      for (let i = 0; i < 30; i++) {
-        let nowTime = new Date();
-        let d = nowTime.setDate(nowTime.getDate() + i - 1);
-        let data = this.addDate(d, 1);
-        let time = {};
-        time = { date: data.newData, week: data.newDay, day: data.newYear, }
-        // console.log(time)
-        this.time.push(time)
-      }
-    },
-    addDate(val, days) {
-      var d = new Date(val);
-      var data = {};
-      let dayArr = ["日", "一", "二", "三", "四", "五", "六"];
-      d.setDate(d.getDate() + days);
-      var y = d.getFullYear();
-      var m;
-      if (d.getMonth() + 1 < 10) {
-        m = '0' + d.getMonth() + 1;
-      } else {
-        data.newYear = d.getMonth() + 1;
-      }
-      var m = d.getMonth() + 1;
-      var newDay = dayArr[d.getDay()];
-      if (m < 10)
-        m = '0' + m
-      data.newData = y + '.' + m;
-      if (d.getDate() < 10) {
-        data.newYear = '0' + d.getDate();
-      } else {
-        data.newYear = d.getDate();
-      }
-
-      data.newDay = newDay;
-      return data;
-    },
-
 
     cordInfo() {
-      this.$axios.put(selectTimes, { id: parseInt(this.$route.query.id) }, {
+      this.$axios.put(selectTimes, { recordId: parseInt(this.$route.query.id) }, {
       }).then(res => {
         if (res.data.code == '200') {
           this.loadingtrue = false;
-          if (res.data.rows) {
-            console.log(res.data.rows)
+          if (res.data.rows && res.data.rows.length != 0) {
             this.cordInfoData = res.data.rows;
-            this.chooseday = res.data.rows[0].times.substring(8, 10);;
-            this.chooseDate = res.data.rows[0].times.substring(0, 7);
-            this.chooseWeek = res.data.rows[0].week;
-            this.feeDate = res.data.rows[0].times.split(' ')[0];
+            this.$nextTick(() => {
+              document.getElementById('container').scrollLeft += document.getElementById('container').scrollWidth;
+            })
+            this.activetime = res.data.rows.length - 1;
+            this.chooseday = res.data.rows[this.activetime].times.substring(8, 10);;
+            this.chooseDate = res.data.rows[this.activetime].times.substring(0, 7);
+            this.chooseWeek = res.data.rows[this.activetime].week;
+            this.feeDate = res.data.rows[this.activetime].times.split(' ')[0];
+            var today = new Date();
+            if (today.getMonth() + 1 < 10) {
+              var aa = '0' + (today.getMonth() + 1)
+            } else {
+              var aa = today.getMonth() + 1
+            }
+
           } else {
-            this.cordInfoData = []
+            var today = new Date();
+            var weekday = ["0", "1", "2", "3", "4", "5", "6"];
+            this.chooseWeek = weekday[today.getDay()] - 1;
+            this.chooseday = today.getDate() - 1;
+            if (today.getMonth() + 1 < 10) {
+              var aa = '0' + (today.getMonth() + 1)
+            } else {
+              var aa = today.getMonth() + 1
+            }
+            this.chooseDate = today.getFullYear() + "-" + aa;
+            this.cordInfoData = [{ times: today.getFullYear() + "-" + aa + "-" + this.chooseday + " " + "00:00:00:00", week: this.chooseWeek, index: 0 }]
           }
 
         }
@@ -294,7 +172,7 @@ export default {
     WaitPay(flag) {
       const params = {};
       params.pageNumber = this.page;
-      params.pageSize = this.pageSize;
+      params.pageSize = 1000;
       params.recordId = parseInt(this.$route.query.id);
       params.feeDate = this.feeDate;
       this.$axios.put(selectIhRecordPriceList, params).then((res) => {
@@ -302,7 +180,8 @@ export default {
         if (res.data.code == 200) {
           this.money = res.data.money;
           this.balance = res.data.balance;
-
+          this.occurredMoney = res.data.occurredMoney;
+          this.totalMoney = res.data.totalMoney;
           if (res.data.rows) {
             if (flag) {
               this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
@@ -339,13 +218,81 @@ export default {
       }, 500);
     },
   },
-  computed: {
-
-  },
+ 
 
 };
 </script>
- <style scoped>
+ <style  lang="scss"  scoped>
+.admission .outpatien-card {
+  margin: 24px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 15px;
+  .mu-secondary-text-color {
+    font-size: 36px;
+  }
+  &:nth-child(2) {
+    padding-top: 0;
+  }
+  .cardTextDiv {
+    border-bottom: 1px solid #dedede;
+    padding: 20px 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+}
+
+.admission .cardText .cardTextPP {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 28px;
+  // border-bottom: 2px solid #e9e9e9;
+}
+.admission .cardText .cardTextKind {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  font-size: 28px;
+  border-bottom: 2px solid #e9e9e9;
+  font-weight: 700;
+}
+.admission .spanWid span {
+  display: inline-block;
+  word-break: normal;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-align: center;
+}
+.admission .spanWid span:first-child {
+  width: 15%;
+  text-align: left;
+}
+.admission .spanWid span:nth-child(2) {
+  width: 40%;
+  text-align: left;
+}
+.admission .spanWid span:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+.admission .spanWid span:last-child {
+  width: 25%;
+  text-align: right;
+}
+.admission .cardText .cardTextKindcontent {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+.admission .cardText .cardTextPP:last-child {
+  border: none;
+}
 @import "../../submitOrder/submitOrder.css";
 .admissionbg {
   background: -moz-linear-gradient(#57d0f4 20%, #42a3fb 90%);
@@ -355,10 +302,18 @@ export default {
   background: linear-gradient(#57d0f4 20%, #42a3fb 90%);
 }
 .admission .navigation {
-  background: transparent;
+  background: #55cbf5;
   color: #ffffff;
 }
-
+.day-title {
+  border-bottom: 1px solid #e9e9e9;
+  line-height: 80px;
+  font-weight: 800;
+  color: #272727;
+}
+.day-title span {
+  color: #272727;
+}
 .admission .bigDate {
   padding: 100px 44px 0;
   display: flex;
@@ -390,6 +345,7 @@ export default {
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
+
   white-space: nowrap;
   background: transparent;
   margin-top: 10px;
@@ -435,14 +391,15 @@ export default {
 .admission .cardText .cardTextKind {
   display: flex;
   justify-content: space-between;
-  padding: 28px 0;
+
   font-size: 27px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 2px solid #e9e9e9;
   font-weight: 700;
   margin-bottom: 28px;
 }
 .admission .spanWid span {
   text-align: center;
+  line-height: 50px;
 }
 
 .admission .spanWid span:first-child {
@@ -460,5 +417,8 @@ export default {
 .admission .spanWid span:last-child {
   width: 20%;
   text-align: right;
+}
+.admission .cardTexttitle {
+  color: #272727 !important;
 }
 </style>

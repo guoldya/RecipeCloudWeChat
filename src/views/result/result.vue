@@ -1,6 +1,6 @@
 <template>
     <div class="result">
-        <Headerapp post-title="搜索结果"></Headerapp>
+        <Header post-title="搜索结果"></Header>
         <div class="margin55 outCarint">
             <div class="mu-sub-header margin14">科室</div>
             <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />

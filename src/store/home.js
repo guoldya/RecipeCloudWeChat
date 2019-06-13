@@ -1,10 +1,11 @@
 import { loadCards } from '../service/home'
-import { loadUserInfo } from '../service/my'
+import { loadDepart } from '../service/choosedepart'
 
 const state = {
    cardList: [],
    cardTotal: 0,
-   userInfo: '',
+   departList: [],
+   departTotal: 0,
 }
 
 const getters = {}
@@ -14,12 +15,11 @@ const mutations = {
       state.cardList = list || []
       state.cardTotal = total || 0
    },
-   ['SET_USERINFO'](state, { list }) {
-      state.userInfo = list || ''
-   }
+
 }
 
 const actions = {
+
    // 获取就诊卡片
    async getCards({ commit, state }, { update = false } = {}) {
       // loadCards(data).then(res => {
@@ -33,17 +33,16 @@ const actions = {
 
       commit('SET_CARDS', { list: res.rows, total: res.total })
    },
-   async getUserInfo({ commit, state }, { update = false } = {}) {
-      
-      
-       if (state.userInfo.account && !update) return
- 
-      const res = await loadUserInfo()
-      console.log(res,"gggg")
-      if (res.code != 200) return console.error('获取就诊卡片失败: ', res)
 
-      commit('SET_USERINFO', { list: res.data })
-   }
+   // 获取科室列表
+   async getDepart({ commit, state }) {
+      if (state.departList.length) return
+
+      const res = await loadDepart()
+      if (res.code != 200) return console.error('获取科室列表: ', res)
+
+      commit('SET_DEPART', { list: res.rows, total: res.total, })
+   },
 }
 
 export default {

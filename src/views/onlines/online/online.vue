@@ -93,6 +93,7 @@ import filterPop from "../component/filterPop";
 import doctorList from "../../../components/doctorList";
 const departmentUrl = "/app/bdHospitalOrg/read/selectClinicListByHospitalArea";
 const recommendUrl = "/app/bdOnlineDoctor/read/page";
+
 export default {
   name: "action-sheet-demo",
   height: 500,
@@ -242,7 +243,6 @@ export default {
   //   this.doctorParams.level = data
   // },
   methods: {
-
     childByValue: function (data) {
       var aa = [];
       var bb = [];

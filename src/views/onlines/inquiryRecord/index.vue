@@ -3,22 +3,26 @@
     <Header post-title="问诊记录"></Header>
     <div class="online-item" v-if="waitPayData.length!=0" v-show="!loadingtrue">
       <!-- 列表waitPayData -->
-      <div class="inquiry-list" @click="routerTo(item)" v-for="(item, index) in waitPayData" :key="index">
+      <div class="inquiry-list" @click="routerTo(item)" v-for="(item, index) in chat.chatQueue" :key="index">
         <div class="inquiry-list-head"><img src="@/assets/images/head1.png" />
           <span v-if="item.newNews">{{ item.newNews }}</span>
         </div>
         <div class="inquiry-list-info">
           <div class="inquiry-list-title">
-            <span class="name"> {{ item.name }}</span>
+            <span class="name"> {{ item.name + "  id:" + item.id }}</span>
             <span>{{item.level|level}}</span>
             <span>{{item.orgName}}</span>
             <span class="inquiry-list-title-date">{{ item.createTime | inquiryTime }}</span>
           </div>
           <div class="inquiry-list-content">
-            <p class="content-info" v-if="item.msgType == 0" v-html="item.content"></p>
-            <i class="iconfont icon-tupian" v-if="item.msgType == 1"></i>
+            <p class="content-info" v-html="item.content"></p>
+            <!-- <p class="content-info" v-if="item.msgType == 0" v-html="item.content"></p> -->
+            <!-- <i class="iconfont icon-tupian" v-if="item.msgType == 1"></i> -->
           </div>
         </div>
+      </div>
+      <div>
+        <md-button type="warning" round @click="close">退出</md-button>
       </div>
       <p v-show="nomore" class="noMore">没有更多数据了</p>
     </div>
@@ -39,6 +43,8 @@
 import { mapState, mapActions } from "vuex";
 import { setTimeout } from "timers";
 import websocketConfig from '../../../service/websocket.js'
+import { Promise } from 'q';
+// import { resolve } from 'dns';
 let pay_list_url = "/app/bizOnlineServiceRecord/read/page";
 export default {
   data() {
@@ -53,61 +59,90 @@ export default {
       pageSize: 10,
     };
   },
-  mounted() {
+  computed: {
+    ...mapState(["chat", "userInfo"])
+  },
+ async mounted() {
+    // console.log(1)
+    await this.WaitPay(false);
+    // console.log(3)
 
-    this.WaitPay(false);
-    //  用于演示临时加得
-    let obj = {}
-    obj.id = 125;
-    this.updateUser(obj)
-    websocketConfig()
+    
+    
+
+    //连接websocket
+    if(typeof(this.chat.websocket.url) == "undefined") {
+      websocketConfig();
+      //接口插入队列
+      for (let i in this.waitPayData) {
+        this.waitPayData[i].newNews = 0;
+        this.waitPayData[i].content = '';
+      }
+      let arr = JSON.parse(JSON.stringify(this.waitPayData))
+      this['chat/updatePayChatQueue'](arr);
+      console.log("chatQueue:"+JSON.stringify(this.chat.chatQueue))
+    }
+      
+    
   },
   methods: {
-    ...mapActions(['chat/setFriendId', 'updateUser']),
+    ...mapActions(['chat/setFriendId', 'updateUser','chat/updatePayChatQueue']),
     routerTo(item) {
-      this.$router.push({
-        name: 'inquiryOnline',
-        query: {
-          id: item.id, name: item.name
-        }
-      })
+      let msg = {
+        cmd: 19,
+        type: 1,
+        fromUserId: item.id,
+        userId: this.userInfo.id,
+        //userId:item.from  == 125 ? 123 :125
+      };
+      this['chat/setFriendId'](item.id)
+      this.chat.websocket.send(JSON.stringify(msg));
+    },
+    close() {
+      this.chat.websocket.close();
 
+      // let pay = this.waitPayData;
+      // console.log("waitPayData",pay[1])
 
     },
-
-
     WaitPay(flag) {
-      const params = {};
-      params.pageNumber = this.page;
-      params.pageSize = this.pageSize;
-      params.status = 4;
-      this.$axios.put(pay_list_url, params).then((res) => {
-        if (res.data.rows) {
-          this.loadingtrue = false;
-          if (flag) {
-            this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
-            if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
-              this.busy = false;
-              this.nomore = false;
+      return new Promise(( resolve, reject)=>
+      {
+        const params = {};
+        params.pageNumber = this.page;
+        params.pageSize = this.pageSize;
+        params.status = 4;
+        this.$axios.put(pay_list_url, params).then((res) => {
+          if (res.data.rows) {
+            this.loadingtrue = false;
+            if (flag) {
+              this.waitPayData = this.waitPayData.concat(res.data.rows);  //concat数组串联进行合并
+              if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
+                this.busy = false;
+                this.nomore = false;
+              } else {
+                this.busy = true;
+                this.nomore = true;
+              }
             } else {
+              this.waitPayData = res.data.rows;
               this.busy = true;
-              this.nomore = true;
+              if (res.data.total < 10) {
+                this.busy = true;
+                this.nomore = true;
+              } else {
+                this.busy = false;
+                this.nomore = false;
+              }
             }
+            // console.log(2)
+            resolve(res)
+            //2、
           } else {
-            this.waitPayData = res.data.rows;
-            this.busy = true;
-            if (res.data.total < 10) {
-              this.busy = true;
-              this.nomore = true;
-            } else {
-              this.busy = false;
-              this.nomore = false;
-            }
+            this.waitPayData = [];
+            reject()
           }
-          //2、
-        } else {
-          this.waitPayData = []
-        }
+        })
       })
     },
     loadMore() {
@@ -117,16 +152,14 @@ export default {
         this.WaitPay(true);
       }, 500);
     },
-
-
   },
-  computed: {
-    ...mapState(["chat", "userInfo"])
-  }
 };
 </script>
 
 <style lang="scss" scoped>
+.navigation {
+  color:  var(--primary--title);
+}
 .inquiry-record {
   box-sizing: border-box;
   padding-top: 1rem;

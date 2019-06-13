@@ -38,15 +38,15 @@ module.exports = {
   // 这里写你调用接口的基础路径，来解决跨域，如果设置了代理，那你本地开发环境的axios的publicPath要写为 '' ，即空字符串
   devServer: {
     proxy: {
-      '/api/biz': {
+      '/api': {
         target: 'http://192.168.0.224:8090',//吴
         //target: 'http://192.168.0.110:8090',//安未
-        //target: 'http://192.168.0.188:8090',//冉有钱
+         // target: 'http://192.168.0.189:8090',//冉有钱
         //target: 'http://192.168.0.150:40080/',
         // target: 'http://192.168.0.189:8090/',//冉雄蜂
         changeOrigin: true, // 允许跨域
         pathRewrite: {
-          '^/api/biz': ''
+          '^/api': ''
         }
       },
 

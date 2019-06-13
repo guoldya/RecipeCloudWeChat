@@ -5,6 +5,9 @@ export default {
   updateChatQueue({ commit }, data) {
     commit('updateChatQueue', data)
   },
+  updatePayChatQueue({ commit }, data) {
+    commit('updatePayChatQueue', data)
+  },
   setHistoryNews({ commit }, data) {
     commit('setHistoryNews', data)
   },
@@ -17,14 +20,4 @@ export default {
   setPatienDetail({ commit }, data) {
     commit('setPatienDetail', data)
   },
-
-  
-  updateUser({ commit }, data) {
-    commit('updateUser', data)
-  },
-  updateToken({ commit }, data) {
-    commit('updateToken', data)
-  }
-
-  
 }

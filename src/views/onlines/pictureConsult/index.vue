@@ -63,7 +63,6 @@
         </li>
         <li class="tips" v-if="imageList.length<3">(最多上传3张)</li>
       </ul>
-
     </div>
     <!-- <md-cell-item title="选择报告" arrow @click="routerTo(2)" />
     <md-cell-item title="选择病例" arrow @click="routerTo(3)" /> -->
@@ -79,11 +78,12 @@ import { mapState, mapActions } from "vuex";
 import { Icon, ImageReader, Tag, Toast } from "mand-mobile";
 const onlineDoctorDetailUrl = "/app/bdOnlineDoctor/read/detail";
 import websocketConfig from '../../../service/websocket.js'
-
+let uploadImage = "/appLogin/uploadImage";
 
 export default {
   data() {
     return {
+      imgPost: [],
       imageList: [],
       doctorInfo: '',
       questionDes: '',
@@ -101,18 +101,13 @@ export default {
   },
   mounted() {
     this.init();
-
-    this.getAge(this.$store.state.chat.patienDetail.birthday);
-    //  用于演示临时加得
-    let obj = {}
-    obj.id = 125;
-    this.updateUser(obj)
-    websocketConfig()
+    // this.getAge(this.$store.state.chat.patienDetail.birthday);
+    if(typeof(this.chat.websocket.url) == "undefined")
+      websocketConfig();
   },
   methods: {
-    ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews",'updateUser']),
+    ...mapActions(["chat/setPatienDetail", "chat/setHistoryNews",'updateUser',"chat/setFriendId"]),
     sendInfo() {
-      console.log("发消息")
       this.questionDes = this.questionDes.trim()
       // if (!this._patienDetail.id) {
       //   this.$toast.info("请选择就诊人")
@@ -123,6 +118,7 @@ export default {
         return
       }
       var data = this._patienDetail;
+      console.log("_patienDetail:"+JSON.stringify(this._patienDetail))
       data.questionDes = this.questionDes;
       data.anamnesisDes = this.anamnesisDes.trim();
       this["chat/setPatienDetail"](data);
@@ -131,85 +127,31 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: 12,
+        to: this.$route.query.id,
         cmd: 11,
         createTime: createTime,
         msgType: 7,
         chatType: 2,
         content: data,
       };
-      
-      console.log(this.chat.historyNews+"historyNews:")
+      console.log("data:"+JSON.stringify(msg.content))
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.$store.state.chat.historyNews))
-      console.log(arr+"arr:")
       arr.push(msg)
-
       this['chat/setHistoryNews'](arr)
+      this['chat/setFriendId'](this.$route.query.id)
       this.chat.websocket.send(JSON.stringify(msg));
-      // this.$store.state.chat.websocket.send(JSON.stringify(msg));
       this.$router.push({
         name: 'inquiryOnline',
         query: {
           id: this.$route.query.id, orderId: this.$route.query.orderId, name: this.$route.query.name
         }
       });
+      // console.log("_patienDetail:"+JSON.stringify(this.$refs))
     },
-    getAge(value) {
-      // if (value) return
-      if (!value.split(" ")) return
-      var strBirthdayArr = value.split(" ");
-      var strBirthdayArr = strBirthdayArr[0].split("-");
-      var birthYear = strBirthdayArr[0];
-      var birthMonth = strBirthdayArr[1];
-      var birthDay = strBirthdayArr[2];
-
-      var d = new Date();
-      var nowYear = d.getFullYear();
-      var nowMonth = d.getMonth() + 1;
-      var nowDay = d.getDate();
-
-      if (nowYear == birthYear) {
-        value = 0;//同年 则为0岁
-      }
-      else {
-        var ageDiff = nowYear - birthYear; //年之差
-        if (ageDiff > 0) {
-          if (nowMonth == birthMonth) {
-            var dayDiff = nowDay - birthDay;//日之差
-            if (dayDiff < 0) {
-              value = ageDiff - 1;
-            }
-            else {
-              value = ageDiff;
-            }
-          }
-          else {
-            var monthDiff = nowMonth - birthMonth;//月之差
-            if (monthDiff < 0) {
-              value = ageDiff - 1;
-            }
-            else {
-              value = ageDiff;
-            }
-          }
-        }
-        else {
-          value = -1;//返回-1 表示出生日期输入错误 晚于今天
-        }
-      }
-
-
-      this._patienDetail.age = value;
-      console.log(value, "岁数")
-      return value;//返回周岁年龄
-
-    },
-
-
+    
     // 初始化
     async init() {
-
       try {
         let id = Number(this.$route.query.id);
         let res = await this.$axios.put(onlineDoctorDetailUrl, { id });
@@ -235,38 +177,40 @@ export default {
     },
     onReaderSelect(name, { files }) {
       var data = this._patienDetail;
-      data.post = "111";
-      this["chat/setPatienDetail"](data);
-
-
-      files.forEach(file => {
-        console.log(
-          "[Mand Mobile] ImageReader Selected:",
-          "File Name " + file.name
-        );
-      });
+      // console.log("_patienDetail:"+JSON.stringify(this._patienDetail))
+      // data.post = new Array();
+      // this["chat/setPatienDetail"](data);
+      // console.log("_patienDetail:"+JSON.stringify(this._patienDetail))
+      // files.forEach(file => {
+      //   console.log(
+      //     "[Mand Mobile] ImageReader Selected:",
+      //     "File Name " + file.name
+      //   );
+      // });
       Toast.loading("图片读取中...");
-      console.log(files, "files");
       var formData = new FormData();
-      var file = files;
-      formData.append("file", file);
+      // var file = this.$refs.uploadImg.files[0];
+      console.log(files, "file");
+      // var file = files;
+      formData.append("file", files[0]);
       let config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
       };  //添加请求头
-      this.$axios.post("/api/upload", formData, config).then(res => {
+      this.$axios.post(uploadImage, formData, config).then(res => {
         if (res.data.code == '200') {
-
-          // this["chat/setPatienDetail"](data.post = "111");
-
+          console.log("img:"+this.imageList.length)
+          this.imgPost[this.imageList.length-1] = this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName
+          data.post = this.imgPost;
+          console.log("_patienDetail:"+JSON.stringify(data))
+          this["chat/setPatienDetail"](data);
         } else {
           this.$toast.info(res.data.msg)
         }
       }).catch(function (err) {
         console.log(err);
       })
-
     },
     onReaderComplete(name, { dataUrl, file }) {
       Toast.hide();

@@ -1,65 +1,51 @@
 <template>
     <div class="reportinfo">
         <Header :post-title="postTitle"></Header>
-        <div v-if="reportInfoData.length!=0" class="margin55" v-for="(item,i) in reportInfoData" :key="i">
+        <div v-if="reportInfoData.length!=0" class="margin55">
             <div v-if="feeActiveId==1" v-show="!loadingtrue">
                 <div class="flatCard">
                     <div class="cardText alignJ">
                         <div class=" parElem listData">
                             <span class="sonElem">姓名</span>
-                            <span>{{item.name}}</span>
+                            <span>{{reportInfoData.name}}</span>
                         </div>
-                        <div class=" parElem listData">
+                        <div class="parElem listData">
                             <span class="sonElem">性别</span>
-                            <span>{{item.sex}}</span>
+                            <span>{{reportInfoData.sex}}</span>
                         </div>
-                        <div class=" parElem listData">
+                        <div class="parElem listData">
+                            <span class="sonElem">年龄</span>
+                            <span>{{reportInfoData.age}}</span>
+                        </div>
+                        <div class="parElem listData">
                             <span class="sonElem">检查科室</span>
-                            <span>{{item.execDept}} </span>
+                            <span>{{reportInfoData.applyDept}} </span>
                         </div>
-                        <div class=" parElem listData">
-                            <span class="sonElem">申请时间</span>
-                            <span>{{item.applyTime}} </span>
-                        </div>
-                        <div class=" parElem listData">
-                            <span class="sonElem">检查类别</span>
-                            <span>{{item.type}} </span>
-                        </div>
-                        <div class=" parElem listData">
-                            <span class="sonElem">检查子类</span>
-                            <span>{{item.subType}} </span>
-                        </div>
-                        <div class=" cardTextBor listData parElem">
+                        <div class="cardTextBor listData parElem">
                             <span class="sonElem ">检查项目</span>
-                            <span>{{item.itemName}}</span>
+                            <span>{{reportInfoData.type}}</span>
                         </div>
                         <div class=" cardTextBor listData parElem">
                             <span class="sonElem ">报告时间</span>
-                            <span>{{item.reportTime}}</span>
+                            <span>{{reportInfoData.reportTime|lasttime}}</span>
                         </div>
+
                     </div>
                 </div>
                 <div class="flatCard margin5 cardBottom">
                     <div class="cardText">
-                        <div class=" listData parElem">
-                            <span class="sonElem">检查参数</span>
-                            <span>{{item.param}}</span>
+                        <div class="cardTextBor listData parElem">
+                            <span class="sonElem">检查部位</span>
+                            <span>{{reportInfoData.itemName}}</span>
                         </div>
-                        <div class="listData parElem">
-                            <span class="sonElem"> 检查所见</span>
-                            <span>{{item.findings}}</span>
+
+                        <div class="findings">
+                            <p> 检查所见</p>
+                            <p>{{reportInfoData.findings}}</p>
                         </div>
-                        <div class="listData parElem">
-                            <span class="sonElem"> 印象</span>
-                            <span>{{item.impression}}</span>
-                        </div>
-                        <div class="listData parElem">
-                            <span class="sonElem"> 建议</span>
-                            <span>{{item.advise}}</span>
-                        </div>
-                        <div class="listData parElem">
-                            <span class="sonElem">备注</span>
-                            <span>{{item.remark}}</span>
+                        <div class="findings">
+                            <p class="sonElem"> 诊断意见</p>
+                            <p>{{reportInfoData.impression}}</p>
                         </div>
                     </div>
                 </div>
@@ -69,76 +55,77 @@
                     <div class="cardText alignJ">
                         <div class="parElem listData">
                             <span class="sonElem">姓名</span>
-                            <span>{{item.name}}</span>
+                            <span>{{reportInfoData.name}}</span>
                         </div>
                         <div class="parElem listData">
                             <span class="sonElem">性别</span>
-                            <span>{{item.sex}}</span>
+                            <span>{{reportInfoData.sex}}</span>
                         </div>
                         <div class=" parElem listData">
                             <span class="sonElem">年龄</span>
-                            <span>{{item.age}}岁</span>
+                            <span>{{reportInfoData.age}}</span>
                         </div>
                         <div class="parElem listData">
-                            <span class="sonElem">科别</span>
-                            <span>{{item.execDept}}</span>
+                            <span class="sonElem">检验科室</span>
+                            <span>{{reportInfoData.applyDept}}</span>
                         </div>
-                        <div class=" parElem listData">
-                            <span class="sonElem">收样日期</span>
-                            <span>{{item.applyTime}}</span>
-                        </div>
-                        <div class="parElem listData">
-                            <span class="sonElem">标本类型</span>
-                            <span>{{item.sampleType}}</span>
-                        </div>
+
                         <div class="parElem listData">
                             <span class="sonElem">送检项目</span>
-                            <span>{{item.itemName}}</span>
+                            <span>{{reportInfoData.itemName}}</span>
                         </div>
                         <div class="parElem listData">
                             <span class="sonElem">报告时间</span>
-                            <span>{{item.reportTime}}</span>
+                            <span>{{reportInfoData.reportTime|lasttime}}</span>
                         </div>
                         <div class=" listData parElem">
                             <span class="sonElem">临床诊断</span>
-                            <span>{{item.diag}}</span>
+                            <span>{{reportInfoData.diag}}</span>
                         </div>
                     </div>
                 </div>
-                <div class="flatCard margin5">
-                    <div class="cardText">
-                        <div class="cardTextKind spanWid">
-                            <span style="text-align: left">项目名称</span>
-                            <span>结果值</span>
-                            <span>单位</span>
-                            <span style="text-align: right">参考值</span>
-                        </div>
-                        <div class="cardTextPP spanWid arrow" v-for="(item,i) in reportResult" :key="i">
-                            <span>{{item.itemName}}</span>
-                            <span>{{item.itemValue}}
-                                <span>{{item.contrast}}</span>
-                            </span>
-                            <span>{{item.unit}}</span>
-                            <span>{{item.referenceValue}}</span>
+                <div class="margin5">
+                    <div class="cardText Cardswitch0">
+                        <span class="pingbi">仅看异常</span>
+                        <md-switch v-model="isActive" @change="handler('switch0', isActive, $event)"></md-switch>
+                    </div>
+                </div>
+                <div class="flatCard" v-for="(item,index) in  section" :key="index+'bb'">
+                    <div class="cardText alignJ">
+                        <p class="title">{{item.itemName}}
+                            <span class="title-desc" v-if="item.unit">({{item.unit}})</span>
+                        </p>
+                        <div class="indicator">
+                            <p class="value" :style="getleftTEXT(Number(item.beginStr),Number(item.endStr),Number(item.itemValue))">{{item.itemValue}} </p>
+                            <div class="xui-process">
+                                <i class="xui-icon-flag" :style="getleft(Number(item.beginStr),Number(item.endStr),Number(item.itemValue))"></i>
+                                <div class="xui-process-static"></div>
+                                <div class="xui-process-active"></div>
+                                <div class="hight-value" :style="hightValue(Number(item.beginStr),Number(item.endStr),Number(item.itemValue))"></div>
+                                <div class="low-value" :style="lowValue(Number(item.beginStr),Number(item.endStr),Number(item.itemValue))"></div>
+                            </div>
+                            <p>
+                                <span>{{item.beginStr}} </span>
+                                <span>正常</span>
+                                <span> {{item.endStr}}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <p class="noMore">注意：此结果仅供参考,最终结果以医院打印报告为准。</p>
+
+                <div class="flatCard">
+                    <div class="cardText alignJ">
+                        <div class="parElem listData" v-for="(section,index) in reportInfoData.noSection" :key="index+'aa'">
+                            <span class="sonElem">{{section.itemName}}</span>
+                            <span>{{section.itemValue}} {{section.unit}}</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="warn">温馨提示：此次检查结果，仅对本次查体，检查，检验样本负责。</p>
             </div>
         </div>
         <Loading v-show="loadingtrue"></Loading>
-        <!--<div class="cardTextPP alignJ">-->
-        <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
-        <!--<span class="sonElem">检查参数</span>-->
-        <!--<span style="width:78%;">您牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
-        <!--</div>-->
-        <!--<div class="parElem" style="display: flex;justify-content: space-between;align-items: center;flex-direction: unset">-->
-        <!--<span class="sonElem">检数</span>-->
-        <!--<span style="width:78%;">牛牛牛牛牛牛牛您牛牛牛牛牛牛牛牛牛牛牛</span>-->
-        <!--</div>-->
-        <!--</div>-->
     </div>
-
 </template>
 <script  >
 let bizbizPacsReportreaddetail = '/app/bizPacsReport/read/detail';
@@ -146,12 +133,13 @@ let bizLisReportreaddetail = '/app/bizLisReport/read/detail';
 export default {
     data() {
         return {
-
+            isActive: false,
             normal: {
                 checkbox: true,
                 radio: 1,
                 switch: false
             },
+
             time: [
                 { title: '待支付' },
                 { title: '预约成功' },
@@ -168,25 +156,117 @@ export default {
             before: [],
             after: [],
             loadingtrue: true,
+            section: '',
         };
     },
-
-    created() {
-
-    },
     mounted() {
-        this.feeActiveId = this.$store.state.feeActiveId;
-        if (this.$store.state.feeActiveId == 1) {
+        this.feeActiveId = sessionStorage.getItem('feeActiveFun') * 1;
+        if (this.$route.query.objType == 3) {
+            this.feeActiveId = 1
+        } else if (this.$route.query.objType == 4) {
+            this.feeActiveId = 2
+        }
+        if (this.feeActiveId == 1) {
             this.checkReportDetail();
             this.postTitle = "检查报告详情";
             document.title = '检查报告详情';
-        } else if (this.$store.state.feeActiveId == 2) {
+        } else if (this.feeActiveId == 2) {
             this.collectReportDetail();
             this.postTitle = "检验报告详情";
             document.title = '检验报告详情';
         }
+
     },
     methods: {
+        hightValue(min, max, value) {
+            let aa = `width: 20%; position: absolute; background:#ffafa9; top: 0.28rem; height: 0.04rem;`
+            let bb = `width: 20%; position: absolute; background:#b1b1b1; top: 0.28rem; height: 0.04rem;`
+            if (value < min) {
+                return bb + `right: 0`
+
+            } else if (value > max) {
+                return aa + `right:0`
+            } else {
+                if (value == min) {
+                    return bb + `right: 0`
+                } else if (value == max) {
+                    return bb + `right: 0`
+                } else {
+                    return bb + `right: 0`
+                }
+            }
+        },
+        lowValue(min, max, value) {
+            let aa = `width: 20%; position: absolute; background:#ffafa9; top: 0.28rem; height:  0.04rem;`
+            let bb = `width: 20%; position: absolute; background:#b1b1b1; top: 0.28rem; height:  0.04rem;`
+            if (value < min) {
+                return aa + `left: 0`
+
+            } else if (value > max) {
+                return bb + `left: 0`
+            } else {
+                if (value == min) {
+                    return bb + `left: 0`
+                } else if (value == max) {
+                    return bb + `left: 0`
+                } else {
+                    return bb + `left: 0`
+                }
+            }
+        },
+        getleft(min, max, value) {
+
+            if (value < min) {
+                return ` left: 10%;background: #ff584b;`
+
+            } else if (value > max) {
+                return `right: 10%;background: #ff584b;`
+            } else {
+                if (value == min) {
+                    return `left: 20%;background: #1da1f3;`
+                } else if (value == max) {
+                    return `right: 20%;background: #1da1f3;`
+                } else {
+
+                    if ((value - min) / (max - min) - 0.2 < 0.1) {
+                        var aa = (value - min) / (max - min) + 0.2
+                    } else {
+                        var aa = (value - min) / (max - min) - 0.2
+                    }
+                    return `left: ${aa * 100}%;color:#1da1f3`
+                }
+            }
+
+
+
+
+        },
+        getleftTEXT(min, max, value) {
+            if (value < min) {
+                return `margin-left: 10%;color:#ff584b ,`
+
+            } else if (value > max) {
+                return `margin-left: 90%;color:#ff584b , `
+            } else {
+                if (value == min) {
+                    return `margin-left: 20%;color: #1da1f3;`
+                } else if (value == max) {
+                    return `margin-right: 20%;color: #1da1f3;`
+                } else {
+                    if ((value - min) / (max - min) - 0.2 < 0.1) {
+                        var bb = (value - min) / (max - min) + 0.2
+                    } else {
+                        var bb = (value - min) / (max - min) - 0.2
+                    }
+                    return `margin-left: ${bb * 100}%;color:#1da1f3`
+                }
+            }
+
+        },
+        handler(name, active) {
+            this.reportInfoData = [];
+            this.collectReportDetail()
+        },
         payment() {
             this.$router.push({
                 name: 'payment',
@@ -204,13 +284,13 @@ export default {
             this.reportInfoId = this.$route.query.id;
             let checkParams = {};
             checkParams.id = parseInt(this.reportInfoId);
-            checkParams.pageSize = this.pageSize;
-            checkParams.pageNumber = this.pageNumber;
+
+
             this.$axios.put(bizbizPacsReportreaddetail, checkParams, {
             }).then((res) => {
                 if (res.data.code == '200') {
                     this.loadingtrue = false;
-                    this.reportInfoData.push(res.data.data);
+                    this.reportInfoData = res.data.data;
                 }
             }).catch(function (err) {
                 console.log(err);
@@ -219,33 +299,94 @@ export default {
         collectReportDetail() {
             let _this = this;
             this.collectInfoId = this.$route.query.id;
-            this.$axios.put(bizLisReportreaddetail, { id: parseInt(this.collectInfoId), pageSize: this.pageSize, pageNumber: this.pageNumber }, {
+            this.$axios.put(bizLisReportreaddetail, { id: parseInt(this.collectInfoId), contrast: this.isActive ? 1 : undefined }, {
             }).then((res) => {
                 if (res.data.code == '200') {
                     this.loadingtrue = false;
-                    this.reportInfoData.push(res.data.data);
-                    this.reportResult = res.data.data.details;
+                    this.reportInfoData = res.data.data;
+                    this.section = res.data.data.section;
                 }
             }).catch(function (err) {
                 console.log(err);
             });
         },
     },
-    beforeRouteLeave(to, from, next) {
-        if (to.path == "/reportquery") {
-            to.meta.keepAlive = true;
-            //this.$destroy();
-        } else {
-            to.meta.keepAlive = false;
-            //this.$destroy();
-        }
-        next();
-    },
-    computed: {
-    },
+
+
 };
 </script>
- <style   scoped>
+ <style  lang="scss"  scoped>
+.title {
+  line-height: 100px;
+}
+.title-desc {
+  color: var(--primary--KNline);
+  font-size: 26px;
+}
+.findings {
+  padding: 40px 0;
+  border-top: 2px solid #dedede;
+  line-height: 40px;
+  :nth-child(2) {
+    color: var(--primary--content);
+    margin-top: 10px;
+  }
+}
+.indicator {
+  background: #ffffff;
+  // padding: 20px;
+
+  .xui-process {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 28px 0 12px;
+    width: 100%;
+  }
+  .xui-process .xui-icon-flag {
+    position: absolute;
+    top: 17px;
+    width: 25px;
+    height: 25px;
+    background: var(--primary);
+    border-radius: 50%;
+    z-index: 9;
+  }
+  .xui-process .xui-process-static {
+    width: 100%;
+    height: 4px;
+    background: var(--primary--KNline);
+  }
+  .xui-process .xui-process-active {
+    position: absolute;
+    top: 28px;
+    left: 20%;
+    width: 0;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 10px;
+    width: 60%;
+  }
+  p {
+    color: var(--primary--red);
+    font-size: 32px;
+    line-height: 80px;
+    :nth-child(1) {
+      margin-left: 19%;
+    }
+    :nth-child(2) {
+      margin-left: 20%;
+    }
+    :nth-child(3) {
+      margin-left: 20%;
+    }
+    span {
+      font-size: 28px;
+      color: var(--primary--KNline);
+    }
+  }
+}
+
 .reportinfo .parElem .sonElem {
   width: 50%;
 }
@@ -253,7 +394,6 @@ export default {
   display: flex;
   justify-content: space-between;
   font-size: 28px;
-  /*align-items: center;*/
   padding: 18px 0;
 }
 .reportinfo .cardText .cardTextPP:last-child,
@@ -265,16 +405,11 @@ export default {
   justify-content: space-between;
   padding: 28px 0;
   font-size: 27px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 2px solid #e9e9e9;
   font-weight: 700;
   margin-bottom: 28px;
 }
 .reportinfo .spanWid span {
-  /*display: inline-block;*/
-  /*word-break: normal;*/
-  /*white-space: pre-wrap;*/
-  /*word-wrap: break-word;*/
-  /*overflow: hidden;*/
   text-align: center;
 }
 
@@ -299,24 +434,42 @@ export default {
   width: 20%;
   text-align: right;
 }
+
+.Cardswitch0 {
+  display: flex;
+  justify-content: space-between;
+}
+.reportinfo .md-switch {
+  box-sizing: border-box;
+  position: relative;
+  width: 70px;
+  height: 34px;
+  border-radius: 48px;
+  background-color: #e2e4ea;
+}
+.reportinfo .md-switch:before {
+  width: 0.7rem;
+  height: 0.34rem;
+  border-radius: 0.24rem;
+}
+.reportinfo .md-switch:after {
+  top: 3px;
+  left: 0.04rem;
+  width: 0.29rem;
+  height: 0.29rem;
+  background-color: #fff;
+  border-radius: 50%;
+}
 .reportinfo .flatCard {
   border-top: none;
+  margin-bottom: 20px;
 }
 .reportinfo .parElem {
   line-height: 46px;
 }
-/*.cardBottom div{*/
-/*padding-top: 0;*/
-/*}*/
-/*.cardBottom .alignJ .parElem span:first-child{*/
-/*position: relative;*/
-/*!*top: 16px;*!*/
-/*}*/
-/*.reportinfo .alignJ .parElem span:nth-child(2){*/
-/*margin-left: 40px;*/
-/*color:  var(--primary--content);*/
-/*}*/
-/*.reportinfo .alignJ .parElem:first-child{*/
-/*padding-top: 0;*/
-/*}*/
+.reportinfo .warn {
+  font-size: 24px;
+  color: #8d8d8d;
+  margin: 24px;
+}
 </style>

@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import home from './home';
+import my from './my';
 import chat from './modules/chat'
 
 console.log(home)
-
 
 Vue.use(Vuex);
 export default new Vuex.Store({
@@ -158,11 +158,11 @@ export default new Vuex.Store({
         chooseInfoFun: (state, n) => {
             state.chooseInfo = n;
         },
-
     },
     actions:{},
     modules: {
         home,
+        my,
         chat
     }
 })

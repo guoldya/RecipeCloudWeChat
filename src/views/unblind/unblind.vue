@@ -17,10 +17,6 @@
               <span class="flexF">电子就诊卡号</span>
               <input class="flexF" type="text" name="cardNo" placeholder="电子就诊卡号" :value="cardNo">
             </div>
-            <!-- <div class="login-box-div">
-              <span class="flexF">登记号</span>
-              <input type="text" class="infos flexF" name="yanz" placeholder="登记号" :value="registerNo" maxlength="4" />
-            </div> -->
           </div>
         </div>
       </div>
@@ -93,8 +89,6 @@ export default {
 
   },
   mounted() {
-    console.log(this.$store.state.cardId)
-    document.title = '就诊卡详情';
     this.$store.dispatch('getCards', { update: true });
   },
   methods: {
@@ -116,13 +110,9 @@ export default {
             if (res.data.code == '200') {
 
               this.$store.dispatch('getCards', { update: true }).then(res => {
-                console.log(this._cardlist);
-                this.$store.commit('cardIdFun', this._cardlist[0].id);
-                if (this.$route.query.id * 1 == this.$store.state.cardId) {
-                  this.$store.commit('patientIdFun', this._cardlist[0].patientId);
-                  this.$store.commit('cardNoFun', this._cardlist[0].cardNo);
-                  this.$store.commit('cardNnameFun', this._cardlist[0].patientName);
-                  this.$store.commit('cardIdFun', this._cardlist[0].id);
+                if (this.$route.query.id * 1 == JSON.parse(sessionStorage.getItem('objInfo')).id) {
+                  let setInfo = JSON.stringify(this._cardlist[0])
+                  sessionStorage.setItem('objInfo', setInfo)
                 }
               }
 

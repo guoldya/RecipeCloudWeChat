@@ -119,8 +119,62 @@ export default {
       });
     },
     selectPeople(data) {
+      console.log("birthday："+data)
+      if(data.birthday) {
+        // data.age = this.getAge(data.birthday);
+        data.put("age",this.getAge(data.birthday));
+        // JSON.parse(data).age = this.getAge(data.birthday);
+      }
       this["chat/setPatienDetail"](data);
+      // console.log("pe:"+JSON.stringify(data))
       this.$router.go(-1);
+    },
+    getAge(value) {
+      // if (value) return
+      if (!value.split(" ")) return
+      var strBirthdayArr = value.split(" ");
+      var strBirthdayArr = strBirthdayArr[0].split("-");
+      var birthYear = strBirthdayArr[0];
+      var birthMonth = strBirthdayArr[1];
+      var birthDay = strBirthdayArr[2];
+
+      var d = new Date();
+      var nowYear = d.getFullYear();
+      var nowMonth = d.getMonth() + 1;
+      var nowDay = d.getDate();
+
+      if (nowYear == birthYear) {
+        value = 0;//同年 则为0岁
+      }
+      else {
+        var ageDiff = nowYear - birthYear; //年之差
+        if (ageDiff > 0) {
+          if (nowMonth == birthMonth) {
+            var dayDiff = nowDay - birthDay;//日之差
+            if (dayDiff < 0) {
+              value = ageDiff - 1;
+            }
+            else {
+              value = ageDiff;
+            }
+          }
+          else {
+            var monthDiff = nowMonth - birthMonth;//月之差
+            if (monthDiff < 0) {
+              value = ageDiff - 1;
+            }
+            else {
+              value = ageDiff;
+            }
+          }
+        }
+        else {
+          value = -1;//返回-1 表示出生日期输入错误 晚于今天
+        }
+      }
+      // this._patienDetail.age = value;
+      console.log(this._patienDetail.age, "岁数")
+      return value;//返回周岁年龄
     },
   }
 }
