@@ -84,10 +84,10 @@ body {
   margin: 24px;
 }
 
-.nullTEXT{
+.nullTEXT {
   font-size: 26px;
   line-height: 100px;
-  color:#a7a7a7
+  color: #a7a7a7;
 }
 .bottomback span {
   border-radius: 60px;
@@ -227,7 +227,6 @@ body {
   display: inline-block;
   height: 80px;
   line-height: 80px;
-   
 }
 .bButton {
   background-color: var(--primary);
@@ -291,8 +290,8 @@ input:-ms-input-placeholder {
   color: var(--primary--content);
   padding: 24px;
 }
-.colopor{
-   color: var(--primary--content);
+.colopor {
+  color: var(--primary--content);
 }
 .warnText p {
   padding: 4px 0;
@@ -483,7 +482,21 @@ p {
   white-space: nowrap;
   line-height: 1.5rem;
 }
-
+.margin100 {
+  margin-top: 100px;
+}
+.lookmore {
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 26px;
+  color: var(--primary--content);
+  border-top: 1px solid #e5e5e5;
+  line-height: 50px;
+}
+.lookmore img {
+  width: 12px;
+}
 .swiper-container-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-custom,
 .swiper-pagination-fraction {

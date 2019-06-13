@@ -9,6 +9,12 @@ const feeinfo = () => import(/* webpackChunkName: "home" */ "@/views/feeinfo/fee
 const feerecord = () => import(/* webpackChunkName: "home" */ "@/views/feerecord/feerecord.vue")
 const feesucces = () => import(/* webpackChunkName: "home" */ "@/views/feesucces/feesucces.vue")
 const doctor = () => import(/* webpackChunkName: "home" */ "@/views/doctordetail/doctor.vue")
+const outpatientinfo = () => import(/* webpackChunkName: "home" */ "@/views/home/outpatientinfo")
+const outpatient = () => import(/* webpackChunkName: "home" */ "@/views/home/outpatient")
+const medicalinfo = () => import(/* webpackChunkName: "home" */ "@/views/home/medicalinfo")
+const medical = () => import(/* webpackChunkName: "home" */ "@/views/home/medical")
+const medicalhistory = () => import(/* webpackChunkName: "home" */ "@/views/home/medicalhistory")
+const medicaldetail = () => import(/* webpackChunkName: "home" */ "@/views/home/medicaldetail")
 import acctest from '@/views/acctest/acctest.vue'
 import acctestinfo from '@/views/acctestinfo/acctestinfo.vue'
 import suggestion from '@/views/suggestion/suggestion.vue'
@@ -44,7 +50,7 @@ import cardblind from '@/views/cardblind/cardblind.vue'
 import cardhave from '@/views/cardhave/cardhave.vue'
 import resultdocotor from '@/views/resultdocotor/resultdocotor.vue'
 import registrecorddetail from '@/views/registrecorddetail/registrecorddetail.vue'
-import doctorschedu from '@/views/doctorschedu/doctorschedu.vue' 
+import doctorschedu from '@/views/doctorschedu/doctorschedu.vue'
 
 
 
@@ -70,7 +76,7 @@ import choose from '@/views/inspectionCheck/choose'
 import confirmOrder from '@/views/inspectionCheck/confirmOrder'
 import inspectSuccess from '@/views/inspectionCheck/inspectSuccess'
 
- 
+
 
 
 
@@ -186,6 +192,16 @@ export default new Router({
     // meta: {
     //   keepAlive: true
     // }
+  },
+  {
+    path: '/outpatient',
+    name: 'outpatient',
+    component: outpatient,
+  },
+  {
+    path: '/outpatientinfo',
+    name: 'outpatientinfo',
+    component: outpatientinfo,
   },
   {
     path: '/confirmOrder',
@@ -634,6 +650,26 @@ export default new Router({
     path: '/medicalEva',
     name: 'medicalEva',
     component: medicalEva
+  },
+  {
+    path: '/medical',
+    name: 'medical',
+    component: medical,
+  },
+  {
+    path: '/medicalhistory',
+    name: 'medicalhistory',
+    component: medicalhistory,
+  },
+  {
+    path: '/medicaldetail',
+    name: 'medicaldetail',
+    component: medicaldetail,
+  },
+  {
+    path: '/medicalinfo',
+    name: 'medicalinfo',
+    component: medicalinfo,
   },
   {
     path: '/recipeDetail',

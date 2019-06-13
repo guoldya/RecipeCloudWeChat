@@ -309,7 +309,7 @@ export default {
     },
     // 发送消息
     send() {
-    console.log(this.chat.historyNews+"xxxxxxx")
+    console.log(this.chat.historyNews.length+"xxxxxxx")
       console.log("我是ya亚男")
       if (this.inputValue == 0) {
         this.$toast.info("请输入消息");
@@ -336,15 +336,7 @@ export default {
       // 清空输入框的数据
       this.$refs.inputModel.innerHTML = "";
 
-      // let msg = {
-      //   cmd: 19,
-      //   type: 1,
-      //   fromUserId: 12,
-      //   userId: 125
-      //   //userId:item.from  == 125 ? 123 :125
-      // };
-      // console.log("有趣")
-      // this.chat.websocket.send(JSON.stringify(msg));
+      
 
     },
     // 添加消息

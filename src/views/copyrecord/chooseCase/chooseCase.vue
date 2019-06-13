@@ -4,35 +4,44 @@
     <Navigation type="title" title="选择复印病案">
       <span v-show="copyResultData.length!=0" class="mu-secondary-text-color" @click="getJumpId">确定</span>
     </Navigation>
-    <div class="margin55" style="margin-bottom:70px">
-      <div class="tabAdiv flatCard" v-for="(item,i) in copyResultData" v-if="copyResultData.length!=0" v-show="!loadingtrue" :key="i">
-        <div class="listData mu-secondary-text-color">
-          <!-- <md-radio :name="i" v-model="checked" /> -->
-          <label class="md-radio" :class="{'is-checked':checked==item.id}" @click="checkedFun(item,i)">
-            <div class="md-radio-icon">
-              <i class="md-icon icon-font md-icon-checked checked md"></i>
-            </div>
-          </label>
+    <div class="margin55">
+      <div class="recipeRecord">
+        <div class="recordcard" v-for="(item,i) in copyResultData" v-if="copyResultData.length!=0" v-show="!loadingtrue" :key="i">
+          <div class="listData">
+            <span class="title">
+              <span class="tag">
+                第{{item.ihCount}}次住院
+              </span>
+            </span>
+            <span>
+              <label class="md-radio" :class="{'is-checked':checked==item.id}" @click="checkedFun(item,i)">
+                <div class="md-radio-icon">
+                  <i class="md-icon icon-font md-icon-checked checked md"></i>
+                </div>
+              </label>
+            </span>
+          </div>
+          <div class="recordcard-content">
+            <p class="parElem listData">
+              <span class="sonElem">姓名</span>
+              <span> {{item.name}}</span>
+            </p>
+            <p class="parElem listData">
+              <span class="sonElem">病区</span>
+              <span>{{item.area}}</span>
+            </p>
+            <p class="parElem listData">
+              <span class="sonElem">出院诊断</span>
+              <span> {{item.diag}}</span>
+            </p>
+            <p class="parElem listData">
+              <span class="sonElem">入院日期</span>
+              <span> {{item.inTime | lasttime}}</span>
+            </p>
+          </div>
         </div>
-        <div class="chooseCaseText">
-          <p>患者姓名：{{item.name}}</p>
-          <p>住院科室：{{item.dept}}</p>
-          <p>出院诊断：{{item.diag}} </p>
-          <p>入院日期：{{item.inTime | lasttime}}</p>
-          <p>出院日期：{{item.outTime | lasttime}}</p>
-        </div>
-        <div class="chooseCaseTime">
-          <span>第
-            <span class="number">{{item.ihCount}}</span>次 </span>
-          <!--第-->
-          <!--<div class="number">1</div>-->
-          <!--次-->
-        </div>
-        <!-- <p class="addbTN" @click="getJumpId()">确定</p> -->
       </div>
-      <div v-show="!loadingtrue" class="aligncenter nullDiv" v-if="copyResultData.length==0">
-        <img src="@/assets/images/null1.png">
-      </div>
+      <Null :loading-true="!loadingtrue&&copyResultData.length==0"></Null>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
         <span v-if="copyResultData.length!=0&&!nomore">
           <span class="mu-light-text-color">加载中</span>
@@ -44,6 +53,8 @@
   </div>
 </template>
 <script type="text/babel"> 
+
+
 let copyApply_page_url = "/app/bizIhRecord/read/page";
 export default {
   data() {
@@ -56,18 +67,13 @@ export default {
       page: 1,
       pageSize: 10,
       copyResultData: [],
+      totalMoney: '',
     };
   },
 
-  created() {
-
-  },
-  watch: {
-
-  },
   mounted() {
     this.addadress();
-    this.$axios.put(copyApply_page_url, { status: 3 }).then(res => {
+    this.$axios.put(copyApply_page_url, { status: 3, }).then(res => {
       this.checked = res.data.rows[0].id;
       this.$store.commit('chooseInfoFun', res.data.rows[0]);
     })
@@ -82,7 +88,6 @@ export default {
         if (res.data.rows) {
           this.loadingtrue = false;
           if (flag) {
-
             this.copyResultData = this.copyResultData.concat(res.data.rows);  //concat数组串联进行合并
             if (this.page < Math.ceil(res.data.total / 10)) {  //如果数据加载完 那么禁用滚动时间 this.busy设置为true
               this.busy = false;
@@ -117,8 +122,11 @@ export default {
       }, 500);
     },
     checkedFun: function (val, i) {
+      let setInfo = JSON.stringify(val)
+      sessionStorage.setItem('chooseInfo', setInfo)
       this.$store.commit('chooseInfoFun', val);
       this.checked = val.id
+
     },
 
     getJumpId(val) {
@@ -139,60 +147,79 @@ export default {
 
 };
 </script>
- <style scoped>
-.chooseCase .tabAdiv {
-  display: flex;
-  justify-content: space-around;
-  background-color: #ffffff;
-  font-size: 28px;
-  margin-bottom: 10px;
+ <style lang="scss"  scoped>
+ .recordcard {
+  background: #fff;
+  border-radius: 17px;
+  margin: 24px;
+  .listData {
+    padding: 24px 24px 6px;
+    border-bottom: 1px solid #e5e5e5;
+    .title {
+      position: relative;
+      top: -10px;
+      img {
+        width: 40px;
+        margin-right: 5px;
+        position: relative;
+        top: 10px;
+      }
+    }
+  }
+  .recordcard-content {
+    padding: 14px 0;
+    .listData {
+      padding: 7px 24px;
+      border-bottom: none;
+      span {
+        padding: 0;
+        max-width: 70%;
+      }
+      .have {
+        font-size: 28px;
+        color: #ffffff;
+        float: right;
+        background: var(--primary);
+        border-radius: 40px;
+        letter-spacing: 1px;
+        width: 134px;
+        line-height: 60px;
+        text-align: center;
+        margin-top: 20px;
+      }
+    }
+  }
 }
-.chooseCase .tabAdiv div:first-child {
-  /*line-height: 200px;*/
-  display: flex;
-  width: 10%;
-}
-.chooseCase .chooseCaseBtn {
-  width: 15%;
-  height: 200px;
-  text-align: center;
-  display: inline-block;
+.chooseCase .tag {
+  width: 150px;
+  height: 60px;
+  background: #1da1f3;
+  position: absolute;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 0 40px 40px 0;
   color: #ffffff;
+  line-height: 40px;
+  padding: 10px;
+  font-size: 26px;
+  left: -38px;
+}
+.chooseCase .tag:before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: -8px;
+  left: 0px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-right: 14px solid #0b96d2;
+}
+.chooseCase .recipeRecord .listData {
+  padding-bottom: 18px;
 }
 .chooseCase .md-radio {
-  margin-left: 20%;
-}
-.chooseCase .chooseCaseText {
-  width: 60%;
-  height: 200px;
-  margin: 24px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.chooseCase .chooseCaseTime {
-  width: 30%;
-  /*height: 200px;*/
-  line-height: 248px;
-  text-align: center;
-  background: var(--primary);
-  display: inline-block;
-  color: #ffffff;
-}
-.chooseCase .chooseCaseTime .number {
-  display: inline-block;
-  color: var(--primary);
-  background: #ffffff;
-  border-radius: 50%;
-  font-size: 28px;
-  font-weight: 700;
-  text-align: center;
-  line-height: 44px !important;
-  height: 44px;
-  width: 44px;
-  margin: 0 6px;
-}
-.chooseCase .flatCard {
-  border-top: none;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 </style>

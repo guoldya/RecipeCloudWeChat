@@ -156,7 +156,7 @@ export default {
     }
   },
   mounted() {
-    document.title = '资料确认';
+   
     this.$refs.Pgmodal.istype = 2;
 
     document.scrollingElement.scrollTop = 0
@@ -164,8 +164,7 @@ export default {
 
     this.nextPar = this.$route.query;
 
-    this.nextPar.idCardImg = JSON.stringify(this.$store.state.cardImgData)
-    console.log(this.$store.state.idCardInfo);
+     
   },
   methods: {
     chooseCase() {
