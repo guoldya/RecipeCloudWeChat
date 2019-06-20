@@ -121,7 +121,7 @@ export default {
     selectPeople(data) {
       console.log("birthday："+data)
       if(data.birthday) {
-        // data.age = this.getAge(data.birthday);
+        data.age = this.getAge(data.birthday);
         data.put("age",this.getAge(data.birthday));
         // JSON.parse(data).age = this.getAge(data.birthday);
       }
