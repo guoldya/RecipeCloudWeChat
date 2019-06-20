@@ -58,7 +58,6 @@ export default {
             }
       },
       mounted() {
-
             document.getElementById("oc_vala").focus();
             var aa = window.localStorage;
             if (aa.getItem("onlineHistory") != null && aa.getItem("onlineHistory") != undefined) {

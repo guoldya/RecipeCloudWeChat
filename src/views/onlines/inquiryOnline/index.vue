@@ -39,11 +39,11 @@
             <div class="content">
               <img v-for="(item2, index) in  item.content.post" :key="index+'img'" :src="item2" alt>
               <!-- <img :src="item.content.post[1]" alt>
-              <img :src="item.content.post[2]" alt> -->
+              <img :src="item.content.post[2]" alt>-->
             </div>
           </div>
           <div class="online-content-list-text" v-if="item.msgType == 1">
-            <img :src="item.content" alt style="width:100px;" @click="showViewer(item.content)">
+            <img :src="item.content" alt style="width:100px;" @click="showViewer(item.content)" @load="scrollBottom()">
           </div>
         </li>
       </ul>
@@ -151,7 +151,7 @@ import websocketConfig from "../../../service/websocket.js";
 let updateOrder = "/app/bizOnlineServiceRecord/updateOrder";
 let uploadImage = "/appLogin/uploadImage";
 import { Dialog } from "mand-mobile";
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 export default {
   data() {
     return {
@@ -184,16 +184,10 @@ export default {
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
     //  用于演示临时加得
     // this['chat/setFriendId'](this.$route.query.id);
-    console.log("historyNews:"+JSON.stringify(this.chat.historyNews))
-    console.log("用户id:" + this.userInfo.id);
-    console.log("朋友id:" + this.chat.friendId);
-    if (typeof this.chat.websocket.url == "undefined")
-      websocketConfig();
+    // console.log("用户id:" + this.userInfo.id);
+    // console.log("朋友id:" + this.chat.friendId);
+    if (typeof this.chat.websocket.url == "undefined") websocketConfig();
     // let args = this.chat.historyNews.filter(item => item.msgType == 7);
-    window.onresize = () => {
-      this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight
-    }
-    
   },
   updated: function() {
     if (this.isViewerShow) {
@@ -264,14 +258,9 @@ export default {
     ]),
     scrollBottom() {
       // 内容区在底部
-      this.$nextTick(() =>{
+      this.$nextTick(() => {
         var ele = this.$refs.chatContent;
-        console.log(this.$refs)
-        console.log("scrollHeight:"+JSON.stringify(ele.scrollHeight))
         ele.scrollTop = ele.scrollHeight;
-        
-        console.log("scrollTop:"+JSON.stringify(this.$refs.chatContent.scrollTop))
-        
       });
     },
     showViewer(index) {
@@ -299,42 +288,41 @@ export default {
       try {
         var formData = new FormData();
         var file = this.$refs.uploadImg.files[0];
-        console.log(file, "file");
         formData.append("file", file);
         let config = {
           headers: {
             "Content-Type": "multipart/form-data"
           }
         }; //添加请求头
-        this.$axios.post(uploadImage, formData, config)
-          .then(res => {
-            if (res.data.code == "200") {
-              let createTime = new Date().getTime();
-              let msg = {
-                // 发送消息传的数据
-                from: this.userInfo.id,
-                to: Number(this.$route.params.fromId)? Number(this.$route.params.fromId): Number(this.$route.query.id),
-                // to: 57,
-                cmd: 11,
-                createTime: createTime,
-                msgType: 1,
-                chatType: 2,
-                content: this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName
-              };
-              // console.log(msg.content+"把当前发送的消息添加到历史消息去")
-              // 把当前发送的消息添加到历史消息去
-              let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
-              arr.push(msg);
-              this["chat/setHistoryNews"](arr);
-              this.chat.websocket.send(JSON.stringify(msg));
-              // console.log("res："+JSON.stringify(res.data.fileInfo[0].fileName))
-            } else {
-              this.$toast.info(res.data.msg);
-            }
-          })
-        } catch(err) {
-            console.log(err);
-        }
+        this.$axios.post(uploadImage, formData, config).then(res => {
+          if (res.data.code == "200") {
+            let createTime = new Date().getTime();
+            let msg = {
+              // 发送消息传的数据
+              from: this.userInfo.id,
+              to: Number(this.$route.query.id),
+              // to: 57,
+              cmd: 11,
+              createTime: createTime,
+              msgType: 1,
+              chatType: 2,
+              content:
+                this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName
+            };
+            // console.log(msg.content+"把当前发送的消息添加到历史消息去")
+            // 把当前发送的消息添加到历史消息去
+            let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
+            arr.push(msg);
+            this["chat/setHistoryNews"](arr);
+            this.chat.websocket.send(JSON.stringify(msg));
+            // console.log("res："+JSON.stringify(res.data.fileInfo[0].fileName))
+          } else {
+            this.$toast.info(res.data.msg);
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
     },
     // 发送消息
     send() {
@@ -346,15 +334,14 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: Number(this.$route.params.fromId)? Number(this.$route.params.fromId): Number(this.$route.query.id),
-        // to: 57,
+        to: Number(this.$route.query.id),
         cmd: 11,
         createTime: createTime,
         msgType: 0,
         chatType: 2,
         content: this.inputValue
       };
-      console.log("TO:" + msg.to);
+      // console.log("TO:" + msg.to);
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
       arr.push(msg);
@@ -372,7 +359,7 @@ export default {
     }
   },
   beforeRouteLeave(to, from, next) {
-    let id = this.$route.params.fromId;
+    let id = this.$route.query.id;
     let index = this.chat.chatQueue.findIndex(msg => msg.id == id);
     let arr = JSON.parse(JSON.stringify(this.chat.chatQueue));
     if (index != -1) {

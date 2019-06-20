@@ -118,7 +118,6 @@ export default {
         return
       }
       var data = this._patienDetail;
-      console.log("_patienDetail:"+JSON.stringify(this._patienDetail))
       data.questionDes = this.questionDes;
       data.anamnesisDes = this.anamnesisDes.trim();
       this["chat/setPatienDetail"](data);
@@ -134,7 +133,6 @@ export default {
         chatType: 2,
         content: data,
       };
-      console.log("data:"+JSON.stringify(msg.content))
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.$store.state.chat.historyNews))
       arr.push(msg)
