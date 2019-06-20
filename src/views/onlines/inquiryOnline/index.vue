@@ -7,21 +7,11 @@
     <!-- 聊天内容区域 -->
     <div class="inquiry-online-content" ref="chatContent" @click="toolType=''">
       <ul class="online-content-warp">
-        <li
-          v-for="(item, index) in  chat.historyNews"
-          :key="index"
-          class="online-content-list"
-          :class="item.from != userInfo.id ? '' : 'right'"
-        >
+        <li v-for="(item, index) in  chat.historyNews" :key="index" class="online-content-list" :class="item.from != userInfo.id ? '' : 'right'">
           <!-- <img class="online-content-list-head" src="@/assets/images/3.jpg" v-if="item.from != userInfo.id" alt="" />
           <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" />-->
 
-          <img
-            class="online-content-list-head"
-            src="@/assets/images/head1.png"
-            v-if="item.from != userInfo.id"
-            alt
-          >
+          <img class="online-content-list-head" src="@/assets/images/head1.png" v-if="item.from != userInfo.id" alt>
           <img class="online-content-list-head" src="@/assets/images/head.png" v-else alt>
           <div class="online-content-list-text" v-if="item.msgType == 0">
             <em></em>
@@ -43,7 +33,7 @@
             </div>
           </div>
           <div class="online-content-list-text" v-if="item.msgType == 1">
-            <img :src="item.content" alt style="width:100px;" @click="showViewer(item.content)">
+            <img :src="item.content" alt style="width:100px;" @load="scrollBottom()" @click="showViewer(item.content)">
           </div>
         </li>
       </ul>
@@ -54,13 +44,7 @@
         <span class="yuyiin">
           <i class="iconfont icon-yuyin"></i>
         </span>
-        <div
-          contenteditable="true"
-          class="input"
-          @click="e => e.target.focus()"
-          @input="changeVal"
-          ref="inputModel"
-        ></div>
+        <div contenteditable="true" class="input" @click="e => e.target.focus()" @input="changeVal" ref="inputModel"></div>
         <span class="send" @click="send" :class="inputValue ? 'active' : ''">发送</span>
       </div>
       <div class="inquiry-online-tool-detail">
@@ -180,22 +164,23 @@ export default {
   },
   async mounted() {
     // 让滚动条滚动到指定位置
+
     this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
     //  用于演示临时加得
     // this['chat/setFriendId'](this.$route.query.id);
-    console.log("historyNews:"+JSON.stringify(this.chat.historyNews))
-    console.log("用户id:" + this.userInfo.id);
-    console.log("朋友id:" + this.chat.friendId);
+    // console.log("historyNews:"+JSON.stringify(this.chat.historyNews))
+    // console.log("用户id:" + this.userInfo.id);
+    // console.log("朋友id:" + this.chat.friendId);
     if (typeof this.chat.websocket.url == "undefined")
       websocketConfig();
     // let args = this.chat.historyNews.filter(item => item.msgType == 7);
     window.onresize = () => {
       this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight
     }
-    
+
   },
-  updated: function() {
+  updated: function () {
     if (this.isViewerShow) {
       return false;
     } else if (!this.isViewerShow && this.clickViewer) {
@@ -262,16 +247,18 @@ export default {
       "chat/setHistoryNews",
       "chat/setChatQueue"
     ]),
+    AAAA(){
+      console.log("aaaaaaaaa")
+    },
     scrollBottom() {
       // 内容区在底部
-      this.$nextTick(() =>{
+      this.$nextTick(() => {
         var ele = this.$refs.chatContent;
-        console.log(this.$refs)
-        console.log("scrollHeight:"+JSON.stringify(ele.scrollHeight))
+        // console.log("scrollHeight:"+JSON.stringify(ele.scrollHeight))
+        // // ele.scrollTop = ele.scrollHeight;
         ele.scrollTop = ele.scrollHeight;
-        
-        console.log("scrollTop:"+JSON.stringify(this.$refs.chatContent.scrollTop))
-        
+
+        console.log("scrollTop:" + JSON.stringify(this.$refs.chatContent.scrollTop))
       });
     },
     showViewer(index) {
@@ -299,7 +286,6 @@ export default {
       try {
         var formData = new FormData();
         var file = this.$refs.uploadImg.files[0];
-        console.log(file, "file");
         formData.append("file", file);
         let config = {
           headers: {
@@ -311,30 +297,28 @@ export default {
             if (res.data.code == "200") {
               let createTime = new Date().getTime();
               let msg = {
-                // 发送消息传的数据
                 from: this.userInfo.id,
-                to: Number(this.$route.params.fromId)? Number(this.$route.params.fromId): Number(this.$route.query.id),
-                // to: 57,
+                to: Number(this.$route.params.fromId) ? Number(this.$route.params.fromId) : Number(this.$route.query.id),
                 cmd: 11,
                 createTime: createTime,
                 msgType: 1,
                 chatType: 2,
                 content: this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName
               };
-              // console.log(msg.content+"把当前发送的消息添加到历史消息去")
               // 把当前发送的消息添加到历史消息去
               let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
               arr.push(msg);
               this["chat/setHistoryNews"](arr);
               this.chat.websocket.send(JSON.stringify(msg));
+              this.scrollBottom();
               // console.log("res："+JSON.stringify(res.data.fileInfo[0].fileName))
             } else {
               this.$toast.info(res.data.msg);
             }
           })
-        } catch(err) {
-            console.log(err);
-        }
+      } catch (err) {
+        console.log(err);
+      }
     },
     // 发送消息
     send() {
@@ -346,7 +330,7 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
-        to: Number(this.$route.params.fromId)? Number(this.$route.params.fromId): Number(this.$route.query.id),
+        to: Number(this.$route.params.fromId) ? Number(this.$route.params.fromId) : Number(this.$route.query.id),
         // to: 57,
         cmd: 11,
         createTime: createTime,
@@ -366,7 +350,6 @@ export default {
     },
     // 添加消息
     emojiAdd(val) {
-      console.log(val, "我是白哦");
       this.$refs.inputModel.innerHTML = this.inputValue + val;
       this.inputValue = this.inputValue + val;
     }

@@ -27,9 +27,9 @@
       <span class="warnbottom" @click="cardneed" style="text-align:center;line-height:30px;color:#f44336">
         电子就诊卡需知</span>
     </p>
-    <div  v-show="cardlist.length<5">
-      <div style="height: 50px" ></div>
-      <p  @click="blidcard" class="addbTN">添加电子就诊卡</p>
+    <div v-show="cardlist.length<5">
+      <div style="height: 50px"></div>
+      <p @click="blidcard" class="addbTN">添加电子就诊卡</p>
     </div>
 
     <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
@@ -119,10 +119,11 @@ export default {
       });
     },
     selectPeople(data) {
-      console.log("birthday："+data)
-      if(data.birthday) {
-        // data.age = this.getAge(data.birthday);
-        data.put("age",this.getAge(data.birthday));
+
+      if (data.birthday) {
+        data.age = this.getAge(data.birthday);
+        console.log(data.age, "data.age")
+        // data.put("age", this.getAge(data.birthday));
         // JSON.parse(data).age = this.getAge(data.birthday);
       }
       this["chat/setPatienDetail"](data);
@@ -130,6 +131,7 @@ export default {
       this.$router.go(-1);
     },
     getAge(value) {
+      console.log(value, "执行方法")
       // if (value) return
       if (!value.split(" ")) return
       var strBirthdayArr = value.split(" ");
@@ -173,7 +175,8 @@ export default {
         }
       }
       // this._patienDetail.age = value;
-      console.log(this._patienDetail.age, "岁数")
+      // console.log(this._patienDetail.age, "岁数")
+      console.log(value, "执行方法")
       return value;//返回周岁年龄
     },
   }

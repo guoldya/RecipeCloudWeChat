@@ -77,7 +77,6 @@
             </div>
             <div class="flatCard">
                 <Calendar style="margin-top: 8px;padding-top: 5px" v-show="!loadingtrue" v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :sundayStart="true"></Calendar>
-
             </div>
             <Loading v-show="loadingtrue"></Loading>
         </div>
@@ -93,7 +92,6 @@
         data() {
             return {
                 isSeemore: false,
-                
                 docId:'',
                 loadingtrue:true,
                 moreButton:false,
@@ -109,7 +107,6 @@
             this.docId=this.$route.query.doctorId;
             this.depart = this.$store.state.depart;
             document.title = '医生排班';
-             
             this.doctorscheduFun();
         },
         methods: {
