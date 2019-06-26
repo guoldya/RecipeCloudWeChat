@@ -66,7 +66,7 @@
   </div>
 </template>
 <script  >
-let bizbizPacsReportreaddetail = '/app/bizExamItemDetails/selectItemDetailList';
+let bizbizPacsReportreaddetail = '/bizExamItemDetails/selectItemDetailList';
 
 export default {
   data() {

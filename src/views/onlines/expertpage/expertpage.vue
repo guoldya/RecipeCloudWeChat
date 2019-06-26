@@ -52,8 +52,8 @@
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
 import doctorList from "../../../components/doctorList";
-const departmentUrl = "/app/bdHospitalOrg/read/selectClinicListByHospitalArea";
-const recommendUrl = "/app/bdOnlineDoctor/read/page";
+const departmentUrl = "/bdHospitalOrg/read/selectClinicListByHospitalArea";
+const recommendUrl = "/bdOnlineDoctor/read/page";
 
 export default {
   data() {

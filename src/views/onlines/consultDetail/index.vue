@@ -131,9 +131,9 @@
 </template>
 <script>
 import { Dialog, Agree, Toast } from "mand-mobile";
-const onlineDoctorDetailUrl = "/app/bdOnlineDoctor/read/detail";
-const commentUrl = "/app/bizOnlineServiceRecord/read/doctorRecordPage";
-const followDoctorUrl = "/app/bizDoctorFollow/followDoctor"
+const onlineDoctorDetailUrl = "/bdOnlineDoctor/read/detail";
+const commentUrl = "/bizOnlineServiceRecord/read/doctorRecordPage";
+const followDoctorUrl = "/bizDoctorFollow/followDoctor"
 export default {
   data() {
     return {

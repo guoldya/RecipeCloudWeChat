@@ -74,9 +74,9 @@
 </template>
 <script>
 
-let fee_detail_url = "/app/bizPayOrder/read/detail";
-let fconfirm_pay_url = "/app/bizCostBill/confirmPay";
-let now_pay_url = "/app/bizPayOrder/nowPay";
+let fee_detail_url = "/bizPayOrder/read/detail";
+let fconfirm_pay_url = "/bizCostBill/confirmPay";
+let now_pay_url = "/bizPayOrder/nowPay";
 import { Cashier } from 'mand-mobile'
 export default {
   data() {

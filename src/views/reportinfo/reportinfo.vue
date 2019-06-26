@@ -128,8 +128,8 @@
     </div>
 </template>
 <script  >
-let bizbizPacsReportreaddetail = '/app/bizPacsReport/read/detail';
-let bizLisReportreaddetail = '/app/bizLisReport/read/detail';
+let bizbizPacsReportreaddetail = '/bizPacsReport/read/detail';
+let bizLisReportreaddetail = '/bizLisReport/read/detail';
 export default {
     data() {
         return {

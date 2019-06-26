@@ -52,9 +52,9 @@
     </div>
 </template>
 <script type="text/babel">
-let bizLisReportreadpage = '/app/bizLisReport/read/page';
-let bizPatientCard = "/app/bizPatientCard/read/list";
-let selectUnReadTotal = "/app/bizLisReport/selectUnReadTotal";
+let bizLisReportreadpage = '/bizLisReport/read/page';
+let bizPatientCard = "/bizPatientCard/read/list";
+let selectUnReadTotal = "/bizLisReport/selectUnReadTotal";
 export default {
     data() {
         return {

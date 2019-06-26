@@ -55,7 +55,7 @@
 <script type="text/babel"> 
 
 
-let copyApply_page_url = "/app/bizIhRecord/read/page";
+let copyApply_page_url = "/bizIhRecord/read/page";
 export default {
   data() {
     return {

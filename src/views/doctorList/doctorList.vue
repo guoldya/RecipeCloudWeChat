@@ -146,8 +146,8 @@
   </div>
 </template>
 <script type="text/babel">
-let selectDoctorList = "/app/bdHospitalDoctor/read/selectDoctorList";
-let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
+let selectDoctorList = "/bdHospitalDoctor/read/selectDoctorList";
+let bdHospitalOrg = '/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     console.log(String(this.$route.query.deptId), "wp")

@@ -135,6 +135,7 @@ export default {
       this.$router.go(-1);
     },
     getAge(value) {
+      console.log(value, "执行方法")
       // if (value) return
       if (!value.split(" ")) return;
       var strBirthdayArr = value.split(" ");

@@ -76,7 +76,7 @@ body {
   margin-top: 12px;
 }
 .flatCard:first-child {
-  border-top: 2px solid #e9e9e9;
+  /* border-top: 2px solid #e9e9e9; */
 }
 .bottomback {
   display: flex;

@@ -7,21 +7,11 @@
     <!-- 聊天内容区域 -->
     <div class="inquiry-online-content" ref="chatContent" @click="toolType=''">
       <ul class="online-content-warp">
-        <li
-          v-for="(item, index) in  chat.historyNews"
-          :key="index"
-          class="online-content-list"
-          :class="item.from != userInfo.id ? '' : 'right'"
-        >
+        <li v-for="(item, index) in  chat.historyNews" :key="index" class="online-content-list" :class="item.from != userInfo.id ? '' : 'right'">
           <!-- <img class="online-content-list-head" src="@/assets/images/3.jpg" v-if="item.from != userInfo.id" alt="" />
           <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" />-->
 
-          <img
-            class="online-content-list-head"
-            src="@/assets/images/head1.png"
-            v-if="item.from != userInfo.id"
-            alt
-          >
+          <img class="online-content-list-head" src="@/assets/images/head1.png" v-if="item.from != userInfo.id" alt>
           <img class="online-content-list-head" src="@/assets/images/head.png" v-else alt>
           <div class="online-content-list-text" v-if="item.msgType == 0">
             <em></em>
@@ -43,7 +33,11 @@
             </div>
           </div>
           <div class="online-content-list-text" v-if="item.msgType == 1">
+<<<<<<< HEAD
             <img :src="item.content" alt style="width:100px;" @click="showViewer(item.content)" @load="scrollBottom()">
+=======
+            <img :src="item.content" alt style="width:100px;" @load="scrollBottom()" @click="showViewer(item.content)">
+>>>>>>> 98e67fb5da85a654b332f923d9109062dd9e44a9
           </div>
         </li>
       </ul>
@@ -54,13 +48,7 @@
         <span class="yuyiin">
           <i class="iconfont icon-yuyin"></i>
         </span>
-        <div
-          contenteditable="true"
-          class="input"
-          @click="e => e.target.focus()"
-          @input="changeVal"
-          ref="inputModel"
-        ></div>
+        <div contenteditable="true" class="input" @click="e => e.target.focus()" @input="changeVal" ref="inputModel"></div>
         <span class="send" @click="send" :class="inputValue ? 'active' : ''">发送</span>
       </div>
       <div class="inquiry-online-tool-detail">
@@ -148,7 +136,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import websocketConfig from "../../../service/websocket.js";
-let updateOrder = "/app/bizOnlineServiceRecord/updateOrder";
+let updateOrder = "/bizOnlineServiceRecord/updateOrder";
 let uploadImage = "/appLogin/uploadImage";
 import { Dialog } from "mand-mobile";
 import { setTimeout } from "timers";
@@ -180,16 +168,30 @@ export default {
   },
   async mounted() {
     // 让滚动条滚动到指定位置
+
     this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
     //  用于演示临时加得
     // this['chat/setFriendId'](this.$route.query.id);
+<<<<<<< HEAD
     // console.log("用户id:" + this.userInfo.id);
     // console.log("朋友id:" + this.chat.friendId);
     if (typeof this.chat.websocket.url == "undefined") websocketConfig();
     // let args = this.chat.historyNews.filter(item => item.msgType == 7);
+=======
+    // console.log("historyNews:"+JSON.stringify(this.chat.historyNews))
+    // console.log("用户id:" + this.userInfo.id);
+    // console.log("朋友id:" + this.chat.friendId);
+    if (typeof this.chat.websocket.url == "undefined")
+      websocketConfig();
+    // let args = this.chat.historyNews.filter(item => item.msgType == 7);
+    window.onresize = () => {
+      this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight
+    }
+
+>>>>>>> 98e67fb5da85a654b332f923d9109062dd9e44a9
   },
-  updated: function() {
+  updated: function () {
     if (this.isViewerShow) {
       return false;
     } else if (!this.isViewerShow && this.clickViewer) {
@@ -256,11 +258,22 @@ export default {
       "chat/setHistoryNews",
       "chat/setChatQueue"
     ]),
+    AAAA(){
+      console.log("aaaaaaaaa")
+    },
     scrollBottom() {
       // 内容区在底部
       this.$nextTick(() => {
         var ele = this.$refs.chatContent;
+<<<<<<< HEAD
         ele.scrollTop = ele.scrollHeight;
+=======
+        // console.log("scrollHeight:"+JSON.stringify(ele.scrollHeight))
+        // // ele.scrollTop = ele.scrollHeight;
+        ele.scrollTop = ele.scrollHeight;
+
+        console.log("scrollTop:" + JSON.stringify(this.$refs.chatContent.scrollTop))
+>>>>>>> 98e67fb5da85a654b332f923d9109062dd9e44a9
       });
     },
     showViewer(index) {
@@ -294,6 +307,7 @@ export default {
             "Content-Type": "multipart/form-data"
           }
         }; //添加请求头
+<<<<<<< HEAD
         this.$axios.post(uploadImage, formData, config).then(res => {
           if (res.data.code == "200") {
             let createTime = new Date().getTime();
@@ -320,6 +334,32 @@ export default {
             this.$toast.info(res.data.msg);
           }
         });
+=======
+        this.$axios.post(uploadImage, formData, config)
+          .then(res => {
+            if (res.data.code == "200") {
+              let createTime = new Date().getTime();
+              let msg = {
+                from: this.userInfo.id,
+                to: Number(this.$route.params.fromId) ? Number(this.$route.params.fromId) : Number(this.$route.query.id),
+                cmd: 11,
+                createTime: createTime,
+                msgType: 1,
+                chatType: 2,
+                content: this.$conf.constant.img_base_url + res.data.fileInfo[0].fileName
+              };
+              // 把当前发送的消息添加到历史消息去
+              let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
+              arr.push(msg);
+              this["chat/setHistoryNews"](arr);
+              this.chat.websocket.send(JSON.stringify(msg));
+              this.scrollBottom();
+              // console.log("res："+JSON.stringify(res.data.fileInfo[0].fileName))
+            } else {
+              this.$toast.info(res.data.msg);
+            }
+          })
+>>>>>>> 98e67fb5da85a654b332f923d9109062dd9e44a9
       } catch (err) {
         console.log(err);
       }
@@ -334,7 +374,12 @@ export default {
       let msg = {
         // 发送消息传的数据
         from: this.userInfo.id,
+<<<<<<< HEAD
         to: Number(this.$route.query.id),
+=======
+        to: Number(this.$route.params.fromId) ? Number(this.$route.params.fromId) : Number(this.$route.query.id),
+        // to: 57,
+>>>>>>> 98e67fb5da85a654b332f923d9109062dd9e44a9
         cmd: 11,
         createTime: createTime,
         msgType: 0,
@@ -353,7 +398,6 @@ export default {
     },
     // 添加消息
     emojiAdd(val) {
-      console.log(val, "我是白哦");
       this.$refs.inputModel.innerHTML = this.inputValue + val;
       this.inputValue = this.inputValue + val;
     }

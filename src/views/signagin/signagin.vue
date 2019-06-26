@@ -22,7 +22,7 @@
 </template>
 <script>
 import { TMap } from '../sign/TMap'
-let appbizPatientRegistersign = '/app/bizPatientRegister/sign';
+let appbizPatientRegistersign = '/bizPatientRegister/sign';
 export default {
   data() {
     return {

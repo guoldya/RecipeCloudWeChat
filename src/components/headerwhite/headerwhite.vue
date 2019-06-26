@@ -6,7 +6,7 @@
     <div class="navigation-content">
       {{postTitle}}
     </div>
-    <div class="right" @click="switchTo()"  :class="active.length==0? 'mu-secondary-text-color' : '' ">
+    <div class="right" @click="switchTo()" :class="active.length==0? 'mu-secondary-text-color' : '' ">
       <slot>{{titleRight}}</slot>
     </div>
   </div>
@@ -15,10 +15,10 @@
 export default {
   data() {
     return {
-      active:[""],
+      active: [""],
     }
   },
-  props: ['postTitle','titleRight'],
+  props: ['postTitle', 'titleRight'],
   created() {
 
   },
@@ -26,16 +26,15 @@ export default {
 
   },
   methods: {
-      switchTo() {
-          this.active=this.$store.state.activeId;
-          this.$emit('switchToValue');
-      },
+    switchTo() {
+      this.active = this.$store.state.activeId;
+      this.$emit('switchToValue');
+    },
   },
 }
 </script>
 
 <style lang="scss" >
-
 .navigation {
   position: fixed;
   width: 100%;
@@ -47,7 +46,7 @@ export default {
   box-sizing: border-box;
   align-items: center;
   background: #fff;
-  color:  var(--primary--body);
+  color: var(--primary--title);
   z-index: 99;
 
   img {

@@ -45,7 +45,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
+let bdHospitalOrg = '/bdHospitalOrg/read/selectClinicListByHospitalArea';
 
 export default {
   data() {

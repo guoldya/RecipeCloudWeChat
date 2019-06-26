@@ -51,7 +51,7 @@
 <script  >
 import { mapState } from "vuex";
 
-let updateContent = "/app/bizFeedback/update";
+let updateContent = "/bizFeedback/update";
 
 export default {
   data() {

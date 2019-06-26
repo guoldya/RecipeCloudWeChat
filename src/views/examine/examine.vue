@@ -43,7 +43,7 @@
     </div>
 </template>
 <script type="text/babel">
-    let bizExamApplyreadpage = '/app/bizExamApply/read/page';
+    let bizExamApplyreadpage = '/bizExamApply/read/page';
     export default {
         data() {
             return {

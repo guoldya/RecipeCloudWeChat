@@ -18,7 +18,7 @@
 <script  >
 import { mapState } from "vuex";
 
-let updateAccountName = "/app/bizPatientCard/updateAccount";
+let updateAccountName = "/bizPatientCard/updateAccount";
 
 export default {
   data() {

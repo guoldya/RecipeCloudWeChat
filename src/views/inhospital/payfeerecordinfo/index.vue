@@ -52,7 +52,7 @@
 </template>
 <script  >
 import { Dialog } from 'mand-mobile'
-let cord_info_url = "/app/bizIhPay/read/detail";
+let cord_info_url = "/bizIhPay/read/detail";
 import { Field, RadioList } from 'mand-mobile'
 
 export default {

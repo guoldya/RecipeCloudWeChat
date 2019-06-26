@@ -92,8 +92,8 @@
 import { mapState } from 'vuex';
 import Pgmodal from "../component/pgmodal/pgmodal.vue";
 let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let checkMobile = "/app/bizPatientCard/checkMobile";
-let wechatbizPatientCardbinding = "/app/bizCopyApply/uploadIdCard"
+let checkMobile = "/bizPatientCard/checkMobile";
+let wechatbizPatientCardbinding = "/bizCopyApply/uploadIdCard"
 export default {
   data() {
     return {
@@ -241,7 +241,7 @@ export default {
     //     this.$toast.info("请完善信息");
     //     return
     //   }
-    //   this.$axios.post("app/bizCopyApply/uploadIdCard", this.nextPar).then(res => {
+    //   this.$axios.post("/bizCopyApply/uploadIdCard", this.nextPar).then(res => {
     //     if (res.data.code == '200') {
     //       this.$router.push({
     //         name: 'copyresult',
