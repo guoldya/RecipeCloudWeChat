@@ -26,8 +26,8 @@
 </template>
 <script>
 import { InputItem, Field } from 'mand-mobile'
-let addressDetails = "/shippingAddress/addressDetails";
-let addOrUpdate = "/shippingAddress/addOrUpdate";
+let addressDetails = "/api/hos/shippingAddress/addressDetails";
+let addOrUpdate = "/api/hos/shippingAddress/addOrUpdate";
 
 export default {
   name: 'input-item-demo',

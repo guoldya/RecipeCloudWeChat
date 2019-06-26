@@ -29,7 +29,7 @@
   </div>
 </template>
 <script type="text/babel">
-let appbizWaitingQueuereadlist = "/bizCopyApply/read/page";
+let appbizWaitingQueuereadlist = "/api/hos/bizCopyApply/read/page";
 export default {
   data() {
     return {

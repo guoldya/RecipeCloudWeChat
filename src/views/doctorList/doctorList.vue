@@ -146,7 +146,7 @@
   </div>
 </template>
 <script type="text/babel">
-let selectDoctorList = "/bdHospitalDoctor/read/selectDoctorList";
+let selectDoctorList = "/api/hos/bdHospitalDoctor/read/selectDoctorList";
 let bdHospitalOrg = '/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {

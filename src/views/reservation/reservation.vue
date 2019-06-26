@@ -61,12 +61,12 @@
     </div>
 </template>
 <script type="text/babel">
-let doctorInfo = "/bdHospitalDoctor/read/selectDoctorDetail";
-let fee_detail_url = "/bizCostBill/detail";
+let doctorInfo = "/api/hos/bdHospitalDoctor/read/selectDoctorDetail";
+let fee_detail_url = "/api/hos/bizCostBill/detail";
 // 生成预约
-let fconfirm_pay_url = "/bizPatientRegister/subscribe";
+let fconfirm_pay_url = "/api/hos/bizPatientRegister/subscribe";
 // 付钱 
-let now_pay_url = "/bizPatientRegister/nowPay";
+let now_pay_url = "/api/hos/bizPatientRegister/nowPay";
 export default {
     data() {
         return {

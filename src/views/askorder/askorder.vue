@@ -47,9 +47,9 @@
 <script  >
 import { Dialog, Cashier } from 'mand-mobile'
 import pg_positive from '@/assets/images/user.png'
-let pay_list_url = "/bizOnlineServiceRecord/read/page";
-let cancelSourceId = "/bizOnlineServiceRecord/updateOrder";
-let appbizOnlineServiceRecordnowPay = "/bizOnlineServiceRecord/nowPay";
+let pay_list_url = "/api/hos/bizOnlineServiceRecord/read/page";
+let cancelSourceId = "/api/hos/bizOnlineServiceRecord/updateOrder";
+let appbizOnlineServiceRecordnowPay = "/api/hos/bizOnlineServiceRecord/nowPay";
 export default {
   data() {
     return {

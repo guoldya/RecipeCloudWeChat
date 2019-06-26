@@ -37,7 +37,7 @@
 import { mapState } from "vuex";
 import { Icon } from "mand-mobile";
 
-let appoint_order_url = "/bizExamApply/read/page";
+let appoint_order_url = "/api/hos/bizExamApply/read/page";
 export default {
   name: "icon-demo",
   data() {

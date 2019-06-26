@@ -44,7 +44,7 @@
 </template>
 
 <script>
-let appbizIhRecordreadselectIhRecordPriceList = "/bizIhRecord/read/selectIhRecordPriceList";
+let appbizIhRecordreadselectIhRecordPriceList = "/api/hos/bizIhRecord/read/selectIhRecordPriceList";
 export default {
    data() {
       return {

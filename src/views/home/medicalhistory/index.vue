@@ -40,7 +40,7 @@
   </div>
 </template>
 <script >
-let pay_list_url = "/bizExamReport/read/page";
+let pay_list_url = "/api/hos/bizExamReport/read/page";
 
 export default {
   data() {

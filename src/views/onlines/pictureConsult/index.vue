@@ -76,9 +76,9 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { Icon, ImageReader, Tag, Toast } from "mand-mobile";
-const onlineDoctorDetailUrl = "/bdOnlineDoctor/read/detail";
+const onlineDoctorDetailUrl = "/api/hos/bdOnlineDoctor/read/detail";
 import websocketConfig from '../../../service/websocket.js'
-let uploadImage = "/appLogin/uploadImage";
+let uploadImage = "/api/hos/appLogin/uploadImage";
 
 export default {
   data() {

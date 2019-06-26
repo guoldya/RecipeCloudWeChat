@@ -25,9 +25,9 @@
 </template>
 <script>
 import { InputItem, Field } from 'mand-mobile'
-let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let wechatbizPatientCardbinding = "/bizPatientCard/insert";
-let checkMobile = "/bizPatientCard/checkMobile";
+let sendNewVerifyCode = "/api/hos/appLogin/sendNewVerifyCode";
+let wechatbizPatientCardbinding = "/api/hos/bizPatientCard/insert";
+let checkMobile = "/api/hos/bizPatientCard/checkMobile";
 export default {
   name: 'input-item-demo',
   title: '普通输入框',

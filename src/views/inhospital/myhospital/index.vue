@@ -57,7 +57,7 @@
 </template>
 
 <script>
-let cord_info_url = "/bizIhRecord/read/detail";
+let cord_info_url = "/api/hos/bizIhRecord/read/detail";
 export default {
    data() {
       return {

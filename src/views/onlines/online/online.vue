@@ -90,8 +90,8 @@
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
 import doctorList from "../../../components/doctorList";
-const departmentUrl = "/bdHospitalOrg/read/selectClinicListByHospitalArea";
-const recommendUrl = "/bdOnlineDoctor/read/page";
+const departmentUrl = "/api/hos/bdHospitalOrg/read/selectClinicListByHospitalArea";
+const recommendUrl = "/api/hos/bdOnlineDoctor/read/page";
 
 export default {
   name: "action-sheet-demo",

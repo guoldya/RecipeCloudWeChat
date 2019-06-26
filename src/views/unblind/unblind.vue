@@ -48,8 +48,8 @@
 </template>
 <script type="text/babel">
 import { mapState } from 'vuex';
-let appbizPatientCarduntie = "/bizPatientCard/untie";
-let cardDetail = "/bizPatientCard/read/detail";
+let appbizPatientCarduntie = "/api/hos/bizPatientCard/untie";
+let cardDetail = "/api/hos/bizPatientCard/read/detail";
 export default {
   data() {
     return {

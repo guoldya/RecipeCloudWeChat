@@ -40,8 +40,8 @@
   </div>
 </template>
 <script type="text/babel">
-// let uploadImgimage = "/uploadImg/image";
-let uploadImgimage = "/uploadImg/authentication";
+// let uploadImgimage = "/api/hos/uploadImg/image";
+let uploadImgimage = "/api/hos/uploadImg/authentication";
 import pg_negative from '@/assets/images/znanwu (7).png'
 import pg_positive from '@/assets/images/znanwu (10).png'
 import { mapState } from 'vuex';

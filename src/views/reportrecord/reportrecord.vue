@@ -47,7 +47,7 @@
 </template>
 <script type="text/babel">
 let bizLisReportreadpage = '/bizLisReport/read/page';
-let bizPatientCard = "/bizPatientCard/read/list";
+let bizPatientCard = "/api/hos/bizPatientCard/read/list";
 export default {
    data() {
       return {

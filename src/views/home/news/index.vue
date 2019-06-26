@@ -1,24 +1,19 @@
 <template>
   <div class="container  margin55">
-    <Header post-title="新闻动态"></Header>
+    <Header :post-title="title"></Header>
     <div v-if="waitPayData.length!=0" v-show="!loadingtrue">
       <div class="mui-card" v-for="(item,i) in waitPayData" :key="i" @click="appointinfo(item)">
         <div class="mui-card-header mui-card-media">
           <img :src="$conf.constant.img_base_url + item.photoUrl" alt=""></div>
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
-            <p style="color: #333;">{{item.title}}</p>
-            <p>{{item.createTime}}</p>
-            <p>{{item.content}}...</p>
+            <p style="color: #333;">{{$route.query.id == 26 ? `【${item.className}】` :''}} {{item.title}}</p>
+            <p v-if="$route.query.id == 26">{{item.createTime}}</p>
           </div>
         </div>
-
       </div>
-
     </div>
-    <div v-show="!loadingtrue" class="nullDiv" v-else>
-      <img src="@/assets/images/null1.png">
-    </div>
+    <Null :loading-true="!loadingtrue&&waitPayData.length==0"></Null>
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
       <span v-if="waitPayData.length!=0&&!nomore">
         <span class="mu-light-text-color">加载中</span>
@@ -28,9 +23,8 @@
     <Loading v-show="loadingtrue"></Loading>
   </div>
 </template>
-
 <script>
-let pay_list_url = "/bizArticle/read/list"
+let pay_list_url = "/api/hos/bizArticle/read/list"
 export default {
   data() {
     return {
@@ -41,10 +35,17 @@ export default {
       busy: true,
       nomore: false,
       loadingtrue: true,
+      title: '',
     };
   },
   created() {
-
+    if (this.$route.query.id == 26) {
+      this.title = "宣教资讯";
+    } else if (this.$route.query.id == 25) {
+      this.title = "科室介绍"
+    } else if (this.$route.query.id == 27) {
+      this.title = "医院动态"
+    }
   },
   mounted() {
     this.WaitPay(false);
@@ -54,7 +55,7 @@ export default {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
-      params.contentClass = 27;
+      params.contentClass = this.$route.query.id * 1;
       this.$axios.put(pay_list_url, params).then((res) => {
         this.loadingtrue = false;
         if (res.data.code == 200) {
@@ -95,8 +96,8 @@ export default {
     },
     appointinfo: function (val) {
       this.$router.push({
-        name: 'propagandainfo',
-        query: { id: val.id }
+        name: 'newsinfo',
+        query: { id: val.id, type: this.$route.query.id }
       });
     },
 
@@ -107,16 +108,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .mui-card {
   font-size: 28px;
   position: relative;
   overflow: hidden;
   margin: 20px;
-  border-radius: 5px;
+  border-radius: 17px 17px 0 0;
   background-color: #fff;
   background-clip: padding-box;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .mui-card-header {
   height: 240px;

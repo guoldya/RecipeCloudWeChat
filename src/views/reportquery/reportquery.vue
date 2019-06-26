@@ -53,8 +53,8 @@
 </template>
 <script type="text/babel">
 let bizLisReportreadpage = '/bizLisReport/read/page';
-let bizPatientCard = "/bizPatientCard/read/list";
-let selectUnReadTotal = "/bizLisReport/selectUnReadTotal";
+let bizPatientCard = "/api/hos/bizPatientCard/read/list";
+let selectUnReadTotal = "/api/hos/bizLisReport/selectUnReadTotal";
 export default {
     data() {
         return {

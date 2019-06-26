@@ -32,7 +32,7 @@
 </template>
 <script  >
 import { Cashier } from 'mand-mobile'
-let now_pay_url = "/bizIhPay/payment";
+let now_pay_url = "/api/hos/bizIhPay/payment";
 
 export default {
   data() {

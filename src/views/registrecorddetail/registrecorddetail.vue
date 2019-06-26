@@ -49,11 +49,11 @@
 <script  >
 import { Dialog, Cashier } from 'mand-mobile'
 
-let cord_info_url = "/bizPatientRegister/read/detail";
-let fconfirm_pay_url = "/bizCostBill/confirmPay";
-let now_pay_url = "/bizPatientRegister/nowPay";
-let order_back_url = "/bizPatientRegister/outSourceId";
-let order_cancle_url = "/bizPatientRegister/cancelSourceId";
+let cord_info_url = "/api/hos/bizPatientRegister/read/detail";
+let fconfirm_pay_url = "/api/hos/bizCostBill/confirmPay";
+let now_pay_url = "/api/hos/bizPatientRegister/nowPay";
+let order_back_url = "/api/hos/bizPatientRegister/outSourceId";
+let order_cancle_url = "/api/hos/bizPatientRegister/cancelSourceId";
 export default {
     data() {
         return {

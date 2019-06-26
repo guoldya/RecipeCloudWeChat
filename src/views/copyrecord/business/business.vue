@@ -55,7 +55,7 @@
 </template>
 <script type="text/babel">
 import Pgmodal from "../component/pgmodal/pgmodal.vue";
-let addOrUpdate = "/bizCopyApply/uploadIdCard";///shippingAddress/addOrUpdate
+let addOrUpdate = "/api/hos/bizCopyApply/uploadIdCard";///shippingAddress/addOrUpdate
 export default {
   data() {
     return {

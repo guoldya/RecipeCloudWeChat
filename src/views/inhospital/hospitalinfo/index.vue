@@ -79,8 +79,8 @@
 
 </template>
 <script  >
-let cord_info_url = "/bizIhRecord/read/detail";
-let selectIhRecordPriceList = "/bizIhFee/read/page"
+let cord_info_url = "/api/hos/bizIhRecord/read/detail";
+let selectIhRecordPriceList = "/api/hos/bizIhFee/read/page"
 export default {
     data() {
         return {

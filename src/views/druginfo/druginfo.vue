@@ -187,8 +187,8 @@ import { Toast } from 'mand-mobile';
 let bdProductreaddetail = '/bdProduct/read/detail';
 let appbizCollectionaddCollection = '/bizCollection/addCollection';
 let appbizCollectiondeleteCollection = '/bizCollection/deleteByContentId';
-let appbizProductEvaluatereadpage = "/bizProductEvaluate/read/page";
-let appbizShoppingCartadd = "/bizShoppingCart/add"
+let appbizProductEvaluatereadpage = "/api/hos/bizProductEvaluate/read/page";
+let appbizShoppingCartadd = "/api/hos/bizShoppingCart/add"
 export default {
   data() {
     return {

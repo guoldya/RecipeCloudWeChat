@@ -46,7 +46,7 @@
   </div>
 </template>
 <script >
-let pay_list_url = "/bizIhRecord/read/page";
+let pay_list_url = "/api/hos/bizIhRecord/read/page";
 
 export default {
   data() {

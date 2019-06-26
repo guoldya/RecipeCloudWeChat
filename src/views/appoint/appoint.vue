@@ -40,7 +40,7 @@
   </div>
 </template>
 <script  >
-let appoint_order_url = "/bizExamApply/read/page";
+let appoint_order_url = "/api/hos/bizExamApply/read/page";
 export default {
   data() {
     return {

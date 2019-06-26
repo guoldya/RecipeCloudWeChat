@@ -134,7 +134,7 @@
     </div>
 </template>
 <script type="text/babel">
-let apprecipegetDetails = "/recipe/getDetails";
+let apprecipegetDetails = "/api/hos/recipe/getDetails";
 export default {
     data() {
         return {

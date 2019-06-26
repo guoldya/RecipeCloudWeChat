@@ -9,11 +9,11 @@
         <span :class="{on: '/home' === $route.path}">诊疗服务</span>
         <span v-if="footNumber!=0" class="footNumber"></span>
       </a>
-      <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/inquiryOnline')">
+      <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/online')">
         <span class="aui-tabBar-item-icon">
-          <img :src="'/inquiryOnline' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
+          <img :src="'/online' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
         </span>
-        <span :class="{on: '/inquiryOnline' === $route.path}">在线咨询</span>
+        <span :class="{on: '/online' === $route.path}">在线咨询</span>
       </a>
       <a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active" @click="switchTo('/my')">
         <span class="aui-tabBar-item-icon">

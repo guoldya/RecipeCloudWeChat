@@ -48,7 +48,7 @@
   </div>
 </template>
 <script type="text/babel">
-let uploadImgimage = "/uploadImg/image";
+let uploadImgimage = "/api/hos/uploadImg/image";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 export default {

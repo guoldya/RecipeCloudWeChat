@@ -21,7 +21,7 @@
 </template>
 <script>
  
-let appbizFamilyMemberfamilyMemberManage = "/bizFamilyMember/familyMemberManage";
+let appbizFamilyMemberfamilyMemberManage = "/api/hos/bizFamilyMember/familyMemberManage";
 
 export default {
   data() {

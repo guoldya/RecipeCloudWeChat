@@ -157,9 +157,9 @@
 <script>
 import img from '@/assets/images/3.jpg';
 import start from '@/assets/images/icon_star@2x.png'
-let appbdHospitalDoctorreaddetail = "/bdHospitalDoctor/read/selectDoctorDetail";
-let appbizRegisterSourcereadsourceDetail = "/bdHospitalDoctor/read/rankWorld";
-let appbdHospitalDoctorreadrankWorld = "/bdHospitalDoctor/read/selectDoctorByTime";
+let appbdHospitalDoctorreaddetail = "/api/hos/bdHospitalDoctor/read/selectDoctorDetail";
+let appbizRegisterSourcereadsourceDetail = "/api/hos/bdHospitalDoctor/read/rankWorld";
+let appbdHospitalDoctorreadrankWorld = "/api/hos/bdHospitalDoctor/read/selectDoctorByTime";
 
 export default {
     data() {

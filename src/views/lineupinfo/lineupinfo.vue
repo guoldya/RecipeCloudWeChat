@@ -83,7 +83,7 @@
 </template>
 <script   type="text/babel">
 
-let appbizWaitingQueuereadlist = "/bizWaitingQueue/read/list";
+let appbizWaitingQueuereadlist = "/api/hos/bizWaitingQueue/read/list";
 export default {
   data() {
     return {

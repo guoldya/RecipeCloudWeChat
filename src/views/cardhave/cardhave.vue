@@ -43,7 +43,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bizPatientCard = "/bizPatientCard/insert";
+let bizPatientCard = "/api/hos/bizPatientCard/insert";
 export default {
   data() {
     return {

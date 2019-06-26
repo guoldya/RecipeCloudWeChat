@@ -90,9 +90,9 @@
   </div>
 </template>
 <script type="text/babel">
-let uploadImgimage = "/uploadImg/image";
-let addOrUpdate = "/bizCopyApply/uploadIdCard";
-let appLoginuploadImage = "/appLogin/uploadImage";
+let uploadImgimage = "/api/hos/uploadImg/image";
+let addOrUpdate = "/api/hos/bizCopyApply/uploadIdCard";
+let appLoginuploadImage = "/api/hos/appLogin/uploadImage";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 import pg_handheld from '@/assets/images/icon_handheld.png'

@@ -4,4 +4,4 @@ export const loadPropaganda = (data = {
    contentClass: 26,
    pageNumber: 1,
    pageSize: 10
-}) => axios.put('/app/bizArticle/read/list', data).then(res => res.data)
+}) => axios.put('/api/hos/bizArticle/read/list', data).then(res => res.data)

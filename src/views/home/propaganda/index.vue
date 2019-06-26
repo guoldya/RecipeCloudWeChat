@@ -30,7 +30,7 @@
 </template>
 
 <script>
-let pay_list_url = "/bizArticle/read/list"
+let pay_list_url = "/api/hos/bizArticle/read/list"
 export default {
   data() {
     return {

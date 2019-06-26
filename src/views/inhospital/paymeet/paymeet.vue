@@ -43,9 +43,9 @@
 </template>
 <script  >
 import { Dialog, Cashier } from 'mand-mobile'
-let cord_info_url = "/bizIhRecord/read/selectRecordDetail";
+let cord_info_url = "/api/hos/bizIhRecord/read/selectRecordDetail";
 
-let now_pay_url = "/bizIhPay/payment";
+let now_pay_url = "/api/hos/bizIhPay/payment";
 
 export default {
   data() {

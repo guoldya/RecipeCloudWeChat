@@ -91,9 +91,9 @@
 <script type="text/babel">
 import { mapState } from 'vuex';
 import Pgmodal from "../component/pgmodal/pgmodal.vue";
-let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let checkMobile = "/bizPatientCard/checkMobile";
-let wechatbizPatientCardbinding = "/bizCopyApply/uploadIdCard"
+let sendNewVerifyCode = "/api/hos/appLogin/sendNewVerifyCode";
+let checkMobile = "/api/hos/bizPatientCard/checkMobile";
+let wechatbizPatientCardbinding = "/api/hos/bizCopyApply/uploadIdCard"
 export default {
   data() {
     return {

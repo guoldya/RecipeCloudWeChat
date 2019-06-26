@@ -24,7 +24,7 @@
     </div>
 </template>
 <script>
-let selectDoctorList = "/bdHospitalDoctor/read/selectDoctorPage";
+let selectDoctorList = "/api/hos/bdHospitalDoctor/read/selectDoctorPage";
 export default {
     data() {
         return {

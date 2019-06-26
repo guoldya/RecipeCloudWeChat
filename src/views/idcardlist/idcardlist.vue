@@ -57,7 +57,7 @@
   </div>
 </template>
 <script type="text/babel">
-// let wechatbizPatientCardreadpage = "/bizPatientCard/read/list";
+// let wechatbizPatientCardreadpage = "/api/hos/bizPatientCard/read/list";
 import { Dialog, Button, Toast } from 'mand-mobile'
 import { mapState } from 'vuex';
 

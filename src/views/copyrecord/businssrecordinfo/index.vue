@@ -74,7 +74,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-let appbizCopyApplypayment = "/bizCopyApply/read/detail"
+let appbizCopyApplypayment = "/api/hos/bizCopyApply/read/detail"
 
 
 import { Cashier } from 'mand-mobile'

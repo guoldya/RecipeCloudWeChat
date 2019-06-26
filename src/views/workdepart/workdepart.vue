@@ -30,7 +30,7 @@
 </template>
 <script type="text/babel">
     let bdHospitalOrg = '/bdHospitalOrg/read/selectClinicListByHospitalArea';
-    let input_search_url = "/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+    let input_search_url = "/api/hos/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
     export default {
         data() {
             return {

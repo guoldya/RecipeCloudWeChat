@@ -9,12 +9,12 @@
       <div class="aui-user">
         <div class="aui-user-cell">
           <div class="aui-user-cell-logo" @click="acctest">
-            <!-- <img v-if="userInfo.headUrl" :src="$conf.constant.img_base_url + userInfo.headUrl" alt=""> -->
+            <!-- <img v-if="_accountinfo.headUrl" :src="$conf.constant.img_base_url + _accountinfo.headUrl" alt=""> -->
             <img src="@/assets/images/user.png">
           </div>
           <div class="aui-user-cell-title">
-            <p>{{userInfo.name}}</p>
-            <p class="aui-user-info">{{userInfo.account}}</p>
+            <p>{{_accountinfo.name}}</p>
+            <p class="aui-user-info">{{_accountinfo.account}}</p>
           </div>
           <div class="aui-user-row"></div>
         </div>
@@ -169,7 +169,7 @@ export default {
   },
   computed: {
     ...mapState({
-      userInfo: state => state.my.accountinfo,
+      _accountinfo: state => state.my.accountinfo,
       _cardlist: state => state.home.cardList,
     }),
   },
@@ -181,7 +181,23 @@ export default {
     await this.$store.dispatch('getCards', );
   },
   methods: {
+
+    testRegist() {
+      if (!this._accountinfo.idCard) {
+        this.$toast.info("请先实名")
+        return false
+      }
+      if (this._cardlist.length == 0) {
+        this.$toast.info("请绑定就诊卡")
+        return false
+      }
+      return true
+
+    },
     registrecord() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "registrecord",
@@ -190,6 +206,7 @@ export default {
     },
     // 用户设置
     acctest() {
+
       let argu = {};
       this.$router.push({
         name: "acctest",
@@ -198,6 +215,9 @@ export default {
     },
     // 缴费记录
     feerecord() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "feerecord",
@@ -205,6 +225,9 @@ export default {
       });
     },
     appoint() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "appoint",
@@ -213,6 +236,9 @@ export default {
     },
     // 报告查询
     reportrecord() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "reportquery",
@@ -229,6 +255,9 @@ export default {
     },
     // 处方记录
     recipeRecord() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "recipeRecord",
@@ -237,6 +266,9 @@ export default {
     },
     // 处方记录
     business() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "businssrecord",
@@ -244,6 +276,9 @@ export default {
       });
     },
     askorder() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "askorder",
@@ -252,6 +287,10 @@ export default {
     },
     // 就诊卡
     idcardlist() {
+      if (!this._accountinfo.idCard) {
+        this.$toast.info("请先实名")
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "idcardlist",
@@ -260,6 +299,9 @@ export default {
     },
     // 就医评价
     valuationList() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "valuationList",
@@ -268,6 +310,9 @@ export default {
     },
     // 地址
     adress() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "adress",
@@ -276,6 +321,9 @@ export default {
     },
     //意见收集
     suggestion() {
+      if (!this.testRegist()) {
+        return
+      }
       let argu = {};
       this.$router.push({
         name: "suggestion",

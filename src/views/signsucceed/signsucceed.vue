@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-let bizExamApply = "/bizPatientRegister/read/selectSignList";
+let bizExamApply = "/api/hos/bizPatientRegister/read/selectSignList";
 export default {
   data() {
     return {
@@ -92,13 +92,7 @@ export default {
         query: argu
       });
     },
-    blidcard() {
-      let argu = {}
-      this.$router.push({
-        name: 'cardmy',
-        query: argu
-      });
-    },
+   
     // 报告查询
     reportquery() {
       let argu = {}

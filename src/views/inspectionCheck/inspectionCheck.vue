@@ -113,7 +113,7 @@
 </template>
  
 <script type="text/babel">
-let recipeApplyRenewRecipe = "/bizRecipeApply/read/page";
+let recipeApplyRenewRecipe = "/api/hos/bizRecipeApply/read/page";
 export default {
     data() {
         return {

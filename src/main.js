@@ -112,9 +112,9 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 }
 
 Vue.config.productionTip = false;
-const BASE_URL = '/api/bas';
-
-axios.defaults.baseURL = BASE_URL;
+//   const BASE_URL = '/api/hos';
+ 
+// axios.defaults.baseURL = BASE_URL;
 
 
 axios.interceptors.request.use(function (config) {

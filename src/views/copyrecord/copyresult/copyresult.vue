@@ -62,7 +62,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-let appbizCopyApplypayment = "/bizPayOrder/nowPay"
+let appbizCopyApplypayment = "/api/hos/bizPayOrder/nowPay"
 
 
 import { Cashier } from 'mand-mobile'

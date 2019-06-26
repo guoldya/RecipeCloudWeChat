@@ -23,7 +23,7 @@
 <script  >
 import { mapState } from "vuex";
 
-let updateContent = "/bizFeedback/update";
+let updateContent = "/api/hos/bizFeedback/update";
 
 export default {
   data() {

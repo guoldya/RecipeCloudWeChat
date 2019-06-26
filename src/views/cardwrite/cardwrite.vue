@@ -41,9 +41,9 @@
   </div>
 </template>
 <script type="text/babel">
-let bizPatientCardinsert = "/bizPatientCard/insert";
-let sendNewVerifyCode = "/appLogin/sendNewVerifyCode";
-let appLogingetVerifyCode = "/bizPatientCard/checkMobile";
+let bizPatientCardinsert = "/api/hos/bizPatientCard/insert";
+let sendNewVerifyCode = "/api/hos/appLogin/sendNewVerifyCode";
+let appLogingetVerifyCode = "/api/hos/bizPatientCard/checkMobile";
 export default {
   data() {
     return {

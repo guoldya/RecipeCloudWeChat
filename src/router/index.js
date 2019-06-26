@@ -25,87 +25,82 @@ const payment = () => import(/* webpackChunkName: "home" */ "@/views/payment/pay
 const doctorList = () => import(/* webpackChunkName: "doctorList" */ "@/views/doctorList/doctorList.vue")
 const doctorresult = () => import(/* webpackChunkName: "doctorList" */ "@/views/doctorList/doctorresult")
 const doctorsearch = () => import(/* webpackChunkName: "doctorList" */ "@/views/doctorList/doctorsearch")
- 
+
 const reportrecord = () => import(/* webpackChunkName: "report" */ "@/views/reportrecord/reportrecord.vue")
 const reportquery = () => import(/* webpackChunkName: "report" */ "@/views/reportquery/reportquery.vue")
 const reportinfo = () => import(/* webpackChunkName: "report" */ "@/views/reportinfo/reportinfo.vue")
- 
- 
+
+
 const lineupnow = () => import(/* webpackChunkName: "report" */ "@/views/lineupnow/lineupnow.vue")
 const lineupinfo = () => import(/* webpackChunkName: "report" */ "@/views/lineupinfo/lineupinfo.vue")
 const notice = () => import(/* webpackChunkName: "report" */ "@/views/notice/notice.vue")
- 
+
 const lookagain = () => import(/* webpackChunkName: "workdepart" */ "@/views/lookagain/lookagain.vue")
 const doctorplan = () => import(/* webpackChunkName: "workdepart" */ "@/views/doctorplan/doctorplan.vue")
 const workdepart = () => import(/* webpackChunkName: "workdepart" */ "@/views/workdepart/workdepart.vue")
 const workdoctor = () => import(/* webpackChunkName: "workdepart" */ "@/views/workdoctor/workdoctor.vue")
 const workdotorinfo = () => import(/* webpackChunkName: "workdepart" */ "@/views/workdotorinfo/workdotorinfo.vue")
+
+const adress = () => import(/* webpackChunkName: "workdepart" */ "@/views/adress/adress.vue")
+const adressinfo = () => import(/* webpackChunkName: "workdepart" */ "@/views/adressinfo/adressinfo.vue")
+const fillinfo = () => import(/* webpackChunkName: "workdepart" */ "@/views/fillinfo/index.vue")
+const idcard = () => import(/* webpackChunkName: "workdepart" */ "@/views/idcard/index.vue")
+const idcardlist = () => import(/* webpackChunkName: "workdepart" */ "@/views/idcardlist/idcardlist.vue")
+
+
+
+const sign = () => import(/* webpackChunkName: "workdepart" */ "@/views/sign/sign.vue")
+const signagin = () => import(/* webpackChunkName: "workdepart" */ "@/views/signagin/signagin.vue")
+const moan = () => import(/* webpackChunkName: "workdepart" */ "@/views/moan/moan.vue")
+const signsucceed = () => import(/* webpackChunkName: "workdepart" */ "@/views/signsucceed/signsucceed.vue")
+const cardblind = () => import(/* webpackChunkName: "workdepart" */ "@/views/cardblind/cardblind.vue")
+const cardhave = () => import(/* webpackChunkName: "workdepart" */ "@/views/cardhave/cardhave.vue")
+const resultdocotor = () => import(/* webpackChunkName: "workdepart" */ "@/views/resultdocotor/resultdocotor.vue")
+const registrecorddetail = () => import(/* webpackChunkName: "workdepart" */ "@/views/registrecorddetail/registrecorddetail.vue")
+const doctorschedu = () => import(/* webpackChunkName: "workdepart" */ "@/views/doctorschedu/doctorschedu.vue")
+const online = () => import(/* webpackChunkName: "workdepart" */ "@/views/onlines/online/online.vue")
+const article = () => import(/* webpackChunkName: "workdepart" */ "@/views/article/article.vue")
+const inquiryOnline = () => import(/* webpackChunkName: "workdepart" */ "@/views/onlines/inquiryOnline")
+const my = () => import(/* webpackChunkName: "workdepart" */ "@/views/my/my.vue")
+
+
  
-import adress from '@/views/adress/adress.vue'
-import fillinfo from '@/views/fillinfo/index.vue'
-import identity from '@/views/identity/index.vue'
-import idcard from '@/views/idcard/index.vue'
-import idcardlist from '@/views/idcardlist/idcardlist.vue'
-import adressinfo from '@/views/adressinfo/adressinfo.vue'
-import sign from '@/views/sign/sign.vue'
-import signagin from '@/views/signagin/signagin.vue'
-import moan from '@/views/moan/moan.vue'
-import signsucceed from '@/views/signsucceed/signsucceed.vue'
-import cardblind from '@/views/cardblind/cardblind.vue'
-import cardhave from '@/views/cardhave/cardhave.vue'
-import resultdocotor from '@/views/resultdocotor/resultdocotor.vue'
-import registrecorddetail from '@/views/registrecorddetail/registrecorddetail.vue'
-import doctorschedu from '@/views/doctorschedu/doctorschedu.vue'
+const appoint = () => import(/* webpackChunkName: "choosehospital" */ "@/views/appoint/appoint.vue")
+const appointinfo = () => import(/* webpackChunkName: "choosehospital" */ "@/views/appointinfo/appointinfo.vue")
+const choosedepart = () => import(/* webpackChunkName: "choosehospital" */ "@/views/choosedepart/choosedepart.vue")
+const choosehospital = () => import(/* webpackChunkName: "choosehospital" */ "@/views/choosehospital/choosehospital.vue")
+const hospitalsearch = () => import(/* webpackChunkName: "choosehospital" */ "@/views/choosehospital/hospitalsearch/hospitalsearch.vue")
+const hospitalresult = () => import(/* webpackChunkName: "choosehospital" */ "@/views/choosehospital/hospitalresult/hospitalresult.vue")
+const lostpage = () => import(/* webpackChunkName: "choosehospital" */ "@/views/resultpage/lostpage/lostpage.vue")
+const departsearch = () => import(/* webpackChunkName: "choosehospital" */ "@/views/choosedepart/departsearch")
+const news = () => import(/* webpackChunkName: "choosehospital" */ "@/views/home/news")
+const newsinfo = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/home/newsinfo")
+const choose = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/inspectionCheck/choose")
+const confirmOrder = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/inspectionCheck/confirmOrder")
+const inspectSuccess = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/inspectionCheck/inspectSuccess")
+ 
 
 
+const cardwrite = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/cardwrite/cardwrite.vue")
+const cardwritesecond = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/cardwritesecond/cardwritesecond.vue")
+const cardwriteson = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/cardwriteson/cardwriteson.vue")
+const cardneed = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/cardneed/cardneed.vue")
+const unblind = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/unblind/unblind.vue")
+ 
+ 
+ 
+const orderrecord = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/orderrecord/orderrecord.vue")
+const orderinfo = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/orderinfo/orderinfo.vue")
+const askorder = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/askorder/askorder.vue")
+const registrecord = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/registrecord/registrecord.vue")
+const inspectionCheck = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/inspectionCheck/inspectionCheck.vue")
+const medicalEva = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/medicalEva/medicalEva.vue")
+const recipeDetail = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/recipeDetail/recipeDetail.vue")
+const slowConfirm = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/slowConfirm/slowConfirm.vue")
+const applyDetail = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/applyDetail/applyDetail.vue")
+const examine = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/examine/examine.vue")
 
-import online from '@/views/onlines/online/online.vue'
-import article from '@/views/article/article.vue'
-import inquiryOnline from '@/views/onlines/inquiryOnline'
-import my from '@/views/my/my.vue'
-import appoint from '@/views/appoint/appoint.vue'
-import appointinfo from '@/views/appointinfo/appointinfo.vue'
-import choosedepart from '@/views/choosedepart/choosedepart.vue'
-import choosehospital from '@/views/choosehospital/choosehospital.vue'
-import hospitalsearch from '@/views/choosehospital/hospitalsearch/hospitalsearch.vue'
-import hospitalresult from '@/views/choosehospital/hospitalresult/hospitalresult.vue'
-import lostpage from '@/views/resultpage/lostpage/lostpage.vue'
-import departsearch from '@/views/choosedepart/departsearch'
-import news from '@/views/home/news'
-import propaganda from '@/views/home/propaganda'
-import propagandainfo from '@/views/home/propagandainfo'
-
-
-import newsinfo from '@/views/home/newsinfo'
-import choose from '@/views/inspectionCheck/choose'
-import confirmOrder from '@/views/inspectionCheck/confirmOrder'
-import inspectSuccess from '@/views/inspectionCheck/inspectSuccess'
-
-
-
-
-
-import cardmy from '@/views/cardmy/cardmy.vue'
-import cardwrite from '@/views/cardwrite/cardwrite.vue'
-import cardwritesecond from '@/views/cardwritesecond/cardwritesecond.vue'
-import cardwriteson from '@/views/cardwriteson/cardwriteson.vue'
-
-import cardneed from '@/views/cardneed/cardneed.vue'
-
-import unblind from '@/views/unblind/unblind.vue'
-
-// 
-import orderrecord from '@/views/orderrecord/orderrecord.vue'
-import orderinfo from '@/views/orderinfo/orderinfo.vue'
-import askorder from '@/views/askorder/askorder.vue'
-import registrecord from '@/views/registrecord/registrecord.vue'
-
-import inspectionCheck from '@/views/inspectionCheck/inspectionCheck.vue'
-import medicalEva from '@/views/medicalEva/medicalEva.vue'
-import recipeDetail from '@/views/recipeDetail/recipeDetail.vue'
-import slowConfirm from '@/views/slowConfirm/slowConfirm.vue'
-import applyDetail from '@/views/applyDetail/applyDetail.vue'
-import examine from '@/views/examine/examine.vue'
+ 
 import onlineEva from '@/views/onlineEva/onlineEva.vue'
 import evaContent from '@/views/evaContent/evaContent.vue'
 import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
@@ -115,74 +110,72 @@ import recordDetail from '@/views/recordDetail/recordDetail.vue'
 import examineDetail from '@/views/examineDetail/examineDetail.vue'
 import examineOrder from '@/views/examineOrder/examineOrder.vue'
 import expertpage from '@/views/onlines/expertpage/expertpage.vue'
-
-
-
 import reservation from '@/views/reservation/reservation.vue'
 import storeInfo from '@/views/storeInfo/storeInfo.vue'
 import submitOrder from '@/views/submitOrder/submitOrder.vue'
-import acceptAdd from '@/views/acceptAdd/acceptAdd.vue'
-
-import cardconfirm from '@/views/cardconfirm/cardconfirm.vue'
+ 
 import register from '@/views/register/register.vue'
 import inpatient from '@/views/inhospital/inpatient/inpatient.vue'
-import bedhosipital from '@/views/inhospital/bedhosipital'
-import admuoload from '@/views/inhospital/admuoload'
-import admupayfee from '@/views/inhospital/admupayfee'
-import myhospital from '@/views/inhospital/myhospital'
-import hospitalinfo from '@/views/inhospital/hospitalinfo'
-import hospitalization from '@/views/inhospital/hospitalization'
-import myhospitalfirst from '@/views/inhospital/myhospitalfirst'
-import hospitalhistroy from '@/views/inhospital/hospitalhistroy'
+ 
+ 
+const admupayfee = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/admupayfee")
+const myhospital = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/myhospital")
+const admuoload = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/admuoload")
+const bedhosipital = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/bedhosipital")
+ 
+
+const hospitalization = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/hospitalization")
+const hospitalinfo = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/hospitalinfo")
+const myhospitalfirst = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/myhospitalfirst")
+const hospitalhistroy = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/hospitalhistroy")
+ 
+ 
+
+const payfee = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/payfee/payfee.vue")
+const payfeerecord = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/payfeerecord")
+const payfeerecordinfo = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/payfeerecordinfo")
+ 
+ 
+ 
+const paymeet = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/paymeet/paymeet.vue")
+const quickpay = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/quickpay/quickpay.vue")
+const admission = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/admission/admission.vue")
+const dayof = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/dayof/dayof.vue")
+const paysucced = () => import(/* webpackChunkName: "inhospital" */ "@/views/inhospital/paysucced")
+ 
 
 
-import payfee from '@/views/inhospital/payfee/payfee.vue'
-import payfeerecord from '@/views/inhospital/payfeerecord'
-import payfeerecordinfo from '@/views/inhospital/payfeerecordinfo'
-
-
-import paymeet from '@/views/inhospital/paymeet/paymeet.vue'
-import quickpay from '@/views/inhospital/quickpay/quickpay.vue'
-import admission from '@/views/inhospital/admission/admission.vue'
-import dayof from '@/views/inhospital/dayof/dayof.vue'
-import paysucced from '@/views/inhospital/paysucced'
-
-
-
-import followDoctor from '@/views/onlines/followDr'
-import inquiryRecord from '@/views/onlines/inquiryRecord'
-import consultDetail from '@/views/onlines/consultDetail'
-import buyService from '@/views/onlines/buyService'
-import pictureConsult from '@/views/onlines/pictureConsult'
-import selectPeople from '@/views/onlines/selectPeople'
-import addPeople from '@/views/onlines/addPeople'
-import seeCase from '@/views/onlines/seeCase'
-import inspectionReport from '@/views/onlines/inspectionReport'
-import caseDetail from '@/views/onlines/caseDetail'
-import inspectionDetail from '@/views/onlines/inspectionDetail'
-import onlineresult from '@/views/onlines/onlineresult'
-import onlinesearch from '@/views/onlines/onlinesearch'
-
-
-
-
-import business from '@/views/copyrecord/business/business.vue'
-import chooseCase from '@/views/copyrecord/chooseCase/chooseCase.vue'
-import copyresult from '@/views/copyrecord/copyresult/copyresult.vue'
-import businssrecord from '@/views/copyrecord/businssrecord'
-import certificate from '@/views/copyrecord/certificate/certificate.vue'
-import putinfo from '@/views/copyrecord/putinfo/putinfo.vue'
-
-
-import businssrecordinfo from '@/views/copyrecord/businssrecordinfo'
-import needkown from '@/views/copyrecord/needkown'
+ 
+const followDoctor = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/followDr")
+const inquiryRecord = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/inquiryRecord")
+const consultDetail = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/consultDetail")
+const buyService = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/buyService")
+const pictureConsult = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/buyService")
+const selectPeople = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/pictureConsult")
+const addPeople = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/selectPeople")
+const seeCase = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/addPeople")
+const inspectionReport = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/seeCase")
+const caseDetail = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/caseDetail")
+const inspectionDetail = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/inspectionDetail")
+const onlineresult = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/onlineresult")
+const onlinesearch = () => import(/* webpackChunkName: "onlines" */ "@/views/onlines/onlinesearch")
 
 
 
-import resultDoctor from '@/views/resultDr/result.vue'
-import privacy from '@/views/appwarn/privacy/privacy.vue'
-import agreement from '@/views/appwarn/agreement/agreement.vue'
+ 
 
+ 
+const business = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/business/business.vue")
+const chooseCase = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/chooseCase/chooseCase.vue")
+const copyresult = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/copyresult/copyresult.vue")
+const businssrecord = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/businssrecord")
+const certificate = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/certificate/certificate.vue")
+const putinfo = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/putinfo/putinfo.vue")
+const businssrecordinfo = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/businssrecordinfo")
+const needkown = () => import(/* webpackChunkName: "copyrecord" */ "@/views/copyrecord/needkown")
+const resultDoctor = () => import(/* webpackChunkName: "copyrecord" */ "@/views/resultDr/result.vue")
+const privacy = () => import(/* webpackChunkName: "copyrecord" */ "@/views/appwarn/privacy/privacy.vue")
+const agreement = () => import(/* webpackChunkName: "copyrecord" */ "@/views/appwarn/agreement/agreement.vue")
 
 
 Vue.use(Router)
@@ -207,6 +200,11 @@ export default new Router({
     name: 'outpatientinfo',
     component: outpatientinfo,
   },
+    {
+    path: '/outpatient',
+    name: 'outpatient',
+    component: outpatient,
+  },
   {
     path: '/confirmOrder',
     name: 'confirmOrder',
@@ -228,23 +226,8 @@ export default new Router({
     name: 'register',
     component: register
   },
-
-  {
-    path: '/propagandainfo',
-    name: 'propagandainfo',
-    component: propagandainfo,
-    meta: {
-      title: '宣教信息详情'
-    }
-  },
-  {
-    path: '/propaganda',
-    name: 'propaganda',
-    component: propaganda,
-    meta: {
-      title: '宣教信息'
-    }
-  },
+ 
+ 
   {
     path: '/newsinfo',
     name: 'newsinfo',
@@ -442,11 +425,7 @@ export default new Router({
     name: 'signagin',
     component: signagin
   },
-  {
-    path: '/cardmy',
-    name: 'cardmy',
-    component: cardmy
-  },
+   
   {
     path: '/cardwrite',
     name: 'cardwrite',
@@ -462,11 +441,7 @@ export default new Router({
     name: 'cardwriteson',
     component: cardwriteson
   },
-  {
-    path: 'cardconfirm',
-    name: 'cardconfirm',
-    component: cardconfirm
-  },
+  
   {
     path: '/cardneed',
     name: 'cardneed',
@@ -619,11 +594,7 @@ export default new Router({
     name: 'lookagain',
     component: lookagain
   },
-  {
-    path: '/identity',
-    name: 'identity',
-    component: identity
-  },
+  
   {
     path: '/idcard',
     name: 'idcard',
@@ -789,14 +760,7 @@ export default new Router({
     name: 'examineOrder',
     component: examineOrder,
   },
-  {
-    path: '/acceptAdd',
-    name: 'acceptAdd',
-    component: acceptAdd,
-    meta: {
-      keepAlive: true
-    }
-  },
+ 
   {
     path: '/storeInfo',
     name: 'storeInfo',

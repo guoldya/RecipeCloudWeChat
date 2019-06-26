@@ -68,7 +68,7 @@
 </template>
   
 <script>
-let bizExamReportselectReportDetailList = "/bizExamReport/selectReportDetailList"
+let bizExamReportselectReportDetailList = "/api/hos/bizExamReport/selectReportDetailList"
 export default {
 
   data() {

@@ -58,10 +58,10 @@
 </template>
 <script >
 import { Toast } from 'mand-mobile';
-let bdProductreaddetail = '/bizArticle/read/detail';
-let bizArticleCmtreadpage = 'bizArticleCmt/read/page';
-let appbizCollectionaddCollection = '/bizCollection/addCollection';
-let appbizCollectiondeleteCollection = '/bizCollection/deleteCollection';
+let bdProductreaddetail = '/api/hos/bizArticle/read/detail';
+let bizArticleCmtreadpage = '/api/hos/bizArticleCmt/read/page';
+let appbizCollectionaddCollection = '/api/hos/bizCollection/addCollection';
+let appbizCollectiondeleteCollection = '/api/hos/bizCollection/deleteCollection';
 const scrollTopList = {};
 export default {
   data() {

@@ -101,8 +101,8 @@
                 <img src="@/assets/images/icon_navigation.png" alt="">
             </div>
             <div class="home-Intel home-flex">
-                <img src="@/assets/images/icon_information.png" alt="" @click="propaganda">
-                <img src="@/assets/images/icon_news.png" alt="" @click="news">
+                <img src="@/assets/images/icon_information.png" alt="" @click="news(26)">
+                <img src="@/assets/images/icon_news.png" alt="" @click="news(27)">
             </div>
             <div class="tools home-Intel" :class="{'isDownIntel':isDown}">
                 <h2>医院简介</h2>
@@ -127,7 +127,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-let bizPatientRegisterselectCount = "/bizPatientRegister/selectCount";
+let bizPatientRegisterselectCount = "/api/hos/api/hos/bizPatientRegister/selectCount";
 export default {
     data() {
         return {
@@ -196,9 +196,35 @@ export default {
                 console.log(error);
             }
         },
+        testRegist() {
+            if (sessionStorage.getItem('openid')) {
+                this.$dialog.confirm({
+                    title: '提示',
+                    content: '您还没有绑定手机，立即绑定',
+                    confirmText: '确定',
+                    cancelText: '取消',
+                    onConfirm: () => {
+                        this.$router.push({
+                            name: 'register',
+                            query: { openid: sessionStorage.getItem('openid'), accessToken: sessionStorage.getItem('accessToken') }
+                        });
+                    },
+                });
+                return false
+            }
+            if (!this._accountinfo.idCard) {
+                this.$toast.info("请先实名")
+                return false
+            }
+            if (this._cardlist.length == 0) {
+                this.$toast.info("请绑定就诊卡")
+                return false
+            }
+            return true
+
+        },
         choosedepart() {
-            if (!this.getInfo.id) {
-                this.$toast.info("请添加或者绑定就诊卡")
+            if (!this.testRegist()) {
                 return
             }
             let argu = {};
@@ -223,6 +249,9 @@ export default {
             sessionStorage.setItem('objInfo', setInfo)
         },
         feerecord() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {};
             this.$router.push({
                 name: 'feerecord',
@@ -231,30 +260,28 @@ export default {
         },
         // 门诊缴费
         outpatient() {
-            // if (!this.testRegist()) {
-            //     return
-            // }
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'outpatient',
                 query: argu
             });
         },
-        propaganda() {
-            let argu = {};
-            this.$router.push({
-                name: 'propaganda',
-                query: argu
-            });
-        },
-        news() {
-            let argu = {};
+
+        news(data) {
+          
+            let argu = {}
             this.$router.push({
                 name: 'news',
-                query: argu
+                query: { id: data }
             });
         },
         sign() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'sign',
@@ -262,6 +289,25 @@ export default {
             });
         },
         blidcard() {
+            if (sessionStorage.getItem('openid')) {
+                this.$dialog.confirm({
+                    title: '提示',
+                    content: '您还没有绑定手机，立即绑定',
+                    confirmText: '确定',
+                    cancelText: '取消',
+                    onConfirm: () => {
+                        this.$router.push({
+                            name: 'register',
+                            query: { openid: sessionStorage.getItem('openid'), accessToken: sessionStorage.getItem('accessToken') }
+                        });
+                    },
+                });
+                return
+            }
+            if (!this._accountinfo.idCard) {
+                this.$toast.info("请先实名")
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'idcardlist',
@@ -270,6 +316,9 @@ export default {
         },
         // 报告查询
         reportquery() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'reportquery',
@@ -278,6 +327,9 @@ export default {
         },
         // 我的排队
         lineupnow() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'lineupnow',
@@ -286,6 +338,9 @@ export default {
         },
         // 我的住院
         inpatient() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'inpatient',
@@ -294,6 +349,9 @@ export default {
         },
         // 慢病徐方
         inspectionCheck() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'inspectionCheck',
@@ -302,6 +360,9 @@ export default {
         },
         //  
         medical() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'medical',
@@ -309,6 +370,9 @@ export default {
             });
         },
         examine() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'examine',
@@ -317,6 +381,9 @@ export default {
         },
         // 医生排班
         workdepart() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'workdepart',
@@ -326,6 +393,9 @@ export default {
 
         // 医生排班
         business() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'needkown',
@@ -334,6 +404,9 @@ export default {
         },
         // 我的处方
         myinspectionCheck() {
+            if (!this.testRegist()) {
+                return
+            }
             let argu = {}
             this.$router.push({
                 name: 'recipeRecord',

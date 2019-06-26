@@ -132,8 +132,8 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import websocketConfig from "../../../service/websocket.js";
-let updateOrder = "/bizOnlineServiceRecord/updateOrder";
-let uploadImage = "/appLogin/uploadImage";
+let updateOrder = "/api/hos/bizOnlineServiceRecord/updateOrder";
+let uploadImage = "/api/hos/appLogin/uploadImage";
 import { Dialog } from "mand-mobile";
 import { setTimeout } from 'timers';
 export default {

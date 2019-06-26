@@ -39,7 +39,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
-let appbdDrugsAlertreadselectMember = "/bizPatientCard/read/selectMemberByCard"
+let appbdDrugsAlertreadselectMember = "/api/hos/bizPatientCard/read/selectMemberByCard"
 export default {
   data() {
     return {

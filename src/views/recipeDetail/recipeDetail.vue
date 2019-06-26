@@ -77,8 +77,8 @@
     </div>
 </template>
 <script type="text/babel">
-let apprecipegetDetails = "/recipe/getDetails";
-let recipeApplyRenewRecipe = "/bizRecipeApply/createNoPayRecipeApply"
+let apprecipegetDetails = "/api/hos/recipe/getDetails";
+let recipeApplyRenewRecipe = "/api/hos/bizRecipeApply/createNoPayRecipeApply"
 export default {
     data() {
         return {

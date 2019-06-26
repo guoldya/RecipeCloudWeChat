@@ -48,8 +48,8 @@
     </div>
 </template>
 <script >
-let pay_list_url = "/bizCostBill/selectCostBillList";
-let bizPatientCard = "/bizPatientCard/read/list";
+let pay_list_url = "/api/hos/bizCostBill/selectCostBillList";
+let bizPatientCard = "/api/hos/bizPatientCard/read/list";
 export default {
     data() {
         return {
