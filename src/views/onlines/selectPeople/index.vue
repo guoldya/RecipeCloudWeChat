@@ -119,11 +119,10 @@ export default {
       });
     },
     selectPeople(data) {
-
-      if (data.birthday) {
+      console.log("birthday："+data)
+      if(data.birthday) {
         data.age = this.getAge(data.birthday);
-        console.log(data.age, "data.age")
-        // data.put("age", this.getAge(data.birthday));
+        data.put("age",this.getAge(data.birthday));
         // JSON.parse(data).age = this.getAge(data.birthday);
       }
       this["chat/setPatienDetail"](data);
