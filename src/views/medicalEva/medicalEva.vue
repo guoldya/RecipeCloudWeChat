@@ -56,7 +56,7 @@
     </div>
 </template>
 <script type="text/babel">
-let appbizOnlineServiceRecordcomment = "/app/bizOnlineServiceRecord/comment";
+let appbizOnlineServiceRecordcomment = "/bizOnlineServiceRecord/comment";
 var starOffImg = require("@/assets/images/icon_star_gray.png");
 var starOnImg = require("@/assets/images/icon_star@2x.png");
 export default {

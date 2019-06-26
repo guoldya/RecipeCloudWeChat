@@ -25,7 +25,7 @@
 </template>
 <script >
 import { Toast } from 'mand-mobile';
-let bdProductreaddetail = '/app/bizArticle/read/detail';
+let bdProductreaddetail = '/bizArticle/read/detail';
 const scrollTopList = {};
 export default {
   data() {

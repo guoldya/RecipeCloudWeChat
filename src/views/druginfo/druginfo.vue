@@ -184,11 +184,11 @@
 </template>
 <script>
 import { Toast } from 'mand-mobile';
-let bdProductreaddetail = '/app/bdProduct/read/detail';
-let appbizCollectionaddCollection = '/app/bizCollection/addCollection';
-let appbizCollectiondeleteCollection = '/app/bizCollection/deleteByContentId';
-let appbizProductEvaluatereadpage = "/app/bizProductEvaluate/read/page";
-let appbizShoppingCartadd = "/app/bizShoppingCart/add"
+let bdProductreaddetail = '/bdProduct/read/detail';
+let appbizCollectionaddCollection = '/bizCollection/addCollection';
+let appbizCollectiondeleteCollection = '/bizCollection/deleteByContentId';
+let appbizProductEvaluatereadpage = "/bizProductEvaluate/read/page";
+let appbizShoppingCartadd = "/bizShoppingCart/add"
 export default {
   data() {
     return {

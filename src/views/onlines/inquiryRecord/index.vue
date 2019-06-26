@@ -45,7 +45,7 @@ import { setTimeout } from "timers";
 import websocketConfig from '../../../service/websocket.js'
 import { Promise } from 'q';
 // import { resolve } from 'dns';
-let pay_list_url = "/app/bizOnlineServiceRecord/read/page";
+let pay_list_url = "/bizOnlineServiceRecord/read/page";
 export default {
   data() {
     return {

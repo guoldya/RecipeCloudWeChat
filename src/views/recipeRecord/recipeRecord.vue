@@ -169,7 +169,7 @@
 </template>
 <script type="text/babel">
 import { Toast } from "mand-mobile"
-let recipe_getList_url="/app/recipe/getList ";
+let recipe_getList_url="/recipe/getList ";
 export default {
 
     data() {

@@ -18,7 +18,7 @@
 </template>
 <script>
 import doctorList from "../../../components/doctorList";
-const followDrUrl = '/app/bizDoctorFollow/read/page'
+const followDrUrl = '/bizDoctorFollow/read/page'
 export default {
   data() {
     return{

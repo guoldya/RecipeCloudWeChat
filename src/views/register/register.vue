@@ -1,6 +1,6 @@
 <template>
-   <div  class="outCarint">
-      <Header post-title="注册"  ></Header>
+   <div class="outCarint">
+      <Header post-title="注册"></Header>
       <div>
          <!-- <img src="@/assets/images/AAAA.png" alt=""> -->
       </div>
@@ -35,7 +35,6 @@ export default {
       return {
          phonenumber: '',
          verifyCode: '',
-         
          show: true,
          count: '',
          timer: null,
@@ -44,13 +43,7 @@ export default {
    created() {
 
    },
-   mounted() {
-      document.title = '注册';
-      
-      
-         
-        
-   },
+
    methods: {
       getCode() {
          let _this = this;
@@ -90,27 +83,53 @@ export default {
       },
 
       tijiao() {
-         let _this = this;
-         this.$axios.post(appregister + '?mobile=' + _this.phonenumber + '&appType=' + 1 + '&verifyType=' + 1 + '&verifyCode=' + _this.verifyCode + '&wechatCode=' + '06198ZBu0yPS8i1ugYAu0f71Cu098ZBp', {
-            
+         this.isTijiao = false;
+         this.$toast.loading("提交中...")
+         this.$axios.post(appregister, {
+            mobile: this.mobile,
+            verifyCode: this.verifyCode,
+            accessToken: sessionStorage.getItem("accessToken"),
+            openid: sessionStorage.getItem("openid"),
          }).then(res => {
             if (res.data.code == '200') {
                var storage = window.localStorage;
-               storage.setItem("token", res.data.data.token);
-               storage.setItem("memberId", res.data.data.memberId);
-               storage.setItem("mobile", res.data.data.mobile);
-               console.log(localStorage.getItem("token"), "缓存的 loca ")
-               _this.$router.back();
+               storage.setItem("token7", res.data.data.token);
+               sessionStorage.removeItem('openid');
+               sessionStorage.removeItem('accessToken');
+               this.$store.dispatch('getAccount', { update: true });
+               // storage.setItem("memberId", res.data.data.memberId);
+               // storage.setItem("mobile", res.data.data.mobile);
+               this.$axios.put(myDetailed, {}).then((res) => {
+                  if (res.data.code == '200') {
+                     this.isTijiao = true;
+                     storage.setItem("patientId", res.data.data.id);
+                     setTimeout(() => {
+                        this.$toast.info("绑定成功");
+                        this.$router.go(-1);
+                     }, 1000);
 
-            } else if (res.data.code == '800') {
 
+                  } else {
+                     this.$toast.info(res.data.msg)
+                  }
+               }).catch(function (err) {
+                  console.log(err);
+               });
+
+            } else {
+               this.isTijiao = true;
+               this.count = '';
+               this.$toast.info(res.data.msg)
             }
-         });
-      },
-   },
-   computed: {
+         }).catch(function (err) {
+            console.log(err);
+         });;
 
+      },
+
+      
    },
+
 
 };
 </script>

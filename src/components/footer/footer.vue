@@ -2,18 +2,18 @@
   <div class="footer">
     <div style="height:50px"></div>
     <div class="aui-footer">
-      <a href="javascript:;" class="aui-tabBar-item" @click="switchTo('/')">
+      <a href="javascript:;" class="aui-tabBar-item" @click="switchTo('/home')">
         <span class="aui-tabBar-item-icon">
-          <img :src=" '/' === $route.path ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="首页">
+          <img :src=" '/home' === $route.path ? tabBarImgArr[0].selected : tabBarImgArr[0].normal" alt="首页">
         </span>
-        <span :class="{on: '/' === $route.path}">诊疗服务</span>
+        <span :class="{on: '/home' === $route.path}">诊疗服务</span>
         <span v-if="footNumber!=0" class="footNumber"></span>
       </a>
-      <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/online')">
+      <a href="javascript:;" class="aui-tabBar-item " @click="switchTo('/inquiryOnline')">
         <span class="aui-tabBar-item-icon">
-          <img :src="'/online' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
+          <img :src="'/inquiryOnline' === $route.path ? tabBarImgArr[1].selected : tabBarImgArr[1].normal" alt="消息中心">
         </span>
-        <span :class="{on: '/online' === $route.path}">在线问诊</span>
+        <span :class="{on: '/inquiryOnline' === $route.path}">在线咨询</span>
       </a>
       <a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active" @click="switchTo('/my')">
         <span class="aui-tabBar-item-icon">
@@ -38,11 +38,27 @@ export default {
   },
   props: ['footNumber'],
   mounted() {
-   
+
   },
   methods: {
     switchTo(path) {
-      // console.log(this.$router)
+      if (path == '/my') {
+        if (sessionStorage.getItem('openid')) {
+          this.$dialog.confirm({
+            title: '提示',
+            content: '您还没有绑定手机，立即绑定',
+            confirmText: '确定',
+            cancelText: '取消',
+            onConfirm: () => {
+              this.$router.push({
+                name: 'register',
+                query: { openid: sessionStorage.getItem('openid'), accessToken: sessionStorage.getItem('accessToken') }
+              });
+            },
+          });
+          return false
+        }
+      }
       this.$router.replace(path)
     },
 
@@ -76,7 +92,7 @@ export default {
   left: 0;
   width: 100%;
   height: 2px;
-  border-top: 1px solid #e9e9e9;
+  border-top: 2px solid #e9e9e9;
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
   -webkit-transform-origin: 0 0;
@@ -105,7 +121,7 @@ export default {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  color:  var(--primary--content);
+  color: var(--primary--content);
 }
 
 .aui-tabBar-item span {
@@ -139,7 +155,7 @@ export default {
   width: 16px;
   height: 16px;
   border-radius: 16px;
-  background: #FF513A;
+  background: #ff513a;
   text-align: center;
   line-height: 32px;
   font-size: 24px;

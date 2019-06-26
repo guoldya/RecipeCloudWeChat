@@ -82,17 +82,16 @@
     </div>
     <!-- 筛选弹窗 -->
     <filterPop ref="filterPop" v-on:childByValue="childByValue"></filterPop>
-
     <!-- 底部 -->
-    <Footer></Footer>
+    <Footer :foot-number="$store.state.homeList"></Footer>
   </div>
 </template>
 <script type="text/babel">
 import { Field, FieldItem, TabPicker } from "mand-mobile";
 import filterPop from "../component/filterPop";
 import doctorList from "../../../components/doctorList";
-const departmentUrl = "/app/bdHospitalOrg/read/selectClinicListByHospitalArea";
-const recommendUrl = "/app/bdOnlineDoctor/read/page";
+const departmentUrl = "/bdHospitalOrg/read/selectClinicListByHospitalArea";
+const recommendUrl = "/bdOnlineDoctor/read/page";
 
 export default {
   name: "action-sheet-demo",

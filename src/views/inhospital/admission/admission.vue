@@ -35,7 +35,7 @@
 </template>
 <script  >
 import { Dialog } from 'mand-mobile'
-let cord_info_url = "/app/bizIhRecord/read/selectRecordDetail";
+let cord_info_url = "/bizIhRecord/read/selectRecordDetail";
 import { Field, RadioList } from 'mand-mobile'
 
 export default {

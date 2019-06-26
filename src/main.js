@@ -24,10 +24,10 @@ import Recordcard from './components/recordcard';
 import infiniteScroll from 'vue-infinite-scroll';
 import filters from './filter/filter';
 import router from './router'
-import Timefilter from '@/components/timefilter' 
+import Timefilter from '@/components/timefilter'
 
 
- 
+
 
 Vue.prototype.$conf = Config;
 Vue.use(mandMobile)
@@ -47,34 +47,34 @@ import './assets/global.css'
 
 
 
- 
+
 Vue.component('Skeleton', Skeleton);
 Vue.component('Header', Header);
 Vue.component('Headerapp', Headerapp);
 Vue.component('Headerwhite', Headerwhite);
 Vue.component('Navigation', Navigation);
 Vue.component('Timefilter', Timefilter);
- 
+
 Vue.component('Homesk', Homesk);
 Vue.component('Recordcard', Recordcard);
 Vue.component('meQrcode', meQrcode);
 
- 
+
 
 Vue.component('Search', Search);
 Vue.component('Apptab', Apptab);
 Vue.component('Null', Null);
 Vue.component('ValuationCard', ValuationCard);
 Vue.component('Loading', Loading);
- 
+
 Vue.component('Footer', Footer);
 Vue.component('Address', Address);
- 
+
 Vue.config.productionTip = false;
 Vue.use(infiniteScroll);
- 
 
- 
+
+
 // import Vconsole from 'vconsole';
 // const vConsole = new Vconsole();
 // 路由拦截
@@ -112,10 +112,10 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
 }
 
 Vue.config.productionTip = false;
-const BASE_URL = '/api/';
+const BASE_URL = '/api/bas';
 
 axios.defaults.baseURL = BASE_URL;
- 
+
 
 axios.interceptors.request.use(function (config) {
     let url = config.url;
@@ -123,14 +123,12 @@ axios.interceptors.request.use(function (config) {
     if (localStorage.getItem("token7")) {
         // config.headers.TOKEN = localStorage.getItem("token7");
         // config.headers.UUID = localStorage.getItem("UUID7");
-        config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
-        config.headers.UUID = "AAA";
+        config.headers.Authorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJhY2NvdW50XCI6XCJhZG1pblwiLFwiaWRcIjowLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJwYXNzd29yZFwiOlwiaS9zVjJWcFRQeTdZK3BwZXNta0NtTT09XCJ9IiwianRpIjoiZGM5Y2Y5NjItZTA5Ni00YzhmLTkxZjgtYTViYjZjZjhjMjAzIiwiaWF0IjoxNTYxMDg1MTE3LCJleHAiOjE1NjM2NzcxMTd9.Al41PuH1fe3pRD_Tv0lclawCGZRFR0qESClra3bGSEA";
     } else {
         if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
-            config.headers.TOKEN = "36cd8f9fe09a4c81a451498e7bd1074e";
+            config.headers.Authorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJhY2NvdW50XCI6XCJhZG1pblwiLFwiaWRcIjowLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJwYXNzd29yZFwiOlwiaS9zVjJWcFRQeTdZK3BwZXNta0NtTT09XCJ9IiwianRpIjoiZGM5Y2Y5NjItZTA5Ni00YzhmLTkxZjgtYTViYjZjZjhjMjAzIiwiaWF0IjoxNTYxMDg1MTE3LCJleHAiOjE1NjM2NzcxMTd9.Al41PuH1fe3pRD_Tv0lclawCGZRFR0qESClra3bGSEA";
         } else {
-            config.headers.TOKEN = "edd169b85704410aa5219512cb6f1f00";
-            config.headers.UUID = "AAA";
+            config.headers.Authorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJhY2NvdW50XCI6XCJhZG1pblwiLFwiaWRcIjowLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJwYXNzd29yZFwiOlwiaS9zVjJWcFRQeTdZK3BwZXNta0NtTT09XCJ9IiwianRpIjoiZGM5Y2Y5NjItZTA5Ni00YzhmLTkxZjgtYTViYjZjZjhjMjAzIiwiaWF0IjoxNTYxMDg1MTE3LCJleHAiOjE1NjM2NzcxMTd9.Al41PuH1fe3pRD_Tv0lclawCGZRFR0qESClra3bGSEA";
         };
     }
     return config;
@@ -143,12 +141,12 @@ axios.interceptors.request.use(function (config) {
 //     // 如果是登陆
 //     if (sessionStorage.getItem("token7")) {
 //         console.log(sessionStorage.getItem("token7"), "南川要用的sss")
-//         config.headers.TOKEN = sessionStorage.getItem("token7");
+//         config.headers.Authorization = sessionStorage.getItem("token7");
 //     } else {
 //         // if (url.indexOf("/appLogin/login") > -1 || (url.indexOf("appLoginlogin") > -1)) {
-//         //     config.headers.TOKEN = "";
+//         //     config.headers.Authorization = "";
 //         // } else {
-//         //     config.headers.TOKEN = "";
+//         //     config.headers.Authorization = "";
 //         // };
 //     }
 //     return config;

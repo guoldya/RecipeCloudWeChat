@@ -41,9 +41,10 @@
                     </div>
                 </li>
             </ul>
-            <div v-show="!loadingtrue" v-else class="nullDurg">
+            <!-- <div v-show="!loadingtrue" v-else class="nullDurg">
                 <img src="@/assets/images/null1.png" alt="">
-            </div>
+            </div> -->
+            <Null :loading-true="!loadingtrue&&addressInfo.length==0"></Null>
         </div>
 
         <div style="height: 60px"></div>
@@ -54,12 +55,12 @@
 import { Toast } from 'mand-mobile';
 import { Dialog, Button } from 'mand-mobile'
 
-let appshippingAddressaddressList = "/app/shippingAddress/addressList";
-let deleteAddress = "/app/shippingAddress/delete";
+let appshippingAddressaddressList = "/shippingAddress/addressList";
+let deleteAddress = "/shippingAddress/delete";
 
 
 
-let isDefault = "/app/shippingAddress/isDefault"
+let isDefault = "/shippingAddress/isDefault"
 export default {
     data() {
         return {

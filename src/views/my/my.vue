@@ -151,8 +151,8 @@
       </div>
       <div class="divHeight"></div>
     </section>
-
-    <Footer></Footer>
+    <!-- 底部 -->
+    <Footer :foot-number="$store.state.homeList"></Footer>
   </div>
 </template>
 <script>

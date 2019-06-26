@@ -37,8 +37,8 @@
   </div>
 </template>
 <script>
-    let doctor_url="/app/bdHospitalDoctor/read/selectDoctorPage";
-    let doctor_query_url="/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+    let doctor_url="/bdHospitalDoctor/read/selectDoctorPage";
+    let doctor_query_url="/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
     export default {
         data() {
             return {

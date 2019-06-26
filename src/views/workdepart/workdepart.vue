@@ -29,8 +29,8 @@
    </div>
 </template>
 <script type="text/babel">
-    let bdHospitalOrg = '/app/bdHospitalOrg/read/selectClinicListByHospitalArea';
-    let input_search_url = "/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+    let bdHospitalOrg = '/bdHospitalOrg/read/selectClinicListByHospitalArea';
+    let input_search_url = "/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
     export default {
         data() {
             return {

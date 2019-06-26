@@ -124,8 +124,8 @@
     </div>
 </template>
 <script type="text/babel">
-    let add_list_url = "/app/shippingAddress/addressList";
-    let recipe_getDetails_url="/app/recipe/getDetails ";
+    let add_list_url = "/shippingAddress/addressList";
+    let recipe_getDetails_url="/recipe/getDetails ";
     export default {
         data() {
             return {

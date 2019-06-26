@@ -82,8 +82,8 @@
 </template>
 <script type="text/babel">
 
-let selectIhRecordPriceList = "/app/bizIhFee/read/page";
-let selectTimes = "/app/bizIhFee/selectTimes";
+let selectIhRecordPriceList = "/bizIhFee/read/page";
+let selectTimes = "/bizIhFee/selectTimes";
 export default {
   data() {
     return {

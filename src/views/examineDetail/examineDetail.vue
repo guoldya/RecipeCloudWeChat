@@ -50,7 +50,7 @@
     </div>
 </template>
 <script type="text/babel">
-    let ready_order_url="/app/bizExamApply/updateExamApply";
+    let ready_order_url="/bizExamApply/updateExamApply";
     export default {
         data() {
             return {

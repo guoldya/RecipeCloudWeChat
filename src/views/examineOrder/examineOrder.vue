@@ -45,8 +45,8 @@
 </template>
 
 <script>
-let bizExamSchedulereadlist = "/app/bizExamSchedule/daySchedule";
-let ready_order_url = "/app/bizExamApply/updateExamApply";
+let bizExamSchedulereadlist = "/bizExamSchedule/daySchedule";
+let ready_order_url = "/bizExamApply/updateExamApply";
 export default {
     data() {
         return {

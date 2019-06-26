@@ -145,11 +145,11 @@
 </template>
 <script type="text/babel">
 import { mapState } from 'vuex';
-let add_list_url = "/app/shippingAddress/addressList";
-let apprecipegetDetails = "/app/recipe/getDetails";
-let recipeApplyRenewRecipe = "/app/bizRecipeApply/recipeApplyRenewRecipe";
+let add_list_url = "/shippingAddress/addressList";
+let apprecipegetDetails = "/recipe/getDetails";
+let recipeApplyRenewRecipe = "/bizRecipeApply/recipeApplyRenewRecipe";
 // 药店地址
-let appbdOrgDrugstoregetStoreAddress = "/app/bdOrg/getStoreAddress"
+let appbdOrgDrugstoregetStoreAddress = "/bdOrg/getStoreAddress"
 export default {
    data() {
       return {

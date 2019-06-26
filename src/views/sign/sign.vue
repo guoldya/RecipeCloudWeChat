@@ -34,9 +34,9 @@
   </div>
 </template>
 <script type="text/babel"> 
-let appbizPatientRegistersign = '/app/bizPatientRegister/sign';
-let appbdHospitalOrgreadselectHospital = "/app/bdHospitalOrg/read/selectHospital";
-let appbizPatientRegisterisExitsProject = "/app/bizPatientRegister/isExitsProject";
+let appbizPatientRegistersign = '/bizPatientRegister/sign';
+let appbdHospitalOrgreadselectHospital = "/bdHospitalOrg/read/selectHospital";
+let appbizPatientRegisterisExitsProject = "/bizPatientRegister/isExitsProject";
 let readselectRegisterList = "read/selectRegisterList";
 export default {
   data() {

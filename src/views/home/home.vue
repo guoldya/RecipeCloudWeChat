@@ -122,12 +122,12 @@
                 <md-button type="primary" size="small" inline round @click="showPic=false">关闭</md-button>
             </div>
         </md-landscape>
-        <Footer :foot-number="homeList.notPayCount+homeList.notApplyCount+homeList.notSignCount"></Footer>
+        <Footer :foot-number="$store.state.homeList"></Footer>
     </div>
 </template>
 <script>
 import { mapState } from 'vuex';
-let bizPatientRegisterselectCount = "/app/bizPatientRegister/selectCount";
+let bizPatientRegisterselectCount = "/bizPatientRegister/selectCount";
 export default {
     data() {
         return {
@@ -139,7 +139,12 @@ export default {
             isDown: false,
             chooseId: '',
             picName: '',
-            homeList: '',
+            homeList: {
+                notPayCount: 0,
+                notReadMessageCount: 0,
+                notReadPacsReport: 0,
+                notSignCount: 0,
+            },
             getInfo: '',
         }
     },
@@ -178,11 +183,15 @@ export default {
             try {
                 let res = await this.$axios.put(bizPatientRegisterselectCount, {
                     cardId: data ? data : this.getInfo.id
-                });
+                }, {
+                        TOKEN: localStorage.getItem("token7")
+                    });
                 if (res.data.code != 200) {
                     throw Error(res.data.msg);
                 }
-                this.homeList = res.data.data
+                this.homeList = res.data.data;
+                this.$store.commit('homeListFun', this.homeList.notPayCount + this.homeList.notReadMessageCount + this.homeList.notReadPacsReport + this.homeList.notSignCount);
+
             } catch (error) {
                 console.log(error);
             }

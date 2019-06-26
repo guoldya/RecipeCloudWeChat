@@ -91,7 +91,7 @@
 </template>
 <script type="text/babel">
 let uploadImgimage = "/uploadImg/image";
-let addOrUpdate = "/app/bizCopyApply/uploadIdCard";
+let addOrUpdate = "/bizCopyApply/uploadIdCard";
 let appLoginuploadImage = "/appLogin/uploadImage";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'

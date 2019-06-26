@@ -52,7 +52,7 @@
     </div>
 </template>
 <script type="text/babel"> 
-let read_page_url = "/app/bizPatientRegister/read/selectPage";
+let read_page_url = "/bizPatientRegister/read/selectPage";
 export default {
     data() {
         return {

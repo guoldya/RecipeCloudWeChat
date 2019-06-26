@@ -21,7 +21,7 @@
 <script>
 import doctorItem from "../../components/doctorList";
 
-let searchClinicListByClinicOrDoctor = "/app/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+let searchClinicListByClinicOrDoctor = "/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
 export default {
   data() {
     return {

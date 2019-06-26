@@ -43,7 +43,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bizPatientCard = "/app/bizPatientCard/insert";
+let bizPatientCard = "/bizPatientCard/insert";
 export default {
   data() {
     return {

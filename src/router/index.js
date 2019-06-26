@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 主页
-const index = () => import(/* webpackChunkName: "home" */ "@/views/home/home.vue")
+const home = () => import(/* webpackChunkName: "home" */ "@/views/home/home.vue")
+const index = () => import(/* webpackChunkName: "home" */ "@/views/home/judge")
 const druginfo = () => import(/* webpackChunkName: "home" */ "@/views/druginfo/druginfo.vue")
 const result = () => import(/* webpackChunkName: "home" */ "@/views/result/result.vue")
 const feeinfo = () => import(/* webpackChunkName: "home" */ "@/views/feeinfo/feeinfo.vue")
@@ -15,27 +16,31 @@ const medicalinfo = () => import(/* webpackChunkName: "home" */ "@/views/home/me
 const medical = () => import(/* webpackChunkName: "home" */ "@/views/home/medical")
 const medicalhistory = () => import(/* webpackChunkName: "home" */ "@/views/home/medicalhistory")
 const medicaldetail = () => import(/* webpackChunkName: "home" */ "@/views/home/medicaldetail")
-import acctest from '@/views/acctest/acctest.vue'
-import acctestinfo from '@/views/acctestinfo/acctestinfo.vue'
-import suggestion from '@/views/suggestion/suggestion.vue'
-import valuationList from '@/views/my/valuationList/valuationList.vue'
-import valuation from '@/views/my/valuationList/valuation/valuation.vue'
+const acctest = () => import(/* webpackChunkName: "home" */ "@/views/acctest/acctest.vue")
+const acctestinfo = () => import(/* webpackChunkName: "home" */ "@/views/acctestinfo/acctestinfo.vue")
+const valuationList = () => import(/* webpackChunkName: "my" */ "@/views/my/valuationList/valuationList.vue")
+const valuation = () => import(/* webpackChunkName: "my" */ "@/views/my/valuationList/valuation/valuation.vue")
+const suggestion = () => import(/* webpackChunkName: "home" */ "@/views/suggestion/suggestion.vue")
+const payment = () => import(/* webpackChunkName: "home" */ "@/views/payment/payment.vue")
+const doctorList = () => import(/* webpackChunkName: "doctorList" */ "@/views/doctorList/doctorList.vue")
+const doctorresult = () => import(/* webpackChunkName: "doctorList" */ "@/views/doctorList/doctorresult")
+const doctorsearch = () => import(/* webpackChunkName: "doctorList" */ "@/views/doctorList/doctorsearch")
  
-import payment from '@/views/payment/payment.vue'
-import doctorList from '@/views/doctorList/doctorList.vue'
-import doctorresult from '@/views/doctorList/doctorresult'
-import doctorsearch from '@/views/doctorList/doctorsearch'
-import reportrecord from '@/views/reportrecord/reportrecord.vue'
-import reportquery from '@/views/reportquery/reportquery.vue'
-import reportinfo from '@/views/reportinfo/reportinfo.vue'
-import lineupnow from '@/views/lineupnow/lineupnow.vue'
-import lineupinfo from '@/views/lineupinfo/lineupinfo.vue'
-import notice from '@/views/notice/notice.vue'
-import lookagain from '@/views/lookagain/lookagain.vue'
-import doctorplan from '@/views/doctorplan/doctorplan.vue'
-import workdepart from '@/views/workdepart/workdepart.vue'
-import workdoctor from '@/views/workdoctor/workdoctor.vue'
-import workdotorinfo from '@/views/workdotorinfo/workdotorinfo.vue'
+const reportrecord = () => import(/* webpackChunkName: "report" */ "@/views/reportrecord/reportrecord.vue")
+const reportquery = () => import(/* webpackChunkName: "report" */ "@/views/reportquery/reportquery.vue")
+const reportinfo = () => import(/* webpackChunkName: "report" */ "@/views/reportinfo/reportinfo.vue")
+ 
+ 
+const lineupnow = () => import(/* webpackChunkName: "report" */ "@/views/lineupnow/lineupnow.vue")
+const lineupinfo = () => import(/* webpackChunkName: "report" */ "@/views/lineupinfo/lineupinfo.vue")
+const notice = () => import(/* webpackChunkName: "report" */ "@/views/notice/notice.vue")
+ 
+const lookagain = () => import(/* webpackChunkName: "workdepart" */ "@/views/lookagain/lookagain.vue")
+const doctorplan = () => import(/* webpackChunkName: "workdepart" */ "@/views/doctorplan/doctorplan.vue")
+const workdepart = () => import(/* webpackChunkName: "workdepart" */ "@/views/workdepart/workdepart.vue")
+const workdoctor = () => import(/* webpackChunkName: "workdepart" */ "@/views/workdoctor/workdoctor.vue")
+const workdotorinfo = () => import(/* webpackChunkName: "workdepart" */ "@/views/workdotorinfo/workdotorinfo.vue")
+ 
 import adress from '@/views/adress/adress.vue'
 import fillinfo from '@/views/fillinfo/index.vue'
 import identity from '@/views/identity/index.vue'
@@ -175,7 +180,6 @@ import needkown from '@/views/copyrecord/needkown'
 
 
 import resultDoctor from '@/views/resultDr/result.vue'
-
 import privacy from '@/views/appwarn/privacy/privacy.vue'
 import agreement from '@/views/appwarn/agreement/agreement.vue'
 
@@ -186,17 +190,17 @@ Vue.use(Router)
 export default new Router({
   mode: 'hash',
   routes: [{
-    path: '/',
+    path: '/home',
     name: 'home',
-    component: index,
-    // meta: {
-    //   keepAlive: true
-    // }
+    component: home,
+    meta: {
+      title: '互联网医院'
+    }
   },
   {
-    path: '/outpatient',
-    name: 'outpatient',
-    component: outpatient,
+    path: '/',
+    name: 'judge',
+    component: index,
   },
   {
     path: '/outpatientinfo',

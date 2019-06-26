@@ -26,7 +26,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bdHospitalOrg = '/app/bdOnlineDoctor/read/page';
+let bdHospitalOrg = '/bdOnlineDoctor/read/page';
 export default {
   data() {
     return {

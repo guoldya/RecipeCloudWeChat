@@ -21,7 +21,7 @@
   </div>
 </template>
 <script >
-let pay_list_url = "/app/bizIhPay/read/page";
+let pay_list_url = "/bizIhPay/read/page";
 export default {
   data() {
     return {

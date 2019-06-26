@@ -46,8 +46,8 @@
    </div>
 </template>
 <script type="text/babel">
-let bizLisReportreadpage = '/app/bizLisReport/read/page';
-let bizPatientCard = "/app/bizPatientCard/read/list";
+let bizLisReportreadpage = '/bizLisReport/read/page';
+let bizPatientCard = "/bizPatientCard/read/list";
 export default {
    data() {
       return {

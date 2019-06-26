@@ -49,8 +49,8 @@
 </template>
 <script type="text/babel">
 let uploadImgimage = "/appLogin/uploadImage";
-let addOrUpdate = "/app/bizIhRecord/uploadIdCard";
-let now_pay_url = "/app/bizIhPay/payment";
+let addOrUpdate = "/bizIhRecord/uploadIdCard";
+let now_pay_url = "/bizIhPay/payment";
 import pg_negative from '@/assets/images/pg_negative.png'
 import pg_positive from '@/assets/images/pg_positive.png'
 import pg_handheld from '@/assets/images/sb_positive.png'

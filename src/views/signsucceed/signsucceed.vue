@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-let bizExamApply = "/app/bizPatientRegister/read/selectSignList";
+let bizExamApply = "/bizPatientRegister/read/selectSignList";
 export default {
   data() {
     return {

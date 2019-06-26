@@ -22,7 +22,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bizLisReportreadpage = '/app/bizPatientEvaluate/read/page';
+let bizLisReportreadpage = '/bizPatientEvaluate/read/page';
 export default {
   data() {
     return {
