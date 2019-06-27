@@ -25,7 +25,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bdHospitalOrg = '/bdHospitalDoctor/read/selectDoctorPage';
+let bdHospitalOrg = '/api/hos/bdHospitalDoctor/read/selectDoctorPage';
 export default {
   data() {
     return {

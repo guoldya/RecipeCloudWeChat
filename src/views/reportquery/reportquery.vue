@@ -38,7 +38,7 @@
                 <p v-show="nomore" class="noMore">没有更多数据了</p>
             </div>
             <div v-show="!loadingtrue" class="aligncenter" style="margin:76px 0" v-else>
-                <img src="@/assets/images/null1.png"  style="width:150px">
+                <img src="@/assets/images/null_hosi.png" >
                 <p class="nullTEXT">您{{timeClass|timeFilter}}没有{{noDataTitle}}记录</p>
             </div>
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
@@ -52,7 +52,7 @@
     </div>
 </template>
 <script type="text/babel">
-let bizLisReportreadpage = '/bizLisReport/read/page';
+let bizLisReportreadpage = '/api/hos/bizLisReport/read/page';
 let bizPatientCard = "/api/hos/bizPatientCard/read/list";
 let selectUnReadTotal = "/api/hos/bizLisReport/selectUnReadTotal";
 export default {
@@ -112,7 +112,6 @@ export default {
 
     },
     methods: {
-
         childByValue: function (childValue) {
             this.queryType = childValue.type;
             this.noDataTitle = childValue.title.substring(0, 2);

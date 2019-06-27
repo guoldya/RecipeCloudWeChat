@@ -700,4 +700,11 @@ textarea::-webkit-input-placeholder {
   float: right;
   margin-right: 2%;
 }
+.md-icon.icon-font.md {
+  font-size: 0.42rem !important;
+}
+.hj {
+  width: 85%;
+  display: inline-block;
+}
 </style>
