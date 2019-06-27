@@ -38,7 +38,7 @@
 </template>
 <script>
     let doctor_url="/bdHospitalDoctor/read/selectDoctorPage";
-    let doctor_query_url="/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
+    let doctor_query_url="/api/hos/bdHospitalOrg/read/searchClinicListByClinicOrDoctor";
     export default {
         data() {
             return {

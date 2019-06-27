@@ -18,8 +18,8 @@ const medicalhistory = () => import(/* webpackChunkName: "home" */ "@/views/home
 const medicaldetail = () => import(/* webpackChunkName: "home" */ "@/views/home/medicaldetail")
 const acctest = () => import(/* webpackChunkName: "home" */ "@/views/acctest/acctest.vue")
 const acctestinfo = () => import(/* webpackChunkName: "home" */ "@/views/acctestinfo/acctestinfo.vue")
-const valuationList = () => import(/* webpackChunkName: "my" */ "@/views/my/valuationList/valuationList.vue")
-const valuation = () => import(/* webpackChunkName: "my" */ "@/views/my/valuationList/valuation/valuation.vue")
+const valuationList = () => import(/* webpackChunkName: "my" */ "@/views/my/valuationList")
+const valuation = () => import(/* webpackChunkName: "my" */ "@/views/my/valuation")
 const suggestion = () => import(/* webpackChunkName: "home" */ "@/views/suggestion/suggestion.vue")
 const payment = () => import(/* webpackChunkName: "home" */ "@/views/payment/payment.vue")
 const doctorList = () => import(/* webpackChunkName: "doctorList" */ "@/views/doctorList/doctorList.vue")
@@ -93,7 +93,7 @@ const orderinfo = () => import(/* webpackChunkName: "inspectionCheck" */ "@/view
 const askorder = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/askorder/askorder.vue")
 const registrecord = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/registrecord/registrecord.vue")
 const inspectionCheck = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/inspectionCheck/inspectionCheck.vue")
-const medicalEva = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/medicalEva/medicalEva.vue")
+ 
 const recipeDetail = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/recipeDetail/recipeDetail.vue")
 const slowConfirm = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/slowConfirm/slowConfirm.vue")
 const applyDetail = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/applyDetail/applyDetail.vue")
@@ -610,11 +610,7 @@ export default new Router({
       keepAlive: true
     }
   },
-  {
-    path: '/medicalEva',
-    name: 'medicalEva',
-    component: medicalEva
-  },
+  
   {
     path: '/medical',
     name: 'medical',

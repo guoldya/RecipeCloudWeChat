@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     searchT: function () {
-
       if (this.type == "onlines") {
         this.$router.push({
           path: "/onlinesearch",
@@ -63,7 +62,7 @@ input {
 .search .oc_val {
   /* position: fixed; */
   width: 100%;
-  /* height: 75px; */
+  height: 75px;
   border-radius: 10px;
   left: 0;
   right: 0;
@@ -77,5 +76,6 @@ input {
   color: #000;
   z-index: 999;
   border-radius: 5px;
+  border: 2px solid var(--primary--KNline);
 }
 </style>

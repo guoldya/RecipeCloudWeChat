@@ -230,7 +230,9 @@
    height: 70px;
    margin: 15px 0 0;
 }
-
+.downImg img{
+   width: 24px;
+}
 .tools-ul li p {
    width: 90%;
    overflow: hidden;

@@ -22,7 +22,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bizLisReportreadpage = '/bizPatientEvaluate/read/page';
+let bizLisReportreadpage = '/api/hos/bizPatientEvaluate/read/page';
 export default {
   data() {
     return {
@@ -58,6 +58,8 @@ export default {
       this.departs[0].loading = true;
       this.WaitPay(false);
     },
+
+
   },
   methods: {
 
