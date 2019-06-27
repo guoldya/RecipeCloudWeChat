@@ -4,7 +4,7 @@
     <Header post-title="选择就诊人"></Header>
     <ul v-show="!loadingtrue&&cardlist.length!=0">
       <li v-for="(item,index) in cardlist" :key="index" @click="selectPeople(item)">
-        <img src="../images/m.png" alt="">
+        <img src="../images/m.png" alt>
         <p>{{item.patientName}}</p>
       </li>
       <p v-show="!loadingtrue&&cardlist.length==0" class="noCardText">暂无就诊卡</p>
@@ -16,25 +16,33 @@
       <li>
         <img src="../images/m.png" alt="">
         <p>爸爸</p>
-      </li> -->
+      </li>-->
       <!-- <router-link tag="li" to="addPeople">
         <img src="../images/w.png" alt="">
         <p class="addbTN">添加家人</p>
-      </router-link> -->
+      </router-link>-->
     </ul>
     <p class="warnbot">
       您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
-      <span class="warnbottom" @click="cardneed" style="text-align:center;line-height:30px;color:#f44336">
-        电子就诊卡需知</span>
+      <span
+        class="warnbottom"
+        @click="cardneed"
+        style="text-align:center;line-height:30px;color:#f44336"
+      >电子就诊卡需知</span>
     </p>
     <div v-show="cardlist.length<5">
       <div style="height: 50px"></div>
       <p @click="blidcard" class="addbTN">添加电子就诊卡</p>
     </div>
 
-    <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
-      是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
-    </md-dialog>
+    <md-dialog
+      title="系统信息"
+      :mask-closable="true"
+      :closable="false"
+      layout="column"
+      v-model="actDialog.open"
+      :btns="actDialog.btns"
+    >是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。</md-dialog>
   </div>
 </template>
 <script>
@@ -43,34 +51,34 @@ let appbdDrugsAlertreadselectMember = "/api/hos/bizPatientCard/read/selectMember
 export default {
   data() {
     return {
-      familyList: '',
+      familyList: "",
       loadingtrue: true,
       actDialog: {
         open: false,
         btns: [
           {
-            text: '取消',
-            handler: this.onActConfirm,
+            text: "取消",
+            handler: this.onActConfirm
           },
           {
-            text: '已有',
-            handler: this.onActConfirm3,
+            text: "已有",
+            handler: this.onActConfirm3
           },
           {
-            text: '没有',
-            handler: this.onActConfirm2,
-          },]
+            text: "没有",
+            handler: this.onActConfirm2
+          }
+        ]
       }
-
-    }
+    };
   },
   computed: {
     ...mapState({
-      cardlist: state => state.home.cardList,
-    }),
+      cardlist: state => state.home.cardList
+    })
   },
   async created() {
-    await this.$store.dispatch('getCards'/* , { update: true } */);
+    await this.$store.dispatch("getCards" /* , { update: true } */);
     this.loadingtrue = false;
   },
   mounted() {
@@ -87,7 +95,6 @@ export default {
         }
         this.familyList = res.data.rows;
       } catch (error) {
-
         console.log(error.message);
       }
     },
@@ -95,44 +102,41 @@ export default {
       // Toast({
       //    content: '你点击了确认',
       // })
-      this.actDialog.open = false
+      this.actDialog.open = false;
     },
     onActConfirm2() {
       this.actDialog.open = false;
       this.$router.push({
-        name: 'cardwrite',
+        name: "cardwrite"
       });
     },
     onActConfirm3() {
       this.actDialog.open = false;
       this.$router.push({
-        name: 'cardblind',
+        name: "cardblind"
       });
     },
     blidcard() {
-      this.actDialog.open = true
+      this.actDialog.open = true;
     },
 
     cardneed() {
       this.$router.push({
-        name: 'cardneed',
+        name: "cardneed"
       });
     },
     selectPeople(data) {
-      console.log("birthday："+data)
-      if(data.birthday) {
+      if (data.birthday) {
         data.age = this.getAge(data.birthday);
-        data.put("age",this.getAge(data.birthday));
-        // JSON.parse(data).age = this.getAge(data.birthday);
       }
       this["chat/setPatienDetail"](data);
-      // console.log("pe:"+JSON.stringify(data))
+      console.log(data.age, "岁数");
       this.$router.go(-1);
     },
     getAge(value) {
       console.log(value, "执行方法")
       // if (value) return
-      if (!value.split(" ")) return
+      if (!value.split(" ")) return;
       var strBirthdayArr = value.split(" ");
       var strBirthdayArr = strBirthdayArr[0].split("-");
       var birthYear = strBirthdayArr[0];
@@ -145,41 +149,33 @@ export default {
       var nowDay = d.getDate();
 
       if (nowYear == birthYear) {
-        value = 0;//同年 则为0岁
-      }
-      else {
+        value = 0; //同年 则为0岁
+      } else {
         var ageDiff = nowYear - birthYear; //年之差
         if (ageDiff > 0) {
           if (nowMonth == birthMonth) {
-            var dayDiff = nowDay - birthDay;//日之差
+            var dayDiff = nowDay - birthDay; //日之差
             if (dayDiff < 0) {
               value = ageDiff - 1;
-            }
-            else {
+            } else {
               value = ageDiff;
             }
-          }
-          else {
-            var monthDiff = nowMonth - birthMonth;//月之差
+          } else {
+            var monthDiff = nowMonth - birthMonth; //月之差
             if (monthDiff < 0) {
               value = ageDiff - 1;
-            }
-            else {
+            } else {
               value = ageDiff;
             }
           }
-        }
-        else {
-          value = -1;//返回-1 表示出生日期输入错误 晚于今天
+        } else {
+          value = -1; //返回-1 表示出生日期输入错误 晚于今天
         }
       }
-      // this._patienDetail.age = value;
-      // console.log(this._patienDetail.age, "岁数")
-      console.log(value, "执行方法")
-      return value;//返回周岁年龄
-    },
+      return value; //返回周岁年龄
+    }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .warnbot {

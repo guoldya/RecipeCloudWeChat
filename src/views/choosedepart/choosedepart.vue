@@ -45,7 +45,7 @@
   </div>
 </template>
 <script type="text/babel">
-let bdHospitalOrg = '/bdHospitalOrg/read/selectClinicListByHospitalArea';
+let bdHospitalOrg = '/api/hos/bdHospitalOrg/read/selectClinicListByHospitalArea';
 
 export default {
   data() {
@@ -77,7 +77,6 @@ export default {
 
   },
   mounted() {
-    document.title = '选择科室';
     let _this = this;
     this.$axios.put(bdHospitalOrg, {
       orgId: _this.$route.query.hospitalId ? _this.$route.query.hospitalId * 1 : localStorage.getItem("hospitalId") * 1,

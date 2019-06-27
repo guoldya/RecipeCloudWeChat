@@ -43,7 +43,6 @@ export default {
   data() {
     return {
       active1: 0,
-
       loadingtrue: false,
       busy: true,
       nomore: false,

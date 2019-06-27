@@ -135,7 +135,7 @@ export default {
             code: 'ss',
             showPic: false,
             showindex: 0,
-            cardLoading: true,
+            cardLoading: false,
             isDown: false,
             chooseId: '',
             picName: '',
@@ -160,7 +160,7 @@ export default {
     async mounted() {
         await this.$store.dispatch('getAccount', );
         await this.$store.dispatch('getCards', );
-        this.cardLoading = false;
+        // this.cardLoading = false;
         this.getInfo = JSON.parse(sessionStorage.getItem('objInfo'));
         if (this.getInfo) {
             if (this.getInfo.id) {

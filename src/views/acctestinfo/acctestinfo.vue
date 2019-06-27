@@ -17,9 +17,7 @@
 
 <script  >
 import { mapState } from "vuex";
-
 let updateAccountName = "/api/hos/bizPatientCard/updateAccount";
-
 export default {
   data() {
     return {

@@ -1,17 +1,18 @@
 <template>
   <div class="idcardlist">
     <Header post-title="管理就诊卡"></Header>
-    <div class="outCarint" style="margin:57px 0 0">
+    <div class="outCarint" style="margin:1.14rem 0 0">
       <ul v-show="!loadingtrue&&cardlist.length!=0">
         <li v-for="(item,index) in cardlist" :key="index" class="margin14">
           <div class="homeCard">
             <div class="homeCardText">
               <div class="homeCardTextLeft" @click="unblind(item)">
-                <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt=""></p>
+                <p class="patientName">{{item.patientName}}<img class="renzhen" src="@/assets/images/renzhen.png" alt="" style="width:1rem;"></p>
                 <p>{{item.cardNo}}</p>
               </div>
               <div class="towma" @click="showPicFun(item)">
-                <p><img src="@/assets/images/lili.jpg" alt=""></p>
+                <!-- <img src="@/assets/images/lili.jpg" alt=""> -->
+                <me-qrcode :qr-url='item.cardNo' :qr-size='60'></me-qrcode>
               </div>
             </div>
           </div>
@@ -19,37 +20,43 @@
         <Loading v-show="loadingtrue"></Loading>
       </ul>
       <div v-show="cardlist.length==0" class="blindcardBtn">
-        <md-button @click="blidcard" type="primary" round>注册电子就诊卡</md-button>
+        <div class="nullDiv">
+          <img src="@/assets/images/znanwu (1).png">
+          <p class="nullTEXT">暂无就诊卡</p>
+        </div>
       </div>
-      <div :class="cardlist.length==0 ? 'bindcardwarn' : ''" v-show="!loadingtrue">
-        <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
-          是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
-        </md-dialog>
-        <p class="warnbottitle margin14 colopor">温馨提示：</p>
-        <p class="warnbot margin5 colopor">
-          您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
+      <div class="bindcardwarn">
+        <p>
+          温馨提示：您累计可注册5张电子就诊卡，如已办理实体就诊卡，可在注册时进行绑定
         </p>
-        <p class="warnbottom" @click="cardneed" style="text-align:center;line-height:30px;color:#f44336">
-          电子就诊卡需知</p>
       </div>
     </div>
-    <div v-show="cardlist.length!=0&&cardlist.length<5">
+    <div v-show="cardlist.length==0||cardlist.length<5">
       <div style="height: 50px"></div>
       <p @click="blidcard" class="addbTN">注册电子就诊卡</p>
     </div>
+    <!-- <md-dialog title="系统信息" :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
+      是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。
+    </md-dialog> -->
+    <md-landscape :mask-closable="true" :closable="false" layout="column" v-model="actDialog.open" :btns="actDialog.btns">
+      <div class="blind-card">
+        <div class="blind-card-one">
+          <p class="title">温馨提示</p>
+        </div>
+        <div class="blind-card-two">
+          <p> 是否已有就诊卡？绑定已有就诊卡，将会关联该就诊卡的就医档案。</p>
+          <div>
+            <md-button type="default" size="small" inline round @click="onActConfirm3" style="margin:20px 0">已有就诊卡</md-button>
+            <md-button type="primary" size="small" inline round @click="onActConfirm2">没有就诊卡</md-button>
+          </div>
 
-    <!-- <p class="add addisFive" v-show="isFive">注册电子就诊卡</p> -->
-    <!-- <md-landscape v-model="showPic" :mask-closable="true">
-      <div class="codema">
-        <p class="namecodema">{{picName}}</p>
-        <img src="@/assets/images/lili.jpg" alt="">
-        <p class="namecodema">就诊卡二维码</p>
+        </div>
       </div>
-    </md-landscape> -->
+    </md-landscape>
     <md-landscape v-model="showPic">
       <div class="codema">
         <p class="namecodema">{{picName}}</p>
-        <img src="@/assets/images/lili.jpg" alt="">
+        <me-qrcode :qr-url='link2' :qr-size='250'></me-qrcode>
         <p class="namecodema">就诊卡二维码</p>
         <md-button type="primary" size="small" inline round @click="showPic=false">关闭</md-button>
       </div>
@@ -57,18 +64,17 @@
   </div>
 </template>
 <script type="text/babel">
-// let wechatbizPatientCardreadpage = "/api/hos/bizPatientCard/read/list";
+// let wechatbizPatientCardreadpage = "/app/bizPatientCard/read/list";
 import { Dialog, Button, Toast } from 'mand-mobile'
 import { mapState } from 'vuex';
+import { setTimeout } from 'timers';
 
 export default {
   data() {
     return {
+      link2: " ", // 二维码2
       loadingtrue: true,
-      // isFive: false,
       showPic: false,
-      num: 2,
-      // cardlist: '',
       picName: '',
       actDialog: {
         open: false,
@@ -96,20 +102,20 @@ export default {
     ...mapState({
       cardlist: state => state.home.cardList,
     }),
-    isFive() {
-      return this.cardlist.length > 5
-    },
+
   },
   async created() {
     await this.$store.dispatch('getCards'/* , { update: true } */);
     this.loadingtrue = false;
   },
-  watch: {
-    selected3: function (newselectedStatus, oldselectedStatus) {
 
-    },
-  },
   mounted() {
+    if (this._cardlist) {
+      if (this._cardlist.length == 0) {
+        return
+      }
+      this.link2 = this._cardlist[0].cardNo;
+    }
 
   },
   methods: {
@@ -125,8 +131,10 @@ export default {
       });
     },
     showPicFun(data) {
-      this.picName = data.patientName;
+      console.log(data.cardNo)
       this.showPic = true;
+      this.link2 = data.cardNo;
+      this.picName = data.patientName;
     },
     onActConfirm() {
       // Toast({
@@ -154,33 +162,68 @@ export default {
 
 };
 </script>
- <style   scoped>
+ <style lang="scss"  scoped>
 @import "../doctorList/doctorList.css";
-
+.md-landscape-content {
+  width: 6rem !important;
+}
+.blind-card {
+  background: #ffffff;
+  border-radius: 20px;
+  .blind-card-one {
+    background-image: url("~@/assets/images/znanwu (2).jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    height: 200px;
+    .title {
+      font-size: 30px;
+      line-height: 70px;
+      color: #ffffff;
+    }
+  }
+  .blind-card-two {
+    padding: 40px 24px;
+    p {
+      line-height: 50px;
+    }
+    div {
+      margin: 20px;
+    }
+  }
+}
 .idcardlist .homeCard {
+  .homeCardText {
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .homeCardTextLeft {
+    flex-flow: column;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   /*height: 200px;*/
   border-radius: 20px;
   background: #ffffff;
+  color: var(--primary--title);
+  img {
+    width: 120px;
+  }
 }
 .bindcardwarn {
-  /* background-color: var(--primary); */
-
-  position: absolute;
+  color: var(--primary);
   bottom: 0;
+  padding-top: 40px;
+  margin-top: 20px;
 }
 .addisFive {
   background-color: var(--primary--content);
 }
-.blindcardBtn {
-  width: 50%;
-  height: 100px;
-  position: absolute;
-  top: -200px;
-  bottom: 0;
-  left: 0;
-  right: 0; /*css溢出法*/
-  margin: auto;
-}
+
 .idcardlist .md-button.small.round {
   width: 100%;
 }

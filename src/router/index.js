@@ -43,7 +43,6 @@ const workdotorinfo = () => import(/* webpackChunkName: "workdepart" */ "@/views
 
 const adress = () => import(/* webpackChunkName: "workdepart" */ "@/views/adress/adress.vue")
 const adressinfo = () => import(/* webpackChunkName: "workdepart" */ "@/views/adressinfo/adressinfo.vue")
-const fillinfo = () => import(/* webpackChunkName: "workdepart" */ "@/views/fillinfo/index.vue")
 const idcard = () => import(/* webpackChunkName: "workdepart" */ "@/views/idcard/index.vue")
 const idcardlist = () => import(/* webpackChunkName: "workdepart" */ "@/views/idcardlist/idcardlist.vue")
 
@@ -51,7 +50,7 @@ const idcardlist = () => import(/* webpackChunkName: "workdepart" */ "@/views/id
 
 const sign = () => import(/* webpackChunkName: "workdepart" */ "@/views/sign/sign.vue")
 const signagin = () => import(/* webpackChunkName: "workdepart" */ "@/views/signagin/signagin.vue")
-const moan = () => import(/* webpackChunkName: "workdepart" */ "@/views/moan/moan.vue")
+ 
 const signsucceed = () => import(/* webpackChunkName: "workdepart" */ "@/views/signsucceed/signsucceed.vue")
 const cardblind = () => import(/* webpackChunkName: "workdepart" */ "@/views/cardblind/cardblind.vue")
 const cardhave = () => import(/* webpackChunkName: "workdepart" */ "@/views/cardhave/cardhave.vue")
@@ -102,7 +101,6 @@ const examine = () => import(/* webpackChunkName: "inspectionCheck" */ "@/views/
 
  
 import onlineEva from '@/views/onlineEva/onlineEva.vue'
-import evaContent from '@/views/evaContent/evaContent.vue'
 import recipeRecord from '@/views/recipeRecord/recipeRecord.vue'
 import selectStore from '@/views/selectStore/selectStore.vue'
 import paySuccess from '@/views/paySuccess/paySuccess.vue'
@@ -398,11 +396,7 @@ export default new Router({
     name: 'cardblind',
     component: cardblind
   },
-  {
-    path: '/moan',
-    name: 'moan',
-    component: moan
-  },
+  
   {
     path: '/my',
     name: 'my',
@@ -583,12 +577,7 @@ export default new Router({
     name: 'notice',
     component: notice
   },
-
-  {
-    path: '/fillinfo',
-    name: 'fillinfo',
-    component: fillinfo
-  },
+ 
   {
     path: '/lookagain',
     name: 'lookagain',
@@ -704,11 +693,7 @@ export default new Router({
     name: 'adressinfo',
     component: adressinfo
   },
-  {
-    path: '/evaContent',
-    name: 'evaContent',
-    component: evaContent
-  },
+  
   {
     path: '/recipeRecord',
     name: 'recipeRecord',
@@ -805,8 +790,8 @@ export default new Router({
     }
   },
   {
-    path: '/inquiryOnline/:fromId',
-    // path: '/inquiryOnline',
+    // path: '/inquiryOnline/:fromId',
+    path: '/inquiryOnline',
     name: 'inquiryOnline',
     component: inquiryOnline,
     meta: {

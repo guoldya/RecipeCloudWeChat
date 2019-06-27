@@ -36,9 +36,7 @@
     font-size: 30px;
  }
 
- .md-field {
-    padding: 0;
- }
+ 
 
  .mu-secondary-text-color {
     color: var(--primary) !important;
@@ -62,13 +60,9 @@
     color: var(--primary--title);
  }
 
- .md-field {
-    padding: 0px !important;
- }
 
- .inspectionCheck .md-field-item-control {
-    font-size: 28px !important;
- }
+
+ 
 
  .inspectionCheck .md-popup-title-bar .title-bar-title p.title {
     font-size: 31px !important;
@@ -105,10 +99,7 @@
     /*color:  var(--primary--title);*/
  }
 
- .md-field {
-    padding: 0px !important;
- }
-
+ 
  .inspectionCheck .md-field-item-control {
     font-size: 28px !important;
  }

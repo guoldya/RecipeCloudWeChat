@@ -78,6 +78,9 @@ body {
 .flatCard:first-child {
   /* border-top: 2px solid #e9e9e9; */
 }
+input {
+  background: #ffffff !important;
+}
 .bottomback {
   display: flex;
   justify-content: space-between;
@@ -302,6 +305,9 @@ input:-ms-input-placeholder {
 }
 #app .md-input-item-input {
   text-align: right !important;
+}
+.md-field {
+  padding: 0px !important;
 }
 
 .md-activity-indicator-rolling .rolling circle.stroke {

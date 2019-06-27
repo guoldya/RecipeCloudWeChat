@@ -25,12 +25,10 @@
 </template>
 <script>
 import { InputItem, Field } from 'mand-mobile'
-let sendNewVerifyCode = "/api/hos/appLogin/sendNewVerifyCode";
+let sendNewVerifyCode = "/api/bas/appLogin/sendNewVerifyCode";
 let wechatbizPatientCardbinding = "/api/hos/bizPatientCard/insert";
 let checkMobile = "/api/hos/bizPatientCard/checkMobile";
 export default {
-  name: 'input-item-demo',
-  title: '普通输入框',
   data() {
     return {
       mobile: '',
@@ -42,9 +40,6 @@ export default {
       show: true,
       isSon: false,
       isSelectorShow: false,
-      pickerData1: [],
-      pickerValue1: '',
-
       selectorValue: '就诊卡',
       test: [
         {
@@ -63,10 +58,7 @@ export default {
     [InputItem.name]: InputItem,
     [Field.name]: Field,
   },
-  mounted() {
-    document.title = '绑定就诊卡';
-
-  },
+ 
   methods: {
     showSelector() {
       this.isSelectorShow = true
@@ -160,7 +152,6 @@ export default {
  <style scoped>
 .cardblind .md-button.block {
   width: 94%;
-  margin: 20px 24px;
 }
 .cardblind .login-box-div {
   display: flex;

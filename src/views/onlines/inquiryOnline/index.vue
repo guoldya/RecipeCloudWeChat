@@ -29,7 +29,7 @@
             <div class="content">
               <img v-for="(item2, index) in  item.content.post" :key="index+'img'" :src="item2" alt>
               <!-- <img :src="item.content.post[1]" alt>
-              <img :src="item.content.post[2]" alt> -->
+              <img :src="item.content.post[2]" alt>-->
             </div>
           </div>
           <div class="online-content-list-text" v-if="item.msgType == 1">
@@ -135,7 +135,7 @@ import websocketConfig from "../../../service/websocket.js";
 let updateOrder = "/api/hos/bizOnlineServiceRecord/updateOrder";
 let uploadImage = "/api/hos/appLogin/uploadImage";
 import { Dialog } from "mand-mobile";
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 export default {
   data() {
     return {
@@ -338,7 +338,7 @@ export default {
         chatType: 2,
         content: this.inputValue
       };
-      console.log("TO:" + msg.to);
+      // console.log("TO:" + msg.to);
       // 把当前发送的消息添加到历史消息去
       let arr = JSON.parse(JSON.stringify(this.chat.historyNews));
       arr.push(msg);
@@ -355,7 +355,7 @@ export default {
     }
   },
   beforeRouteLeave(to, from, next) {
-    let id = this.$route.params.fromId;
+    let id = this.$route.query.id;
     let index = this.chat.chatQueue.findIndex(msg => msg.id == id);
     let arr = JSON.parse(JSON.stringify(this.chat.chatQueue));
     if (index != -1) {
