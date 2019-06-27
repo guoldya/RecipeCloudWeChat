@@ -133,7 +133,7 @@
 import { mapState, mapActions } from "vuex";
 import websocketConfig from "../../../service/websocket.js";
 let updateOrder = "/api/hos/bizOnlineServiceRecord/updateOrder";
-let uploadImage = "/api/hos/appLogin/uploadImage";
+let uploadImage = "/api/bas/appLogin/uploadImage";
 import { Dialog } from "mand-mobile";
 import { setTimeout } from "timers";
 export default {
@@ -164,7 +164,6 @@ export default {
   },
   async mounted() {
     // 让滚动条滚动到指定位置
-
     this.scrollBottom();
     // this.height =this.$refs.inputModel.getBoundingClientRect().height
     //  用于演示临时加得
@@ -175,9 +174,6 @@ export default {
     if (typeof this.chat.websocket.url == "undefined")
       websocketConfig();
     // let args = this.chat.historyNews.filter(item => item.msgType == 7);
-    window.onresize = () => {
-      this.$refs.chatContent.scrollTop = this.$refs.chatContent.scrollHeight
-    }
 
   },
   updated: function () {
@@ -254,11 +250,7 @@ export default {
       // 内容区在底部
       this.$nextTick(() => {
         var ele = this.$refs.chatContent;
-        // console.log("scrollHeight:"+JSON.stringify(ele.scrollHeight))
-        // // ele.scrollTop = ele.scrollHeight;
         ele.scrollTop = ele.scrollHeight;
-
-        console.log("scrollTop:" + JSON.stringify(this.$refs.chatContent.scrollTop))
       });
     },
     showViewer(index) {

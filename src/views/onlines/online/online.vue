@@ -268,23 +268,25 @@ export default {
     async getDepartment() {
       try {
         let res = await this.$axios.put(departmentUrl, {
-          orgId: Number(localStorage.getItem("hospitalId")),
+          // orgId: Number(localStorage.getItem("hospitalId")),
+          orgId: 49,
           orgType: 3,
           pageNumber: this.departmenParams.num,
           pageSize:100
         });
-        if (res.data.code != 200) {
-          throw Error(res.data.msg);
+        if (res.code != 200) {
+          throw Error(res.msg);
         }
-        this.departmenParams.pages = res.data.pages;
-        for (let i = 0; i < res.data.rows.length; i++) {
+        this.departmenParams.pages = res.pages;
+        for (let i = 0; i < res.rows.length; i++) {
           let neslist = {
-            text: res.data.rows[i].orgName,
-            value: String(res.data.rows[i].id)
+            text: res.rows[i].orgName,
+            value: String(res.rows[i].id)
           }
           this.departData.push(neslist);
         }
-        this.departmentList = this.departmentList.concat(res.data.rows);
+        this.departmentList = this.departmentList.concat(res.rows);
+        // console.log("departmentList",this.departmentList)
       } catch (error) {
         console.log(error);
       }
@@ -317,9 +319,11 @@ export default {
     loadMore() {
       if (this.isloading) return false;
       if (this.doctorParams.pageNumber == this.doctorPages) return false;
+      console.log(this.doctorParams.pageNumber,'+',this.doctorPages)
       this.busy = true;
       setTimeout(() => {
         this.doctorParams.pageNumber++;
+      console.log(this.doctorParams.pageNumber,'+')
         this.getRecommendDoctor();
         this.busy = false;
       }, 1000);

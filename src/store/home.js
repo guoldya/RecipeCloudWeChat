@@ -30,7 +30,7 @@ const actions = {
 
       const res = await loadCards()
       if (res.code != 200) return console.error('获取就诊卡片失败: ', res)
-
+      // console.log("res:",res)
       commit('SET_CARDS', { list: res.rows, total: res.total })
    },
 

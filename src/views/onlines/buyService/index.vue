@@ -109,10 +109,7 @@ export default {
               },
             })
           })
-
-
         } else {
-
         }
       }).catch(function (err) {
         console.log(err);

@@ -83,6 +83,7 @@ export default {
   },
   mounted() {
     this.init();
+    console.log("cardNo:" + this.$store.state.cardNo);
   },
   methods: {
     // 初始化
