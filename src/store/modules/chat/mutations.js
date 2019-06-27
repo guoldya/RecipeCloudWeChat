@@ -1,7 +1,7 @@
 export default {
   setWebsocket(state, websocket) {
     state.websocket = websocket
-    console.log(websocket, 'websocket的值')
+    // console.log(websocket, 'websocket的值')
   },
   updateChatQueue(state, data) { //更新队列
     let friend = data

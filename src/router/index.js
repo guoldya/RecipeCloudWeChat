@@ -805,8 +805,8 @@ export default new Router({
     }
   },
   {
-    path: '/inquiryOnline/:fromId',
-    // path: '/inquiryOnline',
+    // path: '/inquiryOnline/:fromId',
+    path: '/inquiryOnline',
     name: 'inquiryOnline',
     component: inquiryOnline,
     meta: {

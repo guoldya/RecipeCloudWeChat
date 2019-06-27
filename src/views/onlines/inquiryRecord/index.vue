@@ -66,10 +66,6 @@ export default {
     // console.log(1)
     await this.WaitPay(false);
     // console.log(3)
-
-    
-    
-
     //连接websocket
     if(typeof(this.chat.websocket.url) == "undefined") {
       websocketConfig();
@@ -80,10 +76,8 @@ export default {
       }
       let arr = JSON.parse(JSON.stringify(this.waitPayData))
       this['chat/updatePayChatQueue'](arr);
-      console.log("chatQueue:"+JSON.stringify(this.chat.chatQueue))
+      // console.log("chatQueue:"+JSON.stringify(this.chat.chatQueue))
     }
-      
-    
   },
   methods: {
     ...mapActions(['chat/setFriendId', 'updateUser','chat/updatePayChatQueue']),
@@ -93,17 +87,18 @@ export default {
         type: 1,
         fromUserId: item.id,
         userId: this.userInfo.id,
-        //userId:item.from  == 125 ? 123 :125
       };
       this['chat/setFriendId'](item.id)
       this.chat.websocket.send(JSON.stringify(msg));
+      this.$router.push({
+        name: 'inquiryOnline',
+        query: {
+          id: item.id,
+        }
+      });
     },
     close() {
       this.chat.websocket.close();
-
-      // let pay = this.waitPayData;
-      // console.log("waitPayData",pay[1])
-
     },
     WaitPay(flag) {
       return new Promise(( resolve, reject)=>
