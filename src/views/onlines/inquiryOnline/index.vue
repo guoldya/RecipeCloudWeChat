@@ -110,7 +110,7 @@
 
     <!-- 编辑弹窗 -->
     <md-dialog :closable="true" layout="column" v-model="dialogOpen">
-      <img src="@/assets/images/user.png" alt>
+      <img src="@/assets/images/3.jpg" alt>
       <div class="edit-dialog-item">
         <p>张丽&nbsp;&nbsp;女&nbsp;&nbsp;30岁</p>
         <div>

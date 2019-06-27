@@ -8,7 +8,7 @@
             <div class="flatCard" @click="intodoctorschedu(item.id)">
               <div class="cardText">
                 <div class="headimg">
-                  <img src="@/assets/images/user.png" alt="医生头像">
+                  <img src="@/assets/images/3.jpg" alt="医生头像">
                 </div>
                 <div>
                   <p class="headname">
@@ -22,9 +22,7 @@
           </li>
           <p v-show="nomore" class="noMore">没有更多数据了</p>
         </ul>
-        <div v-show="!loadingtrue" class="nullDiv" v-else>
-          <img src="@/assets/images/null1.png">
-        </div>
+        <Null :loading-true="!loadingtrue "></Null>
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
                 <span v-if="doctorData.length!=0&&!nomore">
                   <span class="mu-light-text-color">加载中</span>

@@ -100,7 +100,7 @@
             <li v-for="(item2,index) in goodsList" :key='index' class="border1" style="width:100%">
               <div class="detaileTop">
                 <div class="headimg">
-                  <img src="@/assets/images/user.png" alt="店铺头像">
+                  <img src="@/assets/images/3.jpg" alt="店铺头像">
                 </div>
                 <div class="headRight headRightPJ">
                   <div>

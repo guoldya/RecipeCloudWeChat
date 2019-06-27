@@ -74,8 +74,6 @@ export default {
         };
     },
     created() {
-
-
         if (sessionStorage.getItem('feeActiveFun')) {
             this.queryType = sessionStorage.getItem('feeActiveFun') * 1;
             if (sessionStorage.getItem('feeActiveFun') * 1 == 1) {

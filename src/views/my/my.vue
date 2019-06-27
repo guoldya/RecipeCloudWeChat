@@ -9,8 +9,9 @@
       <div class="aui-user">
         <div class="aui-user-cell">
           <div class="aui-user-cell-logo" @click="acctest">
-            <!-- <img v-if="_accountinfo.headUrl" :src="$conf.constant.img_base_url + _accountinfo.headUrl" alt=""> -->
-            <img src="@/assets/images/user.png">
+            <img v-if="_accountinfo.headUrl" :src="$conf.constant.img_base_url + _accountinfo.headUrl" alt="">
+            <img v-else-if="_accountinfo.sex==1" src="@/assets/images/user.jpg">
+            <img v-else src="@/assets/images/31.jpg">
           </div>
           <div class="aui-user-cell-title">
             <p>{{_accountinfo.name}}</p>
@@ -60,7 +61,7 @@
             <i></i>
           </div>
         </a>
-        <a href="javascript:;" class="aui-list-item">
+        <a href="javascript:;" class="aui-list-item" @click="visitingrecord">
           <div class="aui-list-item-fl">
             <i class="icon icon-item07"></i>
             诊疗记录
@@ -174,7 +175,7 @@ export default {
     }),
   },
   created() {
-    this.$store.commit("feeActiveFun", 1);
+    sessionStorage.setItem('feeActiveFun', 1)
   },
   async mounted() {
     await this.$store.dispatch('getAccount');
@@ -183,14 +184,14 @@ export default {
   methods: {
 
     testRegist() {
-      if (!this._accountinfo.idCard) {
-        this.$toast.info("请先实名")
-        return false
-      }
-      if (this._cardlist.length == 0) {
-        this.$toast.info("请绑定就诊卡")
-        return false
-      }
+      // if (!this._accountinfo.idCard) {
+      //   this.$toast.info("请先实名")
+      //   return false
+      // }
+      // if (this._cardlist.length == 0) {
+      //   this.$toast.info("请绑定就诊卡")
+      //   return false
+      // }
       return true
 
     },
@@ -242,6 +243,16 @@ export default {
       let argu = {};
       this.$router.push({
         name: "reportquery",
+        query: argu
+      });
+    },
+    visitingrecord() {
+      if (!this.testRegist()) {
+        return
+      }
+      let argu = {}
+      this.$router.push({
+        name: 'visitingrecord',
         query: argu
       });
     },

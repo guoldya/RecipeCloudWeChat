@@ -4,13 +4,15 @@
     <div class="margin50">
       <div v-if="hospitaldata.length!=0" v-show="!loadingtrue">
         <md-cell-item v-for="(item,index) in hospitaldata" :key="index+'aa'" @click="intodoctorinfo(item)" :title="item.name" :brief="item.introduce" arrow>
-          <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+          <span class="holder" slot="left">
+            <img v-if="item.sex=='男'" src="@/assets/images/3.jpg" alt="医生头像">
+            <img v-else src="@/assets/images/31.jpg" alt="医生头像">
+            <img class="holder-tag" src="@/assets/images/zhuanjia.png" v-show="item.level!=1" alt=""></span>
         </md-cell-item>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
-      <div v-show="!loadingtrue" class="nullDiv" v-else>
-        <img src="@/assets/images/null1.png">
-      </div>
+ 
+      <Null :loading-true="!loadingtrue&&hospitaldata.length==0"></Null>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
         <span v-if="hospitaldata.length!=0&&!nomore">
           <span class="mu-light-text-color">加载中</span>
@@ -19,9 +21,6 @@
       </div>
       <Loading v-show="loadingtrue"></Loading>
     </div>
-    <!-- <div class="aui-footer" @click="lookagain">
-      <span>复诊</span>
-    </div> -->
   </div>
 </template>
 <script type="text/babel">
@@ -37,22 +36,14 @@ export default {
       nomore: false,
     };
   },
-  created() {
-
-  },
-  watch: {
-
-  },
   mounted() {
     this.orgFun(false);
   },
   methods: {
-
-
     intodoctorinfo(data) {
       this.$router.push({
         name: 'doctordetail',
-        query: { doctorId: data.id, islist: 1 }
+        query: { doctorId: data.id, islist: 1, today: this.$route.query.today }
       });
     },
 
@@ -61,6 +52,12 @@ export default {
       deptparams.pageNumber = this.page;
       deptparams.pageSize = this.pageSize;
       deptparams.keyword = this.$route.query.val;
+
+      if (this.$route.query.today) {
+        deptparams.orgType = this.$route.query.today == 2 ? 4 : 2
+
+      }
+      // deptparams.orgType = this.$route.query.today ? this.$route.query.today * 1 : undefined;
       this.$axios.put(bdHospitalOrg, deptparams).then((res) => {
         if (res.data.rows) {
           this.loadingtrue = false;
@@ -106,6 +103,4 @@ export default {
 
 };
 </script>
- <style scoped>
  
-</style>

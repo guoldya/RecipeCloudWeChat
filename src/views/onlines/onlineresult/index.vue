@@ -4,13 +4,11 @@
     <div class="margin50">
       <div v-if="hospitaldata.length!=0" v-show="!loadingtrue" style=" background: #ffffff;">
         <md-cell-item v-if="hospitaldata.length!=0" v-for="(item,index) in hospitaldata" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
-          <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+          <span class="holder" slot="left"><img src="@/assets/images/3.jpg"></span>
         </md-cell-item>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
-      <div v-show="!loadingtrue" class="nullDiv" v-else>
-        <img src="@/assets/images/null1.png">
-      </div>
+      <Null :loading-true="!loadingtrue "></Null>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
         <span v-if="hospitaldata.length!=0&&!nomore">
           <span class="mu-light-text-color">加载中</span>

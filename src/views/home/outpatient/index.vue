@@ -114,7 +114,7 @@
   </div>
 </template>
 <script type="text/babel"> 
-let bizLisReportreadpage = '/bizPayOrder/read/page';
+let bizLisReportreadpage = '/api/hos/bizPayOrder/read/page';
 let now_pay_url = "/api/hos/bizPayOrder/nowPayByList";
 export default {
   data() {

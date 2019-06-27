@@ -6,7 +6,7 @@
             <li v-for="i in num" :key="i">
                <div class="card margin16" @click="intodoctordetail">
                   <div class="cardText">
-                     <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+                     <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
                      <div>
                         <p class="headname">医师
                            <span class="have">余56</span>

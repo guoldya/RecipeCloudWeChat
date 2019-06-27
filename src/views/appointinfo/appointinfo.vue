@@ -55,10 +55,7 @@ export default {
   created() {
 
   },
-  mounted() {
-    document.title = '预约记录';
   
-  },
   methods: {
     switchTo(num) {
       this.active1 = num;

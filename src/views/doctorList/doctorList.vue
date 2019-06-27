@@ -58,7 +58,7 @@
         <!-- <li v-for="aa in 11">
           <div class="flatCard">
             <div class="cardText">
-              <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+              <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
               <div>
                 <div class="headname">
                   <span>{{aa}}{{aa}}{{aa}}{{isAAA}}</span>
@@ -76,7 +76,7 @@
             <div class="flatCard">
 
               <div class="cardText">
-                <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+                <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
                 <div>
                   <div class="headname">
                     <span>{{info.name}}</span>
@@ -103,7 +103,7 @@
         <!-- <li v-for="aa in 11">
           <div class="flatCard">
             <div class="cardText">
-              <div class="headimg"><img src="@/assets/images/user.png" alt="医生头像"></div>
+              <div class="headimg"><img src="@/assets/images/3.jpg" alt="医生头像"></div>
               <div>
                 <div class="headname">
                   <span>下午{{aa}}</span>
@@ -120,7 +120,7 @@
             <div class="flatCard" @click="intodoctordetail(pmItem,2)">
               <div class="cardText">
                 <div class="headimg">
-                  <img src="@/assets/images/user.png" alt="医生头像">
+                  <img src="@/assets/images/3.jpg" alt="医生头像">
                 </div>
                 <div>
                   <p class="headname">

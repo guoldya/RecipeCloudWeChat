@@ -245,7 +245,6 @@ body {
   padding: 4px 12px;
   line-height: 36px;
   position: relative;
-  top: -2px;
 }
 .docLevel {
   border: 2px solid var(--primary);
@@ -532,7 +531,17 @@ p {
   display: inline-block;
   border-radius: 10px;
 }
-
+.titleright {
+  color: #8d8d8d;
+}
+.holder img {
+  width: 100px;
+}
+.holder .holder-tag {
+  left: 24px;
+  position: absolute;
+  top: 117px;
+}
 .card {
   box-shadow: 0 0 17px rgba(20, 19, 51, 0.1);
   background-color: #fff;

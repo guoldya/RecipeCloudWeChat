@@ -5,7 +5,7 @@
         <div class="doctor-head  " v-show="!loadingtrue" v-if="doctorInfo.length!=0">
             <div class="doc_info ">
                 <div class="pic fl">
-                    <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorInfo.name">
+                    <img src="@/assets/images/3.jpg" onerror="@/assets/images/3.jpg" :alt="doctorInfo.name">
                 </div>
                 <div class="detail">
                     <div class="headname">

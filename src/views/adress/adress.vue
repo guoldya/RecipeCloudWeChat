@@ -41,9 +41,7 @@
                     </div>
                 </li>
             </ul>
-            <!-- <div v-show="!loadingtrue" v-else class="nullDurg">
-                <img src="@/assets/images/null1.png" alt="">
-            </div> -->
+           
             <Null :loading-true="!loadingtrue&&addressInfo.length==0"></Null>
         </div>
 

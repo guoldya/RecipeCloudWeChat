@@ -9,7 +9,7 @@
             </div>
             <div class="mu-sub-header  margin14">医生</div>
             <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
-                <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+                <span class="holder" slot="left"><img src="@/assets/images/3.jpg"></span>
             </md-cell-item>
             <div v-if="doctorList.length==0" class="margin7">
                 <p>暂无医生信息</p>

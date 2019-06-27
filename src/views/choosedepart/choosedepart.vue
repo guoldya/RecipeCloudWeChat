@@ -6,7 +6,7 @@
       <div class="rightflatCardBtn">
         <Apptab :tab-title="departs" v-on:childByValue="childByValue" :depart="1"></Apptab>
       </div>
-      
+
       <div class="departList" v-if="departList">
         <section class="classification_list">
           <div class="listSuperBox">
@@ -115,6 +115,8 @@ export default {
         if (res.data.code == '200') {
           if (res.data.rows) {
             this.departList = res.data.rows;
+            this.chooseID = res.data.rows[0].id;
+            this.rightDepart = res.data.rows[0].orgList
           } else {
             this.departList = [];
           }
