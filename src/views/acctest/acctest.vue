@@ -45,7 +45,6 @@
     </ul>
   </div>
 </template>
-
 <script>
 
 let uploadImgimage = "/uploadImg/image";

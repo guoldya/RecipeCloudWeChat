@@ -41,7 +41,7 @@
     </div>
 </template>
 <script type="text/babel">
-    let bizExamApplyreadpage = '/bizExamApply/read/page';
+    let bizExamApplyreadpage = '/api/hos/bizExamManage/selectBizExamApplyPage';
     export default {
         data() {
             return {

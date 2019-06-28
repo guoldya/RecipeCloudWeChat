@@ -6,7 +6,6 @@
       <div class="rightflatCardBtn">
         <Apptab :tab-title="departs" v-on:childByValue="childByValue" :depart="1"></Apptab>
       </div>
-
       <div class="departList" v-if="departList">
         <section class="classification_list">
           <div class="listSuperBox">
@@ -49,7 +48,6 @@ export default {
   },
 
   mounted() {
-
     this.$axios.put(yuanquURL, {
       // orgId: _this.$route.query.hospitalId ? _this.$route.query.hospitalId * 1 : localStorage.getItem("hospitalId") * 1,
       orgType: 1
@@ -98,13 +96,11 @@ export default {
     },
 
     childByValue: function (childValue) {
-
       this.orgId = childValue.id;
       this.$store.commit('departFun', childValue.orgName);
       sessionStorage.setItem('feeActiveFun', childValue.id)
       this.loadingtrue = true;
       this.orgFun();
-
     },
 
     orgFun() {

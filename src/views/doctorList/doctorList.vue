@@ -147,7 +147,7 @@
 </template>
 <script type="text/babel">
 let selectDoctorList = "/api/hos/bdHospitalDoctor/read/selectDoctorList";
-let bdHospitalOrg = '/bdHospitalOrg/read/selectClinicListByHospitalArea';
+let bdHospitalOrg = '/api/hos/bdHospitalOrg/read/selectClinicListByHospitalArea';
 export default {
   data() {
     console.log(String(this.$route.query.deptId), "wp")

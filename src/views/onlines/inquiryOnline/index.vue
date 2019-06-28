@@ -10,7 +10,6 @@
         <li v-for="(item, index) in  chat.historyNews" :key="index" class="online-content-list" :class="item.from != userInfo.id ? '' : 'right'">
           <!-- <img class="online-content-list-head" src="@/assets/images/3.jpg" v-if="item.from != userInfo.id" alt="" />
           <img class="online-content-list-head" src="@/assets/images/3.jpg" v-else alt="" />-->
-
           <img class="online-content-list-head" src="@/assets/images/head1.png" v-if="item.from != userInfo.id" alt>
           <img class="online-content-list-head" src="@/assets/images/head.png" v-else alt>
           <div class="online-content-list-text" v-if="item.msgType == 0">
