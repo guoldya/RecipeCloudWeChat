@@ -89,7 +89,7 @@
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
       <div v-show="!loadingtrue" class="aligncenter" style="margin:86px 0" v-else>
-        <img src="@/assets/images/null1.png">
+        <img src="@/assets/images/null_hosi.png">
         <p class="nullTEXT">您{{timeClass|timeFilter}}没有{{noDataTitle}}记录</p>
       </div>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
