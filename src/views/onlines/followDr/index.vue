@@ -7,6 +7,7 @@
     <div class="nodata" v-if="!isloading&&!followList.length">
       <img src="@/assets/images/null1.png" alt="">
     </div>
+       
     <!-- 医生列表 -->
     <doctorList v-for="(item,index) in followList" :key="index" :datas="item"></doctorList>
       <div  class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30">

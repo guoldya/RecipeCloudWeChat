@@ -29,7 +29,7 @@
         </div>
       </div>
       <div v-show="!isloading" class="nullDiv" v-else>
-        <img src="@/assets/images/null1.png">
+        <img src="@/assets/images/null_hosi.png">
         <p class="nullTEXT">最近一年没有体检报告</p>
       </div>
       <p v-show="!isloading&&doctorParams.pageNumber == doctorPages" class="noMore">没有更多数据了</p>

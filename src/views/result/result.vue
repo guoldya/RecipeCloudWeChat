@@ -1,7 +1,7 @@
 <template>
     <div class="result">
         <Header post-title="搜索结果"></Header>
-        <div class="margin55 outCarint">
+        <div class="margin55 outCarint"  v-show="!loadingtrue">
             <div class="mu-sub-header margin14">科室</div>
             <md-cell-item v-if="departData.length!=0" v-for="(item2,index2) in departData" :title="item2.orgName" arrow @click="intodoctorList(item2)" :key="'AAA'+index2" />
             <div v-if="departData.length==0" class="margin7">
@@ -9,13 +9,12 @@
             </div>
             <div class="mu-sub-header  margin14">医生</div>
             <md-cell-item v-if="doctorList.length!=0" v-for="(item,index) in doctorList" @click="intodoctorinfo(item)" :key="index+'aa'" :title="item.name" :brief="item.introduce" arrow>
-                <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+                <span class="holder" slot="left"><img src="@/assets/images/3.jpg"></span>
             </md-cell-item>
             <div v-if="doctorList.length==0" class="margin7">
                 <p>暂无医生信息</p>
             </div>
         </div>
-
         <Loading v-show="loadingtrue"></Loading>
     </div>
     <!-- <div class="aui-footer" @click="lookagain">
@@ -24,7 +23,7 @@
 
 </template>
 <script type="text/babel">
-let bdHospitalOrg = '/bdHospitalOrg/read/searchClinicListByClinicOrDoctor';
+let bdHospitalOrg = '/api/hos/bdHospitalOrg/read/searchClinicListByClinicOrDoctor';
 export default {
     data() {
         return {

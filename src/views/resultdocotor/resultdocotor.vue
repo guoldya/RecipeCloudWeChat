@@ -8,7 +8,7 @@
             <div class="mu-sub-header margin14">医生</div>
             <Skeleton v-if="isloading"></Skeleton>
             <md-cell-item v-else v-for="(item,index) in doctorList" :key="index+'aa'" @click="intodoctorinfo(item)" :title="item.name" :brief="item.introduce" arrow>
-                <span class="holder" slot="left"><img src="@/assets/images/user.png"></span>
+                <span class="holder" slot="left"><img src="@/assets/images/3.jpg"></span>
             </md-cell-item>
 
             <div class="loadmore" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">

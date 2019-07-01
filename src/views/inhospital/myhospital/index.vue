@@ -47,9 +47,7 @@
                </div>
             </div>
          </div>
-         <div v-show="!loadingtrue" class="nullDiv" v-else>
-            <img src="@/assets/images/null1.png">
-         </div>
+        <Null :loading-true="!loadingtrue "></Null>
          <Loading v-show="loadingtrue"></Loading>
       </div>
    </div>

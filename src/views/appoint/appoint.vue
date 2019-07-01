@@ -26,9 +26,8 @@
         </div>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
-      <div v-show="!loadingtrue" class="nullDiv" v-else>
-        <img src="@/assets/images/null1.png">
-      </div>
+   
+      <Null :loading-true="!loadingtrue "></Null>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
         <span v-if="appointData.length!=0&&!nomore">
           <span class="mu-light-text-color">加载中</span>
@@ -40,7 +39,7 @@
   </div>
 </template>
 <script  >
-let appoint_order_url = "/api/hos/bizExamApply/read/page";
+let appoint_order_url = "/api/hos/bizExamManage/selectBizExamApplyPage";
 export default {
   data() {
     return {
@@ -59,14 +58,14 @@ export default {
   },
   mounted() {
     this.appointFun();
-    document.title = '预约记录';
-   
   },
   methods: {
     appointFun(flag) {
       const params = {};
       params.pageNumber = this.page;
       params.pageSize = this.pageSize;
+      params.cardNo = 's';
+
       params.applyRecord = "Y";
       this.$axios.put(appoint_order_url, params).then((res) => {
         if (res.data.rows) {
@@ -111,25 +110,25 @@ export default {
 };
 </script>
  <style   scoped>
-    .appoint .card {
-      margin-bottom: 32px;
-    }
-    .appoint .appointText {
-      padding-top: 10px;
-    }
-    .appoint .appointText p {
-      line-height: 60px;
-    }
-    .appoint .flatCard{
-      border-top: none;
-    }
-   .appoint .listData:last-child{
-     padding-bottom: 12px;
-   }
-   .appoint .appTitle{
-     padding: 24px 0;
-   }
-   .appoint .listData span{
-     padding: 14px 0;
-   }
+.appoint .card {
+  margin-bottom: 32px;
+}
+.appoint .appointText {
+  padding-top: 10px;
+}
+.appoint .appointText p {
+  line-height: 60px;
+}
+.appoint .flatCard {
+  border-top: none;
+}
+.appoint .listData:last-child {
+  padding-bottom: 12px;
+}
+.appoint .appTitle {
+  padding: 24px 0;
+}
+.appoint .listData span {
+  padding: 14px 0;
+}
 </style>

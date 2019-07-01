@@ -244,9 +244,7 @@ export default {
             });
         },
     },
-    computed: {
-
-    },
+   
 
 };
 </script>

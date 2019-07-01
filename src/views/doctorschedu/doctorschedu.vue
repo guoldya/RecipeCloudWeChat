@@ -5,7 +5,7 @@
             <!--<div class="outCarint">-->
                 <!--<div class="doctor-info">-->
                     <!--<div class="header">-->
-                        <!--<img src="@/assets/images/user.png" alt="医生头像">-->
+                        <!--<img src="@/assets/images/3.jpg" alt="医生头像">-->
                     <!--</div>-->
                     <!--<div class="doctor-right">-->
                         <!--<p>-->
@@ -33,7 +33,7 @@
             <!--</div>-->
             <div class="doc_info ">
                 <div class="pic fl">
-                    <img src="@/assets/images/user.png" onerror="@/assets/images/user.png" :alt="doctorData.name">
+                    <img src="@/assets/images/3.jpg" onerror="@/assets/images/3.jpg" :alt="doctorData.name">
                 </div>
                 <div class="detail">
                     <div class="headname">
@@ -83,7 +83,7 @@
     </div>
 </template>
 <script>
-    let doctor_url="/bdHospitalDoctor/read/selectDoctorDetail ";
+    let doctor_url="/api/hos/bdHospitalDoctor/read/selectDoctorDetail ";
     import Calendar from 'vue-calendar-component';
     export default {
         components: {

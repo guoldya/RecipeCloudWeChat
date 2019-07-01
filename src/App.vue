@@ -78,9 +78,7 @@ body {
 .flatCard:first-child {
   /* border-top: 2px solid #e9e9e9; */
 }
-input {
-  background: #ffffff !important;
-}
+ 
 .bottomback {
   display: flex;
   justify-content: space-between;
@@ -247,7 +245,6 @@ input {
   padding: 4px 12px;
   line-height: 36px;
   position: relative;
-  top: -2px;
 }
 .docLevel {
   border: 2px solid var(--primary);
@@ -534,7 +531,17 @@ p {
   display: inline-block;
   border-radius: 10px;
 }
-
+.titleright {
+  color: #8d8d8d;
+}
+.holder img {
+  width: 100px;
+}
+.holder .holder-tag {
+  left: 24px;
+  position: absolute;
+  top: 117px;
+}
 .card {
   box-shadow: 0 0 17px rgba(20, 19, 51, 0.1);
   background-color: #fff;
@@ -665,5 +672,48 @@ textarea::-webkit-input-placeholder {
 }
 .md-landscape .md-icon.md-landscape-close {
   display: none !important;
+}
+
+.resulthistory .history {
+  width: 100%;
+  height: 0.74rem;
+  border-bottom: 1px solid #eee;
+  line-height: 0.74rem;
+}
+
+.resulthistory .fl {
+  display: flex;
+  color: #777;
+}
+
+.resulthistory .fl span {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.resulthistory .fl .lf {
+  flex: 6.7;
+  font-size: 28px;
+}
+.resulthistory .fl .rt {
+  flex: 1;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+}
+.clear {
+  margin-top: 0.2rem;
+}
+.delete {
+  float: right;
+  margin-right: 2%;
+}
+.md-icon.icon-font.md {
+  font-size: 0.42rem !important;
+}
+.hj {
+  width: 85%;
+  display: inline-block;
 }
 </style>

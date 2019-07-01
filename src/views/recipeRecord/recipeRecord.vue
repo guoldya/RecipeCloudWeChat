@@ -148,9 +148,7 @@
                 <div style="height: 27px"></div>
                 <p class="addbTN" @click="selectStore()">去下单</p>
             </div>
-            <div v-show="!loadingtrue" class="nullDiv" v-else>
-                <img src="@/assets/images/null1.png">
-            </div>
+             <Null :loading-true="!loadingtrue "></Null>
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
                 <span v-if="recordData.length!=0&&!nomore">
                     <span class="mu-light-text-color">加载中</span>
@@ -169,7 +167,7 @@
 </template>
 <script type="text/babel">
 import { Toast } from "mand-mobile"
-let recipe_getList_url="/recipe/getList ";
+let recipe_getList_url="/api/hos/bizRecipe/getList";
 export default {
 
     data() {

@@ -29,9 +29,7 @@
         </div>
         <p v-show="nomore" class="noMore">没有更多数据了</p>
       </div>
-      <div v-show="!loadingtrue" class="nullDiv" v-else>
-        <img src="@/assets/images/null1.png">
-      </div>
+      <Null :loading-true="!loadingtrue "></Null>
       <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="30" class="textCenter">
         <span v-if="waitPayData.length!=0&&!nomore">
           <span class="mu-light-text-color">加载中</span>

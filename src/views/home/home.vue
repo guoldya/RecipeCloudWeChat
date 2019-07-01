@@ -127,7 +127,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
-let bizPatientRegisterselectCount = "/api/hos/api/hos/bizPatientRegister/selectCount";
+let bizPatientRegisterselectCount = "/api/hos/bizPatientRegister/selectCount";
 export default {
     data() {
         return {

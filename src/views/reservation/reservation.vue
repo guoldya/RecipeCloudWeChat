@@ -4,7 +4,7 @@
             <Header post-title="预约信息"></Header>
             <div class="order-info">
                 <div class="doctor-info g-clear">
-                    <img src="@/assets/images/user.png" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
+                    <img src="@/assets/images/3.jpg" alt="卞晶" title="卞晶" onerror="this.src='https://static.guahao.cn/img/character/doc-unknow.png';this.onerror='';">
                     <span class="doctor-name">{{doctorInfo.name}}</span>
                     <span class="docLevel">{{doctorInfo.title}}</span>
                 </div>

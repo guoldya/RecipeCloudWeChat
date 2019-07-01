@@ -52,6 +52,7 @@ export default new Vuex.Store({
         idCardAPPInfo: '',
         selectAdress: '',
         accountinfo: '',
+        homeList: 0,
     },
     mutations: {
         isCashierhowFun: (state, n) => {
@@ -60,7 +61,9 @@ export default new Vuex.Store({
         accountinfoFun: (state, n) => {
             state.accountinfo = n;
         },
-
+        homeListFun: (state, n) => {
+            state.homeList = n;
+        },
         selectAdressFun: (state, n) => {
             state.selectAdress = n;
         },

@@ -18,11 +18,17 @@ export default {
       active1: 1,
     }
   },
-  props: ['tabTitle'],
+  props: ['tabTitle', 'depart'],
   mounted() {
     if (sessionStorage.getItem('feeActiveFun')) {
       this.active1 = sessionStorage.getItem('feeActiveFun') * 1
     }
+    this.$nextTick(function () {
+      if (this.depart == 1) {
+        this.active1 = this.tabTitle[0].id
+      }
+    })
+
   },
   methods: {
     switchTo(item) {
@@ -54,7 +60,7 @@ export default {
 .appTab span {
   font-size: 30px;
   position: relative;
-  line-height: 50px
+  line-height: 50px;
 }
 .appTab label {
   font-size: 26px;
